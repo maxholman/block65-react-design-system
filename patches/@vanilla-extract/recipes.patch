@@ -1,0 +1,9 @@
+diff --git a/node_modules/@vanilla-extract/recipes/dist/declarations/src/index.d.ts b/node_modules/@vanilla-extract/recipes/dist/declarations/src/index.d.ts
+index 05baf30..a291410 100644
+--- a/node_modules/@vanilla-extract/recipes/dist/declarations/src/index.d.ts
++++ b/node_modules/@vanilla-extract/recipes/dist/declarations/src/index.d.ts
+@@ -1,3 +1,3 @@
+ import type { PatternOptions, RuntimeFn, VariantGroups } from './types';
+-export type { RecipeVariants } from './types';
++export type { RecipeVariants, RuntimeFn } from './types';
+ export declare function recipe<Variants extends VariantGroups>(options: PatternOptions<Variants>, debugId?: string): RuntimeFn<Variants>;
