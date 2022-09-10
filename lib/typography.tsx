@@ -30,7 +30,7 @@ export const Text: FC<
 > = ({ className, size, ...props }) => (
   <p
     {...props}
-    className={clsx(className, text, size && sizeToFontSize(size))}
+    className={clsx(className, text, !!size && sizeToFontSize(size))}
   />
 );
 

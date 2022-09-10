@@ -43,21 +43,11 @@ export const marginBlock = styleVariants(
 
 export const marginInline = styleVariants(
   {
-    tiny: {
-      marginInline: globalThemeContract.space.small,
-    },
-    small: {
-      marginInline: globalThemeContract.space.small,
-    },
-    standard: {
-      marginInline: globalThemeContract.space.standard,
-    },
-    large: {
-      marginInline: globalThemeContract.space.large,
-    },
-    huge: {
-      marginInline: globalThemeContract.space.huge,
-    },
+    tiny: { marginInline: globalThemeContract.space.tiny },
+    small: { marginInline: globalThemeContract.space.small },
+    standard: { marginInline: globalThemeContract.space.standard },
+    large: { marginInline: globalThemeContract.space.large },
+    huge: { marginInline: globalThemeContract.space.huge },
   },
   'marginInline',
 );

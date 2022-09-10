@@ -5,7 +5,7 @@ all: dist
 
 .PHONY: clean
 clean:
-	yarn tsc -b --clean 
+	yarn tsc -b --clean
 
 .PHONY: test
 test:
@@ -18,6 +18,5 @@ dist: node_modules tsconfig.json $(SRCS)
 	yarn tsc
 
 .PHONY: dev
-dev: 
-	yarn tsc -w
-	
+dev:
+	yarn vite dev

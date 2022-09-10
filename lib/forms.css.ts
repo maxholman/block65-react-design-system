@@ -7,12 +7,27 @@ export const formInput = style({
   borderStyle: 'solid',
   padding: globalThemeContract.space.standard,
   background: globalThemeContract.level2.surface,
-  borderRadius: globalThemeContract.radius.standard,
   lineHeight: 1.6,
+  borderRadius: globalThemeContract.radius.standard,
 });
+
+export const formInputRadio = style([
+  formInput,
+  {
+    borderRadius: globalThemeContract.radius.maximum,
+  },
+]);
+
+export const formInputCheckbox = style([
+  formInput,
+  {
+    borderRadius: 'initial',
+  },
+]);
 
 export const labelStyle = style(
   {
+    cursor: 'pointer',
     selectors: {
       '&:only-child': {
         vars: { shadowColor: 'black' },

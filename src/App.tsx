@@ -3,7 +3,14 @@ import { LoremIpsum } from 'lorem-ipsum';
 import type { FC } from 'react';
 import 'the-new-css-reset';
 import { Button } from '../lib/buttons.js';
-import { Form, FormInput } from '../lib/forms.js';
+import {
+  Form,
+  FormInput,
+  FormInputCheckbox,
+  FormInputCheckboxGroup,
+  FormInputRadio,
+  FormInputRadioGroup,
+} from '../lib/forms.js';
 import { Block, Inline } from '../lib/layout.js';
 import { Panel } from '../lib/panel.js';
 import { Heading, Text } from '../lib/typography.js';
@@ -55,7 +62,14 @@ export const App: FC = () => {
             <Panel space="huge" elevation="elevation1">
               <Panel space="huge" elevation="elevation2">
                 <Heading level="2">col row text0</Heading>
-                <Form>
+                <Form space="huge">
+                  <FormInput
+                    type="text"
+                    label="Pronoun"
+                    defaultValue="Them"
+                    readOnly
+                    message="LOL"
+                  />
                   <FormInput
                     type="text"
                     label="First name"
@@ -73,7 +87,23 @@ export const App: FC = () => {
                     label="Birth Month"
                     defaultValue="Feb"
                   />
-                  <FormInput type="checkbox" label="Over 18" />
+                  <FormInputRadioGroup label="Age">
+                    <FormInputRadio
+                      label="Under 18"
+                      message="If you choose this, you are not allowed"
+                    />
+                    <FormInputRadio label="18-25" checked />
+                    <FormInputRadio label="35+" />
+                  </FormInputRadioGroup>
+                  <FormInputCheckboxGroup label="Age">
+                    <FormInputCheckbox
+                      label="Under 18"
+                      checked
+                      message="If you choose this, you are not allowed"
+                    />
+                    <FormInputCheckbox label="18-25" />
+                    <FormInputCheckbox label="35+" />
+                  </FormInputCheckboxGroup>
                   <Block space="small">
                     <Button>Save</Button>
                     <Button variant="subtle">Cancel</Button>

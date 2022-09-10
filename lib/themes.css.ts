@@ -1,7 +1,4 @@
-import {
-  createGlobalTheme,
-  createThemeContract,
-} from '@vanilla-extract/css';
+import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
 
 export type Space = keyof typeof globalThemeContract.space;
 export type FontSize = keyof typeof globalThemeContract.text.size;
@@ -45,6 +42,7 @@ export const globalThemeContract = createThemeContract({
     small: 'radius-small',
     standard: 'radius-standard',
     large: 'radius-large',
+    maximum: 'radius-tight',
   },
   shadow: {
     shallow: 'shadow-shallow',
@@ -52,6 +50,7 @@ export const globalThemeContract = createThemeContract({
     deep: 'shadow-deep',
   },
   space: {
+    none: 'space-none',
     tiny: 'space-tiny',
     small: 'space-small',
     standard: 'space-standard',
@@ -123,6 +122,7 @@ createGlobalTheme(':where(html)', globalThemeContract, {
     small: '0.125rem',
     standard: '0.25rem',
     large: '0.5rem',
+    maximum: '50%',
   },
   shadow: {
     shallow: '0.05rem',
@@ -130,6 +130,7 @@ createGlobalTheme(':where(html)', globalThemeContract, {
     deep: '0.05rem',
   },
   space: {
+    none: '0',
     tiny: '0.1rem',
     small: '0.2rem',
     standard: '0.4rem',
