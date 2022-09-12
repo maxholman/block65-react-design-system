@@ -1,15 +1,16 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 import { globalThemeContract } from './themes.css.js';
+// import { calc } from '@vanilla-extract/css-utils';
 
 export type PanelVariant = keyof typeof panelVariants;
 export type PanelElevation = keyof typeof panelElevations;
 
 const base = style(
   {
-    padding: `${globalThemeContract.space.standard} ${calc(
-      globalThemeContract.space.standard,
-    ).multiply(2)}`,
+    // padding: `${globalThemeContract.space.standard} ${calc(
+    //   globalThemeContract.space.standard,
+    // ).multiply(2)}`,
+    padding: globalThemeContract.space.standard,
   },
   'base',
 );

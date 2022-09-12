@@ -12,6 +12,7 @@ type BoxProps<T extends keyof ReactHTMLAttributesHacked, P> = PropsWithChildren<
 export function Box<T extends keyof ReactHTMLAttributesHacked>({
   component,
   className,
+  children,
   ...props
 }: BoxProps<
   T,
@@ -19,10 +20,14 @@ export function Box<T extends keyof ReactHTMLAttributesHacked>({
     className?: ClassValue;
   }
 >) {
-  return createElement(component, {
-    ...props,
-    className: clsx(className),
-  });
+  return createElement(
+    component,
+    {
+      ...props,
+      className: clsx(className),
+    },
+    children,
+  );
 }
 
 export type BoxBasedComponentProps<

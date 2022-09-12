@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import { createElement } from 'react';
+import { augmentChildren } from './utils.js';
 import type { BoxBasedComponentProps } from './core.js';
 import { Block } from './layout.js';
 import {
@@ -29,6 +30,7 @@ function variantToPanelElevation(elevation: PanelElevation) {
 
 export function Panel<T extends keyof ReactHTMLAttributesHacked = 'section'>({
   component,
+  children,
   className,
   space = 'standard',
   variant = 'standard',
@@ -43,13 +45,19 @@ export function Panel<T extends keyof ReactHTMLAttributesHacked = 'section'>({
     elevation?: PanelElevation;
   }
 >) {
-  return createElement(Block, {
-    ...props,
-    space,
-    className: clsx(
-      className,
-      variantToPanelVariant(variant),
-      variantToPanelElevation(elevation),
-    ),
-  });
+  return createElement(
+    Block,
+    {
+      ...props,
+      space,
+      className: clsx(
+        className,
+        variantToPanelVariant(variant),
+        variantToPanelElevation(elevation),
+      ),
+    },
+    augmentChildren(children, {
+      // className: spaceToMarginInline(space),
+    }),
+  );
 }

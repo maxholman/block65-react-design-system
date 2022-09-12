@@ -1,4 +1,3 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { LoremIpsum } from 'lorem-ipsum';
 import type { FC } from 'react';
 import 'the-new-css-reset';
@@ -10,11 +9,11 @@ import {
   FormInputCheckboxGroup,
   FormInputRadio,
   FormInputRadioGroup,
+  FormSelect,
 } from '../lib/forms.js';
 import { Block, Inline } from '../lib/layout.js';
 import { Panel } from '../lib/panel.js';
 import { Heading, Text } from '../lib/typography.js';
-import { localThemeVars } from './App.css.js';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -28,7 +27,7 @@ const lorem = new LoremIpsum({
 });
 
 export const App: FC = () => {
-  const brandColor = 'red';
+  const brandColor = 'purple';
   const fontFamily = 'Arial';
 
   return (
@@ -36,12 +35,82 @@ export const App: FC = () => {
       <Inline
         space="large"
         component="main"
-        style={assignInlineVars(localThemeVars, {
-          color: { brand: brandColor },
-          font: { body: fontFamily },
-        })}
+        style={{ '--accent-color': brandColor, '--font-family': fontFamily }}
+        // style={assignInlineVars(localThemeVars, {
+        //   color: { brand: brandColor },
+        //   font: { body: fontFamily },
+        // })}
       >
         <Block space="large" component="section">
+          <Panel space="huge" elevation="elevation0">
+            <Panel space="huge" elevation="elevation1">
+              <Panel space="huge" elevation="elevation2">
+                <Heading level="1">Tight tight tight!</Heading>
+                <Heading level="3">Thats what Tuco says anyway.</Heading>
+                <Form space="huge">
+                  <FormInput
+                    type="text"
+                    label="Pronoun"
+                    defaultValue="Them"
+                    readOnly
+                    message="LOL"
+                  />
+                  <FormInput
+                    type="text"
+                    label="First name"
+                    defaultValue="Queen"
+                    message="Don't write Queen in this field please"
+                  />
+                  <FormInput
+                    type="text"
+                    label="Last name"
+                    secondaryLabel="Required"
+                    defaultValue="Town"
+                  />
+                  <FormSelect label="Birth Month" defaultValue="Feb">
+                    <option></option>
+                    <option value="Jan">Jan</option>
+                    <option value="Feb">Feb</option>
+                    <option value="Mar">Mar</option>
+                    <option value="Apr">Apr</option>
+                  </FormSelect>
+                  <FormSelect
+                    multiple
+                    label="Other Months you might like"
+                    onChange={(e) => {
+                      console.log(e);
+                    }}
+                    value={['Feb', 'Mar']}
+                  >
+                    <option value="Jan">Jan</option>
+                    <option value="Feb">Feb</option>
+                    <option value="Mar">Mar</option>
+                    <option value="Apr">Apr</option>
+                  </FormSelect>
+                  <FormInputRadioGroup label="Your age" name="age">
+                    <FormInputRadio label="Under 18" />
+                    <FormInputRadio label="18-25" defaultChecked />
+                    <FormInputRadio label="35+" />
+                  </FormInputRadioGroup>
+                  <FormInputCheckboxGroup label="Partners age" name="age2">
+                    <FormInputCheckbox
+                      label="Under 18"
+                      defaultChecked
+                      message="If you choose this option you are not allowed to use this site"
+                    />
+                    <FormInputCheckbox label="18-25" />
+                    <FormInputCheckbox label="35+" />
+                  </FormInputCheckboxGroup>
+                  <Block>
+                    <Button>Save</Button>
+                    <Button variant="subtle">Cancel</Button>
+                    <Button variant="ghost">Help</Button>
+                  </Block>
+                </Form>
+              </Panel>
+            </Panel>
+          </Panel>
+
           <Block space="large">
             <Heading level="1">{lorem.generateSentences(1)}</Heading>
 
@@ -57,62 +126,6 @@ export const App: FC = () => {
             <Text>{lorem.generateParagraphs(1)}</Text>
             <Text>{lorem.generateParagraphs(1)}</Text>
           </Block>
-
-          <Panel space="huge" elevation="elevation0">
-            <Panel space="huge" elevation="elevation1">
-              <Panel space="huge" elevation="elevation2">
-                <Heading level="2">col row text0</Heading>
-                <Form space="huge">
-                  <FormInput
-                    type="text"
-                    label="Pronoun"
-                    defaultValue="Them"
-                    readOnly
-                    message="LOL"
-                  />
-                  <FormInput
-                    type="text"
-                    label="First name"
-                    defaultValue="Queen"
-                    message="Don't say Queen"
-                  />
-                  <FormInput
-                    type="text"
-                    label="Last name"
-                    secondaryLabel="Required"
-                    defaultValue="Town"
-                  />
-                  <FormInput
-                    type="text"
-                    label="Birth Month"
-                    defaultValue="Feb"
-                  />
-                  <FormInputRadioGroup label="Age">
-                    <FormInputRadio
-                      label="Under 18"
-                      message="If you choose this, you are not allowed"
-                    />
-                    <FormInputRadio label="18-25" checked />
-                    <FormInputRadio label="35+" />
-                  </FormInputRadioGroup>
-                  <FormInputCheckboxGroup label="Age">
-                    <FormInputCheckbox
-                      label="Under 18"
-                      checked
-                      message="If you choose this, you are not allowed"
-                    />
-                    <FormInputCheckbox label="18-25" />
-                    <FormInputCheckbox label="35+" />
-                  </FormInputCheckboxGroup>
-                  <Block space="small">
-                    <Button>Save</Button>
-                    <Button variant="subtle">Cancel</Button>
-                    <Button variant="ghost">Help</Button>
-                  </Block>
-                </Form>
-              </Panel>
-            </Panel>
-          </Panel>
         </Block>
       </Inline>
     </>

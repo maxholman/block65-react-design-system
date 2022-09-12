@@ -13,16 +13,18 @@ export function augmentChildren<T extends ReactNode>(
 ): T {
   return Children.map(children, (child) =>
     isValidElement(child)
-      ? cloneElement(child, {
-          ...child.props,
-          ...(!!props['className'] && {
-            className: clsx(child.props.className, props['className']),
-          }),
-          children:
-            child.type === Fragment
-              ? augmentChildren(child.props.children, props)
-              : child.props.children,
-        })
+      ? cloneElement(
+          child,
+          {
+            ...child.props,
+            ...(!!props['className'] && {
+              className: clsx(child.props.className, props['className']),
+            }),
+          },
+          child.type === Fragment
+            ? augmentChildren(child.props.children, props)
+            : child.props.children,
+        )
       : child,
   ) as T;
 }

@@ -18,51 +18,30 @@ export const flexColumn = style(
 );
 
 export const marginBlock = styleVariants(
-  {
-    tiny: [
-      flexColumn,
-      {
-        marginBlock: globalThemeContract.space.small,
-      },
-    ],
-    small: {
-      marginBlock: globalThemeContract.space.small,
+  globalThemeContract.space,
+  (space) => ({
+    // marginBlockStart: space,
+    selectors: {
+      '&:not(:first-child)': { marginBlockStart: space },
     },
-    standard: {
-      marginBlock: globalThemeContract.space.standard,
-    },
-    large: {
-      marginBlock: globalThemeContract.space.large,
-    },
-    huge: {
-      marginBlock: globalThemeContract.space.huge,
-    },
-  },
+  }),
   'marginBlock',
 );
 
-export const marginInline = styleVariants(
-  {
-    tiny: { marginInline: globalThemeContract.space.tiny },
-    small: { marginInline: globalThemeContract.space.small },
-    standard: { marginInline: globalThemeContract.space.standard },
-    large: { marginInline: globalThemeContract.space.large },
-    huge: { marginInline: globalThemeContract.space.huge },
-  },
-  'marginInline',
+export const marginInlineChildren = styleVariants(
+  globalThemeContract.space,
+  (space) => ({
+    selectors: {
+      '&:not(:first-child)': { marginInlineStart: space },
+    },
+  }),
+  'marginInlineChildren',
 );
 
 export const alignItems = styleVariants(
-  {
-    start: {
-      alignItems: globalThemeContract.align.start,
-    },
-    center: {
-      alignItems: globalThemeContract.align.center,
-    },
-    end: {
-      alignItems: globalThemeContract.align.end,
-    },
-  },
+  globalThemeContract.align,
+  (align) => ({
+    alignItems: align,
+  }),
   'alignItems',
 );

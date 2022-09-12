@@ -160,7 +160,7 @@ createGlobalTheme(':where(html)', globalThemeContract, {
   levelTop: {
     surface: 'white',
     ink: 'lightgray',
-    text: 'lightgray',
+    text: 'charcoal',
   },
 });
 
