@@ -9,7 +9,7 @@ import {
   PanelVariant,
   panelVariants,
 } from './panel.css.js';
-import type { Space } from './themes.css.js';
+import type { Space } from './global-theme.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
 function variantToPanelVariant(variant: PanelVariant) {

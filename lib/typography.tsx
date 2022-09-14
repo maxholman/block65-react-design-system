@@ -1,7 +1,13 @@
 import { ClassValue, clsx } from 'clsx';
 import { createElement, FC, PropsWithChildren } from 'react';
-import type { FontSize } from './themes.css.js';
-import { fontSize, secondaryStyle, textStyle } from './typography.css.js';
+import { Box } from './core.js';
+import type { FontSize } from './global-theme.css.js';
+import {
+  fontSize,
+  secondaryStyle,
+  strongStyle,
+  textStyle,
+} from './typography.css.js';
 
 type HeadingLevel = '1' | '2' | '3' | '4' | '5';
 
@@ -28,20 +34,24 @@ function levelToFontSize(level: HeadingLevel) {
 export const Text: FC<
   PropsWithChildren<{ size?: FontSize; className?: ClassValue }>
 > = ({ className, size, ...props }) => (
-  <p
+  <Box
+    component="p"
     {...props}
-    className={clsx(className, textStyle, !!size && sizeToFontSize(size))}
+    className={[className, textStyle, !!size && sizeToFontSize(size)]}
   />
 );
 
-export const Secondary: FC<
-  PropsWithChildren<{ size?: FontSize; className?: ClassValue }>
-> = ({ className, size, ...props }) => (
-  <span
-    {...props}
-    className={clsx(className, secondaryStyle, !!size && sizeToFontSize(size))}
-  />
+export const Secondary: FC<PropsWithChildren<{ className?: ClassValue }>> = ({
+  className,
+  ...props
+}) => (
+  <Box component="span" {...props} className={[secondaryStyle, className]} />
 );
+
+export const Strong: FC<PropsWithChildren<{ className?: ClassValue }>> = ({
+  className,
+  ...props
+}) => <Box component="span" {...props} className={[strongStyle, className]} />;
 
 export const Heading: FC<
   PropsWithChildren<{ level?: HeadingLevel; className?: ClassValue }>

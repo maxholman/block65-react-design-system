@@ -1,17 +1,17 @@
 import { style } from '@vanilla-extract/css';
-import { globalThemeContract } from './themes.css.js';
+import { globalThemeVars } from './global-theme.css.js';
 
-const formLevelVars = globalThemeContract.levelTop;
+const formLevelVars = globalThemeVars.levelTop;
 
 export const formInput = style(
   {
-    borderWidth: globalThemeContract.border.weight.standard,
+    borderWidth: globalThemeVars.border.weight.normal,
     borderStyle: 'solid',
     borderColor: formLevelVars.ink,
     color: formLevelVars.text,
     background: formLevelVars.surface,
-    padding: globalThemeContract.space.standard,
-    borderRadius: globalThemeContract.radius.standard,
+    padding: globalThemeVars.space.standard,
+    borderRadius: globalThemeVars.radius.standard,
     // lineHeight: 1.6,
     selectors: {
       '&[readonly]': {
@@ -32,11 +32,12 @@ export const formInputCheckRadioBase = style(
     {
       // transform: 'translateY(0.075em)', // magic number
       cursor: 'pointer',
-      height: '1.15em',
+      fontSize: '0.9em',
+      height: '0.65em',
       aspectRatio: '1/1',
       color: 'var(--accent-color, currentColor)',
       selectors: {
-        '&:focus': {
+        '&:focus-visible,&.focus-visible': {
           outline: 'max(2px, 0.15em) solid currentColor',
           outlineOffset: 'max(2px, 0.15em)',
         },
@@ -45,7 +46,7 @@ export const formInputCheckRadioBase = style(
         },
         '&::before': {
           content: '""',
-          width: '0.65em',
+          height: '0.75em',
           // height: '0.65em',
           aspectRatio: '1/1',
           transform: 'scale(0)',
@@ -90,10 +91,10 @@ export const formInputRadio = style(
   [
     formInputCheckRadioBase,
     {
-      borderRadius: globalThemeContract.radius.maximum,
+      borderRadius: globalThemeVars.radius.maximum,
       selectors: {
         '&::before': {
-          borderRadius: globalThemeContract.radius.maximum,
+          borderRadius: globalThemeVars.radius.maximum,
         },
       },
     },
@@ -101,43 +102,65 @@ export const formInputRadio = style(
   'formInputRadio',
 );
 
-const formInputSelectGridarea = 's';
+const formInputSelectGridareaName = 's';
 
 export const formInputSelect = style(
   [
     {
       cursor: 'pointer',
-      gridArea: formInputSelectGridarea,
-      paddingRight: '1em',
+      gridArea: formInputSelectGridareaName,
+      padding: globalThemeVars.space.standard,
     },
   ],
   'formInputSelect',
 );
 
-export const formInputSelectWrapper = style([
-  formInput,
-  {
-    display: 'grid',
-    gridTemplateAreas: JSON.stringify(formInputSelectGridarea),
-    alignItems: 'center',
-    selectors: {
-      '&:not([multiple])::after': {
-        gridArea: formInputSelectGridarea,
-        justifySelf: 'end',
-        content: JSON.stringify(''),
-        width: '0.5em',
-        height: '0.25em',
-        backgroundColor: 'currentColor',
-        clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
+export const formInputSelectWrapper = style(
+  [
+    formInput,
+    {
+      display: 'grid',
+      gridTemplateAreas: JSON.stringify(formInputSelectGridareaName),
+      alignItems: 'center',
+      padding: 0,
+      selectors: {
+        '&::after': {
+          gridArea: formInputSelectGridareaName,
+          justifySelf: 'end',
+          content: JSON.stringify(''),
+          width: '0.5em',
+          height: '0.25em',
+          backgroundColor: 'currentColor',
+          marginRight: globalThemeVars.space.standard,
+          clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
+        },
       },
     },
-  },
-]);
+  ],
+  'formInputSelectWrapper',
+);
 
-export const labelStyle = style(
+export const fieldLabelStyle = style(
   {
     cursor: 'pointer',
-    fontWeight: globalThemeContract.text.weight.bold,
+    fontSize: globalThemeVars.text.size.medium,
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  'labelStyle',
+  'fieldLabelStyle',
+);
+
+export const fieldLabelTertiaryStyle = style(
+  {
+    cursor: 'default',
+    pointerEvents: 'none',
+  },
+  'fieldLabelTertiaryStyle',
+);
+
+export const inputLabelStyle = style(
+  {
+    cursor: 'pointer',
+  },
+  'inputLabelStyle',
 );

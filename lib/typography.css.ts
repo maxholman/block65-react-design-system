@@ -1,26 +1,31 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { globalThemeContract } from './themes.css.js';
+import { globalThemeVars } from './global-theme.css.js';
 
 export const textStyle = style(
   {
-    // lineHeight: globalThemeContract.text.lineHeight.standard,
+    lineHeight: globalThemeVars.text.lineHeight.standard,
   },
   'textStyle',
 );
 
 export const secondaryStyle = style(
-  [
-    textStyle,
-    {
-      fontWeight: globalThemeContract.text.weight.thin,
-      // lineHeight: globalThemeContract.text.lineHeight.standard,
-    },
-  ],
+  {
+    fontWeight: globalThemeVars.text.weight.normal,
+    // color: globalThemeVars.text,
+    // lineHeight: globalThemeContract.text.lineHeight.standard,
+  },
+  'secondaryStyle',
+);
+
+export const strongStyle = style(
+  {
+    fontWeight: globalThemeVars.text.weight.bold,
+  },
   'secondaryStyle',
 );
 
 export const fontSize = styleVariants(
-  globalThemeContract.text.size,
+  globalThemeVars.text.size,
   (size) => ({ fontSize: size }),
   'fontSize',
 );

@@ -1,3 +1,4 @@
+import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { LoremIpsum } from 'lorem-ipsum';
 import type { FC } from 'react';
 import 'the-new-css-reset';
@@ -12,8 +13,11 @@ import {
   FormSelect,
 } from '../lib/forms.js';
 import { Block, Inline } from '../lib/layout.js';
+import { ButtonLink, TextLink } from '../lib/links.js';
 import { Panel } from '../lib/panel.js';
-import { Heading, Text } from '../lib/typography.js';
+import { Theme } from '../lib/theme.js';
+import { Heading, Secondary, Strong, Text } from '../lib/typography.js';
+import { localThemeVars } from './App.css.js';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -28,25 +32,34 @@ const lorem = new LoremIpsum({
 
 export const App: FC = () => {
   const brandColor = 'purple';
-  const fontFamily = 'Arial';
+  const fontFamily = 'Inter';
 
   return (
-    <>
+    <Theme>
       <Inline
         space="large"
         component="main"
-        style={{ '--accent-color': brandColor, '--font-family': fontFamily }}
-        // style={assignInlineVars(localThemeVars, {
-        //   color: { brand: brandColor },
-        //   font: { body: fontFamily },
-        // })}
+        style={assignInlineVars(localThemeVars, {
+          color: { brand: brandColor },
+          font: { body: fontFamily },
+        })}
       >
         <Block space="large" component="section">
           <Panel space="huge" elevation="elevation0">
             <Panel space="huge" elevation="elevation1">
               <Panel space="huge" elevation="elevation2">
                 <Heading level="1">Tight tight tight!</Heading>
-                <Heading level="3">Thats what Tuco says anyway.</Heading>
+                <Heading level="3">
+                  Thats what <Strong>Tuco</Strong> says anyway.
+                </Heading>
+                <Text>
+                  If you need to find out more,{' '}
+                  <TextLink href="#">go to my website</TextLink>
+                </Text>
+                <Text>
+                  There are also other resources available, such as{' '}
+                  <ButtonLink href="#">HTD.lol.lol.invalid</ButtonLink>
+                </Text>
                 <Form space="huge">
                   <FormInput
                     type="text"
@@ -63,11 +76,33 @@ export const App: FC = () => {
                   />
                   <FormInput
                     type="text"
-                    label="Last name"
-                    secondaryLabel="Required"
-                    defaultValue="Town"
+                    label="Middle name"
+                    placeholder='Optional, e.g. "Elizabeth"'
+                    message="No need to be embarrassed"
                   />
-                  <FormSelect label="Birth Month" defaultValue="Feb">
+                  <FormInput
+                    type="text"
+                    label="Last name"
+                    secondaryLabel="(optional)"
+                    tertiaryLabel={
+                      <TextLink href="#">
+                        {/* <IconHelp /> */}Read more
+                      </TextLink>
+                    }
+                    defaultValue="Royale"
+                  />
+                  <FormSelect
+                    label="Birth Month"
+                    defaultValue="Feb"
+                    message={
+                      <Text size="small">
+                        <Secondary>
+                          Feb is the <Strong>best</Strong> month btw
+                        </Secondary>
+                      </Text>
+                    }
+                    description={<Text>Choose 2 only please</Text>}
+                  >
                     <option></option>
                     <option value="Jan">Jan</option>
                     <option value="Feb">Feb</option>
@@ -76,9 +111,9 @@ export const App: FC = () => {
                   </FormSelect>
                   <FormSelect
                     multiple
-                    label="Other Months you might like"
+                    label="Other months you might like"
                     onChange={(e) => {
-                      console.log(e);
+                      // console.log(e);
                     }}
                     value={['Feb', 'Mar']}
                   >
@@ -103,8 +138,8 @@ export const App: FC = () => {
                   </FormInputCheckboxGroup>
                   <Block>
                     <Button>Save</Button>
-                    <Button variant="subtle">Cancel</Button>
-                    <Button variant="ghost">Help</Button>
+                    <Button variant="subtle">Subtle / Cancel</Button>
+                    <Button variant="ghost">Ghost</Button>
                   </Block>
                 </Form>
               </Panel>
@@ -128,6 +163,6 @@ export const App: FC = () => {
           </Block>
         </Block>
       </Inline>
-    </>
+    </Theme>
   );
 };

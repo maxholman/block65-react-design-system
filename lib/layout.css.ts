@@ -1,5 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { globalThemeContract } from './themes.css.js';
+import { globalThemeVars } from './global-theme.css.js';
 
 export const flexRow = style(
   {
@@ -18,7 +18,7 @@ export const flexColumn = style(
 );
 
 export const marginBlock = styleVariants(
-  globalThemeContract.space,
+  globalThemeVars.space,
   (space) => ({
     // marginBlockStart: space,
     selectors: {
@@ -29,7 +29,7 @@ export const marginBlock = styleVariants(
 );
 
 export const marginInlineChildren = styleVariants(
-  globalThemeContract.space,
+  globalThemeVars.space,
   (space) => ({
     selectors: {
       '&:not(:first-child)': { marginInlineStart: space },
@@ -39,7 +39,7 @@ export const marginInlineChildren = styleVariants(
 );
 
 export const alignItems = styleVariants(
-  globalThemeContract.align,
+  globalThemeVars.align,
   (align) => ({
     alignItems: align,
   }),

@@ -1,5 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { globalThemeContract } from './themes.css.js';
+import { globalThemeVars } from './global-theme.css.js';
 // import { calc } from '@vanilla-extract/css-utils';
 
 export type PanelVariant = keyof typeof panelVariants;
@@ -10,7 +10,7 @@ const base = style(
     // padding: `${globalThemeContract.space.standard} ${calc(
     //   globalThemeContract.space.standard,
     // ).multiply(2)}`,
-    padding: globalThemeContract.space.standard,
+    padding: globalThemeVars.space.standard,
   },
   'base',
 );
@@ -32,19 +32,22 @@ export const panelElevations = styleVariants({
   elevation0: [
     base,
     {
-      background: globalThemeContract.levelBottom.surface,
+      background: globalThemeVars.levelBottom.surface,
+      color: globalThemeVars.levelBottom.text,
     },
   ],
   elevation1: [
     base,
     {
-      background: globalThemeContract.level1.surface,
+      background: globalThemeVars.level1.surface,
+      color: globalThemeVars.level1.text,
     },
   ],
   elevation2: [
     base,
     {
-      background: globalThemeContract.level2.surface,
+      background: globalThemeVars.level2.surface,
+      color: globalThemeVars.level2.text,
     },
   ],
 });

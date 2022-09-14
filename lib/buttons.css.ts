@@ -1,15 +1,15 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { globalThemeContract } from './themes.css.js';
+import { globalThemeVars } from './global-theme.css.js';
 
 export type ButtonVariant = keyof typeof buttonVariants;
 
 const base = style(
   {
-    borderWidth: globalThemeContract.border.weight.standard,
+    borderWidth: globalThemeVars.border.weight.normal,
     borderStyle: 'solid',
-    borderRadius: globalThemeContract.radius.standard,
-    padding: globalThemeContract.space.standard,
-    textAlign: globalThemeContract.align.center,
+    borderRadius: globalThemeVars.radius.standard,
+    padding: globalThemeVars.space.standard,
+    textAlign: globalThemeVars.align.center,
     cursor: 'pointer',
   },
   'base',
@@ -19,22 +19,25 @@ export const buttonVariants = styleVariants({
   standard: [
     base,
     {
-      background: globalThemeContract.color.buttons.standard,
-      borderColor: globalThemeContract.color.buttons.standard,
+      background: globalThemeVars.color.buttons.accentSurface,
+      borderColor: globalThemeVars.color.buttons.accentSurface,
+      color: globalThemeVars.color.buttons.accentText,
     },
   ],
   ghost: [
     base,
     {
-      borderColor: globalThemeContract.color.buttons.standard,
-      color: globalThemeContract.color.buttons.standard,
+      background: globalThemeVars.levelTop.surface,
+      borderColor: globalThemeVars.color.buttons.accentSurface,
+      color: globalThemeVars.color.buttons.accentSurface,
     },
   ],
   subtle: [
     base,
     {
-      background: globalThemeContract.color.buttons.subtle,
-      borderColor: globalThemeContract.color.buttons.subtle,
+      background: globalThemeVars.color.buttons.subtleSurface,
+      borderColor: globalThemeVars.color.buttons.subtleSurface,
+      color: globalThemeVars.color.buttons.subtleText,
     },
   ],
 });

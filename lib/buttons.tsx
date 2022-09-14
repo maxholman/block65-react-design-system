@@ -2,7 +2,7 @@ import { ClassValue, clsx } from 'clsx';
 import type { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 import { ButtonVariant, buttonVariants } from './buttons.css.js';
 
-function variantToButtonVariant(variant: ButtonVariant) {
+export function variantToButtonVariant(variant: ButtonVariant) {
   return {
     [buttonVariants.standard]: variant === 'standard',
     [buttonVariants.ghost]: variant === 'ghost',

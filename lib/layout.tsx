@@ -8,7 +8,7 @@ import {
   marginBlock,
   marginInlineChildren,
 } from './layout.css.js';
-import type { Align, Space } from './themes.css.js';
+import type { Align, Space } from './global-theme.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 import { augmentChildren } from './utils.js';
 

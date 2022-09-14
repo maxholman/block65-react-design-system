@@ -1,4 +1,4 @@
-import { createThemeContract } from '@vanilla-extract/css';
+import { createThemeContract, globalStyle } from '@vanilla-extract/css';
 
 export const localThemeVars = createThemeContract({
   color: {
@@ -7,4 +7,12 @@ export const localThemeVars = createThemeContract({
   font: {
     body: null,
   },
+});
+
+globalStyle(':focus, :focus-visible', {
+  outline: 'revert',
+});
+
+globalStyle('body, html', {
+  fontFamily: 'Inter',
 });

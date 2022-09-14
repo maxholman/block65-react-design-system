@@ -1,15 +1,20 @@
-import { createGlobalTheme, createThemeContract } from '@vanilla-extract/css';
+import {
+  createGlobalTheme,
+  createThemeContract,
+  style,
+} from '@vanilla-extract/css';
 
-export type Space = keyof typeof globalThemeContract.space;
-export type FontSize = keyof typeof globalThemeContract.text.size;
-export type Align = keyof typeof globalThemeContract.align;
+export type Space = keyof typeof globalThemeVars.space;
+export type FontSize = keyof typeof globalThemeVars.text.size;
+export type Align = keyof typeof globalThemeVars.align;
 
-export const globalThemeContract = createThemeContract({
+export const globalThemeVars = createThemeContract({
   color: {
-    brand: 'color-brand',
     buttons: {
-      standard: 'color-buttons-standard',
-      subtle: 'color-buttons-subtle',
+      accentSurface: 'color-buttons-accent-surface',
+      accentText: 'color-buttons-accent-text',
+      subtleSurface: 'color-buttons-subtle-surface',
+      subtleText: 'color-buttons-subtle-text',
     },
   },
   text: {
@@ -17,14 +22,18 @@ export const globalThemeContract = createThemeContract({
       tiny: 'text-size-tiny',
       small: 'text-size-small',
       standard: 'text-size-standard',
+      medium: 'text-size-medium',
       large: 'text-size-large',
       huge: 'text-size-huge',
     },
     weight: {
       thin: 'text-weight-thin',
+      extraLight: 'text-weight-extra-light',
       light: 'text-weight-light',
-      standard: 'text-weight-standard',
+      normal: 'text-weight-normal',
+      medium: 'text-weight-medium',
       bold: 'text-weight-bold',
+      semiBold: 'text-weight-semi-bold',
       heavy: 'text-weight-heavy',
     },
     lineHeight: {
@@ -34,7 +43,7 @@ export const globalThemeContract = createThemeContract({
   border: {
     weight: {
       thin: 'border-weight-thin',
-      standard: 'border-weight-standard',
+      normal: 'border-weight-normal',
       thick: 'border-weight-thick',
     },
   },
@@ -84,12 +93,31 @@ export const globalThemeContract = createThemeContract({
   },
 });
 
-createGlobalTheme(':where(html)', globalThemeContract, {
+export const globalColorThemeVars = createThemeContract({
   color: {
-    brand: 'blue',
+    brandH: 'color-brand-h',
+    brandS: 'color-brand-s',
+    baseH: 'color-base-h',
+    baseS: 'color-base-s',
+  },
+});
+
+createGlobalTheme(':where(html)', globalColorThemeVars, {
+  color: {
+    brandH: '0',
+    brandS: '0%',
+    baseH: '0',
+    baseS: '0%',
+  },
+});
+
+createGlobalTheme(':where(html)', globalThemeVars, {
+  color: {
     buttons: {
-      standard: 'blue',
-      subtle: 'gray',
+      accentSurface: 'blue',
+      accentText: 'white',
+      subtleSurface: 'dimgray',
+      subtleText: 'white',
     },
   },
   text: {
@@ -97,14 +125,18 @@ createGlobalTheme(':where(html)', globalThemeContract, {
       tiny: '0.6rem',
       small: '0.8rem',
       standard: '1rem',
+      medium: '1.125rem',
       large: '1.5rem',
       huge: '2rem',
     },
     weight: {
       thin: '100',
+      extraLight: '200',
       light: '300',
-      standard: '400',
-      bold: '700',
+      normal: '400',
+      medium: '500',
+      semiBold: '500',
+      bold: '600',
       heavy: '900',
     },
     lineHeight: {
@@ -114,7 +146,7 @@ createGlobalTheme(':where(html)', globalThemeContract, {
   border: {
     weight: {
       thin: '0.05rem',
-      standard: '0.1rem',
+      normal: '0.1rem',
       thick: '0.25rem',
     },
   },
@@ -131,11 +163,11 @@ createGlobalTheme(':where(html)', globalThemeContract, {
   },
   space: {
     none: '0',
-    tiny: '0.1rem',
-    small: '0.2rem',
-    standard: '0.4rem',
-    large: '0.6rem',
-    huge: '0.8rem',
+    tiny: '0.2rem',
+    small: '0.4rem',
+    standard: '0.6rem',
+    large: '0.8rem',
+    huge: '1rem',
   },
   align: {
     start: 'start',
@@ -149,19 +181,27 @@ createGlobalTheme(':where(html)', globalThemeContract, {
   },
   level1: {
     surface: 'lightgray',
-    ink: 'charcoal',
-    text: 'charcoal',
+    ink: 'dimgray',
+    text: 'dimgray',
   },
   level2: {
     surface: 'white',
-    ink: 'charcoal',
-    text: 'charcoal',
+    text: 'hsl(0deg 0% 30%)',
+    ink: 'hsl(0 0 0 / 0.9)',
   },
   levelTop: {
     surface: 'white',
-    ink: 'lightgray',
-    text: 'charcoal',
+    text: 'hsl(0deg 0% 30%)',
+    ink: 'hsl(0deg 0% 80%)',
   },
 });
 
 // const darkTheme = createTheme(globalThemeContract, {});
+
+/* const interFontFace = fontFace({
+  src: 'url(https://fonts.googleapis.com/css2?family=Inter&display=swap)',
+}); */
+
+export const sansSerifFontStyle = style({
+  fontFamily: 'Inter',
+});

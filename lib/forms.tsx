@@ -19,12 +19,15 @@ import {
   formInputRadio,
   formInputSelect,
   formInputSelectWrapper,
-  labelStyle,
+  inputLabelStyle,
+  fieldLabelStyle as fieldLabelStyle,
+  fieldLabelTertiaryStyle,
 } from './forms.css.js';
 import { Block, Inline } from './layout.js';
-import type { Space } from './themes.css.js';
-import { Secondary, Text } from './typography.js';
+import type { Space } from './global-theme.css.js';
+import { Secondary, Strong, Text } from './typography.js';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isValidElementOfType<T extends FC<any>>(
   child: ReactNode,
   type: T,
@@ -32,6 +35,7 @@ function isValidElementOfType<T extends FC<any>>(
   return isValidElement(child) && child.type === type;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function cloneElementIfValidElementOfType<T extends FC<any>>(
   child: ReactNode,
   type: T,
@@ -54,7 +58,7 @@ export const Form: FC<
   </Block>
 );
 
-export const Label: FC<
+export const FormFieldLabel: FC<
   PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>> & {
     className?: ClassValue;
     secondary?: ReactNode;
@@ -62,14 +66,38 @@ export const Label: FC<
   }
 > = ({ className, secondary, tertiary, children, ...props }) => (
   <Inline
+    space="tiny"
+    {...props}
+    component="label"
+    className={clsx(fieldLabelStyle, className)}
+  >
+    <Text>
+      <Strong>{children}</Strong>
+      {secondary && (
+        <>
+          {' '}
+          <Secondary>{secondary}</Secondary>
+        </>
+      )}
+    </Text>
+    {tertiary && (
+      <Inline className={fieldLabelTertiaryStyle}>{tertiary}</Inline>
+    )}
+  </Inline>
+);
+
+export const FormInputLabel: FC<
+  PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>> & {
+    className?: ClassValue;
+  }
+> = ({ className, children, ...props }) => (
+  <Inline
     space="standard"
     {...props}
     component="label"
-    className={clsx(className, labelStyle)}
+    className={clsx(className, inputLabelStyle)}
   >
     <Text>{children}</Text>
-    {secondary && <Secondary>{secondary}</Secondary>}
-    {tertiary && <Text>{tertiary}</Text>}
   </Inline>
 );
 
@@ -82,6 +110,7 @@ export const FormInput: FC<
       >;
       className?: ClassValue;
       label: ReactNode;
+      description?: ReactNode;
       secondaryLabel?: ReactNode;
       tertiaryLabel?: ReactNode;
       message?: ReactNode;
@@ -90,6 +119,7 @@ export const FormInput: FC<
 > = ({
   className,
   label,
+  description,
   secondaryLabel,
   tertiaryLabel,
   message,
@@ -98,12 +128,21 @@ export const FormInput: FC<
   const id = useId();
 
   return (
-    <Block className={className}>
-      <Label htmlFor={id} secondary={secondaryLabel} tertiary={tertiaryLabel}>
+    <Block className={className} space="small">
+      <FormFieldLabel
+        htmlFor={id}
+        secondary={secondaryLabel}
+        tertiary={tertiaryLabel}
+      >
         {label}
-      </Label>
+      </FormFieldLabel>
+      {description}
       <input className={formInput} id={id} {...props} />
-      {message && <Secondary size="small">{message}</Secondary>}
+      {message && (
+        <Text size="small">
+          <Secondary>{message}</Secondary>
+        </Text>
+      )}
     </Block>
   );
 };
@@ -113,6 +152,7 @@ export const FormSelect: FC<
     SelectHTMLAttributes<HTMLSelectElement> & {
       className?: ClassValue;
       label: ReactNode;
+      description?: ReactNode;
       secondaryLabel?: ReactNode;
       tertiaryLabel?: ReactNode;
       message?: ReactNode;
@@ -121,6 +161,7 @@ export const FormSelect: FC<
 > = ({
   className,
   label,
+  description,
   secondaryLabel,
   tertiaryLabel,
   message,
@@ -129,14 +170,19 @@ export const FormSelect: FC<
   const id = useId();
 
   return (
-    <Block className={className}>
-      <Label htmlFor={id} secondary={secondaryLabel} tertiary={tertiaryLabel}>
+    <Block className={className} space="small">
+      <FormFieldLabel
+        htmlFor={id}
+        secondary={secondaryLabel}
+        tertiary={tertiaryLabel}
+      >
         {label}
-      </Label>
+      </FormFieldLabel>
+      {description}
       <div className={formInputSelectWrapper}>
         <select className={formInputSelect} id={id} {...props} />
       </div>
-      {message && <Text size="small">{message}</Text>}
+      {message}
     </Block>
   );
 };
@@ -160,7 +206,7 @@ export const FormInputRadio: FC<
       <input className={formInputRadio} type="radio" id={id} {...props} />
       <Block space="small">
         <Inline>
-          <Label htmlFor={id}>{label}</Label>
+          <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
         </Inline>
         <Text size="small">{message}</Text>
       </Block>
@@ -190,14 +236,14 @@ export const FormInputRadioGroup: FC<
   // ...props
 }) => (
   <Block className={className}>
-    <Label secondary={secondaryLabel} tertiary={tertiaryLabel}>
+    <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
       {label}
-    </Label>
+    </FormFieldLabel>
     {Children.map(children, (child) =>
       cloneElementIfValidElementOfType(child, FormInputRadio, {
         name,
       }),
-    )}{' '}
+    )}
     {message && <Text size="small">{message}</Text>}
   </Block>
 );
@@ -220,7 +266,7 @@ export const FormInputCheckbox: FC<
     <Inline space="small" className={className}>
       <input className={formInputCheckbox} type="checkbox" id={id} {...props} />
       <Block space="small">
-        <Label htmlFor={id}>{label}</Label>
+        <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
         <Text size="small">{message}</Text>
       </Block>
     </Inline>
@@ -249,9 +295,9 @@ export const FormInputCheckboxGroup: FC<
   // ...props
 }) => (
   <Block className={className}>
-    <Label secondary={secondaryLabel} tertiary={tertiaryLabel}>
+    <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
       {label}
-    </Label>
+    </FormFieldLabel>
     {Children.map(children, (child) =>
       cloneElementIfValidElementOfType(child, FormInputCheckbox, {
         name,
