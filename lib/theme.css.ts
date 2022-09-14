@@ -20,5 +20,9 @@ export const localTheme = style({
       subtleSurface: 'palegreen',
       subtleText: 'forestgreen',
     },
+    tone: {
+      good: 'green',
+      bad: 'red',
+    },
   }),
 });

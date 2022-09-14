@@ -1,43 +1,60 @@
 import { ClassValue, clsx } from 'clsx';
 import { createElement, FC, PropsWithChildren } from 'react';
 import { Box } from './core.js';
-import type { FontSize } from './global-theme.css.js';
+import type { FontSize, Tone } from './global-theme.css.js';
 import {
-  fontSize,
+  fontStyle,
   secondaryStyle,
   strongStyle,
   textStyle,
+  toneStyle,
 } from './typography.css.js';
 
 type HeadingLevel = '1' | '2' | '3' | '4' | '5';
 
 function sizeToFontSize(size: FontSize) {
   return {
-    [fontSize.tiny]: size === 'tiny',
-    [fontSize.small]: size === 'small',
-    [fontSize.standard]: size === 'standard',
-    [fontSize.large]: size === 'large',
-    [fontSize.huge]: size === 'huge',
+    [fontStyle.tiny]: size === 'tiny',
+    [fontStyle.small]: size === 'small',
+    [fontStyle.normal]: size === 'normal',
+    [fontStyle.large]: size === 'large',
+    [fontStyle.huge]: size === 'huge',
   };
 }
 
 function levelToFontSize(level: HeadingLevel) {
   return {
-    [fontSize.tiny]: level === '5',
-    [fontSize.small]: level === '4',
-    [fontSize.standard]: level === '3',
-    [fontSize.large]: level === '2',
-    [fontSize.huge]: level === '1',
+    [fontStyle.tiny]: level === '5',
+    [fontStyle.small]: level === '4',
+    [fontStyle.normal]: level === '3',
+    [fontStyle.large]: level === '2',
+    [fontStyle.huge]: level === '1',
+  };
+}
+
+function toneToFontStyle(tone: Tone) {
+  return {
+    [toneStyle.bad]: tone === 'bad',
+    [toneStyle.good]: tone === 'good',
   };
 }
 
 export const Text: FC<
-  PropsWithChildren<{ size?: FontSize; className?: ClassValue }>
-> = ({ className, size, ...props }) => (
+  PropsWithChildren<{
+    size?: FontSize;
+    className?: ClassValue;
+    tone?: Tone | undefined;
+  }>
+> = ({ className, size = 'normal', tone, ...props }) => (
   <Box
     component="p"
     {...props}
-    className={[className, textStyle, !!size && sizeToFontSize(size)]}
+    className={[
+      className,
+      textStyle,
+      sizeToFontSize(size),
+      tone && toneToFontStyle(tone),
+    ]}
   />
 );
 

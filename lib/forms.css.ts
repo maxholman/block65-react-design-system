@@ -12,6 +12,7 @@ export const formInput = style(
     background: formLevelVars.surface,
     padding: globalThemeVars.space.standard,
     borderRadius: globalThemeVars.radius.standard,
+    fontSize: globalThemeVars.text.size.normal,
     // lineHeight: 1.6,
     selectors: {
       '&[readonly]': {

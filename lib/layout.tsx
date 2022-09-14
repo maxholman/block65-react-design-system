@@ -1,4 +1,4 @@
-import { clsx } from 'clsx';
+import { ClassValue, clsx } from 'clsx';
 import { createElement } from 'react';
 import type { BoxBasedComponentProps } from './core.js';
 import {
@@ -69,6 +69,7 @@ export function Inline<T extends keyof ReactHTMLAttributesHacked = 'span'>({
 }: BoxBasedComponentProps<
   T,
   {
+    className?: ClassValue;
     component?: T;
     space?: Space;
     align?: Align;

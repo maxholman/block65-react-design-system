@@ -9,10 +9,10 @@ export const localThemeVars = createThemeContract({
   },
 });
 
-globalStyle(':focus, :focus-visible', {
+globalStyle(':where(html) :focus,:focus-visible', {
   outline: 'revert',
 });
 
-globalStyle('body, html', {
+globalStyle(':where(html)', {
   fontFamily: 'Inter',
 });

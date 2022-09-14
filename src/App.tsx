@@ -31,6 +31,7 @@ const lorem = new LoremIpsum({
 });
 
 export const App: FC = () => {
+  // const accentColor = 'cornflower';
   const brandColor = 'purple';
   const fontFamily = 'Inter';
 
@@ -57,22 +58,24 @@ export const App: FC = () => {
                   <TextLink href="#">go to my website</TextLink>
                 </Text>
                 <Text>
-                  There are also other resources available, such as{' '}
-                  <ButtonLink href="#">HTD.lol.lol.invalid</ButtonLink>
+                  There are also other resources available, such as those on{' '}
+                  <ButtonLink href="#">example.com</ButtonLink>
                 </Text>
                 <Form space="huge">
                   <FormInput
                     type="text"
                     label="Pronoun"
-                    defaultValue="Them"
+                    defaultValue="Attack Helicopter"
                     readOnly
-                    message="LOL"
+                    secondaryLabel="(readonly)"
+                    message="You are not allowed to change this field"
                   />
                   <FormInput
                     type="text"
                     label="First name"
                     defaultValue="Queen"
                     message="Don't write Queen in this field please"
+                    messageTone="bad"
                   />
                   <FormInput
                     type="text"
@@ -101,7 +104,6 @@ export const App: FC = () => {
                         </Secondary>
                       </Text>
                     }
-                    description={<Text>Choose 2 only please</Text>}
                   >
                     <option></option>
                     <option value="Jan">Jan</option>
@@ -112,7 +114,8 @@ export const App: FC = () => {
                   <FormSelect
                     multiple
                     label="Other months you might like"
-                    onChange={(e) => {
+                    description={<Text>Choose 2 only please</Text>}
+                    onChange={() => {
                       // console.log(e);
                     }}
                     value={['Feb', 'Mar']}

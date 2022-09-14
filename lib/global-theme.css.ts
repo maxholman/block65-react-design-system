@@ -7,6 +7,7 @@ import {
 export type Space = keyof typeof globalThemeVars.space;
 export type FontSize = keyof typeof globalThemeVars.text.size;
 export type Align = keyof typeof globalThemeVars.align;
+export type Tone = keyof typeof globalThemeVars.color.tone;
 
 export const globalThemeVars = createThemeContract({
   color: {
@@ -16,12 +17,16 @@ export const globalThemeVars = createThemeContract({
       subtleSurface: 'color-buttons-subtle-surface',
       subtleText: 'color-buttons-subtle-text',
     },
+    tone: {
+      good: 'color-tone-good',
+      bad: 'color-tone-bad',
+    },
   },
   text: {
     size: {
       tiny: 'text-size-tiny',
       small: 'text-size-small',
-      standard: 'text-size-standard',
+      normal: 'text-size-normal',
       medium: 'text-size-medium',
       large: 'text-size-large',
       huge: 'text-size-huge',
@@ -119,12 +124,16 @@ createGlobalTheme(':where(html)', globalThemeVars, {
       subtleSurface: 'dimgray',
       subtleText: 'white',
     },
+    tone: {
+      good: 'green',
+      bad: 'red',
+    },
   },
   text: {
     size: {
       tiny: '0.6rem',
       small: '0.8rem',
-      standard: '1rem',
+      normal: '1rem',
       medium: '1.125rem',
       large: '1.5rem',
       huge: '2rem',

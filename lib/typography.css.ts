@@ -21,11 +21,17 @@ export const strongStyle = style(
   {
     fontWeight: globalThemeVars.text.weight.bold,
   },
-  'secondaryStyle',
+  'strongStyle',
 );
 
-export const fontSize = styleVariants(
+export const fontStyle = styleVariants(
   globalThemeVars.text.size,
-  (size) => ({ fontSize: size }),
+  (value) => ({ fontSize: value }),
   'fontSize',
+);
+
+export const toneStyle = styleVariants(
+  globalThemeVars.color.tone,
+  (value) => ({ color: value }),
+  'toneStyle',
 );

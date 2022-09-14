@@ -24,7 +24,7 @@ import {
   fieldLabelTertiaryStyle,
 } from './forms.css.js';
 import { Block, Inline } from './layout.js';
-import type { Space } from './global-theme.css.js';
+import type { Space, Tone } from './global-theme.css.js';
 import { Secondary, Strong, Text } from './typography.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -69,7 +69,7 @@ export const FormFieldLabel: FC<
     space="tiny"
     {...props}
     component="label"
-    className={clsx(fieldLabelStyle, className)}
+    className={[fieldLabelStyle, className]}
   >
     <Text>
       <Strong>{children}</Strong>
@@ -91,12 +91,7 @@ export const FormInputLabel: FC<
     className?: ClassValue;
   }
 > = ({ className, children, ...props }) => (
-  <Inline
-    space="standard"
-    {...props}
-    component="label"
-    className={clsx(className, inputLabelStyle)}
-  >
+  <Inline {...props} component="label" className={[className, inputLabelStyle]}>
     <Text>{children}</Text>
   </Inline>
 );
@@ -113,7 +108,8 @@ export const FormInput: FC<
       description?: ReactNode;
       secondaryLabel?: ReactNode;
       tertiaryLabel?: ReactNode;
-      message?: ReactNode;
+      message?: string;
+      messageTone?: Tone;
     }
   >
 > = ({
@@ -123,6 +119,7 @@ export const FormInput: FC<
   secondaryLabel,
   tertiaryLabel,
   message,
+  messageTone,
   ...props
 }) => {
   const id = useId();
@@ -139,7 +136,7 @@ export const FormInput: FC<
       {description}
       <input className={formInput} id={id} {...props} />
       {message && (
-        <Text size="small">
+        <Text size="small" tone={messageTone}>
           <Secondary>{message}</Secondary>
         </Text>
       )}

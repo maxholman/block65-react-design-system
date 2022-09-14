@@ -11,6 +11,7 @@ const base = style(
     padding: globalThemeVars.space.standard,
     textAlign: globalThemeVars.align.center,
     cursor: 'pointer',
+    fontSize: globalThemeVars.text.size.normal,
   },
   'base',
 );
