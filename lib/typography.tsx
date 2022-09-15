@@ -1,7 +1,7 @@
 import { ClassValue, clsx } from 'clsx';
 import { createElement, FC, PropsWithChildren } from 'react';
 import { Box } from './core.js';
-import type { FontSize, Tone } from './global-theme.css.js';
+import type { FontSize, Tone } from './theme.css.js';
 import {
   fontStyle,
   secondaryStyle,
@@ -50,10 +50,10 @@ export const Text: FC<
     component="p"
     {...props}
     className={[
-      className,
       textStyle,
       sizeToFontSize(size),
       tone && toneToFontStyle(tone),
+      className,
     ]}
   />
 );
@@ -77,7 +77,7 @@ export const Heading: FC<
     `h${level}`,
     {
       ...props,
-      className: clsx(className, levelToFontSize(level)),
+      className: clsx(levelToFontSize(level), className),
     },
     children,
   );

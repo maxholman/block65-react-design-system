@@ -1,30 +1,31 @@
 import { ClassValue, clsx } from 'clsx';
 import { createElement, PropsWithChildren } from 'react';
+import type { Merge } from 'type-fest';
+import type { Align } from './theme.css.js';
+import { alignItems } from './layout.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
-type BoxProps<T extends keyof ReactHTMLAttributesHacked, P> = PropsWithChildren<
-  {
-    component: T;
-  } & P &
-    Omit<ReactHTMLAttributesHacked[T], keyof P>
->;
-
 export function Box<T extends keyof ReactHTMLAttributesHacked>({
+  children,
   component,
   className,
-  children,
+  align,
   ...props
-}: BoxProps<
-  T,
-  {
-    className?: ClassValue;
-  }
+}: PropsWithChildren<
+  Merge<
+    ReactHTMLAttributesHacked[T],
+    {
+      component: T;
+      className?: ClassValue;
+      align?: Align | undefined;
+    }
+  >
 >) {
   return createElement(
     component,
     {
       ...props,
-      className: clsx(className),
+      className: clsx(align && alignItems[align], className),
     },
     children,
   );
@@ -32,10 +33,17 @@ export function Box<T extends keyof ReactHTMLAttributesHacked>({
 
 export type BoxBasedComponentProps<
   T extends keyof ReactHTMLAttributesHacked,
-  P,
+  P extends Record<string, unknown> = Record<string, unknown>,
 > = PropsWithChildren<
-  {
-    component?: T;
-  } & P &
-    Omit<ReactHTMLAttributesHacked[T], keyof P>
+  Merge<
+    ReactHTMLAttributesHacked[T],
+    Merge<
+      P,
+      {
+        component?: T;
+        className?: ClassValue;
+        align?: Align | undefined;
+      }
+    >
+  >
 >;

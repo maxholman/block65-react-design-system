@@ -1,10 +1,15 @@
 import { style } from '@vanilla-extract/css';
-import { globalThemeVars } from './global-theme.css.js';
+import { colorVars } from './theme.css.js';
+import { hsl } from './utils.js';
 
 export const linkStyle = style(
   {
     textDecoration: 'underline',
-    color: globalThemeVars.color.buttons.accentSurface,
+    color: hsl(
+      colorVars.color.accent.h,
+      colorVars.color.accent.s,
+      colorVars.color.accent.l,
+    ),
   },
   'linkStyle',
 );

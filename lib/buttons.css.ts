@@ -1,44 +1,81 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { globalThemeVars } from './global-theme.css.js';
+import { colorVariantVars, genericVars } from './theme.css.js';
 
 export type ButtonVariant = keyof typeof buttonVariants;
 
 const base = style(
   {
-    borderWidth: globalThemeVars.border.weight.normal,
-    borderStyle: 'solid',
-    borderRadius: globalThemeVars.radius.standard,
-    padding: globalThemeVars.space.standard,
-    textAlign: globalThemeVars.align.center,
     cursor: 'pointer',
-    fontSize: globalThemeVars.text.size.normal,
+    borderStyle: 'solid',
+    borderWidth: genericVars.border.weight.normal,
+    borderRadius: genericVars.radius.standard,
+    padding: `${genericVars.space.standard} ${genericVars.space.large}`,
+    textAlign: genericVars.align.center,
+    fontSize: genericVars.text.size.normal,
+    transition: 'all 0.1s linear',
+    userSelect: 'none',
+    selectors: {
+      '&[disabled]': {
+        // pointerEvents: 'none',
+        cursor: 'not-allowed',
+        filter: 'grayscale(1)',
+      },
+    },
   },
   'base',
+);
+
+export const busyButton = style(
+  {
+    outline: '1px solid blue',
+    color: 'transparent',
+    selectors: {
+      '&::after': {
+        content: 'busy',
+      },
+    },
+  },
+  'busyButton',
 );
 
 export const buttonVariants = styleVariants({
   standard: [
     base,
     {
-      background: globalThemeVars.color.buttons.accentSurface,
-      borderColor: globalThemeVars.color.buttons.accentSurface,
-      color: globalThemeVars.color.buttons.accentText,
+      background: colorVariantVars.bb,
+      color: colorVariantVars.hhh,
+      borderColor: colorVariantVars.bb,
+      selectors: {
+        '&:not([disabled]):hover': {
+          borderColor: colorVariantVars.bbb,
+        },
+      },
     },
   ],
   ghost: [
     base,
     {
-      background: globalThemeVars.levelTop.surface,
-      borderColor: globalThemeVars.color.buttons.accentSurface,
-      color: globalThemeVars.color.buttons.accentSurface,
+      background: colorVariantVars.hhh,
+      color: colorVariantVars.bb,
+      borderColor: colorVariantVars.bb,
+      selectors: {
+        '&:not([disabled]):hover': {
+          background: colorVariantVars.hh,
+        },
+      },
     },
   ],
   subtle: [
     base,
     {
-      background: globalThemeVars.color.buttons.subtleSurface,
-      borderColor: globalThemeVars.color.buttons.subtleSurface,
-      color: globalThemeVars.color.buttons.subtleText,
+      background: colorVariantVars.hh,
+      borderColor: colorVariantVars.hh,
+      color: colorVariantVars.bb,
+      selectors: {
+        '&:not([disabled]):hover': {
+          borderColor: colorVariantVars.h,
+        },
+      },
     },
   ],
 });

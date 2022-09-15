@@ -19,4 +19,4 @@ dist: node_modules tsconfig.json $(SRCS)
 
 .PHONY: dev
 dev:
-	yarn vite dev
+	yarn vite dev --force

@@ -1,10 +1,26 @@
-import { clsx } from 'clsx';
 import type { FC, PropsWithChildren } from 'react';
-import { sansSerifFontStyle } from './global-theme.css.js';
-import { localColorTheme, localTheme } from './theme.css.js';
+import { Box } from './core.js';
+import { resetClass } from './reset.css.js';
+import {
+  genericThemeClass,
+  colorVariantsClass,
+  sansSerifFontStyle,
+  colacubeColorThemeClass,
+  backgroundColorThemeClass,
+} from './theme.css.js';
 
 export const Theme: FC<PropsWithChildren> = ({ children }) => (
-  <div className={clsx(sansSerifFontStyle, localColorTheme, localTheme)}>
+  <Box
+    component="div"
+    className={[
+      resetClass,
+      sansSerifFontStyle,
+      genericThemeClass,
+      colorVariantsClass,
+      colacubeColorThemeClass,
+      backgroundColorThemeClass,
+    ]}
+  >
     {children}
-  </div>
+  </Box>
 );

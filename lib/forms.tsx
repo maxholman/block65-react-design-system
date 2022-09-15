@@ -1,4 +1,4 @@
-import { ClassValue, clsx } from 'clsx';
+import type { ClassValue } from 'clsx';
 import {
   Children,
   cloneElement,
@@ -14,17 +14,17 @@ import {
   useId,
 } from 'react';
 import {
+  fieldLabelStyle,
+  fieldLabelTertiaryStyle,
   formInput,
   formInputCheckbox,
   formInputRadio,
   formInputSelect,
   formInputSelectWrapper,
   inputLabelStyle,
-  fieldLabelStyle as fieldLabelStyle,
-  fieldLabelTertiaryStyle,
 } from './forms.css.js';
+import type { Space, Tone } from './theme.css.js';
 import { Block, Inline } from './layout.js';
-import type { Space, Tone } from './global-theme.css.js';
 import { Secondary, Strong, Text } from './typography.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -45,11 +45,12 @@ function cloneElementIfValidElementOfType<T extends FC<any>>(
 }
 
 export const Form: FC<
-  PropsWithChildren<{ className?: ClassValue; space: Space }>
-> = ({ className, space, children, ...props }) => (
-  <Block space={space} component="form" className={clsx(className)} {...props}>
+  PropsWithChildren<{ className?: ClassValue; space?: Space }>
+> = ({ space = 'large', children, ...props }) => (
+  <Block space={space} component="form" {...props}>
     {Children.map(children, (child) => {
-      // if it's a block element and no space is defined, used the space this component has
+      // if it's a block element and no space is defined, use the space this
+      // component has been given
       if (isValidElementOfType(child, Block) && !child.props.space) {
         return cloneElement(child, { ...child.props, space });
       }
@@ -66,8 +67,8 @@ export const FormFieldLabel: FC<
   }
 > = ({ className, secondary, tertiary, children, ...props }) => (
   <Inline
-    space="tiny"
     {...props}
+    space="tiny"
     component="label"
     className={[fieldLabelStyle, className]}
   >
@@ -91,7 +92,7 @@ export const FormInputLabel: FC<
     className?: ClassValue;
   }
 > = ({ className, children, ...props }) => (
-  <Inline {...props} component="label" className={[className, inputLabelStyle]}>
+  <Inline {...props} component="label" className={[inputLabelStyle, className]}>
     <Text>{children}</Text>
   </Inline>
 );
@@ -205,7 +206,7 @@ export const FormInputRadio: FC<
         <Inline>
           <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
         </Inline>
-        <Text size="small">{message}</Text>
+        {message && <Text size="small">{message}</Text>}
       </Block>
     </Inline>
   );

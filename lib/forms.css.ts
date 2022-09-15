@@ -1,29 +1,32 @@
 import { style } from '@vanilla-extract/css';
-import { globalThemeVars } from './global-theme.css.js';
-
-const formLevelVars = globalThemeVars.levelTop;
+import { elevations, panelClass } from './panel.css.js';
+import { genericVars } from './theme.css.js';
 
 export const formInput = style(
-  {
-    borderWidth: globalThemeVars.border.weight.normal,
-    borderStyle: 'solid',
-    borderColor: formLevelVars.ink,
-    color: formLevelVars.text,
-    background: formLevelVars.surface,
-    padding: globalThemeVars.space.standard,
-    borderRadius: globalThemeVars.radius.standard,
-    fontSize: globalThemeVars.text.size.normal,
-    // lineHeight: 1.6,
-    selectors: {
-      '&[readonly]': {
-        paddingLeft: 0,
-        paddingRight: 0,
-        borderLeft: 0,
-        borderRight: 0,
-        borderColor: 'transparent',
+  [
+    elevations.elevationTop,
+    panelClass,
+    {
+      borderWidth: genericVars.border.weight.normal,
+      borderStyle: 'solid',
+      padding: genericVars.space.standard,
+      borderRadius: genericVars.radius.standard,
+      fontSize: genericVars.text.size.normal,
+      selectors: {
+        '&[readonly]': {
+          paddingLeft: 0,
+          paddingRight: 0,
+          borderLeft: 0,
+          borderRight: 0,
+          borderColor: 'transparent',
+          backgroundColor: 'transparent',
+        },
+        '&::placeholder': {
+          // color: hsl(baseVars.h, baseVars.s, 70),
+        },
       },
     },
-  },
+  ],
   'formInput',
 );
 
@@ -47,12 +50,13 @@ export const formInputCheckRadioBase = style(
         },
         '&::before': {
           content: '""',
-          height: '0.75em',
+          fontSize: genericVars.text.size.normal,
+          height: '0.7rem',
           // height: '0.65em',
           aspectRatio: '1/1',
           transform: 'scale(0)',
           transition: '120ms transform ease-in-out',
-          boxShadow: 'inset 1em 1em var(--accent-color, currentColor)',
+          boxShadow: 'inset 16px 16px var(--accent-color, currentColor)',
         },
         '&:checked': {
           borderColor: 'currentColor',
@@ -75,7 +79,6 @@ export const formInputCheckbox = style(
   [
     formInputCheckRadioBase,
     {
-      // borderRadius: globalThemeContract.radius.maximum,
       selectors: {
         '&::before': {
           transformOrigin: 'bottom left',
@@ -92,10 +95,10 @@ export const formInputRadio = style(
   [
     formInputCheckRadioBase,
     {
-      borderRadius: globalThemeVars.radius.maximum,
+      borderRadius: genericVars.radius.maximum,
       selectors: {
         '&::before': {
-          borderRadius: globalThemeVars.radius.maximum,
+          borderRadius: genericVars.radius.maximum,
         },
       },
     },
@@ -110,7 +113,7 @@ export const formInputSelect = style(
     {
       cursor: 'pointer',
       gridArea: formInputSelectGridareaName,
-      padding: globalThemeVars.space.standard,
+      padding: genericVars.space.standard,
     },
   ],
   'formInputSelect',
@@ -132,7 +135,7 @@ export const formInputSelectWrapper = style(
           width: '0.5em',
           height: '0.25em',
           backgroundColor: 'currentColor',
-          marginRight: globalThemeVars.space.standard,
+          marginRight: genericVars.space.standard,
           clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
         },
       },
@@ -144,7 +147,7 @@ export const formInputSelectWrapper = style(
 export const fieldLabelStyle = style(
   {
     cursor: 'pointer',
-    fontSize: globalThemeVars.text.size.medium,
+    fontSize: genericVars.text.size.medium,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
@@ -162,6 +165,7 @@ export const fieldLabelTertiaryStyle = style(
 export const inputLabelStyle = style(
   {
     cursor: 'pointer',
+    userSelect: 'none',
   },
   'inputLabelStyle',
 );

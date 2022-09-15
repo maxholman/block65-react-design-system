@@ -1,37 +1,37 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { globalThemeVars } from './global-theme.css.js';
+import { colorVars, genericVars } from './theme.css.js';
+import { hsl } from './utils.js';
 
 export const textStyle = style(
   {
-    lineHeight: globalThemeVars.text.lineHeight.standard,
+    // color: hsl(colorVars.color.accent.h, 20, 30),
+    lineHeight: genericVars.text.lineHeight.standard,
   },
   'textStyle',
 );
 
 export const secondaryStyle = style(
   {
-    fontWeight: globalThemeVars.text.weight.normal,
-    // color: globalThemeVars.text,
-    // lineHeight: globalThemeContract.text.lineHeight.standard,
+    color: hsl(colorVars.color.accent.h, 0, 30),
   },
   'secondaryStyle',
 );
 
 export const strongStyle = style(
   {
-    fontWeight: globalThemeVars.text.weight.bold,
+    fontWeight: genericVars.text.weight.bold,
   },
   'strongStyle',
 );
 
 export const fontStyle = styleVariants(
-  globalThemeVars.text.size,
+  genericVars.text.size,
   (value) => ({ fontSize: value }),
   'fontSize',
 );
 
 export const toneStyle = styleVariants(
-  globalThemeVars.color.tone,
+  genericVars.color.tone,
   (value) => ({ color: value }),
   'toneStyle',
 );

@@ -1,4 +1,4 @@
-import { ClassValue, clsx } from 'clsx';
+import type { ClassValue } from 'clsx';
 import type { AnchorHTMLAttributes, FC, PropsWithChildren } from 'react';
 import type { ButtonVariant } from './buttons.css.js';
 import { variantToButtonVariant } from './buttons.js';
@@ -12,7 +12,7 @@ export const TextLink: FC<
     }
   >
 > = ({ children, className, ...props }) => (
-  <Box component="a" className={clsx(linkStyle, className)} {...props}>
+  <Box component="a" className={[linkStyle, className]} {...props}>
     {children}
   </Box>
 );
@@ -27,7 +27,7 @@ export const ButtonLink: FC<
 > = ({ className, variant = 'standard', ...props }) => (
   <Box
     component="a"
-    className={clsx(variantToButtonVariant(variant), className)}
+    className={[variantToButtonVariant(variant), className]}
     {...props}
   />
 );

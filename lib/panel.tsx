@@ -1,15 +1,12 @@
-import { clsx } from 'clsx';
-import { createElement } from 'react';
-import { augmentChildren } from './utils.js';
 import type { BoxBasedComponentProps } from './core.js';
+import type { Space } from './theme.css.js';
 import { Block } from './layout.js';
 import {
+  elevations,
   PanelElevation,
-  panelElevations,
   PanelVariant,
   panelVariants,
 } from './panel.css.js';
-import type { Space } from './global-theme.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
 function variantToPanelVariant(variant: PanelVariant) {
@@ -22,9 +19,12 @@ function variantToPanelVariant(variant: PanelVariant) {
 
 function variantToPanelElevation(elevation: PanelElevation) {
   return {
-    [panelElevations.elevation0]: elevation === 'elevation0',
-    [panelElevations.elevation1]: elevation === 'elevation1',
-    [panelElevations.elevation2]: elevation === 'elevation2',
+    [elevations.elevationNone]: elevation === 'elevationNone',
+    [elevations.elevationBottom]: elevation === 'elevationBottom',
+    [elevations.elevation1]: elevation === 'elevation1',
+    [elevations.elevation2]: elevation === 'elevation2',
+    [elevations.elevation3]: elevation === 'elevation3',
+    [elevations.elevationTop]: elevation === 'elevationTop',
   };
 }
 
@@ -32,32 +32,29 @@ export function Panel<T extends keyof ReactHTMLAttributesHacked = 'section'>({
   component,
   children,
   className,
+  elevation = 'elevationNone',
   space = 'standard',
   variant = 'standard',
-  elevation = 'elevation0',
   ...props
 }: BoxBasedComponentProps<
   T,
   {
-    component?: T;
+    elevation?: PanelElevation;
     space?: Space;
     variant?: PanelVariant;
-    elevation?: PanelElevation;
   }
 >) {
-  return createElement(
-    Block,
-    {
-      ...props,
-      space,
-      className: clsx(
+  return (
+    <Block
+      space={space}
+      className={[
         className,
         variantToPanelVariant(variant),
         variantToPanelElevation(elevation),
-      ),
-    },
-    augmentChildren(children, {
-      // className: spaceToMarginInline(space),
-    }),
+      ]}
+      {...props}
+    >
+      {children}
+    </Block>
   );
 }

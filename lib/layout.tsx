@@ -1,29 +1,29 @@
-import { ClassValue, clsx } from 'clsx';
+import { clsx } from 'clsx';
 import { createElement } from 'react';
-import type { BoxBasedComponentProps } from './core.js';
+import { Box, BoxBasedComponentProps } from './core.js';
+import type { Space } from './theme.css.js';
 import {
   alignItems,
   flexColumn,
   flexRow,
-  marginBlock,
+  marginBlockChildren,
   marginInlineChildren,
 } from './layout.css.js';
-import type { Align, Space } from './global-theme.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 import { augmentChildren } from './utils.js';
 
-function spaceToMarginBlock(space: Space) {
+function spaceToMarginBlockChildren(space: Space) {
   return {
-    [marginBlock.none]: space === 'none',
-    [marginBlock.tiny]: space === 'tiny',
-    [marginBlock.small]: space === 'small',
-    [marginBlock.standard]: space === 'standard',
-    [marginBlock.large]: space === 'large',
-    [marginBlock.huge]: space === 'huge',
+    [marginBlockChildren.none]: space === 'none',
+    [marginBlockChildren.tiny]: space === 'tiny',
+    [marginBlockChildren.small]: space === 'small',
+    [marginBlockChildren.standard]: space === 'standard',
+    [marginBlockChildren.large]: space === 'large',
+    [marginBlockChildren.huge]: space === 'huge',
   };
 }
 
-function spaceToMarginInline(space: Space) {
+function spaceToMarginInlineChildren(space: Space) {
   return {
     [marginInlineChildren.tiny]: space === 'tiny',
     [marginInlineChildren.small]: space === 'small',
@@ -34,57 +34,47 @@ function spaceToMarginInline(space: Space) {
 }
 
 export function Block<T extends keyof ReactHTMLAttributesHacked = 'div'>({
-  component,
+  component = 'div',
   space = 'standard',
-  align,
   className,
   children,
   ...props
 }: BoxBasedComponentProps<
   T,
   {
-    component?: T;
     space?: Space;
-    align?: Align;
   }
 >) {
-  return createElement(
-    component || 'div',
-    {
-      ...props,
-      className: clsx(flexColumn, className, align && alignItems[align]),
-    },
-    augmentChildren(children, {
-      className: spaceToMarginBlock(space),
-    }),
+  return (
+    <Box {...props} className={[flexColumn, className]} component={component}>
+      {augmentChildren(children, {
+        className: spaceToMarginBlockChildren(space),
+      })}
+    </Box>
   );
 }
 
 export function Inline<T extends keyof ReactHTMLAttributesHacked = 'span'>({
+  children,
+  className,
   component,
   space = 'standard',
-  className,
-  children,
+  align,
   ...props
 }: BoxBasedComponentProps<
   T,
   {
-    className?: ClassValue;
-    component?: T;
     space?: Space;
-    align?: Align;
   }
 >) {
   return createElement(
     component || 'span',
     {
       ...props,
-      className: clsx(flexRow, className),
+      className: clsx(flexRow, className, align && alignItems[align]),
     },
     augmentChildren(children, {
-      className: spaceToMarginInline(space),
+      className: spaceToMarginInlineChildren(space),
     }),
   );
 }
-
-// probably grid and/or tiles

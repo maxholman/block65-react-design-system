@@ -1,17 +1,4 @@
-import { createThemeContract, globalStyle } from '@vanilla-extract/css';
-
-export const localThemeVars = createThemeContract({
-  color: {
-    brand: null,
-  },
-  font: {
-    body: null,
-  },
-});
-
-globalStyle(':where(html) :focus,:focus-visible', {
-  outline: 'revert',
-});
+import { globalStyle } from '@vanilla-extract/css';
 
 globalStyle(':where(html)', {
   fontFamily: 'Inter',
