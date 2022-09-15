@@ -1,6 +1,11 @@
 import { ClassValue, clsx } from 'clsx';
 import type { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
-import { busyButton, ButtonVariant, buttonVariants } from './buttons.css.js';
+import {
+  busyButton,
+  compactButton,
+  ButtonVariant,
+  buttonVariants,
+} from './buttons.css.js';
 
 export function variantToButtonVariant(variant: ButtonVariant) {
   return {
@@ -16,14 +21,23 @@ export const Button: FC<
       className?: ClassValue;
       variant?: ButtonVariant;
       busy?: boolean;
+      compact?: boolean;
     }
   >
-> = ({ className, busy, type = 'button', variant = 'standard', ...props }) => (
+> = ({
+  className,
+  busy,
+  compact,
+  type = 'button',
+  variant = 'standard',
+  ...props
+}) => (
   <button
     className={clsx(
       variantToButtonVariant(variant),
       className,
       busy && busyButton,
+      compact && compactButton,
     )}
     type={type}
     {...props}

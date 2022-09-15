@@ -2,6 +2,7 @@ import {
   createTheme,
   createThemeContract,
   fallbackVar,
+  keyframes,
   style,
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
@@ -85,7 +86,7 @@ export const genericThemeClass = createTheme(genericVars, {
   text: {
     size: {
       tiny: '0.6rem',
-      small: '0.8rem',
+      small: '0.875rem',
       normal: '1rem',
       medium: '1.125rem',
       large: '1.5rem',
@@ -212,3 +213,8 @@ export const colacubeColorThemeClass = createTheme(
   },
   'colacubeColorThemeClass',
 );
+
+export const rotate = keyframes({
+  '0%': { transform: 'rotate(0deg)' },
+  '100%': { transform: 'rotate(360deg)' },
+});

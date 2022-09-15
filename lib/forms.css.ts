@@ -51,7 +51,7 @@ export const formInputCheckRadioBase = style(
         '&::before': {
           content: '""',
           fontSize: genericVars.text.size.normal,
-          height: '0.7rem',
+          height: '0.7rem', // careful with this as it causes the text to jump
           // height: '0.65em',
           aspectRatio: '1/1',
           transform: 'scale(0)',
