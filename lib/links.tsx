@@ -1,7 +1,6 @@
 import type { ClassValue } from 'clsx';
 import type { AnchorHTMLAttributes, FC, PropsWithChildren } from 'react';
-import type { ButtonVariant } from './buttons.css.js';
-import { variantToButtonVariant } from './buttons.js';
+import { ButtonVariant, buttonVariantClasses } from './buttons.css.js';
 import { Box } from './core.js';
 import { linkStyle } from './links.css.js';
 
@@ -27,7 +26,7 @@ export const ButtonLink: FC<
 > = ({ className, variant = 'standard', ...props }) => (
   <Box
     component="span"
-    className={[variantToButtonVariant(variant), className]}
+    className={[buttonVariantClasses[variant], className]}
     {...props}
   />
 );

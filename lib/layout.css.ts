@@ -12,27 +12,19 @@ export const flexColumn = style({
   flexDirection: 'column',
 });
 
-export const marginBlockChildren = styleVariants(
-  genericVars.space,
-  (space) => ({
-    // marginBlockStart: space,
-    selectors: {
-      '&:not(:first-child)': { marginBlockStart: space },
-    },
-  }),
-  'marginBlockChildren',
-);
+export const flexColumnVariants = styleVariants(genericVars.space, (space) => [
+  flexColumn,
+  {
+    gap: space,
+  },
+]);
 
-export const marginInlineChildren = styleVariants(
-  genericVars.space,
-  (space) => ({
-    selectors: {
-      '&:not(:first-child)': { marginInlineStart: space },
-    },
-    // flex: 1,
-  }),
-  'marginInlineChildren',
-);
+export const flexRowVariants = styleVariants(genericVars.space, (space) => [
+  flexRow,
+  {
+    gap: space,
+  },
+]);
 
 export const alignItems = styleVariants(genericVars.align, (align) => ({
   alignItems: align,

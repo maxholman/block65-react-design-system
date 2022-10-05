@@ -1,7 +1,7 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { colorVariantVars, genericVars, rotate } from './theme.css.js';
 
-export type ButtonVariant = keyof typeof buttonVariants;
+export type ButtonVariant = 'standard' | 'ghost' | 'subtle';
 
 const base = style({
   cursor: 'pointer',
@@ -16,7 +16,7 @@ const base = style({
   selectors: {
     '&[disabled]': {
       // pointerEvents: 'none',
-      cursor: 'not-allowed',
+      cursor: 'default',
       filter: 'grayscale(1)',
     },
 
@@ -27,15 +27,73 @@ const base = style({
   },
 });
 
+export const compactButton = style({
+  padding: `${genericVars.space.tiny} ${genericVars.space.standard}`,
+  fontSize: genericVars.text.size.small,
+});
+
+const buttonColorVar = createVar();
+
+const variants: Record<
+  ButtonVariant,
+  {
+    background: string;
+    color: string;
+    borderColor: string;
+    borderColorHover?: string;
+  }
+> = {
+  standard: {
+    background: colorVariantVars.bb,
+    color: colorVariantVars.hhh,
+    borderColor: colorVariantVars.bb,
+  },
+  ghost: {
+    background: colorVariantVars.hhh,
+    color: colorVariantVars.bb,
+    borderColor: colorVariantVars.bb,
+  },
+  subtle: {
+    background: colorVariantVars.hh,
+    color: colorVariantVars.bb,
+    borderColor: colorVariantVars.hh,
+    borderColorHover: colorVariantVars.h,
+  },
+};
+
+export const buttonVariantClasses = styleVariants(variants, (variant) => [
+  base,
+  {
+    background: variant.background,
+    color: variant.color,
+    borderColor: variant.borderColor,
+    vars: {
+      [buttonColorVar]: variant.color,
+    },
+    selectors: {
+      // :where to avoid specificity issues with busy etc
+      ...(variant.borderColorHover && {
+        '&:where(:not([disabled]):hover)': {
+          borderColor: variant.borderColorHover || variant.borderColor,
+        },
+      }),
+    },
+  },
+]);
+
+// WARN: this is defined last so it can override other styles
+// with the same specificity
 export const busyButton = style({
-  // outline: '10px solid blue',
   color: 'transparent',
   position: 'relative',
   display: 'grid',
   placeItems: 'center',
   selectors: {
+    // '&:hover': {
+    //   borderColor: 'revert',
+    // },
     '&::before': {
-      width: '1.3rem',
+      height: '60%',
       aspectRatio: '1/1',
       content: '""',
       position: 'absolute',
@@ -43,7 +101,7 @@ export const busyButton = style({
       borderStyle: 'solid',
       borderWidth: genericVars.border.weight.normal,
       borderColor: 'transparent',
-      borderTopColor: 'currentColor',
+      borderTopColor: buttonColorVar,
       borderRadius: '50%',
       animationName: rotate,
       animationDuration: '0.75s',
@@ -51,50 +109,4 @@ export const busyButton = style({
       animationTimingFunction: 'linear',
     },
   },
-});
-
-export const compactButton = style({
-  padding: `${genericVars.space.tiny} ${genericVars.space.standard}`,
-});
-
-export const buttonVariants = styleVariants({
-  standard: [
-    base,
-    {
-      background: colorVariantVars.bb,
-      color: colorVariantVars.hhh,
-      borderColor: colorVariantVars.bb,
-      selectors: {
-        '&:not([disabled]):hover': {
-          borderColor: colorVariantVars.bbb,
-        },
-      },
-    },
-  ],
-  ghost: [
-    base,
-    {
-      background: colorVariantVars.hhh,
-      color: colorVariantVars.bb,
-      borderColor: colorVariantVars.bb,
-      selectors: {
-        '&:not([disabled]):hover': {
-          background: colorVariantVars.hh,
-        },
-      },
-    },
-  ],
-  subtle: [
-    base,
-    {
-      background: colorVariantVars.hh,
-      borderColor: colorVariantVars.hh,
-      color: colorVariantVars.bb,
-      selectors: {
-        '&:not([disabled]):hover': {
-          borderColor: colorVariantVars.h,
-        },
-      },
-    },
-  ],
 });

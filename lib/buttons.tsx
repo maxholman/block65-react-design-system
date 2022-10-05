@@ -4,16 +4,8 @@ import {
   busyButton,
   compactButton,
   ButtonVariant,
-  buttonVariants,
+  buttonVariantClasses,
 } from './buttons.css.js';
-
-export function variantToButtonVariant(variant: ButtonVariant) {
-  return {
-    [buttonVariants.standard]: variant === 'standard',
-    [buttonVariants.ghost]: variant === 'ghost',
-    [buttonVariants.subtle]: variant === 'subtle',
-  };
-}
 
 export const Button: FC<
   PropsWithChildren<
@@ -34,9 +26,9 @@ export const Button: FC<
 }) => (
   <button
     className={clsx(
-      variantToButtonVariant(variant),
-      className,
       busy && busyButton,
+      buttonVariantClasses[variant],
+      className,
       compact && compactButton,
     )}
     type={type}
