@@ -4,7 +4,6 @@ import { Block } from '../../lib/layout.js';
 import { TextLink } from '../../lib/links.js';
 import { Panel } from '../../lib/panel.js';
 import { Heading, Secondary, Strong, Text } from '../../lib/typography.js';
-import { dest } from '../dest.js';
 
 export const TypographyPage: FC = () => (
   <Panel variant="ghost" space="huge" elevation="elevationBottom">
@@ -23,7 +22,7 @@ export const TypographyPage: FC = () => (
       </Text>
       <Text>
         Sometimes I like to look at{' '}
-        <Link url={dest('/buttons')}>
+        <Link dest="/buttons">
           <TextLink>button components</TextLink>
         </Link>{' '}
         on my computer.
@@ -32,7 +31,7 @@ export const TypographyPage: FC = () => (
     <Block>
       <Heading level="1">
         Sometimes I like to look at{' '}
-        <Link url={dest('/buttons')}>
+        <Link dest="/buttons">
           <TextLink>button components</TextLink>
         </Link>{' '}
         on my computer.

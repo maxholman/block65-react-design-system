@@ -12,7 +12,7 @@ export const TextLink: FC<
     }
   >
 > = ({ children, className, ...props }) => (
-  <Box component="a" className={[linkStyle, className]} {...props}>
+  <Box component="span" className={[linkStyle, className]} {...props}>
     {children}
   </Box>
 );
@@ -26,7 +26,7 @@ export const ButtonLink: FC<
   >
 > = ({ className, variant = 'standard', ...props }) => (
   <Box
-    component="a"
+    component="span"
     className={[variantToButtonVariant(variant), className]}
     {...props}
   />

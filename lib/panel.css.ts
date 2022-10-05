@@ -39,17 +39,14 @@ const elevationLightnessAdjust = {
   },
 };
 
-export const panelClass = style(
-  {
-    borderRadius: genericVars.radius.standard,
-    padding: genericVars.space.standard,
-    flex: 1,
-    borderWidth: genericVars.border.weight.normal,
-    borderStyle: 'solid',
-    borderColor: 'transparent',
-  },
-  'class',
-);
+export const panelClass = style({
+  borderRadius: genericVars.radius.standard,
+  padding: genericVars.space.standard,
+  flex: 1,
+  borderWidth: genericVars.border.weight.normal,
+  borderStyle: 'solid',
+  borderColor: 'transparent',
+});
 
 export const panelVariants = styleVariants(
   {

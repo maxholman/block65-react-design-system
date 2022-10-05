@@ -1,21 +1,16 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './theme.css.js';
 
-export const flexRow = style(
-  {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  'flexRow',
-);
+export const flexRow = style({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+});
 
-export const flexColumn = style(
-  {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  'flexColumn',
-);
+export const flexColumn = style({
+  display: 'flex',
+  flexDirection: 'column',
+});
 
 export const marginBlockChildren = styleVariants(
   genericVars.space,
@@ -39,10 +34,6 @@ export const marginInlineChildren = styleVariants(
   'marginInlineChildren',
 );
 
-export const alignItems = styleVariants(
-  genericVars.align,
-  (align) => ({
-    alignItems: align,
-  }),
-  'alignItems',
-);
+export const alignItems = styleVariants(genericVars.align, (align) => ({
+  alignItems: align,
+}));

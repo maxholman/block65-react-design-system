@@ -73,6 +73,15 @@ export const ButtonsPage: FC = () => (
         <Button compact busy variant="subtle">
           Subtle
         </Button>
+        <Button compact disabled>
+          Button
+        </Button>
+        <Button compact disabled variant="ghost">
+          Ghost
+        </Button>
+        <Button compact disabled variant="subtle">
+          Subtle
+        </Button>
       </Inline>
     </Block>
   </Panel>

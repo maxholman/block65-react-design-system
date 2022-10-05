@@ -52,6 +52,7 @@ import type {
   WebViewHTMLAttributes,
 } from 'react';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/naming-convention
 type DetailedHTMLFactory<T, _E> = T;
 
 export interface ReactHTMLAttributesHacked {

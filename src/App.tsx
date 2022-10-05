@@ -7,33 +7,32 @@ import { Theme } from '../lib/theme.js';
 import { Heading, Text } from '../lib/typography.js';
 import { ButtonsPage } from './buttons/page.js';
 import { CorePage } from './core/page.js';
-import { dest } from './dest.js';
 import { FormsPage } from './forms/page.js';
 import { PanelsPage } from './panels/page.js';
 import { TypographyPage } from './typography/page.js';
 
 export const App: FC = () => (
   <Theme>
-    <Router origin={window.location.origin}>
+    <Router>
       <Block>
         <Panel space="huge" variant="ghost">
           <Inline align="center">
-            <Link url={dest('/')}>
+            <Link dest="/">
               <TextLink>Home</TextLink>
             </Link>
-            <Link url={dest('/core')}>
+            <Link dest="/core">
               <TextLink>Core</TextLink>
             </Link>
-            <Link url={dest('/panels')}>
+            <Link dest="/panels">
               <TextLink>Panels</TextLink>
             </Link>
-            <Link url={dest('/forms')}>
+            <Link dest="/forms">
               <TextLink>Forms</TextLink>
             </Link>
-            <Link url={dest('/typography')}>
+            <Link dest="/typography">
               <TextLink>Typography</TextLink>
             </Link>
-            <Link url={dest('/buttons')}>
+            <Link dest="/buttons">
               <TextLink>Buttons</TextLink>
             </Link>
           </Inline>
