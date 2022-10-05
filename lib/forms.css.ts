@@ -1,10 +1,10 @@
-import { style } from '@vanilla-extract/css';
-import { elevations, panelClass } from './panel.css.js';
-import { genericVars } from './theme.css.js';
+import { fallbackVar, style } from '@vanilla-extract/css';
+import { elevations } from './panel.css.js';
+import { colorVariantVars, genericVars } from './theme.css.js';
 
 export const formInput = style([
-  elevations.elevationTop,
-  panelClass,
+  // form inputs always look like a top elevation
+  elevations.top,
   {
     borderWidth: genericVars.border.weight.normal,
     borderStyle: 'solid',
@@ -21,7 +21,7 @@ export const formInput = style([
         backgroundColor: 'transparent',
       },
       '&::placeholder': {
-        // color: hsl(baseVars.h, baseVars.s, 70),
+        color: colorVariantVars.hh,
       },
     },
   },
@@ -35,14 +35,14 @@ export const formInputCheckRadioBase = style([
     fontSize: '0.9em',
     height: '0.65em',
     aspectRatio: '1/1',
-    color: 'var(--accent-color, currentColor)',
+    color: fallbackVar('var(--accent-color)', colorVariantVars.hh),
     selectors: {
       '&:focus-visible,&.focus-visible': {
         outline: 'max(2px, 0.15em) solid currentColor',
         outlineOffset: 'max(2px, 0.15em)',
       },
       '&:focus-within': {
-        color: 'green',
+        color: colorVariantVars.bbb,
       },
       '&::before': {
         content: '""',
@@ -52,7 +52,10 @@ export const formInputCheckRadioBase = style([
         aspectRatio: '1/1',
         transform: 'scale(0)',
         transition: '120ms transform ease-in-out',
-        boxShadow: 'inset 16px 16px var(--accent-color, currentColor)',
+        boxShadow: `inset 16px 16px ${fallbackVar(
+          'var(--accent-color)',
+          colorVariantVars.bbb,
+        )}`,
       },
       '&:checked': {
         borderColor: 'currentColor',
@@ -104,38 +107,55 @@ export const formInputSelect = style([
   },
 ]);
 
-export const formInputSelectWrapper = style([
+const formInputSelectWrapper = style([
   formInput,
   {
     display: 'grid',
     gridTemplateAreas: JSON.stringify(formInputSelectGridareaName),
-    alignItems: 'center',
     padding: 0,
+  },
+]);
+
+export const formInputSelectWrapperMultiple = style([
+  formInputSelectWrapper,
+  {
+    lineHeight: genericVars.text.lineHeight.standard,
+  },
+]);
+
+export const formInputSelectWrapperSingle = style([
+  formInputSelectWrapper,
+  {
+    alignItems: 'center',
     selectors: {
       '&::after': {
         gridArea: formInputSelectGridareaName,
-        justifySelf: 'end',
         content: JSON.stringify(''),
-        width: '0.5em',
-        height: '0.25em',
-        backgroundColor: 'currentColor',
+        justifySelf: 'flex-end',
+        width: genericVars.space.standard,
         marginRight: genericVars.space.standard,
+        aspectRatio: '2/1',
+        backgroundColor: 'currentColor',
         clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
       },
     },
   },
 ]);
 
-export const fieldLabelStyle = style({
-  cursor: 'pointer',
+export const fieldLabelWrapperStyle = style({
   fontSize: genericVars.text.size.medium,
-  alignItems: 'center',
   justifyContent: 'space-between',
 });
 
+export const fieldLabelStyle = style({
+  cursor: 'pointer',
+  alignItems: 'center',
+});
+
 export const fieldLabelTertiaryStyle = style({
-  cursor: 'default',
-  pointerEvents: 'none',
+  fontSize: genericVars.text.size.normal,
+  // cursor: 'default',
+  // pointerEvents: 'none',
 });
 
 export const inputLabelStyle = style({

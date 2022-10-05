@@ -8,10 +8,16 @@ import {
 import { calc } from '@vanilla-extract/css-utils';
 import { hsl } from './utils.js';
 
-export type Space = keyof typeof genericVars.space;
-export type FontSize = keyof typeof genericVars.text.size;
-export type Align = keyof typeof genericVars.align;
-export type Tone = keyof typeof genericVars.color.tone;
+export type Space = 'none' | 'large' | 'small' | 'tiny' | 'huge' | 'standard';
+export type FontSize =
+  | 'tiny'
+  | 'small'
+  | 'normal'
+  | 'medium'
+  | 'large'
+  | 'huge';
+export type Align = 'start' | 'center' | 'end';
+export type Tone = 'good' | 'bad';
 
 export const genericVars = createThemeContract({
   color: {
@@ -141,6 +147,7 @@ export const genericThemeClass = createTheme(genericVars, {
 
 export const sansSerifFontStyle = style({
   fontFamily: 'Inter',
+  letterSpacing: '-0.02rem',
 });
 
 export const colorVars = createThemeContract({
@@ -159,20 +166,17 @@ export const backgroundColorVars = createThemeContract({
   l: 'bg-color-l',
 });
 
-export const backgroundColorThemeClass = createTheme(
-  backgroundColorVars,
-  {
-    h: colorVars.color.accent.h,
-    s: calc(colorVars.color.accent.s).subtract('75%').toString(),
-    l: calc(colorVars.color.accent.l).add('18%').toString(),
-  },
-  'backgroundColorThemeClass',
-);
+export const backgroundColorThemeClass = createTheme(backgroundColorVars, {
+  h: colorVars.color.accent.h,
+  s: calc(colorVars.color.accent.s).subtract('75%').toString(),
+  l: calc(colorVars.color.accent.l).add('18%').toString(),
+});
 
 export const colorVariantVars = createThemeContract({
   bbb: 'color-variant-bbb',
   bb: 'color-variant-bb',
   b: 'color-variant-b',
+  hb: 'color-variant-hb',
   h: 'color-variant-h',
   hh: 'color-variant-hh',
   hhh: 'color-variant-hhh',
@@ -180,39 +184,28 @@ export const colorVariantVars = createThemeContract({
 
 const colorVarsWithFallback = {
   h: fallbackVar(colorVars.color.accent.h, '220deg'),
-  s: fallbackVar(colorVars.color.accent.s, '50%'),
+  s: fallbackVar(colorVars.color.accent.s, '40%'),
 };
 
-// elevation-n-link
-// elevation-n-text
-// elevation-n-text-soft
+export const colorVariantsClass = createTheme(colorVariantVars, {
+  bbb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '30%'),
+  bb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '32%'),
+  b: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '45%'),
+  hb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '55%'),
+  h: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '87%'),
+  hh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '93%'),
+  hhh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '98%'),
+});
 
-export const colorVariantsClass = createTheme(
-  colorVariantVars,
-  {
-    bbb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '30%'),
-    bb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '32%'),
-    b: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '45%'),
-    h: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '87%'),
-    hh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '93%'),
-    hhh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '98%'),
-  },
-  'colorVariantsClass',
-);
-
-export const colacubeColorThemeClass = createTheme(
-  colorVars,
-  {
-    color: {
-      accent: {
-        h: '130',
-        s: '55%',
-        l: '55%',
-      },
+export const colacubeColorThemeClass = createTheme(colorVars, {
+  color: {
+    accent: {
+      h: '230',
+      s: '55%',
+      l: '55%',
     },
   },
-  'colacubeColorThemeClass',
-);
+});
 
 export const rotate = keyframes({
   '0%': { transform: 'rotate(0deg)' },

@@ -1,17 +1,32 @@
 import type { ClassValue } from 'clsx';
-import type { AnchorHTMLAttributes, FC, PropsWithChildren } from 'react';
+import type {
+  AnchorHTMLAttributes,
+  FC,
+  HTMLAttributes,
+  PropsWithChildren,
+} from 'react';
 import { ButtonVariant, buttonVariantClasses } from './buttons.css.js';
 import { Box } from './core.js';
 import { linkStyle } from './links.css.js';
 
 export const TextLink: FC<
-  PropsWithChildren<
-    AnchorHTMLAttributes<HTMLAnchorElement> & {
-      className?: ClassValue;
-    }
-  >
+  | PropsWithChildren<
+      HTMLAttributes<HTMLSpanElement> & {
+        className?: ClassValue;
+      }
+    >
+  | PropsWithChildren<
+      AnchorHTMLAttributes<HTMLAnchorElement> & {
+        className?: ClassValue;
+      }
+    >
 > = ({ children, className, ...props }) => (
-  <Box component="span" className={[linkStyle, className]} {...props}>
+  <Box
+    // if someone is trying to use it as a link, use an anchor tag
+    component={'href' in props ? 'a' : 'span'}
+    className={[linkStyle, className]}
+    {...props}
+  >
     {children}
   </Box>
 );

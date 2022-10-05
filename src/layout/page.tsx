@@ -9,11 +9,11 @@ export const FormsPage: FC = () => (
   <Inline space="large" component="main">
     <Block space="large" component="section">
       <Heading level="1">Outside</Heading>
-      <Panel space="huge" elevation="elevationBottom">
+      <Panel space="huge" elevation="bottom">
         <Heading level="2">Bottom</Heading>
-        <Panel space="huge" elevation="elevation1">
+        <Panel space="huge" elevation="1">
           <Heading level="3">Elevation 1</Heading>
-          <Panel space="huge" elevation="elevation2">
+          <Panel space="huge" elevation="2">
             <Heading level="4">Elevation 2 is tight!</Heading>
             <Text>
               If you need to find out more,{' '}

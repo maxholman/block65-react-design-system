@@ -1,5 +1,6 @@
 import type { FC, PropsWithChildren } from 'react';
 import { Box } from './core.js';
+import { elevations } from './panel.css.js';
 import { resetClass } from './reset.css.js';
 import {
   genericThemeClass,
@@ -19,6 +20,7 @@ export const Theme: FC<PropsWithChildren> = ({ children }) => (
       colorVariantsClass,
       colacubeColorThemeClass,
       backgroundColorThemeClass,
+      elevations.none,
     ]}
   >
     {children}

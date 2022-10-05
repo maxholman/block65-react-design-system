@@ -6,7 +6,7 @@ import { Panel } from '../../lib/panel.js';
 import { Heading, Secondary, Strong, Text } from '../../lib/typography.js';
 
 export const TypographyPage: FC = () => (
-  <Panel variant="ghost" space="huge" elevation="elevationBottom">
+  <Panel variant="ghost" space="huge" elevation="bottom">
     <Block>
       <Heading level="1">Heading 1</Heading>
       <Heading level="2">Heading 2</Heading>

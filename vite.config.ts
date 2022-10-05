@@ -7,16 +7,16 @@ export default defineConfig({
   // @ts-expect-error - guessing vite react plugin doesnt like node16 mode reso
   plugins: [react(), vanillaExtractPlugin()],
   build: {
-    minify: false,
+    target: 'esnext',
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
-      name: 'MyLib',
-      // the proper extensions will be added
       fileName: 'main',
       formats: ['es'],
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
+    minify: 'esbuild',
+    sourcemap: true,
   },
 });

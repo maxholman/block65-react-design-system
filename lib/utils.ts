@@ -52,14 +52,22 @@ function maybeSuffix(value: string | number, suffix: string): string {
   return `${value}${suffix}`;
 }
 
+export function hslValues(
+  h: string | number,
+  s: string | number,
+  l: string | number,
+) {
+  return [h, s, l].join(' ');
+}
+
 export function hsl(
   h: string | number,
   s: string | number,
   l: string | number,
 ) {
-  return `hsl(${[
+  return `hsl(${hslValues(
     maybeSuffix(h, 'deg'),
     maybeSuffix(s, '%'),
     maybeSuffix(l, '%'),
-  ].join(' ')})`;
+  )})`;
 }

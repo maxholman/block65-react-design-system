@@ -15,7 +15,7 @@ export const App: FC = () => (
   <Theme>
     <Router>
       <Block>
-        <Panel space="huge" variant="ghost">
+        <Panel space="huge" variant="ghost" elevation="bottom">
           <Inline align="center">
             <Link dest="/">
               <TextLink>Home</TextLink>
@@ -40,7 +40,7 @@ export const App: FC = () => (
         <Block>
           <Routes>
             <Route path="/">
-              <Panel space="huge" variant="ghost">
+              <Panel space="huge" variant="ghost" elevation="bottom">
                 <Heading>Enjoy!</Heading>
                 <Text>Choose something amazing from the nav above</Text>
               </Panel>

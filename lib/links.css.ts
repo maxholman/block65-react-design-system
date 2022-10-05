@@ -3,6 +3,7 @@ import { colorVars } from './theme.css.js';
 import { hsl } from './utils.js';
 
 export const linkStyle = style({
+  cursor: 'pointer',
   textDecoration: 'underline',
   color: hsl(
     colorVars.color.accent.h,

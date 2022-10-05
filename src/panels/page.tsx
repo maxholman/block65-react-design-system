@@ -6,22 +6,23 @@ import { lorem } from '../lorem.js';
 
 export const PanelsPage: FC = () => (
   <Panel variant="ghost">
+    <Text>Ground Floor</Text>
     <Block>
-      <Panel variant="ghost" elevation="elevationBottom">
-        <Heading>Nest 0</Heading>
+      <Panel variant="ghost" elevation="bottom">
+        <Heading>Nest 0 (Bottom)</Heading>
         <Text>Nest 0</Text>
-        <Panel variant="ghost" elevation="elevation1">
+        <Panel variant="ghost" elevation="1">
           <Heading>Nest 1</Heading>
           <Text>Nest 1</Text>
-          <Panel variant="ghost" elevation="elevation2">
+          <Panel variant="ghost" elevation="2">
             <Heading>Nest 2</Heading>
             <Text>Nest 2</Text>
-            <Panel variant="ghost" elevation="elevation3">
+            <Panel variant="ghost" elevation="3">
               <Heading>Nest 3</Heading>
               <Text>Nest 3</Text>
 
-              <Panel variant="ghost" elevation="elevationTop">
-                <Heading>Nest 4</Heading>
+              <Panel variant="ghost" elevation="top">
+                <Heading>Nest 4 (Top)</Heading>
                 <Text>Nest 4</Text>
               </Panel>
             </Panel>
@@ -30,15 +31,15 @@ export const PanelsPage: FC = () => (
       </Panel>
     </Block>
     <Inline space="huge">
-      <Panel variant="standard" elevation="elevation1">
+      <Panel variant="standard" elevation="1">
         <Heading level="2">Standard</Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
       </Panel>
-      <Panel variant="ghost" elevation="elevation1">
+      <Panel variant="ghost" elevation="1">
         <Heading level="2">Ghost</Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
       </Panel>
-      <Panel variant="subtle" elevation="elevation1">
+      <Panel variant="subtle" elevation="1">
         <Heading level="2">Subtle</Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
       </Panel>

@@ -16,11 +16,13 @@ import {
 import {
   fieldLabelStyle,
   fieldLabelTertiaryStyle,
+  fieldLabelWrapperStyle,
   formInput,
   formInputCheckbox,
   formInputRadio,
   formInputSelect,
-  formInputSelectWrapper,
+  formInputSelectWrapperMultiple,
+  formInputSelectWrapperSingle,
   inputLabelStyle,
 } from './forms.css.js';
 import type { Space, Tone } from './theme.css.js';
@@ -66,21 +68,23 @@ export const FormFieldLabel: FC<
     tertiary?: ReactNode;
   }
 > = ({ className, secondary, tertiary, children, ...props }) => (
-  <Inline
-    {...props}
-    space="tiny"
-    component="label"
-    className={[fieldLabelStyle, className]}
-  >
-    <Text>
-      <Strong>{children}</Strong>
-      {secondary && (
-        <>
-          {' '}
-          <Secondary>{secondary}</Secondary>
-        </>
-      )}
-    </Text>
+  <Inline className={fieldLabelWrapperStyle}>
+    <Inline
+      {...props}
+      space="tiny"
+      component="label"
+      className={[fieldLabelStyle, className]}
+    >
+      <Text>
+        <Strong>{children}</Strong>
+        {secondary && (
+          <>
+            {' '}
+            <Secondary>{secondary}</Secondary>
+          </>
+        )}
+      </Text>
+    </Inline>
     {tertiary && (
       <Inline className={fieldLabelTertiaryStyle}>{tertiary}</Inline>
     )}
@@ -177,7 +181,13 @@ export const FormSelect: FC<
         {label}
       </FormFieldLabel>
       {description}
-      <div className={formInputSelectWrapper}>
+      <div
+        className={
+          props.multiple
+            ? formInputSelectWrapperMultiple
+            : formInputSelectWrapperSingle
+        }
+      >
         <select className={formInputSelect} id={id} {...props} />
       </div>
       {message}
