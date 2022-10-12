@@ -7,7 +7,7 @@ export default defineConfig({
   // @ts-expect-error - guessing vite react plugin doesnt like node16 mode reso
   plugins: [react(), vanillaExtractPlugin()],
   build: {
-    target: 'esnext',
+    target: 'es2020',
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
       fileName: 'main',
@@ -16,7 +16,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
-    minify: 'esbuild',
+    minify: true,
     sourcemap: true,
   },
 });

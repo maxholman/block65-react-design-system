@@ -159,6 +159,6 @@ export const fieldLabelTertiaryStyle = style({
 });
 
 export const inputLabelStyle = style({
-  cursor: 'pointer',
+  // cursor: 'pointer',
   userSelect: 'none',
 });
