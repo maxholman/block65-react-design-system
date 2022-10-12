@@ -2,7 +2,9 @@
 SRCS = $(wildcard lib/**)
 
 .PHONY: all
-all: node_modules types
+all: dist types
+
+dist: node_modules
 	yarn vite build
 
 .PHONY: types
@@ -20,8 +22,6 @@ test: node_modules
 node_modules: package.json
 	yarn install
 
-dist: node_modules tsconfig.json $(SRCS)
-	yarn tsc
 
 .PHONY: dev
 dev: node_modules
