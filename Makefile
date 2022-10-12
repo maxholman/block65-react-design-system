@@ -1,7 +1,13 @@
 
 SRCS = $(wildcard lib/**)
 
-all: dist
+.PHONY: all types
+all:
+	yarn vite build
+
+.PHONY: types
+types:
+	yarn tsc --emitDeclarationOnly
 
 .PHONY: clean
 clean:

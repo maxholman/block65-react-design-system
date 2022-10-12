@@ -7,13 +7,17 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/lib/index.d.ts",
-      "default": "./dist/lib/index.js"
+      "types": "./dist/lib/main.d.ts",
+      "default": "./dist/main.js"
+    },
+    "./css": {
+      "default": "./dist/style.css"
     }
   },
   "files": [
-    "dist/lib/*.js",
-    "dist/lib/*.d.ts"
+    "dist/lib/*.d.ts",
+    "dist/main.*",
+    "dist/style.css"
   ],
   "scripts": {
     "postinstall": "npx patch-package"
