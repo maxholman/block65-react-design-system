@@ -20,7 +20,7 @@
     "build/style.css"
   ],
   "scripts": {
-    "postinstall": "npx patch-package"
+    "prepare": "npx patch-package"
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.9.1",
