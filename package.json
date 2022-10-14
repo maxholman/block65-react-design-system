@@ -8,16 +8,16 @@
   "exports": {
     ".": {
       "types": "./dist/lib/main.d.ts",
-      "default": "./dist/main.js"
+      "default": "./build/main.js"
     },
     "./css": {
-      "default": "./dist/style.css"
+      "default": "./build/style.css"
     }
   },
   "files": [
     "dist/lib/*.d.ts",
-    "dist/main.*",
-    "dist/style.css"
+    "build/main.*",
+    "build/style.css"
   ],
   "scripts": {
     "postinstall": "npx patch-package"

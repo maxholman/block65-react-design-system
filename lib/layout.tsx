@@ -2,9 +2,9 @@ import { clsx } from 'clsx';
 import { createElement } from 'react';
 import { Box, BoxBasedComponentProps } from './core.js';
 import {
-  alignItems,
   flexColumnVariants,
   flexRowVariants,
+  inlineAlignSelf,
 } from './layout.css.js';
 import type { Space } from './theme.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
@@ -49,7 +49,7 @@ export function Inline<T extends keyof ReactHTMLAttributesHacked = 'span'>({
       className: clsx(
         flexRowVariants[space],
         className,
-        align && alignItems[align],
+        align && inlineAlignSelf[align],
       ),
     },
     children,

@@ -3,10 +3,16 @@ import type { FC } from 'react';
 import { Block } from '../../lib/layout.js';
 import { TextLink } from '../../lib/links.js';
 import { Panel } from '../../lib/panel.js';
-import { Heading, Secondary, Strong, Text } from '../../lib/typography.js';
+import {
+  Callout,
+  Heading,
+  Secondary,
+  Strong,
+  Text,
+} from '../../lib/typography.js';
 
 export const TypographyPage: FC = () => (
-  <Panel variant="ghost" space="huge" elevation="bottom">
+  <Panel variant="ghost" space="huge">
     <Block>
       <Heading level="1">Heading 1</Heading>
       <Heading level="2">Heading 2</Heading>
@@ -37,5 +43,20 @@ export const TypographyPage: FC = () => (
         on my computer.
       </Heading>
     </Block>
+    <Callout tone="critical">
+      <Text>Call me out!</Text>
+    </Callout>
+    <Callout tone="info">
+      <Text>Call me out!</Text>
+    </Callout>
+    <Callout tone="positive">
+      <Text>Call me out!</Text>
+    </Callout>
+    <Callout tone="promo">
+      <Text>Call me out!</Text>
+    </Callout>
+    <Callout tone="warn">
+      <Text>Call me out!</Text>
+    </Callout>
   </Panel>
 );

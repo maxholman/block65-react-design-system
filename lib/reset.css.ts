@@ -54,7 +54,7 @@ globalStyle(withResetClass('::placeholder'), {
 });
 
 globalStyle(withResetClass(':where([hidden])'), {
-  display: 'none',
+  display: 'none!important',
 });
 
 globalStyle(

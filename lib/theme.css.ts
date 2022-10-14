@@ -1,6 +1,7 @@
 import {
   createTheme,
   createThemeContract,
+  createVar,
   fallbackVar,
   keyframes,
   style,
@@ -16,16 +17,8 @@ export type FontSize =
   | 'medium'
   | 'large'
   | 'huge';
-export type Align = 'start' | 'center' | 'end';
-export type Tone = 'good' | 'bad';
 
 export const genericVars = createThemeContract({
-  color: {
-    tone: {
-      good: 'color-tone-good',
-      bad: 'color-tone-bad',
-    },
-  },
   text: {
     size: {
       tiny: 'text-size-tiny',
@@ -75,24 +68,13 @@ export const genericVars = createThemeContract({
     large: 'space-large',
     huge: 'space-huge',
   },
-  align: {
-    start: 'align-start',
-    center: 'align-center',
-    end: 'align-end',
-  },
 });
 
 export const genericThemeClass = createTheme(genericVars, {
-  color: {
-    tone: {
-      good: 'green',
-      bad: 'red',
-    },
-  },
   text: {
     size: {
-      tiny: '0.6rem',
-      small: '0.875rem',
+      tiny: '0.7rem',
+      small: '0.8rem',
       normal: '1rem',
       medium: '1.125rem',
       large: '1.5rem',
@@ -133,15 +115,10 @@ export const genericThemeClass = createTheme(genericVars, {
   space: {
     none: '0',
     tiny: '0.2rem',
-    small: '0.4rem',
-    standard: '0.6rem',
-    large: '0.8rem',
-    huge: '1rem',
-  },
-  align: {
-    start: 'start',
-    center: 'center',
-    end: 'end',
+    small: '0.6rem',
+    standard: '1rem',
+    large: '1.5rem',
+    huge: '2rem',
   },
 });
 
@@ -151,14 +128,31 @@ export const sansSerifFontStyle = style({
 });
 
 export const colorVars = createThemeContract({
-  color: {
-    accent: {
-      h: 'color-accent-h',
-      s: 'color-accent-s',
-      l: 'color-accent-l',
+  accent: {
+    h: 'color-accent-h',
+    s: 'color-accent-s',
+    l: 'color-accent-l',
+  },
+  tone: {
+    promo: {
+      h: 'color-tone-promo-h',
+    },
+    info: {
+      h: 'color-tone-info-h',
+    },
+    positive: {
+      h: 'color-tone-positive-h',
+    },
+    warn: {
+      h: 'color-tone-warn-h',
+    },
+    critical: {
+      h: 'color-tone-critical-h',
     },
   },
 });
+
+export type Tone = keyof typeof colorVars.tone;
 
 export const backgroundColorVars = createThemeContract({
   h: 'bg-color-h',
@@ -167,9 +161,9 @@ export const backgroundColorVars = createThemeContract({
 });
 
 export const backgroundColorThemeClass = createTheme(backgroundColorVars, {
-  h: colorVars.color.accent.h,
-  s: calc(colorVars.color.accent.s).subtract('75%').toString(),
-  l: calc(colorVars.color.accent.l).add('18%').toString(),
+  h: colorVars.accent.h,
+  s: calc(colorVars.accent.s).subtract('75%').toString(),
+  l: calc(colorVars.accent.l).add('18%').toString(),
 });
 
 export const colorVariantVars = createThemeContract({
@@ -183,8 +177,8 @@ export const colorVariantVars = createThemeContract({
 });
 
 const colorVarsWithFallback = {
-  h: fallbackVar(colorVars.color.accent.h, '220deg'),
-  s: fallbackVar(colorVars.color.accent.s, '40%'),
+  h: fallbackVar(colorVars.accent.h, '220'),
+  s: fallbackVar(colorVars.accent.s, '40%'),
 };
 
 export const colorVariantsClass = createTheme(colorVariantVars, {
@@ -198,11 +192,26 @@ export const colorVariantsClass = createTheme(colorVariantVars, {
 });
 
 export const colacubeColorThemeClass = createTheme(colorVars, {
-  color: {
-    accent: {
-      h: '230',
-      s: '55%',
-      l: '55%',
+  accent: {
+    h: '230',
+    s: '55%',
+    l: '55%',
+  },
+  tone: {
+    promo: {
+      h: '285',
+    },
+    info: {
+      h: '200',
+    },
+    positive: {
+      h: '105',
+    },
+    warn: {
+      h: '40',
+    },
+    critical: {
+      h: '350',
     },
   },
 });
@@ -211,3 +220,5 @@ export const rotate = keyframes({
   '0%': { transform: 'rotate(0deg)' },
   '100%': { transform: 'rotate(360deg)' },
 });
+
+export const toneH = createVar('toneH');

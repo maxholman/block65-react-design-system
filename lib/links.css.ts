@@ -5,9 +5,5 @@ import { hsl } from './utils.js';
 export const linkStyle = style({
   cursor: 'pointer',
   textDecoration: 'underline',
-  color: hsl(
-    colorVars.color.accent.h,
-    colorVars.color.accent.s,
-    colorVars.color.accent.l,
-  ),
+  color: hsl(colorVars.accent.h, colorVars.accent.s, colorVars.accent.l),
 });

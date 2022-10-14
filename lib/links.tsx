@@ -1,26 +1,20 @@
-import type { ClassValue } from 'clsx';
-import type {
-  AnchorHTMLAttributes,
-  FC,
-  HTMLAttributes,
-  PropsWithChildren,
-} from 'react';
-import { ButtonVariant, buttonVariantClasses } from './buttons.css.js';
-import { Box } from './core.js';
+import { clsx } from 'clsx';
+import type { FC } from 'react';
+import {
+  busyButton,
+  buttonVariantClasses,
+  compactButton,
+} from './buttons.css.js';
+import type { ButtonProps } from './buttons.js';
+import { Box, BoxBasedComponentProps } from './core.js';
+import { inlineAlignSelf } from './layout.css.js';
 import { linkStyle } from './links.css.js';
 
-export const TextLink: FC<
-  | PropsWithChildren<
-      HTMLAttributes<HTMLSpanElement> & {
-        className?: ClassValue;
-      }
-    >
-  | PropsWithChildren<
-      AnchorHTMLAttributes<HTMLAnchorElement> & {
-        className?: ClassValue;
-      }
-    >
-> = ({ children, className, ...props }) => (
+export const TextLink: FC<BoxBasedComponentProps<'span' | 'a'>> = ({
+  children,
+  className,
+  ...props
+}) => (
   <Box
     // if someone is trying to use it as a link, use an anchor tag
     component={'href' in props ? 'a' : 'span'}
@@ -32,16 +26,17 @@ export const TextLink: FC<
 );
 
 export const ButtonLink: FC<
-  PropsWithChildren<
-    AnchorHTMLAttributes<HTMLAnchorElement> & {
-      className?: ClassValue;
-      variant?: ButtonVariant;
-    }
-  >
-> = ({ className, variant = 'standard', ...props }) => (
+  BoxBasedComponentProps<'span' | 'a', ButtonProps>
+> = ({ variant = 'standard', compact, busy, align, className, ...props }) => (
   <Box
-    component="span"
-    className={[buttonVariantClasses[variant], className]}
+    component={'href' in props ? 'a' : 'span'}
+    className={clsx(
+      busy && busyButton,
+      buttonVariantClasses[variant],
+      className,
+      compact && compactButton,
+      align && inlineAlignSelf[align],
+    )}
     {...props}
   />
 );

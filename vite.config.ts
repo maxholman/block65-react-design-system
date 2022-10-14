@@ -7,6 +7,7 @@ export default defineConfig({
   // @ts-expect-error - guessing vite react plugin doesnt like node16 mode reso
   plugins: [react(), vanillaExtractPlugin()],
   build: {
+    outDir: 'build',
     target: 'es2020',
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),

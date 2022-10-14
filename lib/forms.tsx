@@ -142,7 +142,7 @@ export const FormInput: FC<
       <input className={formInput} id={id} {...props} />
       {message && (
         <Text size="small" tone={messageTone}>
-          <Secondary>{message}</Secondary>
+          {messageTone ? message : <Secondary>{message}</Secondary>}
         </Text>
       )}
     </Block>

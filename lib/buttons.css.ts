@@ -1,15 +1,15 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { colorVariantVars, genericVars, rotate } from './theme.css.js';
 
-export type ButtonVariant = 'standard' | 'ghost' | 'subtle';
+export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 
 const base = style({
   cursor: 'pointer',
   borderStyle: 'solid',
   borderWidth: genericVars.border.weight.normal,
   borderRadius: genericVars.radius.standard,
-  padding: `${genericVars.space.standard} ${genericVars.space.large}`,
-  textAlign: genericVars.align.center,
+  padding: `${genericVars.space.small} ${genericVars.space.standard}`,
+  textAlign: 'center',
   fontSize: genericVars.text.size.normal,
   transition: 'all 0.1s ease-in-out',
   userSelect: 'none',
@@ -28,7 +28,7 @@ const base = style({
 });
 
 export const compactButton = style({
-  padding: `${genericVars.space.tiny} ${genericVars.space.standard}`,
+  padding: `${genericVars.space.tiny} ${genericVars.space.small}`,
   fontSize: genericVars.text.size.small,
 });
 
@@ -37,44 +37,55 @@ const buttonColorVar = createVar();
 const variants: Record<
   ButtonVariant,
   {
-    background: string;
+    backgroundColor: string;
     color: string;
     borderColor: string;
+    backgroundColorHover?: string;
     borderColorHover?: string;
   }
 > = {
   standard: {
-    background: colorVariantVars.bb,
+    backgroundColor: colorVariantVars.bb,
     color: colorVariantVars.hhh,
     borderColor: colorVariantVars.bb,
   },
   ghost: {
-    background: colorVariantVars.hhh,
+    backgroundColor: colorVariantVars.hhh,
     color: colorVariantVars.bb,
     borderColor: colorVariantVars.bb,
   },
   subtle: {
-    background: colorVariantVars.hh,
+    backgroundColor: colorVariantVars.hh,
     color: colorVariantVars.bb,
     borderColor: colorVariantVars.hh,
     borderColorHover: colorVariantVars.h,
+  },
+  transparent: {
+    backgroundColor: 'transparent',
+    color: 'inherit',
+    borderColor: 'transparent',
+    backgroundColorHover: colorVariantVars.hh,
+    // borderColorHover: colorVariantVars.h,
   },
 };
 
 export const buttonVariantClasses = styleVariants(variants, (variant) => [
   base,
   {
-    background: variant.background,
-    color: variant.color,
-    borderColor: variant.borderColor,
     vars: {
-      [buttonColorVar]: variant.color,
+      ...(variant.color && { [buttonColorVar]: variant.color }),
     },
+    backgroundColor: variant.backgroundColor || JSON.stringify(variant),
+    color: buttonColorVar,
+    borderColor: variant.borderColor,
     selectors: {
       // :where to avoid specificity issues with busy etc
-      ...(variant.borderColorHover && {
+      ...((variant.borderColorHover || variant.backgroundColorHover) && {
         '&:where(:not([disabled]):hover)': {
           borderColor: variant.borderColorHover || variant.borderColor,
+          ...(variant.backgroundColorHover && {
+            backgroundColor: variant.backgroundColorHover,
+          }),
         },
       }),
     },

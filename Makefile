@@ -11,6 +11,10 @@ dist: node_modules
 types: node_modules
 	yarn tsc --emitDeclarationOnly
 
+.PHONY: types-watch
+types-watch: node_modules
+	yarn tsc --emitDeclarationOnly -w
+
 .PHONY: clean
 clean: node_modules
 	yarn tsc -b --clean
@@ -22,7 +26,10 @@ test: node_modules
 node_modules: package.json
 	yarn install
 
-
 .PHONY: dev
-dev: node_modules
+dev:
+	$(MAKE) -j 2 types-watch dev-server
+
+.PHONY: dev-server
+dev-server: node_modules
 	yarn vite dev --force

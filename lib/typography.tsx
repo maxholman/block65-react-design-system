@@ -1,42 +1,20 @@
 import { ClassValue, clsx } from 'clsx';
 import { createElement, FC, PropsWithChildren } from 'react';
-import { Box } from './core.js';
+import { Box, BoxBasedComponentProps } from './core.js';
+import { Info } from './icons.js';
+import { alignItems, inlineAlignSelf } from './layout.css.js';
+import { Inline } from './layout.js';
 import type { FontSize, Tone } from './theme.css.js';
 import {
-  fontStyle,
+  calloutClass,
+  fontClass,
   HeadingLevel,
   levelVariantClasses,
-  secondaryStyle,
-  strongStyle,
-  textStyle,
-  toneStyle,
+  secondaryClass,
+  strongClass,
+  textClass,
+  toneVariants,
 } from './typography.css.js';
-
-export const Text: FC<
-  PropsWithChildren<{
-    size?: FontSize;
-    className?: ClassValue;
-    tone?: Tone | undefined;
-  }>
-> = ({ className, size = 'normal', tone, ...props }) => (
-  <Box
-    component="p"
-    {...props}
-    className={[textStyle, fontStyle[size], tone && toneStyle[tone], className]}
-  />
-);
-
-export const Secondary: FC<PropsWithChildren<{ className?: ClassValue }>> = ({
-  className,
-  ...props
-}) => (
-  <Box component="span" {...props} className={[secondaryStyle, className]} />
-);
-
-export const Strong: FC<PropsWithChildren<{ className?: ClassValue }>> = ({
-  className,
-  ...props
-}) => <Box component="span" {...props} className={[strongStyle, className]} />;
 
 export const Heading: FC<
   PropsWithChildren<{ level?: HeadingLevel; className?: ClassValue }>
@@ -44,8 +22,66 @@ export const Heading: FC<
   createElement(
     `h${level}`,
     {
-      ...props,
       className: clsx(levelVariantClasses[level], className),
+      ...props,
     },
     children,
   );
+
+export const Text: FC<
+  PropsWithChildren<
+    BoxBasedComponentProps<
+      'p',
+      {
+        size?: FontSize;
+        tone?: Tone | undefined;
+      }
+    >
+  >
+> = ({ className, size = 'normal', tone, align, ...props }) => (
+  <Box
+    component="p"
+    className={[
+      textClass,
+      fontClass[size],
+      tone && toneVariants[tone],
+      align && inlineAlignSelf[align],
+      className,
+    ]}
+    {...props}
+  />
+);
+
+export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
+  className,
+  ...props
+}) => <Box component="span" {...props} className={strongClass} />;
+
+export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
+  className,
+  align,
+  ...props
+}) => <Box component="span" className={secondaryClass} {...props} />;
+
+export const Callout: FC<
+  BoxBasedComponentProps<
+    'span',
+    {
+      tone?: Tone;
+      align?: never;
+    }
+  >
+> = ({ children, className, tone = 'info', ...props }) => (
+  <Box
+    component="div"
+    className={[tone && toneVariants[tone], calloutClass, className]}
+    role="alert"
+    aria-live="polite"
+    {...props}
+  >
+    <Inline space="small" className={alignItems.center}>
+      <Info />
+      {children}
+    </Inline>
+  </Box>
+);

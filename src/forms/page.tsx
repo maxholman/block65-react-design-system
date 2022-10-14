@@ -33,7 +33,7 @@ export const FormsPage: FC = () => (
         name="first"
         defaultValue="Queen"
         message="Don't write Queen in this field please"
-        messageTone="bad"
+        messageTone="warn"
       />
       <FormInput
         type="text"

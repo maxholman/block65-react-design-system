@@ -1,35 +1,8 @@
 import { ClassValue, clsx } from 'clsx';
 import { createElement, PropsWithChildren } from 'react';
 import type { Merge } from 'type-fest';
-import type { Align } from './theme.css.js';
-import { alignItems } from './layout.css.js';
+import { Align, alignItems } from './layout.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
-
-export function Box<T extends keyof ReactHTMLAttributesHacked>({
-  children,
-  component,
-  className,
-  align,
-  ...props
-}: PropsWithChildren<
-  Merge<
-    ReactHTMLAttributesHacked[T],
-    {
-      component: T;
-      className?: ClassValue;
-      align?: Align | undefined;
-    }
-  >
->) {
-  return createElement(
-    component,
-    {
-      ...props,
-      className: clsx(align && alignItems[align], className),
-    },
-    children,
-  );
-}
 
 export type BoxBasedComponentProps<
   T extends keyof ReactHTMLAttributesHacked,
@@ -41,9 +14,26 @@ export type BoxBasedComponentProps<
       P,
       {
         component?: T;
-        className?: ClassValue;
         align?: Align | undefined;
+        className?: ClassValue;
       }
     >
   >
 >;
+
+export function Box<T extends keyof ReactHTMLAttributesHacked = 'div'>({
+  children,
+  component = 'div',
+  className,
+  align,
+  ...props
+}: BoxBasedComponentProps<T>) {
+  return createElement(
+    component,
+    {
+      ...props,
+      className: clsx(align && alignItems[align], className),
+    },
+    children,
+  );
+}

@@ -145,6 +145,7 @@ export const formInputSelectWrapperSingle = style([
 export const fieldLabelWrapperStyle = style({
   fontSize: genericVars.text.size.medium,
   justifyContent: 'space-between',
+  alignItems: 'center',
 });
 
 export const fieldLabelStyle = style({

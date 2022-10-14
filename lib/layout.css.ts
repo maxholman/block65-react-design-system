@@ -1,5 +1,7 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './theme.css.js';
+
+export type Align = 'start' | 'center' | 'end';
 
 export const flexRow = style({
   display: 'flex',
@@ -26,6 +28,14 @@ export const flexRowVariants = styleVariants(genericVars.space, (space) => [
   },
 ]);
 
-export const alignItems = styleVariants(genericVars.align, (align) => ({
-  alignItems: align,
-}));
+export const alignItems = styleVariants<Record<Align, ComplexStyleRule>>({
+  start: { alignItems: 'start' },
+  center: { alignItems: 'center' },
+  end: { alignItems: 'end' },
+});
+
+export const inlineAlignSelf = styleVariants<Record<Align, ComplexStyleRule>>({
+  start: { marginInlineEnd: 'auto' },
+  center: { marginInline: 'auto' },
+  end: { marginInlineStart: 'auto' },
+});

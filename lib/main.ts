@@ -6,3 +6,4 @@ export * from './links.js';
 export * from './panel.js';
 export * from './theme.js';
 export * from './typography.js';
+export * from './decorative.js';
