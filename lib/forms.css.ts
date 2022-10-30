@@ -6,9 +6,9 @@ export const formInput = style([
   // form inputs always look like a top elevation
   elevations.top,
   {
+    padding: genericVars.space.small,
     borderWidth: genericVars.border.weight.normal,
     borderStyle: 'solid',
-    padding: genericVars.space.standard,
     borderRadius: genericVars.radius.standard,
     fontSize: genericVars.text.size.normal,
     selectors: {
@@ -100,19 +100,19 @@ export const formInputRadio = style([
 const formInputSelectGridareaName = 's';
 
 export const formInputSelect = style([
+  formInput,
   {
     cursor: 'pointer',
     gridArea: formInputSelectGridareaName,
-    padding: genericVars.space.standard,
   },
 ]);
 
 const formInputSelectWrapper = style([
-  formInput,
+  // formInput,
   {
     display: 'grid',
     gridTemplateAreas: JSON.stringify(formInputSelectGridareaName),
-    padding: 0,
+    // padding: 0,
   },
 ]);
 
