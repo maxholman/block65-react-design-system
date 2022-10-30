@@ -26,3 +26,9 @@ export const Theme: FC<PropsWithChildren> = ({ children }) => (
     {children}
   </Box>
 );
+
+export const Reset: FC<PropsWithChildren> = ({ children }) => (
+  <Box component="div" className={[resetClass]}>
+    {children}
+  </Box>
+);
