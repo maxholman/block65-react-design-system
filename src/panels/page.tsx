@@ -31,15 +31,15 @@ export const PanelsPage: FC = () => (
       </Panel>
     </Block>
     <Inline space="huge">
-      <Panel variant="standard" elevation="1">
+      <Panel variant="standard">
         <Heading level="2">Standard</Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
       </Panel>
-      <Panel variant="ghost" elevation="1">
+      <Panel variant="ghost">
         <Heading level="2">Ghost</Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
       </Panel>
-      <Panel variant="subtle" elevation="1">
+      <Panel variant="subtle">
         <Heading level="2">Subtle</Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
       </Panel>

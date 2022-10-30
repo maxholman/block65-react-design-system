@@ -7,31 +7,27 @@ import { Secondary, Text } from '../../lib/typography.js';
 
 export const CorePage: FC = () => (
   <Panel variant="ghost">
-    <Box component="article" className="blep">
-      This is a box component as an article
+    <Box component="article">This is a box component as an article</Box>
+    <Box component="div">
+      This is another box component as a <code>div</code>
     </Box>
-    <Box component="div" className={['beep', 'boop']}>
-      This is another box component as adiv
-    </Box>
-    <Box component="section" className="blep">
-      This is also a box component as a section
-    </Box>
-    <Block space="huge">
+    <Box component="section">This is also a box component as a section</Box>
+    <Block>
       <Text>This is a Text component in a Block Component</Text>
       <Text>This is a Text component in a Block Component</Text>
       <Text>This is a Text component in a Block Component</Text>
       <Text>This is a Text component in a Block Component</Text>
       <Text>This is a Text component in a Block Component</Text>
     </Block>
-    <Block space="huge">
+    <Block>
       <Inline>
         <Text>
           Text <Secondary>Secondary</Secondary>
         </Text>
         <Text align="end">
-          Also Text <Secondary>with also Secondary</Secondary>
+          Align End with <Secondary>Secondary</Secondary>
         </Text>
-        <Button align="end">Parp</Button>
+        <Button align="end">Align End</Button>
       </Inline>
     </Block>
   </Panel>

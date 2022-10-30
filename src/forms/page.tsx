@@ -97,7 +97,7 @@ export const FormsPage: FC = () => (
         <FormInputCheckbox label="18-25" />
         <FormInputCheckbox label="35+" />
       </FormInputCheckboxGroup>
-      <Block>
+      <Block space="standard">
         <Button>Save</Button>
         <Button variant="subtle">Subtle</Button>
         <Button variant="ghost">Ghost</Button>
