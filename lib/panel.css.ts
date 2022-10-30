@@ -63,10 +63,10 @@ export const panelVariantsClasses = styleVariants(panelVariants, (variant) => [
 
 const elevationLightnessAdjust: Record<
   PanelElevation,
-  { border: number; bg: number; color: number }
+  { border: number; bg?: number; color: number }
 > = {
   none: {
-    bg: 1.15,
+    // bg: 1.15,
     border: 1,
     color: 0.4,
   },
@@ -104,16 +104,18 @@ export const elevationColorLVar = createVar();
 export const elevations = styleVariants(
   elevationLightnessAdjust,
   ({ border, bg, color }) => {
+    const bgL = bg && calc(backgroundColorVars.l).multiply(bg).toString();
     const colorL = calc(backgroundColorVars.l).multiply(color).toString();
-    const bgL = calc(backgroundColorVars.l).multiply(bg).toString();
     const borderL = calc(backgroundColorVars.l).multiply(border).toString();
     return {
       vars: {
-        [elevationBgLVar]: bgL,
+        ...(bgL && { [elevationBgLVar]: bgL }),
         [elevationBorderLVar]: borderL,
         [elevationColorLVar]: colorL,
       },
-      backgroundColor: hsl(backgroundColorVars.h, backgroundColorVars.s, bgL),
+      ...(bgL && {
+        backgroundColor: hsl(backgroundColorVars.h, backgroundColorVars.s, bgL),
+      }),
       borderColor: hsl(backgroundColorVars.h, backgroundColorVars.s, borderL),
       color: hsl(backgroundColorVars.h, backgroundColorVars.s, colorL),
     };
