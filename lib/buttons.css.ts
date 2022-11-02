@@ -1,13 +1,25 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 import { colorVariantVars, genericVars, rotate } from './theme.css.js';
 
 export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 
+export const iconClass = style({
+  display: 'inline-flex',
+  height: '1em',
+  aspectRatio: '1/1',
+  alignItems: 'center',
+  justifySelf: 'center',
+});
+
 const base = style({
   cursor: 'pointer',
   borderStyle: 'solid',
+  display: 'flex',
   borderWidth: genericVars.border.weight.normal,
   borderRadius: genericVars.radius.standard,
+  flexDirection: 'row',
+  alignItems: 'center',
   padding: `${genericVars.space.small} ${genericVars.space.standard}`,
   textAlign: 'center',
   fontSize: genericVars.text.size.normal,
@@ -30,6 +42,10 @@ const base = style({
 export const compactButton = style({
   padding: `${genericVars.space.tiny} ${genericVars.space.small}`,
   fontSize: genericVars.text.size.small,
+});
+
+export const iconButtonClass = style({
+  gap: `0 0.5em`,
 });
 
 const buttonColorVar = createVar();
@@ -94,7 +110,7 @@ export const buttonVariantClasses = styleVariants(variants, (variant) => [
 
 // WARN: this is defined last so it can override other styles
 // with the same specificity
-export const busyButton = style({
+export const busyButtonClass = style({
   color: 'transparent',
   position: 'relative',
   display: 'grid',
@@ -104,7 +120,7 @@ export const busyButton = style({
     //   borderColor: 'revert',
     // },
     '&::before': {
-      height: '60%',
+      height: '1em',
       aspectRatio: '1/1',
       content: '""',
       position: 'absolute',
@@ -120,4 +136,9 @@ export const busyButton = style({
       animationTimingFunction: 'linear',
     },
   },
+});
+
+export const inlineBleedClass = style({
+  marginTop: calc(genericVars.space.small).negate().toString(),
+  marginBottom: calc(`${genericVars.space.small}`).negate().toString(),
 });

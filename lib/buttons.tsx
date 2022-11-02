@@ -1,53 +1,72 @@
 import { ClassValue, clsx } from 'clsx';
-import type { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
-import type { Merge } from 'type-fest';
+import type { FC, ReactElement } from 'react';
 import {
-  busyButton,
-  compactButton,
+  busyButtonClass,
   ButtonVariant,
   buttonVariantClasses,
+  compactButton,
+  iconButtonClass,
+  iconClass,
+  inlineBleedClass,
 } from './buttons.css.js';
-import { Align, inlineAlignSelf } from './layout.css.js';
+import { Box, BoxBasedComponentProps } from './core.js';
+import type { Align } from './layout.css.js';
 
-export type ButtonProps = {
+export type ButtonCommonProps = {
+  className?: ClassValue;
   variant?: ButtonVariant;
   busy?: boolean;
   compact?: boolean;
-  className?: ClassValue;
   align?: Align;
+  inline?: boolean;
 };
 
+export type ButtonProps = ButtonCommonProps & {
+  icon?: ReactElement;
+};
+
+export type ButtonIconProps = ButtonCommonProps & {};
+
 export const Button: FC<
-  PropsWithChildren<
-    Merge<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      {
-        variant?: ButtonVariant;
-        busy?: boolean;
-        compact?: boolean;
-        className?: ClassValue;
-        align?: Align;
-      }
-    >
-  >
+  BoxBasedComponentProps<'button' | 'a' | 'span', ButtonProps>
 > = ({
+  component = 'button',
   variant = 'standard',
-  type = 'button',
   compact,
   busy,
   align,
   className,
+  icon,
+  inline,
+  children,
   ...props
 }) => (
-  <button
+  <Box
+    component={component}
     className={clsx(
-      busy && busyButton,
-      buttonVariantClasses[variant],
       className,
+      busy && busyButtonClass,
+      buttonVariantClasses[variant],
       compact && compactButton,
-      align && inlineAlignSelf[align],
+      icon && iconButtonClass,
+      inline && inlineBleedClass,
     )}
-    type={type}
     {...props}
-  />
+    // type={component === 'button' && !props.type ? 'button' : undefined}
+  >
+    {icon && <span className={iconClass}>{icon}</span>}
+    {children}
+  </Box>
+);
+
+export const ButtonLink: FC<
+  BoxBasedComponentProps<'span' | 'a', ButtonProps>
+> = ({ variant = 'standard', compact, busy, align, className, ...props }) => (
+  <Button component={'href' in props ? 'a' : 'span'} {...props}></Button>
+);
+
+export const ButtonIcon: FC<
+  BoxBasedComponentProps<'button', ButtonIconProps>
+> = ({ children, ...props }) => (
+  <Button {...props}>{<span className={iconClass}>{children}</span>}</Button>
 );

@@ -1,9 +1,10 @@
 import type { FC } from 'react';
 import { Button } from '../../lib/buttons.js';
 import { Block, Inline } from '../../lib/layout.js';
-import { ButtonLink } from '../../lib/links.js';
+import { ButtonLink } from '../../lib/buttons.js';
 import { Panel } from '../../lib/panel.js';
 import { Heading, Text } from '../../lib/typography.js';
+import { SunIcon, CrescentMoonIcon } from '../icons.js';
 
 export const ButtonsPage: FC = () => (
   <Panel variant="ghost" space="huge">
@@ -11,8 +12,15 @@ export const ButtonsPage: FC = () => (
       <Heading level="2">Buttons</Heading>
       <Inline>
         <Button>Button</Button>
+        <Button icon={<CrescentMoonIcon />}>Button</Button>
         <Button variant="ghost">Ghost</Button>
+        <Button icon={<CrescentMoonIcon />} variant="ghost">
+          Ghost
+        </Button>
         <Button variant="subtle">Subtle</Button>
+        <Button icon={<CrescentMoonIcon />} variant="subtle">
+          Subtle
+        </Button>
       </Inline>
     </Block>
 
@@ -22,6 +30,21 @@ export const ButtonsPage: FC = () => (
         <ButtonLink>Button</ButtonLink>
         <ButtonLink variant="ghost">Ghost</ButtonLink>
         <ButtonLink variant="subtle">Subtle</ButtonLink>
+      </Inline>
+    </Block>
+
+    <Block>
+      <Heading level="2">Button Icons</Heading>
+      <Inline>
+        <ButtonLink>
+          <SunIcon />
+        </ButtonLink>
+        <ButtonLink variant="ghost">
+          <SunIcon />
+        </ButtonLink>
+        <ButtonLink variant="subtle">
+          <SunIcon />
+        </ButtonLink>
       </Inline>
     </Block>
 
