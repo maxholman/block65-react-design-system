@@ -53,7 +53,7 @@ const buttonColorVar = createVar();
 const variants: Record<
   ButtonVariant,
   {
-    backgroundColor: string;
+    backgroundColor?: string;
     color: string;
     borderColor: string;
     backgroundColorHover?: string;
@@ -61,14 +61,37 @@ const variants: Record<
   }
 > = {
   standard: {
-    backgroundColor: colorVariantVars.bb,
-    color: colorVariantVars.hhh,
+    // backgroundColor: colorVariantVars.bb,
+    backgroundColor: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
+    ),
+    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, '95%'),
+    borderColor: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
+    ),
+  },
+  neutral: {
+    // backgroundColor: colorVariantVars.bb,
+    backgroundColor: hsl(colorThemeVars.bg.h, colorThemeVars.bg.s, '50%'),
+    color: hsl(colorThemeVars.bg.h, colorThemeVars.bg.s, '90%'),
     borderColor: colorVariantVars.bb,
   },
   ghost: {
-    backgroundColor: colorVariantVars.hhh,
-    color: colorVariantVars.bb,
-    borderColor: colorVariantVars.bb,
+    // backgroundColor: colorVariantVars.hhh,
+    color: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
+    ),
+    borderColor: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
+    ),
   },
   subtle: {
     backgroundColor: colorVariantVars.hh,
@@ -88,14 +111,16 @@ const variants: Record<
 export const buttonVariantClasses = styleVariants(variants, (variant) => [
   base,
   {
-    vars: {
-      ...(variant.color && { [buttonColorVar]: variant.color }),
-    },
-    backgroundColor: variant.backgroundColor || JSON.stringify(variant),
-    color: buttonColorVar,
+    // vars: {
+    //   ...(variant.color && { [buttonColorVar]: variant.color }),
+    // },
+    ...(variant.backgroundColor && {
+      backgroundColor: variant.backgroundColor,
+    }),
+    color: variant.color,
     borderColor: variant.borderColor,
     selectors: {
-      // :where to avoid specificity issues with busy etc
+      // :where to avoid specificity issues with busy/disabled etc
       ...((variant.borderColorHover || variant.backgroundColorHover) && {
         '&:where(:not([disabled]):hover)': {
           borderColor: variant.borderColorHover || variant.borderColor,
