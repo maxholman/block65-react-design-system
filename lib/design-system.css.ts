@@ -3,13 +3,13 @@ import {
   createThemeContract,
   createVar,
   fallbackVar,
-  keyframes,
   style,
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { hsl } from './utils.js';
 
 export type Space = 'none' | 'large' | 'small' | 'tiny' | 'huge' | 'standard';
+
 export type FontSize =
   | 'tiny'
   | 'small'
@@ -123,11 +123,11 @@ export const genericThemeClass = createTheme(genericVars, {
 });
 
 export const sansSerifFontStyle = style({
-  fontFamily: 'Inter',
-  letterSpacing: '-0.02rem',
+  fontFamily: 'sans-serif',
+  // letterSpacing: '-0.02rem',
 });
 
-export const colorVars = createThemeContract({
+export const colorThemeVars = createThemeContract({
   accent: {
     h: 'color-accent-h',
     s: 'color-accent-s',
@@ -152,7 +152,9 @@ export const colorVars = createThemeContract({
   },
 });
 
-export type Tone = keyof typeof colorVars.tone;
+export type Tone = keyof typeof colorThemeVars.tone;
+
+export const toneH = createVar('toneH');
 
 export const backgroundColorVars = createThemeContract({
   h: 'bg-color-h',
@@ -161,9 +163,9 @@ export const backgroundColorVars = createThemeContract({
 });
 
 export const backgroundColorThemeClass = createTheme(backgroundColorVars, {
-  h: colorVars.accent.h,
-  s: calc(colorVars.accent.s).subtract('75%').toString(),
-  l: calc(colorVars.accent.l).add('18%').toString(),
+  h: colorThemeVars.accent.h,
+  s: calc(colorThemeVars.accent.s).subtract('75%').toString(),
+  l: calc(colorThemeVars.accent.l).add('18%').toString(),
 });
 
 export const colorVariantVars = createThemeContract({
@@ -177,8 +179,8 @@ export const colorVariantVars = createThemeContract({
 });
 
 const colorVarsWithFallback = {
-  h: fallbackVar(colorVars.accent.h, '220'),
-  s: fallbackVar(colorVars.accent.s, '40%'),
+  h: fallbackVar(colorThemeVars.accent.h, '220'),
+  s: fallbackVar(colorThemeVars.accent.s, '40%'),
 };
 
 export const colorVariantsClass = createTheme(colorVariantVars, {
@@ -190,35 +192,3 @@ export const colorVariantsClass = createTheme(colorVariantVars, {
   hh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '93%'),
   hhh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '98%'),
 });
-
-export const colacubeColorThemeClass = createTheme(colorVars, {
-  accent: {
-    h: '230',
-    s: '55%',
-    l: '55%',
-  },
-  tone: {
-    promo: {
-      h: '285',
-    },
-    info: {
-      h: '200',
-    },
-    positive: {
-      h: '105',
-    },
-    warn: {
-      h: '40',
-    },
-    critical: {
-      h: '350',
-    },
-  },
-});
-
-export const rotate = keyframes({
-  '0%': { transform: 'rotate(0deg)' },
-  '100%': { transform: 'rotate(360deg)' },
-});
-
-export const toneH = createVar('toneH');
