@@ -4,7 +4,7 @@ export * from './forms.js';
 export * from './layout.js';
 export * from './links.js';
 export * from './panel.js';
-export * from './theme.js';
+export * from './design-system.js';
 export * from './typography.js';
 export * from './decorative.js';
 

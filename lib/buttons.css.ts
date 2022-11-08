@@ -1,6 +1,6 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { colorVariantVars, genericVars, rotate } from './theme.css.js';
+import { colorVariantVars, genericVars } from './design-system.css.js';
 
 export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 

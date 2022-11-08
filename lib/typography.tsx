@@ -4,7 +4,7 @@ import { Box, BoxBasedComponentProps } from './core.js';
 import { Info } from './icons.js';
 import { alignItems, inlineAlignSelf } from './layout.css.js';
 import { Inline } from './layout.js';
-import type { FontSize, Tone } from './theme.css.js';
+import type { FontSize, Tone } from './design-system.css.js';
 import {
   calloutClass,
   fontClass,

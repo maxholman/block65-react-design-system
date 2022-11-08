@@ -1,5 +1,5 @@
 import type { BoxBasedComponentProps } from './core.js';
-import type { Space } from './theme.css.js';
+import type { Space } from './design-system.css.js';
 import { Block } from './layout.js';
 import {
   elevations,

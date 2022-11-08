@@ -1,6 +1,6 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { backgroundColorVars, genericVars } from './theme.css.js';
+import { backgroundColorVars, genericVars } from './design-system.css.js';
 import { hsl } from './utils.js';
 
 export type PanelVariant = 'none' | 'standard' | 'ghost' | 'subtle';

@@ -1,7 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { elevationColorLVar } from './panel.css.js';
-import { colorVars, genericVars, toneH } from './theme.css.js';
+import { colorThemeVars, genericVars, toneH } from './design-system.css.js';
 import { hsl } from './utils.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5';

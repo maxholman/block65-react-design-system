@@ -1,6 +1,6 @@
 import { fallbackVar, style } from '@vanilla-extract/css';
 import { elevations } from './panel.css.js';
-import { colorVariantVars, genericVars } from './theme.css.js';
+import { colorVariantVars, genericVars } from './design-system.css.js';
 
 export const formInput = style([
   // form inputs always look like a top elevation
