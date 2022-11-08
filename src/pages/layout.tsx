@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { Block, Inline } from '../../lib/layout.js';
-import { ButtonLink, TextLink } from '../../lib/links.js';
+import { ButtonLink } from '../../lib/buttons.js';
+import { TextLink } from '../../lib/links.js';
 import { Panel } from '../../lib/panel.js';
 import { Heading, Text } from '../../lib/typography.js';
 import { lorem } from '../lorem.js';
