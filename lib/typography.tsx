@@ -7,6 +7,7 @@ import { Inline } from './layout.js';
 import type { FontSize, Tone } from './design-system.css.js';
 import {
   calloutClass,
+  codeClass,
   fontClass,
   HeadingLevel,
   levelVariantClasses,
@@ -56,6 +57,11 @@ export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
   className,
   ...props
 }) => <Box component="span" {...props} className={strongClass} />;
+
+export const Code: FC<BoxBasedComponentProps<'span'>> = ({
+  className,
+  ...props
+}) => <Box component="span" {...props} className={codeClass} />;
 
 export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
   className,

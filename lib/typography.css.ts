@@ -19,6 +19,10 @@ export const strongClass = style({
   fontWeight: genericVars.text.weight.bold,
 });
 
+export const codeClass = style({
+  fontFamily: 'monospace',
+});
+
 export const fontClass = styleVariants(genericVars.text.size, (value) => ({
   fontSize: value,
 }));
