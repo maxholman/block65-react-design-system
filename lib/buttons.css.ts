@@ -32,7 +32,6 @@ const base = style({
   padding: `${genericVars.space.small} ${genericVars.space.standard}`,
   justifyContent: 'center',
   fontSize: genericVars.text.size.normal,
-  transition: 'all 0.1s ease-in-out',
   userSelect: 'none',
   selectors: {
     '&[disabled]': {
