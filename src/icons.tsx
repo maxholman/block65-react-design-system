@@ -1,7 +1,9 @@
-import type { FC } from 'react';
+import type { FC, SVGProps } from 'react';
 
-export const SunIcon: FC = () => (
+export const SunIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
   <svg
+    {...props}
+    focusable="false"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
@@ -23,8 +25,10 @@ export const SunIcon: FC = () => (
     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
   </svg>
 );
-export const CrescentMoonIcon: FC = () => (
+export const CrescentMoonIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
   <svg
+    {...props}
+    focusable="false"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"

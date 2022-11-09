@@ -39,20 +39,32 @@ export const App: FC = () => {
               <Inline align="center">
                 <ButtonIcon
                   inline
+                  label="toggle light mode"
+                  role="switch"
+                  aria-checked={colorScheme === 'light'}
                   variant={colorScheme === 'light' ? 'standard' : 'ghost'}
                   onClick={() =>
                     setColorScheme(colorScheme === 'light' ? 'auto' : 'light')
                   }
                 >
-                  <SunIcon />
+                  <span hidden aria-hidden="true">
+                    {colorScheme === 'light' ? 'on' : 'off'}
+                  </span>
+                  <SunIcon focusable="false" />
                 </ButtonIcon>
                 <ButtonIcon
                   inline
+                  label="toggle dark mode"
+                  role="switch"
+                  aria-checked={colorScheme === 'dark'}
                   variant={colorScheme === 'dark' ? 'standard' : 'ghost'}
                   onClick={() =>
                     setColorScheme(colorScheme === 'dark' ? 'auto' : 'dark')
                   }
                 >
+                  <span hidden aria-hidden="true">
+                    {colorScheme === 'light' ? 'on' : 'off'}
+                  </span>
                   <CrescentMoonIcon />
                 </ButtonIcon>
               </Inline>
@@ -61,6 +73,9 @@ export const App: FC = () => {
               <Inline align="center">
                 <ButtonIcon
                   inline
+                  label="toggle more contrast mode"
+                  role="switch"
+                  aria-checked={contrastScheme === 'more'}
                   variant={contrastScheme === 'more' ? 'standard' : 'ghost'}
                   onClick={() =>
                     setContrastScheme(
@@ -72,6 +87,9 @@ export const App: FC = () => {
                 </ButtonIcon>
                 <ButtonIcon
                   inline
+                  label="toggle less contrast mode"
+                  role="switch"
+                  aria-checked={contrastScheme === 'more'}
                   variant={contrastScheme === 'less' ? 'standard' : 'ghost'}
                   onClick={() =>
                     setContrastScheme(
