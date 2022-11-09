@@ -34,6 +34,10 @@ export const alignItems = styleVariants<Record<Align, ComplexStyleRule>>({
   end: { alignItems: 'end' },
 });
 
+export const inlineClass = style({
+  alignItems: 'center',
+});
+
 export const inlineAlignSelf = styleVariants<Record<Align, ComplexStyleRule>>({
   start: { marginInlineEnd: 'auto' },
   center: { marginInline: 'auto' },

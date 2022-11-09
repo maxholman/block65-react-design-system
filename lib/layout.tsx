@@ -4,6 +4,7 @@ import {
   flexColumnVariants,
   flexRowVariants,
   inlineAlignSelf,
+  inlineClass,
 } from './layout.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
@@ -48,9 +49,10 @@ export function Inline<T extends keyof ReactHTMLAttributesHacked = 'span'>({
   return (
     <Box
       className={clsx(
-        className,
+        inlineClass,
         space && flexRowVariants[space],
         align && inlineAlignSelf[align],
+        className,
       )}
       component={component}
       {...props}
