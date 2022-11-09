@@ -49,12 +49,15 @@ export const Button: FC<
       buttonVariantClasses[variant],
       busy && busyButtonClass,
       compact && compactButton,
-
       inline && inlineBleedClass,
     )}
     {...props}
   >
-    <Inline space="small" className={clsx(busy && visiblyHiddenClass)}>
+    <Inline
+      space="small"
+      className={clsx(busy && visiblyHiddenClass)}
+      aria-hidden={busy || undefined}
+    >
       {icon && <span className={iconClass}>{icon}</span>}
       {children}
     </Inline>
@@ -70,7 +73,9 @@ export const ButtonLink: FC<
 );
 
 export const ButtonIcon: FC<
-  BoxBasedComponentProps<'button', ButtonIconProps>
-> = ({ children, ...props }) => (
-  <Button {...props}>{<span className={iconClass}>{children}</span>}</Button>
+  BoxBasedComponentProps<'button', ButtonIconProps> & { label: string }
+> = ({ children, label, ...props }) => (
+  <Button aria-label={label} {...props}>
+    {<span className={iconClass}>{children}</span>}
+  </Button>
 );
