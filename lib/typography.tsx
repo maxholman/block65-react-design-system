@@ -4,7 +4,7 @@ import { Box, BoxBasedComponentProps } from './core.js';
 import { Info } from './icons.js';
 import { alignItems, inlineAlignSelf } from './layout.css.js';
 import { Inline } from './layout.js';
-import type { FontSize, Tone } from './design-system.css.js';
+import type { Tone } from './schemes/color.css.js';
 import {
   calloutClass,
   codeClass,
@@ -16,6 +16,14 @@ import {
   textClass,
   toneVariants,
 } from './typography.css.js';
+
+export type FontSize =
+  | 'tiny'
+  | 'small'
+  | 'normal'
+  | 'medium'
+  | 'large'
+  | 'huge';
 
 export const Heading: FC<
   PropsWithChildren<{ level?: HeadingLevel; className?: ClassValue }>

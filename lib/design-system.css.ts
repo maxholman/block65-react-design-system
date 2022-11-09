@@ -1,22 +1,4 @@
-import {
-  createTheme,
-  createThemeContract,
-  createVar,
-  fallbackVar,
-  style,
-} from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
-import { hsl } from './utils.js';
-
-export type Space = 'none' | 'large' | 'small' | 'tiny' | 'huge' | 'standard';
-
-export type FontSize =
-  | 'tiny'
-  | 'small'
-  | 'normal'
-  | 'medium'
-  | 'large'
-  | 'huge';
+import { createTheme, createThemeContract, style } from '@vanilla-extract/css';
 
 export const genericVars = createThemeContract({
   text: {
@@ -124,71 +106,4 @@ export const genericThemeClass = createTheme(genericVars, {
 
 export const sansSerifFontStyle = style({
   fontFamily: 'sans-serif',
-  // letterSpacing: '-0.02rem',
-});
-
-export const colorThemeVars = createThemeContract({
-  accent: {
-    h: 'color-accent-h',
-    s: 'color-accent-s',
-    l: 'color-accent-l',
-  },
-  tone: {
-    promo: {
-      h: 'color-tone-promo-h',
-    },
-    info: {
-      h: 'color-tone-info-h',
-    },
-    positive: {
-      h: 'color-tone-positive-h',
-    },
-    warn: {
-      h: 'color-tone-warn-h',
-    },
-    critical: {
-      h: 'color-tone-critical-h',
-    },
-  },
-});
-
-export type Tone = keyof typeof colorThemeVars.tone;
-
-export const toneH = createVar('toneH');
-
-export const backgroundColorVars = createThemeContract({
-  h: 'bg-color-h',
-  s: 'bg-color-s',
-  l: 'bg-color-l',
-});
-
-export const backgroundColorThemeClass = createTheme(backgroundColorVars, {
-  h: colorThemeVars.accent.h,
-  s: calc(colorThemeVars.accent.s).subtract('75%').toString(),
-  l: calc(colorThemeVars.accent.l).add('18%').toString(),
-});
-
-export const colorVariantVars = createThemeContract({
-  bbb: 'color-variant-bbb',
-  bb: 'color-variant-bb',
-  b: 'color-variant-b',
-  hb: 'color-variant-hb',
-  h: 'color-variant-h',
-  hh: 'color-variant-hh',
-  hhh: 'color-variant-hhh',
-});
-
-const colorVarsWithFallback = {
-  h: fallbackVar(colorThemeVars.accent.h, '220'),
-  s: fallbackVar(colorThemeVars.accent.s, '40%'),
-};
-
-export const colorVariantsClass = createTheme(colorVariantVars, {
-  bbb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '30%'),
-  bb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '32%'),
-  b: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '45%'),
-  hb: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '55%'),
-  h: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '87%'),
-  hh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '93%'),
-  hhh: hsl(colorVarsWithFallback.h, colorVarsWithFallback.s, '98%'),
 });

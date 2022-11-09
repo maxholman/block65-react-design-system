@@ -4,12 +4,14 @@ import { genericThemeClass, sansSerifFontStyle } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import {
   darkClass,
-  mediaPrefersClass,
+  mediaPrefersColorSchemeClass,
   lightClass,
   ColorScheme,
   defaultColorThemeClass,
+  darkMoreContrastClass,
+  darkLessContrastClass,
+  ContrastScheme,
 } from './schemes/color.css.js';
-import type { ContrastScheme } from './schemes/contrast.css.js';
 
 export const DesignSystem: FC<
   PropsWithChildren<{
@@ -17,21 +19,31 @@ export const DesignSystem: FC<
     colorScheme?: ColorScheme;
     className?: string;
   }>
-> = ({ children, className, colorScheme }) => (
+> = ({ children, className, colorScheme, contrastScheme }) => (
   <Box
     component="div"
     className={[
-      className,
       resetClass,
       sansSerifFontStyle,
       genericThemeClass,
 
       defaultColorThemeClass,
 
-      mediaPrefersClass,
+      // mediaPrefersContrastSchemeClass,
+      // contrastScheme === 'more' && moreContrastClass,
+      // contrastScheme === 'less' && lessContrastClass,
 
+      mediaPrefersColorSchemeClass,
       colorScheme === 'dark' && darkClass,
+      colorScheme === 'dark' &&
+        contrastScheme === 'more' &&
+        darkMoreContrastClass,
+      colorScheme === 'dark' &&
+        contrastScheme === 'less' &&
+        darkLessContrastClass,
       colorScheme === 'light' && lightClass,
+
+      className,
     ]}
   >
     {children}

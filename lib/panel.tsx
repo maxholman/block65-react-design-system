@@ -1,6 +1,4 @@
-import type { BoxBasedComponentProps } from './core.js';
-import type { Space } from './design-system.css.js';
-import { Block } from './layout.js';
+import { Block, BlockProps } from './layout.js';
 import {
   elevations,
   PanelElevation,
@@ -10,32 +8,23 @@ import {
 import type { ReactHTMLAttributesHacked } from './types.js';
 
 export function Panel<T extends keyof ReactHTMLAttributesHacked = 'section'>({
-  component,
-  children,
+  component = 'section',
   className,
   elevation = 'none',
-  space = 'standard',
   variant = 'standard',
   ...props
-}: BoxBasedComponentProps<
-  T,
-  {
-    elevation?: PanelElevation;
-    space?: Space;
-    variant?: PanelVariant;
-  }
->) {
+}: BlockProps<T> & {
+  elevation?: PanelElevation;
+  variant?: PanelVariant;
+}) {
   return (
     <Block
-      space={space}
       className={[
         className,
         panelVariantsClasses[variant],
         elevations[elevation],
       ]}
       {...props}
-    >
-      {children}
-    </Block>
+    />
   );
 }

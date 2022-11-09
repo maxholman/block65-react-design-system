@@ -3,8 +3,9 @@ import { createElement, PropsWithChildren } from 'react';
 import type { Merge } from 'type-fest';
 import { marginVariants, paddingVariants } from './core.css.js';
 import { Align, alignItems } from './layout.css.js';
-import type { Space } from './design-system.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
+
+export type Space = 'none' | 'large' | 'small' | 'tiny' | 'huge' | 'standard';
 
 export type BoxBasedComponentProps<
   T extends keyof ReactHTMLAttributesHacked,
@@ -12,16 +13,15 @@ export type BoxBasedComponentProps<
 > = PropsWithChildren<
   Merge<
     ReactHTMLAttributesHacked[T],
-    Merge<
-      P,
-      {
-        component?: T;
-        align?: Align | undefined;
-        margin?: Space | undefined;
-        padding?: Space | undefined;
-        className?: ClassValue;
-      }
-    >
+    P & {
+      component?: T;
+      align?: Align | undefined;
+      margin?: Space | undefined;
+      padding?: Space | undefined;
+      className?: ClassValue;
+      // tone
+      // rounded
+    }
   >
 >;
 

@@ -25,8 +25,8 @@ import {
   formInputSelectWrapperSingle,
   inputLabelStyle,
 } from './forms.css.js';
-import type { Space, Tone } from './design-system.css.js';
-import { Block, Inline } from './layout.js';
+import { Block, BlockProps, Inline } from './layout.js';
+import type { Tone } from './schemes/color.css.js';
 import { Secondary, Strong, Text } from './typography.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,9 +46,11 @@ function cloneElementIfValidElementOfType<T extends FC<any>>(
   return isValidElementOfType(child, type) ? cloneElement(child, props) : child;
 }
 
-export const Form: FC<
-  PropsWithChildren<{ className?: ClassValue; space?: Space }>
-> = ({ space = 'large', children, ...props }) => (
+export const Form: FC<PropsWithChildren<BlockProps<'form'>>> = ({
+  space = 'large',
+  children,
+  ...props
+}) => (
   <Block space={space} component="form" {...props}>
     {Children.map(children, (child) => {
       // if it's a block element and no space is defined, use the space this

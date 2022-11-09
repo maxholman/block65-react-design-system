@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { colorThemeVars } from './design-system.css.js';
+import { colorThemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export const linkStyle = style({

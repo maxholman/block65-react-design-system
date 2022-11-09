@@ -1,8 +1,16 @@
-import { createVar, style, styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { colorVariantVars, genericVars } from './design-system.css.js';
+import { genericVars } from './design-system.css.js';
+import { rotate } from './keyframes.css.js';
+import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { hsl } from './utils.js';
 
-export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
+export type ButtonVariant =
+  | 'standard'
+  | 'neutral'
+  | 'ghost'
+  | 'subtle'
+  | 'transparent';
 
 export const iconClass = style({
   display: 'inline-flex',
@@ -10,6 +18,7 @@ export const iconClass = style({
   aspectRatio: '1/1',
   alignItems: 'center',
   justifySelf: 'center',
+  justifyContent: 'center',
 });
 
 const base = style({
@@ -21,17 +30,16 @@ const base = style({
   flexDirection: 'row',
   alignItems: 'center',
   padding: `${genericVars.space.small} ${genericVars.space.standard}`,
-  textAlign: 'center',
+  justifyContent: 'center',
   fontSize: genericVars.text.size.normal,
   transition: 'all 0.1s ease-in-out',
   userSelect: 'none',
   selectors: {
     '&[disabled]': {
-      // pointerEvents: 'none',
+      pointerEvents: 'none',
       cursor: 'default',
       filter: 'grayscale(1)',
     },
-
     '&:active': {
       outlineWidth: genericVars.border.weight.thick,
       outlineColor: 'initial',
@@ -44,12 +52,6 @@ export const compactButton = style({
   fontSize: genericVars.text.size.small,
 });
 
-export const iconButtonClass = style({
-  gap: `0 0.5em`,
-});
-
-const buttonColorVar = createVar();
-
 const variants: Record<
   ButtonVariant,
   {
@@ -61,59 +63,49 @@ const variants: Record<
   }
 > = {
   standard: {
-    // backgroundColor: colorVariantVars.bb,
     backgroundColor: hsl(
       colorThemeVars.accent.h,
       colorThemeVars.accent.s,
-      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
+      colorThemeVars.accent.l,
     ),
-    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, '95%'),
-    borderColor: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
-      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
-    ),
+    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 100),
+    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
   },
   neutral: {
-    // backgroundColor: colorVariantVars.bb,
-    backgroundColor: hsl(colorThemeVars.bg.h, colorThemeVars.bg.s, '50%'),
-    color: hsl(colorThemeVars.bg.h, colorThemeVars.bg.s, '90%'),
-    borderColor: colorVariantVars.bb,
+    backgroundColor: hsl(colorThemeVars.accent.h, 10, 50),
+    color: hsl(colorThemeVars.accent.h, 10, '90%'),
+    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, '90%'),
   },
   ghost: {
-    // backgroundColor: colorVariantVars.hhh,
-    color: hsl(
+    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
+    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
+    backgroundColor: hsl(
       colorThemeVars.accent.h,
       colorThemeVars.accent.s,
-      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
-    ),
-    borderColor: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
-      calc('50%').add(colorSchemeVarsType.tonesLightnessAdjust).toString(),
+      contrastSchemeVars.bg.l,
     ),
   },
   subtle: {
-    backgroundColor: colorVariantVars.hh,
-    color: colorVariantVars.bb,
-    borderColor: colorVariantVars.hh,
-    borderColorHover: colorVariantVars.h,
+    backgroundColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 90),
+    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 40),
+    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 90),
+    borderColorHover: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 80),
   },
   transparent: {
     backgroundColor: 'transparent',
     color: 'inherit',
     borderColor: 'transparent',
-    backgroundColorHover: colorVariantVars.hh,
-    // borderColorHover: colorVariantVars.h,
+    backgroundColorHover: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      '90%',
+    ),
   },
 };
 
 export const buttonVariantClasses = styleVariants(variants, (variant) => [
   base,
   {
-    // vars: {
-    //   ...(variant.color && { [buttonColorVar]: variant.color }),
-    // },
     ...(variant.backgroundColor && {
       backgroundColor: variant.backgroundColor,
     }),
@@ -133,17 +125,15 @@ export const buttonVariantClasses = styleVariants(variants, (variant) => [
   },
 ]);
 
+export const visiblyHiddenClass = style({
+  visibility: 'hidden',
+});
+
 // WARN: this is defined last so it can override other styles
 // with the same specificity
 export const busyButtonClass = style({
-  color: 'transparent',
-  position: 'relative',
-  display: 'grid',
-  placeItems: 'center',
+  pointerEvents: 'none',
   selectors: {
-    // '&:hover': {
-    //   borderColor: 'revert',
-    // },
     '&::before': {
       height: '1em',
       aspectRatio: '1/1',
@@ -153,8 +143,8 @@ export const busyButtonClass = style({
       borderStyle: 'solid',
       borderWidth: genericVars.border.weight.normal,
       borderColor: 'transparent',
-      borderTopColor: buttonColorVar,
-      borderRadius: '50%',
+      borderTopColor: 'currentColor',
+      borderRadius: genericVars.radius.maximum,
       animationName: rotate,
       animationDuration: '0.75s',
       animationIterationCount: 'infinite',

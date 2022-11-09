@@ -59,6 +59,9 @@ export const ButtonsPage: FC = () => (
         <Button busy variant="subtle">
           Subtle
         </Button>
+        <Button busy icon={<CrescentMoonIcon />} variant="subtle">
+          This one has an Icon
+        </Button>
       </Inline>
     </Block>
 

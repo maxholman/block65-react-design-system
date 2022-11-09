@@ -1,6 +1,6 @@
-import { createVar, style, styleVariants } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
-import { backgroundColorVars, genericVars } from './design-system.css.js';
+import { style, styleVariants } from '@vanilla-extract/css';
+import { genericVars } from './design-system.css.js';
+import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export type PanelVariant = 'none' | 'standard' | 'ghost' | 'subtle';
@@ -63,61 +63,53 @@ export const panelVariantsClasses = styleVariants(panelVariants, (variant) => [
 
 const elevationLightnessAdjust: Record<
   PanelElevation,
-  { border: number; bg?: number; color: number }
+  {
+    /* border: number; bg?: number; color: number */
+  }
 > = {
   none: {
     // bg: 1.15,
-    border: 1,
-    color: 0.4,
+    // border: 1,
+    // color: 0.4,
   },
   bottom: {
-    bg: 1.2,
-    border: 1,
-    color: 0.4,
+    // bg: 1.2,
+    // border: 1,
+    // color: 0.4,
   },
   '1': {
-    bg: 1.25,
-    border: 1.05,
-    color: 0.4,
+    // bg: 1.25,
+    // border: 1.05,
+    // color: 0.4,
   },
   '2': {
-    bg: 1.3,
-    border: 1.1,
-    color: 0.4,
+    // bg: 1.3,
+    // border: 1.1,
+    // color: 0.4,
   },
   '3': {
-    bg: 1.35,
-    border: 1.15,
-    color: 0.4,
+    // bg: 1.35,
+    // border: 1.15,
+    // color: 0.4,
   },
   top: {
-    bg: 1.4,
-    border: 1.2,
-    color: 0.4,
+    // bg: 1.4,
+    // border: 1.2,
+    // color: 0.4,
   },
 };
 
-const elevationBgLVar = createVar();
-const elevationBorderLVar = createVar();
-export const elevationColorLVar = createVar();
-
 export const elevations = styleVariants(
   elevationLightnessAdjust,
-  ({ border, bg, color }) => {
-    const bgL = bg && calc(backgroundColorVars.l).multiply(bg).toString();
-    const colorL = calc(backgroundColorVars.l).multiply(color).toString();
-    const borderL = calc(backgroundColorVars.l).multiply(border).toString();
+  (/* { border, bg, color } */) => {
     return {
-      vars: {
-        ...(bgL && { [elevationBgLVar]: bgL }),
-        [elevationBorderLVar]: borderL,
-        [elevationColorLVar]: colorL,
-      },
-      ...(bgL && {
-        backgroundColor: hsl(backgroundColorVars.h, backgroundColorVars.s, bgL),
-      }),
-      borderColor: hsl(backgroundColorVars.h, backgroundColorVars.s, borderL),
-      color: hsl(backgroundColorVars.h, backgroundColorVars.s, colorL),
+      backgroundColor: hsl(
+        colorThemeVars.accent.h,
+        10,
+        contrastSchemeVars.bg.l,
+      ),
+      borderColor: hsl(colorThemeVars.accent.h, 10, contrastSchemeVars.ink.l),
+      color: hsl(colorThemeVars.accent.h, 10, contrastSchemeVars.fg.l),
     };
   },
 );

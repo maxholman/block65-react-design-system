@@ -1,14 +1,16 @@
-import { fallbackVar, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
+import { genericVars } from './design-system.css.js';
 import { elevations } from './panel.css.js';
-import { colorVariantVars, genericVars } from './design-system.css.js';
+import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { hsl } from './utils.js';
 
 export const formInput = style([
   // form inputs always look like a top elevation
   elevations.top,
   {
     padding: genericVars.space.small,
-    borderWidth: genericVars.border.weight.normal,
     borderStyle: 'solid',
+    borderWidth: genericVars.border.weight.normal,
     borderRadius: genericVars.radius.standard,
     fontSize: genericVars.text.size.normal,
     selectors: {
@@ -21,7 +23,7 @@ export const formInput = style([
         backgroundColor: 'transparent',
       },
       '&::placeholder': {
-        color: colorVariantVars.hh,
+        color: hsl(0, 0, contrastSchemeVars.ink.l),
       },
     },
   },
@@ -35,26 +37,30 @@ export const formInputCheckRadioBase = style([
     fontSize: '0.9em',
     height: '0.65em',
     aspectRatio: '1/1',
-    color: fallbackVar('var(--accent-color)', colorVariantVars.hh),
+    color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
     selectors: {
       '&:focus-visible,&.focus-visible': {
         outline: 'max(2px, 0.15em) solid currentColor',
         outlineOffset: 'max(2px, 0.15em)',
       },
       '&:focus-within': {
-        color: colorVariantVars.bbb,
+        color: hsl(
+          colorThemeVars.accent.h,
+          colorThemeVars.accent.s,
+          colorThemeVars.accent.l,
+        ),
       },
       '&::before': {
         content: '""',
         fontSize: genericVars.text.size.normal,
         height: '0.7rem', // careful with this as it causes the text to jump
-        // height: '0.65em',
         aspectRatio: '1/1',
-        transform: 'scale(0)',
-        transition: '120ms transform ease-in-out',
-        boxShadow: `inset 16px 16px ${fallbackVar(
-          'var(--accent-color)',
-          colorVariantVars.bbb,
+        // transform: 'scale(0)',
+        // transition: '60ms transform ease-in-out',
+        boxShadow: `inset 16px 16px ${hsl(
+          colorThemeVars.accent.h,
+          colorThemeVars.accent.s,
+          colorThemeVars.accent.l,
         )}`,
       },
       '&:checked': {

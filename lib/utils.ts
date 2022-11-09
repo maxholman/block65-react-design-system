@@ -45,7 +45,9 @@ export function augmentChildren<T extends ReactNode>(
 function maybeSuffix(value: string | number, suffix: string): string {
   if (
     typeof value === 'string' &&
-    (value.endsWith(suffix) || value.match(/^\w+/))
+    (value.endsWith(suffix) ||
+      value.startsWith('var(') ||
+      value.startsWith('calc('))
   ) {
     return value;
   }

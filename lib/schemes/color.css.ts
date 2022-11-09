@@ -9,85 +9,156 @@ import { hsl } from '../utils.js';
 
 export type ColorScheme = 'dark' | 'light' | 'auto';
 
+export type ContrastScheme = 'more' | 'less' | 'auto';
+
 export type Tokens = {
   [key: string]: string;
 };
 
 // all of these will be overridable by the user
 export const [defaultColorThemeClass, colorThemeVars] = createTheme({
-  bg: {
-    h: '180',
-    s: '50%',
-  },
-  fg: {
-    h: '90',
-    s: '50%',
-  },
   accent: {
-    h: '60',
-    s: '60%',
+    h: '220',
+    s: '50%',
+    l: '50%',
   },
   tones: {
+    info: {
+      h: '90',
+      s: '50%',
+      l: '50%',
+    },
     neutral: {
       h: '90',
       s: '50%',
+      l: '50%',
+    },
+    promo: {
+      h: '90',
+      s: '50%',
+      l: '50%',
+    },
+    warn: {
+      h: '90',
+      s: '50%',
+      l: '50%',
+    },
+    positive: {
+      h: '90',
+      s: '50%',
+      l: '50%',
+    },
+    critical: {
+      h: '90',
+      s: '50%',
+      l: '50%',
     },
   },
 });
 
+export type Tone = keyof typeof colorThemeVars.tones;
+
 // this just sets up the contract shape, no need for values or a class
-export const colorSchemeVarsType = createThemeContract({
-  tonesLightnessAdjust: '',
+export const contrastSchemeVars = createThemeContract({
   bg: {
     l: '',
   },
   fg: {
     l: '',
   },
+  ink: {
+    l: '',
+  },
 });
 
-const lightMode = assignVars(colorSchemeVarsType, {
-  tonesLightnessAdjust: '0%',
+const lightModeVars = assignVars(contrastSchemeVars, {
   bg: {
-    l: '95%',
+    l: '100%',
   },
   fg: {
-    l: '30%',
+    l: '20%',
+  },
+  ink: {
+    l: '60%',
   },
 });
 
-const darkMode = assignVars(colorSchemeVarsType, {
-  tonesLightnessAdjust: '7%',
+const darkModeVars = assignVars(contrastSchemeVars, {
   bg: {
     l: '10%',
   },
   fg: {
     l: '85%',
   },
-});
-
-const darkStyleRule: ComplexStyleRule = {
-  vars: darkMode,
-  backgroundColor: hsl('50deg', '0%', colorSchemeVarsType.bg.l),
-  color: hsl('50deg', '0%', colorSchemeVarsType.fg.l),
-};
-
-const lightStyleRule: ComplexStyleRule = {
-  vars: lightMode,
-  backgroundColor: hsl('50deg', '0%', colorSchemeVarsType.bg.l),
-  color: hsl('50deg', '0%', colorSchemeVarsType.fg.l),
-};
-
-export const mediaPrefersClass = style({
-  // vars: lightMode,
-  // backgroundColor: 'red',
-
-  '@media': {
-    // '(prefers-color-scheme: dark)': darkStyleRule,
-    // '(prefers-color-scheme: light)': lightStyleRule,
+  ink: {
+    l: '45%',
   },
 });
 
-export const darkClass = style(darkStyleRule);
+const darkModeMoreContrastVars = assignVars(contrastSchemeVars, {
+  bg: {
+    l: '10%',
+  },
+  fg: {
+    l: '50%',
+  },
+  ink: {
+    l: '85%',
+  },
+});
+
+const darkModeLessContrastVars = assignVars(contrastSchemeVars, {
+  bg: {
+    l: '10%',
+  },
+  fg: {
+    l: '85%',
+  },
+  ink: {
+    l: '85%',
+  },
+});
+
+const darkStyleRule: ComplexStyleRule = {
+  vars: darkModeVars,
+};
+
+const darkStyleMoreContrastRule: ComplexStyleRule = {
+  vars: darkModeMoreContrastVars,
+};
+
+const darkStyleLessContrastRule: ComplexStyleRule = {
+  vars: darkModeLessContrastVars,
+};
+
+const lightStyleRule: ComplexStyleRule = {
+  vars: lightModeVars,
+};
+
+export const mediaPrefersColorSchemeClass = style({
+  ...lightStyleRule,
+
+  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.bg.l),
+  color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
+
+  '@media': {
+    // '(prefers-color-scheme: light)': lightStyleRule,
+    // '(prefers-color-scheme: dark)': darkStyleRule,
+
+    '(prefers-color-scheme: dark) and (prefers-contrast-scheme: less)':
+      darkStyleLessContrastRule,
+    '(prefers-color-scheme: dark) and (prefers-contrast-scheme: more)':
+      darkStyleMoreContrastRule,
+
+    // '(prefers-contrast-scheme: more)': moreContrastRule,
+    // '(prefers-contrast-scheme: less)': lessContrastRule,
+  },
+});
+
+export const darkMoreContrastClass = style(darkStyleMoreContrastRule);
+
+export const darkLessContrastClass = style(darkStyleLessContrastRule);
 
 export const lightClass = style(lightStyleRule);
+
+export const darkClass = style(darkStyleRule);

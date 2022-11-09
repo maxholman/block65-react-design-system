@@ -1,7 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
-import { elevationColorLVar } from './panel.css.js';
-import { colorThemeVars, genericVars, toneH } from './design-system.css.js';
+import { genericVars } from './design-system.css.js';
+import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5';
@@ -12,7 +11,7 @@ export const textClass = style({
 });
 
 export const secondaryClass = style({
-  color: hsl(0, 0, calc(elevationColorLVar).multiply(1).toString()),
+  color: hsl(0, 0, contrastSchemeVars.ink.l),
 });
 
 export const strongClass = style({
@@ -34,7 +33,7 @@ const levelVariants: Record<
   '1': {
     fontSize: genericVars.text.size.huge,
     fontWeight: genericVars.text.weight.heavy,
-    letterSpacing: '-0.125rem',
+    letterSpacing: '-0.05rem',
   },
   '2': {
     fontSize: genericVars.text.size.large,
@@ -53,13 +52,13 @@ export const levelVariantClasses = styleVariants(
   (variant) => variant,
 );
 
-export const toneVariants = styleVariants(colorVars.tone, (value) => ({
+export const toneVariants = styleVariants(colorThemeVars.tones, (value) => ({
   vars: {
-    [toneH]: value.h,
+    // [toneH]: value.h,
   },
-  backgroundColor: hsl(toneH, 80, 80),
-  borderColor: hsl(toneH, 60, 70),
-  color: hsl(toneH, 100, 30),
+  backgroundColor: hsl(value.h, 80, 80),
+  borderColor: hsl(value.h, 60, 70),
+  color: hsl(value.h, 100, 30),
   padding: `${genericVars.space.tiny} ${genericVars.space.tiny}`,
   borderRadius: genericVars.radius.standard,
 }));

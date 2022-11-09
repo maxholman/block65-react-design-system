@@ -5,12 +5,13 @@ import {
   ButtonVariant,
   buttonVariantClasses,
   compactButton,
-  iconButtonClass,
   iconClass,
   inlineBleedClass,
+  visiblyHiddenClass,
 } from './buttons.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
+import { Inline } from './layout.js';
 
 export type ButtonCommonProps = {
   className?: ClassValue;
@@ -45,23 +46,26 @@ export const Button: FC<
     component={component}
     className={clsx(
       className,
-      busy && busyButtonClass,
       buttonVariantClasses[variant],
+      busy && busyButtonClass,
       compact && compactButton,
-      icon && iconButtonClass,
+
       inline && inlineBleedClass,
     )}
     {...props}
-    // type={component === 'button' && !props.type ? 'button' : undefined}
   >
-    {icon && <span className={iconClass}>{icon}</span>}
-    {children}
+    <Inline space="small" className={clsx(busy && visiblyHiddenClass)}>
+      {icon && <span className={iconClass}>{icon}</span>}
+      {children}
+    </Inline>
   </Box>
 );
 
 export const ButtonLink: FC<
-  BoxBasedComponentProps<'span' | 'a', ButtonProps>
-> = ({ variant = 'standard', compact, busy, align, className, ...props }) => (
+  Omit<BoxBasedComponentProps<'a', ButtonProps>, 'component'> & {
+    href?: string;
+  }
+> = (props) => (
   <Button component={'href' in props ? 'a' : 'span'} {...props}></Button>
 );
 
