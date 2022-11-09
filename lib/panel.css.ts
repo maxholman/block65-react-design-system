@@ -1,10 +1,9 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { colorThemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export type PanelVariant = 'none' | 'standard' | 'ghost' | 'subtle';
-export type PanelElevation = 'none' | 'bottom' | '1' | '2' | '3' | 'top';
+export type PanelVariant = 'standard' | 'ghost' | 'subtle';
 
 export const panelClass = style({
   borderRadius: genericVars.radius.standard,
@@ -13,46 +12,25 @@ export const panelClass = style({
   borderStyle: 'solid',
   borderColor: 'transparent',
   flex: 1,
+  // transition: 'all 0.1s ease-in-out',
 });
 
 const panelVariants: Record<
   PanelVariant,
   {
-    background?: string;
+    backgroundColor?: string;
     borderStyle?: string;
   }
 > = {
-  none: {
-    background: 'red',
-    borderStyle: 'none',
-  },
   standard: {
-    // background: baseVars.surface,
-    // color: baseVars.text,
     borderStyle: 'none',
   },
   ghost: {
-    background: 'unset',
-    // borderColor: hsl(
-    //   selfElevationVars.h,
-    //   calc(selfElevationVars.s).subtract('90%').toString(),
-    //   selfElevationVars.l,
-    // ),
-    // borderColor: hsl(
-    //   backgroundColorVars.h,
-    //   calc(backgroundColorVars.s).subtract('90%').toString(),
-    //   '90%',
-    // ),
-    // color: hsl(
-    //   selfElevationVars.h,
-    //   calc(selfElevationVars.s).subtract('90%').toString(),
-    //   calc(selfElevationVars.l).subtract('90%').toString(),
-    // ),
+    backgroundColor: 'unset',
   },
   subtle: {
-    // color: baseVars.text,
-    // borderColor: baseVars.text,
     borderStyle: 'none',
+    backgroundColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
   },
 };
 
@@ -60,56 +38,3 @@ export const panelVariantsClasses = styleVariants(panelVariants, (variant) => [
   panelClass,
   variant,
 ]);
-
-const elevationLightnessAdjust: Record<
-  PanelElevation,
-  {
-    /* border: number; bg?: number; color: number */
-  }
-> = {
-  none: {
-    // bg: 1.15,
-    // border: 1,
-    // color: 0.4,
-  },
-  bottom: {
-    // bg: 1.2,
-    // border: 1,
-    // color: 0.4,
-  },
-  '1': {
-    // bg: 1.25,
-    // border: 1.05,
-    // color: 0.4,
-  },
-  '2': {
-    // bg: 1.3,
-    // border: 1.1,
-    // color: 0.4,
-  },
-  '3': {
-    // bg: 1.35,
-    // border: 1.15,
-    // color: 0.4,
-  },
-  top: {
-    // bg: 1.4,
-    // border: 1.2,
-    // color: 0.4,
-  },
-};
-
-export const elevations = styleVariants(
-  elevationLightnessAdjust,
-  (/* { border, bg, color } */) => {
-    return {
-      backgroundColor: hsl(
-        colorThemeVars.accent.h,
-        10,
-        contrastSchemeVars.bg.l,
-      ),
-      borderColor: hsl(colorThemeVars.accent.h, 10, contrastSchemeVars.ink.l),
-      color: hsl(colorThemeVars.accent.h, 10, contrastSchemeVars.fg.l),
-    };
-  },
-);

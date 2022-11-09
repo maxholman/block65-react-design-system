@@ -1,33 +1,28 @@
 import { style } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { elevations } from './panel.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export const formInput = style([
-  // form inputs always look like a top elevation
-  elevations.top,
-  {
-    padding: genericVars.space.small,
-    borderStyle: 'solid',
-    borderWidth: genericVars.border.weight.normal,
-    borderRadius: genericVars.radius.standard,
-    fontSize: genericVars.text.size.normal,
-    selectors: {
-      '&[readonly]': {
-        paddingLeft: 0,
-        paddingRight: 0,
-        borderLeft: 0,
-        borderRight: 0,
-        borderColor: 'transparent',
-        backgroundColor: 'transparent',
-      },
-      '&::placeholder': {
-        color: hsl(0, 0, contrastSchemeVars.ink.l),
-      },
+export const formInput = style({
+  padding: genericVars.space.small,
+  borderStyle: 'solid',
+  borderWidth: genericVars.border.weight.normal,
+  borderRadius: genericVars.radius.standard,
+  fontSize: genericVars.text.size.normal,
+  selectors: {
+    '&[readonly]': {
+      paddingLeft: 0,
+      paddingRight: 0,
+      borderLeft: 0,
+      borderRight: 0,
+      borderColor: 'transparent',
+      backgroundColor: 'transparent',
+    },
+    '&::placeholder': {
+      color: hsl(0, 0, contrastSchemeVars.ink.l),
     },
   },
-]);
+});
 
 export const formInputCheckRadioBase = style([
   formInput,
