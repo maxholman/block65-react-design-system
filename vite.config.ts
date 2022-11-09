@@ -1,7 +1,7 @@
 import { resolve } from 'node:path';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   // @ts-expect-error - guessing vite react plugin doesnt like node16 mode reso
@@ -19,5 +19,10 @@ export default defineConfig({
     },
     minify: true,
     sourcemap: true,
+  },
+  test: {
+    setupFiles: './src/test/setup.ts',
+    globals: true,
+    environment: 'jsdom',
   },
 });
