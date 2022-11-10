@@ -23,6 +23,8 @@
     "prepare": "npx patch-package"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^1.0.0",
+    "@floating-ui/react-dom-interactions": "^0.10.3",
     "clsx": "^1.2.1"
   },
   "devDependencies": {
