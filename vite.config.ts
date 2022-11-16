@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   build: {
     outDir: 'build',
-    target: 'es2020',
+    target: 'es2021',
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
       fileName: 'main',
