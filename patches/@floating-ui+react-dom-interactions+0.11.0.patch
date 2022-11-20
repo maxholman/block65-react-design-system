@@ -1,0 +1,13 @@
+diff --git a/node_modules/@floating-ui/react-dom-interactions/src/types.d.ts b/node_modules/@floating-ui/react-dom-interactions/src/types.d.ts
+index 5cf036c..24c9114 100644
+--- a/node_modules/@floating-ui/react-dom-interactions/src/types.d.ts
++++ b/node_modules/@floating-ui/react-dom-interactions/src/types.d.ts
+@@ -4,7 +4,7 @@ import type { UseFloatingReturn as UsePositionFloatingReturn } from '@floating-u
+ export * from '@floating-ui/dom';
+ export * from './';
+ export { arrow } from '@floating-ui/react-dom';
+-interface ExtendedRefs<RT extends ReferenceType = ReferenceType> {
++export interface ExtendedRefs<RT extends ReferenceType = ReferenceType> {
+     reference: React.MutableRefObject<RT | null>;
+     floating: React.MutableRefObject<HTMLElement | null>;
+     domReference: React.MutableRefObject<Element | null>;
