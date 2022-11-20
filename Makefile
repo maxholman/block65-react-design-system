@@ -21,7 +21,7 @@ clean: node_modules
 
 .PHONY: test
 test: node_modules
-	NODE_OPTIONS=--experimental-vm-modules yarn jest
+	yarn vitest run
 
 node_modules: package.json
 	yarn install
