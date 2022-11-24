@@ -15,7 +15,7 @@
     }
   },
   "files": [
-    "dist/lib/*.d.ts",
+    "dist/lib/**/*.d.ts",
     "build/main.*",
     "build/style.css"
   ],
