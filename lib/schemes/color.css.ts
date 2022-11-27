@@ -24,32 +24,32 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
   },
   tones: {
     info: {
-      h: '90',
+      h: '210',
       s: '50%',
-      l: '50%',
+      l: '70%',
     },
     neutral: {
-      h: '90',
+      h: '210',
       s: '50%',
       l: '50%',
     },
     promo: {
-      h: '90',
+      h: '280',
       s: '50%',
       l: '50%',
     },
     warn: {
-      h: '90',
+      h: '35',
       s: '50%',
       l: '50%',
     },
     positive: {
-      h: '90',
+      h: '120',
       s: '50%',
-      l: '50%',
+      l: '90%',
     },
     critical: {
-      h: '90',
+      h: '0',
       s: '50%',
       l: '50%',
     },

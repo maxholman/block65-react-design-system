@@ -44,19 +44,19 @@ export const TypographyPage: FC = () => (
       </Heading>
     </Block>
     <Callout tone="critical">
-      <Text>Call me out!</Text>
+      <Text>Critical</Text>
     </Callout>
     <Callout tone="info">
-      <Text>Call me out!</Text>
+      <Text>Informative!</Text>
     </Callout>
     <Callout tone="positive">
-      <Text>Call me out!</Text>
+      <Text>Overwhelmingly positive!</Text>
     </Callout>
     <Callout tone="promo">
-      <Text>Call me out!</Text>
+      <Text>Promotional</Text>
     </Callout>
     <Callout tone="warn">
-      <Text>Call me out!</Text>
+      <Text>Warning!</Text>
     </Callout>
   </Panel>
 );
