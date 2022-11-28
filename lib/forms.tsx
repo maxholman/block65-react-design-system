@@ -64,15 +64,19 @@ export const FormFieldLabel: FC<
       component="label"
       className={[fieldLabelStyle, className]}
     >
-      <Text>
-        <Strong>{children}</Strong>
-        {secondary && (
-          <>
-            {' '}
-            <Secondary>{secondary}</Secondary>
-          </>
-        )}
-      </Text>
+      {isValidElement(children) ? (
+        children
+      ) : (
+        <Text>
+          <Strong>{children}</Strong>
+          {secondary && (
+            <>
+              {' '}
+              <Secondary>{secondary}</Secondary>
+            </>
+          )}
+        </Text>
+      )}
     </Inline>
     {tertiary && (
       <Inline className={fieldLabelTertiaryStyle}>{tertiary}</Inline>
@@ -86,7 +90,7 @@ export const FormInputLabel: FC<
   }
 > = ({ className, children, ...props }) => (
   <Inline {...props} component="label" className={[inputLabelStyle, className]}>
-    <Text>{children}</Text>
+    {isValidElement(children) ? children : <Text>{children}</Text>}
   </Inline>
 );
 
@@ -214,7 +218,7 @@ export const FormInputRadioGroup: FC<
     InputHTMLAttributes<HTMLInputElement> & {
       name: string; // required
       className?: ClassValue;
-      label: ReactNode;
+      label?: ReactNode; // optional as the label could actually be pictorial
       secondaryLabel?: ReactNode;
       tertiaryLabel?: ReactNode;
       message?: ReactNode;
@@ -231,9 +235,11 @@ export const FormInputRadioGroup: FC<
   // ...props
 }) => (
   <Block className={className}>
-    <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
-      {label}
-    </FormFieldLabel>
+    {label && (
+      <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
+        {label}
+      </FormFieldLabel>
+    )}
     {Children.map(children, (child) =>
       cloneElementIfValidElementOfType(child, FormInputRadio, {
         name,
