@@ -43,3 +43,15 @@ export const inlineAlignSelf = styleVariants<Record<Align, ComplexStyleRule>>({
   center: { marginInline: 'auto' },
   end: { marginInlineStart: 'auto' },
 });
+
+export const gridClass = style({
+  display: 'grid',
+  // gridTemplateColumns: `repeat(${gridCols}, ${gridColWidth})`, // / repeat(${gridCols}, ${gridColWidth})`,
+});
+
+export const gridVariants = styleVariants(genericVars.space, (space) => [
+  gridClass,
+  {
+    gap: space,
+  },
+]);

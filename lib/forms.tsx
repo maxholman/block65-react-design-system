@@ -25,7 +25,7 @@ import {
   formInputSelectWrapperSingle,
   inputLabelStyle,
 } from './forms.css.js';
-import { Block, BlockProps, Inline } from './layout.js';
+import { Block, BlockProps, Grid, Inline } from './layout.js';
 import type { Tone } from './schemes/color.css.js';
 import { Secondary, Strong, Text } from './typography.js';
 

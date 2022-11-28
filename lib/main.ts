@@ -3,7 +3,6 @@ export * from './core.js';
 export * from './decorative.js';
 export * from './design-system.js';
 export * from './forms.js';
-export * from './grid.js';
 export * from './layout.js';
 export * from './links.js';
 export * from './panel.js';
