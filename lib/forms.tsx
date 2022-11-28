@@ -28,23 +28,10 @@ import {
 import { Block, BlockProps, Grid, Inline } from './layout.js';
 import type { Tone } from './schemes/color.css.js';
 import { Secondary, Strong, Text } from './typography.js';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isValidElementOfType<T extends FC<any>>(
-  child: ReactNode,
-  type: T,
-): child is ReactElement<ComponentProps<T>> {
-  return isValidElement(child) && child.type === type;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function cloneElementIfValidElementOfType<T extends FC<any>>(
-  child: ReactNode,
-  type: T,
-  props: Partial<ComponentProps<T>>,
-): typeof child {
-  return isValidElementOfType(child, type) ? cloneElement(child, props) : child;
-}
+import {
+  cloneElementIfValidElementOfType,
+  isValidElementOfType,
+} from './utils.js';
 
 export const Form: FC<PropsWithChildren<BlockProps<'form'>>> = ({
   space = 'large',

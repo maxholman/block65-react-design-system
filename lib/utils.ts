@@ -3,8 +3,10 @@ import {
   Children,
   cloneElement,
   ComponentProps,
+  FC,
   Fragment,
   isValidElement,
+  ReactElement,
   ReactNode,
 } from 'react';
 
@@ -72,4 +74,21 @@ export function hsl(
     maybeSuffix(s, '%'),
     maybeSuffix(l, '%'),
   )})`;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function isValidElementOfType<T extends FC<any>>(
+  child: ReactNode,
+  type: T,
+): child is ReactElement<ComponentProps<T>> {
+  return isValidElement(child) && child.type === type;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function cloneElementIfValidElementOfType<T extends FC<any>>(
+  child: ReactNode,
+  type: T,
+  props: Partial<ComponentProps<T>>,
+): typeof child {
+  return isValidElementOfType(child, type) ? cloneElement(child, props) : child;
 }
