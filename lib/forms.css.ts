@@ -86,13 +86,18 @@ export const formInputCheckbox = style([
   },
 ]);
 
-export const formInputRadio = style([
+export const formInputRadioInput = style([
   formInputCheckRadioBase,
   {
+    gridColumn: 1,
     borderRadius: genericVars.radius.maximum,
     selectors: {
       '&::before': {
         borderRadius: genericVars.radius.maximum,
+      },
+      '&:checked': {
+        // covers a weird blowout when setting display to grid
+        width: '100%',
       },
     },
   },
@@ -150,7 +155,6 @@ export const fieldLabelWrapperStyle = style({
 });
 
 export const fieldLabelStyle = style({
-  cursor: 'pointer',
   alignItems: 'center',
 });
 
@@ -161,6 +165,14 @@ export const fieldLabelTertiaryStyle = style({
 });
 
 export const inputLabelStyle = style({
-  // cursor: 'pointer',
-  userSelect: 'none',
+  cursor: 'pointer',
+  // userSelect: 'none',
+});
+
+export const formInputRadioWrapper = style({
+  gridTemplateColumns: 'auto 1fr',
+});
+
+export const formInputRadioLabel = style({
+  gridColumn: 2,
 });

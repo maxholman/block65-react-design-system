@@ -2,13 +2,11 @@ import type { ClassValue } from 'clsx';
 import {
   Children,
   cloneElement,
-  ComponentProps,
   FC,
   InputHTMLAttributes,
   isValidElement,
   LabelHTMLAttributes,
   PropsWithChildren,
-  ReactElement,
   ReactNode,
   SelectHTMLAttributes,
   useId,
@@ -19,11 +17,13 @@ import {
   fieldLabelWrapperStyle,
   formInput,
   formInputCheckbox,
-  formInputRadio,
+  formInputRadioInput,
   formInputSelect,
   formInputSelectWrapperMultiple,
   formInputSelectWrapperSingle,
   inputLabelStyle,
+  formInputRadioWrapper,
+  formInputRadioLabel,
 } from './forms.css.js';
 import { Block, BlockProps, Grid, Inline } from './layout.js';
 import type { Tone } from './schemes/color.css.js';
@@ -199,15 +199,13 @@ export const FormInputRadio: FC<
   const id = useId();
 
   return (
-    <Inline space="small" className={className}>
-      <input className={formInputRadio} type="radio" id={id} {...props} />
-      <Block space="small">
-        <Inline>
-          <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
-        </Inline>
+    <Grid space="small" className={formInputRadioWrapper}>
+      <input className={formInputRadioInput} type="radio" id={id} {...props} />
+      <Block space="small" className={formInputRadioLabel}>
+        <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
         {message && <Text size="small">{message}</Text>}
       </Block>
-    </Inline>
+    </Grid>
   );
 };
 
