@@ -2,7 +2,7 @@ import { style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
-import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { colorThemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export type ButtonVariant =
@@ -78,11 +78,6 @@ const variants: Record<
   ghost: {
     color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
     borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
-    backgroundColor: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
-      contrastSchemeVars.bg.l,
-    ),
   },
   subtle: {
     backgroundColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 90),
