@@ -2,25 +2,24 @@ import { Link, Route, Router, Routes } from '@block65/mrr';
 import { FC, useState } from 'react';
 import {
   Block,
-  ButtonIcon,
   ColorScheme,
   ContrastScheme,
   DesignSystem,
+  FormInputRadio,
+  FormInputRadioGroup,
   Heading,
   Inline,
   Panel,
   Text,
   TextLink,
 } from '../lib/main.js';
-// import { exampleColorThemeClass } from './App.css.js';
-import { CrescentMoonIcon, SunIcon } from './icons.js';
+// import 'the-new-css-reset';
 import { ButtonsPage } from './pages/buttons.js';
 import { CorePage } from './pages/core.js';
 import { FormsPage } from './pages/forms.js';
 import { GridPage } from './pages/grid.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
-import 'the-new-css-reset';
 
 export const App: FC = () => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('auto');
@@ -36,71 +35,54 @@ export const App: FC = () => {
         <Block style={{ minHeight: '100vh' }}>
           <Block padding="huge">
             <Panel variant="subtle">
-              <Inline align="center">
-                <ButtonIcon
-                  inline
-                  label="toggle light mode"
-                  role="switch"
-                  aria-checked={colorScheme === 'light'}
-                  variant={colorScheme === 'light' ? 'standard' : 'ghost'}
-                  onClick={() =>
-                    setColorScheme(colorScheme === 'light' ? 'auto' : 'light')
-                  }
-                >
-                  <span hidden aria-hidden="true">
-                    {colorScheme === 'light' ? 'on' : 'off'}
-                  </span>
-                  <SunIcon focusable="false" />
-                </ButtonIcon>
-                <ButtonIcon
-                  inline
-                  label="toggle dark mode"
-                  role="switch"
-                  aria-checked={colorScheme === 'dark'}
-                  variant={colorScheme === 'dark' ? 'standard' : 'ghost'}
-                  onClick={() =>
-                    setColorScheme(colorScheme === 'dark' ? 'auto' : 'dark')
-                  }
-                >
-                  <span hidden aria-hidden="true">
-                    {colorScheme === 'light' ? 'on' : 'off'}
-                  </span>
-                  <CrescentMoonIcon />
-                </ButtonIcon>
+              <Inline>
+                <FormInputRadioGroup name={'color-scheme'}>
+                  <Heading level="3">Color Scheme</Heading>
+                  <FormInputRadio
+                    // inline
+                    label="auto"
+                    checked={!!colorScheme || colorScheme === 'auto'}
+                    onChange={() => setColorScheme('auto')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force light mode"
+                    checked={colorScheme === 'light'}
+                    onChange={() => setColorScheme('light')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force dark mode"
+                    checked={colorScheme === 'dark'}
+                    onChange={() => setColorScheme('dark')}
+                  />
+                </FormInputRadioGroup>
+              </Inline>
+              <Inline>
+                <FormInputRadioGroup name={'contrast-scheme'}>
+                  <Heading level="3">Contrast Scheme</Heading>
+                  <FormInputRadio
+                    // inline
+                    label="auto"
+                    checked={!contrastScheme || contrastScheme === 'auto'}
+                    onChange={() => setContrastScheme('auto')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force less contrast"
+                    checked={contrastScheme === 'less'}
+                    onChange={() => setContrastScheme('less')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force more contrast"
+                    checked={contrastScheme === 'more'}
+                    onChange={() => setContrastScheme('more')}
+                  />
+                </FormInputRadioGroup>
               </Inline>
             </Panel>
-            <Panel variant="subtle">
-              <Inline align="center">
-                <ButtonIcon
-                  inline
-                  label="toggle more contrast mode"
-                  role="switch"
-                  aria-checked={contrastScheme === 'more'}
-                  variant={contrastScheme === 'more' ? 'standard' : 'ghost'}
-                  onClick={() =>
-                    setContrastScheme(
-                      contrastScheme === 'more' ? 'auto' : 'more',
-                    )
-                  }
-                >
-                  <div>More</div>
-                </ButtonIcon>
-                <ButtonIcon
-                  inline
-                  label="toggle less contrast mode"
-                  role="switch"
-                  aria-checked={contrastScheme === 'more'}
-                  variant={contrastScheme === 'less' ? 'standard' : 'ghost'}
-                  onClick={() =>
-                    setContrastScheme(
-                      contrastScheme === 'less' ? 'auto' : 'less',
-                    )
-                  }
-                >
-                  Less
-                </ButtonIcon>
-              </Inline>
-            </Panel>
+
             <Panel space="huge" variant="ghost">
               <Inline align="center">
                 <Link dest="/">

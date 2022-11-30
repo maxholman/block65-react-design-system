@@ -26,9 +26,11 @@ export const DesignSystem: FC<
   }>
 > = ({ children, className, colorScheme, contrastScheme, integrationMode }) => {
   // for readability and minification
-  const autoColorScheme = colorScheme === 'auto';
+  const autoColorScheme = !colorScheme || colorScheme === 'auto';
   const darkColorScheme = colorScheme === 'dark';
   const lightColorScheme = colorScheme === 'light';
+
+  const autoContrast = !contrastScheme || contrastScheme === 'auto';
   const moreContrast = contrastScheme === 'more';
   const lessContrast = contrastScheme === 'less';
 
@@ -47,20 +49,20 @@ export const DesignSystem: FC<
         !integrationMode && defaultBgFgClass,
 
         // auto color
-        (!colorScheme || autoColorScheme) && mediaPrefersColorSchemeClass,
+        autoColorScheme && mediaPrefersColorSchemeClass,
 
         // auto contrast
-        (!contrastScheme || autoColorScheme) && mediaPrefersContrastSchemeClass,
+        autoContrast && mediaPrefersContrastSchemeClass,
 
         // forced dark
-        darkColorScheme && darkClass,
+        darkColorScheme && autoContrast && darkClass,
 
         // dark + forced contrast
         darkColorScheme && moreContrast && darkMoreContrastClass,
         darkColorScheme && lessContrast && darkLessContrastClass,
 
         // forced light
-        lightColorScheme && lightClass,
+        lightColorScheme && autoContrast && lightClass,
 
         // forced light + forced contrast
         lightColorScheme && moreContrast && lightMoreContrastClass,

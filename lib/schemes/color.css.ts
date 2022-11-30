@@ -71,7 +71,7 @@ export const contrastSchemeVars = createThemeContract({
   },
 });
 
-const lightModeVars = assignVars(contrastSchemeVars, {
+const lightSchemeVars = assignVars(contrastSchemeVars, {
   bg: {
     l: '100%',
   },
@@ -83,7 +83,7 @@ const lightModeVars = assignVars(contrastSchemeVars, {
   },
 });
 
-const darkModeVars = assignVars(contrastSchemeVars, {
+const darkSchemeVars = assignVars(contrastSchemeVars, {
   bg: {
     l: '10%',
   },
@@ -95,7 +95,19 @@ const darkModeVars = assignVars(contrastSchemeVars, {
   },
 });
 
-const darkModeMoreContrastVars = assignVars(contrastSchemeVars, {
+const darkSchemeMoreContrastVars = assignVars(contrastSchemeVars, {
+  bg: {
+    l: '0%',
+  },
+  fg: {
+    l: '100%',
+  },
+  ink: {
+    l: '85%',
+  },
+});
+
+const darkLessContrastVars = assignVars(contrastSchemeVars, {
   bg: {
     l: '10%',
   },
@@ -103,36 +115,24 @@ const darkModeMoreContrastVars = assignVars(contrastSchemeVars, {
     l: '50%',
   },
   ink: {
-    l: '85%',
-  },
-});
-
-const darkModeLessContrastVars = assignVars(contrastSchemeVars, {
-  bg: {
-    l: '10%',
-  },
-  fg: {
-    l: '85%',
-  },
-  ink: {
-    l: '85%',
+    l: '50%',
   },
 });
 
 const darkStyleRule: ComplexStyleRule = {
-  vars: darkModeVars,
+  vars: darkSchemeVars,
 };
 
 const darkStyleMoreContrastRule: ComplexStyleRule = {
-  vars: darkModeMoreContrastVars,
+  vars: darkSchemeMoreContrastVars,
 };
 
 const darkStyleLessContrastRule: ComplexStyleRule = {
-  vars: darkModeLessContrastVars,
+  vars: darkLessContrastVars,
 };
 
 const lightStyleRule: ComplexStyleRule = {
-  vars: lightModeVars,
+  vars: lightSchemeVars,
 };
 
 export const mediaPrefersColorSchemeClass = style({
@@ -159,10 +159,14 @@ export const defaultBgFgClass = style({
   color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
 });
 
+export const lightClass = style(lightStyleRule);
+
+export const darkClass = style(darkStyleRule);
+
 export const darkMoreContrastClass = style(darkStyleMoreContrastRule);
 
 export const darkLessContrastClass = style(darkStyleLessContrastRule);
 
-export const lightClass = style(lightStyleRule);
+export const lightMoreContrastClass = style(lightStyleRule);
 
-export const darkClass = style(darkStyleRule);
+export const lightLessContrastClass = style(lightStyleRule);
