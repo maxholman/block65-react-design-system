@@ -52,7 +52,7 @@ export const formInputCheckRadioBase = style([
         aspectRatio: '1/1',
         // transform: 'scale(0)',
         // transition: '60ms transform ease-in-out',
-        boxShadow: `inset 16px 16px ${hsl(
+        boxShadow: `inset 1rem 1rem ${hsl(
           colorThemeVars.accent.h,
           colorThemeVars.accent.s,
           colorThemeVars.accent.l,
