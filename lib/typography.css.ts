@@ -53,9 +53,6 @@ export const levelVariantClasses = styleVariants(
 );
 
 export const toneVariants = styleVariants(colorThemeVars.tones, (value) => ({
-  vars: {
-    // [toneH]: value.h,
-  },
   backgroundColor: hsl(value.h, 80, 80),
   borderColor: hsl(value.h, 60, 70),
   color: hsl(value.h, 100, 30),
