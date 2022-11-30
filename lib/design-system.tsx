@@ -33,7 +33,8 @@ export const DesignSystem: FC<
       // contrastScheme === 'more' && moreContrastClass,
       // contrastScheme === 'less' && lessContrastClass,
 
-      mediaPrefersColorSchemeClass,
+      (!colorScheme || colorScheme === 'auto') && mediaPrefersColorSchemeClass,
+
       colorScheme === 'dark' && darkClass,
       colorScheme === 'dark' &&
         contrastScheme === 'more' &&
@@ -41,6 +42,7 @@ export const DesignSystem: FC<
       colorScheme === 'dark' &&
         contrastScheme === 'less' &&
         darkLessContrastClass,
+
       colorScheme === 'light' && lightClass,
 
       className,
