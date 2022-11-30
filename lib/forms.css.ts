@@ -103,13 +103,13 @@ export const formInputRadioInput = style([
   },
 ]);
 
-const formInputSelectGridareaName = 's';
+const formInputSelectGridAreaName = 's';
 
 export const formInputSelect = style([
   formInput,
   {
     cursor: 'pointer',
-    gridArea: formInputSelectGridareaName,
+    gridArea: formInputSelectGridAreaName,
   },
 ]);
 
@@ -117,7 +117,7 @@ const formInputSelectWrapper = style([
   // formInput,
   {
     display: 'grid',
-    gridTemplateAreas: JSON.stringify(formInputSelectGridareaName),
+    gridTemplateAreas: JSON.stringify(formInputSelectGridAreaName),
     // padding: 0,
   },
 ]);
@@ -135,7 +135,7 @@ export const formInputSelectWrapperSingle = style([
     alignItems: 'center',
     selectors: {
       '&::after': {
-        gridArea: formInputSelectGridareaName,
+        gridArea: formInputSelectGridAreaName,
         content: JSON.stringify(''),
         justifySelf: 'flex-end',
         width: genericVars.space.standard,
