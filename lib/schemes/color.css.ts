@@ -136,15 +136,14 @@ const lightStyleRule: ComplexStyleRule = {
 };
 
 export const mediaPrefersColorSchemeClass = style({
-  ...lightStyleRule,
-
-  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.bg.l),
-  color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
-
   '@media': {
-    // '(prefers-color-scheme: light)': lightStyleRule,
-    // '(prefers-color-scheme: dark)': darkStyleRule,
+    '(prefers-color-scheme: light)': lightStyleRule,
+    '(prefers-color-scheme: dark)': darkStyleRule,
+  },
+});
 
+export const mediaPrefersContrastSchemeClass = style({
+  '@media': {
     '(prefers-color-scheme: dark) and (prefers-contrast-scheme: less)':
       darkStyleLessContrastRule,
     '(prefers-color-scheme: dark) and (prefers-contrast-scheme: more)':
@@ -153,6 +152,11 @@ export const mediaPrefersColorSchemeClass = style({
     // '(prefers-contrast-scheme: more)': moreContrastRule,
     // '(prefers-contrast-scheme: less)': lessContrastRule,
   },
+});
+
+export const defaultBgFgClass = style({
+  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.bg.l),
+  color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
 });
 
 export const darkMoreContrastClass = style(darkStyleMoreContrastRule);
