@@ -11,7 +11,7 @@ export const textClass = style({
 });
 
 export const secondaryClass = style({
-  color: hsl(0, 0, contrastSchemeVars.ink.l),
+  color: hsl(0, 0, contrastSchemeVars.fg2.l),
 });
 
 export const strongClass = style({
@@ -28,7 +28,12 @@ export const fontClass = styleVariants(genericVars.text.size, (value) => ({
 
 const levelVariants: Record<
   HeadingLevel,
-  { fontSize: string; fontWeight?: string; letterSpacing?: string }
+  {
+    fontSize: string;
+    fontWeight?: string;
+    letterSpacing?: string;
+    color?: string;
+  }
 > = {
   '1': {
     fontSize: genericVars.text.size.huge,
@@ -41,10 +46,17 @@ const levelVariants: Record<
   },
   '3': {
     fontSize: genericVars.text.size.medium,
+    fontWeight: genericVars.text.weight.bold,
+  },
+  '4': {
+    fontSize: genericVars.text.size.normal,
     fontWeight: genericVars.text.weight.semiBold,
   },
-  '4': { fontSize: genericVars.text.size.medium },
-  '5': { fontSize: genericVars.text.size.medium },
+  '5': {
+    fontSize: genericVars.text.size.normal,
+    fontWeight: genericVars.text.weight.semiBold,
+    color: hsl(0, 0, contrastSchemeVars.fg2.l),
+  },
 };
 
 export const levelVariantClasses = styleVariants(
