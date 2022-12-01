@@ -5,6 +5,7 @@ import { hsl } from './utils.js';
 
 export const formInput = style({
   padding: genericVars.space.small,
+  borderColor: hsl(0, 0, contrastSchemeVars.fg2.l),
   borderStyle: 'solid',
   borderWidth: genericVars.border.weight.normal,
   borderRadius: genericVars.radius.standard,
@@ -19,7 +20,7 @@ export const formInput = style({
       backgroundColor: 'transparent',
     },
     '&::placeholder': {
-      color: hsl(0, 0, contrastSchemeVars.ink.l),
+      color: hsl(0, 0, contrastSchemeVars.fg2.l),
     },
   },
 });
