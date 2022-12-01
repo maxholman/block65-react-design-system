@@ -64,18 +64,20 @@ export const Text: FC<
 export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
   className,
   ...props
-}) => <Box component="span" {...props} className={strongClass} />;
+}) => <Box component="span" {...props} className={[strongClass, className]} />;
 
 export const Code: FC<BoxBasedComponentProps<'span'>> = ({
   className,
   ...props
-}) => <Box component="span" {...props} className={codeClass} />;
+}) => <Box component="span" {...props} className={[codeClass, className]} />;
 
 export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
   className,
   align,
   ...props
-}) => <Box component="span" className={secondaryClass} {...props} />;
+}) => (
+  <Box component="span" className={[secondaryClass, className]} {...props} />
+);
 
 export const Callout: FC<
   BoxBasedComponentProps<
