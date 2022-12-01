@@ -1,7 +1,14 @@
 import { ClassValue, clsx } from 'clsx';
 import { createElement, forwardRef, PropsWithChildren, ReactNode } from 'react';
 import type { Merge } from 'type-fest';
-import { marginVariants, paddingVariants } from './core.css.js';
+import {
+  marginBlockVariants,
+  marginInlineVariants,
+  marginVariants,
+  paddingBlockVariants,
+  paddingInlineVariants,
+  paddingVariants,
+} from './core.css.js';
 import { Align, alignItems } from './layout.css.js';
 import { Tooltip } from './tooltip.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
@@ -18,7 +25,11 @@ export type BoxBasedComponentProps<
       component?: T;
       align?: Align | undefined;
       margin?: Space | undefined;
+      marginBlock?: Space | undefined;
+      marginInline?: Space | undefined;
       padding?: Space | undefined;
+      paddingBlock?: Space | undefined;
+      paddingInline?: Space | undefined;
       className?: ClassValue;
       tooltip?: ReactNode;
       // tone
@@ -34,7 +45,11 @@ function BoxInner<T extends keyof ReactHTMLAttributesHacked = 'div'>(
     className,
     align,
     margin,
+    marginBlock,
+    marginInline,
     padding,
+    paddingBlock,
+    paddingInline,
     tooltip,
     ...props
   }: BoxBasedComponentProps<T>,
@@ -47,7 +62,11 @@ function BoxInner<T extends keyof ReactHTMLAttributesHacked = 'div'>(
       className: clsx(
         align && alignItems[align],
         margin && marginVariants[margin],
+        marginBlock && marginBlockVariants[marginBlock],
+        marginInline && marginInlineVariants[marginInline],
         padding && paddingVariants[padding],
+        paddingBlock && paddingBlockVariants[paddingBlock],
+        paddingInline && paddingInlineVariants[paddingInline],
         className,
       ),
       ref,
