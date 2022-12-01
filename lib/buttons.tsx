@@ -54,8 +54,8 @@ export const Button: FC<
     {...props}
   >
     <Inline
-      space="small"
-      className={clsx(busy && visiblyHiddenClass)}
+      space={compact ? 'tiny' : 'small'}
+      className={busy && visiblyHiddenClass}
       aria-hidden={busy || undefined}
     >
       {icon && <span className={iconClass}>{icon}</span>}
