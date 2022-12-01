@@ -66,6 +66,9 @@ export const contrastSchemeVars = createThemeContract({
   fg: {
     l: '',
   },
+  fg2: {
+    l: '',
+  },
   ink: {
     l: '',
   },
@@ -78,8 +81,11 @@ const lightSchemeVars = assignVars(contrastSchemeVars, {
   fg: {
     l: '20%',
   },
-  ink: {
+  fg2: {
     l: '60%',
+  },
+  ink: {
+    l: '80%',
   },
 });
 
@@ -89,6 +95,9 @@ const darkSchemeVars = assignVars(contrastSchemeVars, {
   },
   fg: {
     l: '85%',
+  },
+  fg2: {
+    l: '45%',
   },
   ink: {
     l: '45%',
@@ -102,6 +111,9 @@ const darkSchemeMoreContrastVars = assignVars(contrastSchemeVars, {
   fg: {
     l: '100%',
   },
+  fg2: {
+    l: '85%',
+  },
   ink: {
     l: '85%',
   },
@@ -112,6 +124,9 @@ const darkLessContrastVars = assignVars(contrastSchemeVars, {
     l: '10%',
   },
   fg: {
+    l: '50%',
+  },
+  fg2: {
     l: '50%',
   },
   ink: {
