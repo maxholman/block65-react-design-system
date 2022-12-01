@@ -3,12 +3,12 @@ import { Box } from './core.js';
 import { genericThemeClass, sansSerifFontStyle } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import {
-  defaultBgFgClass,
   ColorScheme,
   ContrastScheme,
   darkClass,
   darkLessContrastClass,
   darkMoreContrastClass,
+  defaultBgFgClass,
   defaultColorThemeClass,
   lightClass,
   lightLessContrastClass,
