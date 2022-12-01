@@ -108,6 +108,9 @@ export const ButtonsPage: FC = () => (
         <Button compact disabled variant="subtle">
           Subtle
         </Button>
+        <Button compact icon={<CrescentMoonIcon />}>
+          Button
+        </Button>
       </Inline>
     </Block>
   </Panel>
