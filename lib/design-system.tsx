@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren } from 'react';
 import { Box } from './core.js';
-import { genericThemeClass, sansSerifFontStyle } from './design-system.css.js';
+import { genericThemeClass } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import {
   ColorScheme,
@@ -39,7 +39,6 @@ export const DesignSystem: FC<
       component="div"
       className={[
         resetClass,
-        sansSerifFontStyle,
         genericThemeClass,
 
         // color theme

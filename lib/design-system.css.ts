@@ -1,4 +1,4 @@
-import { createTheme, createThemeContract, style } from '@vanilla-extract/css';
+import { createTheme, createThemeContract } from '@vanilla-extract/css';
 
 export const genericVars = createThemeContract({
   text: {
@@ -16,8 +16,8 @@ export const genericVars = createThemeContract({
       light: 'text-weight-light',
       normal: 'text-weight-normal',
       medium: 'text-weight-medium',
-      bold: 'text-weight-bold',
       semiBold: 'text-weight-semi-bold',
+      bold: 'text-weight-bold',
       heavy: 'text-weight-heavy',
     },
     lineHeight: {
@@ -102,8 +102,4 @@ export const genericThemeClass = createTheme(genericVars, {
     large: '1.5rem',
     huge: '2rem',
   },
-});
-
-export const sansSerifFontStyle = style({
-  fontFamily: 'sans-serif',
 });
