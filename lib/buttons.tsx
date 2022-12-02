@@ -12,6 +12,8 @@ import {
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
 import { Inline } from './layout.js';
+import type { Tone } from './schemes/color.css.js';
+import { toneVariants } from './typography.css.js';
 
 export type ButtonCommonProps = {
   className?: ClassValue;
@@ -20,6 +22,7 @@ export type ButtonCommonProps = {
   compact?: boolean;
   align?: Align;
   inline?: boolean;
+  tone?: Tone;
 };
 
 export type ButtonProps = ButtonCommonProps & {
@@ -33,6 +36,7 @@ export const Button: FC<
 > = ({
   component = 'button',
   variant = 'standard',
+  tone,
   compact,
   busy,
   align,
@@ -48,6 +52,7 @@ export const Button: FC<
       className,
       buttonVariantClasses[variant],
       busy && busyButtonClass,
+      tone && toneVariants[tone],
       compact && compactButton,
       inline && inlineBleedClass,
     )}
