@@ -22,10 +22,13 @@ export const TypographyPage: FC = () => (
     </Block>
     <Block>
       <Heading level="1">Heading 1</Heading>
-      <Divider />
+      <Text>Normal Text</Text>
       <Heading level="2">Heading 2</Heading>
+      <Text>Normal Text</Text>
       <Heading level="3">Heading 3</Heading>
+      <Text>Normal Text</Text>
       <Heading level="4">Heading 4</Heading>
+      <Text>Normal Text</Text>
       <Heading level="5">Heading 5</Heading>
       <Text>
         Normal Text looks like this, and <Secondary>secondary text</Secondary>{' '}
