@@ -31,14 +31,14 @@ export const FormsPage: FC = () => (
       <Block space="large">
         <Heading level="1">{lorem.generateSentences(1)}</Heading>
 
-        <Inline space="standard">
+        <Inline space="medium">
           <Text>{lorem.generateParagraphs(1)}</Text>
           <Text>{lorem.generateParagraphs(1)}</Text>
           <Text>{lorem.generateParagraphs(1)}</Text>
         </Inline>
       </Block>
 
-      <Block space="standard" align="center">
+      <Block space="medium" align="center">
         <Heading level="2">lorem.generateSentences(1)</Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
         <Text>{lorem.generateParagraphs(1)}</Text>

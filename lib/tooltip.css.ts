@@ -13,7 +13,7 @@ export const tooltipClass = style({
   fontWeight: genericVars.text.weight.bold,
   fontFamily: 'sans-serif',
   padding: `${genericVars.space.tiny} ${genericVars.space.small}`,
-  borderRadius: genericVars.radius.standard,
+  borderRadius: genericVars.radius.medium,
   fontSize: genericVars.text.size.small,
   pointerEvents: 'none',
   width: 'max-content',

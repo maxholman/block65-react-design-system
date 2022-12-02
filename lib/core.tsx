@@ -13,7 +13,7 @@ import { Align, alignItems } from './layout.css.js';
 import { Tooltip } from './tooltip.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
-export type Space = 'none' | 'large' | 'small' | 'tiny' | 'huge' | 'standard';
+export type Space = 'none' | 'large' | 'small' | 'tiny' | 'huge' | 'medium';
 
 export type BoxBasedComponentProps<
   T extends keyof ReactHTMLAttributesHacked,

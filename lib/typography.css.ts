@@ -69,7 +69,7 @@ export const toneVariants = styleVariants(colorThemeVars.tones, (value) => ({
   borderColor: hsl(value.h, 60, 70),
   color: hsl(value.h, 100, 30),
   padding: `${genericVars.space.tiny} ${genericVars.space.tiny}`,
-  borderRadius: genericVars.radius.standard,
+  borderRadius: genericVars.radius.medium,
 }));
 
 export const calloutClass = style({

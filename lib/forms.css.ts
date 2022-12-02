@@ -8,7 +8,7 @@ export const formInput = style({
   borderColor: hsl(0, 0, contrastSchemeVars.fg2.l),
   borderStyle: 'solid',
   borderWidth: genericVars.border.weight.normal,
-  borderRadius: genericVars.radius.standard,
+  borderRadius: genericVars.radius.medium,
   fontSize: genericVars.text.size.normal,
   selectors: {
     '&[readonly]': {
@@ -139,8 +139,8 @@ export const formInputSelectWrapperSingle = style([
         gridArea: formInputSelectGridAreaName,
         content: JSON.stringify(''),
         justifySelf: 'flex-end',
-        width: genericVars.space.standard,
-        marginRight: genericVars.space.standard,
+        width: genericVars.space.medium,
+        marginRight: genericVars.space.medium,
         aspectRatio: '2/1',
         backgroundColor: 'currentColor',
         clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',

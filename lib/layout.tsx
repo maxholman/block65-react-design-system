@@ -19,7 +19,7 @@ export type BlockProps<T extends keyof ReactHTMLAttributesHacked> =
 
 export function Block<T extends keyof ReactHTMLAttributesHacked = 'div'>({
   component = 'div',
-  space = 'standard',
+  space = 'medium',
   className,
   ...props
 }: BlockProps<T>) {
@@ -42,7 +42,7 @@ export type InlineProps<T extends keyof ReactHTMLAttributesHacked> =
 
 export function Inline<T extends keyof ReactHTMLAttributesHacked = 'span'>({
   component = 'span',
-  space = 'standard',
+  space = 'medium',
   className,
   align,
   ...props
@@ -71,7 +71,7 @@ export type GridProps<T extends keyof ReactHTMLAttributesHacked> =
 
 export function Grid<T extends keyof ReactHTMLAttributesHacked = 'div'>({
   component,
-  space = 'standard',
+  space = 'medium',
   className,
   ...props
 }: GridProps<T>) {

@@ -6,8 +6,8 @@ import { hsl } from './utils.js';
 export type PanelVariant = 'standard' | 'ghost' | 'subtle';
 
 export const panelClass = style({
-  borderRadius: genericVars.radius.standard,
-  padding: genericVars.space.standard,
+  borderRadius: genericVars.radius.medium,
+  padding: genericVars.space.medium,
   borderWidth: genericVars.border.weight.normal,
   borderStyle: 'solid',
   borderColor: 'transparent',
