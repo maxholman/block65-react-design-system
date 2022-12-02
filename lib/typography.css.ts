@@ -37,12 +37,13 @@ const levelVariants: Record<
 > = {
   '1': {
     fontSize: genericVars.text.size.huge,
-    fontWeight: genericVars.text.weight.heavy,
+    fontWeight: genericVars.text.weight.bold,
     letterSpacing: '-0.05rem',
   },
   '2': {
     fontSize: genericVars.text.size.large,
     fontWeight: genericVars.text.weight.bold,
+    letterSpacing: '-0.05rem',
   },
   '3': {
     fontSize: genericVars.text.size.medium,
@@ -50,11 +51,11 @@ const levelVariants: Record<
   },
   '4': {
     fontSize: genericVars.text.size.normal,
-    fontWeight: genericVars.text.weight.semiBold,
+    fontWeight: genericVars.text.weight.bold,
   },
   '5': {
     fontSize: genericVars.text.size.normal,
-    fontWeight: genericVars.text.weight.semiBold,
+    fontWeight: genericVars.text.weight.medium,
     color: hsl(0, 0, contrastSchemeVars.fg2.l),
   },
 };
