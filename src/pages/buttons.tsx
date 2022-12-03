@@ -5,6 +5,7 @@ import { ButtonLink } from '../../lib/buttons.js';
 import { Panel } from '../../lib/panel.js';
 import { Heading, Text } from '../../lib/typography.js';
 import { SunIcon, CrescentMoonIcon } from '../icons.js';
+import { Divider } from '../../lib/decorative.js';
 
 export const ButtonsPage: FC = () => (
   <Panel variant="ghost" space="huge">
@@ -111,6 +112,27 @@ export const ButtonsPage: FC = () => (
         <Button compact icon={<CrescentMoonIcon />}>
           Button
         </Button>
+      </Inline>
+    </Block>
+    <Divider />
+    <Block>
+      <Heading>Hello</Heading>
+      <Text>Buttons in context</Text>
+      <Inline>
+        <ButtonLink tone="critical" icon={<CrescentMoonIcon />}>
+          Eject
+        </ButtonLink>
+      </Inline>
+      <Divider marginBlock="huge" />
+
+      <Heading>Hello</Heading>
+      <Text>Buttons in context</Text>
+      <Inline>
+        <Text>Like this</Text>
+        <ButtonLink tone="critical" icon={<CrescentMoonIcon />}>
+          Eject
+        </ButtonLink>
+        <Text>and like this</Text>
       </Inline>
     </Block>
   </Panel>

@@ -16,7 +16,7 @@ import { Heading, Secondary, Strong, Text } from '../../lib/typography.js';
 
 export const FormsPage: FC = () => (
   <Panel variant="ghost">
-    <Form space="huge">
+    <Form>
       <Heading level="1">Best form eva</Heading>
       <FormInput
         type="text"
