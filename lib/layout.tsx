@@ -42,7 +42,7 @@ export type InlineProps<T extends keyof ReactHTMLAttributesHacked> =
 
 export function Inline<T extends keyof ReactHTMLAttributesHacked = 'span'>({
   component = 'span',
-  space = 'medium',
+  space = 'small',
   className,
   align,
   ...props
