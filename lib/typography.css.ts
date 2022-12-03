@@ -66,11 +66,9 @@ export const levelVariantClasses = styleVariants(
 );
 
 export const toneVariants = styleVariants(colorThemeVars.tones, (value) => ({
-  backgroundColor: hsl(value.h, 80, 80),
+  backgroundColor: hsl(value.h, 100, 80),
   borderColor: hsl(value.h, 60, 70),
-  color: hsl(value.h, 100, 30),
-  padding: `${genericVars.space.tiny} ${genericVars.space.tiny}`,
-  borderRadius: genericVars.radius.medium,
+  color: hsl(value.h, 20, 20),
 }));
 
 export const calloutClass = style({
