@@ -56,7 +56,7 @@ export const genericThemeClass = createTheme(genericVars, {
   text: {
     size: {
       tiny: '0.7rem',
-      small: '0.75rem',
+      small: '0.8rem',
       normal: '1rem',
       medium: '1.25rem',
       large: '1.75rem',
@@ -96,8 +96,8 @@ export const genericThemeClass = createTheme(genericVars, {
   },
   space: {
     none: '0',
-    tiny: '0.2rem',
-    small: '0.6rem',
+    tiny: '0.5rem',
+    small: '0.75rem',
     medium: '1rem',
     large: '1.5rem',
     huge: '2rem',
