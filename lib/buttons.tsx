@@ -59,7 +59,7 @@ export const Button: FC<
     {...props}
   >
     <Inline
-      space={compact ? 'tiny' : 'small'}
+      space="tiny"
       className={busy && visiblyHiddenClass}
       aria-hidden={busy || undefined}
     >

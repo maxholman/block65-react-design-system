@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
@@ -21,7 +21,12 @@ export const iconClass = style({
   justifyContent: 'center',
 });
 
+const basePadding = createVar();
+
 const base = style({
+  vars: {
+    [basePadding]: genericVars.space.small,
+  },
   cursor: 'pointer',
   borderStyle: 'solid',
   display: 'flex',
@@ -29,7 +34,7 @@ const base = style({
   borderRadius: genericVars.radius.medium,
   flexDirection: 'row',
   alignItems: 'center',
-  padding: `${genericVars.space.small} ${genericVars.space.medium}`,
+  padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
   justifyContent: 'center',
   fontSize: genericVars.text.size.normal,
   userSelect: 'none',
@@ -47,7 +52,10 @@ const base = style({
 });
 
 export const compactButton = style({
-  padding: `${genericVars.space.tiny} ${genericVars.space.small}`,
+  vars: {
+    [basePadding]: genericVars.space.tiny,
+  },
+  // padding: `${genericVars.space.tiny} ${genericVars.space.small}`,
   fontSize: genericVars.text.size.small,
 });
 
