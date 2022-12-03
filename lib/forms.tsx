@@ -2,6 +2,7 @@ import type { ClassValue } from 'clsx';
 import {
   Children,
   cloneElement,
+  ComponentProps,
   FC,
   InputHTMLAttributes,
   isValidElement,
@@ -16,14 +17,14 @@ import {
   fieldLabelTertiaryStyle,
   fieldLabelWrapperStyle,
   formInput,
-  formInputCheckbox,
+  formInputCheckboxInput,
   formInputRadioInput,
   formInputSelect,
   formInputSelectWrapperMultiple,
   formInputSelectWrapperSingle,
   inputLabelStyle,
-  formInputRadioWrapper,
-  formInputRadioLabel,
+  formInputCheckRadioWrapper,
+  formInputCheckRadioLabel,
 } from './forms.css.js';
 import { Block, BlockProps, Grid, Inline } from './layout.js';
 import type { Tone } from './schemes/color.css.js';
@@ -94,6 +95,26 @@ export const FormInputLabel: FC<
   </Inline>
 );
 
+function formInputProps(
+  type: ComponentProps<typeof FormInput>['type'],
+): Partial<InputHTMLAttributes<HTMLInputElement>> | void {
+  switch (type) {
+    case 'email':
+      return {
+        autoComplete: 'email',
+        minLength: 6,
+        maxLength: 320,
+        pattern: '^[^@]+@[^@]+.[^@]+$',
+        placeholder: 'email@example.com',
+      };
+    case 'password':
+      return {
+        type,
+        className: formInput,
+      };
+  }
+}
+
 export const FormInput: FC<
   PropsWithChildren<
     InputHTMLAttributes<HTMLInputElement> & {
@@ -122,17 +143,21 @@ export const FormInput: FC<
 }) => {
   const id = useId();
 
+  const inputTypeProps = formInputProps(props.type);
+
   return (
     <Block className={className} space="small">
-      <FormFieldLabel
-        htmlFor={id}
-        secondary={secondaryLabel}
-        tertiary={tertiaryLabel}
-      >
-        {label}
-      </FormFieldLabel>
+      {label && (
+        <FormFieldLabel
+          htmlFor={id}
+          secondary={secondaryLabel}
+          tertiary={tertiaryLabel}
+        >
+          {label}
+        </FormFieldLabel>
+      )}
       {description}
-      <input className={formInput} id={id} {...props} />
+      <input className={formInput} id={id} {...inputTypeProps} {...props} />
       {message && (
         <Text size="small" tone={messageTone}>
           {messageTone ? message : <Secondary>{message}</Secondary>}
