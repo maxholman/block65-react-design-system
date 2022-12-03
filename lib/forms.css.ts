@@ -28,10 +28,9 @@ export const formInput = style({
 export const formInputCheckRadioBase = style([
   formInput,
   {
-    // transform: 'translateY(0.075em)', // magic number
+    padding: 'revert',
     cursor: 'pointer',
-    fontSize: '0.9em',
-    height: '0.65em',
+    height: genericVars.text.size.large,
     aspectRatio: '1/1',
     color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
     selectors: {
@@ -49,11 +48,11 @@ export const formInputCheckRadioBase = style([
       '&::before': {
         content: '""',
         fontSize: genericVars.text.size.normal,
-        height: '0.7rem', // careful with this as it causes the text to jump
+        height: '0.7em', // careful with this as it causes the text to jump
         aspectRatio: '1/1',
         // transform: 'scale(0)',
         // transition: '60ms transform ease-in-out',
-        boxShadow: `inset 1rem 1rem ${hsl(
+        boxShadow: `inset 1em 1em ${hsl(
           colorThemeVars.accent.h,
           colorThemeVars.accent.s,
           colorThemeVars.accent.l,
@@ -74,7 +73,16 @@ export const formInputCheckRadioBase = style([
   },
 ]);
 
-export const formInputCheckbox = style([
+export const formInputCheckRadioWrapper = style({
+  gridTemplateColumns: 'auto 1fr',
+});
+
+export const formInputCheckRadioLabel = style({
+  alignSelf: 'center',
+  gridColumn: 2,
+});
+
+export const formInputCheckboxInput = style([
   formInputCheckRadioBase,
   {
     selectors: {
@@ -90,15 +98,10 @@ export const formInputCheckbox = style([
 export const formInputRadioInput = style([
   formInputCheckRadioBase,
   {
-    gridColumn: 1,
     borderRadius: genericVars.radius.maximum,
     selectors: {
       '&::before': {
         borderRadius: genericVars.radius.maximum,
-      },
-      '&:checked': {
-        // covers a weird blowout when setting display to grid
-        width: '100%',
       },
     },
   },
@@ -168,12 +171,4 @@ export const fieldLabelTertiaryStyle = style({
 export const inputLabelStyle = style({
   cursor: 'pointer',
   // userSelect: 'none',
-});
-
-export const formInputRadioWrapper = style({
-  gridTemplateColumns: 'auto 1fr',
-});
-
-export const formInputRadioLabel = style({
-  gridColumn: 2,
 });

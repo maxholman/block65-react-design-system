@@ -203,9 +203,9 @@ export const FormInputRadio: FC<
   const id = useId();
 
   return (
-    <Grid space="small" className={formInputRadioWrapper}>
+    <Grid space="small" className={formInputCheckRadioWrapper}>
       <input className={formInputRadioInput} type="radio" id={id} {...props} />
-      <Block space="small" className={formInputRadioLabel}>
+      <Block space="small" className={formInputCheckRadioLabel}>
         <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
         {message && <Text size="small">{message}</Text>}
       </Block>
@@ -264,13 +264,18 @@ export const FormInputCheckbox: FC<
   const id = useId();
 
   return (
-    <Inline space="small" className={className}>
-      <input className={formInputCheckbox} type="checkbox" id={id} {...props} />
-      <Block space="small">
+    <Grid space="small" className={formInputCheckRadioWrapper}>
+      <input
+        className={formInputCheckboxInput}
+        type="checkbox"
+        id={id}
+        {...props}
+      />
+      <Block space="small" className={formInputCheckRadioLabel}>
         <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
-        <Text size="small">{message}</Text>
+        {message && <Text size="small">{message}</Text>}
       </Block>
-    </Inline>
+    </Grid>
   );
 };
 
