@@ -75,4 +75,5 @@ export const calloutClass = style({
   padding: genericVars.space.small,
   borderWidth: genericVars.border.weight.normal,
   borderStyle: 'solid',
+  borderRadius: genericVars.radius.medium,
 });
