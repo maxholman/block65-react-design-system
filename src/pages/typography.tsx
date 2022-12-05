@@ -44,19 +44,13 @@ export const TypographyPage: FC = () => (
       </Text>
       <Text>
         Sometimes I like to look at{' '}
-        <Link dest="/buttons">
-          <TextLink>button components</TextLink>
-        </Link>{' '}
-        on my computer.
+        <TextLink href="/buttons">button components</TextLink> on my computer.
       </Text>
     </Block>
     <Block>
       <Heading level="1">
         Sometimes I like to look at{' '}
-        <Link dest="/buttons">
-          <TextLink>button components</TextLink>
-        </Link>{' '}
-        on my computer.
+        <TextLink href="/buttons">button components</TextLink> on my computer.
       </Heading>
     </Block>
     <Callout tone="critical">
