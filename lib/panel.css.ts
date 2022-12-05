@@ -1,9 +1,14 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { colorThemeVars } from './schemes/color.css.js';
+import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export type PanelVariant = 'standard' | 'ghost' | 'subtle';
+export type PanelVariant =
+  | 'standard'
+  | 'ghost'
+  | 'subtle'
+  | 'neutral'
+  | 'transparent';
 
 export const panelClass = style({
   borderRadius: genericVars.radius.medium,
@@ -12,29 +17,48 @@ export const panelClass = style({
   borderStyle: 'solid',
   borderColor: 'transparent',
   flex: 1,
-  // transition: 'all 0.1s ease-in-out',
 });
 
-const panelVariants: Record<
+const variants: Record<
   PanelVariant,
   {
     backgroundColor?: string;
-    borderStyle?: string;
+    borderColor?: string;
   }
 > = {
   standard: {
-    borderStyle: 'none',
+    backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.bg.l),
+  },
+  neutral: {
+    backgroundColor: hsl(
+      colorThemeVars.accent.h,
+      0,
+      contrastSchemeVars.subtleBg.l,
+    ),
+    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.ink.l),
   },
   ghost: {
-    backgroundColor: 'unset',
+    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.ink.l),
   },
   subtle: {
-    borderStyle: 'none',
-    backgroundColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
+    backgroundColor: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      contrastSchemeVars.subtleBg.l,
+    ),
+    borderColor: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      contrastSchemeVars.ink.l,
+    ),
+  },
+  transparent: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
   },
 };
 
-export const panelVariantsClasses = styleVariants(panelVariants, (variant) => [
+export const panelVariantsClasses = styleVariants(variants, (variant) => [
   panelClass,
   variant,
 ]);
