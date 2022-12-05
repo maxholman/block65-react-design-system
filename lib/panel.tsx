@@ -10,5 +10,9 @@ export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
 }: BlockProps<T> & {
   variant?: PanelVariant;
 }) => (
-  <Block className={[className, panelVariantsClasses[variant]]} {...props} />
+  <Block
+    component={component}
+    className={[className, panelVariantsClasses[variant]]}
+    {...props}
+  />
 );
