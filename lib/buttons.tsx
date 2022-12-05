@@ -73,14 +73,12 @@ export const ButtonLink: FC<
   Omit<BoxBasedComponentProps<'a', ButtonProps>, 'component'> & {
     href?: string;
   }
-> = (props) => (
-  <Button component={'href' in props ? 'a' : 'span'} {...props}></Button>
-);
+> = (props) => <Button component={'href' in props ? 'a' : 'span'} {...props} />;
 
 export const ButtonIcon: FC<
   BoxBasedComponentProps<'button', ButtonIconProps> & { label: string }
 > = ({ children, label, ...props }) => (
   <Button aria-label={label} {...props}>
-    {<span className={iconClass}>{children}</span>}
+    <span className={iconClass}>{children}</span>
   </Button>
 );

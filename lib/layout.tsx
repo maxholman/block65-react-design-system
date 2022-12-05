@@ -17,20 +17,18 @@ export type BlockProps<T extends keyof ReactHTMLAttributesHacked> =
     }
   >;
 
-export function Block<T extends keyof ReactHTMLAttributesHacked = 'div'>({
+export const Block = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   component = 'div',
   space = 'medium',
   className,
   ...props
-}: BlockProps<T>) {
-  return (
-    <Box
-      {...props}
-      className={[flexColumnVariants[space], className]}
-      component={component}
-    />
-  );
-}
+}: BlockProps<T>) => (
+  <Box
+    {...props}
+    className={[flexColumnVariants[space], className]}
+    component={component}
+  />
+);
 
 export type InlineProps<T extends keyof ReactHTMLAttributesHacked> =
   BoxBasedComponentProps<
@@ -40,26 +38,24 @@ export type InlineProps<T extends keyof ReactHTMLAttributesHacked> =
     }
   >;
 
-export function Inline<T extends keyof ReactHTMLAttributesHacked = 'span'>({
+export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'span'>({
   component = 'span',
   space = 'small',
   className,
   align,
   ...props
-}: InlineProps<T>) {
-  return (
-    <Box
-      className={clsx(
-        inlineClass,
-        space && flexRowVariants[space],
-        align && inlineAlignSelf[align],
-        className,
-      )}
-      component={component}
-      {...props}
-    />
-  );
-}
+}: InlineProps<T>) => (
+  <Box
+    className={clsx(
+      inlineClass,
+      space && flexRowVariants[space],
+      align && inlineAlignSelf[align],
+      className,
+    )}
+    component={component}
+    {...props}
+  />
+);
 
 export type GridProps<T extends keyof ReactHTMLAttributesHacked> =
   BoxBasedComponentProps<

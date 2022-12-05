@@ -36,9 +36,9 @@ export function augmentChildren<T extends ReactNode>(
               className: clsx(props['className'], child.props.className),
             }),
           },
-          child.type === Fragment
+          ...(child.type === Fragment
             ? augmentChildren(child.props.children, props)
-            : child.props.children,
+            : child.props.children),
         )
       : child,
   ) as T;

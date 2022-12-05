@@ -63,7 +63,7 @@ export const FormsPage: FC = () => (
           </Text>
         }
       >
-        <option></option>
+        <option />
         <option value="Jan">Jan</option>
         <option value="Feb">Feb</option>
         <option value="Mar">Mar</option>

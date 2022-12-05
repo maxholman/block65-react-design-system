@@ -36,7 +36,7 @@ export const App: FC = () => {
           <Block padding="huge">
             <Panel variant="subtle">
               <Inline>
-                <FormInputRadioGroup name={'color-scheme'}>
+                <FormInputRadioGroup name="color-scheme">
                   <Heading level="3">Color Scheme</Heading>
                   <FormInputRadio
                     // inline
@@ -59,7 +59,7 @@ export const App: FC = () => {
                 </FormInputRadioGroup>
               </Inline>
               <Inline>
-                <FormInputRadioGroup name={'contrast-scheme'}>
+                <FormInputRadioGroup name="contrast-scheme">
                   <Heading level="3">Contrast Scheme</Heading>
                   <FormInputRadio
                     // inline
