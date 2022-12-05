@@ -1,3 +1,4 @@
+export * from './badges.js';
 export * from './buttons.js';
 export * from './core.js';
 export * from './decorative.js';
