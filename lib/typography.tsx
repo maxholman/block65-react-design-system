@@ -47,9 +47,16 @@ export const Text: FC<
       }
     >
   >
-> = ({ className, size = 'normal', tone, align, ...props }) => (
+> = ({
+  className,
+  component = 'p',
+  size = 'normal',
+  tone,
+  align,
+  ...props
+}) => (
   <Box
-    component="p"
+    component={component}
     className={[
       textClass,
       fontClass[size],
