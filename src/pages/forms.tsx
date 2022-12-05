@@ -84,7 +84,7 @@ export const FormsPage: FC = () => (
         <option value="Apr">Apr</option>
       </FormSelect>
       <FormInputRadioGroup label="Your age" name="age">
-        <FormInputRadio label="Under 18" />
+        <FormInputRadio label="Under 18" message="Wah so young" />
         <FormInputRadio label="18-25" defaultChecked />
         <FormInputRadio label="35+" />
         <FormInputRadio label="If you are older than 35, then you will have to choose this option which is wrapping over multiple lines" />

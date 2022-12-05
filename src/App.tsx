@@ -7,17 +7,20 @@ import {
   DesignSystem,
   FormInputRadio,
   FormInputRadioGroup,
+  Grid,
   Heading,
   Inline,
   Panel,
   Text,
   TextLink,
 } from '../lib/main.js';
+import { BadgesPage } from './pages/badges.js';
 // import 'the-new-css-reset';
 import { ButtonsPage } from './pages/buttons.js';
 import { CorePage } from './pages/core.js';
 import { FormsPage } from './pages/forms.js';
 import { GridPage } from './pages/grid.js';
+import { ListPage } from './pages/list.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
 
@@ -34,14 +37,14 @@ export const App: FC = () => {
       <Router>
         <Block style={{ minHeight: '100vh' }}>
           <Block padding="huge">
-            <Panel variant="subtle">
+            <Grid>
               <Inline>
                 <FormInputRadioGroup name="color-scheme">
                   <Heading level="3">Color Scheme</Heading>
                   <FormInputRadio
                     // inline
                     label="auto"
-                    checked={!!colorScheme || colorScheme === 'auto'}
+                    checked={!colorScheme || colorScheme === 'auto'}
                     onChange={() => setColorScheme('auto')}
                   />
                   <FormInputRadio
@@ -81,7 +84,7 @@ export const App: FC = () => {
                   />
                 </FormInputRadioGroup>
               </Inline>
-            </Panel>
+            </Grid>
 
             <Panel space="huge" variant="ghost">
               <Inline align="center">
@@ -105,6 +108,12 @@ export const App: FC = () => {
                 </Link>
                 <Link dest="/buttons">
                   <TextLink>Buttons</TextLink>
+                </Link>
+                <Link dest="/list">
+                  <TextLink>List</TextLink>
+                </Link>
+                <Link dest="/badges">
+                  <TextLink>Badges</TextLink>
                 </Link>
               </Inline>
             </Panel>
@@ -133,6 +142,12 @@ export const App: FC = () => {
                 </Route>
                 <Route path="/buttons">
                   <ButtonsPage />
+                </Route>
+                <Route path="/list">
+                  <ListPage />
+                </Route>
+                <Route path="/badges">
+                  <BadgesPage />
                 </Route>
                 <Route>
                   <Heading>404</Heading>
