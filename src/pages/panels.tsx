@@ -1,6 +1,5 @@
 import type { FC } from 'react';
-import { Panel } from '../../lib/panel.js';
-import { Heading, Text } from '../../lib/typography.js';
+import { Heading, Panel, Text } from '../../lib/main.js';
 
 export const PanelsPage: FC = () => (
   <Panel variant="ghost">

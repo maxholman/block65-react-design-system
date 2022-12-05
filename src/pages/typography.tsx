@@ -1,16 +1,15 @@
-import { Link } from '@block65/mrr';
 import type { FC } from 'react';
-import { Divider } from '../../lib/decorative.js';
-import { Block } from '../../lib/layout.js';
-import { TextLink } from '../../lib/links.js';
-import { Panel } from '../../lib/panel.js';
 import {
+  Block,
   Callout,
+  Divider,
   Heading,
+  Panel,
   Secondary,
   Strong,
   Text,
-} from '../../lib/typography.js';
+  TextLink,
+} from '../../lib/main.js';
 
 export const TypographyPage: FC = () => (
   <Panel variant="ghost" space="huge">

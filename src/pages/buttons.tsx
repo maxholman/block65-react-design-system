@@ -1,11 +1,15 @@
 import type { FC } from 'react';
-import { Button } from '../../lib/buttons.js';
-import { Block, Inline } from '../../lib/layout.js';
-import { ButtonLink } from '../../lib/buttons.js';
-import { Panel } from '../../lib/panel.js';
-import { Heading, Text } from '../../lib/typography.js';
-import { SunIcon, CrescentMoonIcon } from '../icons.js';
-import { Divider } from '../../lib/decorative.js';
+import {
+  Block,
+  Button,
+  ButtonLink,
+  Divider,
+  Heading,
+  Inline,
+  Panel,
+  Text,
+} from '../../lib/main.js';
+import { CrescentMoonIcon, SunIcon } from '../icons.js';
 
 export const ButtonsPage: FC = () => (
   <Panel variant="ghost" space="huge">

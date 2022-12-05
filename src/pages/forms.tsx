@@ -1,6 +1,7 @@
 import type { FC } from 'react';
-import { Button } from '../../lib/buttons.js';
 import {
+  Block,
+  Button,
   Form,
   FormInput,
   FormInputCheckbox,
@@ -8,11 +9,13 @@ import {
   FormInputRadio,
   FormInputRadioGroup,
   FormSelect,
-} from '../../lib/forms.js';
-import { Block } from '../../lib/layout.js';
-import { TextLink } from '../../lib/links.js';
-import { Panel } from '../../lib/panel.js';
-import { Heading, Secondary, Strong, Text } from '../../lib/typography.js';
+  Heading,
+  Panel,
+  Secondary,
+  Strong,
+  Text,
+  TextLink,
+} from '../../lib/main.js';
 
 export const FormsPage: FC = () => (
   <Panel variant="ghost">
