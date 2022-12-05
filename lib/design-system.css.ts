@@ -3,6 +3,7 @@ import { createTheme, createThemeContract } from '@vanilla-extract/css';
 export const genericVars = createThemeContract({
   text: {
     size: {
+      nano: 'text-size-nano',
       tiny: 'text-size-tiny',
       small: 'text-size-small',
       normal: 'text-size-normal',
@@ -26,6 +27,7 @@ export const genericVars = createThemeContract({
   },
   border: {
     weight: {
+      hairline: 'border-weight-hairline',
       thin: 'border-weight-thin',
       normal: 'border-weight-normal',
       thick: 'border-weight-thick',
@@ -44,6 +46,7 @@ export const genericVars = createThemeContract({
   },
   space: {
     none: 'space-none',
+    nano: 'space-nano',
     tiny: 'space-tiny',
     small: 'space-small',
     medium: 'space-medium',
@@ -55,6 +58,7 @@ export const genericVars = createThemeContract({
 export const genericThemeClass = createTheme(genericVars, {
   text: {
     size: {
+      nano: '0.5rem',
       tiny: '0.7rem',
       small: '0.8rem',
       normal: '1rem',
@@ -78,7 +82,8 @@ export const genericThemeClass = createTheme(genericVars, {
   },
   border: {
     weight: {
-      thin: '0.05rem',
+      hairline: '0.075rem',
+      thin: '0.1rem',
       normal: '0.125rem',
       thick: '0.25rem',
     },
@@ -96,6 +101,7 @@ export const genericThemeClass = createTheme(genericVars, {
   },
   space: {
     none: '0',
+    nano: '0.25rem',
     tiny: '0.5rem',
     small: '0.75rem',
     medium: '1rem',
