@@ -1,4 +1,4 @@
-import type { ClassValue } from 'clsx';
+import { ClassValue, clsx } from 'clsx';
 import {
   Children,
   cloneElement,
@@ -22,6 +22,7 @@ import {
   formInputCheckRadioLabel,
   formInputCheckRadioMessage,
   formInputCheckRadioWrapper,
+  formInputNotCheckRadio,
   formInputRadioInput,
   formInputSelect,
   formInputSelectWrapperMultiple,
@@ -162,7 +163,12 @@ export const FormInput: FC<
         </FormFieldLabel>
       )}
       {description}
-      <input className={formInput} id={id} {...inputTypeProps} {...props} />
+      <input
+        className={clsx(formInput, formInputNotCheckRadio)}
+        id={id}
+        {...inputTypeProps}
+        {...props}
+      />
       {message && (
         <Text size="small" tone={messageTone}>
           {messageTone ? message : <Secondary>{message}</Secondary>}
@@ -211,7 +217,11 @@ export const FormSelect: FC<
             : formInputSelectWrapperSingle
         }
       >
-        <select className={formInputSelect} id={id} {...props} />
+        <select
+          className={clsx(formInputSelect, formInputNotCheckRadio)}
+          id={id}
+          {...props}
+        />
       </div>
       {message}
     </Block>

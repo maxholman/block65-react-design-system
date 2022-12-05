@@ -1,9 +1,15 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
+const borderWidthVar = createVar();
+
 export const formInput = style({
+  vars: {
+    [borderWidthVar]: genericVars.border.weight.hairline,
+  },
   padding: genericVars.space.small,
   borderColor: hsl(0, 0, contrastSchemeVars.fg2.l),
   borderStyle: 'solid',
@@ -25,6 +31,20 @@ export const formInput = style({
   },
 });
 
+export const formInputNotCheckRadio = style({
+  selectors: {
+    '&:focus-visible': {
+      outline: 'max(2px, 0.15em) solid currentColor',
+      outlineColor: hsl(
+        colorThemeVars.accent.h,
+        colorThemeVars.accent.s,
+        colorThemeVars.accent.l,
+      ),
+      outlineOffset: calc(borderWidthVar).negate().toString(),
+    },
+  },
+});
+
 export const formInputCheckRadioBase = style([
   formInput,
   {
@@ -33,16 +53,18 @@ export const formInputCheckRadioBase = style([
     fontSize: '1em',
     height: genericVars.text.size.medium,
     aspectRatio: '1/1',
-    color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
-    // alignSelf: 'center',
-    lineHeight: 1.5,
+    color: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      contrastSchemeVars.fg.l,
+    ),
     // WARN: this is a bit hacky to get perfect alignment
     // and still support multiple lines for radio/check labels
     // I'm unsure how to deal with it correctly as it is linked to line-height
     // which doesnt apply to this input
     marginTop: '0.1em',
     selectors: {
-      '&:focus-visible,&.focus-visible': {
+      '&:focus-visible': {
         outline: 'max(2px, 0.15em) solid currentColor',
         outlineOffset: 'max(2px, 0.15em)',
       },
@@ -56,7 +78,7 @@ export const formInputCheckRadioBase = style([
       '&::before': {
         content: '""',
         fontSize: genericVars.text.size.normal,
-        height: '0.55em', // careful with this as it causes the text to jump
+        height: '0.5em', // careful with this as it causes the text to jump
         aspectRatio: '1/1',
         transform: 'scale(0)',
         transition: '100ms transform ease-in-out',
