@@ -1,4 +1,4 @@
-import type { ClassValue } from 'clsx';
+import { ClassValue, clsx } from 'clsx';
 import {
   Children,
   cloneElement,
@@ -12,21 +12,24 @@ import {
   SelectHTMLAttributes,
   useId,
 } from 'react';
+import type { Merge } from 'type-fest';
 import {
   fieldLabelStyle,
   fieldLabelTertiaryStyle,
   fieldLabelWrapperStyle,
   formInput,
   formInputCheckboxInput,
+  formInputCheckRadioLabel,
+  formInputCheckRadioMessage,
+  formInputCheckRadioWrapper,
+  formInputNotCheckRadio,
   formInputRadioInput,
   formInputSelect,
   formInputSelectWrapperMultiple,
   formInputSelectWrapperSingle,
   inputLabelStyle,
-  formInputCheckRadioWrapper,
-  formInputCheckRadioLabel,
 } from './forms.css.js';
-import { Block, BlockProps, Grid, Inline } from './layout.js';
+import { Block, BlockProps, Inline } from './layout.js';
 import type { Tone } from './schemes/color.css.js';
 import { Secondary, Strong, Text } from './typography.js';
 import {
@@ -112,6 +115,9 @@ function formInputProps(
         type,
         className: formInput,
       };
+    default: {
+      return {};
+    }
   }
 }
 
@@ -157,7 +163,12 @@ export const FormInput: FC<
         </FormFieldLabel>
       )}
       {description}
-      <input className={formInput} id={id} {...inputTypeProps} {...props} />
+      <input
+        className={clsx(formInput, formInputNotCheckRadio)}
+        id={id}
+        {...inputTypeProps}
+        {...props}
+      />
       {message && (
         <Text size="small" tone={messageTone}>
           {messageTone ? message : <Secondary>{message}</Secondary>}
@@ -206,37 +217,56 @@ export const FormSelect: FC<
             : formInputSelectWrapperSingle
         }
       >
-        <select className={formInputSelect} id={id} {...props} />
+        <select
+          className={clsx(formInputSelect, formInputNotCheckRadio)}
+          id={id}
+          {...props}
+        />
       </div>
       {message}
     </Block>
   );
 };
 
-export const FormInputRadio: FC<
+const FormInputCheckRadio: FC<
   PropsWithChildren<
-    Omit<
-      InputHTMLAttributes<HTMLInputElement> & {
+    Merge<
+      InputHTMLAttributes<HTMLInputElement>,
+      {
         label: ReactNode;
         className?: ClassValue;
         message?: ReactNode;
-      },
-      'type'
+        type: 'radio' | 'checkbox';
+      }
     >
   >
 > = ({ className, message, label, ...props }) => {
   const id = useId();
 
   return (
-    <Grid space="small" className={formInputCheckRadioWrapper}>
-      <input className={formInputRadioInput} type="radio" id={id} {...props} />
-      <Block space="small" className={formInputCheckRadioLabel}>
-        <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
-        {message && <Text size="small">{message}</Text>}
-      </Block>
-    </Grid>
+    <Block space="small" className={formInputCheckRadioWrapper}>
+      <input
+        id={id}
+        className={
+          props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput
+        }
+        {...props}
+      />
+      <FormInputLabel className={formInputCheckRadioLabel} htmlFor={id}>
+        {label}
+      </FormInputLabel>
+      {message && (
+        <Secondary className={formInputCheckRadioMessage} size="small">
+          {message}
+        </Secondary>
+      )}
+    </Block>
   );
 };
+
+export const FormInputRadio: FC<
+  Omit<ComponentProps<typeof FormInputCheckRadio>, 'type'>
+> = (props) => <FormInputCheckRadio type="radio" {...props} />;
 
 export const FormInputRadioGroup: FC<
   PropsWithChildren<
@@ -275,34 +305,8 @@ export const FormInputRadioGroup: FC<
 );
 
 export const FormInputCheckbox: FC<
-  PropsWithChildren<
-    Omit<
-      InputHTMLAttributes<HTMLInputElement> & {
-        label: ReactNode;
-        className?: ClassValue;
-        message?: ReactNode;
-      },
-      'type'
-    >
-  >
-> = ({ className, message, label, ...props }) => {
-  const id = useId();
-
-  return (
-    <Grid space="small" className={formInputCheckRadioWrapper}>
-      <input
-        className={formInputCheckboxInput}
-        type="checkbox"
-        id={id}
-        {...props}
-      />
-      <Block space="small" className={formInputCheckRadioLabel}>
-        <FormInputLabel htmlFor={id}>{label}</FormInputLabel>
-        {message && <Text size="small">{message}</Text>}
-      </Block>
-    </Grid>
-  );
-};
+  Omit<ComponentProps<typeof FormInputCheckRadio>, 'type'>
+> = (props) => <FormInputCheckRadio type="checkbox" {...props} />;
 
 export const FormInputCheckboxGroup: FC<
   PropsWithChildren<

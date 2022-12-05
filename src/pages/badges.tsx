@@ -1,9 +1,13 @@
 import type { FC } from 'react';
-import { Badge } from '../../lib/badges.js';
-import { Block, Inline } from '../../lib/layout.js';
-import { Grid } from '../../lib/main.js';
-import { Panel } from '../../lib/panel.js';
-import { Heading, Text } from '../../lib/typography.js';
+import {
+  Badge,
+  Block,
+  Grid,
+  Heading,
+  Inline,
+  Panel,
+  Text,
+} from '../../lib/main.js';
 
 export const BadgesPage: FC = () => (
   <Panel variant="ghost" space="huge">

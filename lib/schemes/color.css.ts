@@ -63,6 +63,9 @@ export const contrastSchemeVars = createThemeContract({
   bg: {
     l: '',
   },
+  subtleBg: {
+    l: '',
+  },
   fg: {
     l: '',
   },
@@ -71,83 +74,87 @@ export const contrastSchemeVars = createThemeContract({
   },
   ink: {
     l: '',
-  },
-});
-
-const lightSchemeVars = assignVars(contrastSchemeVars, {
-  bg: {
-    l: '100%',
-  },
-  fg: {
-    l: '20%',
-  },
-  fg2: {
-    l: '60%',
-  },
-  ink: {
-    l: '80%',
-  },
-});
-
-const darkSchemeVars = assignVars(contrastSchemeVars, {
-  bg: {
-    l: '10%',
-  },
-  fg: {
-    l: '85%',
-  },
-  fg2: {
-    l: '45%',
-  },
-  ink: {
-    l: '45%',
-  },
-});
-
-const darkSchemeMoreContrastVars = assignVars(contrastSchemeVars, {
-  bg: {
-    l: '0%',
-  },
-  fg: {
-    l: '100%',
-  },
-  fg2: {
-    l: '85%',
-  },
-  ink: {
-    l: '85%',
-  },
-});
-
-const darkLessContrastVars = assignVars(contrastSchemeVars, {
-  bg: {
-    l: '10%',
-  },
-  fg: {
-    l: '50%',
-  },
-  fg2: {
-    l: '50%',
-  },
-  ink: {
-    l: '50%',
   },
 });
 
 const darkStyleRule: ComplexStyleRule = {
-  vars: darkSchemeVars,
+  vars: assignVars(contrastSchemeVars, {
+    bg: {
+      l: '10%',
+    },
+    subtleBg: {
+      l: '20%',
+    },
+    fg: {
+      l: '85%',
+    },
+    fg2: {
+      l: '45%',
+    },
+    ink: {
+      l: '45%',
+    },
+  }),
 };
 
 const darkStyleMoreContrastRule: ComplexStyleRule = {
-  vars: darkSchemeMoreContrastVars,
+  vars: assignVars(contrastSchemeVars, {
+    bg: {
+      l: '0%',
+    },
+    subtleBg: {
+      l: '50%',
+    },
+    fg: {
+      l: '100%',
+    },
+    fg2: {
+      l: '85%',
+    },
+    ink: {
+      l: '85%',
+    },
+  }),
 };
 
 const darkStyleLessContrastRule: ComplexStyleRule = {
-  vars: darkLessContrastVars,
+  vars: assignVars(contrastSchemeVars, {
+    bg: {
+      l: '10%',
+    },
+    subtleBg: {
+      l: '10%',
+    },
+    fg: {
+      l: '50%',
+    },
+    fg2: {
+      l: '50%',
+    },
+    ink: {
+      l: '50%',
+    },
+  }),
 };
 
 const lightStyleRule: ComplexStyleRule = {
-  vars: lightSchemeVars,
+  vars: assignVars(contrastSchemeVars, {
+    bg: {
+      l: '100%',
+    },
+    subtleBg: {
+      l: '90%',
+    },
+    fg: {
+      l: '20%',
+    },
+    fg2: {
+      l: '60%',
+    },
+    ink: {
+      l: '80%',
+    },
+  }),
 };
 
 export const mediaPrefersColorSchemeClass = style({
@@ -163,9 +170,6 @@ export const mediaPrefersContrastSchemeClass = style({
       darkStyleLessContrastRule,
     '(prefers-color-scheme: dark) and (prefers-contrast-scheme: more)':
       darkStyleMoreContrastRule,
-
-    // '(prefers-contrast-scheme: more)': moreContrastRule,
-    // '(prefers-contrast-scheme: less)': lessContrastRule,
   },
 });
 

@@ -38,7 +38,7 @@ export type BoxBasedComponentProps<
   >
 >;
 
-function BoxInner<T extends keyof ReactHTMLAttributesHacked = 'div'>(
+const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   {
     children,
     component = 'div',
@@ -54,21 +54,22 @@ function BoxInner<T extends keyof ReactHTMLAttributesHacked = 'div'>(
     ...props
   }: BoxBasedComponentProps<T>,
   ref: React.ForwardedRef<ReactHTMLAttributesHacked[T]>,
-) {
+) => {
   const el = createElement(
     component,
     {
       ...props,
-      className: clsx(
-        align && alignItems[align],
-        margin && marginVariants[margin],
-        marginBlock && marginBlockVariants[marginBlock],
-        marginInline && marginInlineVariants[marginInline],
-        padding && paddingVariants[padding],
-        paddingBlock && paddingBlockVariants[paddingBlock],
-        paddingInline && paddingInlineVariants[paddingInline],
-        className,
-      ),
+      className:
+        clsx(
+          align && alignItems[align],
+          margin && marginVariants[margin],
+          marginBlock && marginBlockVariants[marginBlock],
+          marginInline && marginInlineVariants[marginInline],
+          padding && paddingVariants[padding],
+          paddingBlock && paddingBlockVariants[paddingBlock],
+          paddingInline && paddingInlineVariants[paddingInline],
+          className,
+        ) || undefined,
       ref,
     },
     children,
@@ -79,6 +80,6 @@ function BoxInner<T extends keyof ReactHTMLAttributesHacked = 'div'>(
   }
 
   return el;
-}
+};
 
 export const Box = forwardRef(BoxInner);

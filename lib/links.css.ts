@@ -4,7 +4,11 @@ import { hsl } from './utils.js';
 
 export const linkStyle = style({
   cursor: 'pointer',
-  textDecoration: 'underline',
+  selectors: {
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
   color: hsl(
     colorThemeVars.accent.h,
     colorThemeVars.accent.s,

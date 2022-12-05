@@ -16,10 +16,10 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="buttons_buttonVariantClasses_standard__jqajj23 buttons_base__jqajj21"
+        class="buttons_buttonVariantClasses_standard__jqajj24 buttons_base__jqajj22"
       >
         <span
-          class="layout_inlineClass__17vpgbah layout_flexRowVariants_small__17vpgbaa layout_flexRow__17vpgba0"
+          class="layout_inlineClass__17vpgbaj layout_flexRowVariants_tiny__17vpgbab layout_flexRow__17vpgba0"
         >
           Click Me
         </span>

@@ -1,9 +1,13 @@
 import type { FC } from 'react';
-import { Button } from '../../lib/buttons.js';
-import { Box } from '../../lib/core.js';
-import { Block, Inline } from '../../lib/layout.js';
-import { Panel } from '../../lib/panel.js';
-import { Secondary, Text } from '../../lib/typography.js';
+import {
+  Block,
+  Box,
+  Button,
+  Inline,
+  Panel,
+  Secondary,
+  Text,
+} from '../../lib/main.js';
 
 export const CorePage: FC = () => (
   <Panel variant="ghost">

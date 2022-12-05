@@ -1,16 +1,15 @@
-import { Link } from '@block65/mrr';
 import type { FC } from 'react';
-import { Divider } from '../../lib/decorative.js';
-import { Block } from '../../lib/layout.js';
-import { TextLink } from '../../lib/links.js';
-import { Panel } from '../../lib/panel.js';
 import {
+  Block,
   Callout,
+  Divider,
   Heading,
+  Panel,
   Secondary,
   Strong,
   Text,
-} from '../../lib/typography.js';
+  TextLink,
+} from '../../lib/main.js';
 
 export const TypographyPage: FC = () => (
   <Panel variant="ghost" space="huge">
@@ -45,19 +44,13 @@ export const TypographyPage: FC = () => (
       </Text>
       <Text>
         Sometimes I like to look at{' '}
-        <Link dest="/buttons">
-          <TextLink>button components</TextLink>
-        </Link>{' '}
-        on my computer.
+        <TextLink href="/buttons">button components</TextLink> on my computer.
       </Text>
     </Block>
     <Block>
       <Heading level="1">
         Sometimes I like to look at{' '}
-        <Link dest="/buttons">
-          <TextLink>button components</TextLink>
-        </Link>{' '}
-        on my computer.
+        <TextLink href="/buttons">button components</TextLink> on my computer.
       </Heading>
     </Block>
     <Callout tone="critical">

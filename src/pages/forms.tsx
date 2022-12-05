@@ -1,6 +1,7 @@
 import type { FC } from 'react';
-import { Button } from '../../lib/buttons.js';
 import {
+  Block,
+  Button,
   Form,
   FormInput,
   FormInputCheckbox,
@@ -8,11 +9,13 @@ import {
   FormInputRadio,
   FormInputRadioGroup,
   FormSelect,
-} from '../../lib/forms.js';
-import { Block } from '../../lib/layout.js';
-import { TextLink } from '../../lib/links.js';
-import { Panel } from '../../lib/panel.js';
-import { Heading, Secondary, Strong, Text } from '../../lib/typography.js';
+  Heading,
+  Panel,
+  Secondary,
+  Strong,
+  Text,
+  TextLink,
+} from '../../lib/main.js';
 
 export const FormsPage: FC = () => (
   <Panel variant="ghost">
@@ -63,7 +66,7 @@ export const FormsPage: FC = () => (
           </Text>
         }
       >
-        <option></option>
+        <option />
         <option value="Jan">Jan</option>
         <option value="Feb">Feb</option>
         <option value="Mar">Mar</option>
@@ -84,7 +87,7 @@ export const FormsPage: FC = () => (
         <option value="Apr">Apr</option>
       </FormSelect>
       <FormInputRadioGroup label="Your age" name="age">
-        <FormInputRadio label="Under 18" />
+        <FormInputRadio label="Under 18" message="Wah so young" />
         <FormInputRadio label="18-25" defaultChecked />
         <FormInputRadio label="35+" />
         <FormInputRadio label="If you are older than 35, then you will have to choose this option which is wrapping over multiple lines" />
