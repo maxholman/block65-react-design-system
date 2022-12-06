@@ -7,13 +7,12 @@ const listColWidth = '1fr';
 export const listClass = style({
   display: 'grid',
   gridTemplateColumns: `repeat(${listColsVar}, ${listColWidth})`,
-  // gridAutoFlow: 'column',
-  listStyleType: '',
-  listStylePosition: 'inside',
+  listStyleType: 'initial',
+  listStylePosition: 'outside',
 });
 
 export const listItemClass = style({
-  display: 'list-item',
+  marginInlineStart: '1em',
 });
 
 export const listVariants = styleVariants(genericVars.space, (space) => [
