@@ -16,7 +16,6 @@ export const panelClass = style({
   borderWidth: genericVars.border.weight.normal,
   borderStyle: 'solid',
   borderColor: 'transparent',
-  flex: 1,
 });
 
 const variants: Record<
