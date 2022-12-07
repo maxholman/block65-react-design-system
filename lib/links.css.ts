@@ -1,17 +1,50 @@
-import { style } from '@vanilla-extract/css';
+import { createVar, style, styleVariants } from '@vanilla-extract/css';
+import { genericVars } from './design-system.css.js';
 import { colorThemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export const linkStyle = style({
-  cursor: 'pointer',
-  selectors: {
-    '&:hover': {
-      textDecoration: 'underline',
-    },
+export type LinkVariant = 'strong' | 'standard' | 'weak';
+
+const linkColorVar = createVar();
+
+const linkStyle = style({
+  vars: {
+    [linkColorVar]: hsl(
+      colorThemeVars.accent.h,
+      colorThemeVars.accent.s,
+      colorThemeVars.accent.l,
+    ),
   },
-  color: hsl(
-    colorThemeVars.accent.h,
-    colorThemeVars.accent.s,
-    colorThemeVars.accent.l,
-  ),
+  cursor: 'pointer',
 });
+
+export const linkStyleVariant = styleVariants(
+  {
+    strong: {
+      color: linkColorVar,
+      fontWeight: genericVars.text.weight.semiBold,
+    },
+    standard: {
+      color: linkColorVar,
+    },
+    weak: {
+      textDecoration: 'underline',
+      selectors: {
+        '&:hover': {
+          color: linkColorVar,
+        },
+      },
+    },
+  } as const,
+  (cssProps) => [
+    linkStyle,
+    {
+      selectors: {
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+      },
+      ...cssProps,
+    },
+  ],
+);

@@ -44,13 +44,22 @@ export const TypographyPage: FC = () => (
       </Text>
       <Text>
         Sometimes I like to look at{' '}
-        <TextLink href="/buttons">button components</TextLink> on my computer.
+        <TextLink href="/buttons">button components</TextLink> and{' '}
+        <TextLink href="/panels" weight="strong">
+          strong panels
+        </TextLink>{' '}
+        or{' '}
+        <TextLink href="/buttons" weight="weak">
+          weak badges
+        </TextLink>{' '}
+        on my computer.
       </Text>
     </Block>
     <Block>
       <Heading level="1">
         Sometimes I like to look at{' '}
-        <TextLink href="/buttons">button components</TextLink> on my computer.
+        <TextLink href="/buttons">button components</TextLink> or on my
+        computer.
       </Heading>
     </Block>
     <Callout tone="critical">
