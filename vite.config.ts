@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { resolve } from 'node:path';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
