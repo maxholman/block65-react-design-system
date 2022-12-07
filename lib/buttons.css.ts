@@ -38,6 +38,7 @@ const base = style({
   justifyContent: 'center',
   fontSize: genericVars.text.size.normal,
   userSelect: 'none',
+  textAlign: 'center',
   selectors: {
     '&[disabled]': {
       pointerEvents: 'none',
