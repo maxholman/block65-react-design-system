@@ -39,7 +39,7 @@ export const ListPage: FC = () => (
           </Inline>
         </Block>
 
-        <Button tone="promo">Upgrade Now</Button>
+        <Button>Upgrade Now</Button>
       </Panel>
       <Panel variant="ghost">
         <Heading level="2">Custom Plan</Heading>

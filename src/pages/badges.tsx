@@ -24,7 +24,9 @@ export const BadgesPage: FC = () => (
         </Panel>
         <Panel variant="standard">
           <Inline>
-            <Heading level="4">DBS Visa 4352</Heading>
+            <Heading level="4" textOverflow="ellipsis">
+              DBS Visa 4352
+            </Heading>
             <Badge tone="warn">Expires Soon</Badge>
           </Inline>
           <Text>And some text</Text>

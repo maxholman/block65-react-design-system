@@ -2,8 +2,10 @@ import type { FC } from 'react';
 import {
   Block,
   Button,
+  ButtonIcon,
   ButtonLink,
   Divider,
+  Grid,
   Heading,
   Inline,
   Panel,
@@ -41,15 +43,9 @@ export const ButtonsPage: FC = () => (
     <Block>
       <Heading level="2">Button Icons</Heading>
       <Inline>
-        <ButtonLink>
-          <SunIcon />
-        </ButtonLink>
-        <ButtonLink variant="ghost">
-          <SunIcon />
-        </ButtonLink>
-        <ButtonLink variant="subtle">
-          <SunIcon />
-        </ButtonLink>
+        <ButtonIcon icon={<SunIcon />} label="Sun" />
+        <ButtonIcon icon={<SunIcon />} label="Sun" variant="ghost" />
+        <ButtonIcon icon={<SunIcon />} label="Sun" variant="subtle" />
       </Inline>
     </Block>
 
@@ -119,6 +115,45 @@ export const ButtonsPage: FC = () => (
       </Inline>
     </Block>
     <Divider />
+    <Block>
+      <Heading>Tones</Heading>
+      <Grid cols="3">
+        <Button>none</Button>
+        <Button tone="neutral">neutral</Button>
+        <Button tone="critical">critical</Button>
+        <Button variant="ghost">none ghost</Button>
+        <Button variant="ghost" tone="neutral">
+          neutral ghost
+        </Button>
+        <Button variant="ghost" tone="critical">
+          critical ghost
+        </Button>
+        <Button variant="subtle">none subtle</Button>
+        <Button variant="subtle" tone="neutral">
+          neutral subtle
+        </Button>
+        <Button variant="subtle" tone="critical">
+          critical subtle
+        </Button>
+        <Button variant="transparent">none transparent</Button>
+        <Button variant="transparent" tone="neutral">
+          neutral transparent
+        </Button>
+        <Button variant="transparent" tone="critical">
+          critical transparent
+        </Button>
+      </Grid>
+
+      <Divider marginBlock="huge" />
+
+      <Heading>Hello</Heading>
+      <Text>Buttons in context</Text>
+      <Inline>
+        <Text>Like this</Text>
+        <ButtonLink tone="critical">Eject</ButtonLink>
+        <Text>and like this</Text>
+      </Inline>
+    </Block>
     <Block>
       <Heading>Hello</Heading>
       <Text>Buttons in context</Text>

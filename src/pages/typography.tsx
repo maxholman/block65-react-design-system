@@ -3,6 +3,7 @@ import {
   Block,
   Callout,
   Divider,
+  Grid,
   Heading,
   Panel,
   Secondary,
@@ -77,5 +78,23 @@ export const TypographyPage: FC = () => (
     <Callout tone="warn">
       <Text>Warning!</Text>
     </Callout>
+
+    <Heading level="1">Text Align</Heading>
+
+    <Grid>
+      <Panel>
+        <Heading level="5">LTR</Heading>
+        <Text textAlign="start">Start</Text>
+        <Text textAlign="center">Center</Text>
+        <Text textAlign="end">End</Text>
+      </Panel>
+
+      <Panel dir="rtl">
+        <Heading level="5">RTL</Heading>
+        <Text textAlign="start">הַתחָלָה</Text>
+        <Text textAlign="center">הַתחָלָה</Text>
+        <Text textAlign="end">סוֹף</Text>
+      </Panel>
+    </Grid>
   </Panel>
 );
