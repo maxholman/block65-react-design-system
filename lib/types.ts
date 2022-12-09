@@ -52,6 +52,8 @@ import type {
   WebViewHTMLAttributes,
 } from 'react';
 
+export type Merge<A, B> = Omit<A, keyof B> & B;
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/naming-convention
 type DetailedHTMLFactory<T, _E> = T;
 
