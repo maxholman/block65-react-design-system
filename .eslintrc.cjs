@@ -1,8 +1,9 @@
 module.exports = {
   root: true,
   extends: [
-    '@block65/eslint-config/typescript',
+    '@block65/eslint-config',
     '@block65/eslint-config/react',
+    '@block65/eslint-config/typescript',
   ],
   parserOptions: {
     tsconfigRootDir: __dirname,
