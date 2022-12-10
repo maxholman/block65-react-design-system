@@ -12,6 +12,7 @@ import {
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
 import { Inline } from './layout.js';
+import type { Merge } from './types.js';
 import type { Tone } from './schemes/color.css.js';
 import { toneVariants } from './typography.css.js';
 
@@ -22,17 +23,37 @@ export type ButtonCommonProps = {
   compact?: boolean;
   align?: Align;
   inline?: boolean;
-  tone?: Tone;
+  tone?: ButtonTone;
+  icon?: ReactElement | FC | undefined;
 };
 
-export type ButtonProps = ButtonCommonProps & {
-  icon?: ReactElement;
-};
+export type ButtonProps = Merge<
+  ButtonCommonProps,
+  {
+    children: string;
+  }
+>;
 
-export type ButtonIconProps = ButtonCommonProps & {};
+export type ButtonLinkProps = Merge<
+  ButtonCommonProps,
+  {
+    children?: string | undefined;
+    component?: never;
+    href?: string;
+  }
+>;
 
-export const Button: FC<
-  BoxBasedComponentProps<'button' | 'a' | 'span', ButtonProps>
+export type ButtonIconProps = Merge<
+  ButtonCommonProps,
+  {
+    label: string;
+    icon: ReactElement;
+    children?: never | undefined;
+  }
+>;
+
+const ButtonInternal: FC<
+  Merge<BoxBasedComponentProps<'button' | 'a' | 'span'>, ButtonCommonProps>
 > = ({
   component = 'button',
   variant = 'standard',

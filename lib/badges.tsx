@@ -8,6 +8,7 @@ import {
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
 import type { Tone } from './schemes/color.css.js';
+import type { Merge } from './types.js';
 
 export type BadgeProps = {
   className?: ClassValue;
@@ -17,7 +18,7 @@ export type BadgeProps = {
 };
 
 export const Badge: FC<
-  BoxBasedComponentProps<'span' | 'a' | 'button', BadgeProps>
+  Merge<BoxBasedComponentProps<'span' | 'a' | 'button'>, BadgeProps>
 > = ({
   component = 'span',
   variant = 'standard',
@@ -40,10 +41,13 @@ export const Badge: FC<
   </Box>
 );
 
+type BadgeLinkProps = BadgeProps & {
+  component?: never;
+  href?: string;
+};
+
 export const BadgeLink: FC<
-  Omit<BoxBasedComponentProps<'a' | 'button', BadgeProps>, 'component'> & {
-    href?: string;
-  }
+  Merge<BoxBasedComponentProps<'a' | 'button'>, BadgeLinkProps>
 > = (props) => (
   <Badge component={'href' in props ? 'a' : 'button'} {...props} />
 );

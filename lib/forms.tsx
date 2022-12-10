@@ -12,7 +12,6 @@ import {
   SelectHTMLAttributes,
   useId,
 } from 'react';
-import type { Merge } from 'type-fest';
 import {
   fieldLabelStyle,
   fieldLabelTertiaryStyle,
@@ -31,6 +30,7 @@ import {
 } from './forms.css.js';
 import { Block, BlockProps, Inline } from './layout.js';
 import type { Tone } from './schemes/color.css.js';
+import type { Merge } from './types.js';
 import { Secondary, Strong, Text } from './typography.js';
 import {
   cloneElementIfValidElementOfType,

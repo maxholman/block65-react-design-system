@@ -6,15 +6,14 @@ import {
   inlineAlignSelf,
   inlineClass,
 } from './layout.css.js';
-import type { ReactHTMLAttributesHacked } from './types.js';
+import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
-export type BlockProps<T extends keyof ReactHTMLAttributesHacked> =
-  BoxBasedComponentProps<
-    T,
-    {
-      space?: Space | undefined;
-    }
-  >;
+export type BlockProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
+  BoxBasedComponentProps<T>,
+  {
+    space?: Space | undefined;
+  }
+>;
 
 export const Block = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   component = 'div',
@@ -29,13 +28,12 @@ export const Block = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   />
 );
 
-export type InlineProps<T extends keyof ReactHTMLAttributesHacked> =
-  BoxBasedComponentProps<
-    T,
-    {
-      space?: Space;
-    }
-  >;
+export type InlineProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
+  BoxBasedComponentProps<T>,
+  {
+    space?: Space;
+  }
+>;
 
 export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'span'>({
   component = 'span',

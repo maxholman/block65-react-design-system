@@ -8,17 +8,7 @@ import {
   listItemClass,
   listVariants,
 } from './list.css.js';
-import type { ReactHTMLAttributesHacked } from './types.js';
-
-export type ListProps<T extends keyof ReactHTMLAttributesHacked> =
-  BoxBasedComponentProps<
-    T,
-    {
-      variant?: 'ordered' | 'unordered';
-      space?: Space;
-      cols?: `${number}`;
-    }
-  >;
+import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
 export const List = <T extends keyof ReactHTMLAttributesHacked = 'ul'>({
   variant,
@@ -28,7 +18,14 @@ export const List = <T extends keyof ReactHTMLAttributesHacked = 'ul'>({
   cols = '1',
   children,
   ...props
-}: ListProps<T>) => (
+}: Merge<
+  BoxBasedComponentProps<T>,
+  {
+    variant?: 'ordered' | 'unordered';
+    space?: Space;
+    cols?: `${number}`;
+  }
+>) => (
   <Box
     component={component}
     style={assignInlineVars({ [listColsVar]: cols })}
