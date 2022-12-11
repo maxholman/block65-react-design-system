@@ -40,7 +40,9 @@ export const App: FC = () => {
             <Grid>
               <Inline>
                 <FormInputRadioGroup name="color-scheme">
-                  <Heading level="3">Color Scheme</Heading>
+                  <Heading level="3" textOverflow="ellipsis">
+                    Color Scheme
+                  </Heading>
                   <FormInputRadio
                     // inline
                     label="auto"
@@ -63,7 +65,9 @@ export const App: FC = () => {
               </Inline>
               <Inline>
                 <FormInputRadioGroup name="contrast-scheme">
-                  <Heading level="3">Contrast Scheme</Heading>
+                  <Heading level="3" textOverflow="ellipsis">
+                    Contrast Scheme
+                  </Heading>
                   <FormInputRadio
                     // inline
                     label="auto"

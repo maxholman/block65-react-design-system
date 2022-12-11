@@ -8,6 +8,10 @@ import {
   paddingBlockVariants,
   paddingInlineVariants,
   paddingVariants,
+  TextAlign,
+  textAlignVariants,
+  TextOverflow,
+  textOverflowVariants,
 } from './core.css.js';
 import { Align, alignItems } from './layout.css.js';
 import { Tooltip } from './tooltip.js';
@@ -32,6 +36,9 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       paddingBlock?: Space | undefined;
       paddingInline?: Space | undefined;
       tooltip?: ReactNode;
+      textAlign?: TextAlign | undefined;
+      textOverflow?: TextOverflow | undefined;
+
       // rounded
     }
   >;
@@ -48,9 +55,11 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     padding,
     paddingBlock,
     paddingInline,
+    textAlign,
+    textOverflow,
     tooltip,
     ...props
-  }: BoxBasedComponentProps<T>,
+  }: PropsWithChildren<BoxBasedComponentProps<T>>,
   ref: React.ForwardedRef<ReactHTMLAttributesHacked[T]>,
 ) => {
   const el = createElement(
@@ -66,6 +75,8 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
           padding && paddingVariants[padding],
           paddingBlock && paddingBlockVariants[paddingBlock],
           paddingInline && paddingInlineVariants[paddingInline],
+          textAlign && textAlignVariants[textAlign],
+          textOverflow && textOverflowVariants[textOverflow],
           className,
         ) || undefined,
       ref,

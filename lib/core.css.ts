@@ -1,5 +1,19 @@
-import { styleVariants } from '@vanilla-extract/css';
+import { style, StyleRule, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
+
+export type TextAlign = 'start' | 'end' | 'center';
+
+export const textAlignVariants = styleVariants({
+  start: {
+    textAlign: 'start',
+  },
+  end: {
+    textAlign: 'end',
+  },
+  center: {
+    textAlign: 'center',
+  },
+});
 
 export const marginVariants = styleVariants(genericVars.space, (space) => [
   {
@@ -44,4 +58,25 @@ export const paddingInlineVariants = styleVariants(
       paddingInline: space,
     },
   ],
+);
+
+export type TextOverflow = 'ellipsis' | 'clip';
+
+const textOverflowCssProps: Record<TextOverflow, StyleRule> = {
+  ellipsis: {
+    textOverflow: 'ellipsis',
+  },
+  clip: {
+    textOverflow: 'clip',
+  },
+};
+
+const textOverflowBase = style({
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+});
+
+export const textOverflowVariants = styleVariants(
+  textOverflowCssProps,
+  (value) => [textOverflowBase, value],
 );
