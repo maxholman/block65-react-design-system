@@ -13,6 +13,7 @@ globalStyle(
   {
     all: 'unset',
     display: 'revert',
+    minWidth: 0,
   },
 );
 
@@ -28,8 +29,9 @@ globalStyle(withResetClass('ol', 'ul', 'menu'), {
   listStyle: 'none',
 });
 
+// https://github.com/elad2412/the-new-css-reset/issues/47
 globalStyle(withResetClass('img'), {
-  maxWidth: '100%',
+  maxInlineSize: '100%',
 });
 
 globalStyle(withResetClass('table'), {
