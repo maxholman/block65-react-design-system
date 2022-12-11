@@ -21,6 +21,7 @@ import { CorePage } from './pages/core.js';
 import { FormsPage } from './pages/forms.js';
 import { GridPage } from './pages/grid.js';
 import { ListPage } from './pages/list.js';
+import { LoadersPage } from './pages/loaders.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
 
@@ -119,6 +120,9 @@ export const App: FC = () => {
                 <Link dest="/badges">
                   <TextLink>Badges</TextLink>
                 </Link>
+                <Link dest="/loaders">
+                  <TextLink>Loaders</TextLink>
+                </Link>
               </Inline>
             </Panel>
             <Block>
@@ -152,6 +156,9 @@ export const App: FC = () => {
                 </Route>
                 <Route path="/badges">
                   <BadgesPage />
+                </Route>
+                <Route path="/loaders">
+                  <LoadersPage />
                 </Route>
                 <Route>
                   <Heading>404</Heading>
