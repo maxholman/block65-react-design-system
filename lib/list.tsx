@@ -12,7 +12,7 @@ import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
 export const List = <T extends keyof ReactHTMLAttributesHacked = 'ul'>({
   variant,
-  component = variant === 'ordered' ? 'ol' : 'ul',
+  component,
   space = 'medium',
   className,
   cols = '1',
@@ -27,7 +27,7 @@ export const List = <T extends keyof ReactHTMLAttributesHacked = 'ul'>({
   }
 >) => (
   <Box
-    component={component}
+    component={component || (variant === 'ordered' ? 'ol' : 'ul')}
     style={assignInlineVars({ [listColsVar]: cols })}
     className={[listClass, listVariants[space], className]}
     {...props}
