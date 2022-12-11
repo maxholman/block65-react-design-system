@@ -26,29 +26,33 @@ const variants: Record<
   }
 > = {
   standard: {
-    backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.bg.l),
+    backgroundColor: hsl(
+      colorThemeVars.accent.h,
+      0,
+      contrastSchemeVars.level0.l,
+    ),
   },
   neutral: {
     backgroundColor: hsl(
       colorThemeVars.accent.h,
       0,
-      contrastSchemeVars.subtleBg.l,
+      contrastSchemeVars.level1.l,
     ),
-    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.ink.l),
+    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level3.l),
   },
   ghost: {
-    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.ink.l),
+    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level3.l),
   },
   subtle: {
     backgroundColor: hsl(
       colorThemeVars.accent.h,
       colorThemeVars.accent.s,
-      contrastSchemeVars.subtleBg.l,
+      contrastSchemeVars.level1.l,
     ),
     borderColor: hsl(
       colorThemeVars.accent.h,
       colorThemeVars.accent.s,
-      contrastSchemeVars.ink.l,
+      contrastSchemeVars.level3.l,
     ),
   },
   transparent: {

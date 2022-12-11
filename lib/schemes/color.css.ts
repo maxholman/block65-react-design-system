@@ -60,78 +60,102 @@ export type Tone = keyof typeof colorThemeVars.tones;
 
 // this just sets up the contract shape, no need for values or a class
 export const contrastSchemeVars = createThemeContract({
-  bg: {
+  // large surface backgrounds
+  level0: {
     l: '',
   },
-  subtleBg: {
+
+  // subtle buttons, input borders and dividers
+  level1: {
     l: '',
   },
-  fg: {
+
+  // borders
+  level2: {
     l: '',
   },
-  fg2: {
+
+  // secondary text and placeholders
+  level3: {
     l: '',
   },
-  ink: {
+
+  // headers
+  level4: {
+    l: '',
+  },
+
+  // foreground text (not headers)
+  level5: {
     l: '',
   },
 });
 
 const darkStyleRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
-    bg: {
+    level0: {
       l: '10%',
     },
-    subtleBg: {
+    level1: {
       l: '20%',
     },
-    fg: {
+    level2: {
+      l: '30%',
+    },
+    level3: {
+      l: '50%',
+    },
+    level4: {
+      l: '65%',
+    },
+    level5: {
       l: '85%',
-    },
-    fg2: {
-      l: '45%',
-    },
-    ink: {
-      l: '45%',
     },
   }),
 };
 
 const darkStyleMoreContrastRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
-    bg: {
+    level0: {
       l: '0%',
     },
-    subtleBg: {
+    level1: {
       l: '50%',
     },
-    fg: {
+    level2: {
+      l: '50%',
+    },
+    level3: {
+      l: '85%',
+    },
+    level4: {
+      l: '85%',
+    },
+    level5: {
       l: '100%',
-    },
-    fg2: {
-      l: '85%',
-    },
-    ink: {
-      l: '85%',
     },
   }),
 };
 
 const darkStyleLessContrastRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
-    bg: {
+    level0: {
       l: '10%',
     },
-    subtleBg: {
+    level1: {
       l: '10%',
     },
-    fg: {
+    level2: {
+      l: '10%',
+    },
+    level4: {
       l: '50%',
     },
-    fg2: {
+    level3: {
       l: '50%',
     },
-    ink: {
+
+    level5: {
       l: '50%',
     },
   }),
@@ -139,20 +163,23 @@ const darkStyleLessContrastRule: ComplexStyleRule = {
 
 const lightStyleRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
-    bg: {
+    level0: {
       l: '100%',
     },
-    subtleBg: {
-      l: '90%',
+    level1: {
+      l: '80%',
     },
-    fg: {
-      l: '20%',
-    },
-    fg2: {
+    level2: {
       l: '60%',
     },
-    ink: {
-      l: '80%',
+    level3: {
+      l: '50%',
+    },
+    level4: {
+      l: '30%',
+    },
+    level5: {
+      l: '20%',
     },
   }),
 };
@@ -174,8 +201,8 @@ export const mediaPrefersContrastSchemeClass = style({
 });
 
 export const defaultBgFgClass = style({
-  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.bg.l),
-  color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.fg.l),
+  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level0.l),
+  color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level5.l),
 });
 
 export const lightClass = style(lightStyleRule);

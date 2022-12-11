@@ -6,12 +6,11 @@ import { hsl } from './utils.js';
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5';
 
 export const textClass = style({
-  // color: hsl(colorVars.accent.h, 20, 30),
   lineHeight: genericVars.text.lineHeight.standard,
 });
 
 export const secondaryClass = style({
-  color: hsl(0, 0, contrastSchemeVars.fg2.l),
+  color: hsl(0, 0, contrastSchemeVars.level4.l),
 });
 
 export const strongClass = style({
