@@ -256,9 +256,11 @@ const FormInputCheckRadio: FC<
         {label}
       </FormInputLabel>
       {message && (
-        <Secondary className={formInputCheckRadioMessage} size="small">
-          {message}
-        </Secondary>
+        <Text size="small">
+          <Secondary className={formInputCheckRadioMessage}>
+            {message}
+          </Secondary>
+        </Text>
       )}
     </Block>
   );
