@@ -25,6 +25,14 @@ export const fontClass = styleVariants(genericVars.text.size, (value) => ({
   fontSize: value,
 }));
 
+export type FontSize =
+  | 'tiny'
+  | 'small'
+  | 'normal'
+  | 'medium'
+  | 'large'
+  | 'huge';
+
 const levelVariants: Record<
   HeadingLevel,
   {

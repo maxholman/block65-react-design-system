@@ -1,5 +1,6 @@
-import { ClassValue, clsx } from 'clsx';
-import { createElement, FC, PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import type { Merge } from './types.js';
+import type { TextAlign, TextOverflow } from './core.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import { Info } from './icons.js';
 import { alignItems, inlineAlignSelf } from './layout.css.js';
@@ -9,6 +10,7 @@ import {
   calloutClass,
   codeClass,
   fontClass,
+  FontSize,
   HeadingLevel,
   levelVariantClasses,
   secondaryClass,
@@ -17,30 +19,30 @@ import {
   toneVariants,
 } from './typography.css.js';
 
-export type FontSize =
-  | 'tiny'
-  | 'small'
-  | 'normal'
-  | 'medium'
-  | 'large'
-  | 'huge';
+// export types to assist with consumers who create augmented components
+export type { FontSize, HeadingLevel, TextOverflow, TextAlign };
 
 export const Heading: FC<
-  PropsWithChildren<{ level?: HeadingLevel; className?: ClassValue }>
-> = ({ className, level = '1', children, ...props }) =>
-  createElement(
-    `h${level}`,
-    {
-      className: clsx(levelVariantClasses[level], className),
-      ...props,
-    },
-    children,
-  );
+  PropsWithChildren<
+    Merge<
+      BoxBasedComponentProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
+      {
+        level?: HeadingLevel;
+      }
+    >
+  >
+> = ({ level = '2', ...props }) => (
+  <Box
+    component={`h${level}`}
+    className={levelVariantClasses[level]}
+    {...props}
+  />
+);
 
 export const Text: FC<
   PropsWithChildren<
-    BoxBasedComponentProps<
-      'p',
+    Merge<
+      BoxBasedComponentProps<'p'>,
       {
         size?: FontSize;
         tone?: Tone | undefined;
@@ -87,8 +89,8 @@ export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
 );
 
 export const Callout: FC<
-  BoxBasedComponentProps<
-    'span',
+  Merge<
+    BoxBasedComponentProps<'div'>,
     {
       tone?: Tone;
       align?: never;
