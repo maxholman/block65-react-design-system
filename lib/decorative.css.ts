@@ -5,5 +5,5 @@ import { hsl } from './utils.js';
 
 export const dividerStyle = style({
   height: genericVars.border.weight.hairline,
-  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.ink.l),
+  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level3.l),
 });

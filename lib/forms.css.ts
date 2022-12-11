@@ -11,7 +11,7 @@ export const formInput = style({
     [borderWidthVar]: genericVars.border.weight.hairline,
   },
   padding: genericVars.space.small,
-  borderColor: hsl(0, 0, contrastSchemeVars.fg2.l),
+  borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
   borderStyle: 'solid',
   borderWidth: genericVars.border.weight.hairline,
   borderRadius: genericVars.radius.medium,
@@ -26,7 +26,7 @@ export const formInput = style({
       backgroundColor: 'transparent',
     },
     '&::placeholder': {
-      color: hsl(0, 0, contrastSchemeVars.fg2.l),
+      color: hsl(0, 0, contrastSchemeVars.level4.l),
     },
   },
 });
@@ -56,7 +56,7 @@ export const formInputCheckRadioBase = style([
     color: hsl(
       colorThemeVars.accent.h,
       colorThemeVars.accent.s,
-      contrastSchemeVars.fg.l,
+      contrastSchemeVars.level5.l,
     ),
     // WARN: this is a bit hacky to get perfect alignment
     // and still support multiple lines for radio/check labels
