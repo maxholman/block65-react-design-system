@@ -54,16 +54,16 @@ const levelVariants: Record<
   },
   '3': {
     fontSize: genericVars.text.size.medium,
-    fontWeight: genericVars.text.weight.bold,
+    fontWeight: genericVars.text.weight.semiBold,
   },
   '4': {
     fontSize: genericVars.text.size.normal,
-    fontWeight: genericVars.text.weight.bold,
+    fontWeight: genericVars.text.weight.semiBold,
   },
   '5': {
     fontSize: genericVars.text.size.normal,
     fontWeight: genericVars.text.weight.medium,
-    color: hsl(0, 0, contrastSchemeVars.fg2.l),
+    color: hsl(0, 0, contrastSchemeVars.level4.l),
   },
 };
 
@@ -80,7 +80,7 @@ export const toneVariants = styleVariants(colorThemeVars.tones, (value) => ({
 
 export const calloutClass = style({
   padding: genericVars.space.small,
-  borderWidth: genericVars.border.weight.normal,
   borderStyle: 'solid',
+  borderWidth: genericVars.border.weight.normal,
   borderRadius: genericVars.radius.medium,
 });
