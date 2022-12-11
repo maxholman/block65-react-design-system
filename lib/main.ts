@@ -10,5 +10,6 @@ export * from './list.js';
 export * from './links.js';
 export * from './panel.js';
 export * from './typography.js';
+export * from './loaders.js';
 
 export { type ColorScheme, type ContrastScheme } from './schemes/color.css.js';
