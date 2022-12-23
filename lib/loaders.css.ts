@@ -1,5 +1,5 @@
 import { keyframes, style } from '@vanilla-extract/css';
-import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 const rotate = keyframes({
@@ -29,7 +29,7 @@ const sss = style({
 export const spinnerCircleClass = style([
   sss,
   {
-    color: hsl(0, 0, colorThemeVars.tones.accent.l),
+    color: hsl(0, 0, contrastSchemeVars.level0.l),
     // strokeDasharray: '30,360',
     // strokeDashoffset: -80,
   },
@@ -38,11 +38,7 @@ export const spinnerCircleClass = style([
 export const spinnerCircleClass2 = style([
   sss,
   {
-    color: hsl(
-      colorThemeVars.tones.accent.h,
-      colorThemeVars.tones.accent.s,
-      contrastSchemeVars.level1.l,
-    ),
+    color: hsl(0, 0, contrastSchemeVars.level5.l),
     strokeDasharray: '90,360',
     strokeDashoffset: 0,
   },

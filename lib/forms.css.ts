@@ -38,7 +38,7 @@ export const formInputNotCheckRadio = style({
       outlineColor: hsl(
         colorThemeVars.tones.accent.h,
         colorThemeVars.tones.accent.s,
-        colorThemeVars.tones.accent.l,
+        contrastSchemeVars.level1.l,
       ),
       outlineOffset: calc(borderWidthVar).negate().toString(),
     },
@@ -72,7 +72,7 @@ export const formInputCheckRadioBase = style([
         color: hsl(
           colorThemeVars.tones.accent.h,
           colorThemeVars.tones.accent.s,
-          colorThemeVars.tones.accent.l,
+          contrastSchemeVars.level3.l,
         ),
       },
       '&::before': {
@@ -85,7 +85,7 @@ export const formInputCheckRadioBase = style([
         boxShadow: `inset 1em 1em ${hsl(
           colorThemeVars.tones.accent.h,
           colorThemeVars.tones.accent.s,
-          colorThemeVars.tones.accent.l,
+          contrastSchemeVars.level3.l,
         )}`,
       },
       '&:checked': {

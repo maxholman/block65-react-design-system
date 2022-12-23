@@ -1,7 +1,7 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
-import { colorThemeVars } from './schemes/color.css.js';
+import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
 
@@ -42,7 +42,7 @@ const variantRules: Record<
   }
 > = {
   standard: {
-    backgroundColor: hsl(toneH, toneS, colorThemeVars.tones.accent.l),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
     color: hsl(toneH, toneS, 100),
     borderColor: hsl(toneH, toneS, 50),
   },
