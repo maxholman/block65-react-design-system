@@ -18,7 +18,7 @@ export const panelClass = style({
   borderColor: 'transparent',
 });
 
-const variants: Record<
+const variantRules: Record<
   PanelVariant,
   {
     backgroundColor?: string;
@@ -61,7 +61,7 @@ const variants: Record<
   },
 };
 
-export const panelVariantsClasses = styleVariants(variants, (variant) => [
+export const panelVariants = styleVariants(variantRules, (variant) => [
   panelClass,
   variant,
 ]);

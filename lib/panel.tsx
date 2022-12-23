@@ -1,5 +1,5 @@
 import { Block, BlockProps } from './layout.js';
-import { PanelVariant, panelVariantsClasses } from './panel.css.js';
+import { PanelVariant, panelVariants } from './panel.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
 export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
@@ -12,7 +12,7 @@ export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
 }) => (
   <Block
     component={component}
-    className={[className, panelVariantsClasses[variant]]}
+    className={[className, panelVariants[variant]]}
     {...props}
   />
 );
