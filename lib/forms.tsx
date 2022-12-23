@@ -29,7 +29,7 @@ import {
   inputLabelStyle,
 } from './forms.css.js';
 import { Block, BlockProps, Inline } from './layout.js';
-import type { Tone } from './schemes/color.css.js';
+import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { Secondary, Strong, Text } from './typography.js';
 import {
@@ -256,10 +256,8 @@ const FormInputCheckRadio: FC<
         {label}
       </FormInputLabel>
       {message && (
-        <Text size="small">
-          <Secondary className={formInputCheckRadioMessage}>
-            {message}
-          </Secondary>
+        <Text size="small" className={formInputCheckRadioMessage}>
+          <Secondary>{message}</Secondary>
         </Text>
       )}
     </Block>
