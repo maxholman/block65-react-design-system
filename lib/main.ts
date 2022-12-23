@@ -14,3 +14,5 @@ export * from './panel.js';
 export * from './typography.js';
 
 export { type ColorScheme, type ContrastScheme } from './schemes/color.css.js';
+export { type Tone } from './tone.css.js';
+export { type BadgeVariant } from './badges.css.js';
