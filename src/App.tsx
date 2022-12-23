@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { Link, Route, Router, Routes } from '@block65/mrr';
 import { FC, useState } from 'react';
 import {
@@ -15,7 +16,6 @@ import {
   TextLink,
 } from '../lib/main.js';
 import { BadgesPage } from './pages/badges.js';
-// import 'the-new-css-reset';
 import { ButtonsPage } from './pages/buttons.js';
 import { CorePage } from './pages/core.js';
 import { FormsPage } from './pages/forms.js';
