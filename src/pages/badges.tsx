@@ -7,12 +7,45 @@ import {
   Inline,
   Panel,
   Text,
+  type Tone,
+  type BadgeVariant,
 } from '../../lib/main.js';
+
+const badgeVariants: BadgeVariant[] = [
+  'ghost',
+  'subtle',
+  'standard',
+  'transparent',
+];
+
+const badgeTones: Tone[] = [
+  'critical',
+  'positive',
+  'info',
+  'neutral',
+  'warn',
+  'promo',
+];
 
 export const BadgesPage: FC = () => (
   <Panel variant="ghost" space="huge">
     <Block>
       <Heading level="3">Badges</Heading>
+
+      <Grid>
+        {badgeVariants.map((variant) => (
+          <Panel variant="subtle">
+            <Heading level="4">{variant}</Heading>
+            {badgeTones.map((tone) => (
+              <Inline>
+                <Badge variant={variant} tone={tone}>
+                  {tone}
+                </Badge>
+              </Inline>
+            ))}
+          </Panel>
+        ))}
+      </Grid>
 
       <Grid cols="3">
         <Panel variant="subtle">
@@ -53,15 +86,6 @@ export const BadgesPage: FC = () => (
           <Text>You've got mail!</Text>
         </Panel>
       </Grid>
-
-      <Inline>
-        <Badge variant="ghost" tone="warn">
-          Ghost Warn
-        </Badge>
-      </Inline>
-      <Inline>
-        <Badge variant="subtle">Subtle Info</Badge>
-      </Inline>
     </Block>
   </Panel>
 );

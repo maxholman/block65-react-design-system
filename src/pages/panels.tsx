@@ -1,31 +1,40 @@
 import type { FC } from 'react';
-import { Heading, Panel, Text } from '../../lib/main.js';
+import { Grid, Heading, Panel, Text } from '../../lib/main.js';
+
+const PanelGrid = () => (
+  <Grid cols="2">
+    <Panel variant="standard">
+      <Heading>standard</Heading>
+      <Text>standard</Text>
+    </Panel>
+    <Panel variant="ghost">
+      <Heading>ghost</Heading>
+      <Text>ghost</Text>
+    </Panel>
+    <Panel variant="subtle">
+      <Heading>subtle</Heading>
+      <Text>subtle</Text>
+    </Panel>
+    <Panel variant="neutral">
+      <Heading>neutral</Heading>
+      <Text>neutral</Text>
+    </Panel>
+    <Panel variant="transparent">
+      <Heading>transparent</Heading>
+      <Text>transparent</Text>
+    </Panel>
+  </Grid>
+);
 
 export const PanelsPage: FC = () => (
   <Panel variant="ghost">
-    <Text>Ground Floor</Text>
-    <Panel variant="standard">
-      <Heading>Nest 0 (Bottom)</Heading>
-      <Text>Nest 0</Text>
-      <Panel variant="ghost">
-        <Heading>Nest 1</Heading>
-        <Text>Nest 1</Text>
-        <Panel variant="subtle">
-          <Heading>Nest 2</Heading>
-          <Text>Nest 2</Text>
-          <Panel variant="standard">
-            <Heading>Nest 3</Heading>
-            <Text>Nest 3</Text>
-            <Panel variant="ghost">
-              <Heading>Nest 4</Heading>
-              <Panel variant="ghost">
-                <Heading>Nest 5</Heading>
-                <Text>Nest 5</Text>
-              </Panel>
-            </Panel>
-          </Panel>
-        </Panel>
+    <Grid>
+      <Panel variant="subtle">
+        <PanelGrid />
       </Panel>
-    </Panel>
+      <Panel>
+        <PanelGrid />
+      </Panel>
+    </Grid>
   </Panel>
 );

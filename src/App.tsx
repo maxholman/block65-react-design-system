@@ -17,6 +17,7 @@ import {
 } from '../lib/main.js';
 import { BadgesPage } from './pages/badges.js';
 import { ButtonsPage } from './pages/buttons.js';
+import { CalloutPage } from './pages/callout.js';
 import { CorePage } from './pages/core.js';
 import { FormsPage } from './pages/forms.js';
 import { GridPage } from './pages/grid.js';
@@ -123,6 +124,9 @@ export const App: FC = () => {
                 <Link dest="/loaders">
                   <TextLink>Loaders</TextLink>
                 </Link>
+                <Link dest="/callout">
+                  <TextLink>Callout</TextLink>
+                </Link>
               </Inline>
             </Panel>
             <Block>
@@ -159,6 +163,9 @@ export const App: FC = () => {
                 </Route>
                 <Route path="/loaders">
                   <LoadersPage />
+                </Route>
+                <Route path="/callout">
+                  <CalloutPage />
                 </Route>
                 <Route>
                   <Heading>404</Heading>

@@ -117,31 +117,56 @@ export const ButtonsPage: FC = () => (
     <Divider />
     <Block>
       <Heading>Tones</Heading>
-      <Grid cols="3">
-        <Button>none</Button>
-        <Button tone="neutral">neutral</Button>
-        <Button tone="critical">critical</Button>
-        <Button variant="ghost">none ghost</Button>
-        <Button variant="ghost" tone="neutral">
-          neutral ghost
-        </Button>
-        <Button variant="ghost" tone="critical">
-          critical ghost
-        </Button>
-        <Button variant="subtle">none subtle</Button>
-        <Button variant="subtle" tone="neutral">
-          neutral subtle
-        </Button>
-        <Button variant="subtle" tone="critical">
-          critical subtle
-        </Button>
-        <Button variant="transparent">none transparent</Button>
-        <Button variant="transparent" tone="neutral">
-          neutral transparent
-        </Button>
-        <Button variant="transparent" tone="critical">
-          critical transparent
-        </Button>
+      <Grid cols="4">
+        <Block>
+          <Button>standard</Button>
+          <Button variant="ghost">standard ghost</Button>
+          <Button variant="subtle">standard subtle</Button>
+          <Button variant="transparent">standard transparent</Button>
+        </Block>
+
+        <Block>
+          <Button tone="neutral">neutral</Button>
+          <Button variant="ghost" tone="neutral">
+            neutral ghost
+          </Button>
+
+          <Button variant="subtle" tone="neutral">
+            neutral subtle
+          </Button>
+
+          <Button variant="transparent" tone="neutral">
+            neutral transparent
+          </Button>
+        </Block>
+
+        <Block>
+          <Button tone="critical">critical</Button>
+          <Button variant="ghost" tone="critical">
+            critical ghost
+          </Button>
+          <Button variant="subtle" tone="critical">
+            critical subtle
+          </Button>
+
+          <Button variant="transparent" tone="critical">
+            critical transparent
+          </Button>
+        </Block>
+
+        <Block>
+          <Button tone="promo">promo</Button>
+
+          <Button variant="ghost" tone="promo">
+            promo ghost
+          </Button>
+          <Button variant="subtle" tone="promo">
+            promo subtle
+          </Button>
+          <Button variant="transparent" tone="promo">
+            neutral transparent
+          </Button>
+        </Block>
       </Grid>
 
       <Divider marginBlock="huge" />

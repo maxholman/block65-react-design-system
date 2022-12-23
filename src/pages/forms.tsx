@@ -10,6 +10,7 @@ import {
   FormInputRadioGroup,
   FormSelect,
   Heading,
+  Inline,
   Panel,
   Secondary,
   Strong,
@@ -90,7 +91,14 @@ export const FormsPage: FC = () => (
         <FormInputRadio label="Under 18" message="Wah so young" />
         <FormInputRadio label="18-25" defaultChecked />
         <FormInputRadio label="35+" />
-        <FormInputRadio label="If you are older than 35, then you will have to choose this option which is wrapping over multiple lines" />
+        <FormInputRadio
+          label={
+            <Block>
+              <Inline>If you are older than 35, choose this option.</Inline>
+              <Inline>Ooh it wraps over multiple lines.</Inline>
+            </Block>
+          }
+        />
       </FormInputRadioGroup>
       <FormInputCheckboxGroup label="Partners age" name="age2">
         <FormInputCheckbox
