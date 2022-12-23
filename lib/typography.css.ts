@@ -1,6 +1,6 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5';
@@ -71,9 +71,3 @@ export const levelVariantClasses = styleVariants(
   levelVariants,
   (variant) => variant,
 );
-
-export const toneVariants = styleVariants(colorThemeVars.tones, (value) => ({
-  backgroundColor: hsl(value.h, 100, 80),
-  borderColor: hsl(value.h, 60, 70),
-  color: hsl(value.h, 20, 20),
-}));

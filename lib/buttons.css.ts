@@ -1,24 +1,25 @@
-import { createVar, style, styleVariants } from '@vanilla-extract/css';
+import {
+  createVar,
+  style,
+  StyleRule,
+  styleVariants,
+} from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
-import { colorThemeVars } from './schemes/color.css.js';
+import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { toneH, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
 
-export type ButtonVariant =
-  | 'standard'
-  | 'neutral'
-  | 'ghost'
-  | 'subtle'
-  | 'transparent';
+export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 
 export const iconClass = style({
-  display: 'inline-flex',
+  display: 'flex',
+  flexDirection: 'row',
+  width: '1em',
   height: '1em',
-  aspectRatio: '1/1',
+  flexShrink: 0,
   alignItems: 'center',
-  justifySelf: 'center',
-  justifyContent: 'center',
 });
 
 const basePadding = createVar();
@@ -29,13 +30,15 @@ const base = style({
   },
   cursor: 'pointer',
   borderStyle: 'solid',
-  display: 'flex',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  flexWrap: 'nowrap',
+  whiteSpace: 'nowrap',
+  justifyContent: 'center',
   borderWidth: genericVars.border.weight.normal,
   borderRadius: genericVars.radius.medium,
-  flexDirection: 'row',
-  alignItems: 'center',
+  borderColor: 'transparent',
   padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
-  justifyContent: 'center',
   fontSize: genericVars.text.size.normal,
   userSelect: 'none',
   textAlign: 'center',
@@ -56,76 +59,58 @@ export const compactButton = style({
   vars: {
     [basePadding]: genericVars.space.tiny,
   },
-  // padding: `${genericVars.space.tiny} ${genericVars.space.small}`,
   fontSize: genericVars.text.size.small,
 });
 
-const variants: Record<
-  ButtonVariant,
-  {
-    backgroundColor?: string;
-    color: string;
-    borderColor: string;
-    backgroundColorHover?: string;
-    borderColorHover?: string;
-  }
-> = {
+const hoverAlpha = createVar();
+
+const variants: Record<ButtonVariant, StyleRule> = {
   standard: {
-    backgroundColor: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
-      colorThemeVars.accent.l,
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    color: hsl(
+      toneH,
+      colorThemeVars.tones.accent.s,
+      contrastSchemeVars.level0.l,
     ),
-    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 100),
-    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
-  },
-  neutral: {
-    backgroundColor: hsl(colorThemeVars.accent.h, 10, 50),
-    color: hsl(colorThemeVars.accent.h, 10, '90%'),
-    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, '90%'),
   },
   ghost: {
-    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
-    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
+    color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    selectors: {
+      '&:hover': {
+        backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l, 0.75),
+      },
+    },
   },
   subtle: {
-    backgroundColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 90),
-    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 40),
-    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 90),
-    borderColorHover: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 80),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
+    selectors: {
+      '&:hover': {
+        borderColor: hsl(
+          toneH,
+          calc(toneS).subtract('15%').toString(),
+          contrastSchemeVars.level2.l,
+        ),
+      },
+    },
   },
   transparent: {
-    backgroundColor: 'transparent',
-    color: 'inherit',
-    borderColor: 'transparent',
-    backgroundColorHover: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
-      '90%',
-    ),
+    vars: { [hoverAlpha]: '0' },
+    color: hsl(toneH, toneS, contrastSchemeVars.level3.l),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l, hoverAlpha),
+    selectors: {
+      '&:hover': {
+        vars: { [hoverAlpha]: '0.5' },
+      },
+    },
   },
 };
 
 export const buttonVariantClasses = styleVariants(variants, (variant) => [
   base,
-  {
-    ...(variant.backgroundColor && {
-      backgroundColor: variant.backgroundColor,
-    }),
-    color: variant.color,
-    borderColor: variant.borderColor,
-    selectors: {
-      // :where to avoid specificity issues with busy/disabled etc
-      ...((variant.borderColorHover || variant.backgroundColorHover) && {
-        '&:where(:not([disabled]):hover)': {
-          borderColor: variant.borderColorHover || variant.borderColor,
-          ...(variant.backgroundColorHover && {
-            backgroundColor: variant.backgroundColorHover,
-          }),
-        },
-      }),
-    },
-  },
+  variant,
 ]);
 
 export const visiblyHiddenClass = style({

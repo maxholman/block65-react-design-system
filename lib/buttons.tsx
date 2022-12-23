@@ -12,9 +12,8 @@ import {
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
 import { Inline } from './layout.js';
+import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
-import type { Tone } from './schemes/color.css.js';
-import { toneVariants } from './typography.css.js';
 
 export type ButtonCommonProps = {
   className?: ClassValue;
@@ -23,7 +22,7 @@ export type ButtonCommonProps = {
   compact?: boolean;
   align?: Align;
   inline?: boolean;
-  tone?: ButtonTone;
+  tone?: Tone;
   icon?: ReactElement | FC | undefined;
 };
 
@@ -57,7 +56,7 @@ const ButtonInternal: FC<
 > = ({
   component = 'button',
   variant = 'standard',
-  tone,
+  tone = 'accent',
   compact,
   busy,
   align,
@@ -70,12 +69,12 @@ const ButtonInternal: FC<
   <Box
     component={component}
     className={clsx(
-      className,
       buttonVariantClasses[variant],
+      toneVariants[tone],
       busy && busyButtonClass,
-      tone && toneVariants[tone],
       compact && compactButton,
       inline && inlineBleedClass,
+      className,
     )}
     {...props}
   >

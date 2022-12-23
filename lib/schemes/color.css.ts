@@ -5,6 +5,7 @@ import {
   createThemeContract,
   style,
 } from '@vanilla-extract/css';
+import type { Tone } from '../tone.css.js';
 import { hsl } from '../utils.js';
 
 export type ColorScheme = 'dark' | 'light' | 'auto';
@@ -53,15 +54,19 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
       s: '50%',
       l: '50%',
     },
-  },
+  } as /* satisfies */ Record<Tone, { h: string; s: string; l: string }>,
 });
-
-export type Tone = keyof typeof colorThemeVars.tones;
 
 // this just sets up the contract shape, no need for values or a class
 export const contrastSchemeVars = createThemeContract({
   // large surface backgrounds
   level0: {
+    l: '',
+  },
+
+  // transparent button hovers and larger subtle backgrounds such as panels
+  // a level1 lightness should be able to make a visible border around this
+  level0point5: {
     l: '',
   },
 
@@ -80,12 +85,12 @@ export const contrastSchemeVars = createThemeContract({
     l: '',
   },
 
-  // headers
+  // foreground text, heavy button backgrounds
   level4: {
     l: '',
   },
 
-  // foreground text (not headers)
+  // headings
   level5: {
     l: '',
   },
@@ -94,6 +99,9 @@ export const contrastSchemeVars = createThemeContract({
 const darkStyleRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
     level0: {
+      l: '10%',
+    },
+    level0point5: {
       l: '10%',
     },
     level1: {
@@ -119,6 +127,9 @@ const darkStyleMoreContrastRule: ComplexStyleRule = {
     level0: {
       l: '0%',
     },
+    level0point5: {
+      l: '50%',
+    },
     level1: {
       l: '50%',
     },
@@ -126,7 +137,7 @@ const darkStyleMoreContrastRule: ComplexStyleRule = {
       l: '50%',
     },
     level3: {
-      l: '85%',
+      l: '75%',
     },
     level4: {
       l: '85%',
@@ -140,6 +151,9 @@ const darkStyleMoreContrastRule: ComplexStyleRule = {
 const darkStyleLessContrastRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
     level0: {
+      l: '0%',
+    },
+    level0point5: {
       l: '10%',
     },
     level1: {
@@ -161,25 +175,80 @@ const darkStyleLessContrastRule: ComplexStyleRule = {
   }),
 };
 
+const lightStyleLessContrastRule: ComplexStyleRule = {
+  vars: assignVars(contrastSchemeVars, {
+    level0: {
+      l: '90%',
+    },
+    level0point5: {
+      l: '85%',
+    },
+    level1: {
+      l: '82%',
+    },
+    level2: {
+      l: '75%',
+    },
+    level3: {
+      l: '70%',
+    },
+    level4: {
+      l: '50%',
+    },
+    level5: {
+      l: '50%',
+    },
+  }),
+};
+
+const lightStyleMoreContrastRule: ComplexStyleRule = {
+  vars: assignVars(contrastSchemeVars, {
+    level0: {
+      l: '100%',
+    },
+    level0point5: {
+      l: '90%',
+    },
+    level1: {
+      l: '50%',
+    },
+    level2: {
+      l: '25%',
+    },
+    level3: {
+      l: '25%',
+    },
+    level4: {
+      l: '0%',
+    },
+    level5: {
+      l: '0%',
+    },
+  }),
+};
+
 const lightStyleRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
     level0: {
       l: '100%',
     },
+    level0point5: {
+      l: '95%',
+    },
     level1: {
-      l: '80%',
+      l: '90%',
     },
     level2: {
-      l: '60%',
+      l: '70%',
     },
     level3: {
       l: '50%',
     },
     level4: {
-      l: '30%',
+      l: '45%',
     },
     level5: {
-      l: '20%',
+      l: '25%',
     },
   }),
 };
@@ -193,6 +262,10 @@ export const mediaPrefersColorSchemeClass = style({
 
 export const mediaPrefersContrastSchemeClass = style({
   '@media': {
+    '(prefers-color-scheme: light) and (prefers-contrast-scheme: less)':
+      lightStyleLessContrastRule,
+    '(prefers-color-scheme: light) and (prefers-contrast-scheme: more)':
+      lightStyleMoreContrastRule,
     '(prefers-color-scheme: dark) and (prefers-contrast-scheme: less)':
       darkStyleLessContrastRule,
     '(prefers-color-scheme: dark) and (prefers-contrast-scheme: more)':
@@ -201,8 +274,12 @@ export const mediaPrefersContrastSchemeClass = style({
 });
 
 export const defaultBgFgClass = style({
-  backgroundColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level0.l),
-  color: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level5.l),
+  backgroundColor: hsl(
+    colorThemeVars.tones.accent.h,
+    0,
+    contrastSchemeVars.level0.l,
+  ),
+  color: hsl(colorThemeVars.tones.accent.h, 0, contrastSchemeVars.level5.l),
 });
 
 export const lightClass = style(lightStyleRule);
@@ -213,6 +290,6 @@ export const darkMoreContrastClass = style(darkStyleMoreContrastRule);
 
 export const darkLessContrastClass = style(darkStyleLessContrastRule);
 
-export const lightMoreContrastClass = style(lightStyleRule);
+export const lightMoreContrastClass = style(lightStyleMoreContrastRule);
 
-export const lightLessContrastClass = style(lightStyleRule);
+export const lightLessContrastClass = style(lightStyleLessContrastRule);

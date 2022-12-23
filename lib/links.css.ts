@@ -1,6 +1,6 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { colorThemeVars } from './schemes/color.css.js';
+import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export type LinkVariant = 'strong' | 'standard' | 'weak';
@@ -12,7 +12,7 @@ const linkStyle = style({
     [linkColorVar]: hsl(
       colorThemeVars.tones.accent.h,
       colorThemeVars.tones.accent.s,
-      colorThemeVars.accent.l,
+      contrastSchemeVars.level3.l,
     ),
   },
   cursor: 'pointer',

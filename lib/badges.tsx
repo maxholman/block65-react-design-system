@@ -1,13 +1,9 @@
 import { ClassValue, clsx } from 'clsx';
 import type { FC } from 'react';
-import {
-  badgeToneVariants,
-  BadgeVariant,
-  badgeVariantClasses,
-} from './badges.css.js';
+import { BadgeVariant, badgeVariants } from './badges.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
-import type { Tone } from './schemes/color.css.js';
+import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 
 export type BadgeProps = {
@@ -30,11 +26,7 @@ export const Badge: FC<
 }) => (
   <Box
     component={component}
-    className={clsx(
-      className,
-      badgeToneVariants[tone],
-      badgeVariantClasses[variant],
-    )}
+    className={clsx(className, toneVariants[tone], badgeVariants[variant])}
     {...props}
   >
     {children}

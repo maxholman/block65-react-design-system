@@ -38,21 +38,29 @@ const variantRules: Record<
       0,
       contrastSchemeVars.level1.l,
     ),
-    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level3.l),
+    borderColor: hsl(
+      colorThemeVars.tones.accent.h,
+      0,
+      contrastSchemeVars.level1.l,
+    ),
   },
   ghost: {
-    borderColor: hsl(colorThemeVars.accent.h, 0, contrastSchemeVars.level3.l),
+    borderColor: hsl(
+      colorThemeVars.tones.accent.h,
+      0,
+      contrastSchemeVars.level1.l,
+    ),
   },
   subtle: {
     backgroundColor: hsl(
       colorThemeVars.tones.accent.h,
       colorThemeVars.tones.accent.s,
-      contrastSchemeVars.level1.l,
+      contrastSchemeVars.level0point5.l,
     ),
     borderColor: hsl(
       colorThemeVars.tones.accent.h,
       colorThemeVars.tones.accent.s,
-      contrastSchemeVars.level3.l,
+      contrastSchemeVars.level1.l,
     ),
   },
   transparent: {

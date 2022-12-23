@@ -2,6 +2,7 @@ import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { colorThemeVars } from './schemes/color.css.js';
+import { toneH, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
 
 export type BadgeVariant =
@@ -32,21 +33,7 @@ const base = style({
   letterSpacing: 'initial',
 });
 
-const hue = createVar();
-
-export const badgeToneVariants = styleVariants(
-  colorThemeVars.tones,
-  (value) => ({
-    vars: {
-      [hue]: value.h,
-    },
-    // backgroundColor: hsl(value.h, 100, 80),
-    // borderColor: hsl(value.h, 60, 70),
-    // color: hsl(value.h, 20, 20),
-  }),
-);
-
-export const variants: Record<
+const variantRules: Record<
   BadgeVariant,
   {
     backgroundColor?: string;
@@ -55,23 +42,23 @@ export const variants: Record<
   }
 > = {
   standard: {
-    backgroundColor: hsl(hue, colorThemeVars.accent.s, colorThemeVars.accent.l),
-    color: hsl(hue, colorThemeVars.accent.s, 100),
-    borderColor: hsl(hue, colorThemeVars.accent.s, 50),
+    backgroundColor: hsl(toneH, toneS, colorThemeVars.tones.accent.l),
+    color: hsl(toneH, toneS, 100),
+    borderColor: hsl(toneH, toneS, 50),
   },
   neutral: {
-    backgroundColor: hsl(colorThemeVars.accent.h, 10, 50),
-    color: hsl(colorThemeVars.accent.h, 10, '90%'),
-    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, '90%'),
+    backgroundColor: hsl(toneH, toneS, 50),
+    color: hsl(toneH, toneS, '90%'),
+    borderColor: hsl(toneH, toneS, '90%'),
   },
   ghost: {
-    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
-    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 50),
+    color: hsl(toneH, toneS, 50),
+    borderColor: hsl(toneH, toneS, 50),
   },
   subtle: {
-    backgroundColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 90),
-    color: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 40),
-    borderColor: hsl(colorThemeVars.accent.h, colorThemeVars.accent.s, 90),
+    backgroundColor: hsl(toneH, toneS, 90),
+    color: hsl(toneH, toneS, 40),
+    borderColor: hsl(toneH, toneS, 90),
   },
   transparent: {
     backgroundColor: 'transparent',
@@ -80,18 +67,7 @@ export const variants: Record<
   },
 };
 
-export const badgeVariantClasses = styleVariants(variants, (variant) => [
+export const badgeVariants = styleVariants(variantRules, (variant) => [
   base,
-  {
-    ...(variant.backgroundColor && {
-      backgroundColor: variant.backgroundColor,
-    }),
-    color: variant.color,
-    borderColor: variant.borderColor,
-  },
+  variant,
 ]);
-
-// export const inlineBleedClass = style({
-//   marginTop: calc(genericVars.space.small).negate().toString(),
-//   marginBottom: calc(`${genericVars.space.small}`).negate().toString(),
-// });
