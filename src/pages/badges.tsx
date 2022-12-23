@@ -11,14 +11,14 @@ import {
   type BadgeVariant,
 } from '../../lib/main.js';
 
-const badgeVariants: BadgeVariant[] = [
+const badgeVariantNames: BadgeVariant[] = [
   'ghost',
   'subtle',
   'standard',
   'transparent',
 ];
 
-const badgeTones: Tone[] = [
+const badgeToneNames: Tone[] = [
   'critical',
   'positive',
   'info',
@@ -33,10 +33,10 @@ export const BadgesPage: FC = () => (
       <Heading level="3">Badges</Heading>
 
       <Grid>
-        {badgeVariants.map((variant) => (
+        {badgeVariantNames.map((variant) => (
           <Panel variant="subtle">
             <Heading level="4">{variant}</Heading>
-            {badgeTones.map((tone) => (
+            {badgeToneNames.map((tone) => (
               <Inline>
                 <Badge variant={variant} tone={tone}>
                   {tone}
