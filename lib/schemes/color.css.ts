@@ -22,37 +22,37 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
     accent: {
       h: '220',
       s: '50%',
-      l: '50%',
+      l: '0%',
     },
     info: {
       h: '210',
-      s: '50%',
-      l: '70%',
+      s: '60%',
+      l: '0%',
     },
     neutral: {
       h: '210',
       s: '50%',
-      l: '50%',
+      l: '0%',
     },
     promo: {
       h: '280',
-      s: '50%',
-      l: '50%',
+      s: '60%',
+      l: '0%',
     },
     warn: {
-      h: '35',
-      s: '50%',
-      l: '50%',
+      h: '37',
+      s: '80%',
+      l: '0%',
     },
     positive: {
       h: '120',
       s: '50%',
-      l: '90%',
+      l: '0%',
     },
     critical: {
       h: '0',
       s: '50%',
-      l: '50%',
+      l: '0%',
     },
   } as /* satisfies */ Record<Tone, { h: string; s: string; l: string }>,
 });
