@@ -63,10 +63,7 @@ const variantRules: Record<
       contrastSchemeVars.level1.l,
     ),
   },
-  transparent: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-  },
+  transparent: {},
 };
 
 export const panelVariants = styleVariants(variantRules, (variant) => [
