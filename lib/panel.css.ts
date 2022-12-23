@@ -27,14 +27,14 @@ const variants: Record<
 > = {
   standard: {
     backgroundColor: hsl(
-      colorThemeVars.accent.h,
+      colorThemeVars.tones.accent.h,
       0,
       contrastSchemeVars.level0.l,
     ),
   },
   neutral: {
     backgroundColor: hsl(
-      colorThemeVars.accent.h,
+      colorThemeVars.tones.accent.h,
       0,
       contrastSchemeVars.level1.l,
     ),
@@ -45,13 +45,13 @@ const variants: Record<
   },
   subtle: {
     backgroundColor: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
+      colorThemeVars.tones.accent.h,
+      colorThemeVars.tones.accent.s,
       contrastSchemeVars.level1.l,
     ),
     borderColor: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
+      colorThemeVars.tones.accent.h,
+      colorThemeVars.tones.accent.s,
       contrastSchemeVars.level3.l,
     ),
   },
