@@ -289,7 +289,6 @@ export const FormInputRadioGroup: FC<
   tertiaryLabel,
   message,
   children,
-  // ...props
 }) => (
   <Block className={className}>
     {label && (
