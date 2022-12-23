@@ -39,6 +39,7 @@ const variantRules: Record<
     backgroundColor?: string;
     color: string;
     borderColor: string;
+    fontWeight?: string;
   }
 > = {
   standard: {
@@ -62,7 +63,8 @@ const variantRules: Record<
   },
   transparent: {
     backgroundColor: 'transparent',
-    color: 'inherit',
+    color: hsl(toneH, toneS, 40),
+    fontWeight: genericVars.text.weight.bold,
     borderColor: 'transparent',
   },
 };
