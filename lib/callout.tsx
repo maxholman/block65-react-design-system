@@ -1,9 +1,12 @@
 import type { FC } from 'react';
-import { calloutClass } from './callout.css.js';
+import {
+  calloutChildrenClass,
+  calloutClass,
+  calloutIconClass,
+} from './callout.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import { Info } from './icons.js';
-import { alignItems } from './layout.css.js';
-import { Inline } from './layout.js';
+import { Block } from './layout.js';
 import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 
@@ -23,9 +26,9 @@ export const Callout: FC<
     aria-live="polite"
     {...props}
   >
-    <Inline space="tiny" className={alignItems.center}>
-      <Info />
+    <Info className={calloutIconClass} />
+    <Block textOverflow="break" className={calloutChildrenClass}>
       {children}
-    </Inline>
+    </Block>
   </Box>
 );
