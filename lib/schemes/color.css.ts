@@ -17,12 +17,12 @@ export type Tokens = {
 
 // all of these will be overridable by the user
 export const [defaultColorThemeClass, colorThemeVars] = createTheme({
-  accent: {
-    h: '220',
-    s: '50%',
-    l: '50%',
-  },
   tones: {
+    accent: {
+      h: '220',
+      s: '50%',
+      l: '50%',
+    },
     info: {
       h: '210',
       s: '50%',
