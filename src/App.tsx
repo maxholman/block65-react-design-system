@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Link, Route, Router, Routes } from '@block65/mrr';
-import { FC, useState } from 'react';
+import type { FC } from 'react';
 import { useLocalStorageState } from '../gist_modules/maxholman/react-hooks/use-localstorage-state.js';
 import {
   Block,
