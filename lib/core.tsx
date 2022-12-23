@@ -13,7 +13,7 @@ import {
   TextOverflow,
   textOverflowVariants,
 } from './core.css.js';
-import { Align, alignItems } from './layout.css.js';
+import { Align, alignItemsVariants } from './layout.css.js';
 import { Tooltip } from './tooltip.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
@@ -68,7 +68,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
       ...props,
       className:
         clsx(
-          align && alignItems[align],
+          align && alignItemsVariants[align],
           margin && marginVariants[margin],
           marginBlock && marginBlockVariants[marginBlock],
           marginInline && marginInlineVariants[marginInline],

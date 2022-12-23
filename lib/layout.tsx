@@ -3,7 +3,7 @@ import { Box, BoxBasedComponentProps, Space } from './core.js';
 import {
   flexColumnVariants,
   flexRowVariants,
-  inlineAlignSelf,
+  inlineAlignSelfVariants,
   inlineClass,
 } from './layout.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
@@ -46,7 +46,7 @@ export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'span'>({
     className={clsx(
       inlineClass,
       space && flexRowVariants[space],
-      align && inlineAlignSelf[align],
+      align && inlineAlignSelfVariants[align],
       className,
     )}
     component={component}

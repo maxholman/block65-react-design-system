@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from 'react';
 import type { TextAlign, TextOverflow } from './core.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
-import { inlineAlignSelf } from './layout.css.js';
+import { inlineAlignSelfVariants } from './layout.css.js';
 import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 import {
@@ -59,7 +59,7 @@ export const Text: FC<
       textClass,
       fontClass[size],
       tone && toneVariants[tone],
-      align && inlineAlignSelf[align],
+      align && inlineAlignSelfVariants[align],
       className,
     ]}
     {...props}

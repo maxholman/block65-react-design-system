@@ -28,7 +28,10 @@ export const flexRowVariants = styleVariants(genericVars.space, (space) => [
   },
 ]);
 
-export const alignItems = styleVariants<Record<Align, ComplexStyleRule>>({
+
+export const alignItemsVariants = styleVariants<
+  Record<Align, ComplexStyleRule>
+>({
   start: { alignItems: 'start' },
   center: { alignItems: 'center' },
   end: { alignItems: 'end' },
@@ -38,7 +41,9 @@ export const inlineClass = style({
   alignItems: 'center',
 });
 
-export const inlineAlignSelf = styleVariants<Record<Align, ComplexStyleRule>>({
+export const inlineAlignSelfVariants = styleVariants<
+  Record<Align, ComplexStyleRule>
+>({
   start: { marginInlineEnd: 'auto' },
   center: { marginInline: 'auto' },
   end: { marginInlineStart: 'auto' },
