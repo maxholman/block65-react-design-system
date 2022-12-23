@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import {
   Block,
-  Callout,
   Divider,
   Grid,
   Heading,
@@ -63,21 +62,6 @@ export const TypographyPage: FC = () => (
         computer.
       </Heading>
     </Block>
-    <Callout tone="critical">
-      <Text>Critical</Text>
-    </Callout>
-    <Callout tone="info">
-      <Text>Informative!</Text>
-    </Callout>
-    <Callout tone="positive">
-      <Text>Overwhelmingly positive!</Text>
-    </Callout>
-    <Callout tone="promo">
-      <Text>Promotional</Text>
-    </Callout>
-    <Callout tone="warn">
-      <Text>Warning!</Text>
-    </Callout>
 
     <Heading level="1">Text Align</Heading>
 

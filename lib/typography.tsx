@@ -1,13 +1,10 @@
 import type { FC, PropsWithChildren } from 'react';
-import type { Merge } from './types.js';
 import type { TextAlign, TextOverflow } from './core.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
-import { Info } from './icons.js';
-import { alignItems, inlineAlignSelf } from './layout.css.js';
-import { Inline } from './layout.js';
-import type { Tone } from './schemes/color.css.js';
+import { inlineAlignSelf } from './layout.css.js';
+import { Tone, toneVariants } from './tone.css.js';
+import type { Merge } from './types.js';
 import {
-  calloutClass,
   codeClass,
   fontClass,
   FontSize,
@@ -16,7 +13,6 @@ import {
   secondaryClass,
   strongClass,
   textClass,
-  toneVariants,
 } from './typography.css.js';
 
 // export types to assist with consumers who create augmented components
@@ -86,27 +82,4 @@ export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
   ...props
 }) => (
   <Box component="span" className={[secondaryClass, className]} {...props} />
-);
-
-export const Callout: FC<
-  Merge<
-    BoxBasedComponentProps<'div'>,
-    {
-      tone?: Tone;
-      align?: never;
-    }
-  >
-> = ({ children, className, tone = 'info', ...props }) => (
-  <Box
-    component="div"
-    className={[tone && toneVariants[tone], calloutClass, className]}
-    role="alert"
-    aria-live="polite"
-    {...props}
-  >
-    <Inline space="small" className={alignItems.center}>
-      <Info />
-      {children}
-    </Inline>
-  </Box>
 );

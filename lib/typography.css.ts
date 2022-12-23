@@ -77,10 +77,3 @@ export const toneVariants = styleVariants(colorThemeVars.tones, (value) => ({
   borderColor: hsl(value.h, 60, 70),
   color: hsl(value.h, 20, 20),
 }));
-
-export const calloutClass = style({
-  padding: genericVars.space.small,
-  borderStyle: 'solid',
-  borderWidth: genericVars.border.weight.normal,
-  borderRadius: genericVars.radius.medium,
-});
