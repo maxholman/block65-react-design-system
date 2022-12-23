@@ -29,9 +29,13 @@ globalStyle(withResetClass('ol', 'ul', 'menu'), {
   listStyle: 'none',
 });
 
-// https://github.com/elad2412/the-new-css-reset/issues/47
 globalStyle(withResetClass('img'), {
   maxInlineSize: '100%',
+  maxBlockSize: '100%',
+});
+
+globalStyle(withResetClass('pre'), {
+  all: 'revert',
 });
 
 globalStyle(withResetClass('table'), {
@@ -55,6 +59,10 @@ globalStyle(withResetClass('::placeholder'), {
   color: 'unset',
 });
 
+globalStyle(withResetClass('::marker'), {
+  content: '""',
+});
+
 globalStyle(withResetClass(':where([hidden])'), {
   display: 'none!important',
 });
@@ -74,6 +82,10 @@ globalStyle(
 globalStyle(withResetClass(':where([draggable="true"])'), {
   // @ts-expect-error - WebkitUserDrag doesn't exist in the type defs
   WebkitUserDrag: 'element',
+});
+
+globalStyle(withResetClass(':where(dialog:modal)'), {
+  all: 'revert',
 });
 
 // restore focus styles
