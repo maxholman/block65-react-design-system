@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Link, Route, Router, Routes } from '@block65/mrr';
 import { FC, useState } from 'react';
+import { useLocalStorageState } from '../gist_modules/maxholman/react-hooks/use-localstorage-state.js';
 import {
   Block,
   ColorScheme,
@@ -27,8 +28,12 @@ import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
 
 export const App: FC = () => {
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('auto');
-  const [contrastScheme, setContrastScheme] = useState<ContrastScheme>('auto');
+  const [colorScheme, setColorScheme] = useLocalStorageState<ColorScheme>(
+    'color-scheme',
+    'auto',
+  );
+  const [contrastScheme, setContrastScheme] =
+    useLocalStorageState<ContrastScheme>('contrast-scheme', 'auto');
 
   return (
     <DesignSystem
