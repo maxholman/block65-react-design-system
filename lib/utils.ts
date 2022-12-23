@@ -60,19 +60,22 @@ export function hslValues(
   h: string | number,
   s: string | number,
   l: string | number,
+  a: string | number,
 ) {
-  return [h, s, l].join(' ');
+  return [h, s, l, ...(a.toString() !== '1' ? [a] : [])].join(',');
 }
 
 export function hsl(
   h: string | number,
   s: string | number,
   l: string | number,
+  a: string | number = 1,
 ) {
   return `hsl(${hslValues(
     maybeSuffix(h, 'deg'),
     maybeSuffix(s, '%'),
     maybeSuffix(l, '%'),
+    a,
   )})`;
 }
 
