@@ -60,20 +60,25 @@ export const paddingInlineVariants = styleVariants(
   ],
 );
 
-export type TextOverflow = 'ellipsis' | 'clip';
+export type TextOverflow = 'ellipsis' | 'clip' | 'break';
 
 const textOverflowCssProps: Record<TextOverflow, StyleRule> = {
   ellipsis: {
     textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   },
   clip: {
     textOverflow: 'clip',
+    whiteSpace: 'nowrap',
+  },
+  break: {
+    overflowWrap: 'break-word',
+    hyphens: 'auto',
   },
 };
 
 const textOverflowBase = style({
   overflow: 'hidden',
-  whiteSpace: 'nowrap',
 });
 
 export const textOverflowVariants = styleVariants(
