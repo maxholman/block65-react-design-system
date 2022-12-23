@@ -2,10 +2,10 @@
 SRCS = $(wildcard lib/**)
 
 .PHONY: all
-all: dist types
+all: types build
 
-dist: node_modules
-	yarn vite build
+build: node_modules vite.config.ts
+	NODE_ENV=production yarn vite build
 
 .PHONY: types
 types: node_modules
@@ -18,9 +18,10 @@ types-watch: node_modules
 .PHONY: clean
 clean: node_modules
 	yarn tsc -b --clean
+	rm -rf build dist
 
 .PHONY: test
-test: node_modules
+test: node_modules vite.config.ts
 	yarn vitest run
 
 node_modules: package.json
@@ -31,5 +32,5 @@ dev:
 	$(MAKE) -j 2 types-watch dev-server
 
 .PHONY: dev-server
-dev-server: node_modules
+dev-server: node_modules vite.config.ts
 	yarn vite dev --force
