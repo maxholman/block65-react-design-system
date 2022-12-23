@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import type { Merge } from './types.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import { linkStyleVariant, LinkVariant } from './links.css.js';
+import type { Merge } from './types.js';
 
 export const TextLink: FC<
   Merge<
