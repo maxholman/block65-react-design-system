@@ -10,8 +10,8 @@ const linkColorVar = createVar();
 const linkStyle = style({
   vars: {
     [linkColorVar]: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
+      colorThemeVars.tones.accent.h,
+      colorThemeVars.tones.accent.s,
       colorThemeVars.accent.l,
     ),
   },

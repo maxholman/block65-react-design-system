@@ -2,12 +2,12 @@ import { createTheme } from '@vanilla-extract/css';
 import { colorThemeVars } from '../lib/schemes/color.css.js';
 
 export const exampleColorThemeClass = createTheme(colorThemeVars, {
-  accent: {
-    h: '214',
-    s: '60%',
-    l: '50%',
-  },
   tones: {
+    accent: {
+      h: '214',
+      s: '60%',
+      l: '50%',
+    },
     info: {
       h: '90',
       s: '50%',

@@ -36,9 +36,9 @@ export const formInputNotCheckRadio = style({
     '&:focus-visible': {
       outline: 'max(2px, 0.15em) solid currentColor',
       outlineColor: hsl(
-        colorThemeVars.accent.h,
-        colorThemeVars.accent.s,
-        colorThemeVars.accent.l,
+        colorThemeVars.tones.accent.h,
+        colorThemeVars.tones.accent.s,
+        colorThemeVars.tones.accent.l,
       ),
       outlineOffset: calc(borderWidthVar).negate().toString(),
     },
@@ -54,8 +54,8 @@ export const formInputCheckRadioBase = style([
     height: genericVars.text.size.medium,
     aspectRatio: '1/1',
     color: hsl(
-      colorThemeVars.accent.h,
-      colorThemeVars.accent.s,
+      colorThemeVars.tones.accent.h,
+      colorThemeVars.tones.accent.s,
       contrastSchemeVars.level5.l,
     ),
     // WARN: this is a bit hacky to get perfect alignment
@@ -70,9 +70,9 @@ export const formInputCheckRadioBase = style([
       },
       '&:focus-within': {
         color: hsl(
-          colorThemeVars.accent.h,
-          colorThemeVars.accent.s,
-          colorThemeVars.accent.l,
+          colorThemeVars.tones.accent.h,
+          colorThemeVars.tones.accent.s,
+          colorThemeVars.tones.accent.l,
         ),
       },
       '&::before': {
@@ -83,9 +83,9 @@ export const formInputCheckRadioBase = style([
         transform: 'scale(0)',
         transition: '100ms transform ease-in-out',
         boxShadow: `inset 1em 1em ${hsl(
-          colorThemeVars.accent.h,
-          colorThemeVars.accent.s,
-          colorThemeVars.accent.l,
+          colorThemeVars.tones.accent.h,
+          colorThemeVars.tones.accent.s,
+          colorThemeVars.tones.accent.l,
         )}`,
       },
       '&:checked': {
