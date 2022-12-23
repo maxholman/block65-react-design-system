@@ -145,3 +145,14 @@ export const inlineBleedClass = style({
   marginTop: calc(genericVars.space.small).negate().toString(),
   marginBottom: calc(`${genericVars.space.small}`).negate().toString(),
 });
+
+export const withIconClass = style({
+  gap: genericVars.space.nano,
+  display: 'inline-flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  minWidth: 0,
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+});

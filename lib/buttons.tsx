@@ -1,5 +1,5 @@
 import { ClassValue, clsx } from 'clsx';
-import type { FC, ReactElement } from 'react';
+import { FC, isValidElement, ReactElement } from 'react';
 import {
   busyButtonClass,
   ButtonVariant,
@@ -8,6 +8,7 @@ import {
   iconClass,
   inlineBleedClass,
   visiblyHiddenClass,
+  withIconClass,
 } from './buttons.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
@@ -66,7 +67,7 @@ const ButtonInternal: FC<
   children,
   ...props
 }) => (
-  <Box
+  <Inline
     component={component}
     className={clsx(
       buttonVariantClasses[variant],
@@ -76,29 +77,42 @@ const ButtonInternal: FC<
       inline && inlineBleedClass,
       className,
     )}
+    space="tiny"
+    textOverflow="ellipsis"
     {...props}
   >
-    <Inline
-      space="tiny"
-      className={busy && visiblyHiddenClass}
+    {icon && (
+      <Box component="span" className={[iconClass, busy && visiblyHiddenClass]}>
+        {isValidElement(icon) ? icon : icon({})}
+      </Box>
+    )}
+    <Box
+      className={[busy && visiblyHiddenClass, withIconClass]}
       aria-hidden={busy || undefined}
     >
-      {icon && <span className={iconClass}>{icon}</span>}
       {children}
-    </Inline>
-  </Box>
+    </Box>
+  </Inline>
 );
 
+export const Button: FC<
+  Merge<BoxBasedComponentProps<'button'>, ButtonProps>
+> = (props) => <ButtonInternal {...props} />;
+
 export const ButtonLink: FC<
-  Omit<BoxBasedComponentProps<'a', ButtonProps>, 'component'> & {
-    href?: string;
-  }
-> = (props) => <Button component={'href' in props ? 'a' : 'span'} {...props} />;
+  Merge<BoxBasedComponentProps<'a' | 'span'>, ButtonLinkProps>
+> = (props) => (
+  <ButtonInternal
+    component={'href' in props ? 'a' : 'span'}
+    {...props}
+    textOverflow="ellipsis"
+  />
+);
 
 export const ButtonIcon: FC<
-  BoxBasedComponentProps<'button', ButtonIconProps> & { label: string }
-> = ({ children, label, ...props }) => (
-  <Button aria-label={label} {...props}>
-    <span className={iconClass}>{children}</span>
-  </Button>
+  Merge<BoxBasedComponentProps<'button'>, ButtonIconProps>
+> = ({ icon, label, ...props }) => (
+  <ButtonInternal aria-label={label} {...props} textOverflow="ellipsis">
+    <span className={iconClass}>{icon}</span>
+  </ButtonInternal>
 );
