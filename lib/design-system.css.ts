@@ -58,7 +58,7 @@ export const genericVars = createThemeContract({
 export const genericThemeClass = createTheme(genericVars, {
   text: {
     size: {
-      nano: '0.5rem',
+      nano: '0.56rem',
       tiny: '0.7rem',
       small: '0.8rem',
       normal: '1rem',
