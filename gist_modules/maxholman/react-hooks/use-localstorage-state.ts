@@ -42,7 +42,7 @@ export function useLocalStorage<T extends JsonValue>(
       console.warn({ err }, Object(err).message);
       return resolvedInitialValue.current;
     }
-  }, []);
+  }, [namespace]);
 
   const setLocalStorageValue = useCallback(
     (value: T | undefined): T | undefined => {
@@ -57,7 +57,7 @@ export function useLocalStorage<T extends JsonValue>(
 
       return value;
     },
-    [],
+    [namespace],
   );
 
   return [getLocalStorageValue, setLocalStorageValue];
@@ -102,7 +102,7 @@ export function useLocalStorageState<T extends JsonValue>(
       setLocalStorageValue(resolvedValue);
       setStateValue(resolvedValue);
     },
-    [],
+    [localStorageValue, setLocalStorageValue],
   );
 
   return [state, setState];
