@@ -7,7 +7,7 @@ export type LinkVariant = 'strong' | 'standard' | 'weak';
 
 const linkColorVar = createVar();
 
-const linkStyle = style({
+const linkClassName = style({
   vars: {
     [linkColorVar]: hsl(
       colorThemeVars.tones.accent.h,
@@ -44,7 +44,7 @@ export const linkStyleVariant = styleVariants(
     },
   } as const,
   (cssProps) => [
-    linkStyle,
+    linkClassName,
     {
       selectors: {
         '&:hover': {
