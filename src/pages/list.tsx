@@ -7,19 +7,26 @@ import {
   Inline,
   List,
   Panel,
+  Secondary,
   Text,
 } from '../../lib/main.js';
+import { Tooltip } from '../../lib/tooltip.js';
 import { lorem } from '../lorem.js';
 
 export const ListPage: FC = () => (
   <Panel variant="ghost">
     <Grid padding="huge">
-      <Panel variant="ghost" space="huge">
+      <Panel variant="ghost" space="large">
         <Block align="center">
           <Heading level="2">Early Adopter Plan</Heading>
+          <Text size="small">
+            <Secondary>For those who like to adopt early</Secondary>
+          </Text>
         </Block>
         <Block>
-          <Text>{lorem.generateParagraphs(1)}</Text>
+          <Text>
+            {lorem.generateParagraphs(1)} <Tooltip content="poop">HELP</Tooltip>
+          </Text>
           <Text>{lorem.generateParagraphs(1)}</Text>
         </Block>
         <Block>
@@ -32,8 +39,8 @@ export const ListPage: FC = () => (
           </List>
         </Block>
 
-        <Block>
-          <Inline align="center">
+        <Block marginBlock="large" align="center">
+          <Inline>
             <Heading level="1">$18 USD</Heading>
             <Text size="small">p/m</Text>
           </Inline>
@@ -41,11 +48,19 @@ export const ListPage: FC = () => (
 
         <Button>Upgrade Now</Button>
       </Panel>
+
       <Panel variant="ghost">
-        <Heading level="2">Custom Plan</Heading>
-        <Text>Need more? We can do customised models and payment terms</Text>
-        <Text>No wuckers</Text>
-        <Button>Contact Us</Button>
+        <Block align="center">
+          <Heading level="2">Custom Plan</Heading>
+          <Text size="small" align="center">
+            <Secondary>Want more?</Secondary>
+          </Text>
+        </Block>
+        <Block>
+          <Text> We can do customised models and payment terms</Text>
+          <Text>No wuckers</Text>
+          <Button>Contact Us</Button>
+        </Block>
       </Panel>
     </Grid>
   </Panel>

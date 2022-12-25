@@ -34,10 +34,10 @@ export const BadgesPage: FC = () => (
 
       <Grid>
         {badgeVariantNames.map((variant) => (
-          <Panel variant="subtle">
+          <Panel variant="subtle" key={variant}>
             <Heading level="4">{variant}</Heading>
             {badgeToneNames.map((tone) => (
-              <Inline>
+              <Inline key={tone}>
                 <Badge variant={variant} tone={tone}>
                   {tone}
                 </Badge>
