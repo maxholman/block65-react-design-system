@@ -1,5 +1,5 @@
 import type { FC, PropsWithChildren } from 'react';
-import { Box } from './core.js';
+import { Box, BoxBasedComponentProps } from './core.js';
 import { genericThemeClass } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import {
@@ -16,15 +16,26 @@ import {
   mediaPrefersColorSchemeClass,
   mediaPrefersContrastSchemeClass,
 } from './schemes/color.css.js';
+import type { Merge } from './types.js';
 
 export const DesignSystem: FC<
-  PropsWithChildren<{
-    contrastScheme?: ContrastScheme;
-    colorScheme?: ColorScheme;
-    className?: string;
-    integrationMode?: boolean;
-  }>
-> = ({ children, className, colorScheme, contrastScheme, integrationMode }) => {
+  Merge<
+    BoxBasedComponentProps<'div'>,
+    PropsWithChildren<{
+      contrastScheme?: ContrastScheme;
+      colorScheme?: ColorScheme;
+      className?: string;
+      integrationMode?: boolean;
+    }>
+  >
+> = ({
+  children,
+  className,
+  colorScheme,
+  contrastScheme,
+  integrationMode,
+  ...props
+}) => {
   // for readability and minification
   const autoColorScheme = !colorScheme || colorScheme === 'auto';
   const darkColorScheme = colorScheme === 'dark';
@@ -36,6 +47,7 @@ export const DesignSystem: FC<
 
   return (
     <Box
+      {...props}
       component="div"
       className={[
         resetClass,
