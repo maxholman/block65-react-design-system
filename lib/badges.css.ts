@@ -44,8 +44,8 @@ const variantRules: Record<
 > = {
   standard: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
-    color: hsl(toneH, toneS, 100),
-    borderColor: hsl(toneH, toneS, 50),
+    color: hsl(toneH, toneS, contrastSchemeVars.level0.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
   },
   neutral: {
     backgroundColor: hsl(toneH, toneS, 50),
@@ -53,17 +53,17 @@ const variantRules: Record<
     borderColor: hsl(toneH, toneS, '90%'),
   },
   ghost: {
-    color: hsl(toneH, toneS, 50),
-    borderColor: hsl(toneH, toneS, 50),
+    color: hsl(toneH, toneS, contrastSchemeVars.level3.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
   },
   subtle: {
-    backgroundColor: hsl(toneH, toneS, 90),
-    color: hsl(toneH, toneS, 40),
-    borderColor: hsl(toneH, toneS, 90),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
   },
   transparent: {
     backgroundColor: 'transparent',
-    color: hsl(toneH, toneS, 40),
+    color: hsl(toneH, toneS, contrastSchemeVars.level3.l),
     fontWeight: genericVars.text.weight.bold,
     borderColor: 'transparent',
   },
