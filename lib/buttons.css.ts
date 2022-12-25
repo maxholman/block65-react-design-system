@@ -49,7 +49,7 @@ const base = style({
       filter: 'grayscale(1)',
     },
     '&:focus': {
-      outlineStyle: 'auto',
+      outlineStyle: 'solid',
       outlineOffset: genericVars.space.nano,
       outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     },

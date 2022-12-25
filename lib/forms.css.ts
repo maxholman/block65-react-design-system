@@ -1,6 +1,13 @@
 import { createVar, style } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
-import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import {
+  focusableClassName,
+  focusColorVar,
+  focusVisibleClassName,
+  focusWidthVar,
+} from './focusable.css.js';
+import { contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 const borderWidthVar = createVar();
@@ -12,7 +19,7 @@ export const formInput = style({
   padding: genericVars.space.small,
   borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
   borderStyle: 'solid',
-  borderWidth: genericVars.border.weight.hairline,
+  borderWidth: borderWidthVar,
   borderRadius: genericVars.radius.medium,
   fontSize: genericVars.text.size.normal,
   selectors: {
@@ -21,48 +28,45 @@ export const formInput = style({
       borderInline: 0,
       borderColor: 'transparent',
       backgroundColor: 'transparent',
+      pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
     },
     '&::placeholder': {
       color: hsl(0, 0, contrastSchemeVars.level4.l),
     },
-    '&:focus': {
-      outlineStyle: 'auto',
-      outlineOffset: genericVars.space.nano,
-      outlineColor: hsl(360, 80, contrastSchemeVars.level4.l),
-    },
   },
 });
 
-export const formInputNotCheckRadio = style({
-  selectors: {
-    '&:focus-visible': {
-      outlineStyle: 'auto',
-      outlineColor: hsl(
-        colorThemeVars.tones.accent.h,
-        colorThemeVars.tones.accent.s,
-        contrastSchemeVars.level4.l,
-      ),
-      outlineOffset: genericVars.space.nano,
-    },
-    '&:focus': {
-      outlineOffset: 'initial',
+export const formInputNotCheckRadio = style([
+  focusVisibleClassName,
+  {
+    selectors: {
+      '&:focus': {
+        // draw the outline over the border so that we can increase
+        // thickness without any layout shifts
+        outlineOffset: calc(borderWidthVar).negate().toString(),
+        borderColor: 'transparent',
+
+        outlineStyle: 'solid',
+        outlineColor: focusColorVar,
+        outlineWidth: focusWidthVar,
+      },
+      '&:focus-visible': {
+        borderColor: focusColorVar,
+      },
     },
   },
-});
+]);
 
 export const formInputCheckRadioBase = style([
   formInput,
+  focusableClassName,
   {
     padding: 'revert',
     cursor: 'pointer',
     fontSize: '1em',
     height: genericVars.text.size.medium,
     aspectRatio: '1/1',
-    color: hsl(
-      colorThemeVars.tones.accent.h,
-      colorThemeVars.tones.accent.s,
-      contrastSchemeVars.level5.l,
-    ),
+    color: focusColorVar,
     // WARN: this is a bit hacky to get perfect alignment
     // and still support multiple lines for radio/check labels
     // I'm unsure how to deal with it correctly as it is linked to line-height
@@ -70,15 +74,13 @@ export const formInputCheckRadioBase = style([
     marginTop: '0.1em',
     selectors: {
       '&:focus-visible': {
-        outline: 'max(2px, 0.15em) solid currentColor',
-        outlineOffset: 'max(2px, 0.15em)',
+        outlineStyle: 'solid',
+        outlineColor: focusColorVar,
+        outlineOffset: focusWidthVar,
+        outlineWidth: focusWidthVar,
       },
       '&:focus-within': {
-        color: hsl(
-          colorThemeVars.tones.accent.h,
-          colorThemeVars.tones.accent.s,
-          contrastSchemeVars.level3.l,
-        ),
+        color: focusColorVar,
       },
       '&::before': {
         content: '""',
@@ -87,14 +89,10 @@ export const formInputCheckRadioBase = style([
         aspectRatio: '1/1',
         transform: 'scale(0)',
         transition: '100ms transform ease-in-out',
-        boxShadow: `inset 1em 1em ${hsl(
-          colorThemeVars.tones.accent.h,
-          colorThemeVars.tones.accent.s,
-          contrastSchemeVars.level3.l,
-        )}`,
+        boxShadow: `inset 1em 1em ${focusColorVar}`,
       },
       '&:checked': {
-        borderColor: 'currentColor',
+        borderColor: focusColorVar,
         display: 'grid',
         placeContent: 'center',
       },
