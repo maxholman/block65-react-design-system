@@ -48,9 +48,10 @@ const base = style({
       cursor: 'default',
       filter: 'grayscale(1)',
     },
-    '&:active': {
-      outlineWidth: genericVars.border.weight.thick,
-      outlineColor: 'initial',
+    '&:focus': {
+      outlineStyle: 'auto',
+      outlineOffset: genericVars.space.nano,
+      outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     },
   },
 });

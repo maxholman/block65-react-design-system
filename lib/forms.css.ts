@@ -1,5 +1,4 @@
 import { createVar, style } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
@@ -18,15 +17,18 @@ export const formInput = style({
   fontSize: genericVars.text.size.normal,
   selectors: {
     '&[readonly]': {
-      paddingLeft: 0,
-      paddingRight: 0,
-      borderLeft: 0,
-      borderRight: 0,
+      paddingInline: 0,
+      borderInline: 0,
       borderColor: 'transparent',
       backgroundColor: 'transparent',
     },
     '&::placeholder': {
       color: hsl(0, 0, contrastSchemeVars.level4.l),
+    },
+    '&:focus': {
+      outlineStyle: 'auto',
+      outlineOffset: genericVars.space.nano,
+      outlineColor: hsl(360, 80, contrastSchemeVars.level4.l),
     },
   },
 });
@@ -34,13 +36,16 @@ export const formInput = style({
 export const formInputNotCheckRadio = style({
   selectors: {
     '&:focus-visible': {
-      outline: 'max(2px, 0.15em) solid currentColor',
+      outlineStyle: 'auto',
       outlineColor: hsl(
         colorThemeVars.tones.accent.h,
         colorThemeVars.tones.accent.s,
-        contrastSchemeVars.level1.l,
+        contrastSchemeVars.level4.l,
       ),
-      outlineOffset: calc(borderWidthVar).negate().toString(),
+      outlineOffset: genericVars.space.nano,
+    },
+    '&:focus': {
+      outlineOffset: 'initial',
     },
   },
 });

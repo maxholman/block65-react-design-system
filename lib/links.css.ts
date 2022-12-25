@@ -16,6 +16,13 @@ const linkStyle = style({
     ),
   },
   cursor: 'pointer',
+  selectors: {
+    '&:focus-visible': {
+      outlineStyle: 'auto',
+      outlineOffset: genericVars.space.nano,
+      outlineColor: 'currentColor',
+    },
+  },
 });
 
 export const linkStyleVariant = styleVariants(
