@@ -5,12 +5,7 @@ import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
 
-export type BadgeVariant =
-  | 'standard'
-  | 'neutral'
-  | 'ghost'
-  | 'subtle'
-  | 'transparent';
+export type BadgeVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 
 const basePadding = createVar();
 
@@ -46,11 +41,6 @@ const variantRules: Record<
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
     color: hsl(toneH, toneS, contrastSchemeVars.level0.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
-  },
-  neutral: {
-    backgroundColor: hsl(toneH, toneS, 50),
-    color: hsl(toneH, toneS, '90%'),
-    borderColor: hsl(toneH, toneS, '90%'),
   },
   ghost: {
     color: hsl(toneH, toneS, contrastSchemeVars.level3.l),
