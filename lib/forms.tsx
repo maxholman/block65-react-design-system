@@ -166,6 +166,7 @@ export const FormInput: FC<
       <input
         className={clsx(formInput, formInputNotCheckRadio)}
         id={id}
+        {...(props.readOnly && { tabIndex: -1 })}
         {...inputTypeProps}
         {...props}
       />
