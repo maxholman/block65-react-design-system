@@ -19,17 +19,19 @@ export const tooltipClass = style({
   width: 'max-content',
 });
 
-export const arrowoffsetVar = createVar();
+// Used to position the tooltip arrow in javascript, depending on the orientation
+export const arrowOffsetVar = createVar();
 
 export const tooltipArrowStyle = style({
   vars: {
-    [arrowoffsetVar]: calc(genericVars.space.tiny).negate().toString(),
+    [arrowOffsetVar]: calc(genericVars.space.small)
+      .divide(2)
+      .negate()
+      .toString(),
   },
   position: 'absolute',
   background: 'inherit',
-  height: genericVars.space.small,
-  borderRadius: genericVars.radius.large,
-  borderBottomRightRadius: '0',
-  aspectRatio: '1/1',
-  transform: 'rotate(45deg)',
+  height: '0.8em',
+  width: '1.5em',
+  clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
 });
