@@ -95,9 +95,11 @@ export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useTooltipState();
 
-  if (!isValidElement(children)) {
-    return <>{children}</>;
-  }
+  const validChildren = isValidElement(children) ? (
+    children
+  ) : (
+    <span>{children}</span>
+  );
 
   const staticSide: Record<Side, Side> = {
     top: 'bottom',
