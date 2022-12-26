@@ -32,7 +32,7 @@ import {
 export type TooltipState = ReturnType<typeof useTooltipState>;
 
 export function useTooltipState({
-  initialOpen = true,
+  initialOpen = false,
   placement = 'top',
 }: {
   initialOpen?: boolean;
