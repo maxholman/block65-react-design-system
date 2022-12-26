@@ -13,6 +13,10 @@
     "./css": {
       "default": "./build/style.css"
     },
+    "./vars": {
+      "types": "./dist/lib/vars.js",
+      "default": "./build/vars.js"
+    },
     "./tokens.scss": {
       "default": "./build/tokens.scss"
     }
