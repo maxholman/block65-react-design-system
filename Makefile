@@ -24,8 +24,9 @@ clean: node_modules
 test: node_modules vite.config.ts
 	yarn vitest run
 
-node_modules: package.json
+node_modules: package.json yarn.lock
 	yarn install
+	touch yarn.lock node_modules
 
 .PHONY: dev
 dev:
