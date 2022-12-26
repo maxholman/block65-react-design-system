@@ -22,6 +22,7 @@ import { CalloutPage } from './pages/callout.js';
 import { CorePage } from './pages/core.js';
 import { FormsPage } from './pages/forms.js';
 import { GridPage } from './pages/grid.js';
+import { LayoutPage } from './pages/layout.js';
 import { ListPage } from './pages/list.js';
 import { LoadersPage } from './pages/loaders.js';
 import { PanelsPage } from './pages/panels.js';
@@ -105,6 +106,9 @@ export const App: FC = () => {
                 <Link dest="/core">
                   <TextLink>Core</TextLink>
                 </Link>
+                <Link dest="/layout">
+                  <TextLink>Layout</TextLink>
+                </Link>
                 <Link dest="/panels">
                   <TextLink>Panels</TextLink>
                 </Link>
@@ -144,6 +148,9 @@ export const App: FC = () => {
                 </Route>
                 <Route path="/core">
                   <CorePage />
+                </Route>
+                <Route path="/layout">
+                  <LayoutPage />
                 </Route>
                 <Route path="/panels">
                   <PanelsPage />

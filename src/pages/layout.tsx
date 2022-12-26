@@ -1,52 +1,22 @@
 import type { FC } from 'react';
-import {
-  Block,
-  ButtonLink,
-  Heading,
-  Inline,
-  Panel,
-  Text,
-  TextLink,
-} from '../../lib/main.js';
-import { lorem } from '../lorem.js';
+import { Block, Button, Inline, Panel, Text } from '../../lib/main.js';
 
-export const FormsPage: FC = () => (
-  <Inline space="large" component="main">
-    <Block space="large" component="section">
-      <Heading level="1">Level 1</Heading>
-      <Panel space="huge">
-        <Heading level="2">Level 2</Heading>
-        <Panel space="huge">
-          <Heading level="3">Level 3</Heading>
-          <Panel space="huge">
-            <Heading level="4">Level 4 is tight!</Heading>
-            <Text>
-              If you need to find out more,{' '}
-              <TextLink href="#">go to my website</TextLink>
-            </Text>
-            <Text>
-              There are also other resources available, such as those on{' '}
-              <ButtonLink href="#">example.com</ButtonLink>
-            </Text>
-          </Panel>
-        </Panel>
-      </Panel>
-
-      <Block space="large">
-        <Heading level="1">{lorem.generateSentences(1)}</Heading>
-
-        <Inline space="medium">
-          <Text>{lorem.generateParagraphs(1)}</Text>
-          <Text>{lorem.generateParagraphs(1)}</Text>
-          <Text>{lorem.generateParagraphs(1)}</Text>
-        </Inline>
-      </Block>
-
-      <Block space="medium" align="center">
-        <Heading level="2">lorem.generateSentences(1)</Heading>
-        <Text>{lorem.generateParagraphs(1)}</Text>
-        <Text>{lorem.generateParagraphs(1)}</Text>
+export const LayoutPage: FC = () => (
+  <Panel variant="ghost">
+    <Block>Layouts are tight!</Block>
+    <Block>
+      <Block>
+        <Text>Block</Text>
+        <Button>Button</Button>
+        <Button>Button</Button>
       </Block>
     </Block>
-  </Inline>
+    <Block>
+      <Inline>
+        <Text>Inline</Text>
+        <Button>Button</Button>
+        <Button>Button</Button>
+      </Inline>
+    </Block>
+  </Panel>
 );
