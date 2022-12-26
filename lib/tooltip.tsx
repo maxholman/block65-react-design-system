@@ -24,7 +24,7 @@ import {
   useState,
 } from 'react';
 import {
-  arrowoffsetVar,
+  arrowOffsetVar,
   tooltipArrowStyle,
   tooltipClass,
 } from './tooltip.css.js';
@@ -113,8 +113,8 @@ export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
   return (
     <>
       {cloneElement(
-        children,
-        getReferenceProps({ ref: reference, ...children.props }),
+        validChildren,
+        getReferenceProps({ ref: reference, ...validChildren.props }),
       )}
       {open && (
         <span
@@ -135,7 +135,7 @@ export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
             style={{
               left: arrowX != null ? `${arrowX}px` : '',
               top: arrowY != null ? `${arrowY}px` : '',
-              [staticSide[arrowPlacement]]: arrowoffsetVar,
+              [staticSide[arrowPlacement]]: arrowOffsetVar,
             }}
           />
           {content}
