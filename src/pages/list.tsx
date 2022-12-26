@@ -26,8 +26,7 @@ export const ListPage: FC = () => (
         </Block>
         <Block>
           <Text>
-            {lorem.generateParagraphs(1)}
-            Also, look at this icon{' '}
+            {lorem.generateParagraphs(1)} Also, look at this icon{' '}
             <Tooltip content="This is more information!">
               <span>
                 <HelpIcon />
