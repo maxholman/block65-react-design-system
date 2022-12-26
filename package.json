@@ -23,8 +23,10 @@
   },
   "files": [
     "dist/lib/**/*.d.ts",
-    "build/main.*",
-    "build/style.css"
+    "build/*.js",
+    "build/*.js.map",
+    "build/*.css",
+    "build/*.scss"
   ],
   "scripts": {
     "prepare": "npx patch-package"
