@@ -114,7 +114,7 @@ const darkStyleRule: ComplexStyleRule = {
       l: '50%',
     },
     level4: {
-      l: '65%',
+      l: '50%',
     },
     level5: {
       l: '85%',
