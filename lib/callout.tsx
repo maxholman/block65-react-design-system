@@ -5,7 +5,7 @@ import {
   calloutIconClass,
 } from './callout.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
-import { Info } from './icons.js';
+import { InfoIcon } from './icons.js';
 import { Block } from './layout.js';
 import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
@@ -26,7 +26,7 @@ export const Callout: FC<
     aria-live="polite"
     {...props}
   >
-    <Info className={calloutIconClass} />
+    <InfoIcon className={calloutIconClass} />
     <Block textOverflow="break" className={calloutChildrenClass}>
       {children}
     </Block>

@@ -1,6 +1,6 @@
 import type { FC, SVGAttributes } from 'react';
 
-export const Info: FC<SVGAttributes<SVGElement>> = (props) => (
+export const InfoIcon: FC<SVGAttributes<SVGElement>> = (props) => (
   <svg
     stroke="currentColor"
     fill="currentColor"
