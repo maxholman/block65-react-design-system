@@ -8,10 +8,15 @@ export const TextLink: FC<
     BoxBasedComponentProps<'span' | 'a'>,
     { href?: string; weight?: LinkVariant }
   >
-> = ({ children, className, weight = 'standard', ...props }) => (
+> = ({
+  component = 'a',
+  children,
+  className,
+  weight = 'standard',
+  ...props
+}) => (
   <Box
-    // if someone is trying to use this as a link, use an anchor element
-    component={'href' in props ? 'a' : 'span'}
+    component={component}
     className={[linkStyleVariant[weight], className]}
     {...props}
   >
