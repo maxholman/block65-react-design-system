@@ -13,6 +13,11 @@ export const listClass = style({
 
 export const listItemClass = style({
   marginInlineStart: '1em',
+  selectors: {
+    '&::marker': {
+      content: '• ',
+    },
+  },
 });
 
 export const listVariants = styleVariants(genericVars.space, (space) => [
