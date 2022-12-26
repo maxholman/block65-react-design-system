@@ -10,9 +10,12 @@ export default defineConfig({
   build: {
     outDir: 'build',
     target: 'es2021',
+
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
-      fileName: 'main',
+      entry: {
+        main: resolve(__dirname, 'lib/main.ts'),
+        vars: resolve(__dirname, 'lib/vars.ts'),
+      },
       formats: ['es'],
     },
     rollupOptions: {
