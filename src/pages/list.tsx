@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { HelpIcon } from '../../lib/icons.js';
 import {
   Block,
   Button,
@@ -25,7 +26,13 @@ export const ListPage: FC = () => (
         </Block>
         <Block>
           <Text>
-            {lorem.generateParagraphs(1)} <Tooltip content="poop">HELP</Tooltip>
+            {lorem.generateParagraphs(1)}
+            Also, look at this icon{' '}
+            <Tooltip content="This is more information!">
+              <span>
+                <HelpIcon />
+              </span>
+            </Tooltip>
           </Text>
           <Text>{lorem.generateParagraphs(1)}</Text>
         </Block>
