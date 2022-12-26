@@ -2,7 +2,6 @@ import type { FC, SVGAttributes } from 'react';
 
 export const InfoIcon: FC<SVGAttributes<SVGElement>> = (props) => (
   <svg
-    stroke="currentColor"
     fill="currentColor"
     strokeWidth="0"
     viewBox="0 0 24 24"
