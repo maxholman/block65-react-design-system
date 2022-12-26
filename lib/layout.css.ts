@@ -28,6 +28,10 @@ export const flexRowVariants = styleVariants(genericVars.space, (space) => [
   },
 ]);
 
+export const inlineClass = style({
+  alignItems: 'center',
+  display: 'inline-flex',
+});
 
 export const alignItemsVariants = styleVariants<
   Record<Align, ComplexStyleRule>
@@ -35,10 +39,6 @@ export const alignItemsVariants = styleVariants<
   start: { alignItems: 'start' },
   center: { alignItems: 'center' },
   end: { alignItems: 'end' },
-});
-
-export const inlineClass = style({
-  alignItems: 'center',
 });
 
 export const inlineAlignSelfVariants = styleVariants<
