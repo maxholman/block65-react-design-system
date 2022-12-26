@@ -2,7 +2,10 @@
 SRCS = $(wildcard lib/**)
 
 .PHONY: all
-all: types build
+all: types build build/tokens.scss
+
+build/tokens.scss: node_modules bin/token.ts
+	node --loader=ts-node/esm bin/token.ts > build/tokens.scss
 
 build: node_modules vite.config.ts
 	NODE_ENV=production yarn vite build
