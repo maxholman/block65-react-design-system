@@ -24,7 +24,8 @@
     "noUnusedParameters": true,
     "importsNotUsedAsValues": "error",
     "removeComments": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "rootDir": "./"
   },
   // "include": ["./src", "./lib", "./bin", "./__tests__"],
   "exclude": ["./dist", "node_modules"]
