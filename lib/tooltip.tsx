@@ -117,7 +117,7 @@ export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
         getReferenceProps({ ref: reference, ...children.props }),
       )}
       {open && (
-        <div
+        <span
           ref={floating}
           {...getFloatingProps({
             className: tooltipClass,
@@ -129,7 +129,7 @@ export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
             },
           })}
         >
-          <div
+          <span
             ref={arrowRef}
             className={tooltipArrowStyle}
             style={{
@@ -139,7 +139,7 @@ export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
             }}
           />
           {content}
-        </div>
+        </span>
       )}
     </>
   );
