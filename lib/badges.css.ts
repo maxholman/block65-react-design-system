@@ -38,8 +38,8 @@ const variantRules: Record<
   }
 > = {
   standard: {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.level0.l),
+    backgroundColor: hsl(toneH, toneS, 50),
+    color: hsl(toneH, toneS, 95),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
   },
   ghost: {
@@ -48,7 +48,7 @@ const variantRules: Record<
   },
   subtle: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
   },
   transparent: {

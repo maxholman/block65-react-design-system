@@ -26,30 +26,14 @@ const variantRules: Record<
   }
 > = {
   standard: {
-    backgroundColor: hsl(
-      colorThemeVars.tones.accent.h,
-      0,
-      contrastSchemeVars.level0.l,
-    ),
+    backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
   },
   neutral: {
-    backgroundColor: hsl(
-      colorThemeVars.tones.accent.h,
-      0,
-      contrastSchemeVars.level1.l,
-    ),
-    borderColor: hsl(
-      colorThemeVars.tones.accent.h,
-      0,
-      contrastSchemeVars.level1.l,
-    ),
+    backgroundColor: hsl(0, 0, contrastSchemeVars.level1.l),
+    borderColor: hsl(0, 0, contrastSchemeVars.level1.l),
   },
   ghost: {
-    borderColor: hsl(
-      colorThemeVars.tones.accent.h,
-      0,
-      contrastSchemeVars.level1.l,
-    ),
+    borderColor: hsl(0, 0, contrastSchemeVars.level1.l),
   },
   subtle: {
     backgroundColor: hsl(
