@@ -1,5 +1,5 @@
 import { ClassValue, clsx } from 'clsx';
-import { FC, isValidElement, ReactElement } from 'react';
+import { FC, isValidElement, ReactElement, ReactNode } from 'react';
 import {
   busyButtonClass,
   ButtonVariant,
@@ -30,14 +30,14 @@ export type ButtonCommonProps = {
 export type ButtonProps = Merge<
   ButtonCommonProps,
   {
-    children: string;
+    children: ReactNode;
   }
 >;
 
 export type ButtonLinkProps = Merge<
   ButtonCommonProps,
   {
-    children?: string | undefined;
+    children: ReactNode;
     component?: never;
     href?: string;
   }
@@ -48,7 +48,7 @@ export type ButtonIconProps = Merge<
   {
     label: string;
     icon: ReactElement;
-    children?: never | undefined;
+    children?: never;
   }
 >;
 
