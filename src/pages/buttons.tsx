@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import {
   Block,
   Button,
@@ -18,7 +19,13 @@ export const ButtonsPage: FC = () => (
     <Block>
       <Heading level="2">Buttons</Heading>
       <Inline>
-        <Button>Button</Button>
+        <Button>
+          <FormattedMessage
+            id="button"
+            defaultMessage="Button"
+            description="Button"
+          />
+        </Button>
         <Button icon={<CrescentMoonIcon />}>Button</Button>
         <Button variant="ghost">Ghost</Button>
         <Button icon={<CrescentMoonIcon />} variant="ghost">
