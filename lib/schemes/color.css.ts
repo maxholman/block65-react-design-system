@@ -102,7 +102,7 @@ const darkStyleRule: ComplexStyleRule = {
       l: '10%',
     },
     level0point5: {
-      l: '10%',
+      l: '12%',
     },
     level1: {
       l: '20%',
@@ -233,7 +233,7 @@ const lightStyleRule: ComplexStyleRule = {
       l: '100%',
     },
     level0point5: {
-      l: '95%',
+      l: '98%',
     },
     level1: {
       l: '90%',
@@ -277,7 +277,7 @@ export const defaultBgFgClass = style({
   backgroundColor: hsl(
     colorThemeVars.tones.accent.h,
     0,
-    contrastSchemeVars.level0.l,
+    contrastSchemeVars.level0point5.l,
   ),
   color: hsl(colorThemeVars.tones.accent.h, 0, contrastSchemeVars.level5.l),
 });

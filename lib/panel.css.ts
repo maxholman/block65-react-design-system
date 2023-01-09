@@ -26,7 +26,7 @@ const variantRules: Record<
   }
 > = {
   standard: {
-    backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
+    backgroundColor: hsl(0, 0, contrastSchemeVars.level0point5.l),
   },
   neutral: {
     backgroundColor: hsl(0, 0, contrastSchemeVars.level1.l),
