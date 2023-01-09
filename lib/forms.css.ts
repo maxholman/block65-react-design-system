@@ -192,7 +192,6 @@ export const formInputSelectWrapperSingle = style([
 ]);
 
 export const fieldLabelWrapperStyle = style({
-  fontSize: genericVars.text.size.medium,
   justifyContent: 'space-between',
   alignItems: 'center',
 });
@@ -201,13 +200,8 @@ export const fieldLabelStyle = style({
   alignItems: 'center',
 });
 
-export const fieldLabelTertiaryStyle = style({
-  fontSize: genericVars.text.size.normal,
-  // cursor: 'default',
-  // pointerEvents: 'none',
-});
+export const fieldLabelTertiaryStyle = style({});
 
 export const inputLabelStyle = style({
   cursor: 'pointer',
-  // userSelect: 'none',
 });
