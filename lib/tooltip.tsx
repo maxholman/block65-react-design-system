@@ -77,10 +77,9 @@ export function useTooltipState({
   );
 }
 
-export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
-  content,
-  children,
-}) => {
+export const Tooltip: FC<
+  PropsWithChildren<{ content: ReactNode; initialOpen?: boolean }>
+> = ({ content, children, initialOpen = false }) => {
   const {
     placement,
     reference,
@@ -93,7 +92,7 @@ export const Tooltip: FC<PropsWithChildren<{ content: ReactNode }>> = ({
     getReferenceProps,
     getFloatingProps,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-  } = useTooltipState();
+  } = useTooltipState({ initialOpen });
 
   const validChildren = isValidElement(children) ? (
     children
