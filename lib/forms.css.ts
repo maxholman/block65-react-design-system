@@ -17,6 +17,7 @@ export const formInput = style({
     [borderWidthVar]: genericVars.border.weight.hairline,
   },
   padding: genericVars.space.small,
+  backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
   borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
   borderStyle: 'solid',
   borderWidth: borderWidthVar,
