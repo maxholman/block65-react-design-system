@@ -71,15 +71,10 @@ export const FormFieldLabel: FC<
       {isValidElement(children) ? (
         children
       ) : (
-        <Text>
+        <>
           <Strong>{children}</Strong>
-          {secondary && (
-            <>
-              {' '}
-              <Secondary>{secondary}</Secondary>
-            </>
-          )}
-        </Text>
+          {secondary && <Secondary>{secondary}</Secondary>}
+        </>
       )}
     </Inline>
     {tertiary && (
