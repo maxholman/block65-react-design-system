@@ -27,10 +27,10 @@ export const Heading: FC<
       }
     >
   >
-> = ({ level = '2', ...props }) => (
+> = ({ level = '2', className, ...props }) => (
   <Box
     component={`h${level}`}
-    className={levelVariantClasses[level]}
+    className={[levelVariantClasses[level], className]}
     {...props}
   />
 );
