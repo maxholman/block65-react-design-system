@@ -68,20 +68,21 @@ const hoverAlpha = createVar();
 const variants: Record<ButtonVariant, StyleRule> = {
   standard: {
     backgroundColor: hsl(toneH, toneS, 50),
-    color: hsl(toneH, colorThemeVars.tones.accent.s, 95),
+    color: hsl(0, 0, 100),
   },
   ghost: {
     color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     selectors: {
       '&:hover': {
+        color: hsl(0, 0, 95),
         backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l, 0.75),
       },
     },
   },
   subtle: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
+    color: hsl(toneH, 0, 95),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
     selectors: {
       '&:hover': {
