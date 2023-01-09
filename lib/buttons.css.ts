@@ -54,6 +54,7 @@ const base = style({
       outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     },
   },
+  transition: 'background 0.05s linear',
 });
 
 export const compactButton = style({
