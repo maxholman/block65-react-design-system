@@ -2,12 +2,12 @@ import {
   createVar,
   style,
   StyleRule,
-  styleVariants,
+  styleVariants
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
-import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
+import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
 
