@@ -166,9 +166,11 @@ export const FormInput: FC<
         {...props}
       />
       {message && (
-        <Text size="small" tone={messageTone}>
-          {messageTone ? message : <Secondary>{message}</Secondary>}
-        </Text>
+        <Inline>
+          <Text size="small" tone={messageTone}>
+            {messageTone ? message : <Secondary>{message}</Secondary>}
+          </Text>
+        </Inline>
       )}
     </Block>
   );
