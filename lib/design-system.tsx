@@ -1,4 +1,5 @@
-import type { FC, PropsWithChildren } from 'react';
+import type { FC, JSXElementConstructor, PropsWithChildren } from 'react';
+import { Context } from './context.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import { genericThemeClass } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
@@ -24,8 +25,9 @@ export const DesignSystem: FC<
     PropsWithChildren<{
       contrastScheme?: ContrastScheme;
       colorScheme?: ColorScheme;
-      className?: string;
       integrationMode?: boolean;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      stringLikeComponents?: JSXElementConstructor<any>[];
     }>
   >
 > = ({
@@ -34,6 +36,7 @@ export const DesignSystem: FC<
   colorScheme,
   contrastScheme,
   integrationMode,
+  stringLikeComponents,
   ...props
 }) => {
   // for readability and minification
@@ -46,44 +49,52 @@ export const DesignSystem: FC<
   const lessContrast = contrastScheme === 'less';
 
   return (
-    <Box
-      {...props}
-      component="div"
-      className={[
-        resetClass,
-        genericThemeClass,
-
-        // color theme
-        defaultColorThemeClass,
-
-        // don't set fg/bg if we're integrating with existing frameworks
-        !integrationMode && defaultBgFgClass,
-
-        // auto color
-        autoColorScheme && mediaPrefersColorSchemeClass,
-
-        // auto contrast
-        autoContrast && mediaPrefersContrastSchemeClass,
-
-        // forced dark
-        darkColorScheme && autoContrast && darkClass,
-
-        // dark + forced contrast
-        darkColorScheme && moreContrast && darkMoreContrastClass,
-        darkColorScheme && lessContrast && darkLessContrastClass,
-
-        // forced light
-        lightColorScheme && autoContrast && lightClass,
-
-        // forced light + forced contrast
-        lightColorScheme && moreContrast && lightMoreContrastClass,
-        lightColorScheme && lessContrast && lightLessContrastClass,
-
-        className,
-      ]}
+    <Context.Provider
+      value={{
+        colorScheme: colorScheme || 'auto',
+        contrastScheme: contrastScheme || 'auto',
+        ...(stringLikeComponents && { stringLikeComponents }),
+      }}
     >
-      {children}
-    </Box>
+      <Box
+        {...props}
+        component="div"
+        className={[
+          resetClass,
+          genericThemeClass,
+
+          // color theme
+          defaultColorThemeClass,
+
+          // don't set fg/bg if we're integrating with existing frameworks
+          !integrationMode && defaultBgFgClass,
+
+          // auto color
+          autoColorScheme && mediaPrefersColorSchemeClass,
+
+          // auto contrast
+          autoContrast && mediaPrefersContrastSchemeClass,
+
+          // forced dark
+          darkColorScheme && autoContrast && darkClass,
+
+          // dark + forced contrast
+          darkColorScheme && moreContrast && darkMoreContrastClass,
+          darkColorScheme && lessContrast && darkLessContrastClass,
+
+          // forced light
+          lightColorScheme && autoContrast && lightClass,
+
+          // forced light + forced contrast
+          lightColorScheme && moreContrast && lightMoreContrastClass,
+          lightColorScheme && lessContrast && lightLessContrastClass,
+
+          className,
+        ]}
+      >
+        {children}
+      </Box>
+    </Context.Provider>
   );
 };
 
