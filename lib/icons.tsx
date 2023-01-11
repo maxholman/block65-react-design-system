@@ -1,11 +1,17 @@
+import { clsx } from 'clsx';
 import type { FC, SVGAttributes } from 'react';
+import { iconClassName } from './icons.css.js';
 
-export const InfoIcon: FC<SVGAttributes<SVGElement>> = (props) => (
+export const InfoIcon: FC<SVGAttributes<SVGElement>> = ({
+  className,
+  ...props
+}) => (
   <svg
     fill="currentColor"
     strokeWidth="0"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="2 2 20 20"
+    className={clsx([iconClassName, className])}
     {...props}
   >
     <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>{' '}
@@ -13,11 +19,15 @@ export const InfoIcon: FC<SVGAttributes<SVGElement>> = (props) => (
   </svg>
 );
 
-export const HelpIcon: FC<SVGAttributes<SVGElement>> = (props) => (
+export const HelpIcon: FC<SVGAttributes<SVGElement>> = ({
+  className,
+  ...props
+}) => (
   <svg
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="2 2 20 20"
+    className={clsx([iconClassName, className])}
     {...props}
   >
     <path fill="none" d="M0 0h24v24H0z"></path>
