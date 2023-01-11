@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Grid, Heading, Panel, Text } from '../../lib/main.js';
+import { Code, Grid, Heading, Inline, Panel, Text } from '../../lib/main.js';
 
 const PanelGrid = () => (
   <Grid cols="2">
@@ -36,5 +36,15 @@ export const PanelsPage: FC = () => (
         <PanelGrid />
       </Panel>
     </Grid>
+    <Panel variant="subtle" padding="huge">
+      <Inline>
+        Padding override <Code>huge</Code>
+      </Inline>
+    </Panel>
+    <Panel variant="subtle" padding="none">
+      <Inline>
+        Padding override <Code>none</Code>
+      </Inline>
+    </Panel>
   </Panel>
 );

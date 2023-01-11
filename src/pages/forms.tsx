@@ -9,6 +9,7 @@ import {
   FormInputRadio,
   FormInputRadioGroup,
   FormSelect,
+  Grid,
   Heading,
   Inline,
   Panel,
@@ -24,7 +25,7 @@ export const FormsPage: FC = () => (
       <Heading level="1">Best form eva</Heading>
       <FormInput
         type="text"
-        label="Pronoun"
+        label={<blockquote>Pronoun</blockquote>}
         name="pronoun"
         defaultValue="Attack Helicopter"
         readOnly
@@ -46,6 +47,10 @@ export const FormsPage: FC = () => (
         placeholder='Optional, e.g. "Elizabeth"'
         message="No need to be embarrassed"
       />
+      <Grid>
+        <FormInput type="time" label="Inconsistent" message="Heights" />
+        <FormInput type="text" label="Heights" message="Inconsistent" />
+      </Grid>
       <FormInput
         type="text"
         label="Last name"
