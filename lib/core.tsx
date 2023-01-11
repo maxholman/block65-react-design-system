@@ -17,7 +17,14 @@ import { Align, alignItemsVariants } from './layout.css.js';
 import { Tooltip } from './tooltip.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
-export type Space = 'none' | 'large' | 'small' | 'tiny' | 'huge' | 'medium';
+export type Space =
+  | 'huge'
+  | 'large'
+  | 'medium'
+  | 'small'
+  | 'tiny'
+  | 'nano'
+  | 'none';
 
 type Merge<A, B> = Omit<A, keyof B> & B;
 
@@ -38,8 +45,6 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       tooltip?: ReactNode;
       textAlign?: TextAlign | undefined;
       textOverflow?: TextOverflow | undefined;
-
-      // rounded
     }
   >;
 
