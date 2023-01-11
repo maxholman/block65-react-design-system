@@ -39,7 +39,7 @@ export function useLocalStorage<T extends JsonValue>(
       const item = window.localStorage.getItem(namespace);
       return item ? JSON.parse(item) : resolvedInitialValue.current;
     } catch (err) {
-      console.warn({ err }, Object(err).message);
+      console.warn(err);
       return resolvedInitialValue.current;
     }
   }, [namespace]);
@@ -48,7 +48,6 @@ export function useLocalStorage<T extends JsonValue>(
     (value: T | undefined): T | undefined => {
       if (typeof window !== 'undefined') {
         if (!value || value === resolvedInitialValue.current) {
-          console.warn('removeItem');
           window.localStorage.removeItem(namespace);
         } else {
           window.localStorage.setItem(namespace, JSON.stringify(value));
