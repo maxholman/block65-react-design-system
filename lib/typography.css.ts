@@ -69,9 +69,9 @@ export const [fontThemeClassName, capsizeVars] = createTheme({
     }),
   },
   tiny: {
-    capHeight: '9',
+    capHeight: '8.727272',
     values: precomputeValues({
-      capHeight: 9,
+      capHeight: 8.727272,
       // leading: 32,
       fontMetrics: capsizeFontMetricsInter,
     }),
