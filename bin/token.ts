@@ -4,7 +4,7 @@ import {
   colorThemeVars,
   contrastSchemeVars,
   genericVars,
-} from '@block65/react-design-system/vars';
+} from '../lib/vars.js';
 
 function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return (
