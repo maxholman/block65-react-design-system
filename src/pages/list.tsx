@@ -32,7 +32,7 @@ export const ListPage: FC = () => (
             veniam cillum aliquip. Irure ex sunt excepteur ea commodo duis
             reprehenderit. Qui duis cupidatat mollit laboris mollit proident
             velit magna. Excepteur anim est pariatur. Also, look at this icon{' '}
-            <Tooltip content={<div>This is more information.</div>}>
+            <Tooltip content={<span>This is more information.</span>}>
               <HelpIcon />
             </Tooltip>
           </Text>
