@@ -1,5 +1,6 @@
-import { keyframes, style } from '@vanilla-extract/css';
+import { fallbackVar, keyframes, style } from '@vanilla-extract/css';
 import { contrastSchemeVars } from './schemes/color.css.js';
+import { currentCapHeight } from './typography.css.js';
 import { hsl } from './utils.js';
 
 const rotate = keyframes({
@@ -8,11 +9,10 @@ const rotate = keyframes({
 });
 
 export const spinnerClass = style({
-  height: '1em',
-  width: '1em',
+  height: fallbackVar(currentCapHeight, '1em'),
+  width: fallbackVar(currentCapHeight, '1em'),
   aspectRatio: '1/1',
   display: 'inline-flex',
-  verticalAlign: 'text-bottom',
   transformOrigin: 'center center',
   animationName: rotate,
   animationDuration: '.75s',

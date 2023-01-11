@@ -1,12 +1,81 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+// @ts-expect-error - was not able to fix this, see module augmentation
+import capsizeFontMetricsInter from '@capsizecss/metrics/inter';
+import { createTextStyle, precomputeValues } from '@capsizecss/vanilla-extract';
+import {
+  ComplexStyleRule,
+  createTheme,
+  createVar,
+  style,
+  styleVariants,
+} from '@vanilla-extract/css';
+import { withUnit } from './css-helpers.css.js';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5';
 
-export const textClass = style({
-  lineHeight: genericVars.text.lineHeight.standard,
+export const currentCapHeight = createVar();
+export const lineGap = createVar();
+export const lineHeightRatio = createVar();
+
+export type FontSize =
+  | 'tiny'
+  | 'small'
+  | 'normal'
+  | 'medium'
+  | 'large'
+  | 'huge';
+
+export const [fontThemeClassName, capsizeVars] = createTheme({
+  huge: {
+    capHeight: withUnit(24),
+    values: precomputeValues({
+      capHeight: 24,
+      leading: 42,
+      fontMetrics: capsizeFontMetricsInter,
+    }),
+  },
+  large: {
+    capHeight: withUnit(20),
+    values: precomputeValues({
+      capHeight: 20,
+      leading: 45,
+      fontMetrics: capsizeFontMetricsInter,
+    }),
+  },
+  medium: {
+    capHeight: withUnit(16),
+    values: precomputeValues({
+      capHeight: 16,
+      leading: 24,
+      fontMetrics: capsizeFontMetricsInter,
+    }),
+  },
+  normal: {
+    capHeight: withUnit(11.75),
+    values: precomputeValues({
+      capHeight: 11.75,
+      leading: 24,
+      fontMetrics: capsizeFontMetricsInter,
+    }),
+  },
+  small: {
+    capHeight: withUnit(8.7272),
+    values: precomputeValues({
+      capHeight: 8.7272,
+      // leading: 32,
+      fontMetrics: capsizeFontMetricsInter,
+    }),
+  },
+  tiny: {
+    capHeight: '9',
+    values: precomputeValues({
+      capHeight: 9,
+      // leading: 32,
+      fontMetrics: capsizeFontMetricsInter,
+    }),
+  },
 });
 
 export const secondaryClass = style({
@@ -21,53 +90,55 @@ export const codeClass = style({
   fontFamily: 'monospace',
 });
 
-export const fontClass = styleVariants(genericVars.text.size, (value) => ({
-  fontSize: value,
+export const fontSizeVariantVars = styleVariants(capsizeVars, (vars) => ({
+  vars: { [currentCapHeight]: vars.capHeight },
 }));
 
-export type FontSize =
-  | 'tiny'
-  | 'small'
-  | 'normal'
-  | 'medium'
-  | 'large'
-  | 'huge';
+export const fontSizeVariantTextStyles = styleVariants(capsizeVars, (vars) => [
+  createTextStyle(vars.values),
+]);
 
-const levelVariants: Record<
-  HeadingLevel,
-  {
-    fontSize: string;
-    fontWeight?: string;
-    letterSpacing?: string;
-    color?: string;
-  }
-> = {
-  '1': {
-    fontSize: genericVars.text.size.huge,
-    fontWeight: genericVars.text.weight.bold,
-    letterSpacing: '-0.05rem',
-  },
-  '2': {
-    fontSize: genericVars.text.size.large,
-    fontWeight: genericVars.text.weight.bold,
-    letterSpacing: '-0.05rem',
-  },
-  '3': {
-    fontSize: genericVars.text.size.medium,
-    fontWeight: genericVars.text.weight.semiBold,
-  },
-  '4': {
-    fontSize: genericVars.text.size.normal,
-    fontWeight: genericVars.text.weight.semiBold,
-  },
-  '5': {
-    fontSize: genericVars.text.size.normal,
-    fontWeight: genericVars.text.weight.medium,
-    color: hsl(0, 0, contrastSchemeVars.level4.l),
-  },
-};
+export const fontSizeVariants = styleVariants(capsizeVars, (_, key) => [
+  fontSizeVariantVars[key],
+  fontSizeVariantTextStyles[key],
+]);
 
-export const levelVariantClasses = styleVariants(
-  levelVariants,
-  (variant) => variant,
-);
+const levelVariants: Record<HeadingLevel, ComplexStyleRule> = {
+  '1': [
+    fontSizeVariants.huge,
+    {
+      fontWeight: genericVars.text.weight.bold,
+      letterSpacing: '-0.05rem',
+    },
+  ],
+  '2': [
+    fontSizeVariants.large,
+    {
+      fontWeight: genericVars.text.weight.bold,
+      letterSpacing: '-0.05rem',
+    },
+  ],
+  '3': [
+    fontSizeVariants.medium,
+    {
+      fontWeight: genericVars.text.weight.bold,
+      letterSpacing: '-0.05rem',
+    },
+  ],
+  '4': [
+    fontSizeVariants.normal,
+    {
+      fontWeight: genericVars.text.weight.semiBold,
+      letterSpacing: '-0.05rem',
+    },
+  ],
+  '5': [
+    fontSizeVariants.normal,
+    {
+      fontWeight: genericVars.text.weight.medium,
+      color: hsl(0, 0, contrastSchemeVars.level4.l),
+    },
+  ],
+}; // satisfies Record<HeadingLevel, ComplexStyleRule>;
+
+export const levelVariantClasses = styleVariants(levelVariants, (rest) => rest);

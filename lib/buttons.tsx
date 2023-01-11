@@ -77,7 +77,7 @@ const ButtonInternal: FC<
       inline && inlineBleedClass,
       className,
     )}
-    space="tiny"
+    space="nano"
     textOverflow="ellipsis"
     {...props}
   >

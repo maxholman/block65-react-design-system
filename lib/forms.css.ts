@@ -8,38 +8,47 @@ import {
   focusWidthVar,
 } from './focusable.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
+import { capsizeVars, fontSizeVariantVars } from './typography.css.js';
 import { hsl } from './utils.js';
 
 const borderWidthVar = createVar();
+const paddingVar = createVar();
 
-export const formInput = style({
-  vars: {
-    [borderWidthVar]: genericVars.border.weight.hairline,
-  },
-  padding: genericVars.space.small,
-  backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
-  borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
-  borderStyle: 'solid',
-  borderWidth: borderWidthVar,
-  borderRadius: genericVars.radius.medium,
-  fontSize: genericVars.text.size.normal,
-  selectors: {
-    '&[readonly]': {
-      paddingInline: 0,
-      borderInline: 0,
-      borderColor: 'transparent',
-      backgroundColor: 'transparent',
-      pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
+export const formInput = style([
+  fontSizeVariantVars.normal,
+  {
+    vars: {
+      [borderWidthVar]: genericVars.border.weight.hairline,
+      [paddingVar]: '0.65rem',
     },
-    '&::placeholder': {
-      color: hsl(0, 0, contrastSchemeVars.level4.l),
+    padding: paddingVar,
+    backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
+    borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
+    borderStyle: 'solid',
+    borderWidth: borderWidthVar,
+    borderRadius: genericVars.radius.medium,
+    selectors: {
+      '&[type="time"]': {
+        display: 'initial',
+      },
+      '&[readonly]': {
+        paddingInline: 0,
+        borderInline: 0,
+        borderColor: 'transparent',
+        backgroundColor: 'transparent',
+        pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
+      },
+      '&::placeholder': {
+        color: hsl(0, 0, contrastSchemeVars.level4.l),
+      },
     },
   },
-});
+]);
 
 export const formInputNotCheckRadio = style([
   focusVisibleClassName,
   {
+    minHeight: calc.add('2.2rem', paddingVar),
     selectors: {
       '&:focus': {
         // draw the outline over the border so that we can increase
@@ -64,15 +73,12 @@ export const formInputCheckRadioBase = style([
   {
     padding: 'revert',
     cursor: 'pointer',
-    fontSize: '1em',
-    height: genericVars.text.size.medium,
-    aspectRatio: '1/1',
     color: focusColorVar,
-    // WARN: this is a bit hacky to get perfect alignment
-    // and still support multiple lines for radio/check labels
-    // I'm unsure how to deal with it correctly as it is linked to line-height
-    // which doesnt apply to this input
-    marginTop: '0.1em',
+
+    width: '100%',
+    aspectRatio: '1/1',
+    justifySelf: 'center',
+
     selectors: {
       '&:focus-visible': {
         outlineStyle: 'solid',
@@ -85,12 +91,12 @@ export const formInputCheckRadioBase = style([
       },
       '&::before': {
         content: '""',
-        fontSize: genericVars.text.size.normal,
-        height: '0.5em', // careful with this as it causes the text to jump
-        aspectRatio: '1/1',
         transform: 'scale(0)',
         transition: '100ms transform ease-in-out',
         boxShadow: `inset 1em 1em ${focusColorVar}`,
+        // size of the dot
+        height: '0.5em',
+        aspectRatio: '1/1',
       },
       '&:checked': {
         borderColor: focusColorVar,
@@ -107,10 +113,15 @@ export const formInputCheckRadioBase = style([
   },
 ]);
 
-export const formInputCheckRadioWrapper = style({
-  display: 'grid',
-  gridTemplateColumns: 'auto 1fr',
-});
+export const formInputCheckRadioWrapper = style([
+  {
+    display: 'grid',
+    gridTemplateColumns: `${calc.multiply(
+      capsizeVars.normal.capHeight,
+      1.5,
+    )} auto`,
+  },
+]);
 
 export const formInputCheckRadioLabel = style({
   alignSelf: 'center',
@@ -157,14 +168,10 @@ export const formInputSelect = style([
   },
 ]);
 
-const formInputSelectWrapper = style([
-  // formInput,
-  {
-    display: 'grid',
-    gridTemplateAreas: JSON.stringify(formInputSelectGridAreaName),
-    // padding: 0,
-  },
-]);
+const formInputSelectWrapper = style({
+  display: 'grid',
+  gridTemplateAreas: JSON.stringify(formInputSelectGridAreaName),
+});
 
 export const formInputSelectWrapperMultiple = style([
   formInputSelectWrapper,
