@@ -2,10 +2,10 @@
 import capsizeFontMetricsInter from '@capsizecss/metrics/inter';
 import { createTextStyle, precomputeValues } from '@capsizecss/vanilla-extract';
 import {
-  ComplexStyleRule,
   createTheme,
   createVar,
   style,
+  StyleRule,
   styleVariants,
 } from '@vanilla-extract/css';
 import { withUnit } from './css-helpers.css.js';
@@ -103,7 +103,7 @@ export const fontSizeVariants = styleVariants(capsizeVars, (_, key) => [
   fontSizeVariantTextStyles[key],
 ]);
 
-const levelVariants: Record<HeadingLevel, ComplexStyleRule> = {
+const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
   '1': [
     fontSizeVariants.huge,
     {
@@ -141,4 +141,11 @@ const levelVariants: Record<HeadingLevel, ComplexStyleRule> = {
   ],
 }; // satisfies Record<HeadingLevel, ComplexStyleRule>;
 
-export const levelVariantClasses = styleVariants(levelVariants, (rest) => rest);
+export const levelVariantClasses = styleVariants(levelVariants, (rules) => [
+  ...rules,
+  {
+    // makes sure any heading ascenders or descenders overlap above anything
+    // else (for example an border or underline)
+    zIndex: 1,
+  },
+]);
