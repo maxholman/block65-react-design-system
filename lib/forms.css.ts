@@ -8,7 +8,7 @@ import {
   focusWidthVar,
 } from './focusable.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
-import { capsizeVars, fontSizeVariantVars } from './typography.css.js';
+import { fontSizeVariantVars } from './typography.css.js';
 import { hsl } from './utils.js';
 
 const borderWidthVar = createVar();
@@ -89,17 +89,16 @@ export const formInputCheckRadioBase = style([
       '&:focus-within': {
         color: focusColorVar,
       },
+      '&:active': {
+        outlineColor: focusColorVar,
+      },
       '&::before': {
         content: '""',
         transform: 'scale(0)',
         transition: '100ms transform ease-in-out',
-        boxShadow: `inset 1em 1em ${focusColorVar}`,
-        // size of the dot
         height: '0.5em',
-        aspectRatio: '1/1',
       },
       '&:checked': {
-        borderColor: focusColorVar,
         display: 'grid',
         placeContent: 'center',
       },
@@ -116,10 +115,14 @@ export const formInputCheckRadioBase = style([
 export const formInputCheckRadioWrapper = style([
   {
     display: 'grid',
-    gridTemplateColumns: `${calc.multiply(
+    /* gridTemplateColumns: `${calc.multiply(
+      // WARN
       capsizeVars.normal.capHeight,
-      1.5,
-    )} auto`,
+      // WARN
+      2.5,
+    )} auto`, */
+    gridTemplateColumns: `1em auto`,
+    fontSize: '1.2em',
   },
 ]);
 
@@ -141,6 +144,15 @@ export const formInputCheckboxInput = style([
         transformOrigin: 'bottom left',
         clipPath:
           'polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)',
+        // size and color of the check
+        aspectRatio: '1/1',
+        // height: '0.35em',
+        boxShadow: `inset 1em 1em ${'white'}`,
+      },
+      '&:checked': {
+        // background/border of the check
+        borderColor: 'currentColor',
+        backgroundColor: 'currentColor',
       },
     },
   },
@@ -153,6 +165,10 @@ export const formInputRadioInput = style([
     selectors: {
       '&::before': {
         borderRadius: genericVars.radius.maximum,
+        // size and colour of the dot
+        // height: '0.35em',
+        aspectRatio: '1/1',
+        boxShadow: 'inset 1em 1em currentColor',
       },
     },
   },
