@@ -1,14 +1,11 @@
-// @ts-expect-error - was not able to fix this, see module augmentation
-import capsizeFontMetricsInter from '@capsizecss/metrics/inter';
-import { createTextStyle, precomputeValues } from '@capsizecss/vanilla-extract';
+import { createTextStyle } from '@capsizecss/vanilla-extract';
 import {
-  createTheme,
+  createThemeContract,
   createVar,
   style,
   StyleRule,
   styleVariants,
 } from '@vanilla-extract/css';
-import { withUnit } from './css-helpers.css.js';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
@@ -27,55 +24,23 @@ export type FontSize =
   | 'large'
   | 'huge';
 
-export const [fontThemeClassName, capsizeVars] = createTheme({
-  huge: {
-    capHeight: withUnit(24),
-    values: precomputeValues({
-      capHeight: 24,
-      leading: 42,
-      fontMetrics: capsizeFontMetricsInter,
-    }),
+const fontThemeVarsShape = {
+  capHeight: 'cap-height',
+  values: {
+    fontSize: 'font-size',
+    lineHeight: 'line-height',
+    capHeightTrim: 'cap-height-trim',
+    baselineTrim: 'baseline-trim',
   },
-  large: {
-    capHeight: withUnit(20),
-    values: precomputeValues({
-      capHeight: 20,
-      leading: 45,
-      fontMetrics: capsizeFontMetricsInter,
-    }),
-  },
-  medium: {
-    capHeight: withUnit(16),
-    values: precomputeValues({
-      capHeight: 16,
-      leading: 24,
-      fontMetrics: capsizeFontMetricsInter,
-    }),
-  },
-  normal: {
-    capHeight: withUnit(11.75),
-    values: precomputeValues({
-      capHeight: 11.75,
-      leading: 24,
-      fontMetrics: capsizeFontMetricsInter,
-    }),
-  },
-  small: {
-    capHeight: withUnit(8.7272),
-    values: precomputeValues({
-      capHeight: 8.7272,
-      // leading: 32,
-      fontMetrics: capsizeFontMetricsInter,
-    }),
-  },
-  tiny: {
-    capHeight: '8.727272',
-    values: precomputeValues({
-      capHeight: 8.727272,
-      // leading: 32,
-      fontMetrics: capsizeFontMetricsInter,
-    }),
-  },
+};
+
+export const fontThemeVars = createThemeContract({
+  huge: fontThemeVarsShape,
+  large: fontThemeVarsShape,
+  medium: fontThemeVarsShape,
+  normal: fontThemeVarsShape,
+  small: fontThemeVarsShape,
+  tiny: fontThemeVarsShape,
 });
 
 export const secondaryClass = style({
@@ -90,15 +55,16 @@ export const codeClass = style({
   fontFamily: 'monospace',
 });
 
-export const fontSizeVariantVars = styleVariants(capsizeVars, (vars) => ({
+export const fontSizeVariantVars = styleVariants(fontThemeVars, (vars) => ({
   vars: { [currentCapHeight]: vars.capHeight },
 }));
 
-export const fontSizeVariantTextStyles = styleVariants(capsizeVars, (vars) => [
-  createTextStyle(vars.values),
-]);
+export const fontSizeVariantTextStyles = styleVariants(
+  fontThemeVars,
+  (vars) => [createTextStyle(vars.values)],
+);
 
-export const fontSizeVariants = styleVariants(capsizeVars, (_, key) => [
+export const fontSizeVariants = styleVariants(fontThemeVars, (_, key) => [
   fontSizeVariantVars[key],
   fontSizeVariantTextStyles[key],
 ]);

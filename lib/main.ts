@@ -15,6 +15,9 @@ export * from './loaders.js';
 export * from './panel.js';
 export * from './typography.js';
 
+export * from './fonts/inter.css.js';
+export * from './fonts/roboto.css.js';
+
 export type { ColorScheme, ContrastScheme } from './schemes/color.css.js';
 export type { Tone } from './tone.css.js';
 export type { BadgeVariant } from './badges.css.js';
