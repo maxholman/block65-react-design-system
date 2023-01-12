@@ -2,14 +2,13 @@ import { createTheme, createThemeContract } from '@vanilla-extract/css';
 
 export const genericVars = createThemeContract({
   text: {
-    size: {
-      nano: 'text-size-nano',
-      tiny: 'text-size-tiny',
-      small: 'text-size-small',
-      normal: 'text-size-normal',
-      medium: 'text-size-medium',
-      large: 'text-size-large',
-      huge: 'text-size-huge',
+    capHeights: {
+      tiny: 'cap-height-tiny',
+      small: 'cap-height-small',
+      normal: 'cap-height-normal',
+      medium: 'cap-height-medium',
+      large: 'cap-height-large',
+      huge: 'cap-height-huge',
     },
     weight: {
       thin: 'text-weight-thin',
@@ -57,8 +56,7 @@ export const genericVars = createThemeContract({
 
 export const genericThemeClass = createTheme(genericVars, {
   text: {
-    size: {
-      nano: '0.56rem',
+    capHeights: {
       tiny: '0.7rem',
       small: '0.8rem',
       normal: '1rem',

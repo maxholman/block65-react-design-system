@@ -5,13 +5,13 @@ import {
   ComponentProps,
   FC,
   InputHTMLAttributes,
-  isValidElement,
   LabelHTMLAttributes,
   PropsWithChildren,
   ReactNode,
   SelectHTMLAttributes,
   useId,
 } from 'react';
+import { useStringLikeDetector } from './context.js';
 import {
   fieldLabelStyle,
   fieldLabelTertiaryStyle,
@@ -60,38 +60,32 @@ export const FormFieldLabel: FC<
     secondary?: ReactNode;
     tertiary?: ReactNode;
   }
-> = ({ className, secondary, tertiary, children, ...props }) => (
-  <Inline className={fieldLabelWrapperStyle}>
-    <Inline
-      {...props}
-      space="tiny"
-      component="label"
-      className={[fieldLabelStyle, className]}
-    >
-      {isValidElement(children) ? (
-        children
-      ) : (
-        <>
-          <Strong>{children}</Strong>
-          {secondary && <Secondary>{secondary}</Secondary>}
-        </>
+> = ({ className, secondary, tertiary, children, ...props }) => {
+  const isStringLike = useStringLikeDetector();
+
+  return (
+    <Inline className={fieldLabelWrapperStyle}>
+      <Inline
+        {...props}
+        space="tiny"
+        component="label"
+        className={[fieldLabelStyle, className]}
+      >
+        {isStringLike(children) ? (
+          <>
+            <Strong>{children}</Strong>
+            {secondary && <Secondary>{secondary}</Secondary>}
+          </>
+        ) : (
+          children
+        )}
+      </Inline>
+      {tertiary && (
+        <Inline className={fieldLabelTertiaryStyle}>{tertiary}</Inline>
       )}
     </Inline>
-    {tertiary && (
-      <Inline className={fieldLabelTertiaryStyle}>{tertiary}</Inline>
-    )}
-  </Inline>
-);
-
-export const FormInputLabel: FC<
-  PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>> & {
-    className?: ClassValue;
-  }
-> = ({ className, children, ...props }) => (
-  <Inline {...props} component="label" className={[inputLabelStyle, className]}>
-    {isValidElement(children) ? children : <Text>{children}</Text>}
-  </Inline>
-);
+  );
+};
 
 function formInputProps(
   type: ComponentProps<typeof FormInput>['type'],
@@ -250,9 +244,13 @@ const FormInputCheckRadio: FC<
         }
         {...props}
       />
-      <FormInputLabel className={formInputCheckRadioLabel} htmlFor={id}>
+      <Text
+        component="label"
+        className={[inputLabelStyle, formInputCheckRadioLabel]}
+        htmlFor={id}
+      >
         {label}
-      </FormInputLabel>
+      </Text>
       {message && (
         <Text size="small" className={formInputCheckRadioMessage}>
           <Secondary>{message}</Secondary>

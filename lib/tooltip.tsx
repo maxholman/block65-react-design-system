@@ -1,4 +1,4 @@
-import type { Placement } from '@floating-ui/react-dom-interactions';
+import type { Placement } from '@floating-ui/react';
 import {
   arrow,
   autoUpdate,
@@ -12,7 +12,7 @@ import {
   useHover,
   useInteractions,
   useRole,
-} from '@floating-ui/react-dom-interactions';
+} from '@floating-ui/react';
 import {
   cloneElement,
   FC,

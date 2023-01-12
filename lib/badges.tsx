@@ -5,6 +5,7 @@ import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
 import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
+import { Text } from './typography.js';
 
 export type BadgeProps = {
   className?: ClassValue;
@@ -29,7 +30,9 @@ export const Badge: FC<
     className={clsx(className, toneVariants[tone], badgeVariants[variant])}
     {...props}
   >
-    {children}
+    <Text size="tiny" textOverflow="ellipsis">
+      {children}
+    </Text>
   </Box>
 );
 

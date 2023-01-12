@@ -6,13 +6,12 @@ import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 import {
   codeClass,
-  fontClass,
-  FontSize,
-  HeadingLevel,
+  fontSizeVariants,
   levelVariantClasses,
   secondaryClass,
   strongClass,
-  textClass,
+  type FontSize,
+  type HeadingLevel,
 } from './typography.css.js';
 
 // export types to assist with consumers who create augmented components
@@ -27,43 +26,50 @@ export const Heading: FC<
       }
     >
   >
-> = ({ level = '2', className, ...props }) => (
+> = ({ level = '2', className, children, ...props }) => (
   <Box
     component={`h${level}`}
     className={[levelVariantClasses[level], className]}
     {...props}
-  />
+  >
+    {children}
+  </Box>
 );
 
-export const Text: FC<
-  PropsWithChildren<
-    Merge<
-      BoxBasedComponentProps<'p'>,
-      {
-        size?: FontSize;
-        tone?: Tone | undefined;
-      }
-    >
-  >
-> = ({
+type CommonTextProps = {
+  size?: FontSize;
+  secondary?: boolean;
+  tone?: Tone | undefined;
+};
+
+export type TextProps = PropsWithChildren<
+  | Merge<BoxBasedComponentProps<'label'>, CommonTextProps>
+  | Merge<BoxBasedComponentProps<'p'>, CommonTextProps>
+>;
+
+export const Text: FC<TextProps> = ({
   className,
   component = 'p',
   size = 'normal',
   tone,
   align,
+  secondary,
+  children,
   ...props
 }) => (
   <Box
     component={component}
     className={[
-      textClass,
-      fontClass[size],
+      fontSizeVariants[size],
       tone && toneVariants[tone],
       align && inlineAlignSelfVariants[align],
+      secondary && secondaryClass,
       className,
     ]}
     {...props}
-  />
+  >
+    {children}
+  </Box>
 );
 
 export const Strong: FC<BoxBasedComponentProps<'span'>> = ({

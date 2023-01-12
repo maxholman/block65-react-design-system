@@ -205,6 +205,16 @@ export const ButtonsPage: FC = () => (
         </ButtonLink>
         <Text>and like this</Text>
       </Inline>
+
+      <Heading>Hello</Heading>
+      <Text>Buttons in context</Text>
+      <Inline space="nano">
+        <Text>Like this</Text>
+        <ButtonLink tone="critical" icon={<CrescentMoonIcon />}>
+          Eject
+        </ButtonLink>
+        <Text>and like this</Text>
+      </Inline>
     </Block>
   </Panel>
 );

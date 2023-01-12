@@ -1,32 +1,37 @@
-import { createVar, style } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
+import { style } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
+import { currentCapHeight } from './typography.css.js';
 import { hsl } from './utils.js';
 
-const sizeVar = createVar();
-
 export const calloutClass = style({
-  vars: {
-    [sizeVar]: genericVars.text.size.normal,
-  },
-  padding: genericVars.space.tiny,
+  padding: currentCapHeight,
   display: 'grid',
   borderRadius: genericVars.radius.medium,
   borderColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
   backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
   color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
   gridTemplateColumns: 'auto 1fr',
+  rowGap: 0,
   columnGap: genericVars.space.tiny,
+  overflow: 'hidden',
+  alignItems: 'start',
 });
 
-export const calloutIconClass = style({
+export const calloutTextIconWrapperClass = style({
   gridColumn: 1,
-  marginBlockStart: calc(sizeVar).multiply(0.25).toString(),
+  lineHeight: 0,
 });
 
-export const calloutChildrenClass = style({
+export const calloutTextIconClass = style({
+  display: 'inline-block',
+  height: currentCapHeight,
+  maxHeight: currentCapHeight,
+  aspectRatio: '1/1',
+});
+
+export const calloutTextClass = style({
   gridColumn: 2,
-  fontSize: sizeVar,
+  color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
 });

@@ -2,7 +2,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { Children } from 'react';
 import { Box, BoxBasedComponentProps, Space } from './core.js';
-import { Inline } from './layout.js';
 import {
   listClass,
   listColsVar,
@@ -35,7 +34,7 @@ export const List = <T extends keyof ReactHTMLAttributesHacked = 'ul'>({
   >
     {Children.map(children, (child) => (
       <Box component="li" className={listItemClass}>
-        <Inline>{child}</Inline>
+        {child}
       </Box>
     ))}
   </Box>

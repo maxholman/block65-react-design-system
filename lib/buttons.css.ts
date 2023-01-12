@@ -2,13 +2,14 @@ import {
   createVar,
   style,
   StyleRule,
-  styleVariants
+  styleVariants,
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
+import { currentCapHeight, fontSizeVariants } from './typography.css.js';
 import { hsl } from './utils.js';
 
 export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
@@ -16,53 +17,58 @@ export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 export const iconClass = style({
   display: 'flex',
   flexDirection: 'row',
-  width: '1em',
-  height: '1em',
+  width: currentCapHeight,
+  height: currentCapHeight,
+  aspectRatio: '1/1',
   flexShrink: 0,
   alignItems: 'center',
 });
 
 const basePadding = createVar();
 
-const base = style({
-  vars: {
-    [basePadding]: genericVars.space.small,
-  },
-  cursor: 'pointer',
-  borderStyle: 'solid',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  flexWrap: 'nowrap',
-  whiteSpace: 'nowrap',
-  justifyContent: 'center',
-  borderWidth: genericVars.border.weight.normal,
-  borderRadius: genericVars.radius.medium,
-  borderColor: 'transparent',
-  padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
-  fontSize: genericVars.text.size.normal,
-  userSelect: 'none',
-  textAlign: 'center',
-  selectors: {
-    '&[disabled]': {
-      pointerEvents: 'none',
-      cursor: 'default',
-      filter: 'grayscale(1)',
+const base = style([
+  {
+    vars: {
+      [basePadding]: genericVars.space.small,
+      [currentCapHeight]: genericVars.text.capHeights.normal,
     },
-    '&:focus': {
-      outlineStyle: 'solid',
-      outlineOffset: genericVars.space.nano,
-      outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    cursor: 'pointer',
+    borderStyle: 'solid',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    flexWrap: 'nowrap',
+    whiteSpace: 'nowrap',
+    justifyContent: 'center',
+    borderWidth: genericVars.border.weight.normal,
+    borderRadius: genericVars.radius.medium,
+    borderColor: 'transparent',
+    padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
+    userSelect: 'none',
+    textAlign: 'center',
+    selectors: {
+      '&[disabled]': {
+        pointerEvents: 'none',
+        cursor: 'default',
+        filter: 'grayscale(1)',
+      },
+      '&:focus': {
+        outlineStyle: 'solid',
+        outlineOffset: genericVars.space.nano,
+        outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+      },
     },
+    transition: 'background 0.05s linear',
   },
-  transition: 'background 0.05s linear',
-});
+]);
 
-export const compactButton = style({
-  vars: {
-    [basePadding]: genericVars.space.tiny,
+export const compactButton = style([
+  fontSizeVariants.small,
+  {
+    vars: {
+      [basePadding]: genericVars.space.tiny,
+    },
   },
-  fontSize: genericVars.text.size.small,
-});
+]);
 
 const hoverAlpha = createVar();
 
@@ -83,7 +89,7 @@ const variants: Record<ButtonVariant, StyleRule> = {
   },
   subtle: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
-    color: hsl(toneH, 0, 95),
+    color: hsl(toneH, 0, contrastSchemeVars.level5.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
     selectors: {
       '&:hover': {
@@ -121,8 +127,8 @@ export const visiblyHiddenClass = style({
 export const busyButtonClass = style({
   pointerEvents: 'none',
   selectors: {
-    '&::before': {
-      height: '1em',
+    '&::after': {
+      height: currentCapHeight,
       aspectRatio: '1/1',
       content: '""',
       position: 'absolute',
@@ -141,8 +147,7 @@ export const busyButtonClass = style({
 });
 
 export const inlineBleedClass = style({
-  marginTop: calc(genericVars.space.small).negate().toString(),
-  marginBottom: calc(`${genericVars.space.small}`).negate().toString(),
+  marginBlock: calc(genericVars.space.small).negate().toString(),
 });
 
 export const withIconClass = style({

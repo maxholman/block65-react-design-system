@@ -1,7 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Link, Route, Router, Routes } from '@block65/mrr';
 import type { FC } from 'react';
-import { IntlProvider } from 'react-intl';
+import {
+  FormattedDate,
+  FormattedMessage,
+  FormattedNumber,
+  FormattedTime,
+  IntlProvider,
+} from 'react-intl';
 import { useLocalStorageState } from '../gist_modules/maxholman/react-hooks/use-localstorage-state.js';
 import {
   Block,
@@ -17,6 +23,7 @@ import {
   Text,
   TextLink,
 } from '../lib/main.js';
+import { fontThemeClassName } from '../lib/typography.css.js';
 import { BadgesPage } from './pages/badges.js';
 import { ButtonsPage } from './pages/buttons.js';
 import { CalloutPage } from './pages/callout.js';
@@ -42,7 +49,13 @@ export const App: FC = () => {
       <DesignSystem
         colorScheme={colorScheme}
         contrastScheme={contrastScheme}
-        // className={exampleColorThemeClass}
+        className={fontThemeClassName}
+        stringLikeComponents={[
+          FormattedMessage,
+          FormattedNumber,
+          FormattedTime,
+          FormattedDate,
+        ]}
       >
         <Router>
           <Block style={{ minHeight: '100vh' }}>

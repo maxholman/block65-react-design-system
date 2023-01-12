@@ -30,5 +30,14 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ['src/pages/**/*.tsx?', 'lib/**/*.css.ts'],
+      rules: {
+        'import/no-extraneous-dependencies': [
+          'error',
+          { devDependencies: false },
+        ],
+      },
+    },
   ],
 };

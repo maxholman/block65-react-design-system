@@ -1,14 +1,17 @@
 import type { FC } from 'react';
 import {
-  calloutChildrenClass,
   calloutClass,
-  calloutIconClass,
+  calloutTextClass,
+  calloutTextIconClass,
+  calloutTextIconWrapperClass,
 } from './callout.css.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import type { BoxBasedComponentProps } from './core.js';
 import { InfoIcon } from './icons.js';
-import { Block } from './layout.js';
+import { Inline } from './layout.js';
 import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
+import { fontSizeVariants } from './typography.css.js';
+import { Text } from './typography.js';
 
 export const Callout: FC<
   Merge<
@@ -19,16 +22,23 @@ export const Callout: FC<
     }
   >
 > = ({ children, className, tone = 'info', ...props }) => (
-  <Box
+  <Inline
     component="div"
-    className={[toneVariants[tone], calloutClass, className]}
+    className={[
+      calloutClass,
+      toneVariants[tone],
+      fontSizeVariants.normal,
+      className,
+    ]}
     role="alert"
     aria-live="polite"
     {...props}
   >
-    <InfoIcon className={calloutIconClass} />
-    <Block textOverflow="break" className={calloutChildrenClass}>
-      {children}
-    </Block>
-  </Box>
+    <span className={calloutTextIconWrapperClass}>
+      <InfoIcon className={calloutTextIconClass} />
+    </span>
+    <span className={calloutTextClass}>
+      <Text>{children}</Text>
+    </span>
+  </Inline>
 );
