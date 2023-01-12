@@ -5,6 +5,12 @@
   "license": "UNLICENSED",
   "sideEffects": false,
   "type": "module",
+  "imports": {
+    "#vars": {
+      "types": "./dist/lib/vars.js",
+      "default": "./build/vars.js"
+    }
+  },
   "exports": {
     ".": {
       "types": "./dist/lib/main.d.ts",
