@@ -17,7 +17,7 @@ export const ListPage: FC = () => (
   <Panel variant="ghost">
     <Grid padding="huge">
       <Panel variant="ghost" space="large">
-        <Block align="center">
+        <Block align="center" space="huge">
           <Heading level="2">Early Adopter Plan</Heading>
           <Text size="small">
             <Secondary>For those who like to adopt early </Secondary>
@@ -87,18 +87,16 @@ export const ListPage: FC = () => (
         <Button>Upgrade Now</Button>
       </Panel>
 
-      <Panel variant="ghost">
-        <Block align="center">
+      <Panel variant="ghost" space="large">
+        <Block align="center" space="huge">
           <Heading level="2">Custom Plan</Heading>
           <Text size="small" align="center">
             <Secondary>Want more?</Secondary>
           </Text>
         </Block>
-        <Block>
-          <Text> We can do customised models and payment terms</Text>
-          <Text>No wuckers</Text>
-          <Button>Contact Us</Button>
-        </Block>
+        <Text> We can do customised models and payment terms</Text>
+        <Text>No wuckers</Text>
+        <Button>Contact Us</Button>
       </Panel>
     </Grid>
   </Panel>

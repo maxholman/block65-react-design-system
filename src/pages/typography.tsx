@@ -13,10 +13,25 @@ import {
 
 export const TypographyPage: FC = () => (
   <Panel variant="ghost" space="huge">
-    <Block>
+    <Block space="large">
       <Heading level="2">Text is texty</Heading>
 
-      <Text>Normal text is normal.</Text>
+      <Text>
+        Normal text is normal. Normal text is normal. Normal text is normal.
+        Normal text is normal. Normal text is normal. Normal text is normal.
+        <Secondary>Secondary text</Secondary> looks like that.{' '}
+        <Strong>Strong text</Strong> is strong. Normal text is normal. Normal
+        text is normal. Normal text is normal. Normal text is normal. Normal
+        text is normal. <Strong>Strong text</Strong> is strong. Normal text is
+        normal. Normal text is normal. Normal text is normal.{' '}
+        <Secondary>Secondary text</Secondary> looks like that. Normal text is
+        normal. Normal text is normal. Normal text is normal. Normal text is
+        normal. Normal text is normal. Normal text is normal.{' '}
+        <Strong>Strong text</Strong> is strong. Normal text is normal. Normal
+        text is normal. Normal text is normal. Normal text is normal.{' '}
+        <Secondary>Secondary text</Secondary> looks like that. Normal text is
+        normal.
+      </Text>
 
       <Text>
         <Strong>Strong text</Strong> is strong.
@@ -48,7 +63,7 @@ export const TypographyPage: FC = () => (
       </Text>
     </Block>
 
-    <Block>
+    <Block space="huge">
       <Heading level="2">Headings are heady</Heading>
 
       <Block>
@@ -58,10 +73,12 @@ export const TypographyPage: FC = () => (
         </Block>
         <Text>With fake underline</Text>
       </Block>
+
       <Block>
         <Heading level="1">Heading 1</Heading>
         <Text>Normal Text</Text>
       </Block>
+
       <Block>
         <Heading level="2">Heading 2</Heading>
         <Text>Normal Text</Text>
@@ -84,14 +101,14 @@ export const TypographyPage: FC = () => (
       <Heading level="1">Text Align</Heading>
 
       <Grid>
-        <Panel>
+        <Panel variant="ghost">
           <Heading level="5">LTR</Heading>
           <Text textAlign="start">Start</Text>
           <Text textAlign="center">Center</Text>
           <Text textAlign="end">End</Text>
         </Panel>
 
-        <Panel dir="rtl">
+        <Panel variant="ghost" dir="rtl">
           <Heading level="5">RTL</Heading>
           <Text textAlign="start">הַתחָלָה</Text>
           <Text textAlign="center">הַתחָלָה</Text>

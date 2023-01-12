@@ -100,7 +100,7 @@ export const FormsPage: FC = () => (
           label={
             <Block>
               <Inline>If you are older than 35, choose this option.</Inline>
-              <Inline>Ooh it wraps over multiple lines.</Inline>
+              {/* <Inline>Ooh it wraps over multiple lines.</Inline> */}
             </Block>
           }
         />
