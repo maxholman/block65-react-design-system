@@ -78,6 +78,7 @@ const textOverflowCssProps: Record<TextOverflow, StyleRule> = {
 };
 
 const textOverflowBase = style({
+  display: 'block',
   overflow: 'hidden',
 });
 

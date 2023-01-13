@@ -81,12 +81,17 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
           paddingBlock && paddingBlockVariants[paddingBlock],
           paddingInline && paddingInlineVariants[paddingInline],
           textAlign && textAlignVariants[textAlign],
-          textOverflow && textOverflowVariants[textOverflow],
           className,
         ) || undefined,
       ref,
     },
-    children,
+    textOverflow ? (
+      <span className={textOverflow && textOverflowVariants[textOverflow]}>
+        {children}
+      </span>
+    ) : (
+      children
+    ),
   );
 
   if (tooltip) {
