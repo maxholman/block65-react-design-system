@@ -107,6 +107,7 @@ export const formInputCheckRadioBase = style([
       },
       '&:disabled': {
         cursor: 'not-allowed',
+        filter: 'grayscale(1)',
       },
     },
   },
