@@ -110,23 +110,25 @@ function formInputProps(
   }
 }
 
-export const FormInput: FC<
-  PropsWithChildren<
-    InputHTMLAttributes<HTMLInputElement> & {
-      type: Omit<
-        InputHTMLAttributes<HTMLInputElement>['type'],
-        'radio' | 'checkbox'
-      >;
-      className?: ClassValue;
-      label: ReactNode;
-      description?: ReactNode;
-      secondaryLabel?: ReactNode;
-      tertiaryLabel?: ReactNode;
-      message?: string;
-      messageTone?: Tone;
-    }
-  >
-> = ({
+type CommonFormInputProps = {
+  type: Omit<
+    InputHTMLAttributes<HTMLInputElement>['type'],
+    'radio' | 'checkbox'
+  >;
+  className?: ClassValue;
+  label: ReactNode;
+  description?: ReactNode;
+  secondaryLabel?: ReactNode;
+  tertiaryLabel?: ReactNode;
+  message?: ReactNode;
+  messageTone?: Tone;
+};
+
+export type FormInputProps = PropsWithChildren<
+  InputHTMLAttributes<HTMLInputElement> & CommonFormInputProps
+>;
+
+export const FormInput: FC<FormInputProps> = ({
   className,
   label,
   description,
