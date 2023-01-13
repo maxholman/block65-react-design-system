@@ -12,7 +12,6 @@ export const tooltipClass = style([
     left: '0',
     background: hsl(0, 0, contrastSchemeVars.level5.l),
     color: hsl(0, 0, contrastSchemeVars.level0.l),
-    fontWeight: genericVars.text.weight.bold,
     padding: genericVars.space.tiny,
     borderRadius: genericVars.radius.medium,
     pointerEvents: 'none',
