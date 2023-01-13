@@ -43,6 +43,10 @@ export const fontThemeVars = createThemeContract({
   tiny: fontThemeVarsShape,
 });
 
+export const textClass = style({
+  // empty for future use
+});
+
 export const secondaryClass = style({
   color: hsl(0, 0, contrastSchemeVars.level4.l),
 });
