@@ -97,6 +97,7 @@ export interface ReactHTMLAttributesHacked {
     HTMLCanvasElement
   >;
   caption: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
+  center: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
   cite: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
   code: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
   col: DetailedHTMLFactory<
