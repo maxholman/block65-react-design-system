@@ -23,7 +23,6 @@ import {
   Text,
   TextLink,
   interFontThemeClassName,
-  robotoMonoFontThemeClassName,
 } from '../lib/main.js';
 import { BadgesPage } from './pages/badges.js';
 import { ButtonsPage } from './pages/buttons.js';
@@ -50,7 +49,7 @@ export const App: FC = () => {
       <DesignSystem
         colorScheme={colorScheme}
         contrastScheme={contrastScheme}
-        className={[robotoMonoFontThemeClassName]}
+        className={[interFontThemeClassName]}
         stringLikeComponents={[
           FormattedMessage,
           FormattedNumber,
