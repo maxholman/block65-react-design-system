@@ -193,6 +193,7 @@ export const FormSelect: FC<
   ...props
 }) => {
   const id = useId();
+  const isStringLike = useStringLikeDetector();
 
   return (
     <Block className={className} space="small">
@@ -217,7 +218,14 @@ export const FormSelect: FC<
           {...props}
         />
       </div>
-      {message}
+      {message &&
+        (isStringLike(message) ? (
+          <Text secondary size="small">
+            {message}
+          </Text>
+        ) : (
+          message
+        ))}
     </Block>
   );
 };
@@ -236,6 +244,7 @@ const FormInputCheckRadio: FC<
   >
 > = ({ className, message, label, ...props }) => {
   const id = useId();
+  const isStringLike = useStringLikeDetector();
 
   return (
     <Block space="small" className={formInputCheckRadioWrapper}>
@@ -246,18 +255,27 @@ const FormInputCheckRadio: FC<
         }
         {...props}
       />
-      <Text
-        component="label"
-        className={[inputLabelStyle, formInputCheckRadioLabel]}
-        htmlFor={id}
-      >
-        {label}
-      </Text>
-      {message && (
-        <Text size="small" className={formInputCheckRadioMessage}>
-          <Secondary>{message}</Secondary>
-        </Text>
-      )}
+      {label &&
+        (isStringLike(label) ? (
+          <Text
+            component="label"
+            className={[inputLabelStyle, formInputCheckRadioLabel]}
+            secondary={!!props.disabled}
+            htmlFor={id}
+          >
+            {label}
+          </Text>
+        ) : (
+          <div className={formInputCheckRadioLabel}>{message}</div>
+        ))}
+      {message &&
+        (isStringLike(message) ? (
+          <Text secondary size="small" className={formInputCheckRadioMessage}>
+            {message}
+          </Text>
+        ) : (
+          message
+        ))}
     </Block>
   );
 };
@@ -285,21 +303,31 @@ export const FormInputRadioGroup: FC<
   tertiaryLabel,
   message,
   children,
-}) => (
-  <Block className={className}>
-    {label && (
-      <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
-        {label}
-      </FormFieldLabel>
-    )}
-    {Children.map(children, (child) =>
-      cloneElementIfValidElementOfType(child, FormInputRadio, {
-        name,
-      }),
-    )}
-    {message && <Text size="small">{message}</Text>}
-  </Block>
-);
+}) => {
+  const isStringLike = useStringLikeDetector();
+  return (
+    <Block className={className}>
+      {label && (
+        <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
+          {label}
+        </FormFieldLabel>
+      )}
+      {Children.map(children, (child) =>
+        cloneElementIfValidElementOfType(child, FormInputRadio, {
+          name,
+        }),
+      )}
+      {message &&
+        (isStringLike(message) ? (
+          <Text secondary size="small">
+            {message}
+          </Text>
+        ) : (
+          message
+        ))}
+    </Block>
+  );
+};
 
 export const FormInputCheckbox: FC<
   Omit<ComponentProps<typeof FormInputCheckRadio>, 'type'>
@@ -325,16 +353,26 @@ export const FormInputCheckboxGroup: FC<
   message,
   children,
   // ...props
-}) => (
-  <Block className={className}>
-    <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
-      {label}
-    </FormFieldLabel>
-    {Children.map(children, (child) =>
-      cloneElementIfValidElementOfType(child, FormInputCheckbox, {
-        name,
-      }),
-    )}
-    {message && <Text size="small">{message}</Text>}
-  </Block>
-);
+}) => {
+  const isStringLike = useStringLikeDetector();
+  return (
+    <Block className={className}>
+      <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
+        {label}
+      </FormFieldLabel>
+      {Children.map(children, (child) =>
+        cloneElementIfValidElementOfType(child, FormInputCheckbox, {
+          name,
+        }),
+      )}
+      {message &&
+        (isStringLike(message) ? (
+          <Text secondary size="small">
+            {message}
+          </Text>
+        ) : (
+          message
+        ))}
+    </Block>
+  );
+};
