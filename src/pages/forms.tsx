@@ -13,7 +13,6 @@ import {
   Heading,
   Inline,
   Panel,
-  Secondary,
   Strong,
   Text,
   TextLink,
@@ -65,11 +64,9 @@ export const FormsPage: FC = () => (
         label="Birth Month"
         defaultValue="Feb"
         message={
-          <Text size="small">
-            <Secondary>
-              Feb is the <Strong>best</Strong> month btw
-            </Secondary>
-          </Text>
+          <>
+            Feb is the <Strong>best</Strong> month btw
+          </>
         }
       >
         <option />
@@ -113,6 +110,9 @@ export const FormsPage: FC = () => (
         />
         <FormInputCheckbox label="18-25" />
         <FormInputCheckbox label="35+" />
+        <FormInputCheckbox disabled label="Dead" />
+        <FormInputCheckbox disabled checked label="Dead last" />
+        <FormInputCheckbox label={<h1>Heading Label</h1>} />
       </FormInputCheckboxGroup>
       <Block space="medium">
         <Button>Save</Button>
