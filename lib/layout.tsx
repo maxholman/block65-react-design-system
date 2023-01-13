@@ -17,7 +17,7 @@ export type BlockProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
 
 export const Block = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   component = 'div',
-  space = 'medium',
+  space = 'large',
   className,
   ...props
 }: BlockProps<T>) => (
