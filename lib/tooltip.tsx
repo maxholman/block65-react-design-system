@@ -47,7 +47,7 @@ export function useTooltipState({
     onOpenChange: setOpen,
     whileElementsMounted: autoUpdate,
     middleware: [
-      offset(5),
+      offset(10),
       flip(),
       shift(),
       // arrow should always be at the end, after shift()

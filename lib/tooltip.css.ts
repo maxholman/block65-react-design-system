@@ -1,5 +1,4 @@
 import { createVar, style } from '@vanilla-extract/css';
-import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { fontSizeVariants } from './typography.css.js';
@@ -26,14 +25,11 @@ export const arrowOffsetVar = createVar();
 
 export const tooltipArrowStyle = style({
   vars: {
-    [arrowOffsetVar]: calc(genericVars.space.small)
-      .divide(4)
-      .negate()
-      .toString(),
+    [arrowOffsetVar]: '-0.45rem',
   },
   position: 'absolute',
   background: 'inherit',
-  height: '0.5rem',
-  width: '1.5rem',
+  aspectRatio: '1/1',
+  height: '0.75rem',
   clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
 });
