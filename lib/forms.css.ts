@@ -136,7 +136,6 @@ export const formInputCheckboxInput = style([
   {
     selectors: {
       '&::before': {
-        transformOrigin: 'bottom left',
         clipPath:
           'polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%)',
         // size and color of the check
