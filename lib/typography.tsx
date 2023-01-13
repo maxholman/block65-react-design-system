@@ -3,13 +3,14 @@ import type { TextAlign, TextOverflow } from './core.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import { inlineAlignSelfVariants } from './layout.css.js';
 import { Tone, toneVariants } from './tone.css.js';
-import type { Merge } from './types.js';
+import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import {
   codeClass,
   fontSizeVariants,
   levelVariantClasses,
   secondaryClass,
   strongClass,
+  textClass,
   type FontSize,
   type HeadingLevel,
 } from './typography.css.js';
@@ -17,16 +18,21 @@ import {
 // export types to assist with consumers who create augmented components
 export type { FontSize, HeadingLevel, TextOverflow, TextAlign };
 
-export const Heading: FC<
-  PropsWithChildren<
-    Merge<
-      BoxBasedComponentProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
-      {
-        level?: HeadingLevel;
-      }
-    >
+export type HeadingProps = PropsWithChildren<
+  Merge<
+    BoxBasedComponentProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
+    {
+      level?: HeadingLevel;
+    }
   >
-> = ({ level = '2', className, children, ...props }) => (
+>;
+
+export const Heading: FC<HeadingProps> = ({
+  level = '2',
+  className,
+  children,
+  ...props
+}) => (
   <Box
     component={`h${level}`}
     className={[levelVariantClasses[level], className]}
@@ -42,24 +48,22 @@ type CommonTextProps = {
   tone?: Tone | undefined;
 };
 
-export type TextProps = PropsWithChildren<
-  | Merge<BoxBasedComponentProps<'label'>, CommonTextProps>
-  | Merge<BoxBasedComponentProps<'p'>, CommonTextProps>
->;
+export type TextProps<T extends keyof ReactHTMLAttributesHacked> =
+  PropsWithChildren<Merge<BoxBasedComponentProps<T>, CommonTextProps>>;
 
-export const Text: FC<TextProps> = ({
+export const Text = <T extends keyof ReactHTMLAttributesHacked>({
   className,
-  component = 'p',
+  component,
   size = 'normal',
   tone,
   align,
   secondary,
   children,
   ...props
-}) => (
+}: TextProps<T>) => (
   <Box
-    component={component}
     className={[
+      textClass,
       fontSizeVariants[size],
       tone && toneVariants[tone],
       align && inlineAlignSelfVariants[align],
