@@ -38,9 +38,9 @@ const interFontTheme = createTheme(fontThemeVars, {
     }),
   },
   small: {
-    capHeight: withUnit(8.7272),
+    capHeight: withUnit(9),
     values: precomputeValues({
-      capHeight: 8.7272,
+      capHeight: 9,
       // leading: 32,
       fontMetrics,
     }),
