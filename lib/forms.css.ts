@@ -115,12 +115,6 @@ export const formInputCheckRadioBase = style([
 export const formInputCheckRadioWrapper = style([
   {
     display: 'grid',
-    /* gridTemplateColumns: `${calc.multiply(
-      // WARN
-      capsizeVars.normal.capHeight,
-      // WARN
-      2.5,
-    )} auto`, */
     gridTemplateColumns: '1em auto',
     fontSize: '1.2em',
   },

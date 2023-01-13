@@ -27,9 +27,9 @@ const base = style({
 const variantRules: Record<
   BadgeVariant,
   {
-    backgroundColor?: string;
     color: string;
     borderColor: string;
+    backgroundColor?: string;
     fontWeight?: string;
   }
 > = {
