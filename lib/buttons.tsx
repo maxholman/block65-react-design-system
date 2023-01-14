@@ -64,6 +64,7 @@ const ButtonInternal: FC<
   className,
   icon,
   inline,
+  textOverflow = 'ellipsis',
   children,
   ...props
 }) => (
@@ -78,7 +79,6 @@ const ButtonInternal: FC<
       className,
     )}
     space="nano"
-    textOverflow="ellipsis"
     {...props}
   >
     {icon && (
@@ -89,6 +89,7 @@ const ButtonInternal: FC<
     <Box
       className={[busy && visiblyHiddenClass, withIconClass]}
       aria-hidden={busy || undefined}
+      textOverflow={textOverflow}
     >
       {children}
     </Box>
