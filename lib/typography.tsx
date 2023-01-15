@@ -1,4 +1,4 @@
-import type { FC, PropsWithChildren } from 'react';
+import { FC, forwardRef, PropsWithChildren } from 'react';
 import type { TextAlign, TextOverflow } from './core.css.js';
 import { Box, BoxBasedComponentProps } from './core.js';
 import { inlineAlignSelfVariants } from './layout.css.js';
@@ -27,19 +27,17 @@ export type HeadingProps = PropsWithChildren<
   >
 >;
 
-export const Heading: FC<HeadingProps> = ({
-  level = '2',
-  className,
-  children,
-  ...props
-}) => (
-  <Box
-    component={`h${level}`}
-    className={[levelVariantClasses[level], className]}
-    {...props}
-  >
-    {children}
-  </Box>
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ level = '2', className, children, ...props }, ref) => (
+    <Box
+      ref={ref}
+      component={`h${level}`}
+      className={[levelVariantClasses[level], className]}
+      {...props}
+    >
+      {children}
+    </Box>
+  ),
 );
 
 type CommonTextProps = {
