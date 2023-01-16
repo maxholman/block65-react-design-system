@@ -376,3 +376,53 @@ export const FormInputCheckboxGroup: FC<
     </Block>
   );
 };
+
+export type FormTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
+  CommonFormInputProps;
+
+export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
+  (
+    {
+      className,
+      label,
+      description,
+      secondaryLabel,
+      tertiaryLabel,
+      message,
+      messageTone,
+      ...props
+    },
+    ref,
+  ) => {
+    const id = useId();
+
+    return (
+      <Block className={className} space="small">
+        {label && (
+          <FormFieldLabel
+            htmlFor={id}
+            secondary={secondaryLabel}
+            tertiary={tertiaryLabel}
+          >
+            {label}
+          </FormFieldLabel>
+        )}
+        {description}
+        <textarea
+          ref={ref}
+          id={id}
+          className={clsx(formInputClassName, formInputNotCheckRadio)}
+          {...(props.readOnly && { tabIndex: -1 })}
+          {...props}
+        />
+        {message && (
+          <Inline>
+            <Text size="small" tone={messageTone}>
+              {messageTone ? message : <Secondary>{message}</Secondary>}
+            </Text>
+          </Inline>
+        )}
+      </Block>
+    );
+  },
+);
