@@ -97,7 +97,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
         ) || undefined,
       ref,
     },
-    textOverflow ? (
+    textOverflow && children ? (
       <span className={textOverflow && textOverflowVariants[textOverflow]}>
         {children}
       </span>
