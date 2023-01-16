@@ -1,6 +1,11 @@
 import { ClassValue, clsx } from 'clsx';
-import type { PropsWithChildren } from 'react';
-import { createElement, forwardRef, ReactNode } from 'react';
+import {
+  createElement,
+  ForwardedRef,
+  forwardRef,
+  ReactElement,
+  ReactNode,
+} from 'react';
 import {
   marginBlockVariants,
   marginInlineVariants,
@@ -15,7 +20,10 @@ import {
 } from './core.css.js';
 import { Align, alignItemsVariants } from './layout.css.js';
 import { Tooltip } from './tooltip.js';
-import type { ReactHTMLAttributesHacked } from './types.js';
+import type {
+  ReactHTMLAttributesHacked,
+  ReactHTMLElementsHacked,
+} from './types.js';
 
 export type Space =
   | 'huge'
@@ -64,9 +72,9 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     textOverflow,
     tooltip,
     ...props
-  }: PropsWithChildren<BoxBasedComponentProps<T>>,
-  ref: React.ForwardedRef<ReactHTMLAttributesHacked[T]>,
-) => {
+  }: BoxBasedComponentProps<T>,
+  ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
+): ReactElement | null => {
   const el = createElement(
     component || 'div',
     {
