@@ -60,7 +60,6 @@ export const DesignSystem: FC<
         {...props}
         component="div"
         className={[
-          resetClass,
           genericThemeClass,
 
           // color theme
@@ -68,6 +67,9 @@ export const DesignSystem: FC<
 
           // don't set fg/bg if we're integrating with existing frameworks
           !integrationMode && defaultBgFgClass,
+
+          // if we're in integration mode, the reset can only go around el
+          integrationMode && resetClass,
 
           // auto color
           autoColorScheme && mediaPrefersColorSchemeClass,
