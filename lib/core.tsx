@@ -82,13 +82,17 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
       className:
         clsx(
           align && alignItemsVariants[align],
+
           margin && marginVariants[margin],
           marginBlock && marginBlockVariants[marginBlock],
           marginInline && marginInlineVariants[marginInline],
+
           padding && paddingVariants[padding],
           paddingBlock && paddingBlockVariants[paddingBlock],
           paddingInline && paddingInlineVariants[paddingInline],
+
           textAlign && textAlignVariants[textAlign],
+
           className,
         ) || undefined,
       ref,
