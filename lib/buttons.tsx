@@ -52,7 +52,6 @@ const ButtonInternal: FC<
   tone = 'accent',
   compact,
   busy,
-  align,
   className,
   icon,
   inline,
@@ -95,14 +94,8 @@ export const Button: FC<
   Merge<BoxBasedComponentProps<'button'>, ButtonProps>
 > = (props) => <ButtonInternal {...props} />;
 
-export const ButtonLink: FC<
-  Merge<BoxBasedComponentProps<'a' | 'span'>, ButtonLinkProps>
-> = (props) => (
-  <ButtonInternal
-    component={'href' in props ? 'a' : 'span'}
-    {...props}
-    textOverflow="ellipsis"
-  />
+export const ButtonLink: FC<ButtonLinkProps> = (props) => (
+  <ButtonInternal component={'href' in props ? 'a' : 'span'} {...props} />
 );
 
 export const ButtonIcon: FC<
