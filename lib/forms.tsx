@@ -76,12 +76,11 @@ function formInputProps(
   }
 }
 
-export const Form: FC<PropsWithChildren<BlockProps<'form'>>> = ({
-  space = 'large',
-  children,
-  ...props
-}) => (
-  <Block space={space} component="form" {...props}>
+export const Form = forwardRef<
+  HTMLFormElement,
+  PropsWithChildren<BlockProps<'form'>>
+>(({ space = 'large', children, ...props }, ref) => (
+  <Block space={space} component="form" {...props} ref={ref}>
     {Children.map(children, (child) => {
       // if it's a block element and no space is defined, use the space this
       // component has been given
@@ -91,7 +90,7 @@ export const Form: FC<PropsWithChildren<BlockProps<'form'>>> = ({
       return child;
     })}
   </Block>
-);
+));
 
 export const FormFieldLabel: FC<
   PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>> & {
