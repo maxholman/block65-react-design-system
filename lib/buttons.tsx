@@ -72,6 +72,9 @@ const ButtonInternal: FC<
     )}
     space="nano"
     {...props}
+    {...(component === 'button' && {
+      type: ('type' in props && props.type) || 'button',
+    })}
   >
     {icon && (
       <Box component="span" className={[iconClass, busy && visiblyHiddenClass]}>
