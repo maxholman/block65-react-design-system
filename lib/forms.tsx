@@ -4,11 +4,13 @@ import {
   cloneElement,
   ComponentProps,
   FC,
+  forwardRef,
   InputHTMLAttributes,
   LabelHTMLAttributes,
   PropsWithChildren,
   ReactNode,
   SelectHTMLAttributes,
+  TextareaHTMLAttributes,
   useId,
 } from 'react';
 import { useStringLikeDetector } from './context.js';
@@ -16,7 +18,7 @@ import {
   fieldLabelStyle,
   fieldLabelTertiaryStyle,
   fieldLabelWrapperStyle,
-  formInput,
+  formInputClassName,
   formInputCheckboxInput,
   formInputCheckRadioLabel,
   formInputCheckRadioMessage,
@@ -36,6 +38,43 @@ import {
   cloneElementIfValidElementOfType,
   isValidElementOfType,
 } from './utils.js';
+
+type CommonFormInputProps = {
+  type?: Exclude<
+    InputHTMLAttributes<HTMLInputElement>['type'],
+    'radio' | 'checkbox'
+  >;
+  className?: ClassValue;
+  label: ReactNode;
+  description?: ReactNode;
+  secondaryLabel?: ReactNode;
+  tertiaryLabel?: ReactNode;
+  message?: ReactNode;
+  messageTone?: Tone;
+};
+
+export type FormInputProps = Merge<
+  InputHTMLAttributes<HTMLInputElement>,
+  CommonFormInputProps
+>;
+
+function formInputProps(
+  props: InputHTMLAttributes<HTMLInputElement>,
+): Partial<Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>> {
+  switch (props.type) {
+    case 'email':
+      return {
+        autoComplete: 'email',
+        minLength: 6,
+        maxLength: 320,
+        pattern: '^[^@]+@[^@]+.[^@]+$',
+        placeholder: 'email@example.com',
+      };
+    default: {
+      return {};
+    }
+  }
+}
 
 export const Form: FC<PropsWithChildren<BlockProps<'form'>>> = ({
   space = 'large',
@@ -87,90 +126,55 @@ export const FormFieldLabel: FC<
   );
 };
 
-function formInputProps(
-  type: ComponentProps<typeof FormInput>['type'],
-): Partial<InputHTMLAttributes<HTMLInputElement>> | void {
-  switch (type) {
-    case 'email':
-      return {
-        autoComplete: 'email',
-        minLength: 6,
-        maxLength: 320,
-        pattern: '^[^@]+@[^@]+.[^@]+$',
-        placeholder: 'email@example.com',
-      };
-    case 'password':
-      return {
-        type,
-        className: formInput,
-      };
-    default: {
-      return {};
-    }
-  }
-}
+export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
+  (
+    {
+      className,
+      label,
+      description,
+      secondaryLabel,
+      tertiaryLabel,
+      message,
+      messageTone,
+      ...props
+    },
+    ref,
+  ) => {
+    const id = useId();
 
-type CommonFormInputProps = {
-  type: Omit<
-    InputHTMLAttributes<HTMLInputElement>['type'],
-    'radio' | 'checkbox'
-  >;
-  className?: ClassValue;
-  label: ReactNode;
-  description?: ReactNode;
-  secondaryLabel?: ReactNode;
-  tertiaryLabel?: ReactNode;
-  message?: ReactNode;
-  messageTone?: Tone;
-};
+    const inputTypeProps = formInputProps(props);
 
-export type FormInputProps = PropsWithChildren<
-  InputHTMLAttributes<HTMLInputElement> & CommonFormInputProps
->;
-
-export const FormInput: FC<FormInputProps> = ({
-  className,
-  label,
-  description,
-  secondaryLabel,
-  tertiaryLabel,
-  message,
-  messageTone,
-  ...props
-}) => {
-  const id = useId();
-
-  const inputTypeProps = formInputProps(props.type);
-
-  return (
-    <Block className={className} space="small">
-      {label && (
-        <FormFieldLabel
-          htmlFor={id}
-          secondary={secondaryLabel}
-          tertiary={tertiaryLabel}
-        >
-          {label}
-        </FormFieldLabel>
-      )}
-      {description}
-      <input
-        className={clsx(formInput, formInputNotCheckRadio)}
-        id={id}
-        {...(props.readOnly && { tabIndex: -1 })}
-        {...inputTypeProps}
-        {...props}
-      />
-      {message && (
-        <Inline>
-          <Text size="small" tone={messageTone}>
-            {messageTone ? message : <Secondary>{message}</Secondary>}
-          </Text>
-        </Inline>
-      )}
-    </Block>
-  );
-};
+    return (
+      <Block className={className} space="small">
+        {label && (
+          <FormFieldLabel
+            htmlFor={id}
+            secondary={secondaryLabel}
+            tertiary={tertiaryLabel}
+          >
+            {label}
+          </FormFieldLabel>
+        )}
+        {description}
+        <input
+          ref={ref}
+          id={id}
+          className={clsx(formInputClassName, formInputNotCheckRadio)}
+          {...(props.readOnly && { tabIndex: -1 })}
+          {...inputTypeProps}
+          {...props}
+        />
+        {message && (
+          <Inline>
+            <Text size="small" tone={messageTone}>
+              {messageTone ? message : <Secondary>{message}</Secondary>}
+            </Text>
+          </Inline>
+        )}
+      </Block>
+    );
+  },
+);
 
 export const FormSelect: FC<
   PropsWithChildren<
