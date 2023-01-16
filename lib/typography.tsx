@@ -49,17 +49,17 @@ type CommonTextProps = {
 export type TextProps<T extends keyof ReactHTMLAttributesHacked> =
   PropsWithChildren<Merge<BoxBasedComponentProps<T>, CommonTextProps>>;
 
-export const Text = <T extends keyof ReactHTMLAttributesHacked>({
+export const Text = <T extends keyof ReactHTMLAttributesHacked = 'p'>({
   className,
-  component,
+  component = 'p',
   size = 'normal',
   tone,
   align,
   secondary,
-  children,
   ...props
 }: TextProps<T>) => (
   <Box
+    component={component}
     className={[
       textClass,
       fontSizeVariants[size],
@@ -69,9 +69,7 @@ export const Text = <T extends keyof ReactHTMLAttributesHacked>({
       className,
     ]}
     {...props}
-  >
-    {children}
-  </Box>
+  />
 );
 
 export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
