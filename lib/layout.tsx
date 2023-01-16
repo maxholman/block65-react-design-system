@@ -1,12 +1,16 @@
 import { clsx } from 'clsx';
+import { ForwardedRef, forwardRef, ReactElement } from 'react';
 import { Box, BoxBasedComponentProps, Space } from './core.js';
 import {
   flexColumnVariants,
   flexRowVariants,
   inlineAlignSelfVariants,
-  inlineClass,
 } from './layout.css.js';
-import type { Merge, ReactHTMLAttributesHacked } from './types.js';
+import type {
+  Merge,
+  ReactHTMLAttributesHacked,
+  ReactHTMLElementsHacked,
+} from './types.js';
 
 export type BlockProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
   BoxBasedComponentProps<T>,
@@ -35,8 +39,8 @@ export type InlineProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
   }
 >;
 
-export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'span'>({
-  component = 'span',
+export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
+  component = 'div',
   space = 'small',
   className,
   align,
@@ -44,7 +48,7 @@ export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'span'>({
 }: InlineProps<T>) => (
   <Box
     className={clsx(
-      inlineClass,
+      // inlineClass,
       space && flexRowVariants[space],
       align && inlineAlignSelfVariants[align],
       className,
