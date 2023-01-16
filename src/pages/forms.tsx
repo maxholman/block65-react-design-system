@@ -9,6 +9,7 @@ import {
   FormInputRadio,
   FormInputRadioGroup,
   FormSelect,
+  FormTextArea,
   Grid,
   Heading,
   Inline,
@@ -59,6 +60,17 @@ export const FormsPage: FC = () => (
           <TextLink href="#">{/* <IconHelp /> */}Read more</TextLink>
         }
         defaultValue="Royale"
+      />
+      <FormInput type="email" label="Email Address" name="email" />
+      <FormTextArea
+        type="text"
+        label="Description"
+        name="description"
+        tertiaryLabel={
+          <TextLink href="#">{/* <IconHelp /> */}Wild huh!</TextLink>
+        }
+        defaultValue="Royale"
+        rows={5}
       />
       <FormSelect
         label="Birth Month"
