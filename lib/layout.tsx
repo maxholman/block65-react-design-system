@@ -19,18 +19,19 @@ export type BlockProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
   }
 >;
 
-export const Block = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
-  component = 'div',
-  space = 'large',
-  className,
-  ...props
-}: BlockProps<T>) => (
+const BlockInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
+  { space = 'large', className, component = 'div', ...props }: BlockProps<T>,
+  ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
+): ReactElement | null => (
   <Box
+    component={component}
     {...props}
     className={[flexColumnVariants[space], className]}
-    component={component}
+    ref={ref}
   />
 );
+
+export const Block = forwardRef(BlockInner);
 
 export type InlineProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
   BoxBasedComponentProps<T>,
