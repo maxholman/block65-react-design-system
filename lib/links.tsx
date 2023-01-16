@@ -5,7 +5,7 @@ import type { Merge } from './types.js';
 
 export const TextLink: FC<
   Merge<
-    BoxBasedComponentProps<'span' | 'a'>,
+    BoxBasedComponentProps<'span' | 'a' | 'button'>,
     { href?: string; weight?: LinkVariant }
   >
 > = ({
