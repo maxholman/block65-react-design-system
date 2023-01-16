@@ -24,12 +24,12 @@ export const flexColumnVariants = styleVariants(genericVars.space, (space) => [
 export const flexRowVariants = styleVariants(genericVars.space, (space) => [
   flexRow,
   {
+    alignItems: 'center',
     gap: space,
   },
 ]);
 
 export const inlineClass = style({
-  alignItems: 'center',
   display: 'inline-flex',
 });
 
