@@ -14,7 +14,7 @@ import { hsl } from './utils.js';
 const borderWidthVar = createVar();
 const paddingVar = createVar();
 
-export const formInput = style([
+export const formInputClassName = style([
   fontSizeVariantVars.normal,
   {
     vars: {
@@ -68,7 +68,7 @@ export const formInputNotCheckRadio = style([
 ]);
 
 export const formInputCheckRadioBase = style([
-  formInput,
+  formInputClassName,
   focusableClassName,
   {
     padding: 'revert',
@@ -171,7 +171,7 @@ export const formInputRadioInput = style([
 const formInputSelectGridAreaName = 's';
 
 export const formInputSelect = style([
-  formInput,
+  formInputClassName,
   {
     cursor: 'pointer',
     gridArea: formInputSelectGridAreaName,
