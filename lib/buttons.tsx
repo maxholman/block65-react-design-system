@@ -31,9 +31,10 @@ export type ButtonProps = PropsWithChildren<
   Merge<BoxBasedComponentProps<'button'>, ButtonCommonProps>
 >;
 
-export type ButtonLinkProps =
-  | Merge<BoxBasedComponentProps<'a'>, ButtonCommonProps>
-  | Merge<BoxBasedComponentProps<'span'>, ButtonCommonProps>;
+export type ButtonLinkProps = Merge<
+  BoxBasedComponentProps<'a'>,
+  ButtonCommonProps
+>;
 
 export type ButtonIconProps = Merge<
   ButtonCommonProps,
