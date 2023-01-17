@@ -85,7 +85,7 @@ const ButtonInternal: FC<
       </Box>
     )}
     <Box
-      className={[busy && visiblyHiddenClass, withIconClass]}
+      className={[busy && visiblyHiddenClass, icon && withIconClass]}
       aria-hidden={busy || undefined}
       textOverflow={textOverflow}
     >
