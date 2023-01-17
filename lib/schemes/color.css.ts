@@ -40,13 +40,13 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
       l: '0%',
     },
     warn: {
-      h: '37',
-      s: '80%',
+      h: '30',
+      s: '60%',
       l: '0%',
     },
     positive: {
-      h: '120',
-      s: '50%',
+      h: '90',
+      s: '40%',
       l: '0%',
     },
     critical: {
