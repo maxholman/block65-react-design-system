@@ -38,6 +38,9 @@ export const linkStyleVariant = styleVariants(
     standard: {
       color: linkColorVar,
     },
+    none: {
+      // color: linkColorVar,
+    },
     weak: {
       textDecoration: 'underline',
       selectors: {
