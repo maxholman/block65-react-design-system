@@ -113,4 +113,9 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   return el;
 };
 
-export const Box = forwardRef(BoxInner);
+export const Box = forwardRef(BoxInner) as <
+  T extends keyof ReactHTMLAttributesHacked = 'div',
+>(
+  props: BoxBasedComponentProps<T>,
+  ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
+) => ReactElement | null;
