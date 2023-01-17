@@ -11,7 +11,6 @@ import {
   ReactNode,
   SelectHTMLAttributes,
   TextareaHTMLAttributes,
-  useId,
 } from 'react';
 import { useStringLikeDetector } from './context.js';
 import {
@@ -30,6 +29,7 @@ import {
   formInputSelectWrapperSingle,
   inputLabelStyle,
 } from './forms.css.js';
+import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { Block, BlockProps, Inline } from './layout.js';
 import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';
@@ -45,7 +45,7 @@ type CommonFormInputProps = {
     'radio' | 'checkbox'
   >;
   className?: ClassValue;
-  label: ReactNode;
+  label?: ReactNode;
   description?: ReactNode;
   secondaryLabel?: ReactNode;
   tertiaryLabel?: ReactNode;

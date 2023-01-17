@@ -13,6 +13,7 @@ import {
 import { Box, BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
 import { Inline } from './layout.js';
+import { differentOriginLinkProps } from './links.js';
 import { Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 
@@ -33,7 +34,9 @@ export type ButtonProps = PropsWithChildren<
 
 export type ButtonLinkProps = Merge<
   BoxBasedComponentProps<'a'>,
-  ButtonCommonProps
+  ButtonCommonProps & {
+    safe?: boolean;
+  }
 >;
 
 export type ButtonIconProps = Merge<
@@ -46,7 +49,7 @@ export type ButtonIconProps = Merge<
 >;
 
 const ButtonInternal: FC<
-  Merge<BoxBasedComponentProps<'button' | 'a' | 'span'>, ButtonCommonProps>
+  Merge<BoxBasedComponentProps<'button' | 'a'>, ButtonCommonProps>
 > = ({
   component = 'button',
   variant = 'standard',
@@ -95,8 +98,16 @@ export const Button: FC<
   Merge<BoxBasedComponentProps<'button'>, ButtonProps>
 > = (props) => <ButtonInternal {...props} />;
 
-export const ButtonLink: FC<ButtonLinkProps> = (props) => (
-  <ButtonInternal component={'href' in props ? 'a' : 'span'} {...props} />
+export const ButtonLink: FC<ButtonLinkProps> = ({
+  component = 'a',
+  safe = true,
+  ...props
+}) => (
+  <ButtonInternal
+    component={component}
+    {...(safe && props.href && differentOriginLinkProps(props.href))}
+    {...props}
+  />
 );
 
 export const ButtonIcon: FC<
