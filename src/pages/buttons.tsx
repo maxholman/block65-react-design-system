@@ -11,6 +11,7 @@ import {
   Inline,
   Panel,
   Text,
+  Tone,
 } from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from '../icons.js';
 
