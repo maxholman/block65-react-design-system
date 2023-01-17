@@ -12,7 +12,12 @@ import { toneH, toneS } from './tone.css.js';
 import { currentCapHeight, fontSizeVariants } from './typography.css.js';
 import { hsl } from './utils.js';
 
-export type ButtonVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
+export type ButtonVariant =
+  | 'standard'
+  | 'ghost'
+  | 'subtle'
+  | 'transparent'
+  | 'none';
 
 export const iconClass = style({
   display: 'flex',
@@ -76,6 +81,10 @@ const variants: Record<ButtonVariant, StyleRule> = {
   standard: {
     backgroundColor: hsl(toneH, toneS, 50),
     color: hsl(0, 0, 100),
+  },
+  none: {
+    backgroundColor: 'none',
+    color: 'iherit',
   },
   ghost: {
     color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
