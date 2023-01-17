@@ -139,7 +139,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     },
     ref,
   ) => {
-    const id = useId();
+    const id = useIdWithDefault(props.id);
 
     const inputTypeProps = formInputProps(props);
 
@@ -157,11 +157,11 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         {description}
         <input
           ref={ref}
-          id={id}
           className={clsx(formInputClassName, formInputNotCheckRadio)}
           {...(props.readOnly && { tabIndex: -1 })}
           {...inputTypeProps}
           {...props}
+          id={id}
         />
         {message && (
           <Inline>
@@ -197,7 +197,7 @@ export const FormSelect: FC<FormSelectProps> = ({
   message,
   ...props
 }) => {
-  const id = useId();
+  const id = useIdWithDefault(props.id);
   const isStringLike = useStringLikeDetector();
 
   return (
@@ -248,17 +248,17 @@ const FormInputCheckRadio: FC<
     >
   >
 > = ({ className, message, label, ...props }) => {
-  const id = useId();
+  const id = useIdWithDefault(props.id);
   const isStringLike = useStringLikeDetector();
 
   return (
     <Block space="small" className={formInputCheckRadioWrapper}>
       <input
-        id={id}
         className={
           props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput
         }
         {...props}
+        id={id}
       />
       {label &&
         (isStringLike(label) ? (
@@ -400,7 +400,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
     },
     ref,
   ) => {
-    const id = useId();
+    const id = useIdWithDefault(props.id);
 
     return (
       <Block className={className} space="small">
@@ -416,10 +416,10 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         {description}
         <textarea
           ref={ref}
-          id={id}
           className={clsx(formInputClassName, formInputNotCheckRadio)}
           {...(props.readOnly && { tabIndex: -1 })}
           {...props}
+          id={id}
         />
         {message && (
           <Inline>
