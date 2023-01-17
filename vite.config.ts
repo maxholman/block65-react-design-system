@@ -28,5 +28,11 @@ export default defineConfig({
     setupFiles: './src/test/setup.ts',
     globals: true,
     environment: 'jsdom',
+
+    // thanks to @uglow
+    // https://github.com/vanilla-extract-css/vanilla-extract/issues/940#issuecomment-1363327843
+    transformMode: {
+      web: [/\.css.ts$/],
+    },
   },
 });
