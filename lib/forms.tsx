@@ -343,7 +343,7 @@ export const FormInputCheckboxGroup: FC<
     InputHTMLAttributes<HTMLInputElement> & {
       name: string; // required
       className?: ClassValue;
-      label: ReactNode;
+      label?: ReactNode;
       secondaryLabel?: ReactNode;
       tertiaryLabel?: ReactNode;
       message?: ReactNode;
@@ -357,14 +357,15 @@ export const FormInputCheckboxGroup: FC<
   tertiaryLabel,
   message,
   children,
-  // ...props
 }) => {
   const isStringLike = useStringLikeDetector();
   return (
     <Block className={className}>
-      <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
-        {label}
-      </FormFieldLabel>
+      {label && (
+        <FormFieldLabel secondary={secondaryLabel} tertiary={tertiaryLabel}>
+          {label}
+        </FormFieldLabel>
+      )}
       {Children.map(children, (child) =>
         cloneElementIfValidElementOfType(child, FormInputCheckbox, {
           name,
