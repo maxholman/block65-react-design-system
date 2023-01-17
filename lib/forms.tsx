@@ -254,9 +254,10 @@ const FormInputCheckRadio: FC<
   return (
     <Block space="small" className={formInputCheckRadioWrapper}>
       <input
-        className={
-          props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput
-        }
+        className={clsx(
+          props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput,
+          className,
+        )}
         {...props}
         id={id}
       />
