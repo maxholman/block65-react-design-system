@@ -1,14 +1,19 @@
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import { Box, BoxBasedComponentProps } from './core.js';
 import { linkStyleVariant, LinkVariant } from './links.css.js';
 import type { Merge } from './types.js';
 
-export const TextLink: FC<
-  Merge<
-    BoxBasedComponentProps<'span' | 'a' | 'button'>,
-    { href?: string; weight?: LinkVariant }
-  >
-> = ({
+type TextLinkCommonProps = {
+  weight?: LinkVariant;
+  safe?: boolean;
+};
+
+export type TextLinkProps = PropsWithChildren<
+  Merge<BoxBasedComponentProps<'a'>, TextLinkCommonProps>
+>;
+
+
+export const TextLink: FC<TextLinkProps> = ({
   component = 'a',
   children,
   className,
