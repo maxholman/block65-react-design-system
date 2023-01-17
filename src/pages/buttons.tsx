@@ -174,6 +174,32 @@ export const ButtonsPage: FC = () => (
             neutral transparent
           </Button>
         </Block>
+
+        {(
+          [
+            'accent',
+            'warn',
+            'neutral',
+            'critical',
+            'promo',
+            'positive',
+            'info',
+          ] as Tone[]
+        ).map((tone) => (
+          <Block>
+            <Button tone={tone}>{tone}</Button>
+
+            <Button variant="ghost" tone={tone}>
+              {tone} ghost
+            </Button>
+            <Button variant="subtle" tone={tone}>
+              {tone} subtle
+            </Button>
+            <Button variant="transparent" tone={tone}>
+              {tone} transparent
+            </Button>
+          </Block>
+        ))}
       </Grid>
 
       <Divider marginBlock="huge" />
