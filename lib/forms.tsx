@@ -175,18 +175,20 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   },
 );
 
-export const FormSelect: FC<
-  PropsWithChildren<
-    SelectHTMLAttributes<HTMLSelectElement> & {
-      className?: ClassValue;
-      label: ReactNode;
-      description?: ReactNode;
-      secondaryLabel?: ReactNode;
-      tertiaryLabel?: ReactNode;
-      message?: ReactNode;
-    }
-  >
-> = ({
+type FormSelectCommonProps = {
+  className?: ClassValue;
+  label: ReactNode;
+  description?: ReactNode;
+  secondaryLabel?: ReactNode;
+  tertiaryLabel?: ReactNode;
+  message?: ReactNode;
+};
+
+export type FormSelectProps = PropsWithChildren<
+  SelectHTMLAttributes<HTMLSelectElement> & FormSelectCommonProps
+>;
+
+export const FormSelect: FC<FormSelectProps> = ({
   className,
   label,
   description,
