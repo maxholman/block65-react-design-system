@@ -1,4 +1,4 @@
-import { Block, BlockProps } from './layout.js';
+import { Block, CommonProps } from './layout.js';
 import { PanelVariant, panelVariants } from './panel.css.js';
 import type { ReactHTMLAttributesHacked } from './types.js';
 
@@ -7,7 +7,7 @@ export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
   className,
   variant = 'standard',
   ...props
-}: BlockProps<T> & {
+}: CommonProps<T> & {
   variant?: PanelVariant;
 }) => (
   <Block

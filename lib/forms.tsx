@@ -30,7 +30,7 @@ import {
   inputLabelStyle,
 } from './forms.css.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
-import { Block, BlockProps, Inline } from './layout.js';
+import { Block, CommonProps, Inline } from './layout.js';
 import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { Secondary, Strong, Text } from './typography.js';
@@ -78,7 +78,7 @@ function formInputProps(
 
 export const Form = forwardRef<
   HTMLFormElement,
-  PropsWithChildren<BlockProps<'form'>>
+  PropsWithChildren<CommonProps<'form'>>
 >(({ space = 'large', children, ...props }, ref) => (
   <Block space={space} component="form" {...props} ref={ref}>
     {Children.map(children, (child) => {

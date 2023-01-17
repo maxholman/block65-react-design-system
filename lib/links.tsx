@@ -1,10 +1,10 @@
 import type { FC, PropsWithChildren } from 'react';
 import { Box, BoxBasedComponentProps } from './core.js';
-import { linkStyleVariant, LinkVariant } from './links.css.js';
+import { linkStyleVariant, LinkWeight } from './links.css.js';
 import type { Merge } from './types.js';
 
 type TextLinkCommonProps = {
-  weight?: LinkVariant;
+  weight?: LinkWeight;
   safe?: boolean;
 };
 

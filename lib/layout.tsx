@@ -1,5 +1,10 @@
 import { clsx } from 'clsx';
-import { ForwardedRef, forwardRef, ReactElement } from 'react';
+import {
+  ForwardedRef,
+  forwardRef,
+  PropsWithChildren,
+  ReactElement,
+} from 'react';
 import { Box, BoxBasedComponentProps, Space } from './core.js';
 import {
   flexColumnVariants,
@@ -12,12 +17,18 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 
-export type BlockProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
-  BoxBasedComponentProps<T>,
-  {
-    space?: Space | undefined;
-  }
->;
+export type CommonProps<T extends keyof ReactHTMLAttributesHacked> =
+  PropsWithChildren<
+    Merge<
+      BoxBasedComponentProps<T>,
+      {
+        space?: Space | undefined;
+      }
+    >
+  >;
+
+export type BlockProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
+  CommonProps<T>;
 
 const BlockInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   { space = 'large', className, component = 'div', ...props }: BlockProps<T>,
@@ -33,12 +44,8 @@ const BlockInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
 
 export const Block = forwardRef(BlockInner);
 
-export type InlineProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
-  BoxBasedComponentProps<T>,
-  {
-    space?: Space;
-  }
->;
+export type InlineProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
+  CommonProps<T>;
 
 export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   component = 'div',
@@ -49,7 +56,6 @@ export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
 }: InlineProps<T>) => (
   <Box
     className={clsx(
-      // inlineClass,
       space && flexRowVariants[space],
       align && inlineAlignSelfVariants[align],
       className,

@@ -4,7 +4,7 @@ import { focusableClassName, focusRadiusVar } from './focusable.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export type LinkVariant = 'strong' | 'standard' | 'weak';
+export type LinkWeight = 'strong' | 'standard' | 'weak' | 'none';
 
 const linkColorVar = createVar();
 
