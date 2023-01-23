@@ -56,7 +56,7 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
     }
   >;
 
-const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
+const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
   {
     children,
     component,

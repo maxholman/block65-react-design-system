@@ -35,5 +35,11 @@ export const CorePage: FC = () => (
         <Button align="end">Align End</Button>
       </Inline>
     </Block>
+
+    <Block>
+      <Box tooltip={'Hello'} component="time" dateTime={new Date().toJSON()}>
+        {new Date().toJSON()}
+      </Box>
+    </Block>
   </Panel>
 );
