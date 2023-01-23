@@ -38,8 +38,8 @@
     "prepare": "npx patch-package"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.18.1",
     "@floating-ui/react-dom": "^1.2.1",
-    "@floating-ui/react": "^0.18.0",
     "clsx": "^1.2.1"
   },
   "devDependencies": {
