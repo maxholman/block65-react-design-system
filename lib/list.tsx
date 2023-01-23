@@ -10,7 +10,7 @@ import {
 } from './list.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
-export const List = <T extends keyof ReactHTMLAttributesHacked = 'ul'>({
+export const List = <T extends keyof ReactHTMLAttributesHacked>({
   variant,
   component,
   space = 'medium',
@@ -27,7 +27,11 @@ export const List = <T extends keyof ReactHTMLAttributesHacked = 'ul'>({
   }
 >) => (
   <Box
-    component={component || (variant === 'ordered' ? 'ol' : 'ul')}
+    component={
+      (component || variant === 'ordered'
+        ? 'ol'
+        : 'ul') as keyof ReactHTMLAttributesHacked
+    }
     style={assignInlineVars({ [listColsVar]: cols })}
     className={[listClass, listVariants[space], className]}
     {...props}
