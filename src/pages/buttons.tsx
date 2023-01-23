@@ -42,9 +42,13 @@ export const ButtonsPage: FC = () => (
     <Block>
       <Heading level="2">Button Links</Heading>
       <Inline>
-        <ButtonLink>Button</ButtonLink>
-        <ButtonLink variant="ghost">Ghost</ButtonLink>
-        <ButtonLink variant="subtle">Subtle</ButtonLink>
+        <ButtonLink href="https://eject.invalid">Button</ButtonLink>
+        <ButtonLink href="https://eject.invalid" variant="ghost">
+          Ghost
+        </ButtonLink>
+        <ButtonLink href="https://eject.invalid" variant="subtle">
+          Subtle
+        </ButtonLink>
       </Inline>
     </Block>
 
@@ -209,7 +213,9 @@ export const ButtonsPage: FC = () => (
       <Text>Buttons in context</Text>
       <Inline>
         <Text>Like this</Text>
-        <ButtonLink tone="critical">Eject</ButtonLink>
+        <ButtonLink href="https://eject.invalid" tone="critical">
+          Eject
+        </ButtonLink>
         <Text>and like this</Text>
       </Inline>
     </Block>
@@ -217,7 +223,11 @@ export const ButtonsPage: FC = () => (
       <Heading>Hello</Heading>
       <Text>Buttons in context</Text>
       <Inline>
-        <ButtonLink tone="critical" icon={<CrescentMoonIcon />}>
+        <ButtonLink
+          href="https://eject.invalid"
+          tone="critical"
+          icon={<CrescentMoonIcon />}
+        >
           Eject
         </ButtonLink>
       </Inline>
@@ -227,7 +237,11 @@ export const ButtonsPage: FC = () => (
       <Text>Buttons in context</Text>
       <Inline>
         <Text>Like this</Text>
-        <ButtonLink tone="critical" icon={<CrescentMoonIcon />}>
+        <ButtonLink
+          href="https://eject.invalid"
+          tone="critical"
+          icon={<CrescentMoonIcon />}
+        >
           Eject
         </ButtonLink>
         <Text>and like this</Text>
@@ -237,7 +251,11 @@ export const ButtonsPage: FC = () => (
       <Text>Buttons in context</Text>
       <Inline space="nano">
         <Text>Like this</Text>
-        <ButtonLink tone="critical" icon={<CrescentMoonIcon />}>
+        <ButtonLink
+          href="https://eject.invalid"
+          tone="critical"
+          icon={<CrescentMoonIcon />}
+        >
           Eject
         </ButtonLink>
         <Text>and like this</Text>
