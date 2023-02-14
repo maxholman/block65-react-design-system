@@ -15,6 +15,15 @@ export const textAlignVariants = styleVariants({
   },
 });
 
+export type Space =
+  | 'huge'
+  | 'large'
+  | 'medium'
+  | 'small'
+  | 'tiny'
+  | 'nano'
+  | 'none';
+
 export const marginVariants = styleVariants(genericVars.space, (space) => [
   {
     margin: space,

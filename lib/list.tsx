@@ -1,7 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { Children } from 'react';
-import { Box, BoxBasedComponentProps, Space } from './core.js';
+import type { Space } from './core.css.js';
+import { Box, BoxBasedComponentProps } from './core.js';
 import {
   listClass,
   listColsVar,

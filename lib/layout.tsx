@@ -5,7 +5,8 @@ import {
   PropsWithChildren,
   ReactElement,
 } from 'react';
-import { Box, BoxBasedComponentProps, Space } from './core.js';
+import type { Space } from './core.css.js';
+import { Box, BoxBasedComponentProps } from './core.js';
 import {
   flexColumnVariants,
   flexRowVariants,

@@ -25,15 +25,6 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 
-export type Space =
-  | 'huge'
-  | 'large'
-  | 'medium'
-  | 'small'
-  | 'tiny'
-  | 'nano'
-  | 'none';
-
 type Merge<A, B> = Omit<A, keyof B> & B;
 
 export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
