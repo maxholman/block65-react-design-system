@@ -1,10 +1,10 @@
-import { ClassValue, clsx } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import {
   createElement,
-  ForwardedRef,
+  type ForwardedRef,
   forwardRef,
-  ReactElement,
-  ReactNode,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
 import {
   marginBlockVariants,
@@ -13,14 +13,15 @@ import {
   paddingBlockVariants,
   paddingInlineVariants,
   paddingVariants,
-  Rounded,
+  type Rounded,
   roundedVariants,
-  TextAlign,
+  type Space,
+  type TextAlign,
   textAlignVariants,
-  TextOverflow,
+  type TextOverflow,
   textOverflowVariants,
 } from './core.css.js';
-import { Align, alignItemsVariants } from './layout.css.js';
+import { type Align, alignItemsVariants } from './layout.css.js';
 import { Tooltip } from './tooltip.js';
 import type {
   ReactHTMLAttributesHacked,
