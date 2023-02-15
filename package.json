@@ -16,6 +16,10 @@
       "types": "./dist/lib/main.d.ts",
       "default": "./build/main.js"
     },
+    "./experimental": {
+      "types": "./dist/lib/experimental.d.ts",
+      "default": "./build/experimental.js"
+    },
     "./css": {
       "default": "./build/style.css"
     },

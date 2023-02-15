@@ -14,6 +14,7 @@ export default defineConfig({
     lib: {
       entry: {
         main: resolve(__dirname, 'lib/main.ts'),
+        experimental: resolve(__dirname, 'lib/experimental.ts'),
         vars: resolve(__dirname, 'lib/vars.ts'),
       },
       formats: ['es'],
