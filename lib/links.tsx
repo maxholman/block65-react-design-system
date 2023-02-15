@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren } from 'react';
-import { Box, BoxBasedComponentProps } from './core.js';
-import { linkStyleVariant, LinkWeight } from './links.css.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
+import { linkStyleVariant, type LinkWeight } from './links.css.js';
 import type { Merge } from './types.js';
 
 type TextLinkCommonProps = {

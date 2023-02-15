@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import { forwardRef, SVGAttributes } from 'react';
+import { forwardRef, type SVGAttributes } from 'react';
 import { iconClassName } from './icons.css.js';
 
 export const InfoIcon = forwardRef<SVGSVGElement, SVGAttributes<SVGSVGElement>>(

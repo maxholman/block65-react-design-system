@@ -2,12 +2,12 @@ import { clsx } from 'clsx';
 import {
   Children,
   cloneElement,
-  ComponentProps,
-  FC,
+  type ComponentProps,
+  type FC,
   Fragment,
   isValidElement,
-  ReactElement,
-  ReactNode,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
 
 function flattenChildren(children: React.ReactNode): ReactNode[] {

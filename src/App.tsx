@@ -11,8 +11,8 @@ import {
 import { useLocalStorageState } from '../gist_modules/maxholman/react-hooks/use-localstorage-state.js';
 import {
   Block,
-  ColorScheme,
-  ContrastScheme,
+  type ColorScheme,
+  type ContrastScheme,
   DesignSystem,
   FormInputRadio,
   FormInputRadioGroup,

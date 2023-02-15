@@ -1,6 +1,6 @@
 import {
   assignVars,
-  ComplexStyleRule,
+  type ComplexStyleRule,
   createTheme,
   createThemeContract,
   style,

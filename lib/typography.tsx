@@ -1,8 +1,8 @@
-import { FC, forwardRef, PropsWithChildren } from 'react';
+import { type FC, forwardRef, type PropsWithChildren } from 'react';
 import type { TextAlign, TextOverflow } from './core.css.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import { inlineAlignSelfVariants } from './layout.css.js';
-import { Tone, toneVariants } from './tone.css.js';
+import { type Tone, toneVariants } from './tone.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import {
   codeClass,

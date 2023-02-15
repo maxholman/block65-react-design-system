@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import type { FC } from 'react';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   spinnerCircleClass,
   spinnerCircleClass2,

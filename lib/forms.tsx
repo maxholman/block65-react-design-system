@@ -1,16 +1,16 @@
-import { ClassValue, clsx } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import {
   Children,
   cloneElement,
-  ComponentProps,
-  FC,
+  type ComponentProps,
+  type FC,
   forwardRef,
-  InputHTMLAttributes,
-  LabelHTMLAttributes,
-  PropsWithChildren,
-  ReactNode,
-  SelectHTMLAttributes,
-  TextareaHTMLAttributes,
+  type InputHTMLAttributes,
+  type LabelHTMLAttributes,
+  type PropsWithChildren,
+  type ReactNode,
+  type SelectHTMLAttributes,
+  type TextareaHTMLAttributes,
 } from 'react';
 import { useStringLikeDetector } from './context.js';
 import {
@@ -30,7 +30,7 @@ import {
   inputLabelStyle,
 } from './forms.css.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
-import { Block, CommonProps, Inline } from './layout.js';
+import { Block, type CommonProps, Inline } from './layout.js';
 import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { Secondary, Strong, Text } from './typography.js';

@@ -1,6 +1,7 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { Children, ReactElement } from 'react';
-import { Box, BoxBasedComponentProps, Space } from './core.js';
+import { Children, type ReactElement } from 'react';
+import type { Space } from './core.css.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import { gridColsVar, gridVariants } from './grid.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 

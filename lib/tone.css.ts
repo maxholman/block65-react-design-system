@@ -1,4 +1,4 @@
-import { createVar, StyleRule, styleVariants } from '@vanilla-extract/css';
+import { createVar, type StyleRule, styleVariants } from '@vanilla-extract/css';
 import { colorThemeVars } from './schemes/color.css.js';
 
 export const toneH = createVar();

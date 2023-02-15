@@ -15,10 +15,11 @@ import {
 } from '@floating-ui/react';
 import {
   cloneElement,
+  type FC,
   FC,
   isValidElement,
-  PropsWithChildren,
-  ReactNode,
+  type PropsWithChildren,
+  type ReactNode,
   useMemo,
   useRef,
   useState,

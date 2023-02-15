@@ -1,12 +1,12 @@
 import { clsx } from 'clsx';
 import {
-  ForwardedRef,
+  type ForwardedRef,
   forwardRef,
-  PropsWithChildren,
-  ReactElement,
+  type PropsWithChildren,
+  type ReactElement,
 } from 'react';
 import type { Space } from './core.css.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   flexColumnVariants,
   flexRowVariants,

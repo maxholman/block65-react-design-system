@@ -1,4 +1,8 @@
-import { ComplexStyleRule, style, styleVariants } from '@vanilla-extract/css';
+import {
+  type ComplexStyleRule,
+  style,
+  styleVariants,
+} from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 
 export type Align = 'start' | 'center' | 'end';

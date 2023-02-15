@@ -2,7 +2,7 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { Children } from 'react';
 import type { Space } from './core.css.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   listClass,
   listColsVar,
