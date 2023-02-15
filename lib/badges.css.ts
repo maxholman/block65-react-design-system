@@ -18,7 +18,6 @@ const base = style({
   textTransform: 'uppercase',
   borderWidth: genericVars.border.weight.hairline,
   borderStyle: 'solid',
-  borderRadius: genericVars.radius.small,
   padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
   justifyContent: 'center',
   letterSpacing: 'initial',

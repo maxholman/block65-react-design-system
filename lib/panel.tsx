@@ -6,12 +6,14 @@ export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
   component = 'section',
   className,
   variant = 'standard',
+  rounded = 'medium',
   ...props
 }: CommonProps<T> & {
   variant?: PanelVariant;
 }) => (
   <Block
     component={component}
+    rounded={rounded}
     className={[className, panelVariants[variant]]}
     {...props}
   />

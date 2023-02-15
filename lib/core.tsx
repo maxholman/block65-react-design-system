@@ -13,6 +13,8 @@ import {
   paddingBlockVariants,
   paddingInlineVariants,
   paddingVariants,
+  Rounded,
+  roundedVariants,
   TextAlign,
   textAlignVariants,
   TextOverflow,
@@ -44,6 +46,8 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       tooltip?: ReactNode;
       textAlign?: TextAlign | undefined;
       textOverflow?: TextOverflow | undefined;
+
+      rounded?: Rounded | undefined;
     }
   >;
 
@@ -62,6 +66,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
     textAlign,
     textOverflow,
     tooltip,
+    rounded,
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -84,6 +89,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
 
           textAlign && textAlignVariants[textAlign],
 
+          rounded && roundedVariants[rounded],
           className,
         ) || undefined,
       ref,

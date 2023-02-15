@@ -45,7 +45,6 @@ const base = style([
     whiteSpace: 'nowrap',
     justifyContent: 'center',
     borderWidth: genericVars.border.weight.normal,
-    borderRadius: genericVars.radius.medium,
     borderColor: 'transparent',
     padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
     userSelect: 'none',

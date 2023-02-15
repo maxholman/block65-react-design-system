@@ -21,6 +21,7 @@ export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
   component,
   variant = 'standard',
   tone = 'info',
+  rounded = 'small',
   align,
   className,
   children,
@@ -29,6 +30,7 @@ export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
   <Text
     size="tiny"
     textOverflow="ellipsis"
+    rounded={rounded}
     className={clsx(toneVariants[tone], badgeVariants[variant], className)}
     {...props}
   >

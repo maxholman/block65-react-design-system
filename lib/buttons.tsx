@@ -54,6 +54,7 @@ const ButtonInternal: FC<
   component = 'button',
   variant = 'standard',
   tone = 'accent',
+  rounded = 'medium',
   compact,
   busy,
   className,
@@ -64,6 +65,7 @@ const ButtonInternal: FC<
   ...props
 }) => (
   <Inline
+    rounded={rounded}
     component={component}
     className={clsx(
       buttonVariantClasses[variant],

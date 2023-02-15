@@ -26,6 +26,7 @@ export const genericVars = createThemeContract({
   },
   border: {
     weight: {
+      none: 'border-weight-none',
       hairline: 'border-weight-hairline',
       thin: 'border-weight-thin',
       normal: 'border-weight-normal',
@@ -33,6 +34,7 @@ export const genericVars = createThemeContract({
     },
   },
   radius: {
+    none: 'radius-none',
     small: 'radius-small',
     medium: 'radius-medium',
     large: 'radius-large',
@@ -80,6 +82,7 @@ export const genericThemeClass = createTheme(genericVars, {
   },
   border: {
     weight: {
+      none: '0',
       hairline: '0.075rem',
       thin: '0.1rem',
       normal: '0.125rem',
@@ -87,6 +90,7 @@ export const genericThemeClass = createTheme(genericVars, {
     },
   },
   radius: {
+    none: '0',
     small: '0.125rem',
     medium: '0.25rem',
     large: '0.5rem',

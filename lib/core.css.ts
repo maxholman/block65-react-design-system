@@ -1,5 +1,20 @@
-import { style, StyleRule, styleVariants } from '@vanilla-extract/css';
+import {
+  createVar,
+  style,
+  StyleRule,
+  styleVariants,
+} from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
+import { hsl } from './utils.js';
+import { colorThemeVars, contrastSchemeVars } from './vars.js';
+
+export type Rounded = keyof typeof genericVars.radius;
+
+export const roundedVariants = styleVariants(genericVars.radius, (v) => [
+  {
+    borderRadius: v,
+  },
+]);
 
 export type TextAlign = 'start' | 'end' | 'center';
 
