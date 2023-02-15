@@ -4,9 +4,10 @@ import type { ReactHTMLAttributesHacked } from './types.js';
 
 export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
   component = 'section',
-  className,
   variant = 'standard',
   rounded = 'medium',
+  padding = 'medium',
+  className,
   ...props
 }: CommonProps<T> & {
   variant?: PanelVariant;
@@ -14,6 +15,7 @@ export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
   <Block
     component={component}
     rounded={rounded}
+    padding={padding}
     className={[className, panelVariants[variant]]}
     {...props}
   />

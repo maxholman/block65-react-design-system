@@ -16,12 +16,6 @@ export const panelClass = style({
   borderColor: 'transparent',
 });
 
-// WARN: we need to use this hack to lower the specificity
-// so that the props can be overriden by box component
-globalStyle(`:where(${panelClass})`, {
-  padding: genericVars.space.medium,
-});
-
 const variantRules: Record<
   PanelVariant,
   {
