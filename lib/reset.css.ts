@@ -6,7 +6,8 @@ function withResetClass(...selectors: string[]) {
   return `:where(${resetClass}) ${selectors.join(',')}`;
 }
 
-// based on The new CSS reset - version 1.8.3 (last updated 21.1.2023)
+// Based on:
+// The new CSS reset - version 1.8.4 (last updated 14.2.2023)
 
 const everythingSelector =
   '*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *))';
@@ -67,7 +68,7 @@ globalStyle(withResetClass('meter'), {
 });
 
 /* preformatted text - use only for this feature */
-globalStyle(withResetClass('pre'), {
+globalStyle(withResetClass(':where(pre)'), {
   all: 'revert',
 });
 
