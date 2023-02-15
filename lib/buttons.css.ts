@@ -83,7 +83,7 @@ const variants: Record<ButtonVariant, StyleRule> = {
   },
   none: {
     backgroundColor: 'none',
-    color: 'iherit',
+    color: 'inherit',
   },
   ghost: {
     color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
