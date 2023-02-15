@@ -90,7 +90,7 @@ globalStyle(withResetClass(':where([hidden])'), {
 
 /* revert for bug in Chromium browsers
    - fix for the content editable attribute will work properly.
-   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element */
 globalStyle(
   withResetClass(':where([contenteditable]:not([contenteditable="false"]))'),
   {
