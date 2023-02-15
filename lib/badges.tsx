@@ -1,8 +1,8 @@
-import { ClassValue, clsx } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import type { FC, PropsWithChildren } from 'react';
-import { BadgeVariant, badgeVariants } from './badges.css.js';
+import { type BadgeVariant, badgeVariants } from './badges.css.js';
 import type { BoxBasedComponentProps } from './core.js';
-import { Tone, toneVariants } from './tone.css.js';
+import { type Tone, toneVariants } from './tone.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { Text } from './typography.js';
 

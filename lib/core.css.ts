@@ -1,7 +1,7 @@
 import {
   createVar,
   style,
-  StyleRule,
+  type StyleRule,
   styleVariants,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';

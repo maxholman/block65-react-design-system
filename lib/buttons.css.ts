@@ -1,7 +1,7 @@
 import {
   createVar,
   style,
-  StyleRule,
+  type StyleRule,
   styleVariants,
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';

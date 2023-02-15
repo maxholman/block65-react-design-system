@@ -1,8 +1,13 @@
-import { ClassValue, clsx } from 'clsx';
-import { FC, isValidElement, PropsWithChildren, ReactElement } from 'react';
+import { type ClassValue, clsx } from 'clsx';
+import {
+  type FC,
+  isValidElement,
+  type PropsWithChildren,
+  type ReactElement,
+} from 'react';
 import {
   busyButtonClass,
-  ButtonVariant,
+  type ButtonVariant,
   buttonVariantClasses,
   compactButton,
   iconClass,
@@ -10,11 +15,11 @@ import {
   visiblyHiddenClass,
   withIconClass,
 } from './buttons.css.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import type { Align } from './layout.css.js';
 import { Inline } from './layout.js';
 import { differentOriginLinkProps } from './links.js';
-import { Tone, toneVariants } from './tone.css.js';
+import { type Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 
 export type ButtonCommonProps = {

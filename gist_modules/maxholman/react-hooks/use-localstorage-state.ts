@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import type { JsonValue } from 'type-fest';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
