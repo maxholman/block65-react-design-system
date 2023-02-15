@@ -27,6 +27,7 @@ import type {
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
+import { type FontSize, fontSizeVariants } from './typography.css.js';
 
 type Merge<A, B> = Omit<A, keyof B> & B;
 
@@ -49,6 +50,7 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       textOverflow?: TextOverflow | undefined;
 
       rounded?: Rounded | undefined;
+      fontSize?: FontSize | undefined;
     }
   >;
 
@@ -68,6 +70,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
     textOverflow,
     tooltip,
     rounded,
+    fontSize,
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -91,6 +94,9 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
           textAlign && textAlignVariants[textAlign],
 
           rounded && roundedVariants[rounded],
+
+          fontSize && fontSizeVariants[fontSize],
+
           className,
         ) || undefined,
       ref,
