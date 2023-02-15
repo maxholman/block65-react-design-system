@@ -2,7 +2,6 @@ import { ClassValue, clsx } from 'clsx';
 import type { FC, PropsWithChildren } from 'react';
 import { BadgeVariant, badgeVariants } from './badges.css.js';
 import type { BoxBasedComponentProps } from './core.js';
-import type { Align } from './layout.css.js';
 import { Tone, toneVariants } from './tone.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { Text } from './typography.js';
@@ -10,7 +9,6 @@ import { Text } from './typography.js';
 type CommonBadgeProps = {
   className?: ClassValue;
   variant?: BadgeVariant;
-  align?: Align;
   tone?: Tone;
 };
 
