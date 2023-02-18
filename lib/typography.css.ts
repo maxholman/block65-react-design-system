@@ -3,8 +3,8 @@ import {
   createThemeContract,
   createVar,
   style,
-  type StyleRule,
   styleVariants,
+  type StyleRule,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
@@ -75,38 +75,32 @@ export const fontSizeVariants = styleVariants(fontThemeVars, (_, key) => [
 
 const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
   '1': [
-    fontSizeVariants.huge,
     {
       fontWeight: genericVars.text.weight.bold,
       letterSpacing: '-0.05rem',
     },
   ],
   '2': [
-    fontSizeVariants.large,
     {
       fontWeight: genericVars.text.weight.bold,
       letterSpacing: '-0.05rem',
     },
   ],
   '3': [
-    fontSizeVariants.medium,
     {
       fontWeight: genericVars.text.weight.bold,
       letterSpacing: '-0.05rem',
     },
   ],
   '4': [
-    fontSizeVariants.normal,
     {
       fontWeight: genericVars.text.weight.semiBold,
       letterSpacing: '-0.05rem',
     },
   ],
   '5': [
-    fontSizeVariants.normal,
     {
       fontWeight: genericVars.text.weight.medium,
-      color: hsl(0, 0, contrastSchemeVars.level4.l),
     },
   ],
 }; // satisfies Record<HeadingLevel, ComplexStyleRule>;
@@ -119,3 +113,11 @@ export const levelVariantClasses = styleVariants(levelVariants, (rules) => [
     zIndex: 1,
   },
 ]);
+
+export const levelSizeVariantClasses: Record<HeadingLevel, string> = {
+  '1': fontSizeVariants.huge,
+  '2': fontSizeVariants.large,
+  '3': fontSizeVariants.medium,
+  '4': fontSizeVariants.normal,
+  '5': fontSizeVariants.normal,
+};
