@@ -23,11 +23,9 @@ import { type Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 
 export type ButtonCommonProps = {
-  className?: ClassValue;
   variant?: ButtonVariant;
   busy?: boolean;
   compact?: boolean;
-  align?: Align;
   inline?: boolean;
   tone?: Tone;
   icon?: ReactElement | FC | undefined;
