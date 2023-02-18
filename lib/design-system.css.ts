@@ -64,7 +64,7 @@ export const genericThemeClass = createTheme(genericVars, {
       normal: '1rem',
       medium: '1.25rem',
       large: '1.75rem',
-      huge: '2.25rem',
+      huge: '3.25rem',
     },
     weight: {
       thin: '100',

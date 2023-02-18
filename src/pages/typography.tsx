@@ -107,6 +107,9 @@ export const TypographyPage: FC = () => (
         <Heading level="5">Heading 5</Heading>
         <Text>Normal Text</Text>
       </Block>
+      <Block>
+        <Text fontSize="huge">Huge text</Text>
+      </Block>
     </Block>
 
     <Divider />
