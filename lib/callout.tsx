@@ -21,9 +21,10 @@ export const Callout: FC<
       align?: never;
     }
   >
-> = ({ children, className, tone = 'info', ...props }) => (
+> = ({ children, className, rounded = 'medium', tone = 'info', ...props }) => (
   <Inline
     component="div"
+    rounded={rounded}
     className={[
       calloutClass,
       toneVariants[tone],

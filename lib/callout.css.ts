@@ -8,7 +8,6 @@ import { hsl } from './utils.js';
 export const calloutClass = style({
   padding: currentCapHeight,
   display: 'grid',
-  borderRadius: genericVars.radius.medium,
   borderColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
   backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
   color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
