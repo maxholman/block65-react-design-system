@@ -5,8 +5,9 @@ import {
   type StyleRule,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
+import { toneH, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
-import { colorThemeVars, contrastSchemeVars } from './vars.js';
+import { contrastSchemeVars } from './vars.js';
 
 // accepting Falsy values provides nice way to turn props off
 // accepting null/false means we can skip default assignments and specifically
@@ -115,3 +116,42 @@ export const textOverflowVariants = styleVariants(
   textOverflowCssProps,
   (value) => [textOverflowBase, value],
 );
+
+export type BorderWeight = 'none' | 'subtle' | 'normal' | 'strong';
+
+const width = createVar();
+const borderL = createVar();
+
+const borderBaseClass = style({
+  borderStyle: 'solid',
+  borderWidth: width,
+});
+
+const borderWeight: Record<BorderWeight, StyleRule> = {
+  none: {
+    borderColor: 'transparent',
+  },
+  subtle: {
+    vars: {
+      [borderL]: contrastSchemeVars.level1.l,
+    },
+    borderColor: hsl(toneH, toneS, borderL),
+  },
+  normal: {
+    vars: {
+      [borderL]: contrastSchemeVars.level1.l,
+    },
+    borderColor: hsl(toneH, toneS, borderL),
+  },
+  strong: {
+    vars: {
+      [borderL]: contrastSchemeVars.level1.l,
+    },
+    borderColor: hsl(toneH, toneS, borderL),
+  },
+};
+
+export const borderWeightVariants = styleVariants(borderWeight, (rule) => [
+  borderBaseClass,
+  rule,
+]);
