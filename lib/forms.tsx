@@ -243,7 +243,7 @@ export const FormSelect: FC<FormSelectProps> = ({
 const FormInputCheckRadio: FC<
   PropsWithChildren<
     Merge<
-      InputHTMLAttributes<HTMLInputElement>,
+      BoxBasedComponentProps<'input'>,
       {
         label: ReactNode;
         className?: ClassValue;
@@ -258,7 +258,9 @@ const FormInputCheckRadio: FC<
 
   return (
     <Block space="small" className={formInputCheckRadioWrapper}>
-      <input
+      <Box
+        component="input"
+        rounded="small"
         className={clsx(
           props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput,
           className,
