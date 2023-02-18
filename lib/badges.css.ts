@@ -19,8 +19,11 @@ const base = style({
   borderWidth: genericVars.border.weight.hairline,
   borderStyle: 'solid',
   padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
-  justifyContent: 'center',
   letterSpacing: 'initial',
+
+  // button is based on text which doesnt have a specific display value
+  display: 'block',
+  justifyContent: 'center', // needs a display
 });
 
 const variantRules: Record<
