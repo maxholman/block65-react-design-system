@@ -20,6 +20,7 @@ import { Inline } from './layout.js';
 import { differentOriginLinkProps } from './links.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge } from './types.js';
+import { FontSize, fontSizeVariants } from './typography.css.js';
 
 export type ButtonCommonProps = {
   variant?: ButtonVariant;
@@ -28,6 +29,7 @@ export type ButtonCommonProps = {
   inline?: boolean;
   tone?: Tone;
   icon?: ReactElement | FC | undefined;
+  fontSize?: FontSize;
 };
 
 export type ButtonProps = PropsWithChildren<
@@ -63,6 +65,7 @@ const ButtonInternal: FC<
   className,
   icon,
   inline,
+  fontSize,
   children,
   ...props
 }) => (
@@ -75,6 +78,7 @@ const ButtonInternal: FC<
       toneVariants[tone],
       busy && busyButtonClass,
       compact && compactButton,
+      fontSize && fontSizeVariants[fontSize],
       inline && inlineBleedClass,
     )}
     space="nano"
