@@ -1,25 +1,24 @@
-import { type ClassValue, clsx } from 'clsx';
+import { clsx } from 'clsx';
 import {
-  type FC,
   isValidElement,
+  type FC,
   type PropsWithChildren,
   type ReactElement,
 } from 'react';
 import {
   busyButtonClass,
-  type ButtonVariant,
   buttonVariantClasses,
   compactButton,
   iconClass,
   inlineBleedClass,
   visiblyHiddenClass,
   withIconClass,
+  type ButtonVariant,
 } from './buttons.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
-import type { Align } from './layout.css.js';
 import { Inline } from './layout.js';
 import { differentOriginLinkProps } from './links.js';
-import { type Tone, toneVariants } from './tone.css.js';
+import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 
 export type ButtonCommonProps = {
@@ -58,12 +57,12 @@ const ButtonInternal: FC<
   variant = 'standard',
   tone = 'accent',
   rounded = 'medium',
+  textOverflow = 'ellipsis',
   compact,
   busy,
   className,
   icon,
   inline,
-  textOverflow = 'ellipsis',
   children,
   ...props
 }) => (
@@ -71,12 +70,12 @@ const ButtonInternal: FC<
     rounded={rounded}
     component={component}
     className={clsx(
+      className,
       buttonVariantClasses[variant],
       toneVariants[tone],
       busy && busyButtonClass,
       compact && compactButton,
       inline && inlineBleedClass,
-      className,
     )}
     space="nano"
     {...props}
@@ -99,9 +98,7 @@ const ButtonInternal: FC<
   </Inline>
 );
 
-export const Button: FC<
-  Merge<BoxBasedComponentProps<'button'>, ButtonProps>
-> = (props) => <ButtonInternal {...props} />;
+export const Button: FC<ButtonProps> = (props) => <ButtonInternal {...props} />;
 
 export const ButtonLink: FC<ButtonLinkProps> = ({
   component = 'a',
@@ -115,9 +112,7 @@ export const ButtonLink: FC<ButtonLinkProps> = ({
   />
 );
 
-export const ButtonIcon: FC<
-  Merge<BoxBasedComponentProps<'button'>, ButtonIconProps>
-> = ({ icon, label, ...props }) => (
+export const ButtonIcon: FC<ButtonIconProps> = ({ icon, label, ...props }) => (
   <ButtonInternal aria-label={label} {...props} textOverflow="ellipsis">
     <span className={iconClass}>{icon}</span>
   </ButtonInternal>
