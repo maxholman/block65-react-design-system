@@ -260,6 +260,22 @@ export const ButtonsPage: FC = () => (
         </ButtonLink>
         <Text>and like this</Text>
       </Inline>
+
+      <Heading>Font Size</Heading>
+      <Text>Buttons in context</Text>
+      <Inline space="nano">
+        <Button fontSize="large" tone="critical" icon={<CrescentMoonIcon />}>
+          Eject
+        </Button>
+        <ButtonLink
+          fontSize="large"
+          href="https://eject.invalid"
+          tone="critical"
+          icon={<CrescentMoonIcon />}
+        >
+          Eject
+        </ButtonLink>
+      </Inline>
     </Block>
   </Panel>
 );

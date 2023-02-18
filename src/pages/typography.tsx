@@ -41,7 +41,7 @@ export const TypographyPage: FC = () => (
         <Secondary>Secondary text</Secondary> looks like that
       </Text>
 
-      <Text size="small">
+      <Text fontSize="small">
         PS: Small text is small and can be <Strong>strong text</Strong> or{' '}
         <Secondary>secondary text</Secondary> too.
       </Text>
@@ -63,6 +63,8 @@ export const TypographyPage: FC = () => (
       </Text>
     </Block>
 
+    <Divider />
+
     <Block space="huge">
       <Heading level="2">Headings are heady</Heading>
 
@@ -74,10 +76,20 @@ export const TypographyPage: FC = () => (
         <Text>With fake underline</Text>
       </Block>
 
+      <Divider />
+
+      <Heading>Size overrides</Heading>
       <Block>
+        <Heading level="5" fontSize="huge">
+          Heading 5
+        </Heading>
         <Heading level="1">Heading 1</Heading>
-        <Text>Normal Text</Text>
+        <Heading level="1" fontSize="normal">
+          Heading 1
+        </Heading>
       </Block>
+
+      <Divider />
 
       <Block>
         <Heading level="2">Heading 2</Heading>
@@ -96,6 +108,8 @@ export const TypographyPage: FC = () => (
         <Text>Normal Text</Text>
       </Block>
     </Block>
+
+    <Divider />
 
     <Block>
       <Heading level="1">Text Align</Heading>
