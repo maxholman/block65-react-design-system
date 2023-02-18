@@ -37,4 +37,4 @@ dev:
 
 .PHONY: dev-server
 dev-server: node_modules vite.config.ts
-	yarn vite dev --force
+	yarn vite dev
