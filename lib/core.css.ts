@@ -1,12 +1,17 @@
 import {
   createVar,
   style,
-  type StyleRule,
   styleVariants,
+  type StyleRule,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { hsl } from './utils.js';
 import { colorThemeVars, contrastSchemeVars } from './vars.js';
+
+// accepting Falsy values provides nice way to turn props off
+// accepting null/false means we can skip default assignments and specifically
+// disable when consuming
+export type Falsy = null | undefined;
 
 export type Rounded = keyof typeof genericVars.radius;
 
@@ -28,7 +33,7 @@ export const textAlignVariants = styleVariants({
   center: {
     textAlign: 'center',
   },
-});
+} satisfies Record<TextAlign, StyleRule>);
 
 export type Space =
   | 'huge'
