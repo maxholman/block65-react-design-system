@@ -20,7 +20,7 @@ import { Inline } from './layout.js';
 import { differentOriginLinkProps } from './links.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge } from './types.js';
-import { FontSize, fontSizeVariants } from './typography.css.js';
+import { type FontSize, fontSizeVariants } from './typography.css.js';
 
 export type ButtonCommonProps = {
   variant?: ButtonVariant;
