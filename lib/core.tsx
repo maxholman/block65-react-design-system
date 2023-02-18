@@ -20,14 +20,17 @@ import {
   textAlignVariants,
   type TextOverflow,
   textOverflowVariants,
+  borderWeightVariants,
+  type BorderWeight,
+  type Falsy,
 } from './core.css.js';
 import { type Align, alignItemsVariants } from './layout.css.js';
+import { type Tone, toneVariants } from './tone.css.js';
 import { Tooltip } from './tooltip.js';
 import type {
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
-import { type FontSize, fontSizeVariants } from './typography.css.js';
 
 type Merge<A, B> = Omit<A, keyof B> & B;
 
@@ -38,19 +41,17 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       className?: ClassValue;
       component?: T;
 
-      align?: Align | undefined;
-      margin?: Space | undefined;
-      marginBlock?: Space | undefined;
-      marginInline?: Space | undefined;
-      padding?: Space | undefined;
-      paddingBlock?: Space | undefined;
-      paddingInline?: Space | undefined;
+      align?: Align | Falsy;
+      margin?: Space | Falsy;
+      marginBlock?: Space | Falsy;
+      marginInline?: Space | Falsy;
+      padding?: Space | Falsy;
+      paddingBlock?: Space | Falsy;
+      paddingInline?: Space | Falsy;
       tooltip?: ReactNode;
-      textAlign?: TextAlign | undefined;
-      textOverflow?: TextOverflow | undefined;
-
-      rounded?: Rounded | undefined;
-      fontSize?: FontSize | undefined;
+      textAlign?: TextAlign | Falsy;
+      textOverflow?: TextOverflow | Falsy;
+      rounded?: Rounded | Falsy;
     }
   >;
 
@@ -70,7 +71,6 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
     textOverflow,
     tooltip,
     rounded,
-    fontSize,
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
