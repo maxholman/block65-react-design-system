@@ -77,10 +77,10 @@ export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
   ...props
 }) => <Box component="span" {...props} className={[strongClass, className]} />;
 
-export const Code: FC<BoxBasedComponentProps<'span'>> = ({
+export const Code: FC<BoxBasedComponentProps<'code'>> = ({
   className,
   ...props
-}) => <Box component="span" {...props} className={[codeClass, className]} />;
+}) => <Box component="code" {...props} className={[codeClass, className]} />;
 
 export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
   className,
