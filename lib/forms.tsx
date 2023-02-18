@@ -1,28 +1,26 @@
-import { type ClassValue, clsx } from 'clsx';
+import { clsx, type ClassValue } from 'clsx';
 import {
   Children,
   cloneElement,
+  forwardRef,
   type ComponentProps,
   type FC,
-  forwardRef,
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
   type PropsWithChildren,
   type ReactNode,
-  type SelectHTMLAttributes,
-  type TextareaHTMLAttributes,
 } from 'react';
 import { useStringLikeDetector } from './context.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   fieldLabelStyle,
   fieldLabelTertiaryStyle,
   fieldLabelWrapperStyle,
-  formInputClassName,
   formInputCheckboxInput,
   formInputCheckRadioLabel,
   formInputCheckRadioMessage,
   formInputCheckRadioWrapper,
+  formInputClassName,
   formInputNotCheckRadio,
   formInputRadioInput,
   formInputSelect,
@@ -31,7 +29,7 @@ import {
   inputLabelStyle,
 } from './forms.css.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
-import { Block, type CommonProps, Inline } from './layout.js';
+import { Block, Inline, type CommonProps } from './layout.js';
 import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { Secondary, Strong, Text } from './typography.js';
@@ -190,7 +188,7 @@ type FormSelectCommonProps = {
 };
 
 export type FormSelectProps = PropsWithChildren<
-  SelectHTMLAttributes<HTMLSelectElement> & FormSelectCommonProps
+  Merge<BoxBasedComponentProps<'select'>, FormSelectCommonProps>
 >;
 
 export const FormSelect: FC<FormSelectProps> = ({
@@ -200,6 +198,7 @@ export const FormSelect: FC<FormSelectProps> = ({
   secondaryLabel,
   tertiaryLabel,
   message,
+  rounded = 'medium',
   ...props
 }) => {
   const id = useIdWithDefault(props.id);
@@ -222,7 +221,9 @@ export const FormSelect: FC<FormSelectProps> = ({
             : formInputSelectWrapperSingle
         }
       >
-        <select
+        <Box
+          component="select"
+          rounded={rounded}
           className={clsx(formInputSelect, formInputNotCheckRadio)}
           id={id}
           {...props}
@@ -395,8 +396,10 @@ export const FormInputCheckboxGroup: FC<
   );
 };
 
-export type FormTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
-  CommonFormInputProps;
+export type FormTextAreaProps = Merge<
+  BoxBasedComponentProps<'textarea'>,
+  CommonFormInputProps
+>;
 
 export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
   (
@@ -408,6 +411,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
       tertiaryLabel,
       message,
       messageTone,
+      rounded = 'medium',
       ...props
     },
     ref,
@@ -426,7 +430,9 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
           </FormFieldLabel>
         )}
         {description}
-        <textarea
+        <Box
+          rounded={rounded}
+          component="textarea"
           ref={ref}
           className={clsx(formInputClassName, formInputNotCheckRadio)}
           {...(props.readOnly && { tabIndex: -1 })}
