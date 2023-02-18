@@ -165,7 +165,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         />
         {message && (
           <Inline>
-            <Text size="small" tone={messageTone}>
+            <Text fontSize="small" tone={messageTone}>
               {messageTone ? message : <Secondary>{message}</Secondary>}
             </Text>
           </Inline>
@@ -225,7 +225,7 @@ export const FormSelect: FC<FormSelectProps> = ({
       </div>
       {message &&
         (isStringLike(message) ? (
-          <Text secondary size="small">
+          <Text secondary fontSize="small">
             {message}
           </Text>
         ) : (
@@ -276,7 +276,11 @@ const FormInputCheckRadio: FC<
         ))}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary size="small" className={formInputCheckRadioMessage}>
+          <Text
+            secondary
+            fontSize="small"
+            className={formInputCheckRadioMessage}
+          >
             {message}
           </Text>
         ) : (
@@ -325,7 +329,7 @@ export const FormInputRadioGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary size="small">
+          <Text secondary fontSize="small">
             {message}
           </Text>
         ) : (
@@ -374,7 +378,7 @@ export const FormInputCheckboxGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary size="small">
+          <Text secondary fontSize="small">
             {message}
           </Text>
         ) : (
@@ -424,7 +428,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         />
         {message && (
           <Inline>
-            <Text size="small" tone={messageTone}>
+            <Text fontSize="small" tone={messageTone}>
               {messageTone ? message : <Secondary>{message}</Secondary>}
             </Text>
           </Inline>
