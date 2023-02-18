@@ -87,10 +87,14 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
           marginBlock &&
             marginBlock !== margin &&
             marginBlockVariants[marginBlock],
-          marginInline && marginInlineVariants[marginInline],
+          marginInline &&
+            marginInline !== margin &&
+            marginInlineVariants[marginInline],
 
           padding && paddingVariants[padding],
-          paddingBlock && paddingBlockVariants[paddingBlock],
+          paddingBlock &&
+            paddingBlock !== padding &&
+            paddingBlockVariants[paddingBlock],
           paddingInline &&
             paddingInline !== padding &&
             paddingInlineVariants[paddingInline],
