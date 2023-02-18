@@ -26,7 +26,6 @@ export const formInputClassName = style([
     borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
     borderStyle: 'solid',
     borderWidth: borderWidthVar,
-    borderRadius: genericVars.radius.medium,
     selectors: {
       '&[type="time"]': {
         display: 'initial',

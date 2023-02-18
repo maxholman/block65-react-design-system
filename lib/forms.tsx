@@ -13,6 +13,7 @@ import {
   type TextareaHTMLAttributes,
 } from 'react';
 import { useStringLikeDetector } from './context.js';
+import { Box, BoxBasedComponentProps } from './core.js';
 import {
   fieldLabelStyle,
   fieldLabelTertiaryStyle,
@@ -54,7 +55,8 @@ type CommonFormInputProps = {
 };
 
 export type FormInputProps = Merge<
-  InputHTMLAttributes<HTMLInputElement>,
+  // InputHTMLAttributes<HTMLInputElement>,
+  BoxBasedComponentProps<'input'>,
   CommonFormInputProps
 >;
 
@@ -135,6 +137,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       tertiaryLabel,
       message,
       messageTone,
+      rounded = 'medium',
       ...props
     },
     ref,
@@ -155,9 +158,11 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           </FormFieldLabel>
         )}
         {description}
-        <input
+        <Box
           ref={ref}
-          className={clsx(formInputClassName, formInputNotCheckRadio)}
+          component="input"
+          rounded={rounded}
+          className={[formInputClassName, formInputNotCheckRadio]}
           {...(props.readOnly && { tabIndex: -1 })}
           {...inputTypeProps}
           {...props}
