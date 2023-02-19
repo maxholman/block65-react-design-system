@@ -65,8 +65,8 @@ const viewportSizes: Record<
   { min: number } | { min: number; max: number } | { max: number }
 > = {
   all: { max: Infinity },
-  mobile: { max: 40 },
   tablet: { max: 60 },
+  mobile: { max: 40 },
   desktop: { min: 60 },
   wide: { min: 80 },
 };
