@@ -11,6 +11,17 @@ import {
 } from './list.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
+type ListCommonProps = {
+  variant?: 'ordered' | 'unordered';
+  space?: Space;
+  cols?: `${number}`;
+};
+
+export type ListProps<T extends keyof ReactHTMLAttributesHacked = 'ul'> = Merge<
+  BoxBasedComponentProps<T>,
+  ListCommonProps
+>;
+
 export const List = <T extends keyof ReactHTMLAttributesHacked>({
   variant,
   component,
@@ -19,14 +30,7 @@ export const List = <T extends keyof ReactHTMLAttributesHacked>({
   cols = '1',
   children,
   ...props
-}: Merge<
-  BoxBasedComponentProps<T>,
-  {
-    variant?: 'ordered' | 'unordered';
-    space?: Space;
-    cols?: `${number}`;
-  }
->) => (
+}: ListProps<T>) => (
   <Box
     component={
       (component || variant === 'ordered'
