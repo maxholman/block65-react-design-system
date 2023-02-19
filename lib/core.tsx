@@ -57,7 +57,7 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
     }
   >;
 
-export function matchViewportVariants<T extends string>(
+export function matchViewportVariants<T extends string | number>(
   resp: Responsive<T>,
   variants: Record<Viewport, Record<T, string>>,
 ): ClassValue[] {
