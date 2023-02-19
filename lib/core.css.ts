@@ -120,7 +120,7 @@ export const viewportMarginVariants = viewportStyleVariants(
 export const viewportPaddingVariants = viewportStyleVariants(
   genericVars.space,
   (space) => ({
-    margin: space,
+    padding: space,
   }),
   'padding',
 );
