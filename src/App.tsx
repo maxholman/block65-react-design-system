@@ -33,6 +33,7 @@ import { GridPage } from './pages/grid.js';
 import { LayoutPage } from './pages/layout.js';
 import { ListPage } from './pages/list.js';
 import { LoadersPage } from './pages/loaders.js';
+import { MediaQueryPage } from './pages/media-query.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
 
@@ -151,6 +152,9 @@ export const App: FC = () => {
                   <Link dest="/callout">
                     <TextLink>Callout</TextLink>
                   </Link>
+                  <Link dest="/media-query">
+                    <TextLink>Media Query</TextLink>
+                  </Link>
                 </Inline>
               </Panel>
               <Block>
@@ -193,6 +197,9 @@ export const App: FC = () => {
                   </Route>
                   <Route path="/callout">
                     <CalloutPage />
+                  </Route>
+                  <Route path="/media-query">
+                    <MediaQueryPage />
                   </Route>
                   <Route>
                     <Heading>404</Heading>

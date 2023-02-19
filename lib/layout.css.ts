@@ -4,35 +4,8 @@ import {
   styleVariants,
   type ComplexStyleRule,
 } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
 
 export type Align = 'start' | 'center' | 'end';
-
-export const flexRow = style({
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-});
-
-export const flexColumn = style({
-  display: 'flex',
-  flexDirection: 'column',
-});
-
-export const flexColumnVariants = styleVariants(genericVars.space, (space) => [
-  flexColumn,
-  {
-    gap: space,
-  },
-]);
-
-export const flexRowVariants = styleVariants(genericVars.space, (space) => [
-  flexRow,
-  {
-    alignItems: 'center',
-    gap: space,
-  },
-]);
 
 export const inlineClass = style({
   display: 'inline-flex',
