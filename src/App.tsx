@@ -61,7 +61,12 @@ export const App: FC = () => {
         <Router>
           <Block style={{ minHeight: '100vh' }}>
             <Block padding="huge">
-              <Grid>
+              <Grid
+                cols={{
+                  all: 2,
+                  mobile: 1,
+                }}
+              >
                 <Inline>
                   <FormInputRadioGroup name="color-scheme">
                     <Heading level="3" textOverflow="ellipsis">
