@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Block, Box } from '../../lib/main.js';
+import { Block, Box, Grid } from '../../lib/main.js';
 
 export const MediaQueryPage: FC = () => (
   <>
@@ -19,6 +19,24 @@ export const MediaQueryPage: FC = () => (
         <Block>Responsive 1</Block>
         <Block>Responsive 2</Block>
       </Block>
+
+      <Grid
+        cols={{
+          mobile: 1,
+          tablet: 2,
+          desktop: 3,
+          wide: 4,
+        }}
+      >
+        <Block>Responsive 1</Block>
+        <Block>Responsive 2</Block>
+
+        <Block>Responsive 3</Block>
+        <Block>Responsive 4</Block>
+
+        <Block>Responsive 5</Block>
+        <Block>Responsive 6</Block>
+      </Grid>
     </Box>
   </>
 );
