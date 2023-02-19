@@ -260,3 +260,21 @@ export const viewportSpaceVariants = viewportStyleVariants(
   }),
   'space',
 );
+
+export type Columns = 1 | 2 | 3 | 4 | 5;
+
+const columnsVariantCols: Record<Columns, Columns> = {
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+};
+
+export const viewportGridColumnsVariants = viewportStyleVariants(
+  columnsVariantCols,
+  (cols) => ({
+    gridTemplateColumns: `repeat(${cols}, 1fr)`,
+  }),
+  'cols',
+);
