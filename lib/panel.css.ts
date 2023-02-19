@@ -1,4 +1,5 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
@@ -11,16 +12,9 @@ export type PanelVariant =
   | 'transparent';
 
 export const panelClass = style({
-  borderRadius: genericVars.radius.medium,
   borderWidth: genericVars.border.weight.normal,
   borderStyle: 'solid',
   borderColor: 'transparent',
-});
-
-// WARN: we need to use this hack to lower the specificity
-// so that the props can be overriden by box component
-globalStyle(`:where(${panelClass})`, {
-  padding: genericVars.space.medium,
 });
 
 const variantRules: Record<

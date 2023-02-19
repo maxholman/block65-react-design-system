@@ -1,17 +1,27 @@
-import { Block, CommonProps } from './layout.js';
-import { PanelVariant, panelVariants } from './panel.css.js';
-import type { ReactHTMLAttributesHacked } from './types.js';
+import { Block, type BlockProps } from './layout.js';
+import { panelVariants, type PanelVariant } from './panel.css.js';
+import type { Merge, ReactHTMLAttributesHacked } from './types.js';
+
+export type PanelProps<T extends keyof ReactHTMLAttributesHacked = 'section'> =
+  Merge<
+    BlockProps<T>,
+    {
+      variant?: PanelVariant;
+    }
+  >;
 
 export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
   component = 'section',
-  className,
   variant = 'standard',
+  rounded = 'medium',
+  padding = 'medium',
+  className,
   ...props
-}: CommonProps<T> & {
-  variant?: PanelVariant;
-}) => (
+}: PanelProps<T>) => (
   <Block
     component={component}
+    rounded={rounded}
+    padding={padding}
     className={[className, panelVariants[variant]]}
     {...props}
   />

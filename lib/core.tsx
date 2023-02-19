@@ -1,40 +1,38 @@
-import { ClassValue, clsx } from 'clsx';
+import { clsx, type ClassValue } from 'clsx';
 import {
   createElement,
-  ForwardedRef,
   forwardRef,
-  ReactElement,
-  ReactNode,
+  type ForwardedRef,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  marginBlockVariants,
-  marginInlineVariants,
-  marginVariants,
-  paddingBlockVariants,
-  paddingInlineVariants,
-  paddingVariants,
-  TextAlign,
+  borderWeightVariants,
+  roundedVariants,
   textAlignVariants,
-  TextOverflow,
   textOverflowVariants,
+  viewportMarginVariants,
+  viewportPaddingVariants,
+  type BorderWeight,
+  type Falsy,
+  type OrResponsive,
+  type Responsive,
+  type Rounded,
+  type Space,
+  type TextAlign,
+  type TextOverflow,
+  type Viewport,
 } from './core.css.js';
-import { Align, alignItemsVariants } from './layout.css.js';
+import { alignItemsVariants, type Align } from './layout.css.js';
+import { toneVariants, type Tone } from './tone.css.js';
 import { Tooltip } from './tooltip.js';
 import type {
+  Merge,
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
-
-export type Space =
-  | 'huge'
-  | 'large'
-  | 'medium'
-  | 'small'
-  | 'tiny'
-  | 'nano'
-  | 'none';
-
-type Merge<A, B> = Omit<A, keyof B> & B;
+import { typedObjectEntries } from './utils.js';
 
 export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
   Merge<
@@ -43,18 +41,30 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       className?: ClassValue;
       component?: T;
 
-      align?: Align | undefined;
-      margin?: Space | undefined;
-      marginBlock?: Space | undefined;
-      marginInline?: Space | undefined;
-      padding?: Space | undefined;
-      paddingBlock?: Space | undefined;
-      paddingInline?: Space | undefined;
+      align?: Align | Falsy;
+      margin?: OrResponsive<Space> | Falsy;
+      marginBlock?: OrResponsive<Space> | Falsy;
+      marginInline?: OrResponsive<Space> | Falsy;
+      padding?: OrResponsive<Space> | Falsy;
+      paddingBlock?: OrResponsive<Space> | Falsy;
+      paddingInline?: OrResponsive<Space> | Falsy;
       tooltip?: ReactNode;
-      textAlign?: TextAlign | undefined;
-      textOverflow?: TextOverflow | undefined;
+      textAlign?: TextAlign | Falsy;
+      textOverflow?: TextOverflow | Falsy;
+      rounded?: Rounded | Falsy;
+      borderWeight?: BorderWeight | Falsy;
+      tone?: Tone | Falsy;
     }
   >;
+
+export function matchViewportVariants<T extends string | number>(
+  resp: Responsive<T>,
+  variants: Record<Viewport, Record<T, string>>,
+): ClassValue[] {
+  return typedObjectEntries(resp)
+    .map(([viewport, value]) => value && variants[viewport][value])
+    .filter((c): c is string => !!c);
+}
 
 const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
   {
@@ -71,6 +81,9 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
     textAlign,
     textOverflow,
     tooltip,
+    rounded,
+    borderWeight,
+    tone,
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -83,15 +96,58 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
         clsx(
           align && alignItemsVariants[align],
 
-          margin && marginVariants[margin],
-          marginBlock && marginBlockVariants[marginBlock],
-          marginInline && marginInlineVariants[marginInline],
+          margin &&
+            marginBlock !== margin &&
+            matchViewportVariants(
+              typeof margin === 'string' ? { all: margin } : margin,
+              viewportMarginVariants,
+            ),
+          marginBlock &&
+            marginBlock !== margin &&
+            matchViewportVariants(
+              typeof marginBlock === 'string'
+                ? { all: marginBlock }
+                : marginBlock,
+              viewportMarginVariants,
+            ),
 
-          padding && paddingVariants[padding],
-          paddingBlock && paddingBlockVariants[paddingBlock],
-          paddingInline && paddingInlineVariants[paddingInline],
+          marginInline &&
+            marginInline !== margin &&
+            matchViewportVariants(
+              typeof marginInline === 'string'
+                ? { all: marginInline }
+                : marginInline,
+              viewportMarginVariants,
+            ),
+
+          padding &&
+            paddingBlock !== padding &&
+            matchViewportVariants(
+              typeof padding === 'string' ? { all: padding } : padding,
+              viewportPaddingVariants,
+            ),
+          paddingBlock &&
+            paddingBlock !== padding &&
+            matchViewportVariants(
+              typeof paddingBlock === 'string'
+                ? { all: paddingBlock }
+                : paddingBlock,
+              viewportPaddingVariants,
+            ),
+
+          paddingInline &&
+            paddingInline !== padding &&
+            matchViewportVariants(
+              typeof paddingInline === 'string'
+                ? { all: paddingInline }
+                : paddingInline,
+              viewportPaddingVariants,
+            ),
 
           textAlign && textAlignVariants[textAlign],
+          rounded && roundedVariants[rounded],
+          borderWeight && borderWeightVariants[borderWeight],
+          tone && toneVariants[tone],
 
           className,
         ) || undefined,

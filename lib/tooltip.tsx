@@ -1,11 +1,9 @@
-import type { Placement } from '@floating-ui/react';
 import {
   arrow,
   autoUpdate,
   flip,
   offset,
   shift,
-  Side,
   useDismiss,
   useFloating,
   useFocus,
@@ -13,12 +11,13 @@ import {
   useInteractions,
   useRole,
 } from '@floating-ui/react';
+import type { Placement, Side } from '@floating-ui/react';
 import {
   cloneElement,
-  FC,
+  type FC,
   isValidElement,
-  PropsWithChildren,
-  ReactNode,
+  type PropsWithChildren,
+  type ReactNode,
   useMemo,
   useRef,
   useState,

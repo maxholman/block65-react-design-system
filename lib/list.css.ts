@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 

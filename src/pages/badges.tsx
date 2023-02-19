@@ -32,22 +32,27 @@ export const BadgesPage: FC = () => (
     <Block>
       <Heading level="3">Badges</Heading>
 
-      <Grid>
+      <Grid
+        cols={{
+          mobile: 1,
+          all: 2,
+        }}
+      >
         {badgeVariantNames.map((variant) => (
           <Panel variant="subtle" key={variant}>
             <Heading level="4">{variant}</Heading>
-            {badgeToneNames.map((tone) => (
-              <Inline key={tone}>
-                <Badge variant={variant} tone={tone}>
+            <Inline>
+              {badgeToneNames.map((tone) => (
+                <Badge variant={variant} tone={tone} key={tone}>
                   {tone}
                 </Badge>
-              </Inline>
-            ))}
+              ))}
+            </Inline>
           </Panel>
         ))}
       </Grid>
 
-      <Grid cols="3">
+      <Grid cols={3}>
         <Panel variant="subtle">
           <Inline>
             <Heading level="4">Default Badge</Heading>

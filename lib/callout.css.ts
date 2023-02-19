@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { style } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
@@ -8,7 +9,6 @@ import { hsl } from './utils.js';
 export const calloutClass = style({
   padding: currentCapHeight,
   display: 'grid',
-  borderRadius: genericVars.radius.medium,
   borderColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
   backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
   color: hsl(toneH, toneS, contrastSchemeVars.level5.l),

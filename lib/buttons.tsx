@@ -1,31 +1,35 @@
-import { ClassValue, clsx } from 'clsx';
-import { FC, isValidElement, PropsWithChildren, ReactElement } from 'react';
+import { clsx } from 'clsx';
+import {
+  isValidElement,
+  type FC,
+  type PropsWithChildren,
+  type ReactElement,
+} from 'react';
 import {
   busyButtonClass,
-  ButtonVariant,
   buttonVariantClasses,
   compactButton,
   iconClass,
   inlineBleedClass,
   visiblyHiddenClass,
   withIconClass,
+  type ButtonVariant,
 } from './buttons.css.js';
-import { Box, BoxBasedComponentProps } from './core.js';
-import type { Align } from './layout.css.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import { Inline } from './layout.js';
 import { differentOriginLinkProps } from './links.js';
-import { Tone, toneVariants } from './tone.css.js';
+import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge } from './types.js';
+import { type FontSize, fontSizeVariants } from './typography.css.js';
 
 export type ButtonCommonProps = {
-  className?: ClassValue;
   variant?: ButtonVariant;
   busy?: boolean;
   compact?: boolean;
-  align?: Align;
   inline?: boolean;
   tone?: Tone;
   icon?: ReactElement | FC | undefined;
+  fontSize?: FontSize;
 };
 
 export type ButtonProps = PropsWithChildren<
@@ -54,24 +58,28 @@ const ButtonInternal: FC<
   component = 'button',
   variant = 'standard',
   tone = 'accent',
+  rounded = 'medium',
+  textOverflow = 'ellipsis',
   compact,
   busy,
   className,
   icon,
   inline,
-  textOverflow = 'ellipsis',
+  fontSize,
   children,
   ...props
 }) => (
   <Inline
+    rounded={rounded}
     component={component}
     className={clsx(
+      className,
       buttonVariantClasses[variant],
       toneVariants[tone],
       busy && busyButtonClass,
       compact && compactButton,
+      fontSize && fontSizeVariants[fontSize],
       inline && inlineBleedClass,
-      className,
     )}
     space="nano"
     {...props}
@@ -94,9 +102,7 @@ const ButtonInternal: FC<
   </Inline>
 );
 
-export const Button: FC<
-  Merge<BoxBasedComponentProps<'button'>, ButtonProps>
-> = (props) => <ButtonInternal {...props} />;
+export const Button: FC<ButtonProps> = (props) => <ButtonInternal {...props} />;
 
 export const ButtonLink: FC<ButtonLinkProps> = ({
   component = 'a',
@@ -110,9 +116,7 @@ export const ButtonLink: FC<ButtonLinkProps> = ({
   />
 );
 
-export const ButtonIcon: FC<
-  Merge<BoxBasedComponentProps<'button'>, ButtonIconProps>
-> = ({ icon, label, ...props }) => (
+export const ButtonIcon: FC<ButtonIconProps> = ({ icon, label, ...props }) => (
   <ButtonInternal aria-label={label} {...props} textOverflow="ellipsis">
     <span className={iconClass}>{icon}</span>
   </ButtonInternal>

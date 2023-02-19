@@ -11,8 +11,8 @@ import {
 import { useLocalStorageState } from '../gist_modules/maxholman/react-hooks/use-localstorage-state.js';
 import {
   Block,
-  ColorScheme,
-  ContrastScheme,
+  type ColorScheme,
+  type ContrastScheme,
   DesignSystem,
   FormInputRadio,
   FormInputRadioGroup,
@@ -33,6 +33,7 @@ import { GridPage } from './pages/grid.js';
 import { LayoutPage } from './pages/layout.js';
 import { ListPage } from './pages/list.js';
 import { LoadersPage } from './pages/loaders.js';
+import { MediaQueryPage } from './pages/media-query.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
 
@@ -60,7 +61,12 @@ export const App: FC = () => {
         <Router>
           <Block style={{ minHeight: '100vh' }}>
             <Block padding="huge">
-              <Grid>
+              <Grid
+                cols={{
+                  all: 2,
+                  mobile: 1,
+                }}
+              >
                 <Inline>
                   <FormInputRadioGroup name="color-scheme">
                     <Heading level="3" textOverflow="ellipsis">
@@ -151,6 +157,9 @@ export const App: FC = () => {
                   <Link dest="/callout">
                     <TextLink>Callout</TextLink>
                   </Link>
+                  <Link dest="/media-query">
+                    <TextLink>Media Query</TextLink>
+                  </Link>
                 </Inline>
               </Panel>
               <Block>
@@ -193,6 +202,9 @@ export const App: FC = () => {
                   </Route>
                   <Route path="/callout">
                     <CalloutPage />
+                  </Route>
+                  <Route path="/media-query">
+                    <MediaQueryPage />
                   </Route>
                   <Route>
                     <Heading>404</Heading>

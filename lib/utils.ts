@@ -2,13 +2,14 @@ import { clsx } from 'clsx';
 import {
   Children,
   cloneElement,
-  ComponentProps,
-  FC,
   Fragment,
   isValidElement,
-  ReactElement,
-  ReactNode,
+  type ComponentProps,
+  type FC,
+  type ReactElement,
+  type ReactNode,
 } from 'react';
+import type { UnionToIntersection, Writable } from 'type-fest';
 
 function flattenChildren(children: React.ReactNode): ReactNode[] {
   return Children.toArray(children).flatMap((child): ReactNode[] => {
@@ -94,4 +95,34 @@ export function cloneElementIfValidElementOfType<T extends FC<any>>(
   props: Partial<ComponentProps<T>>,
 ): typeof child {
   return isValidElementOfType(child, type) ? cloneElement(child, props) : child;
+}
+
+// Credit: https://stackoverflow.com/questions/69019873/how-can-i-get-typed-object-entries-and-object-fromentries-in-typescript
+type EntriesType =
+  | [PropertyKey, unknown][]
+  | ReadonlyArray<readonly [PropertyKey, unknown]>;
+
+type UnionObjectFromArrayOfPairs<T extends EntriesType> =
+  Writable<T> extends (infer R)[]
+    ? R extends [infer key, infer val]
+      ? { [prop in key & PropertyKey]: val }
+      : never
+    : never;
+
+type MergeIntersectingObjects<T> = { [key in keyof T]: T[key] };
+
+type EntriesToObject<T extends EntriesType> = MergeIntersectingObjects<
+  UnionToIntersection<UnionObjectFromArrayOfPairs<T>>
+>;
+
+export function typedObjectFromEntries<T extends EntriesType>(
+  arr: T,
+): EntriesToObject<T> {
+  return Object.fromEntries(arr) as EntriesToObject<T>;
+}
+
+export function typedObjectEntries<T extends Record<string, unknown>>(
+  obj: T,
+): [keyof T, T[keyof T]][] {
+  return Object.entries(obj) as [keyof T, T[keyof T]][];
 }

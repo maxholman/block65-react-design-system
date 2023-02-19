@@ -1,11 +1,11 @@
 import type { FC, JSXElementConstructor, PropsWithChildren } from 'react';
 import { Context } from './context.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import { genericThemeClass } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import {
-  ColorScheme,
-  ContrastScheme,
+  type ColorScheme,
+  type ContrastScheme,
   darkClass,
   darkLessContrastClass,
   darkMoreContrastClass,

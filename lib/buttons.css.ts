@@ -1,7 +1,7 @@
 import {
   createVar,
   style,
-  StyleRule,
+  type StyleRule,
   styleVariants,
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
@@ -45,7 +45,6 @@ const base = style([
     whiteSpace: 'nowrap',
     justifyContent: 'center',
     borderWidth: genericVars.border.weight.normal,
-    borderRadius: genericVars.radius.medium,
     borderColor: 'transparent',
     padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
     userSelect: 'none',
@@ -84,7 +83,7 @@ const variants: Record<ButtonVariant, StyleRule> = {
   },
   none: {
     backgroundColor: 'none',
-    color: 'iherit',
+    color: 'inherit',
   },
   ghost: {
     color: hsl(toneH, toneS, contrastSchemeVars.level4.l),

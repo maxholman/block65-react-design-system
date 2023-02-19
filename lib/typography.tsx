@@ -1,9 +1,13 @@
-import { FC, forwardRef, PropsWithChildren } from 'react';
-import type { TextAlign, TextOverflow } from './core.css.js';
-import { Box, BoxBasedComponentProps } from './core.js';
+import { forwardRef, type FC, type PropsWithChildren } from 'react';
+import type { Falsy, TextAlign, TextOverflow } from './core.css.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import { inlineAlignSelfVariants } from './layout.css.js';
-import { Tone, toneVariants } from './tone.css.js';
-import type { Merge, ReactHTMLAttributesHacked } from './types.js';
+import { toneVariants, type Tone } from './tone.css.js';
+import type {
+  Merge,
+  ReactHTMLAttributesHacked,
+  ReactHTMLElementsHacked,
+} from './types.js';
 import {
   codeClass,
   fontSizeVariants,
@@ -15,7 +19,7 @@ import {
   type HeadingLevel,
 } from './typography.css.js';
 
-// export types to assist with consumers who create augmented components
+// exported types to assist with consumers who create augmented components
 export type { FontSize, HeadingLevel, TextOverflow, TextAlign };
 
 export type HeadingProps = PropsWithChildren<
@@ -23,53 +27,47 @@ export type HeadingProps = PropsWithChildren<
     BoxBasedComponentProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
     {
       level?: HeadingLevel;
-    }
+    } & CommonTextProps
   >
 >;
 
-export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ level = '2', className, children, ...props }, ref) => (
-    <Box
-      ref={ref}
-      component={`h${level}`}
-      className={[levelVariantClasses[level], className]}
-      {...props}
-    >
-      {children}
-    </Box>
-  ),
-);
-
 type CommonTextProps = {
-  size?: FontSize;
-  secondary?: boolean;
-  tone?: Tone | undefined;
+  // font size is only available on Text to encourage its use
+  fontSize?: FontSize | Falsy;
+  secondary?: boolean | Falsy;
+  tone?: Tone | Falsy;
 };
 
 export type TextProps<T extends keyof ReactHTMLAttributesHacked> =
   PropsWithChildren<Merge<BoxBasedComponentProps<T>, CommonTextProps>>;
 
-export const Text = <T extends keyof ReactHTMLAttributesHacked = 'p'>({
-  className,
-  component = 'p',
-  size = 'normal',
-  tone,
-  align,
-  secondary,
-  ...props
-}: TextProps<T>) => (
-  <Box
-    component={component}
-    className={[
-      textClass,
-      fontSizeVariants[size],
-      tone && toneVariants[tone],
-      align && inlineAlignSelfVariants[align],
-      secondary && secondaryClass,
+export const Text = forwardRef(
+  <T extends keyof ReactHTMLAttributesHacked = 'p'>(
+    {
+      component = 'p',
+      fontSize = 'normal',
       className,
-    ]}
-    {...props}
-  />
+      tone,
+      align,
+      secondary,
+      ...props
+    }: TextProps<T>,
+    ref: React.ForwardedRef<ReactHTMLElementsHacked[T]>,
+  ) => (
+    <Box
+      ref={ref}
+      component={component}
+      className={[
+        className,
+        textClass,
+        fontSize && fontSizeVariants[fontSize],
+        tone && toneVariants[tone],
+        align && inlineAlignSelfVariants[align],
+        secondary && secondaryClass,
+      ]}
+      {...props}
+    />
+  ),
 );
 
 export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
@@ -77,10 +75,10 @@ export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
   ...props
 }) => <Box component="span" {...props} className={[strongClass, className]} />;
 
-export const Code: FC<BoxBasedComponentProps<'span'>> = ({
+export const Code: FC<BoxBasedComponentProps<'code'>> = ({
   className,
   ...props
-}) => <Box component="span" {...props} className={[codeClass, className]} />;
+}) => <Box component="code" {...props} className={[codeClass, className]} />;
 
 export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
   className,
@@ -88,4 +86,41 @@ export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
   ...props
 }) => (
   <Box component="span" className={[secondaryClass, className]} {...props} />
+);
+
+function headingProps(level: HeadingLevel): CommonTextProps {
+  switch (level) {
+    case '1':
+      return { fontSize: 'huge' };
+    case '2':
+      return { fontSize: 'large' };
+    case '3':
+      return { fontSize: 'medium' };
+    case '4':
+      return { fontSize: 'normal' };
+    case '5':
+      return { fontSize: 'normal', secondary: true };
+    default:
+      return { fontSize: 'normal' };
+  }
+}
+
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
+  ({ level = '2', className, children, ...props }, ref) => {
+    const textProps = headingProps(level);
+
+    return (
+      <Text
+        ref={ref}
+        component={`h${level}`}
+        className={[levelVariantClasses[level], className]}
+        // have to force this to null to avoid the default value
+        fontSize={null}
+        {...textProps}
+        {...props}
+      >
+        {children}
+      </Text>
+    );
+  },
 );

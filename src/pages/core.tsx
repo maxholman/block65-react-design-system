@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Code,
+  Heading,
   Inline,
   Panel,
   Secondary,
@@ -39,6 +40,37 @@ export const CorePage: FC = () => (
     <Block>
       <Box tooltip={'Hello'} component="time" dateTime={new Date().toJSON()}>
         {new Date().toJSON()}
+      </Box>
+    </Block>
+
+    <Heading>borderWeight</Heading>
+    <Block>
+      <Box
+        tone="critical"
+        borderWeight="none"
+        rounded="medium"
+        padding="medium"
+      >
+        <Code>borderWeight="none"</Code>
+      </Box>
+      <Box
+        tone="critical"
+        borderWeight="strong"
+        rounded="medium"
+        padding="medium"
+      >
+        <Code>borderWeight="strong"</Code>
+      </Box>
+      <Box tone="promo" borderWeight="strong" rounded="medium" padding="medium">
+        <Code>borderWeight="strong"</Code>
+      </Box>
+      <Box
+        tone="positive"
+        borderWeight="subtle"
+        rounded="medium"
+        padding="medium"
+      >
+        <Code>borderWeight="subtle"</Code>
       </Box>
     </Block>
   </Panel>

@@ -1,4 +1,5 @@
-import { createVar, StyleRule, styleVariants } from '@vanilla-extract/css';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createVar, type StyleRule, styleVariants } from '@vanilla-extract/css';
 import { colorThemeVars } from './schemes/color.css.js';
 
 export const toneH = createVar();

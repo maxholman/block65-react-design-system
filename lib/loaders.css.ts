@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { fallbackVar, keyframes, style } from '@vanilla-extract/css';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { currentCapHeight } from './typography.css.js';

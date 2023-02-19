@@ -11,7 +11,7 @@ import {
   Inline,
   Panel,
   Text,
-  Tone,
+  type Tone,
 } from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from '../icons.js';
 
@@ -129,7 +129,13 @@ export const ButtonsPage: FC = () => (
     <Divider />
     <Block>
       <Heading>Tones</Heading>
-      <Grid cols="4">
+      <Grid
+        cols={{
+          all: 4,
+          tablet: 2,
+          mobile: 1,
+        }}
+      >
         <Block>
           <Button>standard</Button>
           <Button variant="ghost">standard ghost</Button>
@@ -259,6 +265,22 @@ export const ButtonsPage: FC = () => (
           Eject
         </ButtonLink>
         <Text>and like this</Text>
+      </Inline>
+
+      <Heading>Font Size</Heading>
+      <Text>Buttons in context</Text>
+      <Inline space="nano">
+        <Button fontSize="large" tone="critical" icon={<CrescentMoonIcon />}>
+          Eject
+        </Button>
+        <ButtonLink
+          fontSize="large"
+          href="https://eject.invalid"
+          tone="critical"
+          icon={<CrescentMoonIcon />}
+        >
+          Eject
+        </ButtonLink>
       </Inline>
     </Block>
   </Panel>

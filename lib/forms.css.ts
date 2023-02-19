@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createVar, style } from '@vanilla-extract/css';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import {
@@ -26,7 +28,6 @@ export const formInputClassName = style([
     borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
     borderStyle: 'solid',
     borderWidth: borderWidthVar,
-    borderRadius: genericVars.radius.medium,
     selectors: {
       '&[type="time"]': {
         display: 'initial',

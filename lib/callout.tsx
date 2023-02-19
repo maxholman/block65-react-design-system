@@ -8,7 +8,7 @@ import {
 import type { BoxBasedComponentProps } from './core.js';
 import { InfoIcon } from './icons.js';
 import { Inline } from './layout.js';
-import { Tone, toneVariants } from './tone.css.js';
+import { type Tone, toneVariants } from './tone.css.js';
 import type { Merge } from './types.js';
 import { fontSizeVariants } from './typography.css.js';
 import { Text } from './typography.js';
@@ -21,9 +21,10 @@ export const Callout: FC<
       align?: never;
     }
   >
-> = ({ children, className, tone = 'info', ...props }) => (
+> = ({ children, className, rounded = 'medium', tone = 'info', ...props }) => (
   <Inline
     component="div"
+    rounded={rounded}
     className={[
       calloutClass,
       toneVariants[tone],

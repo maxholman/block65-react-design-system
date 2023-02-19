@@ -31,11 +31,11 @@ module.exports = {
       },
     },
     {
-      files: ['src/pages/**/*.tsx?', 'lib/**/*.css.ts'],
+      files: ['**/*.css.ts', 'src/pages/**/*.tsx'],
       rules: {
         'import/no-extraneous-dependencies': [
           'error',
-          { devDependencies: false },
+          { devDependencies: true },
         ],
       },
     },

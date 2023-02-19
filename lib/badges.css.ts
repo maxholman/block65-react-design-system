@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
@@ -18,10 +20,12 @@ const base = style({
   textTransform: 'uppercase',
   borderWidth: genericVars.border.weight.hairline,
   borderStyle: 'solid',
-  borderRadius: genericVars.radius.small,
   padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
-  justifyContent: 'center',
   letterSpacing: 'initial',
+
+  // button is based on text which doesnt have a specific display value
+  display: 'block',
+  justifyContent: 'center', // needs a display
 });
 
 const variantRules: Record<

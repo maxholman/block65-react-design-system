@@ -1,6 +1,7 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   assignVars,
-  ComplexStyleRule,
+  type ComplexStyleRule,
   createTheme,
   createThemeContract,
   style,

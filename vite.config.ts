@@ -14,6 +14,7 @@ export default defineConfig({
     lib: {
       entry: {
         main: resolve(__dirname, 'lib/main.ts'),
+        experimental: resolve(__dirname, 'lib/experimental.ts'),
         vars: resolve(__dirname, 'lib/vars.ts'),
       },
       formats: ['es'],
@@ -21,7 +22,6 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
-    minify: true,
     sourcemap: true,
   },
   test: {

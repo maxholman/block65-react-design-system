@@ -4,7 +4,7 @@ import { lorem } from '../lorem.js';
 
 export const GridPage: FC = () => (
   <Panel variant="ghost">
-    <Grid space="huge" cols="4">
+    <Grid space="huge" cols={4}>
       <Panel variant="standard">
         <Heading level="2" textOverflow="ellipsis">
           Standard

@@ -2,8 +2,8 @@ import {
   Children,
   createContext,
   isValidElement,
-  JSXElementConstructor,
-  ReactNode,
+  type JSXElementConstructor,
+  type ReactNode,
   useCallback,
   useContext,
 } from 'react';

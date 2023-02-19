@@ -1,43 +1,75 @@
-import { clsx } from 'clsx';
 import {
-  ForwardedRef,
   forwardRef,
-  PropsWithChildren,
-  ReactElement,
+  type ForwardedRef,
+  type PropsWithChildren,
+  type ReactElement,
 } from 'react';
-import { Box, BoxBasedComponentProps, Space } from './core.js';
 import {
-  flexColumnVariants,
-  flexRowVariants,
-  inlineAlignSelfVariants,
-} from './layout.css.js';
+  flexDirectionVariants,
+  viewportFlexDirectionVariants,
+  viewportSpaceVariants,
+  type Falsy,
+  type FlexDirection,
+  type OrResponsive,
+  type Space,
+} from './core.css.js';
+import {
+  Box,
+  matchViewportVariants,
+  type BoxBasedComponentProps,
+} from './core.js';
+import { inlineAlignSelfVariants } from './layout.css.js';
 import type {
   Merge,
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
 
-export type CommonProps<T extends keyof ReactHTMLAttributesHacked> =
-  PropsWithChildren<
-    Merge<
-      BoxBasedComponentProps<T>,
-      {
-        space?: Space | undefined;
-      }
-    >
-  >;
+type CommonProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
+  BoxBasedComponentProps<T>,
+  PropsWithChildren<{
+    space?: OrResponsive<Space> | Falsy;
+    flexDirection?: OrResponsive<FlexDirection> | Falsy;
+  }>
+>;
 
 export type BlockProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
   CommonProps<T>;
 
+function getLayoutClasses({ flexDirection, space }: BlockProps) {
+  return [
+    flexDirection &&
+      (typeof flexDirection === 'string'
+        ? flexDirectionVariants[flexDirection]
+        : matchViewportVariants(flexDirection, viewportFlexDirectionVariants)),
+
+    space &&
+      matchViewportVariants(
+        typeof space === 'string' ? { all: space } : space,
+        viewportSpaceVariants,
+      ),
+  ];
+}
+
 const BlockInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
-  { space = 'large', className, component = 'div', ...props }: BlockProps<T>,
+  {
+    component = 'div',
+    space = 'medium',
+    flexDirection = 'column',
+    className,
+    align,
+    ...props
+  }: BlockProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
 ): ReactElement | null => (
   <Box
     component={component}
+    className={[
+      align && inlineAlignSelfVariants[align],
+      getLayoutClasses({ flexDirection, space }),
+      className,
+    ]}
     {...props}
-    className={[flexColumnVariants[space], className]}
     ref={ref}
   />
 );
@@ -50,17 +82,18 @@ export type InlineProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
 export const Inline = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   component = 'div',
   space = 'small',
+  flexDirection = 'row',
   className,
   align,
   ...props
 }: InlineProps<T>) => (
   <Box
-    className={clsx(
-      space && flexRowVariants[space],
-      align && inlineAlignSelfVariants[align],
-      className,
-    )}
     component={component}
+    className={[
+      align && inlineAlignSelfVariants[align],
+      getLayoutClasses({ flexDirection, space }),
+      className,
+    ]}
     {...props}
   />
 );

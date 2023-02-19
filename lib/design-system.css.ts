@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createTheme, createThemeContract } from '@vanilla-extract/css';
 
 export const genericVars = createThemeContract({
@@ -26,6 +27,7 @@ export const genericVars = createThemeContract({
   },
   border: {
     weight: {
+      none: 'border-weight-none',
       hairline: 'border-weight-hairline',
       thin: 'border-weight-thin',
       normal: 'border-weight-normal',
@@ -33,6 +35,7 @@ export const genericVars = createThemeContract({
     },
   },
   radius: {
+    none: 'radius-none',
     small: 'radius-small',
     medium: 'radius-medium',
     large: 'radius-large',
@@ -62,7 +65,7 @@ export const genericThemeClass = createTheme(genericVars, {
       normal: '1rem',
       medium: '1.25rem',
       large: '1.75rem',
-      huge: '2.25rem',
+      huge: '3.25rem',
     },
     weight: {
       thin: '100',
@@ -80,6 +83,7 @@ export const genericThemeClass = createTheme(genericVars, {
   },
   border: {
     weight: {
+      none: '0',
       hairline: '0.075rem',
       thin: '0.1rem',
       normal: '0.125rem',
@@ -87,6 +91,7 @@ export const genericThemeClass = createTheme(genericVars, {
     },
   },
   radius: {
+    none: '0',
     small: '0.125rem',
     medium: '0.25rem',
     large: '0.5rem',
