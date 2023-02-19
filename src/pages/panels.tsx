@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Code, Grid, Heading, Inline, Panel, Text } from '../../lib/main.js';
 
 const PanelGrid = () => (
-  <Grid cols="2">
+  <Grid cols={2}>
     <Panel variant="standard">
       <Heading>standard</Heading>
       <Text>standard</Text>

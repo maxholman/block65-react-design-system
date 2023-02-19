@@ -25,7 +25,7 @@ export const LoadersPage: FC = () => {
       <Block>
         <Heading level="3">Loaders</Heading>
 
-        <Grid cols="1">
+        <Grid cols={1}>
           <Panel variant="ghost">
             <Text>
               MMMMM

@@ -47,7 +47,7 @@ export const BadgesPage: FC = () => (
         ))}
       </Grid>
 
-      <Grid cols="3">
+      <Grid cols={3}>
         <Panel variant="subtle">
           <Inline>
             <Heading level="4">Default Badge</Heading>
