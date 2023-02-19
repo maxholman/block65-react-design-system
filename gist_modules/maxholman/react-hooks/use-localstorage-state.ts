@@ -45,6 +45,7 @@ export function useLocalStorage<T extends JsonValue>(
       const item = window.localStorage.getItem(namespace);
       return item ? JSON.parse(item) : resolvedInitialValue.current;
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.warn(err);
       return resolvedInitialValue.current;
     }

@@ -1,5 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import fontMetrics from '@capsizecss/metrics/inter';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { precomputeValues } from '@capsizecss/vanilla-extract';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createTheme, style } from '@vanilla-extract/css';
 import { withUnit } from '../css-helpers.css.js';
 import { fontThemeVars } from '../typography.css.js';

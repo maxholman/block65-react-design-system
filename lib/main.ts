@@ -14,7 +14,6 @@ export * from './links.js';
 export * from './loaders.js';
 export * from './panel.js';
 export * from './typography.js';
-export * from './loaders.js';
 
 export * from './fonts/inter.css.js';
 export * from './fonts/roboto.css.js';

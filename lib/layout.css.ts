@@ -1,7 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  type ComplexStyleRule,
   style,
   styleVariants,
+  type ComplexStyleRule,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 

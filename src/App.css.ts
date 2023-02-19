@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createTheme } from '@vanilla-extract/css';
 import { colorThemeVars } from '../lib/schemes/color.css.js';
 
