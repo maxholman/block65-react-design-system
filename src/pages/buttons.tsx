@@ -129,7 +129,13 @@ export const ButtonsPage: FC = () => (
     <Divider />
     <Block>
       <Heading>Tones</Heading>
-      <Grid cols={4}>
+      <Grid
+        cols={{
+          all: 4,
+          tablet: 2,
+          mobile: 1,
+        }}
+      >
         <Block>
           <Button>standard</Button>
           <Button variant="ghost">standard ghost</Button>
