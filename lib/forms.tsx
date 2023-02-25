@@ -13,7 +13,6 @@ import {
 import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   fieldLabelStyle,
-  fieldLabelTertiaryStyle,
   fieldLabelWrapperStyle,
   formInputCheckboxInput,
   formInputCheckRadioLabel,
@@ -29,7 +28,7 @@ import {
 } from './forms.css.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
-import { Block, type BlockProps, Inline } from './layout.js';
+import { Block, Inline, type BlockProps } from './layout.js';
 import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { Secondary, Strong, Text } from './typography.js';
@@ -118,9 +117,7 @@ export const FormFieldLabel: FC<
           children
         )}
       </Inline>
-      {tertiary && (
-        <Inline className={fieldLabelTertiaryStyle}>{tertiary}</Inline>
-      )}
+      {tertiary && <Inline>{tertiary}</Inline>}
     </Inline>
   );
 };
