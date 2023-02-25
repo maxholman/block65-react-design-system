@@ -15,9 +15,9 @@ import {
   withIconClass,
   type ButtonVariant,
 } from './buttons.css.js';
+import { differentOriginLinkProps } from './component-utils.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import { Inline } from './layout.js';
-import { differentOriginLinkProps } from './links.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { type FontSize, fontSizeVariants } from './typography.css.js';
