@@ -1,28 +1,36 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {
-  style,
-  styleVariants,
-  type ComplexStyleRule,
-} from '@vanilla-extract/css';
+import { styleVariants, type ComplexStyleRule } from '@vanilla-extract/css';
 
-export type Align = 'start' | 'center' | 'end';
-
-export const inlineClass = style({
-  display: 'inline-flex',
-});
+export type Placement = 'start' | 'center' | 'end';
 
 export const alignItemsVariants = styleVariants<
-  Record<Align, ComplexStyleRule>
+  Record<Placement, ComplexStyleRule>
 >({
-  start: { alignItems: 'start' },
+  start: { alignItems: 'flex-start' },
   center: { alignItems: 'center' },
-  end: { alignItems: 'end' },
+  end: { alignItems: 'flex-end' },
 });
 
-export const inlineAlignSelfVariants = styleVariants<
-  Record<Align, ComplexStyleRule>
+export const alignSelfVariants = styleVariants<
+  Record<Placement, ComplexStyleRule>
+>({
+  start: { alignSelf: 'flex-start' },
+  center: { alignSelf: 'center' },
+  end: { alignSelf: 'flex-end' },
+});
+
+export const justifySelfInlineVariants = styleVariants<
+  Record<Placement, ComplexStyleRule>
 >({
   start: { marginInlineEnd: 'auto' },
   center: { marginInline: 'auto' },
   end: { marginInlineStart: 'auto' },
+});
+
+export const justifySelfBlockVariants = styleVariants<
+  Record<Placement, ComplexStyleRule>
+>({
+  start: { marginBlockEnd: 'auto' },
+  center: { marginBlock: 'auto' },
+  end: { marginBlockStart: 'auto' },
 });

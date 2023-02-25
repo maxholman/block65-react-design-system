@@ -1,7 +1,7 @@
 import { forwardRef, type FC, type PropsWithChildren } from 'react';
 import type { Falsy, TextAlign, TextOverflow } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
-import { inlineAlignSelfVariants } from './layout.css.js';
+import type { InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type {
   Merge,
@@ -39,7 +39,7 @@ type CommonTextProps = {
 };
 
 export type TextProps<T extends keyof ReactHTMLAttributesHacked> =
-  PropsWithChildren<Merge<BoxBasedComponentProps<T>, CommonTextProps>>;
+  PropsWithChildren<Merge<InlineProps<T>, CommonTextProps>>;
 
 export const Text = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'p'>(
@@ -48,7 +48,6 @@ export const Text = forwardRef(
       fontSize = 'normal',
       className,
       tone,
-      align,
       secondary,
       ...props
     }: TextProps<T>,
@@ -62,7 +61,6 @@ export const Text = forwardRef(
         textClass,
         fontSize && fontSizeVariants[fontSize],
         tone && toneVariants[tone],
-        align && inlineAlignSelfVariants[align],
         secondary && secondaryClass,
       ]}
       {...props}
@@ -82,7 +80,6 @@ export const Code: FC<BoxBasedComponentProps<'code'>> = ({
 
 export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
   className,
-  align,
   ...props
 }) => (
   <Box component="span" className={[secondaryClass, className]} {...props} />
@@ -106,7 +103,7 @@ function headingProps(level: HeadingLevel): CommonTextProps {
 }
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ level = '2', className, children, ...props }, ref) => {
+  ({ level = '3', className, children, ...props }, ref) => {
     const textProps = headingProps(level);
 
     return (

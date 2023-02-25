@@ -3,7 +3,7 @@ import { Block, Box, Grid } from '../../lib/main.js';
 
 export const MediaQueryPage: FC = () => (
   <>
-    <Box borderWeight={'strong'}>
+    <Box borderWeight="strong">
       <Block
         space="medium"
         margin={{

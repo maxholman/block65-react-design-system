@@ -17,7 +17,7 @@ export const ListPage: FC = () => (
   <Panel variant="ghost">
     <Grid padding="huge">
       <Panel variant="ghost" space="large">
-        <Block align="center" space="huge">
+        <Block alignItems="center" space="huge">
           <Heading level="2">Early Adopter Plan</Heading>
           <Text fontSize="small">
             <Secondary>For those who like to adopt early </Secondary>
@@ -26,7 +26,7 @@ export const ListPage: FC = () => (
         <Block>
           <Text>
             Ex veniam{' '}
-            <Tooltip initialOpen content={'This is more information'}>
+            <Tooltip initialOpen content="This is more information">
               <HelpIcon />
             </Tooltip>{' '}
             veniam cillum aliquip. Irure ex sunt excepteur ea commodo duis
@@ -77,7 +77,7 @@ export const ListPage: FC = () => (
           </List>
         </Block>
 
-        <Block marginBlock="large" align="center">
+        <Block marginBlock="large" alignItems="center">
           <Inline>
             <Heading level="1">$18 USD</Heading>
             <Text fontSize="small">p/m</Text>
@@ -88,9 +88,9 @@ export const ListPage: FC = () => (
       </Panel>
 
       <Panel variant="ghost" space="large">
-        <Block align="center" space="huge">
+        <Block alignItems="center" space="huge">
           <Heading level="2">Custom Plan</Heading>
-          <Text fontSize="small" align="center">
+          <Text fontSize="small">
             <Secondary>Want more?</Secondary>
           </Text>
         </Block>

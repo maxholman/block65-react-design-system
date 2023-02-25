@@ -219,8 +219,6 @@ export const fieldLabelStyle = style({
   alignItems: 'center',
 });
 
-export const fieldLabelTertiaryStyle = style({});
-
 export const inputLabelStyle = style({
   cursor: 'pointer',
 });

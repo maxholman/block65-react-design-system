@@ -11,17 +11,14 @@ export type PanelProps<T extends keyof ReactHTMLAttributesHacked = 'section'> =
   >;
 
 export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
-  component = 'section',
   variant = 'standard',
-  rounded = 'medium',
-  padding = 'medium',
   className,
   ...props
 }: PanelProps<T>) => (
   <Block
-    component={component}
-    rounded={rounded}
-    padding={padding}
+    component="section"
+    rounded="medium"
+    padding="medium"
     className={[className, panelVariants[variant]]}
     {...props}
   />

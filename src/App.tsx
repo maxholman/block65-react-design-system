@@ -11,18 +11,18 @@ import {
 import { useLocalStorageState } from '../gist_modules/maxholman/react-hooks/use-localstorage-state.js';
 import {
   Block,
-  type ColorScheme,
-  type ContrastScheme,
   DesignSystem,
   FormInputRadio,
   FormInputRadioGroup,
   Grid,
   Heading,
   Inline,
+  interFontThemeClassName,
   Panel,
   Text,
   TextLink,
-  interFontThemeClassName,
+  type ColorScheme,
+  type ContrastScheme,
 } from '../lib/main.js';
 import { BadgesPage } from './pages/badges.js';
 import { ButtonsPage } from './pages/buttons.js';
@@ -120,7 +120,7 @@ export const App: FC = () => {
               </Grid>
 
               <Panel space="huge" variant="ghost">
-                <Inline align="center">
+                <Inline alignSelf="center">
                   <Link dest="/">
                     <TextLink>Home</TextLink>
                   </Link>

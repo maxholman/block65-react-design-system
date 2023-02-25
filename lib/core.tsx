@@ -3,10 +3,9 @@ import {
   createElement,
   forwardRef,
   type ForwardedRef,
-  type ReactElement,
   type ReactNode,
 } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { matchViewportVariants } from './component-utils.js';
 import {
   borderWeightVariants,
   roundedVariants,
@@ -17,14 +16,11 @@ import {
   type BorderWeight,
   type Falsy,
   type OrResponsive,
-  type Responsive,
   type Rounded,
   type Space,
   type TextAlign,
   type TextOverflow,
-  type Viewport,
 } from './core.css.js';
-import { alignItemsVariants, type Align } from './layout.css.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import { Tooltip } from './tooltip.js';
 import type {
@@ -32,7 +28,6 @@ import type {
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
-import { typedObjectEntries } from './utils.js';
 
 export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
   Merge<
@@ -41,13 +36,14 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       className?: ClassValue;
       component?: T;
 
-      align?: Align | Falsy;
       margin?: OrResponsive<Space> | Falsy;
       marginBlock?: OrResponsive<Space> | Falsy;
       marginInline?: OrResponsive<Space> | Falsy;
+
       padding?: OrResponsive<Space> | Falsy;
       paddingBlock?: OrResponsive<Space> | Falsy;
       paddingInline?: OrResponsive<Space> | Falsy;
+
       tooltip?: ReactNode;
       textAlign?: TextAlign | Falsy;
       textOverflow?: TextOverflow | Falsy;
@@ -57,21 +53,12 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
     }
   >;
 
-export function matchViewportVariants<T extends string | number>(
-  resp: Responsive<T>,
-  variants: Record<Viewport, Record<T, string>>,
-): ClassValue[] {
-  return typedObjectEntries(resp)
-    .map(([viewport, value]) => value && variants[viewport][value])
-    .filter((c): c is string => !!c);
-}
-
 const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
   {
     children,
     component,
     className,
-    align,
+
     margin,
     marginBlock,
     marginInline,
@@ -87,15 +74,13 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-): ReactElement | null => {
+) => {
   const el = createElement(
     component || 'div',
     {
       ...props,
       className:
         clsx(
-          align && alignItemsVariants[align],
-
           margin &&
             marginBlock !== margin &&
             matchViewportVariants(
