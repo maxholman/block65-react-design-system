@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import type { ReactElement } from 'react';
+import { matchViewportVariants } from './component-utils.js';
 import {
   type Columns,
   viewportGridColumnsVariants,
@@ -7,11 +8,7 @@ import {
   type OrResponsive,
   type Space,
 } from './core.css.js';
-import {
-  Box,
-  matchViewportVariants,
-  type BoxBasedComponentProps,
-} from './core.js';
+import { Box, type BoxBasedComponentProps } from './core.js';
 import { gridClass } from './grid.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 

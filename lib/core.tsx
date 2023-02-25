@@ -6,6 +6,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
+import { matchViewportVariants } from './component-utils.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   borderWeightVariants,
@@ -32,7 +33,6 @@ import type {
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
-import { typedObjectEntries } from './utils.js';
 
 export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
   Merge<
@@ -56,15 +56,6 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
       tone?: Tone | Falsy;
     }
   >;
-
-export function matchViewportVariants<T extends string | number>(
-  resp: Responsive<T>,
-  variants: Record<Viewport, Record<T, string>>,
-): ClassValue[] {
-  return typedObjectEntries(resp)
-    .map(([viewport, value]) => value && variants[viewport][value])
-    .filter((c): c is string => !!c);
-}
 
 const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
   {

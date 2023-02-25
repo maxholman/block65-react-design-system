@@ -10,7 +10,6 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
-import { useStringLikeDetector } from './context.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   fieldLabelStyle,
@@ -29,6 +28,7 @@ import {
   inputLabelStyle,
 } from './forms.css.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
+import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Block, type BlockProps, Inline } from './layout.js';
 import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';

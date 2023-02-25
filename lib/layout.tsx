@@ -4,6 +4,7 @@ import {
   type PropsWithChildren,
   type ReactElement,
 } from 'react';
+import { matchViewportVariants } from './component-utils.js';
 import {
   flexDirectionVariants,
   viewportFlexDirectionVariants,

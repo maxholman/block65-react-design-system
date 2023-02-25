@@ -2,6 +2,8 @@ import { type ClassValue, clsx } from 'clsx';
 import type { FC, PropsWithChildren } from 'react';
 import { type BadgeVariant, badgeVariants } from './badges.css.js';
 import type { BoxBasedComponentProps } from './core.js';
+import { useStringLikeDetector } from './hooks/use-string-like.js';
+import { Inline, type InlineProps } from './layout.js';
 import { type Tone, toneVariants } from './tone.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { Text } from './typography.js';
