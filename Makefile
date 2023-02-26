@@ -4,32 +4,41 @@ SRCS = $(wildcard lib/**)
 .PHONY: all
 all: types build build/tokens.scss
 
-build/tokens.scss: build bin/token.ts
+node_modules: pnpm-lock.yaml
+	mkdir -p $@
+
+pnpm-lock.yaml: package.json
+	pnpm install
+	touch $@ node_modules
+
+.PHONY: deps
+deps:
+	$(MAKE) node_modules
+
+build/tokens.scss: node_modules build bin/token.ts
 	node --loader=ts-node/esm bin/token.ts > build/tokens.scss
 
 build: node_modules vite.config.ts
-	NODE_ENV=production yarn vite build
+	NODE_ENV=production pnpm vite build
 
 .PHONY: types
 types: node_modules
-	yarn tsc --emitDeclarationOnly
+	pnpm tsc --emitDeclarationOnly
 
 .PHONY: types-watch
 types-watch: node_modules
-	yarn tsc --emitDeclarationOnly -w
+	pnpm tsc --emitDeclarationOnly -w
 
 .PHONY: clean
 clean: node_modules
-	yarn tsc -b --clean
+	pnpm tsc -b --clean
 	rm -rf build dist
 
 .PHONY: test
 test: node_modules vite.config.ts
-	yarn vitest run
+	pnpm vitest run
 
-node_modules: package.json yarn.lock
-	yarn install
-	touch yarn.lock node_modules
+
 
 .PHONY: dev
 dev:
@@ -37,4 +46,4 @@ dev:
 
 .PHONY: dev-server
 dev-server: node_modules vite.config.ts
-	yarn vite dev
+	pnpm vite dev
