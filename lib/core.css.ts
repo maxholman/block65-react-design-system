@@ -62,14 +62,30 @@ export const marginVariants = styleVariants(genericVars.space, (space) => [
 
 const viewportSizes: Record<
   Viewport,
-  { min: number } | { min: number; max: number } | { max: number }
+  | Record<never, never>
+  | { min: number }
+  | { min: number; max: number }
+  | { max: number }
 > = {
-  all: { max: Infinity },
+  all: {},
   tablet: { max: 60 },
   mobile: { max: 40 },
   desktop: { min: 60 },
   wide: { min: 80 },
 };
+
+export const viewportRules = typedObjectFromEntries(
+  typedObjectEntries(viewportSizes).map(([viewport, size]) => [
+    viewport,
+    [
+      'screen',
+      'min' in size && `(min-width: ${size.min}rem)`,
+      'max' in size && `(max-width: ${size.max - 1}.999rem)`,
+    ]
+      .filter((r): r is string => !!r)
+      .join(' and '),
+  ]),
+);
 
 function viewportStyleVariants<
   Data extends Record<string | number, unknown>,
@@ -80,7 +96,7 @@ function viewportStyleVariants<
   debugId: string,
 ) {
   return typedObjectFromEntries(
-    typedObjectEntries(viewportSizes).map(([viewport, size]) => [
+    typedObjectEntries(viewportRules).map(([viewport, mqRule]) => [
       viewport,
       styleVariants(
         data,
@@ -91,15 +107,9 @@ function viewportStyleVariants<
             return rule;
           }
 
-          const mqRules = [
-            'screen',
-            'min' in size && `(min-width: ${size.min}rem)`,
-            'max' in size && `(max-width: ${size.max - 1}.999rem)`,
-          ].filter((r): r is string => !!r);
-
           return {
             '@media': {
-              [mqRules.join(' and ')]: rule,
+              [mqRule]: rule,
             },
           };
         },
