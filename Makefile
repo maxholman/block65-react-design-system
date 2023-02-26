@@ -4,12 +4,9 @@ SRCS = $(wildcard lib/**)
 .PHONY: all
 all: types build build/tokens.scss
 
-node_modules: pnpm-lock.yaml
-	mkdir -p $@
-
-pnpm-lock.yaml: package.json
+node_modules: package.json pnpm-lock.yaml
 	pnpm install
-	touch $@ node_modules
+	touch $@
 
 .PHONY: deps
 deps:
@@ -31,8 +28,12 @@ types-watch: node_modules
 
 .PHONY: clean
 clean: node_modules
-	pnpm tsc -b --clean
+	pnpm tsc -b --clean || true
 	rm -rf build dist
+
+.PHONY: clean
+distclean: clean
+	rm -rf node_modules
 
 .PHONY: test
 test: node_modules vite.config.ts
