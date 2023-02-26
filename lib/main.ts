@@ -4,6 +4,8 @@ export * from './core.js';
 export * from './layout.js';
 export * from './grid.js';
 
+export * from './hooks/use-toggle.js';
+
 export * from './badges.js';
 export * from './buttons.js';
 export * from './callout.js';
@@ -14,6 +16,7 @@ export * from './links.js';
 export * from './loaders.js';
 export * from './panel.js';
 export * from './typography.js';
+export * from './modal.js';
 
 export * from './fonts/inter.css.js';
 export * from './fonts/roboto.css.js';

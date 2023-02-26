@@ -36,6 +36,7 @@ import { LoadersPage } from './pages/loaders.js';
 import { MediaQueryPage } from './pages/media-query.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
+import { ModalPage } from './pages/modal.js';
 
 export const App: FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorageState<ColorScheme>(
@@ -160,6 +161,9 @@ export const App: FC = () => {
                   <Link dest="/media-query">
                     <TextLink>Media Query</TextLink>
                   </Link>
+                  <Link dest="/modals">
+                    <TextLink>Modals</TextLink>
+                  </Link>
                 </Inline>
               </Panel>
               <Block>
@@ -205,6 +209,9 @@ export const App: FC = () => {
                   </Route>
                   <Route path="/media-query">
                     <MediaQueryPage />
+                  </Route>
+                  <Route path="/modals">
+                    <ModalPage />
                   </Route>
                   <Route>
                     <Heading>404</Heading>
