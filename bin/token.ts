@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { paramCase } from 'change-case';
+import { paramCase } from 'param-case';
 import { colorThemeVars, contrastSchemeVars, genericVars } from '#vars';
 
 function isPlainObject(obj: unknown): obj is Record<string, unknown> {
