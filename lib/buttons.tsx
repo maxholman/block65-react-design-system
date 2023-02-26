@@ -17,10 +17,10 @@ import {
 } from './buttons.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
-import { Inline } from './layout.js';
+import { Inline, type InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge } from './types.js';
-import { type FontSize, fontSizeVariants } from './typography.css.js';
+import { fontSizeVariants, type FontSize } from './typography.css.js';
 
 export type ButtonCommonProps = {
   variant?: ButtonVariant;
@@ -33,7 +33,7 @@ export type ButtonCommonProps = {
 };
 
 export type ButtonProps = PropsWithChildren<
-  Merge<BoxBasedComponentProps<'button'>, ButtonCommonProps>
+  Merge<InlineProps<'button'>, ButtonCommonProps>
 >;
 
 export type ButtonLinkProps = Merge<
@@ -53,7 +53,7 @@ export type ButtonIconProps = Merge<
 >;
 
 const ButtonInternal: FC<
-  Merge<BoxBasedComponentProps<'button' | 'a'>, ButtonCommonProps>
+  Merge<InlineProps<'button' | 'a'>, ButtonCommonProps>
 > = ({
   component = 'button',
   variant = 'standard',
@@ -83,6 +83,8 @@ const ButtonInternal: FC<
     )}
     space="nano"
     {...props}
+    // if this is an actually button element - default to button so that it
+    // doesnt submit forms by default
     {...(component === 'button' && {
       type: ('type' in props && props.type) || 'button',
     })}
