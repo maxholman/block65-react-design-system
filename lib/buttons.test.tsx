@@ -1,7 +1,7 @@
 // import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { Button } from './main.js';
 
 describe('Button', () => {
