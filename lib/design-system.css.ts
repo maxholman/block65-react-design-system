@@ -54,6 +54,10 @@ export const genericVars = createThemeContract({
     medium: 'space-medium',
     large: 'space-large',
     huge: 'space-huge',
+  boxShadow: {
+    1: 'box-shadow-1',
+    2: 'box-shadow-2',
+    3: 'box-shadow-3',
   },
 });
 
@@ -110,5 +114,11 @@ export const genericThemeClass = createTheme(genericVars, {
     medium: '1rem',
     large: '1.5rem',
     huge: '2rem',
+    massive: '3rem',
+  },
+  boxShadow: {
+    1: '0 0.05rem 0.1rem rgba(0, 0, 0, 0.35)',
+    2: '0 0.5rem 0.1rem rgba(0, 0, 0, 0.35)',
+    3: '0 0.5rem 1rem rgba(0, 0, 0, 0.35)',
   },
 });
