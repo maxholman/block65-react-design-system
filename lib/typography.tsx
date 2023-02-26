@@ -1,7 +1,6 @@
 import { forwardRef, type FC, type PropsWithChildren } from 'react';
 import type { Falsy, TextAlign, TextOverflow } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
-import type { InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type {
   Merge,
@@ -39,7 +38,7 @@ type CommonTextProps = {
 };
 
 export type TextProps<T extends keyof ReactHTMLAttributesHacked> =
-  PropsWithChildren<Merge<InlineProps<T>, CommonTextProps>>;
+  PropsWithChildren<Merge<BoxBasedComponentProps<T>, CommonTextProps>>;
 
 export const Text = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'p'>(
