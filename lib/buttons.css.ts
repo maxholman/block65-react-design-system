@@ -86,7 +86,7 @@ const variants: Record<ButtonVariant, StyleRule> = {
     color: 'inherit',
   },
   ghost: {
-    color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     selectors: {
       '&:hover': {
