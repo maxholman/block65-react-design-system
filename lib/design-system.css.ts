@@ -54,6 +54,8 @@ export const genericVars = createThemeContract({
     medium: 'space-medium',
     large: 'space-large',
     huge: 'space-huge',
+    massive: 'space-massive',
+  },
   boxShadow: {
     1: 'box-shadow-1',
     2: 'box-shadow-2',
