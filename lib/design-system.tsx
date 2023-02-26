@@ -51,6 +51,7 @@ export const DesignSystem: FC<
   return (
     <Context.Provider
       value={{
+        className,
         colorScheme: colorScheme || 'auto',
         contrastScheme: contrastScheme || 'auto',
         ...(stringLikeComponents && { stringLikeComponents }),
