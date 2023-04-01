@@ -16,12 +16,12 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="core_roundedVariants_medium__1rbo53v2 layout_alignItemsVariants_center__17vpgba1 core_flexDirectionVariants_row__1rbo53v4i core_viewport_all_space_nano__1rbo53v4s buttons_buttonVariantClasses_standard__jqajj25 buttons_base__jqajj22 tone_toneVariants_accent__y2da5n2"
+        class="core_roundedVariants_medium__1rbo53v2 layout_alignItemsVariants_center__17vpgba1 core_flexDirectionVariants_row__1rbo53v9h core_viewport_all_space_nano__1rbo53v9s buttons_buttonVariantClasses_standard__jqajj25 buttons_base__jqajj22 tone_toneVariants_accent__y2da5n2"
         type="button"
       >
         <div>
           <span
-            class="core_textOverflowVariants_ellipsis__1rbo53v48 core_textOverflowBase__1rbo53v47"
+            class="core_textOverflowVariants_ellipsis__1rbo53v97 core_textOverflowBase__1rbo53v96"
           >
             Click Me
           </span>
