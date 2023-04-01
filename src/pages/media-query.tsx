@@ -21,6 +21,11 @@ export const MediaQueryPage: FC = () => (
       </Block>
 
       <Grid
+        margin={{
+          all: 'medium',
+          wide: 'huge',
+          mobile: 'small',
+        }}
         cols={{
           mobile: 1,
           tablet: 2,
