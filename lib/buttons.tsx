@@ -47,13 +47,19 @@ export type ButtonLinkProps<T extends keyof ReactHTMLAttributesHacked = 'a'> =
     }
   >;
 
+// Extracted out to its own type because `isValidElement` and `ReactElement`
+// don't have the same default value for props, so we need to specify it in
+// code later. This keeps it clean if/when we remove it in future and avoids
+// a stray `any`
+type ReactElementDefaultPropsType = any;
+
 export type ButtonIconProps<
   T extends keyof ReactHTMLAttributesHacked = 'button',
 > = Merge<
   ButtonInternalProps<T>,
   {
     label: string;
-    icon: ReactElement;
+    icon: ReactElement<ReactElementDefaultPropsType>;
     children?: never;
   }
 >;
@@ -95,7 +101,7 @@ const ButtonInternal: FC<ButtonInternalProps> = ({
   >
     {icon && (
       <Box component="span" className={[iconClass, busy && visiblyHiddenClass]}>
-        {isValidElement(icon) ? icon : icon({})}
+        {isValidElement<ReactElementDefaultPropsType>(icon) ? icon : icon({})}
       </Box>
     )}
     <Box
