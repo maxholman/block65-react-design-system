@@ -11,7 +11,11 @@ import {
   roundedVariants,
   textAlignVariants,
   textOverflowVariants,
+  viewportMarginBlockVariants,
+  viewportMarginInlineVariants,
   viewportMarginVariants,
+  viewportPaddingBlockVariants,
+  viewportPaddingInlineVariants,
   viewportPaddingVariants,
   type BorderWeight,
   type Falsy,
@@ -93,7 +97,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
               typeof marginBlock === 'string'
                 ? { all: marginBlock }
                 : marginBlock,
-              viewportMarginVariants,
+              viewportMarginBlockVariants,
             ),
 
           marginInline &&
@@ -102,7 +106,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
               typeof marginInline === 'string'
                 ? { all: marginInline }
                 : marginInline,
-              viewportMarginVariants,
+              viewportMarginInlineVariants,
             ),
 
           padding &&
@@ -111,13 +115,14 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
               typeof padding === 'string' ? { all: padding } : padding,
               viewportPaddingVariants,
             ),
+
           paddingBlock &&
             paddingBlock !== padding &&
             matchViewportVariants(
               typeof paddingBlock === 'string'
                 ? { all: paddingBlock }
                 : paddingBlock,
-              viewportPaddingVariants,
+              viewportPaddingBlockVariants,
             ),
 
           paddingInline &&
@@ -126,7 +131,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
               typeof paddingInline === 'string'
                 ? { all: paddingInline }
                 : paddingInline,
-              viewportPaddingVariants,
+              viewportPaddingInlineVariants,
             ),
 
           textAlign && textAlignVariants[textAlign],

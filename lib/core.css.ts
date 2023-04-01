@@ -127,12 +127,44 @@ export const viewportMarginVariants = viewportStyleVariants(
   'margin',
 );
 
+export const viewportMarginInlineVariants = viewportStyleVariants(
+  genericVars.space,
+  (space) => ({
+    marginInline: space,
+  }),
+  'marginInline',
+);
+
+export const viewportMarginBlockVariants = viewportStyleVariants(
+  genericVars.space,
+  (space) => ({
+    marginBlock: space,
+  }),
+  'marginBlock',
+);
+
 export const viewportPaddingVariants = viewportStyleVariants(
   genericVars.space,
   (space) => ({
     padding: space,
   }),
   'padding',
+);
+
+export const viewportPaddingInlineVariants = viewportStyleVariants(
+  genericVars.space,
+  (space) => ({
+    paddingInline: space,
+  }),
+  'paddingInline',
+);
+
+export const viewportPaddingBlockVariants = viewportStyleVariants(
+  genericVars.space,
+  (space) => ({
+    padding: space,
+  }),
+  'paddingBlock',
 );
 
 export const viewportFlexDirectionVariants = viewportStyleVariants(
