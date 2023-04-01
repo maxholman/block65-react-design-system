@@ -16,10 +16,10 @@ import {
   type ButtonVariant,
 } from './buttons.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box } from './core.js';
 import { Inline, type InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
-import type { Merge } from './types.js';
+import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { fontSizeVariants, type FontSize } from './typography.css.js';
 
 export type ButtonCommonProps = {
@@ -32,19 +32,25 @@ export type ButtonCommonProps = {
   fontSize?: FontSize;
 };
 
-export type ButtonProps = PropsWithChildren<
-  Merge<InlineProps<'button'>, ButtonCommonProps>
->;
+type ButtonInternalProps<
+  T extends keyof ReactHTMLAttributesHacked = 'button' | 'a',
+> = Merge<InlineProps<T>, ButtonCommonProps>;
 
-export type ButtonLinkProps = Merge<
-  BoxBasedComponentProps<'a'>,
-  ButtonCommonProps & {
-    safe?: boolean;
-  }
->;
+export type ButtonProps<T extends keyof ReactHTMLAttributesHacked = 'button'> =
+  PropsWithChildren<Merge<InlineProps<T>, ButtonCommonProps>>;
 
-export type ButtonIconProps = Merge<
-  ButtonCommonProps,
+export type ButtonLinkProps<T extends keyof ReactHTMLAttributesHacked = 'a'> =
+  Merge<
+    ButtonInternalProps<T>,
+    ButtonCommonProps & {
+      safe?: boolean;
+    }
+  >;
+
+export type ButtonIconProps<
+  T extends keyof ReactHTMLAttributesHacked = 'button',
+> = Merge<
+  ButtonInternalProps<T>,
   {
     label: string;
     icon: ReactElement;
@@ -52,9 +58,7 @@ export type ButtonIconProps = Merge<
   }
 >;
 
-const ButtonInternal: FC<
-  Merge<InlineProps<'button' | 'a'>, ButtonCommonProps>
-> = ({
+const ButtonInternal: FC<ButtonInternalProps> = ({
   component = 'button',
   variant = 'standard',
   tone = 'accent',
