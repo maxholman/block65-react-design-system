@@ -30,14 +30,14 @@ import { CalloutPage } from './pages/callout.js';
 import { CorePage } from './pages/core.js';
 import { FormsPage } from './pages/forms.js';
 import { GridPage } from './pages/grid.js';
+import { IconsPage } from './pages/icons.js';
 import { LayoutPage } from './pages/layout.js';
 import { ListPage } from './pages/list.js';
 import { LoadersPage } from './pages/loaders.js';
 import { MediaQueryPage } from './pages/media-query.js';
+import { ModalPage } from './pages/modal.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
-import { ModalPage } from './pages/modal.js';
-import { IconsPage } from './pages/icons.js';
 
 export const App: FC = () => {
   const [colorScheme, setColorScheme] = useLocalStorageState<ColorScheme>(
