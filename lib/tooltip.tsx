@@ -81,3 +81,5 @@ export const Tooltip: FC<
     </>
   );
 };
+
+export default Tooltip;

@@ -1,7 +1,9 @@
 import { clsx, type ClassValue } from 'clsx';
 import {
+  Suspense,
   createElement,
   forwardRef,
+  lazy,
   type ForwardedRef,
   type ReactNode,
 } from 'react';
@@ -26,12 +28,13 @@ import {
   type TextOverflow,
 } from './core.css.js';
 import { toneVariants, type Tone } from './tone.css.js';
-import { Tooltip } from './tooltip.js';
 import type {
   Merge,
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
+
+const LazyTooltip = lazy(() => import('./tooltip.js'));
 
 export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
   Merge<
@@ -153,7 +156,11 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked>(
   );
 
   if (tooltip) {
-    return <Tooltip content={tooltip}>{el}</Tooltip>;
+    return (
+      <Suspense fallback={el}>
+        <LazyTooltip content={tooltip}>{el}</LazyTooltip>
+      </Suspense>
+    );
   }
 
   return el;
