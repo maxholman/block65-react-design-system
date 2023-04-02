@@ -283,9 +283,19 @@ export const defaultBgFgClass = style({
   color: hsl(colorThemeVars.tones.accent.h, 0, contrastSchemeVars.level5.l),
 });
 
-export const lightClass = style(lightStyleRule);
+export const lightClass = style([
+  lightStyleRule,
+  {
+    colorScheme: 'light',
+  },
+]);
 
-export const darkClass = style(darkStyleRule);
+export const darkClass = style([
+  darkStyleRule,
+  {
+    colorScheme: 'dark',
+  },
+]);
 
 export const darkMoreContrastClass = style(darkStyleMoreContrastRule);
 
