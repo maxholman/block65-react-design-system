@@ -10,6 +10,7 @@ import type { FormattedMessage } from 'react-intl';
 import { Button } from './buttons.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
+import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { CloseIcon } from './icons.js';
 import { Block, Inline } from './layout.js';
 import {
@@ -24,9 +25,7 @@ import { Heading } from './typography.js';
 type ModalCommonProps = {
   onClose: (cancelled?: boolean) => void;
   onKeyDown?: (e: KeyboardEvent) => void; // WARN: this is not a React event
-  heading?:
-    | string
-    | ReactElement<ComponentPropsWithoutRef<typeof FormattedMessage>>;
+  heading?: ReactNode;
 };
 
 type ModalProps = Omit<HTMLAttributes<HTMLDivElement>, keyof ModalCommonProps> &
@@ -40,6 +39,8 @@ const ModalInner: FC<ModalProps> = ({
   heading,
   ...props
 }) => {
+  const isStringLike = useStringLikeDetector();
+
   useEffect(() => {
     const escapeHandler = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && onClose) {
@@ -62,7 +63,13 @@ const ModalInner: FC<ModalProps> = ({
       <div className={modalClass} {...props}>
         <Panel className={modalInnerClass} space="medium" padding="large">
           <Inline>
-            <Heading level="3">{heading}</Heading>
+            {isStringLike(heading) ? (
+              <Heading level="3" textOverflow="ellipsis">
+                {heading}
+              </Heading>
+            ) : (
+              heading
+            )}
             <Button
               justifySelf="end"
               variant="transparent"
