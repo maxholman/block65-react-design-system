@@ -71,6 +71,7 @@ const ButtonInternal: FC<ButtonInternalProps> = ({
   tone = 'accent',
   rounded = 'medium',
   textOverflow = 'ellipsis',
+  justifyContent = 'center',
   compact,
   busy,
   className,
@@ -83,6 +84,7 @@ const ButtonInternal: FC<ButtonInternalProps> = ({
   <Inline
     rounded={rounded}
     component={component}
+    justifyContent={justifyContent}
     className={clsx(
       className,
       buttonVariantClasses[variant],

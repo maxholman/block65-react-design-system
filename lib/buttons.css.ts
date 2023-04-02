@@ -43,7 +43,6 @@ const base = style([
     textOverflow: 'ellipsis',
     flexWrap: 'nowrap',
     whiteSpace: 'nowrap',
-    justifyContent: 'center',
     borderWidth: genericVars.border.weight.normal,
     borderColor: 'transparent',
     padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
