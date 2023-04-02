@@ -1,12 +1,5 @@
-import {
-  useEffect,
-  type ComponentPropsWithoutRef,
-  type FC,
-  type HTMLAttributes,
-  type ReactElement,
-} from 'react';
+import { useEffect, type FC, type HTMLAttributes, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import type { FormattedMessage } from 'react-intl';
 import { Button } from './buttons.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
@@ -38,6 +31,7 @@ export type ModalProps = ModalInnerProps & {
   show: boolean;
 };
 
+const ModalInner: FC<ModalInnerProps> = ({
   children,
   className,
   onClose,
@@ -45,6 +39,7 @@ export type ModalProps = ModalInnerProps & {
   heading,
   ...props
 }) => {
+  const ds = useDesignSystem();
   const isStringLike = useStringLikeDetector();
 
   useEffect(() => {
@@ -62,12 +57,10 @@ export type ModalProps = ModalInnerProps & {
     };
   }, [onClose, onKeyDown]);
 
-  const ds = useDesignSystem();
-
   return createPortal(
     <DesignSystem {...ds}>
-      <div className={modalClass} {...props}>
-        <Panel className={modalInnerClass} space="medium" padding="large">
+      <Block alignItems="center" className={modalClass} {...props}>
+        <Panel className={modalInnerClass} padding="7">
           <Inline>
             {isStringLike(heading) ? (
               <Heading level="3" textOverflow="ellipsis">
@@ -87,7 +80,7 @@ export type ModalProps = ModalInnerProps & {
           </Inline>
           <Block>{children}</Block>
         </Panel>
-      </div>
+      </Block>
     </DesignSystem>,
     document.body,
   );

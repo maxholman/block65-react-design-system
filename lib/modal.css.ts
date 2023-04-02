@@ -29,8 +29,6 @@ export const modalClass = style({
   width: '100vw',
   height: '100vh',
   zIndex: 100,
-  justifyContent: 'center',
-  alignItems: 'flex-start',
   backdropFilter: 'blur(1rem)',
 });
 
