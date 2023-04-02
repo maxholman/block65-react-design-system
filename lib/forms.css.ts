@@ -16,12 +16,15 @@ import { hsl } from './utils.js';
 const borderWidthVar = createVar();
 const paddingVar = createVar();
 
+// would use a CSS var, but the elements are not in the same tree
+const defaultInputPadding = genericVars.space[4];
+
 export const formInputClassName = style([
-  fontSizeVariantVars.normal,
+  fontSizeVariantVars[1],
   {
     vars: {
       [borderWidthVar]: genericVars.border.weight.hairline,
-      [paddingVar]: '0.65rem',
+      [paddingVar]: defaultInputPadding,
     },
     padding: paddingVar,
     backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
@@ -31,6 +34,9 @@ export const formInputClassName = style([
     selectors: {
       '&[type="time"]': {
         display: 'initial',
+        // this is a little hack for chrome
+        paddingBlock: calc.subtract(paddingVar, '0.1em'),
+        alignItems: 'center',
       },
       '&[readonly]': {
         paddingInline: 0,
@@ -49,7 +55,6 @@ export const formInputClassName = style([
 export const formInputNotCheckRadio = style([
   focusVisibleClassName,
   {
-    minHeight: calc.add('2.2rem', paddingVar),
     selectors: {
       '&:focus': {
         // draw the outline over the border so that we can increase
@@ -200,8 +205,8 @@ export const formInputSelectWrapperSingle = style([
         gridArea: formInputSelectGridAreaName,
         content: JSON.stringify(''),
         justifySelf: 'flex-end',
-        width: genericVars.space.medium,
-        marginRight: genericVars.space.medium,
+        width: genericVars.space[4],
+        marginRight: defaultInputPadding,
         aspectRatio: '2/1',
         backgroundColor: 'currentColor',
         clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',

@@ -18,7 +18,7 @@ export const Panel = <T extends keyof ReactHTMLAttributesHacked = 'section'>({
   <Block
     component="section"
     rounded="medium"
-    padding="medium"
+    padding="5"
     className={[className, panelVariants[variant]]}
     {...props}
   />

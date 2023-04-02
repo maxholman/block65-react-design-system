@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Callout, Grid, Panel } from '../../lib/main.js';
 
 export const CalloutPage: FC = () => (
-  <Panel variant="ghost" space="huge">
+  <Panel variant="ghost">
     <Callout tone="critical">Critical</Callout>
     <Callout tone="critical">
       Critical. Critical. Critical. Critical. Critical. Critical. Critical.

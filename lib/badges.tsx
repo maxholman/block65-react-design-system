@@ -36,7 +36,7 @@ export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
       {isStringLike(children) ? (
         <Text
           component="span"
-          fontSize="tiny"
+          fontSize="0"
           textOverflow="ellipsis"
           textAlign="center"
         >

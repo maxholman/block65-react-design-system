@@ -5,11 +5,11 @@ export const MediaQueryPage: FC = () => (
   <>
     <Box borderWeight="strong">
       <Block
-        space="medium"
+        space="3"
         margin={{
-          all: 'medium',
-          wide: 'huge',
-          mobile: 'small',
+          all: '3',
+          wide: '4',
+          mobile: '2',
         }}
         flexDirection={{
           all: 'row',
@@ -22,9 +22,9 @@ export const MediaQueryPage: FC = () => (
 
       <Grid
         margin={{
-          all: 'medium',
-          wide: 'huge',
-          mobile: 'small',
+          all: '3',
+          wide: '5',
+          mobile: '2',
         }}
         cols={{
           mobile: 1,

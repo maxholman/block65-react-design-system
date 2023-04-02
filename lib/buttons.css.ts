@@ -34,8 +34,8 @@ const basePadding = createVar();
 const base = style([
   {
     vars: {
-      [basePadding]: genericVars.space.small,
-      [currentCapHeight]: genericVars.text.capHeights.normal,
+      [basePadding]: genericVars.space[4],
+      [currentCapHeight]: genericVars.text.capHeights[1],
     },
     cursor: 'pointer',
     borderStyle: 'solid',
@@ -57,7 +57,7 @@ const base = style([
       },
       '&:focus': {
         outlineStyle: 'solid',
-        outlineOffset: genericVars.space.nano,
+        outlineOffset: genericVars.space[0],
         outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
       },
     },
@@ -66,10 +66,10 @@ const base = style([
 ]);
 
 export const compactButton = style([
-  fontSizeVariants.small,
+  fontSizeVariants[0],
   {
     vars: {
-      [basePadding]: genericVars.space.tiny,
+      [basePadding]: genericVars.space[3],
     },
   },
 ]);
@@ -155,11 +155,11 @@ export const busyButtonClass = style({
 });
 
 export const inlineBleedClass = style({
-  marginBlock: calc(genericVars.space.small).negate().toString(),
+  marginBlock: calc(genericVars.space[0]).negate().toString(),
 });
 
 export const withIconClass = style({
-  gap: genericVars.space.nano,
+  gap: genericVars.space['00'],
   display: 'inline-flex',
   flexDirection: 'row',
   alignItems: 'center',

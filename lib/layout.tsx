@@ -62,7 +62,7 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   {
     component = 'div',
     flexDirection = 'column',
-    space = 'medium',
+    space = '5',
     alignSelf,
     alignItems,
     justifySelf,

@@ -14,7 +14,7 @@ export const calloutClass = style({
   color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
   gridTemplateColumns: 'auto 1fr',
   rowGap: 0,
-  columnGap: genericVars.space.tiny,
+  columnGap: genericVars.space[3],
   overflow: 'hidden',
   alignItems: 'start',
 });

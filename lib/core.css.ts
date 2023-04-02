@@ -46,13 +46,19 @@ export const textAlignVariants = styleVariants({
 } satisfies Record<TextAlign, StyleRule>);
 
 export type Space =
-  | 'huge'
-  | 'large'
-  | 'medium'
-  | 'small'
-  | 'tiny'
-  | 'nano'
-  | 'none';
+  | '00'
+  | '00'
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10';
 
 export const marginVariants = styleVariants(genericVars.space, (space) => [
   {

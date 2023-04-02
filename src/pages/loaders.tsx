@@ -21,7 +21,7 @@ export const LoadersPage: FC = () => {
   // }, []);
 
   return (
-    <Panel variant="ghost" space="huge">
+    <Panel variant="ghost">
       <Block>
         <Heading level="3">Loaders</Heading>
 
@@ -70,17 +70,17 @@ export const LoadersPage: FC = () => {
             <Spinner /> {visible && <Text>Stuffs!</Text>}
           </Panel>
           <Panel variant="ghost">
-            <Inline space="tiny">
+            <Inline space="1">
               <Spinner /> {visible && <Text>Stuffs!</Text>}
             </Inline>
           </Panel>
           <Panel variant="ghost">
-            <Inline space="tiny">
+            <Inline space="1">
               <Text>Stuffs!</Text> <Spinner /> {visible && <Text>Stuffs!</Text>}
             </Inline>
           </Panel>
           <Panel variant="ghost">
-            <Inline space="tiny">
+            <Inline space="1">
               <Text>Stuffs!</Text> {visible && <Text>Stuffs!</Text>} <Spinner />
             </Inline>
           </Panel>

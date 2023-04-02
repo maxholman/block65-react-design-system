@@ -126,7 +126,7 @@ export const FormsPage: FC = () => (
         <FormInputCheckbox disabled checked label="Dead last" />
         <FormInputCheckbox label={<h1>Heading Label</h1>} />
       </FormInputCheckboxGroup>
-      <Block space="medium">
+      <Block>
         <Button>Save</Button>
         <Button variant="subtle">Subtle</Button>
         <Button variant="ghost">Ghost</Button>

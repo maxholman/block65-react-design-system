@@ -9,11 +9,11 @@ const modalViewportRules: Record<Viewport, StyleRule> = {
     height: '100vh',
   },
   tablet: {
-    margin: genericVars.space.huge,
+    margin: genericVars.space[7],
     width: '60vw',
   },
   desktop: {
-    margin: genericVars.space.massive,
+    margin: genericVars.space[10],
     width: '35rem',
   },
   all: {},

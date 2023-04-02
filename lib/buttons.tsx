@@ -91,7 +91,7 @@ const ButtonInternal: FC<ButtonInternalProps> = ({
       fontSize && fontSizeVariants[fontSize],
       inline && inlineBleedClass,
     )}
-    space="nano"
+    space="2"
     {...props}
     // if this is an actually button element - default to button so that it
     // doesnt submit forms by default

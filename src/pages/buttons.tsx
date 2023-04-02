@@ -16,7 +16,7 @@ import {
 import { CrescentMoonIcon, SunIcon } from '../icons.js';
 
 export const ButtonsPage: FC = () => (
-  <Panel variant="ghost" space="huge">
+  <Panel variant="ghost" space="9">
     <Block>
       <Heading level="2">Buttons</Heading>
       <Inline>
@@ -95,7 +95,7 @@ export const ButtonsPage: FC = () => (
     <Block>
       <Heading level="2">Compact Buttons</Heading>
       <Text>So cute</Text>
-      <Inline space="small">
+      <Inline>
         <Button compact>Button</Button>
         <Button compact variant="ghost">
           Ghost
@@ -197,7 +197,7 @@ export const ButtonsPage: FC = () => (
             'info',
           ] as Tone[]
         ).map((tone) => (
-          <Block>
+          <Block key={tone}>
             <Button tone={tone}>{tone}</Button>
 
             <Button variant="ghost" tone={tone}>
@@ -213,7 +213,7 @@ export const ButtonsPage: FC = () => (
         ))}
       </Grid>
 
-      <Divider marginBlock="huge" />
+      <Divider marginBlock="3" />
 
       <Heading>Hello</Heading>
       <Text>Buttons in context</Text>
@@ -237,7 +237,7 @@ export const ButtonsPage: FC = () => (
           Eject
         </ButtonLink>
       </Inline>
-      <Divider marginBlock="huge" />
+      <Divider marginBlock="3" />
 
       <Heading>Hello</Heading>
       <Text>Buttons in context</Text>
@@ -255,7 +255,7 @@ export const ButtonsPage: FC = () => (
 
       <Heading>Hello</Heading>
       <Text>Buttons in context</Text>
-      <Inline space="nano">
+      <Inline space="2">
         <Text>Like this</Text>
         <ButtonLink
           href="https://eject.invalid"
@@ -269,12 +269,12 @@ export const ButtonsPage: FC = () => (
 
       <Heading>Font Size</Heading>
       <Text>Buttons in context</Text>
-      <Inline space="nano">
-        <Button fontSize="large" tone="critical" icon={<CrescentMoonIcon />}>
+      <Inline space="1">
+        <Button fontSize="5" tone="critical" icon={<CrescentMoonIcon />}>
           Eject
         </Button>
         <ButtonLink
-          fontSize="large"
+          fontSize="5"
           href="https://eject.invalid"
           tone="critical"
           icon={<CrescentMoonIcon />}

@@ -44,7 +44,7 @@ export const Text = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'p'>(
     {
       component = 'p',
-      fontSize = 'normal',
+      fontSize = '1',
       className,
       tone,
       secondary,
@@ -87,17 +87,19 @@ export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
 function headingProps(level: HeadingLevel): CommonTextProps {
   switch (level) {
     case '1':
-      return { fontSize: 'huge' };
+      return { fontSize: '5' };
     case '2':
-      return { fontSize: 'large' };
+      return { fontSize: '4' };
     case '3':
-      return { fontSize: 'medium' };
+      return { fontSize: '3' };
     case '4':
-      return { fontSize: 'normal' };
+      return { fontSize: '2' };
     case '5':
-      return { fontSize: 'normal', secondary: true };
+      return { fontSize: '1', secondary: true };
+    case '6':
+      return { fontSize: '00', secondary: true };
     default:
-      return { fontSize: 'normal' };
+      return { fontSize: '1' };
   }
 }
 

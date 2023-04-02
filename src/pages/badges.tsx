@@ -33,7 +33,7 @@ export const BadgesPage: FC = () => (
       <Heading level="4">Default Badge</Heading>
       <Badge>Active</Badge>
     </Inline>
-    <Panel variant="ghost" space="huge">
+    <Panel variant="ghost">
       <Block>
         <Heading level="3">Badges</Heading>
 

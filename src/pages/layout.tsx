@@ -10,7 +10,7 @@ import {
 } from '../../lib/main.js';
 
 export const LayoutPage: FC = () => (
-  <Panel variant="ghost" space="huge">
+  <Panel variant="ghost">
     <Block>
       <Block>
         <Badge>Block</Badge>

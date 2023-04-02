@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { createVar, style, styleVariants } from '@vanilla-extract/css';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { calc } from '@vanilla-extract/css-utils';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
@@ -9,18 +7,13 @@ import { hsl } from './utils.js';
 
 export type BadgeVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 
-const basePadding = createVar();
-
 const base = style({
-  vars: {
-    [basePadding]: genericVars.space.nano,
-  },
   cursor: 'default',
   fontWeight: genericVars.text.weight.medium,
   textTransform: 'uppercase',
   borderWidth: genericVars.border.weight.hairline,
   borderStyle: 'solid',
-  padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
+  padding: genericVars.space[2],
   letterSpacing: 'initial',
 });
 

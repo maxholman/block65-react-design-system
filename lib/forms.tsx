@@ -10,6 +10,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
+import type { Space } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   fieldLabelStyle,
@@ -36,6 +37,8 @@ import {
   cloneElementIfValidElementOfType,
   isValidElementOfType,
 } from './utils.js';
+
+const defaultFormInputSpace: Space = '5';
 
 type CommonFormInputProps = {
   type?: Exclude<
@@ -78,7 +81,7 @@ function formInputProps(
 export const Form = forwardRef<
   HTMLFormElement,
   PropsWithChildren<BlockProps<'form'>>
->(({ space = 'large', children, ...props }, ref) => (
+>(({ space = '6', children, ...props }, ref) => (
   <Block space={space} component="form" {...props} ref={ref}>
     {Children.map(children, (child) => {
       // if it's a block element and no space is defined, use the space this
@@ -104,7 +107,7 @@ export const FormFieldLabel: FC<
     <Inline className={fieldLabelWrapperStyle}>
       <Inline
         {...props}
-        space="tiny"
+        space="2"
         component="label"
         className={[fieldLabelStyle, className]}
       >
@@ -142,7 +145,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     const inputTypeProps = formInputProps(props);
 
     return (
-      <Block className={className} space="small">
+      <Block className={className} space={defaultFormInputSpace}>
         {label && (
           <FormFieldLabel
             htmlFor={id}
@@ -165,7 +168,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         />
         {message && (
           <Inline>
-            <Text fontSize="small" tone={messageTone}>
+            <Text fontSize="0" tone={messageTone}>
               {messageTone ? message : <Secondary>{message}</Secondary>}
             </Text>
           </Inline>
@@ -202,7 +205,7 @@ export const FormSelect: FC<FormSelectProps> = ({
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Block className={className} space="small">
+    <Block className={className} space={defaultFormInputSpace}>
       <FormFieldLabel
         htmlFor={id}
         secondary={secondaryLabel}
@@ -228,7 +231,7 @@ export const FormSelect: FC<FormSelectProps> = ({
       </div>
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="small">
+          <Text secondary fontSize="0">
             {message}
           </Text>
         ) : (
@@ -255,7 +258,7 @@ const FormInputCheckRadio: FC<
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Block space="small" className={formInputCheckRadioWrapper}>
+    <Block space="4" className={formInputCheckRadioWrapper}>
       <Box
         component="input"
         rounded="small"
@@ -281,11 +284,7 @@ const FormInputCheckRadio: FC<
         ))}
       {message &&
         (isStringLike(message) ? (
-          <Text
-            secondary
-            fontSize="small"
-            className={formInputCheckRadioMessage}
-          >
+          <Text secondary fontSize="0" className={formInputCheckRadioMessage}>
             {message}
           </Text>
         ) : (
@@ -334,7 +333,7 @@ export const FormInputRadioGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="small">
+          <Text secondary fontSize="0">
             {message}
           </Text>
         ) : (
@@ -383,7 +382,7 @@ export const FormInputCheckboxGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="small">
+          <Text secondary fontSize="0">
             {message}
           </Text>
         ) : (
@@ -416,7 +415,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
     const id = useIdWithDefault(props.id);
 
     return (
-      <Block className={className} space="small">
+      <Block className={className} space={defaultFormInputSpace}>
         {label && (
           <FormFieldLabel
             htmlFor={id}
@@ -438,7 +437,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         />
         {message && (
           <Inline>
-            <Text fontSize="small" tone={messageTone}>
+            <Text fontSize="0" tone={messageTone}>
               {messageTone ? message : <Secondary>{message}</Secondary>}
             </Text>
           </Inline>

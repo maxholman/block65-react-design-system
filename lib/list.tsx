@@ -25,7 +25,7 @@ export type ListProps<T extends keyof ReactHTMLAttributesHacked = 'ul'> = Merge<
 export const List = <T extends keyof ReactHTMLAttributesHacked>({
   variant,
   component,
-  space = 'medium',
+  space = '5',
   className,
   cols = '1',
   children,

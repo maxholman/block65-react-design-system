@@ -36,12 +36,12 @@ export const PanelsPage: FC = () => (
         <PanelGrid />
       </Panel>
     </Grid>
-    <Panel variant="subtle" padding="huge">
+    <Panel variant="subtle" padding="5">
       <Inline>
         Padding override <Code>huge</Code>
       </Inline>
     </Panel>
-    <Panel variant="subtle" padding="none">
+    <Panel variant="subtle" padding="0">
       <Inline>
         Padding override <Code>none</Code>
       </Inline>

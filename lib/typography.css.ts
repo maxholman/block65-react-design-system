@@ -10,19 +10,13 @@ import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export type HeadingLevel = '1' | '2' | '3' | '4' | '5';
+export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
 
 export const currentCapHeight = createVar();
 export const lineGap = createVar();
 export const lineHeightRatio = createVar();
 
-export type FontSize =
-  | 'tiny'
-  | 'small'
-  | 'normal'
-  | 'medium'
-  | 'large'
-  | 'huge';
+export type FontSize = '00' | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 
 const fontThemeVarsShape = {
   capHeight: 'cap-height',
@@ -35,12 +29,14 @@ const fontThemeVarsShape = {
 };
 
 export const fontThemeVars = createThemeContract({
-  huge: fontThemeVarsShape,
-  large: fontThemeVarsShape,
-  medium: fontThemeVarsShape,
-  normal: fontThemeVarsShape,
-  small: fontThemeVarsShape,
-  tiny: fontThemeVarsShape,
+  '00': fontThemeVarsShape,
+  '0': fontThemeVarsShape,
+  '1': fontThemeVarsShape,
+  '2': fontThemeVarsShape,
+  '3': fontThemeVarsShape,
+  '4': fontThemeVarsShape,
+  '5': fontThemeVarsShape,
+  '6': fontThemeVarsShape,
 });
 
 export const textClass = style({
@@ -77,28 +73,33 @@ const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
   '1': [
     {
       fontWeight: genericVars.text.weight.bold,
-      letterSpacing: '-0.05rem',
+      letterSpacing: '-0.05em',
     },
   ],
   '2': [
     {
       fontWeight: genericVars.text.weight.bold,
-      letterSpacing: '-0.05rem',
+      letterSpacing: '-0.05em',
     },
   ],
   '3': [
     {
       fontWeight: genericVars.text.weight.bold,
-      letterSpacing: '-0.05rem',
+      letterSpacing: '-0.05em',
     },
   ],
   '4': [
     {
       fontWeight: genericVars.text.weight.semiBold,
-      letterSpacing: '-0.05rem',
+      letterSpacing: '-0.05em',
     },
   ],
   '5': [
+    {
+      fontWeight: genericVars.text.weight.medium,
+    },
+  ],
+  '6': [
     {
       fontWeight: genericVars.text.weight.medium,
     },
@@ -115,9 +116,10 @@ export const levelVariantClasses = styleVariants(levelVariants, (rules) => [
 ]);
 
 export const levelSizeVariantClasses: Record<HeadingLevel, string> = {
-  '1': fontSizeVariants.huge,
-  '2': fontSizeVariants.large,
-  '3': fontSizeVariants.medium,
-  '4': fontSizeVariants.normal,
-  '5': fontSizeVariants.normal,
+  '1': fontSizeVariants['5'],
+  '2': fontSizeVariants['4'],
+  '3': fontSizeVariants['3'],
+  '4': fontSizeVariants['2'],
+  '5': fontSizeVariants['1'],
+  '6': fontSizeVariants['0'],
 };

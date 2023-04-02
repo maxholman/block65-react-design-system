@@ -22,7 +22,7 @@ export type GridProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
 
 export const Grid = <T extends keyof ReactHTMLAttributesHacked>({
   component,
-  space = 'medium',
+  space = '5',
   className,
   cols = 3,
   ...props

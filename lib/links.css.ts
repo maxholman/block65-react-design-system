@@ -24,7 +24,7 @@ const linkClassName = style([
       '&:focus-visible': {
         borderRadius: focusRadiusVar,
         outlineColor: 'currentColor',
-        outlineOffset: genericVars.space.nano,
+        outlineOffset: genericVars.space[1],
       },
     },
   },

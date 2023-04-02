@@ -10,11 +10,11 @@ export const IconsPage: FC = () => {
     <>
       <Box borderWeight="strong">
         <Block
-          space="medium"
+          space="3"
           margin={{
-            all: 'medium',
-            wide: 'huge',
-            mobile: 'small',
+            all: '3',
+            wide: '5',
+            mobile: '2',
           }}
           flexDirection={{
             all: 'row',

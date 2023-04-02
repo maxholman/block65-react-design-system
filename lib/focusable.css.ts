@@ -27,7 +27,7 @@ export const focusVisibleClassName = style([
       '&:focus-visible': {
         outlineStyle: 'solid',
         outlineWidth: focusWidthVar,
-        outlineOffset: genericVars.space.nano,
+        outlineOffset: genericVars.space['00'],
         outlineColor: focusColorVar,
       },
     },

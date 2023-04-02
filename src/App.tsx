@@ -62,7 +62,7 @@ export const App: FC = () => {
       >
         <Router>
           <Block style={{ minHeight: '100vh' }}>
-            <Block padding="huge">
+            <Block padding="9">
               <Grid
                 cols={{
                   all: 2,
@@ -71,7 +71,7 @@ export const App: FC = () => {
               >
                 <Inline>
                   <FormInputRadioGroup name="color-scheme">
-                    <Heading level="3" textOverflow="ellipsis">
+                    <Heading level="4" textOverflow="ellipsis">
                       Color Scheme
                     </Heading>
                     <FormInputRadio
@@ -121,7 +121,7 @@ export const App: FC = () => {
                 </Inline>
               </Grid>
 
-              <Panel space="huge" variant="ghost">
+              <Panel variant="ghost">
                 <Inline alignSelf="center">
                   <Link dest="/">
                     <TextLink>Home</TextLink>
@@ -173,7 +173,7 @@ export const App: FC = () => {
               <Block>
                 <Routes>
                   <Route path="/">
-                    <Panel space="huge" variant="ghost">
+                    <Panel variant="ghost">
                       <Heading>Enjoy!</Heading>
                       <Text>Choose something amazing from the nav above</Text>
                     </Panel>
