@@ -48,3 +48,11 @@ export const justifySelfBlockVariants = styleVariants<
   center: { marginBlock: 'auto' },
   end: { marginBlockStart: 'auto' },
 });
+
+export const justifyContentVariants = styleVariants<
+  Record<Placement, ComplexStyleRule>
+>({
+  start: { justifyContent: 'flex-start' },
+  center: { justifyContent: 'center' },
+  end: { justifyContent: 'flex-end' },
+});
