@@ -28,10 +28,16 @@ type ModalCommonProps = {
   heading?: ReactNode;
 };
 
-type ModalProps = Omit<HTMLAttributes<HTMLDivElement>, keyof ModalCommonProps> &
+type ModalInnerProps = Omit<
+  HTMLAttributes<HTMLDivElement>,
+  keyof ModalCommonProps
+> &
   ModalCommonProps;
 
-const ModalInner: FC<ModalProps> = ({
+export type ModalProps = ModalInnerProps & {
+  show: boolean;
+};
+
   children,
   className,
   onClose,
@@ -87,10 +93,7 @@ const ModalInner: FC<ModalProps> = ({
   );
 };
 
-export const Modal: FC<
-  ModalProps & {
-    show: boolean;
-  }
-> = ({ show, ...props }) => (show ? <ModalInner {...props} /> : null);
+export const Modal: FC<ModalProps> = ({ show, ...props }) =>
+  show ? <ModalInner {...props} /> : null;
 
 export const ModalAlwaysRender = ModalInner;
