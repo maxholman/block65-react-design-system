@@ -6,6 +6,7 @@ import {
   calloutTextIconWrapperClass,
 } from './callout.css.js';
 import type { BoxBasedComponentProps } from './core.js';
+import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { InfoIcon } from './icons.js';
 import { Inline } from './layout.js';
 import { type Tone, toneVariants } from './tone.css.js';
@@ -21,25 +22,29 @@ export const Callout: FC<
       align?: never;
     }
   >
-> = ({ children, className, rounded = 'medium', tone = 'info', ...props }) => (
-  <Inline
-    component="div"
-    rounded={rounded}
-    className={[
-      calloutClass,
-      toneVariants[tone],
-      fontSizeVariants.normal,
-      className,
-    ]}
-    role="alert"
-    aria-live="polite"
-    {...props}
-  >
-    <span className={calloutTextIconWrapperClass}>
-      <InfoIcon className={calloutTextIconClass} />
-    </span>
-    <span className={calloutTextClass}>
-      <Text>{children}</Text>
-    </span>
-  </Inline>
-);
+> = ({ children, className, rounded = 'medium', tone = 'info', ...props }) => {
+  const isStringLike = useStringLikeDetector();
+
+  return (
+    <Inline
+      component="div"
+      rounded={rounded}
+      className={[
+        calloutClass,
+        toneVariants[tone],
+        fontSizeVariants[1],
+        className,
+      ]}
+      role="alert"
+      aria-live="polite"
+      {...props}
+    >
+      <div className={calloutTextIconWrapperClass}>
+        <InfoIcon className={calloutTextIconClass} />
+      </div>
+      <div className={calloutTextClass}>
+        {isStringLike(children) ? <Text>{children}</Text> : children}
+      </div>
+    </Inline>
+  );
+};
