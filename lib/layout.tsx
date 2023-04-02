@@ -15,6 +15,7 @@ import {
   alignSelfVariants,
   flexGrowClass,
   flexShrinkClass,
+  justifyContentVariants,
   justifySelfBlockVariants,
   justifySelfInlineVariants,
   type Placement,
@@ -35,7 +36,7 @@ type LayoutProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
     alignItems?: Placement | Falsy;
 
     justifySelf?: Placement | Falsy;
-    justifyItems?: Placement | Falsy;
+    justifyContent?: Placement | Falsy;
 
     flexGrow?: OrResponsive<boolean> | Falsy;
     flexShrink?: OrResponsive<boolean> | Falsy;
@@ -71,7 +72,7 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     alignSelf,
     alignItems,
     justifySelf,
-    justifyItems,
+    justifyContent,
     className,
     flexGrow,
     flexShrink,
@@ -95,6 +96,8 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
         flexShrink === false && flexShrinkClass.false,
 
         alignItems && alignItemsVariants[alignItems],
+
+        justifyContent && justifyContentVariants[justifyContent],
 
         isRow && justifySelf && justifySelfInlineVariants[justifySelf],
         !isRow && justifySelf && justifySelfBlockVariants[justifySelf],
