@@ -15,7 +15,7 @@ deps:
 build/tokens.scss: node_modules build bin/token.ts
 	node --loader=ts-node/esm bin/token.ts > build/tokens.scss
 
-build: node_modules vite.config.ts
+build: $(SRCS) node_modules vite.config.ts
 	NODE_ENV=production pnpm vite build
 
 .PHONY: types
