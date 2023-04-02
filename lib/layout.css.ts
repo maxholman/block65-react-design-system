@@ -3,6 +3,20 @@ import { styleVariants, type ComplexStyleRule } from '@vanilla-extract/css';
 
 export type Placement = 'start' | 'center' | 'end';
 
+export const flexShrinkClass = styleVariants<
+  Record<`${boolean}`, ComplexStyleRule>
+>({
+  true: { flexShrink: 1 },
+  false: { flexShrink: 0 },
+});
+
+export const flexGrowClass = styleVariants<
+  Record<`${boolean}`, ComplexStyleRule>
+>({
+  true: { flexGrow: 1 },
+  false: { flexGrow: 0 },
+});
+
 export const alignItemsVariants = styleVariants<
   Record<Placement, ComplexStyleRule>
 >({

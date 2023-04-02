@@ -13,6 +13,8 @@ import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   alignItemsVariants,
   alignSelfVariants,
+  flexGrowClass,
+  flexShrinkClass,
   justifySelfBlockVariants,
   justifySelfInlineVariants,
   type Placement,
@@ -34,6 +36,9 @@ type LayoutProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
 
     justifySelf?: Placement | Falsy;
     justifyItems?: Placement | Falsy;
+
+    flexGrow?: OrResponsive<boolean> | Falsy;
+    flexShrink?: OrResponsive<boolean> | Falsy;
   }>
 >;
 
@@ -68,6 +73,8 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     justifySelf,
     justifyItems,
     className,
+    flexGrow,
+    flexShrink,
     ...props
   }: LayoutProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -80,6 +87,12 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
       ref={ref}
       className={[
         alignSelf && alignSelfVariants[alignSelf],
+
+        flexGrow === true && flexGrowClass.true,
+        flexGrow === false && flexGrowClass.false,
+
+        flexShrink === true && flexShrinkClass.true,
+        flexShrink === false && flexShrinkClass.false,
 
         alignItems && alignItemsVariants[alignItems],
 
