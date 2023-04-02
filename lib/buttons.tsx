@@ -51,6 +51,7 @@ export type ButtonLinkProps<T extends keyof ReactHTMLAttributesHacked = 'a'> =
 // don't have the same default value for props, so we need to specify it in
 // code later. This keeps it clean if/when we remove it in future and avoids
 // a stray `any`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ReactElementDefaultPropsType = any;
 
 export type ButtonIconProps<

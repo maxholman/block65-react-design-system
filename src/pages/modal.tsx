@@ -7,8 +7,8 @@ import {
   FormInput,
   Inline,
   Panel,
+  Modal,
 } from '../../lib/main.js';
-import { Modal } from '../../lib/modal.js';
 
 export const ModalPage: FC = () => {
   const [show, toggleModal] = useModal();
