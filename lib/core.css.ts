@@ -79,13 +79,13 @@ const viewportSizes: Record<
   | { max: number }
 > = {
   all: {},
-  tablet: { max: 60 },
   mobile: { max: 40 },
+  tablet: { max: 60 },
   desktop: { min: 60 },
   wide: { min: 80 },
 };
 
-export const viewportRules = typedObjectFromEntries(
+export const precomputedViewportRules = typedObjectFromEntries(
   typedObjectEntries(viewportSizes).map(([viewport, size]) => [
     viewport,
     [
@@ -107,7 +107,7 @@ function viewportStyleVariants<
   debugId: string,
 ) {
   return typedObjectFromEntries(
-    typedObjectEntries(viewportRules).map(([viewport, mqRule]) => [
+    typedObjectEntries(precomputedViewportRules).map(([viewport, mqRule]) => [
       viewport,
       styleVariants(
         data,
