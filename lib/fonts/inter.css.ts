@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import fontMetrics from '@capsizecss/metrics/inter';
+import interFontMetrics from '@capsizecss/metrics/inter';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { precomputeValues } from '@capsizecss/vanilla-extract';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -14,17 +14,17 @@ const interFontTheme = createTheme(fontThemeVars, {
     values: precomputeValues({
       capHeight: 29.1,
       leading: 29.1 * 1.5,
-      fontMetrics,
+      fontMetrics: interFontMetrics,
     }),
   },
 
   // aim for 2rem - 32px
   '5': {
-    capHeight: withUnit(23.3),
+    capHeight: withUnit(23.272727272),
     values: precomputeValues({
-      capHeight: 23.3,
-      leading: 23.3 * 1.5,
-      fontMetrics,
+      capHeight: 23.272727272,
+      leading: Math.round(23.3 * 1.6),
+      fontMetrics: interFontMetrics,
     }),
   },
 
@@ -34,7 +34,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     values: precomputeValues({
       capHeight: 17.5,
       leading: 17.5 * 1.6,
-      fontMetrics,
+      fontMetrics: interFontMetrics,
     }),
   },
 
@@ -44,7 +44,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     values: precomputeValues({
       capHeight: 14.6,
       leading: 14.6 * 1.5,
-      fontMetrics,
+      fontMetrics: interFontMetrics,
     }),
   },
 
@@ -54,7 +54,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     values: precomputeValues({
       capHeight: 12.8,
       leading: 12.8 * 1.6,
-      fontMetrics,
+      fontMetrics: interFontMetrics,
     }),
   },
 
@@ -64,7 +64,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     values: precomputeValues({
       capHeight: 11.636363,
       leading: 11.636363 * 1.6,
-      fontMetrics,
+      fontMetrics: interFontMetrics,
     }),
   },
 
@@ -74,7 +74,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     values: precomputeValues({
       capHeight: 8.727272,
       leading: 8.727272 * 1.75,
-      fontMetrics,
+      fontMetrics: interFontMetrics,
     }),
   },
 
@@ -84,7 +84,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     values: precomputeValues({
       capHeight: 5.818181,
       leading: 5.818181 * 1.75,
-      fontMetrics,
+      fontMetrics: interFontMetrics,
     }),
   },
 });
