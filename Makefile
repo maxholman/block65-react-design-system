@@ -48,3 +48,9 @@ dev:
 .PHONY: dev-server
 dev-server: node_modules vite.config.ts
 	pnpm vite dev
+
+
+.PHONY: pretty
+pretty: node_modules
+	pnpm eslint --fix .
+	pnpm prettier --write .
