@@ -61,64 +61,60 @@ export const App: FC = () => {
         ]}
       >
         <Router>
-          <Block style={{ minHeight: '100vh' }}>
-            <Block padding="9">
+          <Block style={{ minHeight: '100vh' }} flexGrow>
+            <Block padding="5">
               <Grid
                 cols={{
                   all: 2,
                   mobile: 1,
                 }}
               >
-                <Inline>
-                  <FormInputRadioGroup name="color-scheme">
-                    <Heading level="4" textOverflow="ellipsis">
-                      Color Scheme
-                    </Heading>
-                    <FormInputRadio
-                      // inline
-                      label="auto"
-                      checked={!colorScheme || colorScheme === 'auto'}
-                      onChange={() => setColorScheme('auto')}
-                    />
-                    <FormInputRadio
-                      // inline
-                      label="force light mode"
-                      checked={colorScheme === 'light'}
-                      onChange={() => setColorScheme('light')}
-                    />
-                    <FormInputRadio
-                      // inline
-                      label="force dark mode"
-                      checked={colorScheme === 'dark'}
-                      onChange={() => setColorScheme('dark')}
-                    />
-                  </FormInputRadioGroup>
-                </Inline>
-                <Inline>
-                  <FormInputRadioGroup name="contrast-scheme">
-                    <Heading level="3" textOverflow="ellipsis">
-                      Contrast Scheme
-                    </Heading>
-                    <FormInputRadio
-                      // inline
-                      label="auto"
-                      checked={!contrastScheme || contrastScheme === 'auto'}
-                      onChange={() => setContrastScheme('auto')}
-                    />
-                    <FormInputRadio
-                      // inline
-                      label="force less contrast"
-                      checked={contrastScheme === 'less'}
-                      onChange={() => setContrastScheme('less')}
-                    />
-                    <FormInputRadio
-                      // inline
-                      label="force more contrast"
-                      checked={contrastScheme === 'more'}
-                      onChange={() => setContrastScheme('more')}
-                    />
-                  </FormInputRadioGroup>
-                </Inline>
+                <FormInputRadioGroup name="color-scheme">
+                  <Heading level="4" textOverflow="ellipsis">
+                    Color Scheme
+                  </Heading>
+                  <FormInputRadio
+                    // inline
+                    label="auto"
+                    checked={!colorScheme || colorScheme === 'auto'}
+                    onChange={() => setColorScheme('auto')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force light mode"
+                    checked={colorScheme === 'light'}
+                    onChange={() => setColorScheme('light')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force dark mode"
+                    checked={colorScheme === 'dark'}
+                    onChange={() => setColorScheme('dark')}
+                  />
+                </FormInputRadioGroup>
+                <FormInputRadioGroup name="contrast-scheme">
+                  <Heading level="3" textOverflow="ellipsis">
+                    Contrast Scheme
+                  </Heading>
+                  <FormInputRadio
+                    // inline
+                    label="auto"
+                    checked={!contrastScheme || contrastScheme === 'auto'}
+                    onChange={() => setContrastScheme('auto')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force less contrast"
+                    checked={contrastScheme === 'less'}
+                    onChange={() => setContrastScheme('less')}
+                  />
+                  <FormInputRadio
+                    // inline
+                    label="force more contrast"
+                    checked={contrastScheme === 'more'}
+                    onChange={() => setContrastScheme('more')}
+                  />
+                </FormInputRadioGroup>
               </Grid>
 
               <Panel variant="ghost">

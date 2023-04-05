@@ -15,9 +15,9 @@ import { Tooltip } from '../../lib/tooltip.js';
 
 export const ListPage: FC = () => (
   <Panel variant="ghost">
-    <Grid padding="7">
-      <Panel variant="ghost" space="7">
-        <Block alignItems="center" space="9">
+    <Grid>
+      <Panel variant="ghost">
+        <Block alignItems="center" space="2">
           <Heading level="2">Early Adopter Plan</Heading>
           <Text fontSize="0">
             <Secondary>For those who like to adopt early </Secondary>
@@ -87,8 +87,8 @@ export const ListPage: FC = () => (
         <Button>Upgrade Now</Button>
       </Panel>
 
-      <Panel variant="ghost" space="7">
-        <Block alignItems="center" space="9">
+      <Panel variant="ghost">
+        <Block alignItems="center" space="2">
           <Heading level="2">Custom Plan</Heading>
           <Text fontSize="0">
             <Secondary>Want more?</Secondary>

@@ -5,7 +5,6 @@ export const MediaQueryPage: FC = () => (
   <>
     <Box borderWeight="strong">
       <Block
-        space="3"
         margin={{
           all: '3',
           wide: '4',

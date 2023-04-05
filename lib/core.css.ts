@@ -58,7 +58,12 @@ export type Space =
   | '7'
   | '8'
   | '9'
-  | '10';
+  | '10'
+  | '11'
+  | '12'
+  | '13'
+  | '14'
+  | '15';
 
 export const marginVariants = styleVariants(genericVars.space, (space) => [
   {

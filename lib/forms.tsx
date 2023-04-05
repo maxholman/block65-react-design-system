@@ -38,7 +38,7 @@ import {
   isValidElementOfType,
 } from './utils.js';
 
-const defaultFormInputSpace: Space = '5';
+const defaultFormInputSpace: Space = '3';
 
 type CommonFormInputProps = {
   type?: Exclude<
@@ -81,7 +81,7 @@ function formInputProps(
 export const Form = forwardRef<
   HTMLFormElement,
   PropsWithChildren<BlockProps<'form'>>
->(({ space = '6', children, ...props }, ref) => (
+>(({ space = '5', children, ...props }, ref) => (
   <Block space={space} component="form" {...props} ref={ref}>
     {Children.map(children, (child) => {
       // if it's a block element and no space is defined, use the space this
@@ -258,7 +258,7 @@ const FormInputCheckRadio: FC<
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Block space="4" className={formInputCheckRadioWrapper}>
+    <Block space="3" className={formInputCheckRadioWrapper}>
       <Box
         component="input"
         rounded="small"
