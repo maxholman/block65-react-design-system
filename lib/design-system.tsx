@@ -1,4 +1,9 @@
-import type { FC, JSXElementConstructor, PropsWithChildren } from 'react';
+import type {
+  FC,
+  JSXElementConstructor,
+  PropsWithChildren,
+  ReactElement,
+} from 'react';
 import { Context } from './context.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import { genericThemeClass } from './design-system.css.js';
@@ -17,28 +22,31 @@ import {
   mediaPrefersColorSchemeClass,
   mediaPrefersContrastSchemeClass,
 } from './schemes/color.css.js';
-import type { Merge } from './types.js';
+import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
-export const DesignSystem: FC<
-  Merge<
-    BoxBasedComponentProps<'div'>,
-    PropsWithChildren<{
-      contrastScheme?: ContrastScheme;
-      colorScheme?: ColorScheme;
-      integrationMode?: boolean;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      stringLikeComponents?: JSXElementConstructor<any>[];
-    }>
-  >
-> = ({
+type DesignSystemProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
+  BoxBasedComponentProps<T>,
+  PropsWithChildren<{
+    contrastScheme?: ContrastScheme;
+    colorScheme?: ColorScheme;
+    integrationMode?: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    stringLikeComponents?: JSXElementConstructor<any>[];
+  }>
+>;
+
+export const DesignSystem = <
+  T extends Extract<keyof ReactHTMLAttributesHacked, 'div' | 'dialog'>,
+>({
   children,
   className,
   colorScheme,
   contrastScheme,
   integrationMode,
   stringLikeComponents,
+  component = 'div',
   ...props
-}) => {
+}: DesignSystemProps<T>): ReactElement | null => {
   // for readability and minification
   const autoColorScheme = !colorScheme || colorScheme === 'auto';
   const darkColorScheme = colorScheme === 'dark';
@@ -58,8 +66,7 @@ export const DesignSystem: FC<
       }}
     >
       <Box
-        {...props}
-        component="div"
+        component={component}
         className={[
           genericThemeClass,
 
@@ -94,6 +101,7 @@ export const DesignSystem: FC<
 
           className,
         ]}
+        {...props}
       >
         {children}
       </Box>
