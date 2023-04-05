@@ -11,5 +11,3 @@ export function useToggle(initialState = false) {
   }, []);
   return [value, toggle] as const;
 }
-
-export const useModal = useToggle;
