@@ -17,6 +17,9 @@ export * from './loaders.js';
 export * from './panel.js';
 export * from './typography.js';
 
+export * from './dropdown-menu-lazy.js';
+export * from './dropdown-menu-item.js';
+
 export * from './modal.js';
 export * from './modal-hooks.js';
 
