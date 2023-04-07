@@ -13,7 +13,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: withUnit(29.1),
     values: precomputeValues({
       capHeight: 29.1,
-      leading: 29.1 * 1.5,
+      leading: 29.1 * 1.4,
       fontMetrics: interFontMetrics,
     }),
   },
@@ -23,7 +23,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: withUnit(23.272727272),
     values: precomputeValues({
       capHeight: 23.272727272,
-      leading: Math.round(23.3 * 1.6),
+      leading: Math.round(23.272727272 * 1.4),
       fontMetrics: interFontMetrics,
     }),
   },
@@ -33,7 +33,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: withUnit(17.5),
     values: precomputeValues({
       capHeight: 17.5,
-      leading: 17.5 * 1.6,
+      leading: 17.5 * 1.4,
       fontMetrics: interFontMetrics,
     }),
   },
@@ -43,7 +43,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: withUnit(14.6),
     values: precomputeValues({
       capHeight: 14.6,
-      leading: 14.6 * 1.5,
+      leading: 14.6 * 1.4,
       fontMetrics: interFontMetrics,
     }),
   },
@@ -53,7 +53,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: withUnit(12.8),
     values: precomputeValues({
       capHeight: 12.8,
-      leading: 12.8 * 1.6,
+      leading: 12.8 * 1.5,
       fontMetrics: interFontMetrics,
     }),
   },
@@ -63,7 +63,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: withUnit(11.636363),
     values: precomputeValues({
       capHeight: 11.636363,
-      leading: 11.636363 * 1.6,
+      leading: 11.636363 * 1.5,
       fontMetrics: interFontMetrics,
     }),
   },
@@ -73,7 +73,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: '8.727272',
     values: precomputeValues({
       capHeight: 8.727272,
-      leading: 8.727272 * 1.75,
+      leading: 8.727272 * 1.55,
       fontMetrics: interFontMetrics,
     }),
   },
@@ -83,7 +83,7 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: '5.818181',
     values: precomputeValues({
       capHeight: 5.818181,
-      leading: 5.818181 * 1.75,
+      leading: 5.818181 * 1.7,
       fontMetrics: interFontMetrics,
     }),
   },
@@ -93,5 +93,6 @@ export const interFontThemeClassName = style([
   interFontTheme,
   {
     fontFamily: 'Inter, sans-serif',
+    letterSpacing: '-0.011em',
   },
 ]);
