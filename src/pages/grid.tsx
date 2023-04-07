@@ -35,12 +35,7 @@ export const GridPage: FC = () => (
         </Heading>
         <Text>{lorem.generateParagraphs(1)}</Text>
       </Panel>
-      <Panel variant="neutral">
-        <Heading level="2" textOverflow="ellipsis">
-          Neutral
-        </Heading>
-        <Text>{lorem.generateParagraphs(1)}</Text>
-      </Panel>
+
       <Panel variant="transparent">
         <Heading level="2" textOverflow="ellipsis">
           Transparent

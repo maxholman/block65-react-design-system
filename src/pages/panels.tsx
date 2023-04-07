@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Code, Grid, Heading, Inline, Panel, Text } from '../../lib/main.js';
 
 const PanelGrid = () => (
-  <Grid cols={2}>
+  <Grid cols={{ mobile: 1, all: 2 }}>
     <Panel variant="standard">
       <Heading>standard</Heading>
       <Text>standard</Text>
@@ -15,10 +15,6 @@ const PanelGrid = () => (
       <Heading>subtle</Heading>
       <Text>subtle</Text>
     </Panel>
-    <Panel variant="neutral">
-      <Heading>neutral</Heading>
-      <Text>neutral</Text>
-    </Panel>
     <Panel variant="transparent">
       <Heading>transparent</Heading>
       <Text>transparent</Text>
@@ -28,7 +24,7 @@ const PanelGrid = () => (
 
 export const PanelsPage: FC = () => (
   <Panel variant="ghost">
-    <Grid>
+    <Grid cols={{ mobile: 1, all: 2 }}>
       <Panel variant="subtle">
         <PanelGrid />
       </Panel>
