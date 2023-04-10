@@ -11,14 +11,14 @@ import { resetClass } from './reset.css.js';
 import {
   type ColorScheme,
   type ContrastScheme,
-  darkClass,
-  darkLessContrastClass,
-  darkMoreContrastClass,
+  forcedDarkClass,
+  forcedDarkLessContrastClass,
+  forcedDarkMoreContrastClass,
   defaultBgFgClass,
   defaultColorThemeClass,
-  lightClass,
-  lightLessContrastClass,
-  lightMoreContrastClass,
+  forcedLightClass,
+  forcedLightLessContrastClass,
+  forcedLightMoreContrastClass,
   mediaPrefersColorSchemeClass,
   mediaPrefersContrastSchemeClass,
 } from './schemes/color.css.js';
@@ -86,18 +86,18 @@ export const DesignSystem = <
           autoContrast && mediaPrefersContrastSchemeClass,
 
           // forced dark
-          darkColorScheme && autoContrast && darkClass,
+          darkColorScheme && autoContrast && forcedDarkClass,
 
           // dark + forced contrast
-          darkColorScheme && moreContrast && darkMoreContrastClass,
-          darkColorScheme && lessContrast && darkLessContrastClass,
+          darkColorScheme && moreContrast && forcedDarkMoreContrastClass,
+          darkColorScheme && lessContrast && forcedDarkLessContrastClass,
 
           // forced light
-          lightColorScheme && autoContrast && lightClass,
+          lightColorScheme && autoContrast && forcedLightClass,
 
           // forced light + forced contrast
-          lightColorScheme && moreContrast && lightMoreContrastClass,
-          lightColorScheme && lessContrast && lightLessContrastClass,
+          lightColorScheme && moreContrast && forcedLightMoreContrastClass,
+          lightColorScheme && lessContrast && forcedLightLessContrastClass,
 
           className,
         ]}

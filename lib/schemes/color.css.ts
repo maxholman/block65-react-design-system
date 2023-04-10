@@ -177,6 +177,8 @@ const darkStyleLessContrastRule: ComplexStyleRule = {
 };
 
 const lightStyleLessContrastRule: ComplexStyleRule = {
+  colorScheme: 'dark',
+
   vars: assignVars(contrastSchemeVars, {
     level0: {
       l: '90%',
@@ -274,6 +276,8 @@ export const mediaPrefersContrastSchemeClass = style({
   },
 });
 
+// WARN: any styles here will apply to anything that use the design system.
+// This is not always the app root - it could be modals, dialogs and portals
 export const defaultBgFgClass = style({
   backgroundColor: hsl(
     colorThemeVars.tones.accent.h,
@@ -283,24 +287,44 @@ export const defaultBgFgClass = style({
   color: hsl(colorThemeVars.tones.accent.h, 0, contrastSchemeVars.level5.l),
 });
 
-export const lightClass = style([
+export const forcedLightClass = style([
   lightStyleRule,
   {
     colorScheme: 'light',
   },
 ]);
 
-export const darkClass = style([
+export const forcedDarkClass = style([
   darkStyleRule,
   {
     colorScheme: 'dark',
   },
 ]);
 
-export const darkMoreContrastClass = style(darkStyleMoreContrastRule);
+export const forcedDarkMoreContrastClass = style([
+  darkStyleMoreContrastRule,
+  {
+    colorScheme: 'dark',
+  },
+]);
 
-export const darkLessContrastClass = style(darkStyleLessContrastRule);
+export const forcedDarkLessContrastClass = style([
+  darkStyleLessContrastRule,
+  {
+    colorScheme: 'dark',
+  },
+]);
 
-export const lightMoreContrastClass = style(lightStyleMoreContrastRule);
+export const forcedLightMoreContrastClass = style([
+  lightStyleMoreContrastRule,
+  {
+    colorScheme: 'light',
+  },
+]);
 
-export const lightLessContrastClass = style(lightStyleLessContrastRule);
+export const forcedLightLessContrastClass = style([
+  lightStyleLessContrastRule,
+  {
+    colorScheme: 'light',
+  },
+]);
