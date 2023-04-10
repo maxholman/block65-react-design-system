@@ -280,7 +280,7 @@ const FormInputCheckRadio: FC<
             {label}
           </Text>
         ) : (
-          <div className={formInputCheckRadioLabel}>{message}</div>
+          <Box className={formInputCheckRadioLabel}>{label}</Box>
         ))}
       {message &&
         (isStringLike(message) ? (
@@ -288,7 +288,7 @@ const FormInputCheckRadio: FC<
             {message}
           </Text>
         ) : (
-          message
+          <Box className={formInputCheckRadioLabel}>{message}</Box>
         ))}
     </Block>
   );
