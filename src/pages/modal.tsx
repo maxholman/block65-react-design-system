@@ -1,43 +1,35 @@
-import { useState, type FC } from 'react';
-import { useToggle } from '../../lib/hooks/use-toggle.js';
+import { type FC } from 'react';
 import {
   Button,
   Callout,
+  Dialog,
   Form,
   FormInput,
   Inline,
-  Panel,
   Modal,
+  Panel,
   useDialog,
-  Dialog,
+  useModal,
 } from '../../lib/main.js';
 
 export const ModalPage: FC = () => {
-  const [toggleOpen, toggle] = useToggle(false);
-
-  const [dialogValue, setDialogValue] = useState<string | undefined>(undefined);
-  const dialog = useDialog(setDialogValue);
+  const [modal] = useModal();
+  const [dialog] = useDialog();
 
   return (
     <>
       <Panel variant="ghost">
         <Inline>
-          <Button onClick={() => toggle()}>toggle</Button>
+          <Button onClick={() => modal.showModal()}>modal</Button>
         </Inline>
 
         <Inline>
-          <Button onClick={() => dialog.showModal()}>
-            dialog.showModal (dialogValue= {JSON.stringify(dialogValue)})
-          </Button>
+          <Button onClick={() => dialog.showModal()}>dialog</Button>
         </Inline>
 
-        {toggleOpen && (
-          <Modal
-            open={toggleOpen}
-            close={() => toggle(false)}
-            heading="Hi, I'm a Modal!"
-          >
-            <Callout tone="info">You can press ESC to close</Callout>
+        {modal.open && (
+          <Modal {...modal} heading="Hi, I'm a Modal!">
+            <Callout tone="promo">You can press ESC to close</Callout>
             <Form>
               <FormInput autoFocus label="Name" />
             </Form>

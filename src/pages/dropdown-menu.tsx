@@ -1,95 +1,39 @@
-import { Link } from '@block65/mrr';
-import type { FC } from 'react';
-import {
-  Heading,
-  Inline,
-  Menu,
-  MenuItem,
-  Panel,
-  TextLink,
-} from '../../lib/main.js';
+import { useRef, useState, type FC, useEffect } from 'react';
+import { Block, Heading, Panel } from '../../lib/main.js';
 
-export const DropdownMenuPage: FC = () => (
-  <Panel variant="ghost">
-    <Heading level="1">Best dropdown eva</Heading>
-    <Inline>
-      <Inline>
-        <Menu label="Edit">
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-          {/* <Menu label="Copy as">
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-          <Menu label="Image">
-            <MenuItem>
-              <Link dest="/modals">
-                <TextLink>neeps (modals)</TextLink>
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link dest="/modals">
-                <TextLink>neeps (modals)</TextLink>
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link dest="/modals">
-                <TextLink>neeps (modals)</TextLink>
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link dest="/modals">
-                <TextLink>neeps (modals)</TextLink>
-              </Link>
-            </MenuItem>
-          </Menu>
-          <MenuItem children="Audio" />
-        </Menu>
-        <Menu label="Share">
-          <MenuItem children="Mail" />
-          <MenuItem children="Instagram" />
-        </Menu> */}
-        </Menu>
-      </Inline>
-      <Inline justifySelf="end">
-        <Menu label="Edit">
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link dest="/modals">
-              <TextLink>neeps (modals)</TextLink>
-            </Link>
-          </MenuItem>
-        </Menu>
-      </Inline>
-    </Inline>
-  </Panel>
-);
+export const DropdownMenuPage: FC = () => {
+  const ref = useRef<HTMLIFrameElement | null>(null);
+  const [height, setHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const el = ref.current?.contentWindow;
+
+    const fn = () => {
+      if (el) {
+        setHeight(el.document.body.scrollHeight);
+      }
+    };
+
+    el?.addEventListener('load', fn);
+    el?.addEventListener('resize', fn);
+
+    return () => {
+      el?.removeEventListener('load', fn);
+      el?.removeEventListener('resize', fn);
+    };
+  }, []);
+
+  return (
+    <Panel variant="ghost" flexGrow>
+      <Heading level="1">Best dropdown eva</Heading>
+      <Block
+        component="iframe"
+        seamless
+        frameBorder=""
+        src="/dropdown-menu-iframe"
+        ref={ref}
+        {...{ ...(height && { height: `${height}px` }) }}
+      />
+    </Panel>
+  );
+};
