@@ -42,11 +42,6 @@ export const genericVars = createThemeContract({
     large: 'radius-large',
     maximum: 'radius-tight',
   },
-  shadow: {
-    shallow: 'shadow-shallow',
-    medium: 'shadow-medium',
-    deep: 'shadow-deep',
-  },
   space: {
     '000': 'space-000',
     '00': 'space-00',
@@ -67,10 +62,19 @@ export const genericVars = createThemeContract({
     '14': 'space-14',
     '15': 'space-15',
   },
+  shadowStrength: {
+    '1': 'shadow-strength-1',
+  },
+  shadowColor: {
+    '1': 'shadow-color-1',
+  },
   boxShadow: {
     '1': 'box-shadow-1',
     '2': 'box-shadow-2',
     '3': 'box-shadow-3',
+    '4': 'box-shadow-4',
+    '5': 'box-shadow-5',
+    '6': 'box-shadow-6',
   },
 });
 
@@ -118,11 +122,7 @@ export const genericThemeClass = createTheme(genericVars, {
     large: '0.5em',
     maximum: '50%',
   },
-  shadow: {
-    shallow: '0.05rem',
-    medium: '0.05rem',
-    deep: '0.05rem',
-  },
+
   space: {
     '000': '-.5rem',
     '00': '-.25rem',
@@ -143,9 +143,52 @@ export const genericThemeClass = createTheme(genericVars, {
     '14': '10rem',
     '15': '15rem',
   },
-  boxShadow: {
-    '1': '0 0.05rem 0.1rem rgba(0, 0, 0, 0.35)',
-    '2': '0 0.5rem 0.1rem rgba(0, 0, 0, 0.35)',
-    '3': '0 0.5rem 1rem rgba(0, 0, 0, 0.35)',
+  shadowStrength: {
+    '1': '1%',
   },
+  shadowColor: {
+    '1': '220 3% 15%',
+  },
+  boxShadow: {
+    /**
+     *   --shadow-1: 0 1px 2px -1px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 9%));
+  --shadow-2:
+    0 3px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+    0 7px 14px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%));
+  --shadow-3:
+    0 -1px 3px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+    0 1px 2px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+    0 2px 5px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+    0 4px 12px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+    0 12px 15px -5px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+  --shadow-4:
+    0 -2px 5px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+    0 1px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+    0 2px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+    0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+    0 9px 9px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+    0 16px 16px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%));
+  --shadow-5:
+    0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+    0 2px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+    0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+    0 10px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+    0 20px 20px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+    0 40px 40px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+  --shadow-6:
+    0 -1px 2px 0 hsl(var(--shadow-color) / calc(var(--shadow-strength) + 2%)),
+    0 3px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+    0 7px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+    0 12px 10px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+    0 22px 18px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+    0 41px 33px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 6%)),
+    0 100px 80px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 7%));
+     */
+    '1': `0 1px 2px -1px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 9%))`,
+    '2': `0 3px 5px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 3%)), 0 7px 14px -5px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 5%))`,
+    '3': `0 -1px 3px 0 hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 2%)), 0 1px 2px -5px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 2%)), 0 2px 5px -5px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 4%)), 0 4px 12px -5px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 5%)), 0 12px 15px -5px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 7%))`,
+    '4': `0 -2px 5px 0 hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 2%)), 0 1px 1px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 3%)), 0 2px 2px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 3%)), 0 5px 5px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 4%)), 0 9px 9px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 5%)), 0 16px 16px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 6%))`,
+    '5': `0 -1px 2px 0 hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 2%)), 0 2px 1px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 3%)), 0 5px 5px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 3%)), 0 10px 10px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 4%)), 0 20px 20px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 5%)), 0 40px 40px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 7%))`,
+    '6': `0 -1px 2px 0 hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 2%)), 0 3px 2px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 3%)), 0 7px 5px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 3%)), 0 12px 10px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 4%)), 0 22px 18px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 5%)), 0 41px 33px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 6%)), 0 100px 80px -2px hsl(${genericVars.shadowColor[1]} / calc(${genericVars.shadowStrength[1]} + 7%))`,
+  } satisfies Record<`${number}`, string>,
 });
