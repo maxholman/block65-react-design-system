@@ -21,48 +21,40 @@ import {
   iconClass,
   modalClass,
   commonDimensionsClass,
-  commonPanelClass,
+  modalPanelClass,
   titleClass,
 } from './modal.css.js';
 import { Panel } from './panel.js';
 import type { Merge } from './types.js';
 import { Heading } from './typography.js';
 
-type CommonProps = PropsWithChildren<{
-  className?: string;
-  close?: () => void;
+type InnerProps<T extends string = ''> = PropsWithChildren<{
+  close: (returnValue: T | '') => void;
   heading?: ReactNode | Falsy;
+  dismissable?: true | Falsy;
 }>;
 
-export type ModalProps = Merge<
-  BoxBasedComponentProps<'div'>,
-  {
-    close: () => void;
-    onKeyDown?: (e: KeyboardEvent) => void; // WARN: this is not a React event
-    open?: boolean | Falsy;
-  } & CommonProps
->;
-
-export type DialogProps<T extends string> = Merge<
-  BoxBasedComponentProps<'dialog'> & {
+export type DialogProps<
+  T extends string,
+  C extends 'dialog' | 'div' = 'dialog',
+> = Merge<
+  BoxBasedComponentProps<C>,
+  InnerProps<T> & {
     show: () => void;
     showModal: () => void;
-    close: (returnValue?: T) => void;
-  },
-  CommonProps
+  }
 >;
 
-const ModalInner: FC<CommonProps> = ({
+const ModalInner: FC<InnerProps> = ({
   children,
-  className,
+  dismissable = true,
   close,
   heading,
-  ...props
-}: CommonProps) => {
+}) => {
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Panel className={commonPanelClass} {...props}>
+    <Panel className={modalPanelClass}>
       <Inline className={titleClass}>
         {isStringLike(heading) ? (
           <Heading level="3" textOverflow="ellipsis">
@@ -71,75 +63,99 @@ const ModalInner: FC<CommonProps> = ({
         ) : (
           heading
         )}
-        <Inline component="form" method="dialog" justifySelf="end">
-          <Button
-            variant="transparent"
-            onClick={() => close && close()}
-            type="submit"
-            className={buttonClass}
-            value="close"
-            autoFocus={false}
-          >
-            <CloseIcon className={iconClass} />
-          </Button>
-        </Inline>
+        {dismissable && (
+          <Inline component="form" method="dialog" justifySelf="end">
+            <Button
+              variant="transparent"
+              onClick={() => close && close('')}
+              type="submit"
+              className={buttonClass}
+              value="close"
+              autoFocus={false}
+            >
+              <CloseIcon className={iconClass} />
+            </Button>
+          </Inline>
+        )}
       </Inline>
       <Block>{children}</Block>
     </Panel>
   );
 };
 
-export const Modal: FC<ModalProps> = ({
-  onKeyDown,
-  open,
-  ...props
-}: ModalProps) => {
-  const ds = useDesignSystem();
+export const Modal = forwardRef(
+  <T extends string>(
+    {
+      children,
+      className,
+      close,
+      show,
+      showModal,
+      heading,
+      ...props
+    }: DialogProps<T, 'div'>,
+    ref: ForwardedRef<HTMLDivElement | null>,
+  ) => {
+    const ds = useDesignSystem();
 
-  const { close } = props;
+    const { dismissable = true } = props;
 
-  useEffect(() => {
-    const escapeHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && close) {
-        close();
+    useEffect(() => {
+      if (dismissable) {
+        const escapeHandler = (e: KeyboardEvent) => {
+          if (e.key === 'Escape' && close) {
+            close('');
+          }
+        };
+
+        window.addEventListener('keyup', escapeHandler);
+        return (): void => {
+          window.removeEventListener('keyup', escapeHandler);
+        };
       }
-      if (onKeyDown) {
-        onKeyDown.call(e.target, e);
-      }
-    };
+      return () => {};
+    }, [close, dismissable]);
 
-    window.addEventListener('keyup', escapeHandler);
-    return (): void => {
-      window.removeEventListener('keyup', escapeHandler);
-    };
-  }, [close, onKeyDown]);
-
-  return createPortal(
-    <DesignSystem {...ds} integrationMode>
-      <Box className={modalClass}>
-        <Box component="dialog" open={!!open} className={commonDimensionsClass}>
-          <ModalInner {...props} />
+    return createPortal(
+      <DesignSystem {...ds} integrationMode>
+        <Box className={modalClass}>
+          <Box
+            component="div"
+            ref={ref}
+            className={[className, commonDimensionsClass]}
+          >
+            <ModalInner {...{ children, close, heading }} />
+          </Box>
         </Box>
-      </Box>
-    </DesignSystem>,
-    document.body,
-  );
-};
+      </DesignSystem>,
+      document.body,
+    );
+  },
+);
 
 export const Dialog = forwardRef(
   <T extends string>(
-    { show, showModal, close, ...props }: DialogProps<T>,
+    {
+      children,
+      className,
+      close,
+      show,
+      showModal,
+      heading,
+      ...props
+    }: DialogProps<T>,
     ref: ForwardedRef<HTMLDialogElement | null>,
   ) => {
     const ds = useDesignSystem();
     return createPortal(
       <DesignSystem {...ds} integrationMode>
         <Box
+          {...props}
           component="dialog"
-          className={[commonDimensionsClass, dialogClass]}
+          className={[className, commonDimensionsClass, dialogClass]}
           ref={ref}
         >
-          <ModalInner {...props} />
+          <ModalInner {...{ children, close, heading }} />
         </Box>
       </DesignSystem>,
       document.body,
