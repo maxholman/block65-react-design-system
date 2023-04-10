@@ -21,3 +21,5 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = (props) => (
     <MenuLazy {...props} />
   </Suspense>
 );
+
+export type { MenuProps };
