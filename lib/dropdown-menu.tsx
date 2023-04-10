@@ -20,6 +20,7 @@ import {
   useMergeRefs,
   useRole,
   useTypeahead,
+  type Placement,
 } from '@floating-ui/react';
 import { clsx } from 'clsx';
 import {
@@ -53,11 +54,15 @@ export type MenuProps = Merge<
     nested?: boolean;
     label?: ReactNode;
     children?: ReactNode;
+    initialPlacement?: Placement;
   }
 >;
 
 const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
-  ({ children, className, label, ...props }, forwardedRef) => {
+  (
+    { children, className, label, initialPlacement = 'bottom-start', ...props },
+    forwardedRef,
+  ) => {
     const ds = useDesignSystem();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -84,7 +89,7 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
       nodeId,
       open: isOpen,
       onOpenChange: setIsOpen,
-      placement: isNested ? 'right-start' : 'bottom-start',
+      placement: isNested ? 'right-start' : initialPlacement,
       middleware: [
         offset({
           mainAxis: isNested ? 0 : 4,
