@@ -39,7 +39,7 @@ export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked> =
     ReactHTMLAttributesHacked[T],
     {
       className?: ClassValue;
-      component?: T;
+      component?: T | undefined;
 
       margin?: OrResponsive<Space> | Falsy;
       marginBlock?: OrResponsive<Space> | Falsy;

@@ -21,7 +21,7 @@ export type OrResponsive<T> = T | Responsive<T>;
 
 // accepting null means we can skip default assignments and specifically
 // disable when consuming
-export type Falsy = null | undefined;
+export type Falsy = false | null | undefined;
 
 export type Rounded = keyof typeof genericVars.radius;
 
