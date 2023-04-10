@@ -3,22 +3,27 @@ import {
   Children,
   cloneElement,
   forwardRef,
+  useEffect,
+  useRef,
   type ComponentProps,
   type FC,
+  type ForwardedRef,
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
+  type MutableRefObject,
   type PropsWithChildren,
   type ReactNode,
+  type RefCallback,
 } from 'react';
 import type { Space } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   fieldLabelStyle,
   fieldLabelWrapperStyle,
-  formInputCheckboxInput,
   formInputCheckRadioLabel,
   formInputCheckRadioMessage,
   formInputCheckRadioWrapper,
+  formInputCheckboxInput,
   formInputClassName,
   formInputNotCheckRadio,
   formInputRadioInput,
@@ -392,6 +397,20 @@ export const FormInputCheckboxGroup: FC<
   );
 };
 
+function useCombinedRefs<T>(
+  ...refs: (RefCallback<T> | MutableRefObject<T> | ForwardedRef<T>)[]
+): RefCallback<T> {
+  return (node: T) => {
+    refs.forEach((ref) => {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    });
+  };
+}
+
 export type FormTextAreaProps = Merge<
   BoxBasedComponentProps<'textarea'>,
   CommonFormInputProps
@@ -414,6 +433,35 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
   ) => {
     const id = useIdWithDefault(props.id);
 
+    const internalRef = useRef<HTMLTextAreaElement>(null);
+    const combinedRef = useCombinedRefs(ref, internalRef);
+
+    // submit the form on Ctrl+Enter inside the textarea
+    useEffect(() => {
+      const el = internalRef.current;
+      if (el && el.form) {
+        const { form } = el;
+        const handleKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'Enter' && e.ctrlKey) {
+            e.preventDefault();
+            // safari 15.4 compat
+            if (form.requestSubmit) {
+              form.requestSubmit();
+            } else {
+              form?.dispatchEvent(new SubmitEvent('submit'));
+            }
+          }
+        };
+
+        el.addEventListener('keydown', handleKeyDown);
+        return () => {
+          el.removeEventListener('keydown', handleKeyDown);
+        };
+      }
+
+      return () => {};
+    }, [ref]);
+
     return (
       <Block className={className} space={defaultFormInputSpace}>
         {label && (
@@ -429,7 +477,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         <Box
           rounded={rounded}
           component="textarea"
-          ref={ref}
+          ref={combinedRef}
           className={clsx(formInputClassName, formInputNotCheckRadio)}
           {...(props.readOnly && { tabIndex: -1 })}
           {...props}
