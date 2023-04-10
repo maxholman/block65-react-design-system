@@ -248,7 +248,15 @@ export const textOverflowVariants = styleVariants(
 
 export type FlexDirection = 'row' | 'column';
 
-export type BorderWeight = 'none' | 'subtle' | 'normal' | 'strong';
+export type BorderWeight =
+  | 'none'
+  | 'subtle'
+  | 'normal'
+  | 'strong'
+  | '00'
+  | '0'
+  | '1'
+  | '2';
 
 const width = createVar();
 const borderL = createVar();
@@ -275,6 +283,27 @@ const borderWeight: Record<BorderWeight, StyleRule> = {
     borderColor: hsl(toneH, toneS, borderL),
   },
   strong: {
+    vars: {
+      [borderL]: contrastSchemeVars.level1.l,
+    },
+    borderColor: hsl(toneH, toneS, borderL),
+  },
+  '0': {
+    borderColor: 'transparent',
+  },
+  '00': {
+    vars: {
+      [borderL]: contrastSchemeVars.level1.l,
+    },
+    borderColor: hsl(toneH, toneS, borderL),
+  },
+  '1': {
+    vars: {
+      [borderL]: contrastSchemeVars.level1.l,
+    },
+    borderColor: hsl(toneH, toneS, borderL),
+  },
+  '2': {
     vars: {
       [borderL]: contrastSchemeVars.level1.l,
     },
