@@ -39,8 +39,6 @@ distclean: clean
 test: node_modules vite.config.ts
 	pnpm vitest run
 
-
-
 .PHONY: dev
 dev:
 	$(MAKE) -j 2 types-watch dev-server
@@ -48,7 +46,6 @@ dev:
 .PHONY: dev-server
 dev-server: node_modules vite.config.ts
 	pnpm vite dev
-
 
 .PHONY: pretty
 pretty: node_modules
