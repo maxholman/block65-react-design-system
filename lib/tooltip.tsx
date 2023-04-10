@@ -1,36 +1,51 @@
-import type { Side } from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 import {
   cloneElement,
-  type FC,
   isValidElement,
+  type FC,
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
 import { useTooltipState } from './hooks/use-tooltip-state.js';
-import {
-  arrowOffsetVar,
-  tooltipArrowStyle,
-  tooltipClass,
-} from './tooltip.css.js';
+import { tooltipClass } from './tooltip.css.js';
 
 export type TooltipState = ReturnType<typeof useTooltipState>;
 
-export const Tooltip: FC<
-  PropsWithChildren<{ content: ReactNode; initialOpen?: boolean }>
-> = ({ content, children, initialOpen = false }) => {
+export type TooltipProps = PropsWithChildren<{
+  content: ReactNode;
+  initialOpen?: boolean;
+  initialPlacement?: Placement;
+}>;
+
+/* const staticSide: Record<Side, Side> = {
+  top: 'bottom',
+  right: 'left',
+  bottom: 'top',
+  left: 'right',
+}; */
+
+export const Tooltip: FC<TooltipProps> = ({
+  content,
+  children,
+  initialOpen = false,
+  initialPlacement,
+}) => {
   const {
-    placement,
     reference,
     floating,
     strategy,
     x,
     y,
     open,
-    arrowRef,
     getReferenceProps,
     getFloatingProps,
-    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-  } = useTooltipState({ initialOpen });
+    // placement,
+    // arrowRef,
+    // middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
+  } = useTooltipState({
+    initialOpen,
+    ...(initialPlacement && { placement: initialPlacement }),
+  });
 
   const validChildren = isValidElement(children) ? (
     children
@@ -38,14 +53,7 @@ export const Tooltip: FC<
     <span>{children}</span>
   );
 
-  const staticSide: Record<Side, Side> = {
-    top: 'bottom',
-    right: 'left',
-    bottom: 'top',
-    left: 'right',
-  };
-
-  const arrowPlacement = placement.split('-')[0] as Side;
+  // const arrowPlacement = placement.split('-')[0] as Side;
 
   return (
     <>
@@ -66,15 +74,15 @@ export const Tooltip: FC<
             },
           })}
         >
-          <span
+          {/* <span
             ref={arrowRef}
-            className={tooltipArrowStyle}
+            className={tooltipArrowClass}
             style={{
               left: arrowX != null ? `${arrowX}px` : '',
               top: arrowY != null ? `${arrowY}px` : '',
               [staticSide[arrowPlacement]]: arrowOffsetVar,
             }}
-          />
+          /> */}
           {content}
         </span>
       )}
