@@ -24,7 +24,7 @@ export const tooltipClass = style([
 // Used to position the tooltip arrow in javascript, depending on the orientation
 export const arrowOffsetVar = createVar();
 
-export const tooltipArrowStyle = style({
+export const tooltipArrowClass = style({
   vars: {
     [arrowOffsetVar]: calc.negate(genericVars.space[3]),
   },
