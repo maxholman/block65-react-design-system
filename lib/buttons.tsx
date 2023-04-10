@@ -4,6 +4,7 @@ import {
   type FC,
   type PropsWithChildren,
   type ReactElement,
+  forwardRef,
 } from 'react';
 import {
   busyButtonClass,
@@ -16,6 +17,7 @@ import {
   type ButtonVariant,
 } from './buttons.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
+import type { Falsy } from './core.css.js';
 import { Box } from './core.js';
 import { Inline, type InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
@@ -28,7 +30,7 @@ export type ButtonCommonProps = {
   compact?: boolean;
   inline?: boolean;
   tone?: Tone;
-  icon?: ReactElement | FC | undefined;
+  icon?: ReactElement | FC | Falsy;
   fontSize?: FontSize;
 };
 
@@ -65,59 +67,73 @@ export type ButtonIconProps<
   }
 >;
 
-const ButtonInternal: FC<ButtonInternalProps> = ({
-  component = 'button',
-  variant = 'standard',
-  tone = 'accent',
-  rounded = 'medium',
-  textOverflow = 'ellipsis',
-  justifyContent = 'center',
-  compact,
-  busy,
-  className,
-  icon,
-  inline,
-  fontSize,
-  children,
-  ...props
-}) => (
-  <Inline
-    rounded={rounded}
-    component={component}
-    justifyContent={justifyContent}
-    className={clsx(
+const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
+  (
+    {
+      component = 'button',
+      variant = 'standard',
+      tone = 'accent',
+      rounded = 'medium',
+      textOverflow = 'ellipsis',
+      justifyContent = 'center',
+      compact,
+      busy,
       className,
-      buttonVariantClasses[variant],
-      toneVariants[tone],
-      busy && busyButtonClass,
-      compact && compactButton,
-      fontSize && fontSizeVariants[fontSize],
-      inline && inlineBleedClass,
-    )}
-    space="2"
-    {...props}
-    // if this is an actually button element - default to button so that it
-    // doesnt submit forms by default
-    {...(component === 'button' && {
-      type: ('type' in props && props.type) || 'button',
-    })}
-  >
-    {icon && (
-      <Box component="span" className={[iconClass, busy && visiblyHiddenClass]}>
-        {isValidElement<ReactElementDefaultPropsType>(icon) ? icon : icon({})}
-      </Box>
-    )}
-    <Box
-      className={[busy && visiblyHiddenClass, icon && withIconClass]}
-      aria-hidden={busy || undefined}
-      textOverflow={textOverflow}
+      icon,
+      inline,
+      fontSize,
+      children,
+      ...props
+    },
+    ref,
+  ) => (
+    <Inline
+      ref={ref}
+      rounded={rounded}
+      component={component}
+      justifyContent={justifyContent}
+      className={clsx(
+        className,
+        buttonVariantClasses[variant],
+        toneVariants[tone],
+        busy && busyButtonClass,
+        compact && compactButton,
+        fontSize && fontSizeVariants[fontSize],
+        inline && inlineBleedClass,
+      )}
+      space="2"
+      {...props}
+      // if this is an actually button element - default to button so that it
+      // doesnt submit forms by default
+      {...(component === 'button' && {
+        type: ('type' in props && props.type) || 'button',
+      })}
     >
-      {children}
-    </Box>
-  </Inline>
+      {icon && (
+        <Box
+          component="span"
+          className={[iconClass, busy && visiblyHiddenClass]}
+        >
+          {isValidElement<ReactElementDefaultPropsType>(icon) ? icon : icon({})}
+        </Box>
+      )}
+      {/* possible it might just be an icon, no children */}
+      {children && (
+        <Box
+          className={[busy && visiblyHiddenClass, icon && withIconClass]}
+          aria-hidden={busy || undefined}
+          textOverflow={textOverflow}
+        >
+          {children}
+        </Box>
+      )}
+    </Inline>
+  ),
 );
 
-export const Button: FC<ButtonProps> = (props) => <ButtonInternal {...props} />;
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => <ButtonInternal component="button" ref={ref} {...props} />,
+);
 
 export const ButtonLink: FC<ButtonLinkProps> = ({
   component = 'a',
