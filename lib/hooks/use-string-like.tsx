@@ -44,11 +44,8 @@ function nodeIsStringLike(
 export function useStringLikeDetector() {
   const { stringLikeComponents } = useDesignSystem();
   return useCallback(
-    (node: ReactNode): node is Exclude<ReactNode, Primitive> | string => {
-      const result =
-        !!stringLikeComponents && nodeIsStringLike(node, stringLikeComponents);
-      return result;
-    },
+    (node: ReactNode): node is Exclude<ReactNode, Primitive> | string =>
+      nodeIsStringLike(node, stringLikeComponents),
     [stringLikeComponents],
   );
 }
