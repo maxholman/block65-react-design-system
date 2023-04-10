@@ -6,7 +6,7 @@ export function differentOriginLinkProps(href: string) {
   if (typeof window !== 'undefined') {
     const testUrl = new URL(href, window.location.origin);
     if (testUrl.origin !== window.location.origin) {
-      return { target: '_blank', rel: 'noopener noreferrer' };
+      return { rel: 'noopener noreferrer' };
     }
   }
   return null;
