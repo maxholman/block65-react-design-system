@@ -13,8 +13,6 @@ const base = style({
   textTransform: 'uppercase',
   borderWidth: genericVars.border.weight.hairline,
   borderStyle: 'solid',
-  padding: genericVars.space[2],
-  letterSpacing: 'initial',
 });
 
 const variantRules: Record<

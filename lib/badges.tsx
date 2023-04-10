@@ -30,6 +30,7 @@ export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
     <Inline
       component="span"
       rounded="small"
+      padding="2"
       className={clsx(toneVariants[tone], badgeVariants[variant], className)}
       {...props}
     >
