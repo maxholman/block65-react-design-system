@@ -10,7 +10,7 @@ export const CorePage: FC = () => (
     <Box component="section">This is also a box component as a section</Box>
 
     <Block>
-      <Box tooltip="Hello" component="time" dateTime={new Date().toJSON()}>
+      <Box component="time" dateTime={new Date().toJSON()}>
         {new Date().toJSON()}
       </Box>
     </Block>
