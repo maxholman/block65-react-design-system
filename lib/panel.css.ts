@@ -4,12 +4,7 @@ import { genericVars } from './design-system.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export type PanelVariant =
-  | 'standard'
-  | 'ghost'
-  | 'subtle'
-  | 'neutral'
-  | 'transparent';
+export type PanelVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
 
 export const panelClass = style({
   borderWidth: genericVars.border.weight.normal,
@@ -20,21 +15,22 @@ export const panelClass = style({
 const variantRules: Record<
   PanelVariant,
   {
+    color?: string;
     backgroundColor?: string;
     borderColor?: string;
   }
 > = {
   standard: {
+    color: hsl(0, 0, contrastSchemeVars.level5.l),
     backgroundColor: hsl(0, 0, contrastSchemeVars.level0point5.l),
   },
-  neutral: {
-    backgroundColor: hsl(0, 0, contrastSchemeVars.level1.l),
-    borderColor: hsl(0, 0, contrastSchemeVars.level1.l),
-  },
   ghost: {
+    color: hsl(0, 0, contrastSchemeVars.level5.l),
+    backgroundColor: hsl(0, 0, contrastSchemeVars.level0point5.l),
     borderColor: hsl(0, 0, contrastSchemeVars.level1.l),
   },
   subtle: {
+    color: hsl(0, 0, contrastSchemeVars.level5.l),
     backgroundColor: hsl(
       colorThemeVars.tones.accent.h,
       colorThemeVars.tones.accent.s,
@@ -46,7 +42,9 @@ const variantRules: Record<
       contrastSchemeVars.level1.l,
     ),
   },
-  transparent: {},
+  transparent: {
+    color: hsl(0, 0, contrastSchemeVars.level5.l),
+  },
 };
 
 export const panelVariants = styleVariants(variantRules, (variant) => [
