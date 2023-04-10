@@ -12,18 +12,18 @@ import { Box, type BoxBasedComponentProps } from './core.js';
 import { gridClass } from './grid.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
-export type GridProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
-  BoxBasedComponentProps<T>,
-  {
-    space?: OrResponsive<Space>;
-    cols?: OrResponsive<Columns>;
-  }
->;
+export type GridProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
+  Merge<
+    BoxBasedComponentProps<T>,
+    {
+      space?: OrResponsive<Space>;
+      cols?: OrResponsive<Columns>;
+    }
+  >;
 
-export const Grid = <T extends keyof ReactHTMLAttributesHacked>({
-  component,
-  space = '5',
+export const Grid = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   className,
+  space = '5',
   cols = 3,
   ...props
 }: GridProps<T>): ReactElement | null => {
