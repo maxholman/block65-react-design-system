@@ -97,7 +97,7 @@ function headingProps(level: HeadingLevel): CommonTextProps {
     case '5':
       return { fontSize: '1', secondary: true };
     case '6':
-      return { fontSize: '00', secondary: true };
+      return { fontSize: '0', secondary: true };
     default:
       return { fontSize: '1' };
   }

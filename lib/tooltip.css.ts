@@ -12,7 +12,7 @@ export const tooltipClass = style([
     position: 'absolute',
     top: '0',
     left: '0',
-    background: hsl(0, 0, contrastSchemeVars.level5.l),
+    background: hsl(0, 0, contrastSchemeVars.level5.l, 0.9),
     color: hsl(0, 0, contrastSchemeVars.level0.l),
     padding: genericVars.space[3],
     borderRadius: genericVars.radius.medium,

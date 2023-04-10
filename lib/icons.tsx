@@ -88,7 +88,7 @@ export const ArrowBack = forwardRef<SVGSVGElement, IconProps>(
         points="244 400 100 256 244 112"
         style={{
           fill: 'none',
-          stroke: '#000',
+          stroke: 'currentColor',
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
           strokeWidth: '48px',
@@ -101,7 +101,16 @@ export const ArrowBack = forwardRef<SVGSVGElement, IconProps>(
         y2="256"
         style={{
           fill: 'none',
-          stroke: '#000',
+          stroke: 'currentColor',
+          strokeLinecap: 'round',
+          strokeLinejoin: 'round',
+          strokeWidth: '48px',
+        }}
+      />
+    </svg>
+  ),
+);
+
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
           strokeWidth: '48px',

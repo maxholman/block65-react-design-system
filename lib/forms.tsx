@@ -81,7 +81,7 @@ function formInputProps(
 export const Form = forwardRef<
   HTMLFormElement,
   PropsWithChildren<BlockProps<'form'>>
->(({ space = '5', children, ...props }, ref) => (
+>(({ space = '6', children, ...props }, ref) => (
   <Block space={space} component="form" {...props} ref={ref}>
     {Children.map(children, (child) => {
       // if it's a block element and no space is defined, use the space this

@@ -8,7 +8,6 @@ import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 const commonViewportRules: Record<Viewport, StyleRule> = {
   tablet: {
     width: '60vw',
-    border: '1px solid red',
     padding: genericVars.space[5],
     marginInline: 'auto',
   },
@@ -82,8 +81,8 @@ export const modalClass = style({
   },
 });
 
-export const commonPanelClass = style({
-  boxShadow: genericVars.boxShadow[3],
+export const modalPanelClass = style({
+  boxShadow: genericVars.boxShadow[4],
 });
 
 export const commonDimensionsClass = style({

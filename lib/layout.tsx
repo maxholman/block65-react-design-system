@@ -68,7 +68,7 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   {
     component = 'div',
     flexDirection = 'column',
-    space = '5',
+    space,
     alignSelf,
     alignItems,
     justifySelf,
@@ -114,7 +114,7 @@ export const Block = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     props: BlockProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-  ) => LayoutInner({ flexDirection: 'column', ...props }, ref),
+  ) => LayoutInner({ flexDirection: 'column', space: '6', ...props }, ref),
 );
 
 export const Inline = forwardRef(
@@ -122,5 +122,8 @@ export const Inline = forwardRef(
     props: InlineProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) =>
-    LayoutInner({ flexDirection: 'row', alignItems: 'center', ...props }, ref),
+    LayoutInner(
+      { flexDirection: 'row', alignItems: 'center', space: '3', ...props },
+      ref,
+    ),
 );
