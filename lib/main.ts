@@ -5,6 +5,7 @@ export * from './layout.js';
 export * from './grid.js';
 
 export * from './hooks/use-toggle.js';
+export * from './hooks/use-design-system.js';
 
 export * from './badges.js';
 export * from './buttons.js';
