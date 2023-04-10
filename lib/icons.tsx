@@ -75,6 +75,7 @@ export const MenuIcon = forwardRef<SVGSVGElement, IconProps>(
     </svg>
   ),
 );
+
 export const ArrowBack = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
@@ -111,6 +112,33 @@ export const ArrowBack = forwardRef<SVGSVGElement, IconProps>(
   ),
 );
 
+export const ArrowForward = forwardRef<SVGSVGElement, IconProps>(
+  ({ className, ...props }, ref) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      ref={ref}
+      className={clsx([iconClassName, className])}
+      viewBox="0 0 512 512"
+      {...props}
+    >
+      <polyline
+        points="268 112 412 256 268 400"
+        style={{
+          fill: 'none',
+          stroke: 'currentColor',
+          strokeLinecap: 'round',
+          strokeLinejoin: 'round',
+          strokeWidth: '48px',
+        }}
+      />
+      <line
+        x1="392"
+        y1="256"
+        x2="100"
+        y2="256"
+        style={{
+          fill: 'none',
+          stroke: 'currentColor',
           strokeLinecap: 'round',
           strokeLinejoin: 'round',
           strokeWidth: '48px',
@@ -119,6 +147,7 @@ export const ArrowBack = forwardRef<SVGSVGElement, IconProps>(
     </svg>
   ),
 );
+
 export const ClipboardIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
