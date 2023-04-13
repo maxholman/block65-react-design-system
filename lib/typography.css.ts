@@ -9,6 +9,7 @@ import {
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
+import { toneH, toneS } from './tone.css.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -40,7 +41,7 @@ export const fontThemeVars = createThemeContract({
 });
 
 export const textClass = style({
-  // empty for future use
+  color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
 });
 
 export const secondaryClass = style({
