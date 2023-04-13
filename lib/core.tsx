@@ -34,29 +34,30 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 
-export type BoxBasedComponentProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
-  Merge<
-    ReactHTMLAttributesHacked[T],
-    {
-      className?: ClassValue;
-      component?: T | undefined;
+export type BoxBasedComponentProps<
+  T extends keyof ReactHTMLAttributesHacked = 'div',
+> = Merge<
+  ReactHTMLAttributesHacked[T],
+  {
+    className?: ClassValue;
+    component?: T | undefined;
 
-      margin?: OrResponsive<Space> | Falsy;
-      marginBlock?: OrResponsive<Space> | Falsy;
-      marginInline?: OrResponsive<Space> | Falsy;
+    margin?: OrResponsive<Space> | Falsy;
+    marginBlock?: OrResponsive<Space> | Falsy;
+    marginInline?: OrResponsive<Space> | Falsy;
 
-      padding?: OrResponsive<Space> | Falsy;
-      paddingBlock?: OrResponsive<Space> | Falsy;
-      paddingInline?: OrResponsive<Space> | Falsy;
+    padding?: OrResponsive<Space> | Falsy;
+    paddingBlock?: OrResponsive<Space> | Falsy;
+    paddingInline?: OrResponsive<Space> | Falsy;
 
-      tooltip?: ReactNode;
-      textAlign?: TextAlign | Falsy;
-      textOverflow?: TextOverflow | Falsy;
-      rounded?: Rounded | Falsy;
-      borderWeight?: BorderWeight | Falsy;
-      tone?: Tone | Falsy;
-    }
-  >;
+    tooltip?: ReactNode;
+    textAlign?: TextAlign | Falsy;
+    textOverflow?: TextOverflow | Falsy;
+    rounded?: Rounded | Falsy;
+    borderWeight?: BorderWeight | Falsy;
+    tone?: Tone | Falsy;
+  }
+>;
 
 const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   {
