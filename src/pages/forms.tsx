@@ -6,6 +6,8 @@ import {
   FormInput,
   FormInputCheckbox,
   FormInputCheckboxGroup,
+  FormInputEmail,
+  FormInputPassword,
   FormInputRadio,
   FormInputRadioGroup,
   FormSelect,
@@ -22,12 +24,12 @@ import {
 export const FormsPage: FC = () => (
   <Panel variant="ghost">
     <Form>
-      <Heading level="1">Best form eva</Heading>
+      <Heading level="1">Example Form</Heading>
       <FormInput
         type="text"
-        label={<blockquote>Pronoun</blockquote>}
+        label={<blockquote>Type of Helicopter</blockquote>}
         name="pronoun"
-        defaultValue="Attack Helicopter"
+        defaultValue="Bell 47"
         readOnly
         secondaryLabel="(readonly)"
         message="You are not allowed to change this field"
@@ -37,9 +39,41 @@ export const FormsPage: FC = () => (
         label="First name"
         name="first"
         defaultValue="Queen"
+        description="What even is the description?"
         message="Don't write Queen in this field please"
         messageTone="warn"
       />
+      <Grid>
+        <FormInputEmail
+          label="Email Address"
+          name="email"
+          message="Work email address only"
+          messageTone="warn"
+        />
+        <FormInputPassword
+          label="Password"
+          name="password"
+          defaultValue="secret"
+          message="Tap to reveal"
+          behaviour="reveal"
+          messageTone="critical"
+        />
+        <FormInputPassword
+          label="Password"
+          name="password"
+          defaultValue="verysecret"
+          behaviour="toggle"
+          message="Tap to toggle"
+          messageTone="promo"
+        />
+      </Grid>
+      <FormInputEmail
+        label="Username"
+        name="username"
+        autoComplete="username"
+        description="This is an email address"
+      />
+
       <FormInput
         type="text"
         label="Middle name"
@@ -61,7 +95,6 @@ export const FormsPage: FC = () => (
         }
         defaultValue="Royale"
       />
-      <FormInput type="email" label="Email Address" name="email" />
       <FormTextArea
         type="text"
         label="Description"
