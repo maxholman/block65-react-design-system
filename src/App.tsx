@@ -127,52 +127,52 @@ export const App: FC = () => {
 
                   <Panel variant="ghost">
                     <Inline justifySelf="center" space="5">
-                      <Link dest="/">
+                      <Link href="/">
                         <TextLink>Home</TextLink>
                       </Link>
-                      <Link dest="/core">
+                      <Link href="/core">
                         <TextLink>Core</TextLink>
                       </Link>
-                      <Link dest="/layout">
+                      <Link href="/layout">
                         <TextLink>Layout</TextLink>
                       </Link>
-                      <Link dest="/panels">
+                      <Link href="/panels">
                         <TextLink>Panels</TextLink>
                       </Link>
-                      <Link dest="/grid">
+                      <Link href="/grid">
                         <TextLink>Grid</TextLink>
                       </Link>
-                      <Link dest="/forms">
+                      <Link href="/forms">
                         <TextLink>Forms</TextLink>
                       </Link>
-                      <Link dest="/typography">
+                      <Link href="/typography">
                         <TextLink>Typography</TextLink>
                       </Link>
-                      <Link dest="/buttons">
+                      <Link href="/buttons">
                         <TextLink>Buttons</TextLink>
                       </Link>
-                      <Link dest="/list">
+                      <Link href="/list">
                         <TextLink>List</TextLink>
                       </Link>
-                      <Link dest="/badges">
+                      <Link href="/badges">
                         <TextLink>Badges</TextLink>
                       </Link>
-                      <Link dest="/loaders">
+                      <Link href="/loaders">
                         <TextLink>Loaders</TextLink>
                       </Link>
-                      <Link dest="/callout">
+                      <Link href="/callout">
                         <TextLink>Callout</TextLink>
                       </Link>
-                      <Link dest="/media-query">
+                      <Link href="/media-query">
                         <TextLink>Media Query</TextLink>
                       </Link>
-                      <Link dest="/modals">
+                      <Link href="/modals">
                         <TextLink>Modals</TextLink>
                       </Link>
-                      <Link dest="/icons">
+                      <Link href="/icons">
                         <TextLink>Icons</TextLink>
                       </Link>
-                      <Link dest="/dropdown-menu">
+                      <Link href="/dropdown-menu">
                         <TextLink>Dropdowns</TextLink>
                       </Link>
                     </Inline>

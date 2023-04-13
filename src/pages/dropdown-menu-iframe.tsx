@@ -12,23 +12,23 @@ import {
 const RandomMenu: FC<MenuProps> = (props) => (
   <Menu label="Menu" initialPlacement="bottom" {...props}>
     <MenuItem>
-      <Link dest="/modals">
+      <Link href="/modals">
         <TextLink>Long text is long</TextLink>
       </Link>
     </MenuItem>
     <MenuItem>
-      <Link dest="/modals">
+      <Link href="/modals">
         <TextLink>Med is avg</TextLink>
       </Link>
     </MenuItem>
     <MenuItem>
-      <Link dest="/modals">
+      <Link href="/modals">
         <TextLink>Short not</TextLink>
       </Link>
     </MenuItem>
 
     <MenuItem>
-      <Link dest="/modals">
+      <Link href="/modals">
         <TextLink>Last lost</TextLink>
       </Link>
     </MenuItem>
