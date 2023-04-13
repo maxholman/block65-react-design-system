@@ -19,40 +19,74 @@ const paddingVar = createVar();
 // would use a CSS var, but the elements are not in the same tree
 const defaultInputPadding = genericVars.space[4];
 
-export const formInputClassName = style([
+export const formInputPassword = style({
+  flexGrow: 1,
+});
+
+export const formInputPasswordIcon = style({
+  blockSize: calc.multiply(defaultInputPadding, 1.5),
+  inlineSize: calc.multiply(defaultInputPadding, 1.5),
+  aspectRatio: '1/1',
+});
+
+export const formInputPasswordToggleButton = style({
+  blockSize: '100%',
+  paddingInline: defaultInputPadding,
+  flexShrink: 0,
+  cursor: 'pointer',
+  selectors: {
+    '&:hover': {
+      backgroundColor: hsl(0, 0, contrastSchemeVars.level1.l),
+    },
+  },
+});
+
+export const formInputOuterClassName = style({
+  vars: {
+    [borderWidthVar]: genericVars.border.weight.hairline,
+  },
+  backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
+  borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
+  borderStyle: 'solid',
+  borderWidth: borderWidthVar,
+  selectors: {
+    '&[type="time"]': {
+      display: 'initial',
+      // this is a little hack for chrome
+      alignItems: 'center',
+    },
+    '&[readonly]': {
+      paddingInline: 0,
+      borderInline: 0,
+      borderColor: 'transparent',
+      backgroundColor: 'transparent',
+      pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
+    },
+    '&::placeholder': {
+      color: hsl(0, 0, contrastSchemeVars.level4.l),
+    },
+  },
+});
+
+export const formInputInnerClassName = style([
   fontSizeVariantVars[1],
   {
     vars: {
-      [borderWidthVar]: genericVars.border.weight.hairline,
       [paddingVar]: defaultInputPadding,
     },
     padding: paddingVar,
-    backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
-    borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
-    borderStyle: 'solid',
-    borderWidth: borderWidthVar,
     selectors: {
       '&[type="time"]': {
-        display: 'initial',
-        // this is a little hack for chrome
         paddingBlock: calc.subtract(paddingVar, '0.1em'),
-        alignItems: 'center',
       },
       '&[readonly]': {
         paddingInline: 0,
-        borderInline: 0,
-        borderColor: 'transparent',
-        backgroundColor: 'transparent',
-        pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
-      },
-      '&::placeholder': {
-        color: hsl(0, 0, contrastSchemeVars.level4.l),
       },
     },
   },
 ]);
 
-export const formInputNotCheckRadio = style([
+export const formInputNotCheckRadioClassName = style([
   focusVisibleClassName,
   {
     selectors: {
@@ -74,7 +108,8 @@ export const formInputNotCheckRadio = style([
 ]);
 
 export const formInputCheckRadioBase = style([
-  formInputClassName,
+  formInputOuterClassName,
+  formInputInnerClassName,
   focusableClassName,
   {
     padding: 'revert',
@@ -177,7 +212,8 @@ export const formInputRadioInput = style([
 const formInputSelectGridAreaName = 's';
 
 export const formInputSelect = style([
-  formInputClassName,
+  formInputOuterClassName,
+  formInputInnerClassName,
   {
     cursor: 'pointer',
     gridArea: formInputSelectGridAreaName,
