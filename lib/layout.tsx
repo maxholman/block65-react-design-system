@@ -15,10 +15,12 @@ import {
   alignSelfVariants,
   flexGrowClass,
   flexShrinkClass,
+  flexWrapVariants,
   justifyContentVariants,
   justifySelfBlockVariants,
   justifySelfInlineVariants,
   type Placement,
+  type Wrap,
 } from './layout.css.js';
 import type {
   Merge,
@@ -40,6 +42,8 @@ type LayoutProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
 
     flexGrow?: OrResponsive<boolean> | Falsy;
     flexShrink?: OrResponsive<boolean> | Falsy;
+
+    flexWrap?: Wrap | Falsy;
   }>
 >;
 
@@ -76,6 +80,7 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     className,
     flexGrow,
     flexShrink,
+    flexWrap = 'wrap',
     ...props
   }: LayoutProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -94,6 +99,8 @@ const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
 
         flexShrink === true && flexShrinkClass.true,
         flexShrink === false && flexShrinkClass.false,
+
+        flexWrap && flexWrapVariants[flexWrap],
 
         alignItems && alignItemsVariants[alignItems],
 
