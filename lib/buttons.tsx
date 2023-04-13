@@ -73,9 +73,7 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
       component = 'button',
       variant = 'standard',
       tone = 'accent',
-      rounded = 'medium',
-      textOverflow = 'ellipsis',
-      justifyContent = 'center',
+
       compact,
       busy,
       className,
@@ -89,9 +87,12 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
   ) => (
     <Inline
       ref={ref}
-      rounded={rounded}
       component={component}
-      justifyContent={justifyContent}
+      space="2"
+      rounded="medium"
+      justifyContent="center"
+      flexWrap="nowrap"
+      textAlign="center"
       className={clsx(
         className,
         buttonVariantClasses[variant],
@@ -101,10 +102,9 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
         fontSize && fontSizeVariants[fontSize],
         inline && inlineBleedClass,
       )}
-      space="2"
       {...props}
       // if this is an actually button element - default to button so that it
-      // doesnt submit forms by default
+      // doesn't submit forms by default
       {...(component === 'button' && {
         type: ('type' in props && props.type) || 'button',
       })}
@@ -122,7 +122,7 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
         <Box
           className={[busy && visiblyHiddenClass, icon && withIconClass]}
           aria-hidden={busy || undefined}
-          textOverflow={textOverflow}
+          textOverflow="ellipsis"
         >
           {children}
         </Box>

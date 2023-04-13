@@ -39,15 +39,10 @@ const base = style([
     },
     cursor: 'pointer',
     borderStyle: 'solid',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    flexWrap: 'nowrap',
-    whiteSpace: 'nowrap',
     borderWidth: genericVars.border.weight.normal,
     borderColor: 'transparent',
     padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
     userSelect: 'none',
-    textAlign: 'center',
     selectors: {
       '&[disabled]': {
         pointerEvents: 'none',
