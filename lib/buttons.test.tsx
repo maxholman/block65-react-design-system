@@ -16,7 +16,7 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="core_roundedVariants_medium__1rbo53v2 layout_alignItemsVariants_center__17vpgba5 layout_justifyContentVariants_center__17vpgbah core_flexDirectionVariants_row__1rbo53vkf core_viewport_all_space_2__1rbo53vl1 buttons_buttonVariantClasses_standard__jqajj25 buttons_base__jqajj22 tone_toneVariants_accent__y2da5n2"
+        class="core_textAlignVariants_center__1rbo53v7 core_roundedVariants_medium__1rbo53v2 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vkf core_viewport_all_space_2__1rbo53vl1 buttons_buttonVariantClasses_standard__jqajj25 buttons_base__jqajj22 tone_toneVariants_accent__y2da5n2"
         type="button"
       >
         <div>
