@@ -104,8 +104,8 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
     const hover = useHover(context, {
       enabled: isNested && allowHover,
       delay: { open: 75 },
+      restMs: 25,
       handleClose: safePolygon({
-        restMs: 25,
         blockPointerEvents: true,
       }),
     });
