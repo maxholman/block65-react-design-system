@@ -1,8 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import type { StyleRule } from '@vanilla-extract/css';
 import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
-import { toneH, toneS } from './tone.css.js';
+import { toneH, toneL, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
 
 export type BadgeVariant = 'standard' | 'ghost' | 'subtle' | 'transparent';
@@ -18,15 +19,14 @@ const base = style({
 const variantRules: Record<
   BadgeVariant,
   {
-    color: string;
     borderColor: string;
-    backgroundColor?: string;
-    fontWeight?: string;
-  }
+  } & Pick<StyleRule, 'color' | 'backgroundColor' | 'fontWeight' | 'vars'>
 > = {
   standard: {
-    backgroundColor: hsl(toneH, toneS, 50),
-    color: hsl(toneH, toneS, 95),
+    vars: {
+      [toneL]: contrastSchemeVars.level5.l,
+    },
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
   },
   ghost: {
@@ -34,7 +34,7 @@ const variantRules: Record<
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
   },
   subtle: {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
     color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
   },
