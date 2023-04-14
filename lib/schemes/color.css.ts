@@ -129,19 +129,19 @@ const darkStyleMoreContrastRule: ComplexStyleRule = {
       l: '0%',
     },
     level0point5: {
-      l: '50%',
+      l: '0%',
     },
     level1: {
-      l: '50%',
+      l: '20%',
     },
     level2: {
-      l: '50%',
+      l: '100%',
     },
     level3: {
-      l: '75%',
+      l: '100%',
     },
     level4: {
-      l: '85%',
+      l: '100%',
     },
     level5: {
       l: '100%',
@@ -210,16 +210,16 @@ const lightStyleMoreContrastRule: ComplexStyleRule = {
       l: '100%',
     },
     level0point5: {
-      l: '90%',
+      l: '100%',
     },
     level1: {
-      l: '50%',
+      l: '90%',
     },
     level2: {
-      l: '25%',
+      l: '0%',
     },
     level3: {
-      l: '25%',
+      l: '0%',
     },
     level4: {
       l: '0%',
