@@ -32,8 +32,6 @@ export const formInputPasswordIcon = style({
 });
 
 export const formInputPasswordToggleButton = style({
-  blockSize: '100%',
-  paddingInline: defaultInputPadding,
   cursor: 'pointer',
   selectors: {
     '&:hover': {

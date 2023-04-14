@@ -285,6 +285,8 @@ export const FormInputPassword = forwardRef<
           rounded="medium"
           className={[formInputOuterClassName, formInputNotCheckRadioClassName]}
           flexWrap="nowrap"
+          alignItems={null}
+          space="0"
         >
           <Box
             component="input"
@@ -297,11 +299,14 @@ export const FormInputPassword = forwardRef<
             id={id}
           />
 
-          <Box
+          <Block
             component="button"
             type="button"
             aria-pressed={visible}
             className={formInputPasswordToggleButton}
+            paddingInline="4"
+            alignItems="center"
+            justifyContent="center"
             {...behaviourProps}
           >
             {visible ? (
@@ -309,7 +314,7 @@ export const FormInputPassword = forwardRef<
             ) : (
               <PasswordInvisibleIcon {...iconProps} />
             )}
-          </Box>
+          </Block>
         </Inline>
 
         {message && (
