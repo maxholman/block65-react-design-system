@@ -28,8 +28,6 @@ export const calloutTextIconWrapperClass = style({
 
 export const calloutTextIconClass = style({
   display: 'inline-block',
-  height: currentCapHeight,
-  maxHeight: currentCapHeight,
   aspectRatio: '1/1',
 });
 
