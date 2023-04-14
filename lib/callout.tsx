@@ -22,7 +22,6 @@ export const Callout: FC<
     }
   >
 > = ({ children, className, rounded = 'medium', tone = 'info', ...props }) => {
-
   return (
     <Inline
       component="div"
@@ -40,7 +39,9 @@ export const Callout: FC<
       <div className={calloutTextIconWrapperClass}>
         <InfoIcon className={calloutTextIconClass} />
       </div>
-      <Text className={calloutTextClass} tone={tone}>{children}</Text>
+      <Text className={calloutTextClass} tone={tone}>
+        {children}
+      </Text>
     </Inline>
   );
 };

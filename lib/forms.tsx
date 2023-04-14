@@ -19,7 +19,6 @@ import type { Falsy, Space } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   fieldLabelStyle,
-  fieldLabelWrapperStyle,
   formInputCheckRadioLabel,
   formInputCheckRadioMessage,
   formInputCheckRadioWrapper,
