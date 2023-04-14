@@ -124,11 +124,12 @@ export const FormInputLabel: FC<
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Inline className={fieldLabelWrapperStyle}>
+    <Inline>
       <Inline
         {...props}
         space="2"
         component="label"
+        flexGrow
         className={[fieldLabelStyle, className]}
       >
         {isStringLike(children) ? (
@@ -169,7 +170,6 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       tertiaryLabel,
       message,
       messageTone,
-      rounded = 'medium',
       autoFocus,
       ...props
     },
@@ -195,14 +195,12 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         <Box
           ref={ref}
           component="input"
-          rounded={rounded}
+          rounded="medium"
           className={[
             formInputOuterClassName,
             formInputInnerClassName,
-            ,
             formInputNotCheckRadioClassName,
           ]}
-          {...(props.readOnly && { tabIndex: -1 })}
           {...inputTypeProps}
           {...props}
           autoFocus={definitelyAutoFocus}
@@ -283,13 +281,10 @@ export const FormInputPassword = forwardRef<
           </FormInputLabel>
         )}
         {description}
+
         <Inline
           rounded="medium"
-          className={[
-            formInputOuterClassName,
-            ,
-            formInputNotCheckRadioClassName,
-          ]}
+          className={[formInputOuterClassName, formInputNotCheckRadioClassName]}
           flexWrap="nowrap"
         >
           <Box
@@ -303,14 +298,11 @@ export const FormInputPassword = forwardRef<
             id={id}
           />
 
-          <Inline
+          <Box
             component="button"
             type="button"
             aria-pressed={visible}
             className={formInputPasswordToggleButton}
-            alignSelf="end"
-            justifyContent="center"
-            alignItems="center"
             {...behaviourProps}
           >
             {visible ? (
@@ -318,7 +310,7 @@ export const FormInputPassword = forwardRef<
             ) : (
               <PasswordInvisibleIcon {...iconProps} />
             )}
-          </Inline>
+          </Box>
         </Inline>
 
         {message && (
@@ -413,10 +405,10 @@ const FormInputCheckRadio: FC<
       <Box
         component="input"
         rounded="small"
-        className={clsx(
-          props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput,
+        className={[
           className,
-        )}
+          props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput,
+        ]}
         {...props}
         id={id}
       />

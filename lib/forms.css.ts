@@ -21,6 +21,8 @@ const defaultInputPadding = genericVars.space[4];
 
 export const formInputPassword = style({
   flexGrow: 1,
+  flexShrink: 1,
+  minWidth: 0,
 });
 
 export const formInputPasswordIcon = style({
@@ -32,7 +34,6 @@ export const formInputPasswordIcon = style({
 export const formInputPasswordToggleButton = style({
   blockSize: '100%',
   paddingInline: defaultInputPadding,
-  flexShrink: 0,
   cursor: 'pointer',
   selectors: {
     '&:hover': {
@@ -250,11 +251,6 @@ export const formInputSelectWrapperSingle = style([
     },
   },
 ]);
-
-export const fieldLabelWrapperStyle = style({
-  justifyContent: 'space-between',
-  alignItems: 'center',
-});
 
 export const fieldLabelStyle = style({
   alignItems: 'center',
