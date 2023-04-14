@@ -4,6 +4,7 @@ import { colorThemeVars } from './schemes/color.css.js';
 
 export const toneH = createVar();
 export const toneS = createVar();
+export const toneL = createVar();
 
 export type Tone =
   | 'accent'

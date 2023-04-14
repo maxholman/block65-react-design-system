@@ -6,10 +6,9 @@ import {
   calloutTextIconWrapperClass,
 } from './callout.css.js';
 import type { BoxBasedComponentProps } from './core.js';
-import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { InfoIcon } from './icons.js';
 import { Inline } from './layout.js';
-import { type Tone, toneVariants } from './tone.css.js';
+import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { fontSizeVariants } from './typography.css.js';
 import { Text } from './typography.js';
@@ -23,17 +22,16 @@ export const Callout: FC<
     }
   >
 > = ({ children, className, rounded = 'medium', tone = 'info', ...props }) => {
-  const isStringLike = useStringLikeDetector();
 
   return (
     <Inline
       component="div"
       rounded={rounded}
       className={[
-        calloutClass,
-        toneVariants[tone],
-        fontSizeVariants[1],
         className,
+        calloutClass,
+        fontSizeVariants[1],
+        toneVariants[tone],
       ]}
       role="alert"
       aria-live="polite"
@@ -42,9 +40,7 @@ export const Callout: FC<
       <div className={calloutTextIconWrapperClass}>
         <InfoIcon className={calloutTextIconClass} />
       </div>
-      <div className={calloutTextClass}>
-        {isStringLike(children) ? <Text>{children}</Text> : children}
-      </div>
+      <Text className={calloutTextClass} tone={tone}>{children}</Text>
     </Inline>
   );
 };
