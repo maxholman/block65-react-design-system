@@ -7,7 +7,9 @@ export const CalloutPage: FC = () => (
     <Callout tone="critical">
       Critical. Critical. Critical. Critical. Critical. Critical. Critical.
       Critical. Critical. Critical.Critical. Critical. Critical. Critical.
-      Critical. Critical. Critical.
+      Critical. Critical. Critical.Critical. Critical. Critical. Critical.
+      Critical. Critical. Critical. Critical. Critical. Critical.Critical.
+      Critical. Critical. Critical. Critical. Critical. Critical.
     </Callout>
     <Callout tone="info">Info</Callout>
     <Callout tone="positive">Positive</Callout>

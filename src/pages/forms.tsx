@@ -43,13 +43,30 @@ export const FormsPage: FC = () => (
         message="Don't write Queen in this field please"
         messageTone="warn"
       />
+      <FormInputEmail
+        label="Email Address"
+        name="email"
+        message="Work email address only"
+        messageTone="warn"
+      />
+      <FormInputPassword
+        label="Password"
+        name="password"
+        defaultValue="secret"
+        message="Tap to reveal"
+        behaviour="reveal"
+        messageTone="critical"
+      />
+      <FormInputPassword
+        label="Password"
+        name="password"
+        defaultValue="verysecret"
+        behaviour="toggle"
+        message="Tap to toggle"
+        messageTone="promo"
+      />
+
       <Grid>
-        <FormInputEmail
-          label="Email Address"
-          name="email"
-          message="Work email address only"
-          messageTone="warn"
-        />
         <FormInputPassword
           label="Password"
           name="password"
@@ -67,6 +84,7 @@ export const FormsPage: FC = () => (
           messageTone="promo"
         />
       </Grid>
+
       <FormInputEmail
         label="Username"
         name="username"
@@ -81,10 +99,17 @@ export const FormsPage: FC = () => (
         placeholder='Optional, e.g. "Elizabeth"'
         message="No need to be embarrassed"
       />
-      <Grid>
+
+      <Grid
+        cols={{
+          all: 2,
+          mobile: 1,
+        }}
+      >
         <FormInput type="time" label="Inconsistent" message="Heights" />
         <FormInput type="text" label="Heights" message="Inconsistent" />
       </Grid>
+
       <FormInput
         type="text"
         label="Last name"
