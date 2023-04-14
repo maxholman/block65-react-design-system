@@ -3,7 +3,7 @@ import { useDebouncedCallback } from './use-debounced.js';
 
 export function useAutoFocusIfAppropriate(
   autoFocus: boolean | 'force' | undefined,
-  mediaQuery = '(max-width: 50em)',
+  mediaQuery = '(min-width: 50em)',
 ) {
   const win = typeof window !== 'undefined' ? window : undefined;
 
