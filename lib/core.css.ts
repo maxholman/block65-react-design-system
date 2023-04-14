@@ -321,7 +321,6 @@ export const flexDirectionVariants = styleVariants(
     row: {
       display: 'flex',
       flexDirection: 'row',
-      flexWrap: 'wrap',
     },
     column: {
       display: 'flex',
