@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import type { ReactElement } from 'react';
+import { Children, type ReactElement } from 'react';
 import { matchViewportVariants } from './component-utils.js';
 import {
   type Columns,
@@ -24,9 +24,12 @@ export type GridProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
 export const Grid = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   className,
   space = '5',
-  cols = 3,
   ...props
 }: GridProps<T>): ReactElement | null => {
+  // defaults to the count of children
+  const cols: OrResponsive<Columns> = props.cols || {
+    all: Math.min(Children.count(props.children), 5) as Columns,
+  };
   const colsByViewport = typeof cols === 'number' ? { all: cols } : cols;
 
   return (
