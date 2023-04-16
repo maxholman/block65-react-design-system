@@ -1,15 +1,14 @@
 import { clsx } from 'clsx';
 import {
+  forwardRef,
   isValidElement,
   type FC,
   type PropsWithChildren,
   type ReactElement,
-  forwardRef,
 } from 'react';
 import {
   busyButtonClass,
   buttonVariantClasses,
-  compactButton,
   iconClass,
   inlineBleedClass,
   visiblyHiddenClass,
@@ -18,8 +17,7 @@ import {
 } from './buttons.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import type { Falsy } from './core.css.js';
-import { Box } from './core.js';
-import { Inline, type InlineProps } from './layout.js';
+import { Flex, type FlexProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { fontSizeVariants, type FontSize } from './typography.css.js';
@@ -36,10 +34,10 @@ export type ButtonCommonProps = {
 
 type ButtonInternalProps<
   T extends keyof ReactHTMLAttributesHacked = 'button' | 'a',
-> = Merge<InlineProps<T>, ButtonCommonProps>;
+> = Merge<FlexProps<T>, ButtonCommonProps>;
 
 export type ButtonProps<T extends keyof ReactHTMLAttributesHacked = 'button'> =
-  PropsWithChildren<Merge<InlineProps<T>, ButtonCommonProps>>;
+  PropsWithChildren<Merge<FlexProps<T>, ButtonCommonProps>>;
 
 export type ButtonLinkProps<T extends keyof ReactHTMLAttributesHacked = 'a'> =
   Merge<
@@ -73,7 +71,7 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
       component = 'button',
       variant = 'standard',
       tone = 'accent',
-
+      space = '2',
       compact,
       busy,
       className,
@@ -81,74 +79,122 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
       inline,
       fontSize,
       children,
+      padding,
+      paddingBlock,
+      paddingInline,
+      flexDirection = 'row',
+      flexGrow,
       ...props
     },
     ref,
-  ) => (
-    <Inline
-      ref={ref}
-      component={component}
-      space="2"
-      rounded="medium"
-      justifyContent="center"
-      flexWrap="nowrap"
-      textAlign="center"
-      className={clsx(
-        className,
-        buttonVariantClasses[variant],
-        toneVariants[tone],
-        busy && busyButtonClass,
-        compact && compactButton,
-        fontSize && fontSizeVariants[fontSize],
-        inline && inlineBleedClass,
-      )}
-      {...props}
-      // if this is an actually button element - default to button so that it
-      // doesn't submit forms by default
-      {...(component === 'button' && {
-        type: ('type' in props && props.type) || 'button',
-      })}
-    >
-      {icon && (
-        <Box
-          component="span"
-          className={[iconClass, busy && visiblyHiddenClass]}
-        >
-          {isValidElement<ReactElementDefaultPropsType>(icon) ? icon : icon({})}
-        </Box>
-      )}
-      {/* possible it might just be an icon, no children */}
-      {children && (
-        <Box
-          className={[busy && visiblyHiddenClass, icon && withIconClass]}
-          aria-hidden={busy || undefined}
-          textOverflow="ellipsis"
-        >
-          {children}
-        </Box>
-      )}
-    </Inline>
-  ),
+  ) => {
+    const paddingAndFontProps: FlexProps = compact
+      ? {
+          className: fontSizeVariants[fontSize || 0],
+          paddingBlock:
+            paddingBlock === null
+              ? paddingBlock
+              : paddingBlock || padding || '2',
+
+          paddingInline:
+            paddingInline === null
+              ? paddingInline
+              : paddingInline || padding || '3',
+        }
+      : {
+          className: fontSize && fontSizeVariants[fontSize],
+          paddingBlock:
+            paddingBlock === null
+              ? paddingBlock
+              : paddingBlock || padding || '3',
+
+          paddingInline:
+            paddingInline === null
+              ? paddingInline
+              : paddingInline || padding || '4',
+        };
+
+    return (
+      <Flex
+        ref={ref}
+        component={component}
+        rounded="medium"
+        justifyContent="center"
+        flexWrap="nowrap"
+        textAlign="center"
+        space="2"
+        flexDirection={flexDirection}
+        {...paddingAndFontProps}
+        {...props}
+        className={clsx(
+          className,
+          toneVariants[tone],
+          buttonVariantClasses[variant],
+          busy && busyButtonClass,
+          inline && inlineBleedClass,
+        )}
+        data-parent
+        // if this is an actually button element - default to button so that it
+        // doesn't submit forms by default
+        {...(component === 'button' && {
+          type: ('type' in props && props.type) || 'button',
+        })}
+      >
+        {icon && (
+          <Flex
+            component="span"
+            alignItems="center"
+            className={[iconClass, busy && visiblyHiddenClass]}
+          >
+            {isValidElement<ReactElementDefaultPropsType>(icon)
+              ? icon
+              : icon({})}
+          </Flex>
+        )}
+        {/* possible it might just be an icon, no children */}
+        {children && (
+          <Flex
+            className={[
+              paddingAndFontProps.className,
+              busy && visiblyHiddenClass,
+              icon && withIconClass,
+            ]}
+            aria-hidden={busy || undefined}
+            aria-live={busy ? 'polite' : undefined}
+            flexDirection={flexDirection}
+            flexGrow={flexGrow}
+            space={space}
+            data-children
+          >
+            {children}
+          </Flex>
+        )}
+      </Flex>
+    );
+  },
 );
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => <ButtonInternal component="button" ref={ref} {...props} />,
 );
 
-export const ButtonLink: FC<ButtonLinkProps> = ({
-  component = 'a',
-  safe = true,
-  ...props
-}) => (
+export const ButtonLink: FC<ButtonLinkProps> = ({ safe = true, ...props }) => (
   <ButtonInternal
-    component={component}
+    component="a"
     {...(safe && props.href && differentOriginLinkProps(props.href))}
     {...props}
   />
 );
 
 export const ButtonIcon: FC<ButtonIconProps> = ({ icon, label, ...props }) => (
-  <ButtonInternal aria-label={label} {...props} textOverflow="ellipsis">
-    <span className={iconClass}>{icon}</span>
-  </ButtonInternal>
+  <ButtonInternal
+    aria-label={label}
+    space="0"
+    alignItems="center"
+    justifyContent="center"
+    paddingInline="7"
+    className={[iconClass]}
+    icon={icon}
+    {...props}
+  />
 );

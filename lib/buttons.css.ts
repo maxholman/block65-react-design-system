@@ -1,15 +1,15 @@
 import {
   createVar,
   style,
-  type StyleRule,
   styleVariants,
+  type StyleRule,
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
-import { currentCapHeight, fontSizeVariants } from './typography.css.js';
+import { currentCapHeight } from './typography.css.js';
 import { hsl } from './utils.js';
 
 export type ButtonVariant =
@@ -20,28 +20,20 @@ export type ButtonVariant =
   | 'none';
 
 export const iconClass = style({
-  display: 'flex',
-  flexDirection: 'row',
-  width: currentCapHeight,
-  height: currentCapHeight,
+  width: '1em',
+  maxHeight: '1em',
   aspectRatio: '1/1',
-  flexShrink: 0,
-  alignItems: 'center',
 });
-
-const basePadding = createVar();
 
 const base = style([
   {
     vars: {
-      [basePadding]: genericVars.space[4],
       [currentCapHeight]: genericVars.text.capHeights[1],
     },
     cursor: 'pointer',
     borderStyle: 'solid',
     borderWidth: genericVars.border.weight.normal,
     borderColor: 'transparent',
-    padding: `${calc(basePadding).divide(2).toString()} ${basePadding}`,
     userSelect: 'none',
     selectors: {
       '&[disabled]': {
@@ -55,16 +47,7 @@ const base = style([
         outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
       },
     },
-    transition: 'background 0.05s linear',
-  },
-]);
-
-export const compactButton = style([
-  fontSizeVariants[0],
-  {
-    vars: {
-      [basePadding]: genericVars.space[3],
-    },
+    transition: 'all 0.05s linear',
   },
 ]);
 
@@ -80,17 +63,18 @@ const variants: Record<ButtonVariant, StyleRule> = {
     color: 'inherit',
   },
   ghost: {
-    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
     selectors: {
       '&:hover': {
-        backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l, 0.75),
+        color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
+        backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
       },
     },
   },
   subtle: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
-    color: hsl(toneH, 0, contrastSchemeVars.level5.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
     borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
     selectors: {
       '&:hover': {
@@ -104,7 +88,7 @@ const variants: Record<ButtonVariant, StyleRule> = {
   },
   transparent: {
     vars: { [hoverAlpha]: '0' },
-    color: hsl(toneH, toneS, contrastSchemeVars.level3.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l, hoverAlpha),
     selectors: {
       '&:hover': {
