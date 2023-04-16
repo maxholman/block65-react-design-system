@@ -113,6 +113,6 @@ export const levelVariantClasses = styleVariants(levelVariants, (rules) => [
   {
     // makes sure any heading ascenders or descenders overlap above anything
     // else (for example an border or underline)
-    zIndex: 1,
+    // zIndex: 1,
   },
 ]);
