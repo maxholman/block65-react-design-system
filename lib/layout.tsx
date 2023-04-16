@@ -1,14 +1,5 @@
 import { forwardRef, type ForwardedRef, type PropsWithChildren } from 'react';
-import { matchViewportVariants } from './component-utils.js';
-import {
-  flexDirectionVariants,
-  viewportFlexDirectionVariants,
-  viewportSpaceVariants,
-  type Falsy,
-  type FlexDirection,
-  type OrResponsive,
-  type Space,
-} from './core.css.js';
+import { type Falsy, type OrResponsive } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import {
   alignItemsVariants,
@@ -28,109 +19,98 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 
-type LayoutProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
-  BoxBasedComponentProps<T>,
-  PropsWithChildren<{
-    space?: OrResponsive<Space> | Falsy;
-    flexDirection?: OrResponsive<FlexDirection> | Falsy;
+export type FlexProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
+  Merge<
+    BoxBasedComponentProps<T>,
+    PropsWithChildren<{
+      alignSelf?: Placement | Falsy;
+      alignItems?: Placement | Falsy;
 
-    alignSelf?: Placement | Falsy;
-    alignItems?: Placement | Falsy;
+      justifySelf?: Placement | Falsy;
+      justifyContent?: Placement | Falsy;
 
-    justifySelf?: Placement | Falsy;
-    justifyContent?: Placement | Falsy;
+      flexGrow?: OrResponsive<boolean> | Falsy;
+      flexShrink?: OrResponsive<boolean> | Falsy;
 
-    flexGrow?: OrResponsive<boolean> | Falsy;
-    flexShrink?: OrResponsive<boolean> | Falsy;
-
-    flexWrap?: Wrap | Falsy;
-  }>
->;
+      flexWrap?: Wrap | true | Falsy;
+    }>
+  >;
 
 export type BlockProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
-  LayoutProps<T>;
+  FlexProps<T>;
 
 export type InlineProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
-  LayoutProps<T>;
+  FlexProps<T>;
 
-function getViewportVariantClasses({ flexDirection, space }: BlockProps) {
-  return [
-    flexDirection &&
-      (typeof flexDirection === 'string'
-        ? flexDirectionVariants[flexDirection]
-        : matchViewportVariants(flexDirection, viewportFlexDirectionVariants)),
+export const Flex = forwardRef(
+  <T extends keyof ReactHTMLAttributesHacked = 'div'>(
+    {
+      component = 'div',
+      flexWrap,
+      alignSelf,
+      alignItems,
+      justifySelf,
+      justifyContent,
+      className,
+      flexDirection = 'row',
+      flexGrow,
+      flexShrink,
+      ...props
+    }: FlexProps<T>,
+    ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
+  ) => {
+    const isRow = flexDirection === 'row';
 
-    space &&
-      matchViewportVariants(
-        typeof space === 'string' ? { all: space } : space,
-        viewportSpaceVariants,
-      ),
-  ];
-}
+    return (
+      <Box
+        component={component}
+        ref={ref}
+        flexDirection={flexDirection}
+        className={[
+          className,
 
-const LayoutInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
-  {
-    component = 'div',
-    flexDirection = 'column',
-    space,
-    alignSelf,
-    alignItems,
-    justifySelf,
-    justifyContent,
-    className,
-    flexGrow,
-    flexShrink,
-    flexWrap = 'wrap',
-    ...props
-  }: LayoutProps<T>,
-  ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-) => {
-  const isRow = flexDirection === 'row';
+          alignSelf && alignSelfVariants[alignSelf],
 
-  return (
-    <Box
-      component={component}
-      ref={ref}
-      className={[
-        alignSelf && alignSelfVariants[alignSelf],
+          flexGrow === true && flexGrowClass.true,
+          flexGrow === false && flexGrowClass.false,
 
-        flexGrow === true && flexGrowClass.true,
-        flexGrow === false && flexGrowClass.false,
+          flexShrink === true && flexShrinkClass.true,
+          flexShrink === false && flexShrinkClass.false,
 
-        flexShrink === true && flexShrinkClass.true,
-        flexShrink === false && flexShrinkClass.false,
+          flexWrap && flexWrapVariants[flexWrap === true ? 'wrap' : flexWrap],
 
-        flexWrap && flexWrapVariants[flexWrap],
+          alignItems && alignItemsVariants[alignItems],
 
-        alignItems && alignItemsVariants[alignItems],
+          justifyContent && justifyContentVariants[justifyContent],
 
-        justifyContent && justifyContentVariants[justifyContent],
-
-        isRow && justifySelf && justifySelfInlineVariants[justifySelf],
-        !isRow && justifySelf && justifySelfBlockVariants[justifySelf],
-
-        getViewportVariantClasses({ flexDirection, space }),
-        className,
-      ]}
-      {...props}
-    />
-  );
-};
+          isRow && justifySelf && justifySelfInlineVariants[justifySelf],
+          !isRow && justifySelf && justifySelfBlockVariants[justifySelf],
+        ]}
+        {...props}
+      />
+    );
+  },
+);
 
 export const Block = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     props: BlockProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-  ) => LayoutInner({ flexDirection: 'column', space: '6', ...props }, ref),
+  ) => <Flex ref={ref} flexDirection="column" space="6" {...props} />,
 );
 
 export const Inline = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     props: InlineProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-  ) =>
-    LayoutInner(
-      { flexDirection: 'row', alignItems: 'center', space: '3', ...props },
-      ref,
-    ),
+  ) => (
+    <Flex
+      ref={ref}
+      flexDirection="row"
+      alignItems="center"
+      space="3"
+      flexWrap
+      {...props}
+    />
+  ),
 );

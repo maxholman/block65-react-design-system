@@ -25,6 +25,10 @@ import {
   type Space,
   type TextAlign,
   type TextOverflow,
+  viewportSpaceVariants,
+  flexDirectionVariants,
+  viewportFlexDirectionVariants,
+  type FlexDirection,
   type Shadow,
   boxShadowVariants,
 } from './core.css.js';
@@ -43,6 +47,9 @@ export type BoxBasedComponentProps<
   {
     className?: ClassValue;
     component?: T | undefined;
+
+    space?: OrResponsive<Space> | Falsy;
+    flexDirection?: OrResponsive<FlexDirection> | Falsy;
 
     margin?: OrResponsive<Space> | Falsy;
     marginBlock?: OrResponsive<Space> | Falsy;
@@ -67,7 +74,6 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     children,
     component,
     className,
-
     margin,
     marginBlock,
     marginInline,
@@ -80,17 +86,34 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     rounded,
     boxShadow,
     borderWeight,
+    space,
+    flexDirection,
     tone,
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
 ) => {
+  const flexDirectionClass =
+    flexDirection &&
+    (typeof flexDirection === 'string'
+      ? flexDirectionVariants[flexDirection]
+      : matchViewportVariants(flexDirection, viewportFlexDirectionVariants));
+
+  const spaceClass =
+    space &&
+    matchViewportVariants(
+      typeof space === 'string' ? { all: space } : space,
+      viewportSpaceVariants,
+    );
+
   const el = createElement(
     component || 'div',
     {
       ...props,
       className:
         clsx(
+          className,
+
           margin &&
             marginBlock !== margin &&
             matchViewportVariants(
@@ -146,12 +169,19 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
           borderWeight && borderWeightVariants[borderWeight],
           tone && toneVariants[tone],
 
-          className,
+          flexDirectionClass,
+          !textOverflow && spaceClass,
         ) || undefined,
       ref,
     },
     textOverflow && children ? (
-      <span className={textOverflow && textOverflowVariants[textOverflow]}>
+      <span
+        className={clsx([
+          flexDirectionClass,
+          spaceClass,
+          textOverflow && textOverflowVariants[textOverflow],
+        ])}
+      >
         {children}
       </span>
     ) : (
