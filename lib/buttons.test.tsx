@@ -16,15 +16,13 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="core_textAlignVariants_center__1rbo53v7 core_roundedVariants_medium__1rbo53v2 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vkf core_viewport_all_space_2__1rbo53vl1 buttons_buttonVariantClasses_standard__jqajj25 buttons_base__jqajj22 tone_toneVariants_accent__y2da5n3"
+        class="tone_toneVariants_accent__y2da5n3 buttons_buttonVariantClasses_standard__jqajj23 buttons_base__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_justifyContentVariants_center__17vpgbak core_viewport_all_paddingBlock_3__1rbo53vdh core_viewport_all_paddingInline_4__1rbo53vb0 core_textAlignVariants_center__1rbo53v7 core_roundedVariants_medium__1rbo53v2 core_flexDirectionVariants_row__1rbo53vkl core_viewport_all_space_2__1rbo53vl7"
         type="button"
       >
-        <div>
-          <span
-            class="core_textOverflowVariants_ellipsis__1rbo53vk1 core_textOverflowBase__1rbo53vk0"
-          >
-            Click Me
-          </span>
+        <div
+          class="core_flexDirectionVariants_row__1rbo53vkl core_viewport_all_space_2__1rbo53vl7"
+        >
+          Click Me
         </div>
       </button>
     `);
