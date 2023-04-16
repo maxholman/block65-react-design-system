@@ -25,6 +25,8 @@ export type Falsy = false | null | undefined;
 
 export type Rounded = keyof typeof genericVars.radius;
 
+export type Shadow = keyof typeof genericVars.boxShadow;
+
 export const roundedVariants = styleVariants(genericVars.radius, (v) => [
   {
     borderRadius: v,
@@ -70,6 +72,15 @@ export const marginVariants = styleVariants(genericVars.space, (space) => [
     margin: space,
   },
 ]);
+
+export const boxShadowVariants = styleVariants(
+  genericVars.boxShadow,
+  (shadow) => [
+    {
+      boxShadow: shadow,
+    },
+  ],
+);
 
 const viewportSizes: Record<
   Viewport,

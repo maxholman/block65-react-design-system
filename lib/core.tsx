@@ -25,6 +25,8 @@ import {
   type Space,
   type TextAlign,
   type TextOverflow,
+  type Shadow,
+  boxShadowVariants,
 } from './core.css.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
@@ -56,6 +58,7 @@ export type BoxBasedComponentProps<
     rounded?: Rounded | Falsy;
     borderWeight?: BorderWeight | Falsy;
     tone?: Tone | Falsy;
+    boxShadow?: Shadow | Falsy;
   }
 >;
 
@@ -75,6 +78,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     textOverflow,
     tooltip,
     rounded,
+    boxShadow,
     borderWeight,
     tone,
     ...props
@@ -138,6 +142,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
 
           textAlign && textAlignVariants[textAlign],
           rounded && roundedVariants[rounded],
+          boxShadow && boxShadowVariants[boxShadow],
           borderWeight && borderWeightVariants[borderWeight],
           tone && toneVariants[tone],
 
