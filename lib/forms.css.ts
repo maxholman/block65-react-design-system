@@ -22,7 +22,10 @@ const defaultInputPadding = genericVars.space[4];
 export const formInputPassword = style({
   flexGrow: 1,
   flexShrink: 1,
-  minWidth: 0,
+  // this is arguably a little hack because it doesnt seem
+  // possible to override the defualt user agent style sheet
+  // for input width
+  width: '100%',
 });
 
 export const formInputPasswordIcon = style({
