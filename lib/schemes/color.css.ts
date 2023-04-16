@@ -32,7 +32,7 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
     },
     neutral: {
       h: '210',
-      s: '50%',
+      s: '20%',
       l: '0%',
     },
     promo: {
