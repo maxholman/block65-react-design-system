@@ -104,21 +104,15 @@ function headingProps(level: HeadingLevel): CommonTextProps {
 }
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ level = '3', className, children, ...props }, ref) => {
-    const textProps = headingProps(level);
-
+  ({ level = '3', className, ...props }, ref) => {
     return (
       <Text
         ref={ref}
         component={`h${level}`}
-        className={[levelVariantClasses[level], className]}
-        // have to force this to null to avoid the default value
-        fontSize={null}
-        {...textProps}
+        className={[className, levelVariantClasses[level]]}
+        {...headingProps(level)}
         {...props}
-      >
-        {children}
-      </Text>
+      />
     );
   },
 );
