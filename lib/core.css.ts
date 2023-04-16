@@ -184,7 +184,7 @@ export const viewportPaddingInlineVariants = viewportStyleVariants(
 export const viewportPaddingBlockVariants = viewportStyleVariants(
   genericVars.space,
   (space) => ({
-    padding: space,
+    paddingBlock: space,
   }),
   'paddingBlock',
 );
