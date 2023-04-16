@@ -116,12 +116,3 @@ export const levelVariantClasses = styleVariants(levelVariants, (rules) => [
     zIndex: 1,
   },
 ]);
-
-export const levelSizeVariantClasses: Record<HeadingLevel, string> = {
-  '1': fontSizeVariants['5'],
-  '2': fontSizeVariants['4'],
-  '3': fontSizeVariants['3'],
-  '4': fontSizeVariants['2'],
-  '5': fontSizeVariants['1'],
-  '6': fontSizeVariants['0'],
-};
