@@ -39,14 +39,14 @@ export const BadgesPage: FC = () => (
 
         <Grid
           cols={{
-            mobile: 1,
-            all: 2,
+            all: 3,
+            tablet: 2,
           }}
         >
           {badgeVariantNames.map((variant) => (
             <Panel variant="subtle" key={variant}>
               <Heading level="4">{variant}</Heading>
-              <Inline>
+              <Inline flexWrap>
                 {badgeToneNames.map((tone) => (
                   <Badge variant={variant} tone={tone} key={tone}>
                     {tone}
@@ -57,7 +57,13 @@ export const BadgesPage: FC = () => (
           ))}
         </Grid>
 
-        <Grid cols={3}>
+        <Grid
+          cols={{
+            all: 3,
+            tablet: 2,
+            mobile: 1,
+          }}
+        >
           <Panel variant="subtle">
             <Inline>
               <Heading level="4">Default Badge</Heading>

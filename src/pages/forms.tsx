@@ -66,7 +66,12 @@ export const FormsPage: FC = () => (
         messageTone="promo"
       />
 
-      <Grid>
+      <Grid
+        cols={{
+          all: 2,
+          mobile: 1,
+        }}
+      >
         <FormInputPassword
           label="Password"
           name="password"

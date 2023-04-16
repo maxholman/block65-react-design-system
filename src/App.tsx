@@ -126,7 +126,12 @@ export const App: FC = () => {
                   </Grid>
 
                   <Panel variant="ghost">
-                    <Inline justifySelf="center" space="5">
+                    <Inline
+                      justifySelf="center"
+                      space="5"
+                      flexWrap
+                      justifyContent="center"
+                    >
                       <Link href="/">
                         <TextLink>Home</TextLink>
                       </Link>
