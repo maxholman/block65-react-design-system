@@ -133,7 +133,6 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
           busy && busyButtonClass,
           inline && inlineBleedClass,
         )}
-        data-parent
         // if this is an actually button element - default to button so that it
         // doesn't submit forms by default
         {...(component === 'button' && {
@@ -164,7 +163,6 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
             flexDirection={flexDirection}
             flexGrow={flexGrow}
             space={space}
-            data-children
           >
             {children}
           </Flex>
