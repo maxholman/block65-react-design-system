@@ -49,7 +49,6 @@ export const textAlignVariants = styleVariants({
 
 export type Space =
   | '00'
-  | '00'
   | '0'
   | '1'
   | '2'
