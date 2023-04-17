@@ -89,8 +89,12 @@ const viewportSizes: Record<
   | { max: number }
 > = {
   all: {},
-  mobile: { max: 40 },
+
+  // WARN: order is very important when not specifying both max and min
   tablet: { max: 60 },
+  mobile: { max: 40 },
+
+  // WARN: order is very important when not specifying both max and min
   desktop: { min: 60 },
   wide: { min: 80 },
 };

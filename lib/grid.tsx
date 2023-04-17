@@ -2,9 +2,8 @@
 import { Children, type ReactElement } from 'react';
 import { matchViewportVariants } from './component-utils.js';
 import {
-  type Columns,
   viewportGridColumnsVariants,
-  viewportSpaceVariants,
+  type Columns,
   type OrResponsive,
   type Space,
 } from './core.css.js';
@@ -23,29 +22,23 @@ export type GridProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
 
 export const Grid = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
   className,
-  space = '5',
+  cols,
   ...props
 }: GridProps<T>): ReactElement | null => {
   // defaults to the count of children
-  const cols: OrResponsive<Columns> = props.cols || {
+  const resolvedCols: OrResponsive<Columns> = cols || {
     all: Math.min(Children.count(props.children), 5) as Columns,
   };
-  const colsByViewport = typeof cols === 'number' ? { all: cols } : cols;
+  const colsByViewport =
+    typeof resolvedCols === 'number' ? { all: resolvedCols } : resolvedCols;
 
   return (
     <Box
+      space="5"
       className={[
-        space &&
-          matchViewportVariants(
-            typeof space === 'string' ? { all: space } : space,
-            viewportSpaceVariants,
-          ),
-        gridClass,
-
-        colsByViewport &&
-          matchViewportVariants(colsByViewport, viewportGridColumnsVariants),
-
         className,
+        gridClass,
+        matchViewportVariants(colsByViewport, viewportGridColumnsVariants),
       ]}
       {...props}
     />
