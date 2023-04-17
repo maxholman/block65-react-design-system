@@ -111,7 +111,7 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
           paddingInline:
             paddingInline === null
               ? paddingInline
-              : paddingInline || padding || '4',
+              : paddingInline || padding || '5',
         };
 
     return (

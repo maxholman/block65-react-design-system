@@ -49,7 +49,7 @@ import {
 } from './utils.js';
 import { useAutoFocusIfAppropriate } from './hooks/use-auto-focus-if-appropriate.js';
 
-const defaultFormInputSpace: Space = '3';
+const defaultFormInputSpace: Space = '4';
 
 type CommonFormInputProps = {
   type?: Exclude<
@@ -100,7 +100,7 @@ function formInputProps(
 export const Form = forwardRef<
   HTMLFormElement,
   PropsWithChildren<BlockProps<'form'>>
->(({ space = '6', children, ...props }, ref) => (
+>(({ space = '7', children, ...props }, ref) => (
   <Block space={space} component="form" {...props} ref={ref}>
     {Children.map(children, (child) => {
       // if it's a block element and no space is defined, use the space this

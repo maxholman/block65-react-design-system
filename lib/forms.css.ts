@@ -17,7 +17,7 @@ const borderWidthVar = createVar();
 const paddingVar = createVar();
 
 // would use a CSS var, but the elements are not in the same tree
-const defaultInputPadding = genericVars.space[4];
+const defaultInputPadding = genericVars.space[5];
 
 export const formInputPassword = style({
   flexGrow: 1,
@@ -243,7 +243,7 @@ export const formInputSelectWrapperSingle = style([
         gridArea: formInputSelectGridAreaName,
         content: JSON.stringify(''),
         justifySelf: 'flex-end',
-        width: genericVars.space[4],
+        width: genericVars.space[5],
         marginRight: defaultInputPadding,
         aspectRatio: '2/1',
         backgroundColor: 'currentColor',

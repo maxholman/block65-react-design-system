@@ -24,7 +24,7 @@ export const Panel = forwardRef(
       ref={ref}
       component="section"
       rounded="medium"
-      padding="5"
+      padding="6"
       className={[className, panelVariants[variant]]}
       {...props}
     />

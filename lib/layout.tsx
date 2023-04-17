@@ -96,7 +96,7 @@ export const Block = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     props: BlockProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-  ) => <Flex ref={ref} flexDirection="column" space="6" {...props} />,
+  ) => <Flex ref={ref} flexDirection="column" space="7" {...props} />,
 );
 
 export const Inline = forwardRef(

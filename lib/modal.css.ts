@@ -8,7 +8,7 @@ import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 const commonViewportRules: Record<Viewport, StyleRule> = {
   tablet: {
     width: '60vw',
-    padding: genericVars.space[5],
+    padding: genericVars.space[6],
     marginInline: 'auto',
   },
 
@@ -20,7 +20,7 @@ const commonViewportRules: Record<Viewport, StyleRule> = {
 
   desktop: {
     width: '35rem',
-    marginBlock: genericVars.space[7],
+    marginBlock: genericVars.space[8],
     marginInline: 'auto',
   },
 
