@@ -154,10 +154,7 @@ export const FormsPage: FC = () => (
         multiple
         label="Other months you might like"
         description={<Text>Choose 2 only please</Text>}
-        onChange={() => {
-          // console.log(e);
-        }}
-        value={['Feb', 'Mar']}
+        defaultValue={['Feb', 'Mar']}
       >
         <option value="Jan">Jan</option>
         <option value="Feb">Feb</option>
