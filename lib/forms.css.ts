@@ -37,7 +37,7 @@ export const formInputPasswordIcon = style({
 export const formInputPasswordToggleButton = style({
   cursor: 'pointer',
   selectors: {
-    '&:hover': {
+    '&:hover,&:focus-visible': {
       backgroundColor: hsl(0, 0, contrastSchemeVars.level1.l),
     },
   },

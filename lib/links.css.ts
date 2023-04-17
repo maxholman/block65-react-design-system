@@ -23,8 +23,10 @@ const linkClassName = style([
     selectors: {
       '&:focus-visible': {
         borderRadius: focusRadiusVar,
+        outlineStyle: 'solid',
         outlineColor: 'currentColor',
-        outlineOffset: genericVars.space[1],
+        outlineWidth: genericVars.border.weight.normal,
+        outlineOffset: genericVars.border.weight.normal,
       },
     },
   },

@@ -41,10 +41,22 @@ const base = style([
         cursor: 'default',
         filter: 'grayscale(1)',
       },
-      '&:focus': {
+
+      // keyboard
+      '&:focus-visible': {
         outlineStyle: 'solid',
-        outlineOffset: genericVars.space[0],
-        outlineColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+        outlineOffset: genericVars.border.weight.normal,
+        outlineWidth: genericVars.border.weight.normal,
+        outlineColor: hsl(toneH, toneS, contrastSchemeVars.level5.l),
+      },
+      // mouse, touch, or stylus
+      '&:focus:not(:focus-visible)': {},
+      // both
+      '&:focus-visible,&:focus:not(:focus-visible)': {},
+
+      // gives us the nice little animation on outlineOffset
+      '&:active': {
+        outlineOffset: 0,
       },
     },
     transition: 'all 0.05s linear',
