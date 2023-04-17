@@ -86,7 +86,7 @@ const variants: Record<ButtonVariant, StyleRule> = {
   },
   subtle: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground4.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
     color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
     selectors: {
       '&:hover': {
