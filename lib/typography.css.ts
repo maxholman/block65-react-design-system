@@ -5,10 +5,11 @@ import {
   style,
   styleVariants,
   type StyleRule,
+  fallbackVar,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
-import { toneH } from './tone.css.js';
+import { toneH, toneL, toneS } from './tone.css.js';
 import { hsl } from './utils.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
@@ -42,7 +43,7 @@ export const fontThemeVars = createThemeContract({
 
 export const textClass = style({
   // text should just inherit unless a tone is specified
-  // color: hsl(toneH, toneS, fallbackVar(toneL, contrastSchemeVars.level4.l)),
+  color: hsl(toneH, toneS, fallbackVar(toneL, contrastSchemeVars.level4.l)),
 });
 
 export const secondaryClass = style({
