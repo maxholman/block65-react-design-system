@@ -9,7 +9,8 @@ import {
 import { genericVars } from './design-system.css.js';
 import { toneH, toneS } from './tone.css.js';
 import { hsl, typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { contrastSchemeVars } from './vars.js';
+import { calc } from '@vanilla-extract/css-utils';
+import { contrastSchemeVars } from './schemes/color.css.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
 
@@ -23,9 +24,7 @@ export type OrResponsive<T> = T | Responsive<T>;
 // disable when consuming
 export type Falsy = false | null | undefined;
 
-export type Rounded = keyof typeof genericVars.radius;
-
-export type Shadow = keyof typeof genericVars.boxShadow;
+export type Rounded = 'medium' | 'none' | 'small' | 'large' | 'maximum';
 
 export const roundedVariants = styleVariants(genericVars.radius, (v) => [
   {
@@ -70,6 +69,9 @@ export const backgroundVariants = styleVariants({
     // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
   },
 } satisfies Record<Background, ComplexStyleRule>);
+
+export type Shadow = '1' | '2' | '3' | '4' | '5' | '6';
+
 export type TextAlign = 'start' | 'end' | 'center';
 
 export const textAlignVariants = styleVariants({

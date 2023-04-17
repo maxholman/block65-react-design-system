@@ -107,6 +107,9 @@ export const contrastSchemeVars = createThemeContract({
   foreground0: {
     l: '',
   },
+
+  shadowStrength: 'shadow-strength',
+  shadowColor: 'shadow-color',
 });
 
 const darkStyleRule: ComplexStyleRule = {
@@ -139,6 +142,9 @@ const darkStyleRule: ComplexStyleRule = {
     foreground0: {
       l: '95%',
     },
+
+    shadowStrength: '10%',
+    shadowColor: '220 40% 2%',
   }),
 };
 
@@ -173,6 +179,8 @@ const darkStyleMoreContrastRule: ComplexStyleRule = {
       l: '95%',
     },
 
+    shadowStrength: '10%',
+    shadowColor: '220 40% 2%',
   }),
 };
 
@@ -207,6 +215,8 @@ const darkStyleLessContrastRule: ComplexStyleRule = {
       l: '50%',
     },
 
+    shadowStrength: '10%',
+    shadowColor: '220 40% 2%',
   }),
 };
 
@@ -243,6 +253,8 @@ const lightStyleLessContrastRule: ComplexStyleRule = {
       l: '50%',
     },
 
+    shadowStrength: '1%',
+    shadowColor: '220 3% 15%',
   }),
 };
 
@@ -277,6 +289,8 @@ const lightStyleMoreContrastRule: ComplexStyleRule = {
       l: '15%',
     },
 
+    shadowStrength: '1%',
+    shadowColor: '220 3% 15%',
   }),
 };
 
@@ -311,6 +325,8 @@ const lightStyleRule: ComplexStyleRule = {
       l: '15%',
     },
 
+    shadowStrength: '1%',
+    shadowColor: '220 3% 15%',
   }),
 };
 
