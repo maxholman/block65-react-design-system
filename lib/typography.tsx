@@ -10,7 +10,7 @@ import type {
 import {
   codeClass,
   fontSizeVariants,
-  levelVariantClasses,
+  headingVariantClasses,
   secondaryClass,
   strongClass,
   textClass,
@@ -45,8 +45,8 @@ export const Text = forwardRef(
     {
       component = 'p',
       fontSize = '1',
+      tone = 'neutral',
       className,
-      tone,
       secondary,
       ...props
     }: TextProps<T>,
@@ -109,7 +109,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
       <Text
         ref={ref}
         component={`h${level}`}
-        className={[className, levelVariantClasses[level]]}
+        className={[className, headingVariantClasses[level]]}
         {...headingProps(level)}
         {...props}
       />

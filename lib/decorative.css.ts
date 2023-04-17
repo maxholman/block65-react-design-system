@@ -9,6 +9,6 @@ export const dividerStyle = style({
   backgroundColor: hsl(
     colorThemeVars.tones.accent.h,
     0,
-    contrastSchemeVars.level3.l,
+    contrastSchemeVars.foreground2.l,
   ),
 });

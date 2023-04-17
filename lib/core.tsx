@@ -8,29 +8,31 @@ import {
 } from 'react';
 import { matchViewportVariants } from './component-utils.js';
 import {
+  backgroundVariants,
   borderWeightVariants,
+  boxShadowVariants,
+  flexDirectionVariants,
   roundedVariants,
   textAlignVariants,
   textOverflowVariants,
+  viewportFlexDirectionVariants,
   viewportMarginBlockVariants,
   viewportMarginInlineVariants,
   viewportMarginVariants,
   viewportPaddingBlockVariants,
   viewportPaddingInlineVariants,
   viewportPaddingVariants,
+  viewportSpaceVariants,
+  type Background,
   type BorderWeight,
   type Falsy,
+  type FlexDirection,
   type OrResponsive,
   type Rounded,
+  type Shadow,
   type Space,
   type TextAlign,
   type TextOverflow,
-  viewportSpaceVariants,
-  flexDirectionVariants,
-  viewportFlexDirectionVariants,
-  type FlexDirection,
-  type Shadow,
-  boxShadowVariants,
 } from './core.css.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
@@ -66,6 +68,7 @@ export type BoxBasedComponentProps<
     borderWeight?: BorderWeight | Falsy;
     tone?: Tone | Falsy;
     boxShadow?: Shadow | Falsy;
+    background?: Background | Falsy;
   }
 >;
 
@@ -89,6 +92,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     space,
     flexDirection,
     tone,
+    background,
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -168,6 +172,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
           boxShadow && boxShadowVariants[boxShadow],
           borderWeight && borderWeightVariants[borderWeight],
           tone && toneVariants[tone],
+          background && backgroundVariants[background],
 
           flexDirectionClass,
           !textOverflow && spaceClass,

@@ -13,7 +13,7 @@ export const focusableClassName = style({
     [focusColorVar]: hsl(
       colorThemeVars.tones.accent.h,
       colorThemeVars.tones.accent.s,
-      contrastSchemeVars.level3.l,
+      contrastSchemeVars.foreground2.l,
     ),
     [focusRadiusVar]: genericVars.radius.small,
     [focusWidthVar]: genericVars.border.weight.normal,

@@ -24,23 +24,23 @@ const variantRules: Record<
 > = {
   standard: {
     vars: {
-      [toneL]: contrastSchemeVars.level5.l,
+      [toneL]: contrastSchemeVars.foreground0.l,
     },
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l),
   },
   ghost: {
-    color: hsl(toneH, toneS, contrastSchemeVars.level3.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.level3.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground2.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l),
   },
   subtle: {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground4.l),
   },
   transparent: {
     backgroundColor: 'transparent',
-    color: hsl(toneH, toneS, contrastSchemeVars.level3.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground2.l),
     fontWeight: genericVars.text.weight.bold,
     borderColor: 'transparent',
   },

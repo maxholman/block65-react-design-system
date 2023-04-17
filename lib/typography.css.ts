@@ -43,11 +43,15 @@ export const fontThemeVars = createThemeContract({
 
 export const textClass = style({
   // text should just inherit unless a tone is specified
-  color: hsl(toneH, toneS, fallbackVar(toneL, contrastSchemeVars.level4.l)),
+  color: hsl(
+    toneH,
+    toneS,
+    fallbackVar(toneL, contrastSchemeVars.foreground1.l),
+  ),
 });
 
 export const secondaryClass = style({
-  color: hsl(toneH, 0, contrastSchemeVars.level4.l),
+  color: hsl(toneH, 0, contrastSchemeVars.foreground2.l),
 });
 
 export const strongClass = style({
@@ -109,11 +113,13 @@ const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
   ],
 }; // satisfies Record<HeadingLevel, ComplexStyleRule>;
 
-export const levelVariantClasses = styleVariants(levelVariants, (rules) => [
-  ...rules,
-  {
-    // makes sure any heading ascenders or descenders overlap above anything
-    // else (for example an border or underline)
-    // zIndex: 1,
+const headingClassName = style({
+  vars: {
+    [toneL]: contrastSchemeVars.foreground0.l,
   },
+});
+
+export const headingVariantClasses = styleVariants(levelVariants, (rules) => [
+  headingClassName,
+  ...rules,
 ]);

@@ -30,14 +30,14 @@ const sss = style({
 export const spinnerCircleClass = style([
   sss,
   {
-    color: hsl(0, 0, contrastSchemeVars.level0.l),
+    color: hsl(0, 0, contrastSchemeVars.background0.l),
   },
 ]);
 
 export const spinnerCircleClass2 = style([
   sss,
   {
-    color: hsl(0, 0, contrastSchemeVars.level5.l),
+    color: hsl(0, 0, contrastSchemeVars.foreground0.l),
     strokeDasharray: '90,360',
     strokeDashoffset: 0,
   },

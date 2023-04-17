@@ -47,7 +47,7 @@ const base = style([
         outlineStyle: 'solid',
         outlineOffset: genericVars.border.weight.normal,
         outlineWidth: genericVars.border.weight.normal,
-        outlineColor: hsl(toneH, toneS, contrastSchemeVars.level5.l),
+        outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
       },
       // mouse, touch, or stylus
       '&:focus:not(:focus-visible)': {},
@@ -75,33 +75,38 @@ const variants: Record<ButtonVariant, StyleRule> = {
     color: 'inherit',
   },
   ghost: {
-    color: hsl(toneH, toneS, contrastSchemeVars.level4.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.level4.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground1.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground1.l),
     selectors: {
       '&:hover': {
-        color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
-        backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
+        color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+        backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
       },
     },
   },
   subtle: {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.level1.l),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
+    borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground4.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
     selectors: {
       '&:hover': {
         borderColor: hsl(
           toneH,
           calc(toneS).subtract('15%').toString(),
-          contrastSchemeVars.level2.l,
+          contrastSchemeVars.foreground3.l,
         ),
       },
     },
   },
   transparent: {
     vars: { [hoverAlpha]: '0' },
-    color: hsl(toneH, toneS, contrastSchemeVars.level5.l),
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level1.l, hoverAlpha),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+    backgroundColor: hsl(
+      toneH,
+      toneS,
+      contrastSchemeVars.background2.l,
+      hoverAlpha,
+    ),
     selectors: {
       '&:hover': {
         vars: { [hoverAlpha]: '0.5' },

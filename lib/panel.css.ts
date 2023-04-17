@@ -21,29 +21,29 @@ const variantRules: Record<
   }
 > = {
   standard: {
-    color: hsl(0, 0, contrastSchemeVars.level5.l),
-    backgroundColor: hsl(0, 0, contrastSchemeVars.level0point5.l),
+    color: hsl(0, 0, contrastSchemeVars.foreground1.l),
+    backgroundColor: hsl(0, 0, contrastSchemeVars.background1.l),
   },
   ghost: {
-    color: hsl(0, 0, contrastSchemeVars.level5.l),
-    backgroundColor: hsl(0, 0, contrastSchemeVars.level0point5.l),
-    borderColor: hsl(0, 0, contrastSchemeVars.level1.l),
+    color: hsl(0, 0, contrastSchemeVars.foreground1.l),
+    backgroundColor: hsl(0, 0, contrastSchemeVars.background1.l),
+    borderColor: hsl(0, 0, contrastSchemeVars.foreground4.l),
   },
   subtle: {
-    color: hsl(0, 0, contrastSchemeVars.level5.l),
+    color: hsl(0, 0, contrastSchemeVars.foreground1.l),
     backgroundColor: hsl(
       colorThemeVars.tones.accent.h,
       colorThemeVars.tones.accent.s,
-      contrastSchemeVars.level0point5.l,
+      contrastSchemeVars.background1.l,
     ),
     borderColor: hsl(
       colorThemeVars.tones.accent.h,
       colorThemeVars.tones.accent.s,
-      contrastSchemeVars.level1.l,
+      contrastSchemeVars.foreground4.l,
     ),
   },
   transparent: {
-    color: hsl(0, 0, contrastSchemeVars.level5.l),
+    color: hsl(0, 0, contrastSchemeVars.foreground0.l),
   },
 };
 

@@ -16,7 +16,7 @@ const linkClassName = style([
       [linkColorVar]: hsl(
         colorThemeVars.tones.accent.h,
         colorThemeVars.tones.accent.s,
-        contrastSchemeVars.level3.l,
+        contrastSchemeVars.foreground2.l,
       ),
     },
     cursor: 'pointer',

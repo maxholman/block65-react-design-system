@@ -38,7 +38,7 @@ export const formInputPasswordToggleButton = style({
   cursor: 'pointer',
   selectors: {
     '&:hover,&:focus-visible': {
-      backgroundColor: hsl(0, 0, contrastSchemeVars.level1.l),
+      backgroundColor: hsl(0, 0, contrastSchemeVars.background2.l),
     },
   },
 });
@@ -47,8 +47,8 @@ export const formInputOuterClassName = style({
   vars: {
     [borderWidthVar]: genericVars.border.weight.hairline,
   },
-  backgroundColor: hsl(0, 0, contrastSchemeVars.level0.l),
-  borderColor: hsl(0, 0, contrastSchemeVars.level4.l),
+  backgroundColor: hsl(0, 0, contrastSchemeVars.background0.l),
+  borderColor: hsl(0, 0, contrastSchemeVars.foreground3.l),
   borderStyle: 'solid',
   borderWidth: borderWidthVar,
   selectors: {
@@ -65,7 +65,7 @@ export const formInputOuterClassName = style({
       pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
     },
     '&::placeholder': {
-      color: hsl(0, 0, contrastSchemeVars.level4.l),
+      color: hsl(0, 0, contrastSchemeVars.foreground2.l),
     },
   },
 });

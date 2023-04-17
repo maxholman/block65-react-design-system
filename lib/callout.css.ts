@@ -8,12 +8,12 @@ import { hsl } from './utils.js';
 
 export const calloutClass = style({
   vars: {
-    [toneL]: contrastSchemeVars.level5.l,
+    [toneL]: contrastSchemeVars.foreground0.l,
   },
   padding: currentCapHeight,
   display: 'grid',
-  borderColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
-  backgroundColor: hsl(toneH, toneS, contrastSchemeVars.level2.l),
+  borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground3.l),
+  backgroundColor: hsl(toneH, toneS, contrastSchemeVars.foreground3.l),
   gridTemplateColumns: 'auto 1fr',
   rowGap: 0,
   columnGap: genericVars.space[3],

@@ -24,9 +24,8 @@ const toneRules: Record<Tone, StyleRule> = {
   },
   neutral: {
     vars: {
-      [toneH]: colorThemeVars.tones.accent.h,
-      // a slight saturation can help differentiate between neutral and disabled/greyed out
-      [toneS]: '15%',
+      [toneH]: '0',
+      [toneS]: '0%',
     },
   },
   critical: {

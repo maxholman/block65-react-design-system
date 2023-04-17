@@ -33,6 +33,43 @@ export const roundedVariants = styleVariants(genericVars.radius, (v) => [
   },
 ]);
 
+export type Background =
+  | 'bright'
+  | 'standard'
+  | 'subtle'
+  | 'sheer'
+  | 'transparent';
+
+export const backgroundVariants = styleVariants({
+  transparent: {
+    backgroundColor: 'transparent',
+    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  },
+  sheer: {
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background1.l, 0.5),
+    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  },
+  subtle: {
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background1.l),
+    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  },
+  standard: {
+    backgroundColor: hsl(
+      toneH,
+      calc.multiply(toneS, 1.25),
+      contrastSchemeVars.background2.l,
+    ),
+    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  },
+  bright: {
+    backgroundColor: hsl(
+      toneH,
+      calc.multiply(toneS, 1),
+      contrastSchemeVars.background3.l,
+    ),
+    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  },
+} satisfies Record<Background, ComplexStyleRule>);
 export type TextAlign = 'start' | 'end' | 'center';
 
 export const textAlignVariants = styleVariants({
@@ -286,19 +323,19 @@ const borderWeight: Record<BorderWeight, StyleRule> = {
   },
   subtle: {
     vars: {
-      [borderL]: contrastSchemeVars.level1.l,
+      [borderL]: contrastSchemeVars.foreground4.l,
     },
     borderColor: hsl(toneH, toneS, borderL),
   },
   normal: {
     vars: {
-      [borderL]: contrastSchemeVars.level1.l,
+      [borderL]: contrastSchemeVars.foreground4.l,
     },
     borderColor: hsl(toneH, toneS, borderL),
   },
   strong: {
     vars: {
-      [borderL]: contrastSchemeVars.level1.l,
+      [borderL]: contrastSchemeVars.foreground4.l,
     },
     borderColor: hsl(toneH, toneS, borderL),
   },
@@ -307,19 +344,19 @@ const borderWeight: Record<BorderWeight, StyleRule> = {
   },
   '00': {
     vars: {
-      [borderL]: contrastSchemeVars.level1.l,
+      [borderL]: contrastSchemeVars.foreground4.l,
     },
     borderColor: hsl(toneH, toneS, borderL),
   },
   '1': {
     vars: {
-      [borderL]: contrastSchemeVars.level1.l,
+      [borderL]: contrastSchemeVars.foreground4.l,
     },
     borderColor: hsl(toneH, toneS, borderL),
   },
   '2': {
     vars: {
-      [borderL]: contrastSchemeVars.level1.l,
+      [borderL]: contrastSchemeVars.foreground4.l,
     },
     borderColor: hsl(toneH, toneS, borderL),
   },
