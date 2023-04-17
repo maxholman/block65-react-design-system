@@ -115,11 +115,6 @@ globalStyle(withResetClass(':where(dialog:modal)'), {
   all: 'revert',
 });
 
-// CUSTOM: restore focus styles
-globalStyle(withResetClass(':where(html) :focus,:focus-visible'), {
-  outline: 'revert',
-});
-
 // CUSTOM
 globalStyle(withResetClass(everythingSelector), {
   minWidth: 0,
