@@ -120,9 +120,10 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
         component={component}
         rounded="medium"
         justifyContent="center"
+        space="2"
         flexWrap="nowrap"
         textAlign="center"
-        space="2"
+        flexGrow={flexGrow}
         flexDirection={flexDirection}
         {...paddingAndFontProps}
         {...props}
@@ -162,6 +163,7 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
             aria-live={busy ? 'polite' : undefined}
             flexDirection={flexDirection}
             flexGrow={flexGrow}
+            justifyContent="center"
             space={space}
           >
             {children}
