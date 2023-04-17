@@ -29,6 +29,7 @@ export const ButtonsPage: FC = () => (
         </Button>
 
         <Button variant="ghost">Ghost</Button>
+        <Button tone="neutral">Neutral Ghost</Button>
         <Button variant="subtle">Subtle</Button>
         <Button variant="transparent">Transparent</Button>
       </Inline>
@@ -139,6 +140,24 @@ export const ButtonsPage: FC = () => (
     </Block>
 
     <Block>
+      <Heading level="2">Growing Shrinking Buttons</Heading>
+      <Inline>
+        <Button flexShrink tone="neutral">
+          A
+        </Button>
+        <Button flexGrow tone="positive">
+          B
+        </Button>
+      </Inline>
+      <Grid>
+        <Button flexShrink tone="neutral">
+          A
+        </Button>
+        <Button tone="positive">B</Button>
+      </Grid>
+    </Block>
+
+    <Panel>
       <Heading level="2">Compact Buttons</Heading>
       <Text>So cute</Text>
       <Inline>
@@ -171,9 +190,9 @@ export const ButtonsPage: FC = () => (
           Subtle
         </Button>
       </Inline>
-    </Block>
-    <Divider />
-    <Block>
+    </Panel>
+
+    <Panel>
       <Heading>Tones</Heading>
       <Grid
         cols={{
@@ -270,7 +289,8 @@ export const ButtonsPage: FC = () => (
         </ButtonLink>
         <Text>and like this</Text>
       </Inline>
-    </Block>
+    </Panel>
+
     <Block>
       <Heading>Hello</Heading>
       <Text>Buttons in context</Text>

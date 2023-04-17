@@ -26,8 +26,8 @@ export const MediaQueryPage: FC = () => (
           mobile: '2',
         }}
         cols={{
-          mobile: 1,
           tablet: 2,
+          mobile: 1,
           desktop: 3,
           wide: 4,
         }}
