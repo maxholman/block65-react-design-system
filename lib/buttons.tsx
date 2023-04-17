@@ -120,6 +120,7 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
         component={component}
         rounded="medium"
         justifyContent="center"
+        alignItems="center"
         space="2"
         flexWrap="nowrap"
         textAlign="center"
