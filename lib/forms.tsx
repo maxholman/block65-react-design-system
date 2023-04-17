@@ -292,7 +292,12 @@ export const FormInputPassword = forwardRef<
             component="input"
             ref={ref}
             type={visible ? 'text' : 'password'}
-            className={[formInputInnerClassName, formInputPassword]}
+            rounded="medium"
+            className={[
+              formInputInnerClassName,
+              formInputPassword,
+              formInputNotCheckRadioClassName,
+            ]}
             autoFocus={definitelyAutoFocus}
             {...inputTypeProps}
             {...props}
