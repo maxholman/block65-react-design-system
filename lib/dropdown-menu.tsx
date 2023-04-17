@@ -32,6 +32,7 @@ import {
   useRef,
   useState,
   type ReactNode,
+  useCallback,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
 import { DesignSystem } from './design-system.js';
@@ -55,12 +56,20 @@ export type MenuProps = Merge<
     label?: ReactNode;
     children?: ReactNode;
     initialPlacement?: Placement;
+    onOpenChange?: (isOpen: boolean) => void;
   }
 >;
 
 const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
   (
-    { children, className, label, initialPlacement = 'bottom-start', ...props },
+    {
+      children,
+      className,
+      label,
+      initialPlacement = 'bottom-start',
+      onOpenChange,
+      ...props
+    },
     forwardedRef,
   ) => {
     const ds = useDesignSystem();
@@ -80,6 +89,11 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
       ) || [],
     );
 
+    const openChange = useCallback((o: boolean) => {
+      onOpenChange?.(o);
+      setIsOpen(o);
+    }, []);
+
     const tree = useFloatingTree();
     const nodeId = useFloatingNodeId();
     const parentId = useFloatingParentNodeId();
@@ -88,7 +102,7 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
     const { x, y, strategy, refs, context } = useFloating<HTMLButtonElement>({
       nodeId,
       open: isOpen,
-      onOpenChange: setIsOpen,
+      onOpenChange: openChange,
       placement: isNested ? 'right-start' : initialPlacement,
       middleware: [
         offset({
