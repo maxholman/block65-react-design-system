@@ -24,6 +24,7 @@ import {
   formInputCheckRadioWrapper,
   formInputCheckboxInput,
   formInputInnerClassName,
+  formInputMessage,
   formInputNotCheckRadioClassName,
   formInputOuterClassName,
   formInputPassword,
@@ -150,12 +151,9 @@ const FormInputMessage: FC<Pick<FormInputProps, 'messageTone' | 'message'>> = ({
   messageTone,
 }) => {
   return (
-    <Inline>
-      <Text fontSize="0" tone={messageTone}>
-        {/* {messageTone ? <Secondary>{message}</Secondary> : message} */}
-        {message}
-      </Text>
-    </Inline>
+    <Text fontSize="0" tone={messageTone} className={formInputMessage}>
+      {message}
+    </Text>
   );
 };
 

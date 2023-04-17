@@ -10,6 +10,7 @@ import {
   focusWidthVar,
 } from './focusable.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
+import { toneL } from './tone.css.js';
 import { fontSizeVariantVars } from './typography.css.js';
 import { hsl } from './utils.js';
 
@@ -167,6 +168,12 @@ export const formInputCheckRadioWrapper = style([
 export const formInputCheckRadioLabel = style({
   alignSelf: 'center',
   gridColumn: 2,
+});
+
+export const formInputMessage = style({
+  vars: {
+    [toneL]: contrastSchemeVars.foreground2.l,
+  },
 });
 
 export const formInputCheckRadioMessage = style({
