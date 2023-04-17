@@ -20,7 +20,7 @@ describe('Button', () => {
         type="button"
       >
         <div
-          class="core_flexDirectionVariants_row__1rbo53vkl core_viewport_all_space_2__1rbo53vl7"
+          class="layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vkl core_viewport_all_space_2__1rbo53vl7"
         >
           Click Me
         </div>
