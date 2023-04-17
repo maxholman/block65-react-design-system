@@ -1,3 +1,4 @@
+import { size } from '@floating-ui/dom';
 import {
   FloatingFocusManager,
   FloatingNode,
@@ -28,35 +29,37 @@ import {
   cloneElement,
   forwardRef,
   isValidElement,
+  useCallback,
   useEffect,
   useRef,
   useState,
   type ReactNode,
-  useCallback,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
 import { DesignSystem } from './design-system.js';
-import { menuPanelStyle } from './dropdown-menu.css.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { ArrowForward } from './icons.js';
-import { Panel, type PanelProps } from './panel.js';
+import { Flex, type FlexProps } from './layout.js';
 import type { Merge } from './types.js';
 
-const menuPanelProps = {
-  space: '3',
-  padding: '2',
-  className: menuPanelStyle,
-  variant: 'standard',
-} satisfies PanelProps;
+const defaultMenuDropdownProps = {
+  space: '4',
+  paddingBlock: '2',
+  boxShadow: '2',
+  flexDirection: 'column',
+  background: 'subtle',
+  tone: 'neutral',
+} satisfies FlexProps;
 
 export type MenuProps = Merge<
   ButtonProps,
   {
-    nested?: boolean;
-    label?: ReactNode;
+    label: ReactNode;
     children?: ReactNode;
     initialPlacement?: Placement;
     onOpenChange?: (isOpen: boolean) => void;
+    menuDropdownProps?: FlexProps;
+    nested?: boolean;
   }
 >;
 
@@ -68,6 +71,7 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
       label,
       initialPlacement = 'bottom-start',
       onOpenChange,
+      menuDropdownProps,
       ...props
     },
     forwardedRef,
@@ -89,10 +93,13 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
       ) || [],
     );
 
-    const openChange = useCallback((o: boolean) => {
-      onOpenChange?.(o);
-      setIsOpen(o);
-    }, []);
+    const openChange = useCallback(
+      (o: boolean) => {
+        onOpenChange?.(o);
+        setIsOpen(o);
+      },
+      [onOpenChange],
+    );
 
     const tree = useFloatingTree();
     const nodeId = useFloatingNodeId();
@@ -104,6 +111,8 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
       open: isOpen,
       onOpenChange: openChange,
       placement: isNested ? 'right-start' : initialPlacement,
+      whileElementsMounted: autoUpdate,
+
       middleware: [
         offset({
           mainAxis: isNested ? 0 : 4,
@@ -111,8 +120,20 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
         }),
         flip(),
         shift(),
+
+        // NOTE: The 'bestFit' fallback strategy in the flip() middleware is
+        // the default, which ensures the best fitting placement is used. In this
+        // scenario, place size() after flip():
+        size({
+          apply({ rects, availableWidth, availableHeight, elements }) {
+            Object.assign(elements.floating.style, {
+              minWidth: `${rects.reference.width}px`,
+              maxWidth: `${availableWidth}px`,
+              maxHeight: `${availableHeight}px`,
+            });
+          },
+        }),
       ],
-      whileElementsMounted: autoUpdate,
     });
 
     const hover = useHover(context, {
@@ -223,8 +244,8 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
             ...props,
             ...(className && { className: clsx(className) }),
             // className: `${isNested ? 'MenuItem' : 'RootMenu'}`,
-            onClick(event) {
-              event.stopPropagation();
+            onClick(e) {
+              e.stopPropagation();
             },
             ...(isNested && {
               // Indicates this is a nested <Menu /> acting as a <MenuItem />.
@@ -248,7 +269,7 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
                 // Only return focus to the root menu's reference when menus close.
                 returnFocus={!isNested}
               >
-                <Panel
+                <Flex
                   ref={refs.setFloating}
                   style={{
                     position: strategy,
@@ -257,7 +278,8 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
                     // width: 'max-content',
                   }}
                   {...getFloatingProps()}
-                  {...menuPanelProps}
+                  {...defaultMenuDropdownProps}
+                  {...menuDropdownProps}
                 >
                   {Children.map(
                     children,
@@ -267,7 +289,6 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
                         child,
                         getItemProps({
                           tabIndex: activeIndex === index ? 0 : -1,
-                          // className: 'MenuItem',
                           ref(node: HTMLButtonElement) {
                             listItemsRef.current[index] = node;
                           },
@@ -284,7 +305,7 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
                         }),
                       ),
                   )}
-                </Panel>
+                </Flex>
               </FloatingFocusManager>
             )}
           </DesignSystem>

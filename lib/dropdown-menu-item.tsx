@@ -1,36 +1,15 @@
 import { forwardRef, type ReactNode } from 'react';
-import type { Merge } from 'type-fest';
-import type { ButtonProps } from './buttons.js';
-import { Block } from './layout.js';
-import type { TextLinkProps } from './links.js';
-
-type CommonMenuItemComponentProps = TextLinkProps | ButtonProps<'button'>;
-
-const commonMenuItemBaseComponentProps = {
-  // variant: 'none',
-  tone: 'neutral',
-  textAlign: 'start',
-} satisfies CommonMenuItemComponentProps;
+import { Block, type BlockProps } from './layout.js';
+import type { Merge } from './types.js';
 
 export type MenuItemProps = Merge<
-  Omit<
-    CommonMenuItemComponentProps,
-    keyof typeof commonMenuItemBaseComponentProps
-  >,
+  BlockProps,
   {
+    label: string;
     children?: ReactNode;
-    // label: string;
-    // disabled?: boolean;
   }
 >;
 
-export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
-  (props, ref) => (
-    <Block
-      {...commonMenuItemBaseComponentProps}
-      {...props}
-      ref={ref}
-      role="menuitem"
-    />
-  ),
+export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
+  (props, ref) => <Block {...props} ref={ref} role="menuitem" />,
 );
