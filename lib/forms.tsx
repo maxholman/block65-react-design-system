@@ -48,6 +48,7 @@ import {
   cloneElementIfValidElementOfType,
   isValidElementOfType,
 } from './utils.js';
+import { useCombinedRefs } from './use-combined-refs.js';
 import { useAutoFocusIfAppropriate } from './hooks/use-auto-focus-if-appropriate.js';
 
 const defaultFormInputSpace: Space = '4';
@@ -541,20 +542,6 @@ export const FormInputCheckboxGroup: FC<
     </Block>
   );
 };
-
-function useCombinedRefs<T>(
-  ...refs: (RefCallback<T> | MutableRefObject<T> | ForwardedRef<T>)[]
-): RefCallback<T> {
-  return (node: T) => {
-    refs.forEach((ref) => {
-      if (typeof ref === 'function') {
-        ref(node);
-      } else if (ref) {
-        ref.current = node;
-      }
-    });
-  };
-}
 
 export type FormTextAreaProps = Merge<
   BoxBasedComponentProps<'textarea'>,
