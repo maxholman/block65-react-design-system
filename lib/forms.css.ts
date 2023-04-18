@@ -65,9 +65,6 @@ export const formInputOuterClassName = style({
       backgroundColor: 'transparent',
       pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
     },
-    '&::placeholder': {
-      color: hsl(0, 0, contrastSchemeVars.foreground2.l),
-    },
   },
 });
 
@@ -84,6 +81,9 @@ export const formInputInnerClassName = style([
       },
       '&[readonly]': {
         paddingInline: 0,
+      },
+      '&::placeholder': {
+        color: hsl(0, 0, contrastSchemeVars.foreground2.l),
       },
     },
   },
