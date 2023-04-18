@@ -7,16 +7,14 @@ import {
   useRef,
   type ComponentProps,
   type FC,
-  type ForwardedRef,
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
-  type MutableRefObject,
   type PropsWithChildren,
   type ReactNode,
-  type RefCallback,
 } from 'react';
-import type { Falsy, Space } from './core.css.js';
+import type { Falsy } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
+import { defaultFormInputSpace, formInputProps } from './forms-common.js';
 import {
   fieldLabelStyle,
   formInputCheckRadioLabel,
@@ -36,6 +34,7 @@ import {
   formInputSelectWrapperSingle,
   inputLabelStyle,
 } from './forms.css.js';
+import { useAutoFocusIfAppropriate } from './hooks/use-auto-focus-if-appropriate.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { useToggle } from './hooks/use-toggle.js';
@@ -49,8 +48,6 @@ import {
   isValidElementOfType,
 } from './utils.js';
 import { useCombinedRefs } from './use-combined-refs.js';
-import { useAutoFocusIfAppropriate } from './hooks/use-auto-focus-if-appropriate.js';
-
 const defaultFormInputSpace: Space = '4';
 
 type CommonFormInputProps = {
@@ -73,31 +70,6 @@ export type FormInputProps = Merge<
   BoxBasedComponentProps<'input'>,
   CommonFormInputProps
 >;
-
-function formInputProps(
-  props: InputHTMLAttributes<HTMLInputElement>,
-): Partial<Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>> {
-  const common = {
-    ...(props.readOnly && { tabIndex: -1 }),
-  };
-
-  switch (props.type) {
-    case 'email':
-      return {
-        ...common,
-        autoComplete: 'email',
-        minLength: 6,
-        maxLength: 320,
-        pattern: '^[^@]+@[^@]+.[^@]+$',
-        placeholder: 'email@example.com',
-      };
-    default: {
-      return {
-        ...common,
-      };
-    }
-  }
-}
 
 export const Form = forwardRef<
   HTMLFormElement,
