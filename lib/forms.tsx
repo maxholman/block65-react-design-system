@@ -48,7 +48,6 @@ import {
   isValidElementOfType,
 } from './utils.js';
 import { useCombinedRefs } from './use-combined-refs.js';
-const defaultFormInputSpace: Space = '4';
 
 type CommonFormInputProps = {
   type?: Exclude<
@@ -119,10 +118,9 @@ export const FormInputLabel: FC<
   );
 };
 
-const FormInputMessage: FC<Pick<FormInputProps, 'messageTone' | 'message'>> = ({
-  message,
-  messageTone,
-}) => {
+export const FormInputMessage: FC<
+  Pick<FormInputProps, 'messageTone' | 'message'>
+> = ({ message, messageTone }) => {
   return (
     <Text fontSize="0" tone={messageTone} className={formInputMessage}>
       {message}
@@ -221,7 +219,10 @@ export const FormInputPassword = forwardRef<
     const id = useIdWithDefault(props.id);
     const definitelyAutoFocus = useAutoFocusIfAppropriate(autoFocus);
 
-    const inputTypeProps = formInputProps(props);
+    const inputTypeProps = formInputProps({
+      type: 'password',
+      ...props,
+    });
 
     const [visible, toggleVisible] = useToggle();
 
