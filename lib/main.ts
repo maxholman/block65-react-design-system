@@ -7,6 +7,7 @@ export * from './grid.js';
 export * from './hooks/use-toggle.js';
 export * from './hooks/use-design-system.js';
 
+export * from './avatar.js';
 export * from './badges.js';
 export * from './buttons.js';
 export * from './callout.js';
