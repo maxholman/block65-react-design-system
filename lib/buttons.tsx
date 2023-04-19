@@ -1,4 +1,3 @@
-import { clsx } from 'clsx';
 import {
   forwardRef,
   isValidElement,
@@ -128,13 +127,13 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
         flexDirection={flexDirection}
         {...paddingAndFontProps}
         {...props}
-        className={clsx(
+        className={[
           className,
           toneVariants[tone],
           buttonVariantClasses[variant],
           busy && busyButtonClass,
           inline && inlineBleedClass,
-        )}
+        ]}
         // if this is an actually button element - default to button so that it
         // doesn't submit forms by default
         {...(component === 'button' && {

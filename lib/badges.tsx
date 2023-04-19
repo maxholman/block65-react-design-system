@@ -1,4 +1,3 @@
-import { clsx, type ClassValue } from 'clsx';
 import type { FC, PropsWithChildren } from 'react';
 import { badgeVariants, type BadgeVariant } from './badges.css.js';
 import type { BoxBasedComponentProps } from './core.js';
@@ -9,7 +8,6 @@ import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { Text } from './typography.js';
 
 type CommonBadgeProps = {
-  className?: ClassValue;
   variant?: BadgeVariant;
   tone?: Tone;
 };
@@ -31,7 +29,7 @@ export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
       component="span"
       rounded="small"
       padding="2"
-      className={clsx(toneVariants[tone], badgeVariants[variant], className)}
+      className={[toneVariants[tone], badgeVariants[variant], className]}
       {...props}
     >
       {isStringLike(children) ? (
