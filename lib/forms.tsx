@@ -48,6 +48,7 @@ import {
   isValidElementOfType,
 } from './utils.js';
 import { useCombinedRefs } from './use-combined-refs.js';
+import { useCustomValidity } from './use-custom-validity.js';
 
 type CommonFormInputProps = {
   type?: Exclude<
@@ -62,6 +63,7 @@ type CommonFormInputProps = {
   message?: ReactNode;
   messageTone?: Tone | Falsy;
   autoFocus?: boolean | 'force' | undefined;
+  customValidity?: string;
 };
 
 export type FormInputProps = Merge<
@@ -139,14 +141,18 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       message,
       messageTone,
       autoFocus,
+      customValidity,
       ...props
     },
-    ref,
+    forwardedRef,
   ) => {
     const id = useIdWithDefault(props.id);
     const definitelyAutoFocus = useAutoFocusIfAppropriate(autoFocus);
 
     const inputTypeProps = formInputProps(props);
+
+    const ourRef = useCustomValidity<HTMLInputElement>(customValidity);
+    const ref = useCombinedRefs(forwardedRef, ourRef);
 
     return (
       <Block className={className} space={defaultFormInputSpace}>
@@ -212,9 +218,10 @@ export const FormInputPassword = forwardRef<
       messageTone,
       behaviour = 'toggle',
       autoFocus,
+      customValidity,
       ...props
     },
-    ref,
+    forwardedRef,
   ) => {
     const id = useIdWithDefault(props.id);
     const definitelyAutoFocus = useAutoFocusIfAppropriate(autoFocus);
@@ -239,6 +246,9 @@ export const FormInputPassword = forwardRef<
     const iconProps = {
       className: formInputPasswordIcon,
     };
+
+    const ourRef = useCustomValidity<HTMLInputElement>(customValidity);
+    const ref = useCombinedRefs(forwardedRef, ourRef);
 
     return (
       <Block className={className} space={defaultFormInputSpace}>
@@ -309,6 +319,7 @@ type FormSelectCommonProps = {
   secondaryLabel?: ReactNode;
   tertiaryLabel?: ReactNode;
   message?: ReactNode;
+  customValidity?: string | Falsy;
 };
 
 export type FormSelectProps = PropsWithChildren<
@@ -322,11 +333,14 @@ export const FormSelect: FC<FormSelectProps> = ({
   secondaryLabel,
   tertiaryLabel,
   message,
+  customValidity,
   rounded = 'medium',
   ...props
 }) => {
   const id = useIdWithDefault(props.id);
   const isStringLike = useStringLikeDetector();
+
+  const ref = useCustomValidity<HTMLSelectElement>(customValidity);
 
   return (
     <Block className={className} space={defaultFormInputSpace}>
@@ -350,6 +364,7 @@ export const FormSelect: FC<FormSelectProps> = ({
           rounded={rounded}
           className={clsx(formInputSelect, formInputNotCheckRadioClassName)}
           id={id}
+          ref={ref}
           {...props}
         />
       </div>
@@ -374,18 +389,22 @@ const FormInputCheckRadio: FC<
         className?: ClassValue;
         message?: ReactNode;
         type: 'radio' | 'checkbox';
+        customValidity?: string | Falsy;
       }
     >
   >
-> = ({ className, message, label, ...props }) => {
+> = ({ className, message, label, customValidity, ...props }) => {
   const id = useIdWithDefault(props.id);
   const isStringLike = useStringLikeDetector();
+
+  const ref = useCustomValidity<HTMLInputElement>(customValidity);
 
   return (
     <Block space="3" className={formInputCheckRadioWrapper}>
       <Box
         component="input"
         rounded="small"
+        ref={ref}
         className={[
           className,
           props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput,
