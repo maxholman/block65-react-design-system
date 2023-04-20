@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { Button } from './buttons.js';
+import { ButtonIcon } from './buttons.js';
 import type { Falsy } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import { DesignSystem } from './design-system.js';
@@ -17,12 +17,10 @@ import { CloseIcon } from './icons.js';
 import { Block, Inline } from './layout.js';
 import {
   buttonClass,
-  dialogClass,
-  iconClass,
-  modalClass,
   commonDimensionsClass,
+  dialogClass,
+  modalClass,
   modalPanelClass,
-  titleClass,
 } from './modal.css.js';
 import { Panel } from './panel.js';
 import type { Merge } from './types.js';
@@ -55,7 +53,7 @@ const ModalInner: FC<InnerProps> = ({
 
   return (
     <Panel className={modalPanelClass}>
-      <Inline className={titleClass}>
+      <Inline flexWrap="nowrap">
         {isStringLike(heading) ? (
           <Heading level="3" textOverflow="ellipsis">
             {heading}
@@ -65,16 +63,16 @@ const ModalInner: FC<InnerProps> = ({
         )}
         {dismissable && (
           <Inline component="form" method="dialog" justifySelf="end">
-            <Button
+            <ButtonIcon
               variant="transparent"
               onClick={() => close && close('')}
               type="submit"
               className={buttonClass}
               value="close"
+              label="close"
               autoFocus={false}
-            >
-              <CloseIcon className={iconClass} />
-            </Button>
+              icon={<CloseIcon />}
+            />
           </Inline>
         )}
       </Inline>

@@ -32,10 +32,6 @@ const commonBackdropProps: StyleRule = {
   backdropFilter: 'blur(0.5rem)',
 };
 
-export const titleClass = style({
-  flexWrap: 'nowrap',
-});
-
 export const dialogClass = style({
   // these are annoyingly not part of the reset
   border: 0,
