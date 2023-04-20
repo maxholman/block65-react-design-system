@@ -236,3 +236,22 @@ export const GlobeColorIcon = forwardRef<SVGSVGElement, IconProps>(
     </svg>
   ),
 );
+
+// IoMdArrowDropdown
+export const MenuDropdownArrowIcon = forwardRef<SVGSVGElement, IconProps>(
+  ({ className, ...props }, ref) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth="0"
+      viewBox="6 10 10 2"
+      ref={ref}
+      {...props}
+    >
+      <g stroke="none">
+        <path d="m12 12-4-4h8z"></path>
+      </g>
+    </svg>
+  ),
+);
