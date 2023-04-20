@@ -192,15 +192,7 @@ export const FormInputEmail = forwardRef<
   HTMLInputElement,
   Omit<FormInputProps, 'type'>
 >((props, ref) => {
-  return (
-    <FormInput
-      ref={ref}
-      type="email"
-      placeholder="test@example.com"
-      pattern="^[^@]+@[^@]+.[^@]+$"
-      {...props}
-    />
-  );
+  return <FormInput ref={ref} type="email" {...props} />;
 });
 
 export const FormInputPassword = forwardRef<
