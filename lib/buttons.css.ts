@@ -59,7 +59,6 @@ const base = style([
         outlineOffset: 0,
       },
     },
-    transition: 'all 0.05s linear',
   },
 ]);
 
