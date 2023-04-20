@@ -18,7 +18,7 @@ export function formInputProps(
         minLength: 3,
         maxLength: 2048,
         pattern: '^(https?://)?[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$',
-        placeholder: 'https://example.com',
+        placeholder: 'https://www.example.com',
       };
     case 'email':
       return {
