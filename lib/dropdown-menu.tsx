@@ -34,33 +34,35 @@ import {
   useRef,
   useState,
   type ReactNode,
+  type PropsWithChildren,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
-import { ArrowForward } from './icons.js';
+import { ArrowForward, MenuDropdownArrowIcon } from './icons.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Merge } from './types.js';
 
 const defaultMenuDropdownProps = {
   space: '4',
-  paddingBlock: '2',
+  padding: '0',
   boxShadow: '2',
   flexDirection: 'column',
-  background: 'subtle',
   tone: 'neutral',
+  background: '0',
 } satisfies FlexProps;
 
+export type MenuButtonProps = ButtonProps;
+
 export type MenuProps = Merge<
-  ButtonProps,
-  {
+  MenuButtonProps,
+  PropsWithChildren<{
     label: ReactNode;
-    children?: ReactNode;
     initialPlacement?: Placement;
     onOpenChange?: (isOpen: boolean) => void;
     menuDropdownProps?: FlexProps;
     nested?: boolean;
-  }
+  }>
 >;
 
 const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
@@ -238,8 +240,8 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
     return (
       <FloatingNode id={nodeId}>
         <Button
+          iconEnd={<MenuDropdownArrowIcon />}
           ref={referenceRef}
-          data-open={isOpen ? '' : undefined}
           {...getReferenceProps({
             ...props,
             ...(className && { className: clsx(className) }),

@@ -19,6 +19,8 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 
+export type Variant = 'none' | 'solid' | 'ghost' | 'subtle' | 'transparent';
+
 export type FlexProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
   Merge<
     BoxBasedComponentProps<T>,
@@ -33,6 +35,8 @@ export type FlexProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
       flexShrink?: OrResponsive<boolean> | Falsy;
 
       flexWrap?: Wrap | true | Falsy;
+
+      variant?: Variant | Falsy;
     }>
   >;
 
@@ -42,19 +46,54 @@ export type BlockProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
 export type InlineProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
   FlexProps<T>;
 
+function getVariantProps(
+  variant: Variant,
+  props: Pick<FlexProps, 'tone'>,
+): BoxBasedComponentProps {
+  switch (variant) {
+    case 'none':
+      return {
+        background: 'none',
+      };
+    case 'solid':
+      return {
+        background: '3',
+        borderTone: props.tone || 'accent',
+        borderVariant: 'normal',
+      };
+    case 'ghost':
+      return {
+        background: '1',
+        borderVariant: 'subtle',
+        borderTone: props.tone || 'accent',
+      };
+    case 'subtle':
+      return {
+        background: '2',
+        borderVariant: 'subtle',
+      };
+    case 'transparent':
+      return {
+        background: 'none',
+        borderVariant: 'transparent',
+      };
+  }
+}
+
 export const Flex = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     {
       component = 'div',
+      flexDirection = 'row',
       flexWrap,
       alignSelf,
       alignItems,
       justifySelf,
       justifyContent,
       className,
-      flexDirection = 'row',
       flexGrow,
       flexShrink,
+      variant,
       ...props
     }: FlexProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -66,6 +105,7 @@ export const Flex = forwardRef(
         component={component}
         ref={ref}
         flexDirection={flexDirection}
+        {...(variant && getVariantProps(variant, props))}
         className={[
           className,
 

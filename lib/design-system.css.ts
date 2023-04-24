@@ -24,16 +24,19 @@ export const genericVars = createThemeContract({
       heavy: 'text-weight-heavy',
     },
     lineHeight: {
-      standard: 'text-line-height-standard',
+      normal: 'text-line-height-normal',
     },
   },
   border: {
-    weight: {
-      none: 'border-weight-none',
-      hairline: 'border-weight-hairline',
-      thin: 'border-weight-thin',
-      normal: 'border-weight-normal',
-      thick: 'border-weight-thick',
+    width: {
+      '0': 'border-width-0',
+      '1': 'border-width-1',
+      '2': 'border-width-2',
+      '3': 'border-width-3',
+      '4': 'border-width-4',
+      '5': 'border-width-5',
+      '6': 'border-width-6',
+      '7': 'border-width-7',
     },
   },
   radius: {
@@ -96,19 +99,24 @@ export const genericThemeClass = createTheme(genericVars, {
       heavy: '900',
     },
     lineHeight: {
-      standard: '1.5',
+      normal: '1.5',
     },
   },
   border: {
-    weight: {
-      none: '0',
-      hairline: '0.075rem',
-      thin: '0.1rem',
-      normal: '0.125rem',
-      thick: '0.25rem',
+    width: {
+      0: '0',
+      1: '0.05rem',
+      2: '0.15rem',
+      3: '0.2rem',
+      4: '0.3rem',
+      5: '0.5rem',
+      6: '0.75rem',
+      7: '1rem',
     },
   },
   radius: {
+    // these are tuned to be distinguished at DPR3
+    // but may not be different at lower densities
     none: '0',
     small: '0.125em',
     medium: '0.25em',

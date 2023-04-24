@@ -16,7 +16,7 @@ export const focusableClassName = style({
       contrastSchemeVars.foreground2.l,
     ),
     [focusRadiusVar]: genericVars.radius.small,
-    [focusWidthVar]: genericVars.border.weight.normal,
+    [focusWidthVar]: genericVars.border.width['2'],
   },
 });
 

@@ -1,16 +1,15 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  type ComplexStyleRule,
   createVar,
   style,
   styleVariants,
+  type ComplexStyleRule,
   type StyleRule,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { toneH, toneS } from './tone.css.js';
-import { hsl, typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { calc } from '@vanilla-extract/css-utils';
 import { contrastSchemeVars } from './schemes/color.css.js';
+import { borderH, borderS, toneH, toneS } from './tone.css.js';
+import { hsl, typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
 
@@ -32,43 +31,55 @@ export const roundedVariants = styleVariants(genericVars.radius, (v) => [
   },
 ]);
 
-export type Background =
-  | 'bright'
-  | 'standard'
-  | 'subtle'
-  | 'sheer'
-  | 'transparent';
+export type Background = 'none' | '0' | '1' | '2' | '3' | '4';
 
-export const backgroundVariants = styleVariants({
-  transparent: {
+export type BackgroundHover = Background;
+
+const backgroundStyles = {
+  none: {
     backgroundColor: 'transparent',
-    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
   },
-  sheer: {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background1.l, 0.5),
-    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  '0': {
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background0.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
   },
-  subtle: {
+  '1': {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background1.l),
-    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
   },
-  standard: {
-    backgroundColor: hsl(
-      toneH,
-      calc.multiply(toneS, 1.25),
-      contrastSchemeVars.background2.l,
-    ),
-    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  '2': {
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
   },
-  bright: {
-    backgroundColor: hsl(
-      toneH,
-      calc.multiply(toneS, 1),
-      contrastSchemeVars.background3.l,
-    ),
-    // color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
+  '3': {
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background3.l),
+    color: hsl(toneH, toneS, 100),
   },
-} satisfies Record<Background, ComplexStyleRule>);
+  '4': {
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background4.l),
+    color: hsl(toneH, toneS, contrastSchemeVars.foreground5.l),
+  },
+} satisfies Record<Background, ComplexStyleRule>;
+
+export const backgroundVariants = styleVariants(backgroundStyles, (styles) => [
+  styles,
+]);
+
+export const backgroundHoverVariants = styleVariants(
+  typedObjectFromEntries(
+    typedObjectEntries(backgroundStyles).map(([key, value]) => [
+      key as BackgroundHover,
+      [
+        {
+          selectors: {
+            '&:hover': value,
+          },
+        },
+      ],
+    ]),
+  ),
+);
 
 export type Shadow = '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -85,6 +96,8 @@ export const textAlignVariants = styleVariants({
     textAlign: 'center',
   },
 } satisfies Record<TextAlign, StyleRule>);
+
+export type BorderWidth = '0' | '1' | '2' | '3' | '4';
 
 export type Space =
   | '00'
@@ -301,73 +314,68 @@ export const textOverflowVariants = styleVariants(
 
 export type FlexDirection = 'row' | 'column';
 
-export type BorderWeight =
-  | 'none'
-  | 'subtle'
-  | 'normal'
-  | 'strong'
-  | '00'
-  | '0'
-  | '1'
-  | '2';
+export type BorderVariant = 'transparent' | 'subtle' | 'normal' | 'strong';
+export type BorderHoverVariant = BorderVariant;
 
-const width = createVar();
 const borderL = createVar();
 
 const borderBaseClass = style({
   borderStyle: 'solid',
-  borderWidth: width,
 });
 
-const borderWeight: Record<BorderWeight, StyleRule> = {
-  none: {
+const borderVariantStyles: Record<
+  BorderVariant | BorderHoverVariant,
+  StyleRule
+> = {
+  transparent: {
     borderColor: 'transparent',
   },
   subtle: {
     vars: {
-      [borderL]: contrastSchemeVars.foreground4.l,
+      [borderL]: contrastSchemeVars.background2.l,
     },
-    borderColor: hsl(toneH, toneS, borderL),
+    borderColor: hsl(borderH, borderS, borderL),
   },
   normal: {
     vars: {
-      [borderL]: contrastSchemeVars.foreground4.l,
+      [borderL]: contrastSchemeVars.background3.l,
     },
-    borderColor: hsl(toneH, toneS, borderL),
+    borderColor: hsl(borderH, borderS, borderL),
   },
   strong: {
     vars: {
       [borderL]: contrastSchemeVars.foreground4.l,
     },
-    borderColor: hsl(toneH, toneS, borderL),
-  },
-  '0': {
-    borderColor: 'transparent',
-  },
-  '00': {
-    vars: {
-      [borderL]: contrastSchemeVars.foreground4.l,
-    },
-    borderColor: hsl(toneH, toneS, borderL),
-  },
-  '1': {
-    vars: {
-      [borderL]: contrastSchemeVars.foreground4.l,
-    },
-    borderColor: hsl(toneH, toneS, borderL),
-  },
-  '2': {
-    vars: {
-      [borderL]: contrastSchemeVars.foreground4.l,
-    },
-    borderColor: hsl(toneH, toneS, borderL),
+    borderColor: hsl(borderH, borderS, borderL),
   },
 };
 
-export const borderWeightVariants = styleVariants(borderWeight, (rule) => [
+export const borderVariants = styleVariants(borderVariantStyles, (rule) => [
   borderBaseClass,
   rule,
 ]);
+
+export const borderHoverVariants = styleVariants(
+  borderVariantStyles,
+  (rule) => [
+    borderBaseClass,
+    {
+      selectors: {
+        '&:hover': rule,
+      },
+    },
+  ],
+);
+
+export const borderWidthVariants = styleVariants(
+  genericVars.border.width,
+  (space) => [
+    borderBaseClass,
+    {
+      borderWidth: space,
+    },
+  ],
+);
 
 export const flexDirectionVariants = styleVariants(
   {

@@ -22,7 +22,7 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
   tones: {
     accent: {
       h: '220',
-      s: '50%',
+      s: '60%',
       l: '0%',
     },
     info: {
@@ -32,7 +32,7 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
     },
     neutral: {
       h: '210',
-      s: '20%',
+      s: '0%',
       l: '0%',
     },
     promo: {
@@ -60,52 +60,62 @@ export const [defaultColorThemeClass, colorThemeVars] = createTheme({
 
 // this just sets up the contract shape, no need for values or a class
 export const contrastSchemeVars = createThemeContract({
-  // large surface backgrounds
+  // reserved for input backgrounds and special cases
   background0: {
-    l: '',
+    l: 'background0-l',
   },
 
-  // transparent button hovers and larger subtle backgrounds such as panels
-  // a level1 lightness should be able to make a visible border around this
+  // ghost
   background1: {
-    l: '',
+    l: 'background1-l',
   },
 
-  // subtle buttons, input borders and dividers
+  // subtle backgrounds
   background2: {
-    l: '',
+    l: 'background2-l',
   },
 
-  // subtle buttons, input borders and dividers
+  // normal backgrounds
   background3: {
-    l: '',
+    // s: 'background3-s',
+    l: 'background3-l',
+  },
+
+  // solid/strong
+  background4: {
+    l: 'background4-l',
   },
 
   // ---
 
+  // absolute top as needed
+  foreground5: {
+    l: 'foreground5-l',
+  },
+
   // input borders and dividers
   foreground4: {
-    l: '',
+    l: 'foreground4-l',
   },
 
   // borders
   foreground3: {
-    l: '',
+    l: 'foreground3-l',
   },
 
   // secondary text and placeholders
   foreground2: {
-    l: '',
+    l: 'foreground2-l',
   },
 
   // foreground text, heavy button backgrounds
   foreground1: {
-    l: '',
+    l: 'foreground1-l',
   },
 
   // headings
   foreground0: {
-    l: '',
+    l: 'foreground0-l',
   },
 
   shadowStrength: 'shadow-strength',
@@ -115,7 +125,7 @@ export const contrastSchemeVars = createThemeContract({
 const darkStyleRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
     background0: {
-      l: '0%',
+      l: '5%',
     },
     background1: {
       l: '10%',
@@ -124,9 +134,16 @@ const darkStyleRule: ComplexStyleRule = {
       l: '25%',
     },
     background3: {
+      // s: '50%',
       l: '50%',
     },
+    background4: {
+      l: '65%',
+    },
 
+    foreground5: {
+      l: '0%',
+    },
     foreground4: {
       l: '20%',
     },
@@ -148,13 +165,56 @@ const darkStyleRule: ComplexStyleRule = {
   }),
 };
 
+const lightStyleRule: ComplexStyleRule = {
+  vars: assignVars(contrastSchemeVars, {
+    // large surface backgrounds
+    background0: {
+      l: '100%',
+    },
+    background1: {
+      l: '97.5%',
+    },
+    background2: {
+      l: '90%',
+    },
+    background3: {
+      l: '60%',
+    },
+    background4: {
+      l: '50%',
+    },
+
+    foreground5: {
+      l: '100%',
+    },
+    foreground4: {
+      l: '90%',
+    },
+    foreground3: {
+      l: '70%',
+    },
+    foreground2: {
+      l: '50%',
+    },
+    foreground1: {
+      l: '25%',
+    },
+    foreground0: {
+      l: '15%',
+    },
+
+    shadowStrength: '1%',
+    shadowColor: '220 3% 15%',
+  }),
+};
+
 const darkStyleMoreContrastRule: ComplexStyleRule = {
   vars: assignVars(contrastSchemeVars, {
     background0: {
       l: '0%',
     },
     background1: {
-      l: '20%',
+      l: '0%',
     },
     background2: {
       l: '20%',
@@ -162,7 +222,13 @@ const darkStyleMoreContrastRule: ComplexStyleRule = {
     background3: {
       l: '20%',
     },
+    background4: {
+      l: '20%',
+    },
 
+    foreground5: {
+      l: '100%',
+    },
     foreground4: {
       l: '80%',
     },
@@ -198,7 +264,13 @@ const darkStyleLessContrastRule: ComplexStyleRule = {
     background3: {
       l: '10%',
     },
+    background4: {
+      l: '10%',
+    },
 
+    foreground5: {
+      l: '0%',
+    },
     foreground4: {
       l: '10%',
     },
@@ -236,7 +308,13 @@ const lightStyleLessContrastRule: ComplexStyleRule = {
     background3: {
       l: '75%',
     },
+    background4: {
+      l: '65%',
+    },
 
+    foreground5: {
+      l: '100%',
+    },
     foreground4: {
       l: '82%',
     },
@@ -272,7 +350,13 @@ const lightStyleMoreContrastRule: ComplexStyleRule = {
     background3: {
       l: '90%',
     },
+    background4: {
+      l: '80%',
+    },
 
+    foreground5: {
+      l: '0%',
+    },
     foreground4: {
       l: '0%',
     },
@@ -284,42 +368,6 @@ const lightStyleMoreContrastRule: ComplexStyleRule = {
     },
     foreground1: {
       l: '0%',
-    },
-    foreground0: {
-      l: '15%',
-    },
-
-    shadowStrength: '1%',
-    shadowColor: '220 3% 15%',
-  }),
-};
-
-const lightStyleRule: ComplexStyleRule = {
-  vars: assignVars(contrastSchemeVars, {
-    background0: {
-      l: '100%',
-    },
-    background1: {
-      l: '95%',
-    },
-    background2: {
-      l: '75%',
-    },
-    background3: {
-      l: '50%',
-    },
-
-    foreground4: {
-      l: '90%',
-    },
-    foreground3: {
-      l: '70%',
-    },
-    foreground2: {
-      l: '50%',
-    },
-    foreground1: {
-      l: '25%',
     },
     foreground0: {
       l: '15%',

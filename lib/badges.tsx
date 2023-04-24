@@ -1,11 +1,11 @@
 import type { FC, PropsWithChildren } from 'react';
-import { badgeVariants, type BadgeVariant } from './badges.css.js';
+import { type BadgeVariant, badgeClassName } from './badges.css.js';
 import type { BoxBasedComponentProps } from './core.js';
-import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { Text } from './typography.js';
+import { useStringLikeDetector } from './hooks/use-string-like.js';
 
 type CommonBadgeProps = {
   variant?: BadgeVariant;
@@ -16,7 +16,7 @@ export type BadgeProps<T extends keyof ReactHTMLAttributesHacked> =
   PropsWithChildren<Merge<InlineProps<T>, CommonBadgeProps>>;
 
 export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
-  variant = 'standard',
+  variant = 'solid',
   tone = 'info',
   className,
   children,
@@ -29,7 +29,9 @@ export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
       component="span"
       rounded="small"
       padding="2"
-      className={[toneVariants[tone], badgeVariants[variant], className]}
+      borderTone={tone}
+      className={[toneVariants[tone], badgeClassName, className]}
+      variant={variant}
       {...props}
     >
       {isStringLike(children) ? (
@@ -38,6 +40,7 @@ export const Badge = <T extends keyof ReactHTMLAttributesHacked>({
           fontSize="0"
           textOverflow="ellipsis"
           textAlign="center"
+          tone={null}
         >
           {children}
         </Text>

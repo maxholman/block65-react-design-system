@@ -6,10 +6,12 @@ import {
   type ForwardedRef,
   type ReactNode,
 } from 'react';
-import { matchViewportVariants } from './component-utils.js';
+import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import {
+  backgroundHoverVariants,
   backgroundVariants,
-  borderWeightVariants,
+  borderHoverVariants,
+  borderWidthVariants,
   boxShadowVariants,
   flexDirectionVariants,
   roundedVariants,
@@ -24,7 +26,7 @@ import {
   viewportPaddingVariants,
   viewportSpaceVariants,
   type Background,
-  type BorderWeight,
+  type BorderHoverVariant,
   type Falsy,
   type FlexDirection,
   type OrResponsive,
@@ -33,8 +35,11 @@ import {
   type Space,
   type TextAlign,
   type TextOverflow,
+  borderVariants,
+  type BorderVariant,
+  type BorderWidth,
 } from './core.css.js';
-import { toneVariants, type Tone } from './tone.css.js';
+import { borderToneVariants, toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type {
   Merge,
@@ -65,10 +70,15 @@ export type BoxBasedComponentProps<
     textAlign?: TextAlign | Falsy;
     textOverflow?: TextOverflow | Falsy;
     rounded?: Rounded | Falsy;
-    borderWeight?: BorderWeight | Falsy;
     tone?: Tone | Falsy;
     boxShadow?: Shadow | Falsy;
     background?: Background | Falsy;
+    backgroundHover?: Background | Falsy;
+
+    borderWidth?: BorderWidth | Falsy;
+    borderHover?: BorderHoverVariant | Falsy;
+    borderTone?: Tone | Falsy;
+    borderVariant?: BorderVariant | Falsy;
   }
 >;
 
@@ -88,11 +98,19 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     tooltip,
     rounded,
     boxShadow,
-    borderWeight,
+
     space,
     flexDirection,
     tone,
+
     background,
+    backgroundHover,
+
+    borderVariant,
+    borderTone = borderVariant && tone,
+    borderWidth = borderVariant && '2',
+    borderHover,
+
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
@@ -118,13 +136,14 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
         clsx(
           className,
 
-          margin &&
+          isNotFalsy(margin) &&
             marginBlock !== margin &&
             matchViewportVariants(
               typeof margin === 'string' ? { all: margin } : margin,
               viewportMarginVariants,
             ),
-          marginBlock &&
+
+          isNotFalsy(marginBlock) &&
             marginBlock !== margin &&
             matchViewportVariants(
               typeof marginBlock === 'string'
@@ -133,7 +152,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
               viewportMarginBlockVariants,
             ),
 
-          marginInline &&
+          isNotFalsy(marginInline) &&
             marginInline !== margin &&
             matchViewportVariants(
               typeof marginInline === 'string'
@@ -142,14 +161,13 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
               viewportMarginInlineVariants,
             ),
 
-          padding &&
-            paddingBlock !== padding &&
+          isNotFalsy(padding) &&
             matchViewportVariants(
               typeof padding === 'string' ? { all: padding } : padding,
               viewportPaddingVariants,
             ),
 
-          paddingBlock &&
+          isNotFalsy(paddingBlock) &&
             paddingBlock !== padding &&
             matchViewportVariants(
               typeof paddingBlock === 'string'
@@ -158,7 +176,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
               viewportPaddingBlockVariants,
             ),
 
-          paddingInline &&
+          isNotFalsy(paddingInline) &&
             paddingInline !== padding &&
             matchViewportVariants(
               typeof paddingInline === 'string'
@@ -168,11 +186,25 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
             ),
 
           textAlign && textAlignVariants[textAlign],
-          rounded && roundedVariants[rounded],
-          boxShadow && boxShadowVariants[boxShadow],
-          borderWeight && borderWeightVariants[borderWeight],
+          isNotFalsy(rounded) && roundedVariants[rounded],
+          isNotFalsy(boxShadow) && boxShadowVariants[boxShadow],
+
           tone && toneVariants[tone],
-          background && backgroundVariants[background],
+
+          borderTone && borderToneVariants[borderTone],
+          isNotFalsy(borderWidth) && borderWidthVariants[borderWidth],
+
+          borderVariant && borderVariants[borderVariant],
+
+          // activate the border variant if it looks like we need it
+          !borderVariant &&
+            (borderTone || borderWidth) &&
+            borderVariants.normal,
+          borderHover && borderHoverVariants[borderHover],
+
+          isNotFalsy(background) && backgroundVariants[background],
+          isNotFalsy(backgroundHover) &&
+            backgroundHoverVariants[backgroundHover],
 
           flexDirectionClass,
           !textOverflow && spaceClass,

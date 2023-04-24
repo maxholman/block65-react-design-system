@@ -2,6 +2,10 @@ import type { ClassValue } from 'clsx';
 import type { Responsive, Viewport } from './core.css.js';
 import { typedObjectEntries } from './utils.js';
 
+export function isNotFalsy<T>(value: T | null | undefined | false): value is T {
+  return value !== null && typeof value !== 'undefined';
+}
+
 export function differentOriginLinkProps(href: string) {
   if (typeof window !== 'undefined') {
     const testUrl = new URL(href, window.location.origin);
@@ -17,6 +21,6 @@ export function matchViewportVariants<T extends string | number>(
   variants: Record<Viewport, Record<T, string>>,
 ): ClassValue[] {
   return typedObjectEntries(resp)
-    .map(([viewport, value]) => value && variants[viewport][value])
-    .filter((c): c is string => !!c);
+    .map(([viewport, value]) => isNotFalsy(value) && variants[viewport][value])
+    .filter(isNotFalsy);
 }

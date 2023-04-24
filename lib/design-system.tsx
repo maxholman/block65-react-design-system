@@ -68,6 +68,8 @@ export const DesignSystem = <
       <Box
         component={component}
         className={[
+          className,
+
           genericThemeClass,
 
           // color theme
@@ -98,8 +100,6 @@ export const DesignSystem = <
           // forced light + forced contrast
           lightColorScheme && moreContrast && forcedLightMoreContrastClass,
           lightColorScheme && lessContrast && forcedLightLessContrastClass,
-
-          className,
         ]}
         {...props}
       >

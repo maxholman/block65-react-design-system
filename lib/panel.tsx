@@ -1,6 +1,5 @@
 import { forwardRef, type ForwardedRef } from 'react';
 import { Block, type BlockProps } from './layout.js';
-import { panelVariants, type PanelVariant } from './panel.css.js';
 import type {
   Merge,
   ReactHTMLAttributesHacked,
@@ -11,13 +10,13 @@ export type PanelProps<T extends keyof ReactHTMLAttributesHacked = 'section'> =
   Merge<
     BlockProps<T>,
     {
-      variant?: PanelVariant;
+      variant?: Exclude<BlockProps<T>['variant'], 'none'>;
     }
   >;
 
 export const Panel = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'section'>(
-    { variant = 'ghost', className, ...props }: PanelProps<T>,
+    { className, ...props }: PanelProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Block
@@ -25,7 +24,9 @@ export const Panel = forwardRef(
       component="section"
       rounded="medium"
       padding="6"
-      className={[className, panelVariants[variant]]}
+      variant="ghost"
+      tone="neutral"
+      background="1"
       {...props}
     />
   ),

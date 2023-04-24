@@ -15,12 +15,21 @@ import { fontSizeVariantVars } from './typography.css.js';
 import { hsl } from './utils.js';
 
 const borderWidthVar = createVar();
-const paddingVar = createVar();
 
-// would use a CSS var, but the elements are not in the same tree
-const defaultInputPadding = genericVars.space[5];
+export const formInputPasswordIcon = style({
+  aspectRatio: '1/1',
+});
 
-export const formInputPassword = style({
+export const formInputPasswordToggleButton = style({
+  cursor: 'pointer',
+  selectors: {
+    '&:hover,&:focus-visible': {
+      backgroundColor: hsl(0, 0, contrastSchemeVars.background1.l),
+    },
+  },
+});
+
+export const formInputHack = style({
   flexGrow: 1,
   flexShrink: 1,
   // this is arguably a little hack because it doesnt seem
@@ -29,29 +38,13 @@ export const formInputPassword = style({
   width: '100%',
 });
 
-export const formInputPasswordIcon = style({
-  blockSize: calc.multiply(defaultInputPadding, 1.5),
-  inlineSize: calc.multiply(defaultInputPadding, 1.5),
+export const formInputOriginIcon = style({
+  maxHeight: '1em',
+  width: '1em',
   aspectRatio: '1/1',
 });
 
-export const formInputPasswordToggleButton = style({
-  cursor: 'pointer',
-  selectors: {
-    '&:hover,&:focus-visible': {
-      backgroundColor: hsl(0, 0, contrastSchemeVars.background2.l),
-    },
-  },
-});
-
 export const formInputOuterClassName = style({
-  vars: {
-    [borderWidthVar]: genericVars.border.weight.hairline,
-  },
-  backgroundColor: hsl(0, 0, contrastSchemeVars.background0.l),
-  borderColor: hsl(0, 0, contrastSchemeVars.foreground3.l),
-  borderStyle: 'solid',
-  borderWidth: borderWidthVar,
   selectors: {
     '&[type="time"]': {
       display: 'initial',
@@ -59,10 +52,6 @@ export const formInputOuterClassName = style({
       alignItems: 'center',
     },
     '&[readonly]': {
-      paddingInline: 0,
-      borderInline: 0,
-      borderColor: 'transparent',
-      backgroundColor: 'transparent',
       pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
     },
   },
@@ -71,17 +60,7 @@ export const formInputOuterClassName = style({
 export const formInputInnerClassName = style([
   fontSizeVariantVars[1],
   {
-    vars: {
-      [paddingVar]: defaultInputPadding,
-    },
-    padding: paddingVar,
     selectors: {
-      '&[type="time"]': {
-        paddingBlock: calc.subtract(paddingVar, '0.1em'),
-      },
-      '&[readonly]': {
-        paddingInline: 0,
-      },
       '&::placeholder': {
         color: hsl(0, 0, contrastSchemeVars.foreground2.l),
       },
@@ -237,7 +216,7 @@ const formInputSelectWrapper = style({
 export const formInputSelectWrapperMultiple = style([
   formInputSelectWrapper,
   {
-    lineHeight: genericVars.text.lineHeight.standard,
+    lineHeight: genericVars.text.lineHeight.normal,
   },
 ]);
 
@@ -250,8 +229,8 @@ export const formInputSelectWrapperSingle = style([
         gridArea: formInputSelectGridAreaName,
         content: JSON.stringify(''),
         justifySelf: 'flex-end',
-        width: genericVars.space[5],
-        marginRight: defaultInputPadding,
+        // width: genericVars.space[5],
+        // marginRight: defaultInputPadding,
         aspectRatio: '2/1',
         backgroundColor: 'currentColor',
         clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',

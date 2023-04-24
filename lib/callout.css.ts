@@ -8,12 +8,10 @@ import { hsl } from './utils.js';
 
 export const calloutClass = style({
   vars: {
-    [toneL]: contrastSchemeVars.foreground0.l,
+    [toneL]: contrastSchemeVars.foreground1.l,
   },
   padding: currentCapHeight,
   display: 'grid',
-  borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground3.l),
-  backgroundColor: hsl(toneH, toneS, contrastSchemeVars.foreground3.l),
   gridTemplateColumns: 'auto 1fr',
   rowGap: 0,
   columnGap: genericVars.space[3],
@@ -28,7 +26,10 @@ export const calloutTextIconWrapperClass = style({
 
 export const calloutTextIconClass = style({
   display: 'inline-block',
+  width: '1em',
+  height: '1em',
   aspectRatio: '1/1',
+  color: hsl(toneH, toneS, toneL),
 });
 
 export const calloutTextClass = style({

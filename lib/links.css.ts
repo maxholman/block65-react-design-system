@@ -5,7 +5,7 @@ import { focusableClassName, focusRadiusVar } from './focusable.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
-export type LinkWeight = 'strong' | 'standard' | 'weak' | 'none';
+export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
 
 const linkColorVar = createVar();
 
@@ -25,8 +25,8 @@ const linkClassName = style([
         borderRadius: focusRadiusVar,
         outlineStyle: 'solid',
         outlineColor: 'currentColor',
-        outlineWidth: genericVars.border.weight.normal,
-        outlineOffset: genericVars.border.weight.normal,
+        outlineWidth: genericVars.border.width['3'],
+        outlineOffset: genericVars.border.width['3'],
       },
     },
   },
@@ -38,7 +38,7 @@ export const linkStyleVariant = styleVariants(
       color: linkColorVar,
       fontWeight: genericVars.text.weight.semiBold,
     },
-    standard: {
+    normal: {
       color: linkColorVar,
     },
     none: {

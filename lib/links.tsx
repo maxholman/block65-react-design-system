@@ -15,7 +15,7 @@ export type TextLinkProps = PropsWithChildren<
 
 // `TextLink` is expect to be wrapped in a `Text` component
 export const TextLink: FC<TextLinkProps> = ({
-  weight = 'standard',
+  weight = 'normal',
   safe = true,
   className,
   ...props

@@ -1,29 +1,31 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { style, styleVariants, type StyleRule } from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
 import { toneH, toneS } from './tone.css.js';
+import { currentCapHeight } from './typography.css.js';
 import { hsl } from './utils.js';
 
 export type AvatarVariant =
-  | 'standard'
+  | 'normal'
   | 'ghost'
   | 'subtle'
   | 'transparent'
   | 'image';
 
-const avatarClassName = style({
+export const avatarClassName = style({
   vars: {
     [toneS]: '60%',
   },
-  display: 'grid',
-  placeItems: 'center',
-  // outlineWidth: genericVars.border.weight.thick,
-  // outlineStyle: 'solid',
-  // outlineOffset: calc.negate(genericVars.border.weight.thick),
-  width: '4.25ch',
-  height: '4.25ch',
+  display: 'inline-grid',
   aspectRatio: '1/1',
+  width: calc.multiply(currentCapHeight, 3),
+  height: calc.multiply(currentCapHeight, 3),
+  marginTop: calc.negate(calc.multiply(currentCapHeight, 3)),
+  marginBottom: calc.negate(calc.multiply(currentCapHeight, 3)),
+
+  placeItems: 'center',
   color: hsl(toneH, toneS, contrastSchemeVars.foreground4.l),
   fontWeight: genericVars.text.weight.bold,
   textTransform: 'uppercase',
@@ -52,22 +54,23 @@ const variantRules: Record<
   AvatarVariant,
   {
     // outlineColor: string;
-  } & Pick<StyleRule, 'backgroundColor' | 'vars'>
+  } & Pick<StyleRule, 'backgroundColor' | 'vars' | 'outlineColor'>
 > = {
-  standard: {
+  normal: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l),
-    // outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l, 0.25),
+    outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l, 0.75),
   },
   ghost: {
-    // outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l, 0.25),
+    // backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background1.l),
+    outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l, 0.25),
   },
   subtle: {
     backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
-    // outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground4.l, 0.25),
+    outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground4.l, 0.25),
   },
   transparent: {
     backgroundColor: 'transparent',
-    // outlineColor: 'transparent',
+    outlineColor: 'transparent',
   },
   image: {
     backgroundColor: hsl(0, 0, 90),
@@ -76,6 +79,5 @@ const variantRules: Record<
 };
 
 export const avatarVariants = styleVariants(variantRules, (variant) => [
-  avatarClassName,
   variant,
 ]);

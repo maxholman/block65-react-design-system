@@ -1,4 +1,4 @@
-import { clsx, type ClassValue } from 'clsx';
+import { type ClassValue } from 'clsx';
 import {
   Children,
   cloneElement,
@@ -21,11 +21,11 @@ import {
   formInputCheckRadioMessage,
   formInputCheckRadioWrapper,
   formInputCheckboxInput,
+  formInputHack,
   formInputInnerClassName,
   formInputMessage,
   formInputNotCheckRadioClassName,
   formInputOuterClassName,
-  formInputPassword,
   formInputPasswordIcon,
   formInputPasswordToggleButton,
   formInputRadioInput,
@@ -34,7 +34,9 @@ import {
   formInputSelectWrapperSingle,
   inputLabelStyle,
 } from './forms.css.js';
-import { useAutoFocusIfAppropriate } from './hooks/use-auto-focus-if-appropriate.js';
+import { useAutoFocus } from './hooks/use-auto-focus.js';
+import { useCombinedRefs } from './hooks/use-combined-refs.js';
+import { useCustomValidity } from './hooks/use-custom-validity.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { useToggle } from './hooks/use-toggle.js';
@@ -47,8 +49,6 @@ import {
   cloneElementIfValidElementOfType,
   isValidElementOfType,
 } from './utils.js';
-import { useCombinedRefs } from './use-combined-refs.js';
-import { useCustomValidity } from './use-custom-validity.js';
 
 type CommonFormInputProps = {
   type?: Exclude<
@@ -147,7 +147,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     forwardedRef,
   ) => {
     const id = useIdWithDefault(props.id);
-    const definitelyAutoFocus = useAutoFocusIfAppropriate(autoFocus);
+    const definitelyAutoFocus = useAutoFocus(autoFocus);
 
     const inputTypeProps = formInputProps(props);
 
@@ -170,6 +170,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           ref={ref}
           component="input"
           rounded="medium"
+          padding="5"
           className={[
             formInputOuterClassName,
             formInputInnerClassName,
@@ -216,12 +217,27 @@ export const FormInputPassword = forwardRef<
     forwardedRef,
   ) => {
     const id = useIdWithDefault(props.id);
-    const definitelyAutoFocus = useAutoFocusIfAppropriate(autoFocus);
+    const definitelyAutoFocus = useAutoFocus(autoFocus);
 
-    const inputTypeProps = formInputProps({
+    const {
+      borderTone,
+      borderWidth,
+      background,
+      paddingInline,
+      tone,
+      ...inputTypeProps
+    } = formInputProps({
       type: 'password',
       ...props,
     });
+
+    const fakeInputProps = {
+      borderTone,
+      borderWidth,
+      background,
+      paddingInline,
+      tone,
+    };
 
     const [visible, toggleVisible] = useToggle();
 
@@ -261,15 +277,17 @@ export const FormInputPassword = forwardRef<
           flexWrap="nowrap"
           alignItems={null}
           space="0"
+          {...fakeInputProps}
         >
           <Box
             component="input"
             ref={ref}
+            padding="5"
             type={visible ? 'text' : 'password'}
             rounded="medium"
             className={[
               formInputInnerClassName,
-              formInputPassword,
+              formInputHack,
               formInputNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
@@ -283,7 +301,7 @@ export const FormInputPassword = forwardRef<
             type="button"
             aria-pressed={visible}
             className={formInputPasswordToggleButton}
-            paddingInline="4"
+            paddingInline="5"
             alignItems="center"
             justifyContent="center"
             {...behaviourProps}
@@ -326,11 +344,12 @@ export const FormSelect: FC<FormSelectProps> = ({
   tertiaryLabel,
   message,
   customValidity,
-  rounded = 'medium',
   ...props
 }) => {
   const id = useIdWithDefault(props.id);
   const isStringLike = useStringLikeDetector();
+
+  const inputTypeProps = formInputProps({});
 
   const ref = useCustomValidity<HTMLSelectElement>(customValidity);
 
@@ -353,10 +372,12 @@ export const FormSelect: FC<FormSelectProps> = ({
       >
         <Box
           component="select"
-          rounded={rounded}
-          className={clsx(formInputSelect, formInputNotCheckRadioClassName)}
+          rounded="medium"
+          className={[formInputSelect, formInputNotCheckRadioClassName]}
+          padding="5"
           id={id}
           ref={ref}
+          {...inputTypeProps}
           {...props}
         />
       </div>
@@ -391,6 +412,8 @@ const FormInputCheckRadio: FC<
 
   const ref = useCustomValidity<HTMLInputElement>(customValidity);
 
+  const inputTypeProps = formInputProps(props);
+
   return (
     <Block space="3" className={formInputCheckRadioWrapper}>
       <Box
@@ -401,6 +424,7 @@ const FormInputCheckRadio: FC<
           className,
           props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput,
         ]}
+        {...inputTypeProps}
         {...props}
         id={id}
       />
@@ -549,7 +573,12 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
     ref,
   ) => {
     const id = useIdWithDefault(props.id);
-    const definitelyAutoFocus = useAutoFocusIfAppropriate(autoFocus);
+    const definitelyAutoFocus = useAutoFocus(autoFocus);
+
+    const inputTypeProps = formInputProps({
+      ...props,
+      type: 'text',
+    });
 
     const internalRef = useRef<HTMLTextAreaElement>(null);
     const combinedRef = useCombinedRefs(ref, internalRef);
@@ -597,12 +626,14 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
           component="textarea"
           autoFocus={definitelyAutoFocus}
           ref={combinedRef}
-          className={clsx(
+          padding="5"
+          className={[
             formInputInnerClassName,
             formInputOuterClassName,
             formInputNotCheckRadioClassName,
-          )}
+          ]}
           {...(props.readOnly && { tabIndex: -1 })}
+          {...inputTypeProps}
           {...props}
           id={id}
         />

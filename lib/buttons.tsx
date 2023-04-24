@@ -2,12 +2,12 @@ import {
   forwardRef,
   isValidElement,
   type FC,
-  type PropsWithChildren,
   type ReactElement,
+  type ForwardedRef,
 } from 'react';
 import {
   busyButtonClass,
-  buttonVariantClasses,
+  buttonClassName,
   iconClass,
   inlineBleedClass,
   visiblyHiddenClass,
@@ -28,6 +28,8 @@ export type ButtonCommonProps = {
   inline?: boolean;
   tone?: Tone;
   icon?: ReactElement | FC | Falsy;
+  iconStart?: ReactElement | FC | Falsy;
+  iconEnd?: ReactElement | FC | Falsy;
   fontSize?: FontSize;
 };
 
@@ -36,12 +38,12 @@ type ButtonInternalProps<
 > = Merge<FlexProps<T>, ButtonCommonProps>;
 
 export type ButtonProps<T extends keyof ReactHTMLAttributesHacked = 'button'> =
-  PropsWithChildren<Merge<FlexProps<T>, ButtonCommonProps>>;
+  ButtonInternalProps<T>;
 
 export type ButtonLinkProps<T extends keyof ReactHTMLAttributesHacked = 'a'> =
   Merge<
     ButtonInternalProps<T>,
-    ButtonCommonProps & {
+    {
       safe?: boolean;
     }
   >;
@@ -64,28 +66,80 @@ export type ButtonIconProps<
   }
 >;
 
-const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
-  (
+const MaybeIcon: FC<{
+  icon?: ReactElement | FC | Falsy;
+  busy?: boolean | Falsy;
+}> = ({ icon, busy }) =>
+  icon ? (
+    <Flex
+      component="span"
+      alignItems="center"
+      className={[iconClass, busy && visiblyHiddenClass]}
+    >
+      {isValidElement<ReactElementDefaultPropsType>(icon) ? icon : icon({})}
+    </Flex>
+  ) : null;
+
+const buttonVariantProps: Record<ButtonVariant, FlexProps> = {
+  none: {
+    background: 'none',
+    borderVariant: 'transparent',
+  },
+  solid: {
+    background: '3',
+    borderVariant: 'normal',
+    borderTone: 'accent',
+  },
+  ghost: {
+    background: '1',
+    backgroundHover: '2',
+    borderVariant: 'normal',
+    borderTone: 'accent',
+    borderHover: 'normal',
+  },
+  subtle: {
+    background: '2',
+    backgroundHover: '2',
+    borderVariant: 'subtle',
+  },
+  transparent: {
+    background: 'none',
+    borderVariant: 'transparent',
+    backgroundHover: '1',
+  },
+};
+
+function getVariantProps(variant: ButtonVariant, tone: Tone) {
+  return {
+    ...buttonVariantProps[variant],
+    borderTone: tone,
+  };
+}
+
+const ButtonInternal = forwardRef(
+  <T extends keyof ReactHTMLAttributesHacked = 'button'>(
     {
       component = 'button',
-      variant = 'standard',
+      variant = 'solid',
       tone = 'accent',
       space = '2',
+      flexDirection = 'row',
       compact,
       busy,
       className,
       icon,
+      iconStart,
+      iconEnd,
       inline,
       fontSize,
       children,
       padding,
       paddingBlock,
       paddingInline,
-      flexDirection = 'row',
       flexGrow,
       ...props
-    },
-    ref,
+    }: ButtonInternalProps<T>,
+    ref: ForwardedRef<HTMLButtonElement>,
   ) => {
     const paddingAndFontProps: FlexProps = compact
       ? {
@@ -117,40 +171,28 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
       <Flex
         ref={ref}
         component={component}
-        rounded="medium"
-        justifyContent="center"
-        alignItems="center"
-        space="2"
-        flexWrap="nowrap"
-        textAlign="center"
         flexGrow={flexGrow}
+        space={space}
         flexDirection={flexDirection}
+        {...getVariantProps(variant, tone)}
         {...paddingAndFontProps}
         {...props}
         className={[
           className,
+          // buttonVariantClasses[variant],
+          buttonClassName,
           toneVariants[tone],
-          buttonVariantClasses[variant],
           busy && busyButtonClass,
           inline && inlineBleedClass,
         ]}
-        // if this is an actually button element - default to button so that it
-        // doesn't submit forms by default
+        // if this is going to be an actual button element - default to button
+        // typeo so that it doesn't submit forms by default
         {...(component === 'button' && {
           type: ('type' in props && props.type) || 'button',
         })}
       >
-        {icon && (
-          <Flex
-            component="span"
-            alignItems="center"
-            className={[iconClass, busy && visiblyHiddenClass]}
-          >
-            {isValidElement<ReactElementDefaultPropsType>(icon)
-              ? icon
-              : icon({})}
-          </Flex>
-        )}
+        <MaybeIcon icon={iconStart || icon} busy={busy} />
+
         {/* possible it might just be an icon, no children */}
         {children && (
           <Flex
@@ -162,6 +204,7 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
             aria-hidden={busy || undefined}
             aria-live={busy ? 'polite' : undefined}
             flexDirection={flexDirection}
+            alignItems="center"
             flexGrow={flexGrow}
             justifyContent="center"
             space={space}
@@ -169,17 +212,34 @@ const ButtonInternal = forwardRef<HTMLButtonElement, ButtonInternalProps>(
             {children}
           </Flex>
         )}
+        {iconEnd && <MaybeIcon icon={iconEnd} busy={busy} />}
       </Flex>
     );
   },
 );
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => <ButtonInternal component="button" ref={ref} {...props} />,
+export const Button = forwardRef(
+  <T extends keyof ReactHTMLAttributesHacked = 'button'>(
+    props: ButtonProps<T>,
+    ref: ForwardedRef<HTMLButtonElement>,
+  ) => (
+    <ButtonInternal
+      component="button"
+      ref={ref}
+      rounded="medium"
+      justifyContent="center"
+      alignItems="center"
+      space="2"
+      flexWrap="nowrap"
+      textAlign="center"
+      borderWidth="2"
+      {...props}
+    />
+  ),
 );
 
 export const ButtonLink: FC<ButtonLinkProps> = ({ safe = true, ...props }) => (
-  <ButtonInternal
+  <Button
     component="a"
     {...(safe && props.href && differentOriginLinkProps(props.href))}
     {...props}

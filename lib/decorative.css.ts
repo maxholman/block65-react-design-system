@@ -5,7 +5,7 @@ import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
 export const dividerStyle = style({
-  height: genericVars.border.weight.hairline,
+  height: genericVars.border.width[1],
   backgroundColor: hsl(
     colorThemeVars.tones.accent.h,
     0,

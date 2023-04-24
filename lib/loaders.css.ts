@@ -10,9 +10,9 @@ const rotate = keyframes({
 });
 
 export const spinnerClass = style({
+  aspectRatio: '1/1',
   height: fallbackVar(currentCapHeight, '1em'),
   width: fallbackVar(currentCapHeight, '1em'),
-  aspectRatio: '1/1',
   display: 'inline-flex',
   transformOrigin: 'center center',
   animationName: rotate,

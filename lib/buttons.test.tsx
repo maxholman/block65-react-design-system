@@ -16,11 +16,11 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="tone_toneVariants_accent__y2da5n3 buttons_buttonVariantClasses_standard__jqajj23 buttons_base__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewport_all_paddingBlock_3__1rbo53vec core_viewport_all_paddingInline_5__1rbo53vbr core_textAlignVariants_center__1rbo53vc core_roundedVariants_medium__1rbo53v2 core_flexDirectionVariants_row__1rbo53vlt core_viewport_all_space_2__1rbo53vmg"
+        class="buttons_buttonClassName__jqajj21 tone_toneVariants_accent__y2da5n3 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewport_all_paddingBlock_3__1rbo53vej core_viewport_all_paddingInline_5__1rbo53vby core_textAlignVariants_center__1rbo53vj core_roundedVariants_medium__1rbo53v2 tone_borderToneVariants_accent__y2da5nc core_borderWidthVariants_2__1rbo53vm1 core_borderBaseClass__1rbo53vlq core_borderVariants_normal__1rbo53vlt core_borderBaseClass__1rbo53vlq core_backgroundVariants_3__1rbo53v8 core_flexDirectionVariants_row__1rbo53vm7 core_viewport_all_space_2__1rbo53vmu"
         type="button"
       >
         <div
-          class="layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vlt core_viewport_all_space_2__1rbo53vmg"
+          class="layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vm7 core_viewport_all_space_2__1rbo53vmu"
         >
           Click Me
         </div>

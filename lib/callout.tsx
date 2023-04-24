@@ -25,6 +25,7 @@ export const Callout: FC<
   return (
     <Inline
       component="div"
+      background="3"
       rounded={rounded}
       className={[
         className,

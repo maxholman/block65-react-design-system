@@ -1,9 +1,4 @@
-import {
-  createVar,
-  style,
-  styleVariants,
-  type StyleRule,
-} from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
@@ -13,11 +8,11 @@ import { currentCapHeight } from './typography.css.js';
 import { hsl } from './utils.js';
 
 export type ButtonVariant =
-  | 'standard'
+  | 'none'
+  | 'solid'
   | 'ghost'
   | 'subtle'
-  | 'transparent'
-  | 'none';
+  | 'transparent';
 
 export const iconClass = style({
   width: '1em',
@@ -25,15 +20,13 @@ export const iconClass = style({
   aspectRatio: '1/1',
 });
 
-const base = style([
+export const buttonClassName = style([
   {
     vars: {
       [currentCapHeight]: genericVars.text.capHeights[1],
     },
     cursor: 'pointer',
     borderStyle: 'solid',
-    borderWidth: genericVars.border.weight.normal,
-    borderColor: 'transparent',
     userSelect: 'none',
     selectors: {
       '&[disabled]': {
@@ -45,8 +38,8 @@ const base = style([
       // keyboard
       '&:focus-visible': {
         outlineStyle: 'solid',
-        outlineOffset: genericVars.border.weight.normal,
-        outlineWidth: genericVars.border.weight.normal,
+        outlineOffset: genericVars.border.width['3'],
+        outlineWidth: genericVars.border.width['3'],
         outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
       },
       // mouse, touch, or stylus
@@ -60,63 +53,6 @@ const base = style([
       },
     },
   },
-]);
-
-const hoverAlpha = createVar();
-
-const variants: Record<ButtonVariant, StyleRule> = {
-  standard: {
-    backgroundColor: hsl(toneH, toneS, 50),
-    color: hsl(0, 0, 100),
-  },
-  none: {
-    backgroundColor: 'transparent',
-    color: 'inherit',
-  },
-  ghost: {
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground1.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.foreground1.l),
-    selectors: {
-      '&:hover': {
-        color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
-        backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
-      },
-    },
-  },
-  subtle: {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
-    borderColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
-    selectors: {
-      '&:hover': {
-        borderColor: hsl(
-          toneH,
-          calc(toneS).subtract('15%').toString(),
-          contrastSchemeVars.foreground3.l,
-        ),
-      },
-    },
-  },
-  transparent: {
-    vars: { [hoverAlpha]: '0' },
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
-    backgroundColor: hsl(
-      toneH,
-      toneS,
-      contrastSchemeVars.background2.l,
-      hoverAlpha,
-    ),
-    selectors: {
-      '&:hover': {
-        vars: { [hoverAlpha]: '0.5' },
-      },
-    },
-  },
-};
-
-export const buttonVariantClasses = styleVariants(variants, (variant) => [
-  base,
-  variant,
 ]);
 
 export const visiblyHiddenClass = style({
@@ -134,11 +70,15 @@ export const busyButtonClass = style({
       content: '""',
       position: 'absolute',
       margin: 'auto',
+
+      // busy indicator
       borderStyle: 'solid',
-      borderWidth: genericVars.border.weight.normal,
+      borderWidth: genericVars.border.width['3'],
       borderColor: 'transparent',
       borderTopColor: 'currentColor',
       borderRadius: genericVars.radius.maximum,
+
+      // busy indicator animation
       animationName: rotate,
       animationDuration: '0.75s',
       animationIterationCount: 'infinite',
@@ -152,10 +92,7 @@ export const inlineBleedClass = style({
 });
 
 export const withIconClass = style({
-  gap: genericVars.space['00'],
   display: 'inline-flex',
-  flexDirection: 'row',
-  alignItems: 'center',
   minWidth: 0,
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
