@@ -23,6 +23,10 @@
       "types": "./dist/lib/vars.js",
       "default": "./build/vars.js"
     },
+    "./hooks": {
+      "types": "./dist/lib/hooks/main.js",
+      "default": "./build/hooks.js"
+    },
     "./tokens.scss": {
       "default": "./build/tokens.scss"
     }

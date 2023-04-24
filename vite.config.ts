@@ -15,6 +15,7 @@ export default defineConfig({
       entry: {
         main: resolve(__dirname, 'lib/main.ts'),
         vars: resolve(__dirname, 'lib/vars.ts'),
+        hooks: resolve(__dirname, 'lib/hooks/main.ts'),
       },
       formats: ['es'],
     },
