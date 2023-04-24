@@ -5,9 +5,9 @@ import { lorem } from '../lorem.js';
 export const GridPage: FC = () => (
   <Panel variant="ghost">
     <Grid cols={4}>
-      <Panel variant="standard">
+      <Panel variant="transparent">
         <Heading level="2" textOverflow="ellipsis">
-          Standard
+          transparent
         </Heading>
         <Text>{lorem.generateSentences(3)}</Text>
       </Panel>
@@ -23,7 +23,7 @@ export const GridPage: FC = () => (
         </Heading>
         <Text>{lorem.generateSentences(3)}</Text>
       </Panel>
-      <Panel variant="standard">
+      <Panel variant="solid">
         <Heading level="2" textOverflow="ellipsis">
           Standard
         </Heading>

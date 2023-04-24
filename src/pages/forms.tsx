@@ -7,6 +7,7 @@ import {
   FormInputCheckbox,
   FormInputCheckboxGroup,
   FormInputEmail,
+  FormInputOrigin,
   FormInputPassword,
   FormInputRadio,
   FormInputRadioGroup,
@@ -48,6 +49,12 @@ export const FormsPage: FC = () => (
         name="email"
         message="Work email address only"
         messageTone="warn"
+      />
+      <FormInputOrigin
+        label="Origin"
+        name="origin"
+        defaultValue=""
+        message="Jeepers creepers"
       />
       <FormInputPassword
         label="Password"

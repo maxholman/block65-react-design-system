@@ -3,7 +3,7 @@ import { Block, Box } from '../../lib/main.js';
 
 export const IconsPage: FC = () => (
   <>
-    <Box borderWeight="strong">
+    <Box>
       <Block>
         <Block>Responsive 1</Block>
         <Block>Responsive 2</Block>

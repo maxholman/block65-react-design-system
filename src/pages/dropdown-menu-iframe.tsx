@@ -1,20 +1,32 @@
 import { Link } from '@block65/mrr';
 import { type FC } from 'react';
 import {
-  ButtonLink,
   Grid,
   Inline,
   Menu,
   MenuItem,
+  TextLink,
   type MenuProps,
 } from '../../lib/main.js';
 
 const RandomMenu: FC<Omit<MenuProps, 'label'>> = (props) => (
-  <Menu label="Menu" initialPlacement="bottom" {...props}>
+  <Menu
+    label="Menu Yeah!"
+    initialPlacement="bottom"
+    menuDropdownProps={{
+      padding: '0',
+      boxShadow: '6',
+      space: '0',
+    }}
+    {...props}
+  >
     {Array.from({ length: 99 }).map((_, idx, arr) => (
-      <MenuItem label={(arr.length - idx).toString()}>
+      <MenuItem key={idx} label={(arr.length - idx).toString()}>
         <Link href="/modals">
-          <ButtonLink>{arr.length - idx} Bottles </ButtonLink>
+          <TextLink weight="weak" backgroundHover="2" padding="3" tone="accent">
+            {arr.length - idx} Bottles
+          </TextLink>
+          {/* <ButtonLink rounded="none">{arr.length - idx} Bottles</ButtonLink> */}
         </Link>
       </MenuItem>
     ))}
@@ -32,25 +44,25 @@ export const DropdownMenuIframe: FC = () => (
     style={{ width: '100%', height: '100%' }}
   >
     <Inline justifySelf="start">
-      <RandomMenu />
+      <RandomMenu variant="ghost" />
     </Inline>
     <Inline justifySelf="center">
-      <RandomMenu />
+      <RandomMenu variant="subtle" />
     </Inline>
     <Inline justifySelf="end">
-      <RandomMenu />
+      <RandomMenu variant="transparent" />
     </Inline>
     <Inline justifySelf="start">
-      <RandomMenu />
+      <RandomMenu variant="none" />
     </Inline>
     <Inline justifySelf="center">
-      <RandomMenu />
+      <RandomMenu tone="accent" />
     </Inline>
     <Inline justifySelf="end">
-      <RandomMenu />
+      <RandomMenu tone="promo" />
     </Inline>
     <Inline justifySelf="start">
-      <RandomMenu />
+      <RandomMenu tone="positive" />
     </Inline>
     <Inline justifySelf="center">
       <RandomMenu />

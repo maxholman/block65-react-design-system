@@ -3,9 +3,9 @@ import { Code, Grid, Heading, Inline, Panel, Text } from '../../lib/main.js';
 
 const PanelGrid = () => (
   <Grid cols={{ mobile: 1, all: 2 }}>
-    <Panel variant="standard">
-      <Heading>standard</Heading>
-      <Text>standard</Text>
+    <Panel variant="solid">
+      <Heading>solid</Heading>
+      <Text>solid</Text>
     </Panel>
     <Panel variant="ghost">
       <Heading>ghost</Heading>
@@ -23,24 +23,38 @@ const PanelGrid = () => (
 );
 
 export const PanelsPage: FC = () => (
-  <Panel variant="ghost">
-    <Grid cols={{ mobile: 1, all: 2 }}>
-      <Panel variant="subtle">
-        <PanelGrid />
-      </Panel>
-      <Panel>
-        <PanelGrid />
-      </Panel>
-    </Grid>
-    <Panel variant="subtle" padding="5">
-      <Inline>
-        Padding override <Code>huge</Code>
-      </Inline>
+  <>
+    <Heading>Panels</Heading>
+    <Panel variant="ghost">
+      <PanelGrid />
     </Panel>
-    <Panel variant="subtle" padding="0">
-      <Inline>
-        Padding override <Code>none</Code>
-      </Inline>
+
+    <Heading>Nested</Heading>
+    <Panel>
+      <Grid cols={{ mobile: 1, all: 2 }}>
+        <Panel variant="subtle">
+          <Heading>Nested</Heading>
+          <PanelGrid />
+        </Panel>
+        <Panel>
+          <Heading>Nested</Heading>
+          <PanelGrid />
+        </Panel>
+      </Grid>
     </Panel>
-  </Panel>
+
+    <Heading>Overrides</Heading>
+
+    <Panel variant="subtle" tone="critical">
+      <Panel variant="subtle" padding="10" tone="critical">
+        Padding override <Code>10</Code>
+        <Inline></Inline>
+      </Panel>
+      <Panel variant="subtle" padding="0">
+        <Inline>
+          Padding override <Code>0</Code>
+        </Inline>
+      </Panel>
+    </Panel>
+  </>
 );

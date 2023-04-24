@@ -14,9 +14,10 @@ import {
   type Tone,
 } from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from '../icons.js';
+import type { ButtonVariant } from '../../lib/buttons.css.js';
 
 export const ButtonsPage: FC = () => (
-  <Panel space="9">
+  <>
     <Panel>
       <Heading level="2">Variants</Heading>
       <Inline flexWrap>
@@ -29,8 +30,13 @@ export const ButtonsPage: FC = () => (
         </Button>
 
         <Button variant="ghost">Ghost</Button>
-        <Button tone="neutral">Neutral Ghost</Button>
+        <Button variant="ghost" tone="neutral">
+          Neutral Ghost
+        </Button>
         <Button variant="subtle">Subtle</Button>
+        <Button tone="neutral" variant="subtle">
+          Neutral Subtle
+        </Button>
         <Button variant="transparent">Transparent</Button>
       </Inline>
     </Panel>
@@ -94,6 +100,7 @@ export const ButtonsPage: FC = () => (
     <Panel>
       <Heading level="2">Button Icons</Heading>
       <Inline>
+        <ButtonIcon icon={<SunIcon />} label="Sun" />
         <ButtonIcon icon={<SunIcon />} label="Sun" />
         <ButtonIcon icon={<SunIcon />} label="Sun" busy />
         <ButtonIcon icon={<SunIcon />} label="Sun" variant="ghost" />
@@ -194,6 +201,7 @@ export const ButtonsPage: FC = () => (
 
     <Panel>
       <Heading>Tones</Heading>
+
       <Grid
         cols={{
           all: 4,
@@ -201,56 +209,6 @@ export const ButtonsPage: FC = () => (
           mobile: 1,
         }}
       >
-        <Block>
-          <Button>standard</Button>
-          <Button variant="ghost">standard ghost</Button>
-          <Button variant="subtle">standard subtle</Button>
-          <Button variant="transparent">standard transparent</Button>
-        </Block>
-
-        <Block>
-          <Button tone="neutral">neutral</Button>
-          <Button variant="ghost" tone="neutral">
-            neutral ghost
-          </Button>
-
-          <Button variant="subtle" tone="neutral">
-            neutral subtle
-          </Button>
-
-          <Button variant="transparent" tone="neutral">
-            neutral transparent
-          </Button>
-        </Block>
-
-        <Block>
-          <Button tone="critical">critical</Button>
-          <Button variant="ghost" tone="critical">
-            critical ghost
-          </Button>
-          <Button variant="subtle" tone="critical">
-            critical subtle
-          </Button>
-
-          <Button variant="transparent" tone="critical">
-            critical transparent
-          </Button>
-        </Block>
-
-        <Block>
-          <Button tone="promo">promo</Button>
-
-          <Button variant="ghost" tone="promo">
-            promo ghost
-          </Button>
-          <Button variant="subtle" tone="promo">
-            promo subtle
-          </Button>
-          <Button variant="transparent" tone="promo">
-            neutral transparent
-          </Button>
-        </Block>
-
         {(
           [
             'accent',
@@ -262,22 +220,27 @@ export const ButtonsPage: FC = () => (
             'info',
           ] as Tone[]
         ).map((tone) => (
-          <Block key={tone}>
-            <Button tone={tone}>{tone}</Button>
-
-            <Button variant="ghost" tone={tone}>
-              {tone} ghost
-            </Button>
-            <Button variant="subtle" tone={tone}>
-              {tone} subtle
-            </Button>
-            <Button variant="transparent" tone={tone}>
-              {tone} transparent
-            </Button>
-          </Block>
+          <Panel key={tone}>
+            <Heading>{tone}</Heading>
+            {(
+              [
+                'solid',
+                'subtle',
+                'ghost',
+                'transparent',
+                'none',
+              ] as ButtonVariant[]
+            ).map((variant) => (
+              <Button variant={variant} tone={tone} key={variant}>
+                {variant}
+              </Button>
+            ))}
+          </Panel>
         ))}
       </Grid>
+    </Panel>
 
+    <Panel>
       <Divider marginBlock="3" />
 
       <Heading>Hello</Heading>
@@ -412,5 +375,5 @@ export const ButtonsPage: FC = () => (
         </Block>
       </Panel>
     </Block>
-  </Panel>
+  </>
 );

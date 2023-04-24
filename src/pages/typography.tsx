@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import {
   Block,
-  Divider,
   Grid,
   Heading,
   Panel,
@@ -38,8 +37,7 @@ export const TypographyPage: FC = () => (
 
     <Panel variant="ghost">
       <Block space="0">
-        <Heading level="1">Heading 1 With Fake Underline</Heading>
-        <Divider />
+        <Heading level="1">Heading 1</Heading>
       </Block>
       <Text>Looks horrible</Text>
     </Panel>
@@ -157,7 +155,11 @@ export const TypographyPage: FC = () => (
       <Heading level="2">Tones are toney</Heading>
 
       {(['accent', 'critical'] as const).map((tone) => {
-        return <Text tone={tone}>{tone}</Text>;
+        return (
+          <Text tone={tone} key={tone}>
+            {tone}
+          </Text>
+        );
       })}
     </Panel>
 
