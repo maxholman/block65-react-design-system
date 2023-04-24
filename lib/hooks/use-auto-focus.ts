@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDebouncedCallback } from './use-debounced.js';
 
-export function useAutoFocusIfAppropriate(
+export function useAutoFocus(
   autoFocus: boolean | 'force' | undefined,
   mediaQuery = '(min-width: 50em)',
 ) {
