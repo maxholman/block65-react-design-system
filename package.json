@@ -48,7 +48,7 @@
     "clsx": "^1.2.1"
   },
   "devDependencies": {
-    "@block65/eslint-config": "^9.0.0-alpha.0",
+    "@block65/eslint-config": "^9.0.0",
     "@block65/mrr": "^5.1.1",
     "@capsizecss/metrics": "^1.1.1",
     "@capsizecss/vanilla-extract": "^1.0.0",
