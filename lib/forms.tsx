@@ -632,7 +632,6 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
             formInputOuterClassName,
             formInputNotCheckRadioClassName,
           ]}
-          {...(props.readOnly && { tabIndex: -1 })}
           {...inputTypeProps}
           {...props}
           id={id}
