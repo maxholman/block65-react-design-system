@@ -1,11 +1,11 @@
 import { Suspense, lazy, type FC, type PropsWithChildren } from 'react';
 import { Button } from './buttons.js';
-import type { MenuButtonProps, MenuProps } from './dropdown-menu.js';
+import type { MenuButtonProps, MenuProps } from './menu.js';
 import { InfoIcon } from './icons.js';
 
 const MenuLazy = lazy(async () => {
   try {
-    return await import('./dropdown-menu.js');
+    return await import('./menu.js');
   } catch (err) {
     return {
       default: ({ children, ...props }: MenuButtonProps) => (

@@ -17,8 +17,8 @@ export * from './loaders.js';
 export * from './panel.js';
 export * from './typography.js';
 
-export * from './dropdown-menu-lazy.js';
-export * from './dropdown-menu-item.js';
+export * from './menu-lazy.js';
+export * from './menu-item.js';
 
 export * from './tooltip-lazy.js';
 
