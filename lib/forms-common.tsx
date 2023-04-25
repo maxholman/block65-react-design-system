@@ -9,8 +9,10 @@ export function formInputProps(
 ) {
   const common = {
     ...(props.readOnly && {
-      tabIndex: -1,
       paddingInline: '0',
+      tabIndex: -1,
+      autoFocus: false,
+      inert: true,
     }),
     ...(!props.readOnly && {
       borderTone: 'neutral',
