@@ -20,11 +20,8 @@ export const avatarClassName = style({
   },
   display: 'inline-grid',
   aspectRatio: '1/1',
-  width: calc.multiply(currentCapHeight, 3),
-  height: calc.multiply(currentCapHeight, 3),
-  marginTop: calc.negate(calc.multiply(currentCapHeight, 3)),
-  marginBottom: calc.negate(calc.multiply(currentCapHeight, 3)),
-
+  width: calc.multiply(currentCapHeight, 4),
+  height: calc.multiply(currentCapHeight, 4),
   placeItems: 'center',
   color: hsl(toneH, toneS, contrastSchemeVars.foreground4.l),
   fontWeight: genericVars.text.weight.bold,
@@ -46,6 +43,7 @@ export const identClasses = [
       vars: {
         [toneH]: `${Math.round(i * (360 / numberOfColours))}`,
       },
+      color: 'red',
     }),
   ),
 ] as const;
@@ -54,11 +52,11 @@ const variantRules: Record<
   AvatarVariant,
   {
     // outlineColor: string;
-  } & Pick<StyleRule, 'backgroundColor' | 'vars' | 'outlineColor'>
+  } & Pick<StyleRule, 'backgroundColor' | 'vars' | 'outlineColor' | 'color'>
 > = {
   normal: {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l),
-    outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground2.l, 0.75),
+    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.foreground3.l),
+    outlineColor: hsl(toneH, toneS, 100),
   },
   ghost: {
     // backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background1.l),

@@ -6,13 +6,13 @@ import {
   type AvatarVariant,
 } from './avatar.css.js';
 import { Box } from './core.js';
-import { Inline, type InlineProps } from './layout.js';
+import { type InlineProps } from './layout.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { fontSizeVariantVars } from './typography.css.js';
-import { type FontSize } from './typography.js';
+import { Text, type FontSize } from './typography.js';
 
 type CommonAvatarProps = {
-  name: string;
+  label: string;
   ident: string;
   variant?: AvatarVariant;
   size?: FontSize;
@@ -53,11 +53,12 @@ function extractInitials(text: string): string {
 
 export const Avatar = <T extends keyof ReactHTMLAttributesHacked>({
   variant = 'normal',
+  size = '1',
   ident,
-  name,
+  label,
   image,
   className,
-  size = '1',
+  children,
 }: AvatarProps<T>) => {
   return (
     <Box
@@ -78,58 +79,12 @@ export const Avatar = <T extends keyof ReactHTMLAttributesHacked>({
           className={avatarImgClass}
         />
       ) : (
-        extractInitials(name)
+        children || (
+          <Text fontSize={size} tone={null}>
+            {extractInitials(label)}
+          </Text>
+        )
       )}
     </Box>
-  );
-};
-
-export const AvatarOld = <T extends keyof ReactHTMLAttributesHacked>({
-  variant = 'normal',
-  size: fontSize = '1',
-  ident,
-  name,
-  image,
-  className,
-  ...props
-}: AvatarProps<T>) => {
-  return (
-    <Inline
-      component="span"
-      rounded="maximum"
-      // padding="2"
-      className={[
-        className,
-        fontSizeVariantVars[fontSize],
-        getIdentClassName(ident),
-        !image ? avatarVariants[variant] : avatarVariants.image,
-      ]}
-      title={name}
-      alignItems="center"
-      justifyContent="center"
-      {...props}
-    >
-      {image ? (
-        <Box
-          component="img"
-          rounded="maximum"
-          src={image}
-          className={avatarImgClass}
-        />
-      ) : (
-        <svg width="3em" height="1em" enableBackground="red">
-          <text
-            x="0"
-            y="1em"
-            width="3em"
-            height="1em"
-            color="currentColor"
-            fill="red"
-          >
-            {extractInitials(name)}
-          </text>
-        </svg>
-      )}
-    </Inline>
   );
 };
