@@ -41,7 +41,7 @@ interface DoHResponse {
 }
 
 export function useDoH(name: string | null) {
-  const { busy, error, exec } = useWithBusyError();
+  const [{ busy, error }, exec] = useWithBusyError();
   const [response, setResponse] = useState<DoHResponse | null>(null);
   const getSignal = useAbortController();
 

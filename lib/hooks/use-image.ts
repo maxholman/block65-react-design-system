@@ -3,7 +3,7 @@ import { useBusyError, useWithBusyError } from './use-busy-error.js';
 import { useAbortController } from './use-abort-controller.js';
 
 export function useImageStandard(src: string | null) {
-  const { busy, error, set } = useBusyError(!!src);
+  const [{ busy, error }, set] = useBusyError(!!src);
 
   useEffect(() => {
     if (!src) {
@@ -41,7 +41,7 @@ export function useImageStandard(src: string | null) {
 }
 
 export function useImage(src: string | null, withCors = false) {
-  const { busy, error, exec } = useWithBusyError(!!src);
+  const [{ busy, error }, exec] = useWithBusyError(!!src);
 
   const [imageSrc, setImageSrc] = useState<string | null>(null);
 

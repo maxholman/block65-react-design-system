@@ -1,6 +1,6 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
-type State = [busy: boolean, error: Error | null];
+type State = { busy: boolean; error: Error | null };
 
 type AsyncFunction<T> = (...args: unknown[]) => Promise<T>;
 
@@ -12,22 +12,21 @@ export function ignoreAbortError(err?: unknown): void {
 }
 
 export function useBusyError(initialBusy = false) {
-  const [state, setState] = useState<State>([initialBusy, null]);
+  const [state, setState] = useState<State>({ busy: initialBusy, error: null });
 
   const set = useCallback((errorOrBusy: boolean | Error) => {
     if (errorOrBusy instanceof Error) {
-      setState([false, errorOrBusy]);
+      setState({ busy: false, error: errorOrBusy });
     } else {
-      setState([errorOrBusy, null]);
+      setState({ busy: errorOrBusy, error: null });
     }
   }, []);
 
-  const [busy, error] = state;
-  return useMemo(() => ({ busy, error, set }), [busy, error, set]);
+  return [state, set] as const;
 }
 
-export function useWithBusyError(initialBusy = true) {
-  const { busy, error, set } = useBusyError(initialBusy);
+export function useWithBusyError(initialBusy = false) {
+  const [{ busy, error }, set] = useBusyError(initialBusy);
 
   const exec = useCallback(
     <T>(fn: AsyncFunction<T | void>) => {
@@ -45,5 +44,5 @@ export function useWithBusyError(initialBusy = true) {
     [set],
   );
 
-  return { busy, error, set, exec };
+  return [{ busy, error }, exec, set] as const;
 }
