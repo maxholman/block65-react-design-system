@@ -41,6 +41,7 @@ import { MediaQueryPage } from './pages/media-query.js';
 import { ModalPage } from './pages/modal.js';
 import { PanelsPage } from './pages/panels.js';
 import { TypographyPage } from './pages/typography.js';
+import { PatternPage } from './pages/patterns.js';
 
 const fakeNames = [
   ...[
@@ -776,6 +777,9 @@ export const App: FC = () => {
                       <Link href="/dropdown-menu">
                         <TextLink>Dropdowns</TextLink>
                       </Link>
+                      <Link href="/patterns">
+                        <TextLink>Patterns</TextLink>
+                      </Link>
                     </Inline>
                   </Panel>
                   <Block flexGrow>
@@ -843,6 +847,9 @@ export const App: FC = () => {
                       </Route>
                       <Route path="/dropdown-menu">
                         <DropdownMenuPage />
+                      </Route>
+                      <Route path="/patterns">
+                        <PatternPage />
                       </Route>
                       <Route>
                         <Heading>404</Heading>
