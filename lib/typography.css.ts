@@ -91,7 +91,7 @@ const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
   ],
   '3': [
     {
-      fontWeight: genericVars.text.weight.semiBold,
+      fontWeight: genericVars.text.weight.bold,
       letterSpacing: '-0.05em',
     },
   ],
