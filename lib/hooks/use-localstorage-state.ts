@@ -5,14 +5,14 @@ import {
   useRef,
   useState,
 } from 'react';
-import type { JsonValue } from 'type-fest';
+import type { Jsonifiable } from 'type-fest';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 function isFunctionLike(obj: unknown): obj is Function {
   return obj instanceof Function;
 }
 
-function resolveValue<T extends JsonValue | undefined>(
+function resolveValue<T extends Jsonifiable | undefined>(
   initialValue?: T | (() => T) | undefined,
 ) {
   return isFunctionLike(initialValue) ? initialValue() : initialValue;
@@ -28,7 +28,7 @@ function resolveValue<T extends JsonValue | undefined>(
  * @param initialValue
  * @returns
  */
-export function useLocalStorage<T extends JsonValue>(
+export function useLocalStorage<T extends Jsonifiable>(
   key: string,
   initialValue?: T | (() => T | undefined) | undefined,
 ): [() => T | undefined, (value: T | undefined) => void] {
@@ -80,14 +80,14 @@ export function useLocalStorage<T extends JsonValue>(
  * @param initialValue
  * @returns
  */
-export function useLocalStorageState<T extends JsonValue>(
+export function useLocalStorageState<T extends Jsonifiable>(
   key: string,
 ): [T | undefined, Dispatch<SetStateAction<T | undefined>>];
-export function useLocalStorageState<T extends JsonValue>(
+export function useLocalStorageState<T extends Jsonifiable>(
   key: string,
   initialValue: T | (() => T),
 ): [T, Dispatch<SetStateAction<T>>];
-export function useLocalStorageState<T extends JsonValue>(
+export function useLocalStorageState<T extends Jsonifiable>(
   key: string,
   initialValue?: T | (() => T),
 ): [T | undefined, Dispatch<SetStateAction<T | undefined>>] {
