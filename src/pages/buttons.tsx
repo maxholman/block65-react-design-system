@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
+import type { ButtonVariant } from '../../lib/buttons.css.js';
 import {
   Block,
   Button,
@@ -11,10 +12,10 @@ import {
   Inline,
   Panel,
   Text,
+  UnstyledButton,
   type Tone,
 } from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from '../icons.js';
-import type { ButtonVariant } from '../../lib/buttons.css.js';
 
 export const ButtonsPage: FC = () => (
   <>
@@ -241,8 +242,16 @@ export const ButtonsPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Divider marginBlock="3" />
+      <Heading>Unstyled Buttons</Heading>
+      <UnstyledButton flexDirection="column" space="5" backgroundHover="2">
+        <Heading level="2">Things</Heading>
+        <Text secondary>Stuff</Text>
+        <Text secondary>Stuff</Text>
+        <Text secondary>Stuff</Text>
+      </UnstyledButton>
+    </Panel>
 
+    <Panel>
       <Heading>Hello</Heading>
       <Text>Buttons in context</Text>
       <Inline>

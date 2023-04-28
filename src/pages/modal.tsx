@@ -28,7 +28,7 @@ export const ModalPage: FC = () => {
         </Inline>
 
         {modal.open && (
-          <Modal {...modal} heading="Hi, I'm a Modal!">
+          <Modal {...modal} heading="Hi, I'm a Modal ggg qqqq!">
             <Callout tone="promo">You can press ESC to close</Callout>
             <Form>
               <FormInput autoFocus label="Name" />
@@ -36,7 +36,7 @@ export const ModalPage: FC = () => {
           </Modal>
         )}
 
-        <Dialog {...dialog} heading="Hi, I'm a Dialog!">
+        <Dialog {...dialog} heading="Hi, I'm a Dialog ggg qqqq!">
           <Callout tone="info">You can press ESC to close</Callout>
           <Form method="dialog">
             <FormInput autoFocus label="Name" />

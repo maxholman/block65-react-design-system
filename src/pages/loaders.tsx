@@ -1,91 +1,97 @@
 import type { FC } from 'react';
 import {
-  Block,
+  Button,
+  Callout,
   Grid,
   Heading,
-  Inline,
   Panel,
   Spinner,
   Text,
 } from '../../lib/main.js';
 
 export const LoadersPage: FC = () => {
-  const visible = true;
-  // const [visible, setVisible] = useState(true);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setVisible((v) => !v);
-  //   }, 1500);
-  //   return () => clearInterval(interval);
-  // }, []);
-
   return (
-    <Panel variant="ghost">
-      <Block>
-        <Heading level="3">Loaders</Heading>
+    <>
+      <Heading level="3">The worlds busiest page</Heading>
 
-        <Grid cols={1}>
-          <Panel variant="ghost">
+      <Grid
+        cols={{
+          all: 3,
+          desktop: 4,
+          mobile: 2,
+        }}
+      >
+        <Panel variant="ghost">
+          <Text>
+            MMMMM
+            <Spinner inline />
+            BBBBB
+          </Text>
+        </Panel>
+
+        <Panel variant="ghost">
+          <Text secondary>
+            MMMMM
+            <Spinner inline />
+            BBBBB
+          </Text>
+        </Panel>
+
+        <Panel variant="ghost">
+          <Text>MMMMM </Text>
+          <Spinner inline />
+          <Text>BBBBB</Text>
+        </Panel>
+
+        <Panel variant="ghost">
+          <Text secondary>MMMMM </Text>
+          <Spinner inline />
+          <Text secondary>BBBBB</Text>
+        </Panel>
+
+        <Spinner size="1" />
+        <Spinner size="5" />
+        <Spinner size="1" />
+        <Spinner size="5" />
+        <Spinner size="1" />
+      </Grid>
+
+      <Grid>
+        <Panel alignItems="center">
+          <Spinner size="1" />
+          <Spinner size="2" />
+          <Spinner size="3" />
+          <Spinner size="4" />
+          <Spinner size="5" />
+        </Panel>
+        <Panel alignItems="center" variant="solid" background="3">
+          <Spinner size="1" />
+          <Spinner size="2" />
+          <Spinner size="3" />
+          <Spinner size="4" />
+          <Spinner size="5" />
+        </Panel>
+        <Panel>
+          <Callout>
             <Text>
-              MMMMM
-              <Spinner />
-              BBBBB
+              <Spinner inline />
+              woot
             </Text>
-          </Panel>
-          <Panel variant="ghost">
-            <Text>oooooooooooo oooooooo</Text>
-            <Text>
-              oooooooooooo
-              <Spinner />
-              oooooooo
-            </Text>
-            <Text>oooooooooooo oooooooo</Text>
-          </Panel>
-          <Panel variant="ghost">
-            <Text>
-              ddddddd
-              <Spinner />
-              bbbbbbb
-            </Text>
-          </Panel>
-          <Panel variant="ghost">
-            <Text>
-              qqqqqqqq
-              <Spinner />
-              ppppppp
-            </Text>
-          </Panel>
-          <Panel variant="ghost">
-            <Text>
-              <Spinner /> Stuffs!
-            </Text>
-          </Panel>
-          <Panel variant="ghost">
-            <Text>
-              <Spinner /> {visible && 'Stuffs!'}
-            </Text>
-          </Panel>
-          <Panel variant="ghost">
-            <Spinner /> {visible && <Text>Stuffs!</Text>}
-          </Panel>
-          <Panel variant="ghost">
-            <Inline space="1">
-              <Spinner /> {visible && <Text>Stuffs!</Text>}
-            </Inline>
-          </Panel>
-          <Panel variant="ghost">
-            <Inline space="1">
-              <Text>Stuffs!</Text> <Spinner /> {visible && <Text>Stuffs!</Text>}
-            </Inline>
-          </Panel>
-          <Panel variant="ghost">
-            <Inline space="1">
-              <Text>Stuffs!</Text> {visible && <Text>Stuffs!</Text>} <Spinner />
-            </Inline>
-          </Panel>
-        </Grid>
-      </Block>
-    </Panel>
+          </Callout>
+        </Panel>
+        <Panel>
+          <Button>
+            Spinner in a
+            <Spinner />
+            button
+          </Button>
+          <Button variant="ghost">
+            Spinner in a
+            <Spinner />
+            button
+          </Button>
+        </Panel>
+      </Grid>
+    </>
   );
 };

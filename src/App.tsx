@@ -794,8 +794,9 @@ export const App: FC = () => {
                               ).toString() as FontSize;
                               return (
                                 <Avatar
+                                  key={idx}
                                   ident={name}
-                                  name={name}
+                                  label={name}
                                   size={fontSize}
                                 />
                               );
