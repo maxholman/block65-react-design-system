@@ -323,10 +323,7 @@ const borderBaseClass = style({
   borderStyle: 'solid',
 });
 
-const borderVariantStyles: Record<
-  BorderVariant | BorderHoverVariant,
-  StyleRule
-> = {
+const borderVariantStyles: Record<BorderVariant, StyleRule> = {
   transparent: {
     borderColor: 'transparent',
   },
@@ -344,7 +341,31 @@ const borderVariantStyles: Record<
   },
   strong: {
     vars: {
-      [borderL]: contrastSchemeVars.foreground4.l,
+      [borderL]: contrastSchemeVars.background3.l,
+    },
+    borderColor: hsl(borderH, borderS, borderL),
+  },
+};
+
+const borderHoverVariantStyles: Record<BorderHoverVariant, StyleRule> = {
+  transparent: {
+    borderColor: 'transparent',
+  },
+  subtle: {
+    vars: {
+      [borderL]: contrastSchemeVars.foreground1.l,
+    },
+    borderColor: hsl(borderH, borderS, borderL),
+  },
+  normal: {
+    vars: {
+      [borderL]: contrastSchemeVars.foreground3.l,
+    },
+    borderColor: hsl(borderH, borderS, borderL),
+  },
+  strong: {
+    vars: {
+      [borderL]: contrastSchemeVars.foreground2.l,
     },
     borderColor: hsl(borderH, borderS, borderL),
   },
@@ -356,7 +377,7 @@ export const borderVariants = styleVariants(borderVariantStyles, (rule) => [
 ]);
 
 export const borderHoverVariants = styleVariants(
-  borderVariantStyles,
+  borderHoverVariantStyles,
   (rule) => [
     borderBaseClass,
     {
