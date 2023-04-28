@@ -23,7 +23,6 @@ import {
   useTypeahead,
   type Placement,
 } from '@floating-ui/react';
-import { clsx } from 'clsx';
 import {
   Children,
   cloneElement,
@@ -33,8 +32,10 @@ import {
   useEffect,
   useRef,
   useState,
-  type ReactNode,
+  type FC,
   type PropsWithChildren,
+  type ReactNode,
+  type Ref,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
 import { DesignSystem } from './design-system.js';
@@ -42,6 +43,7 @@ import { useDesignSystem } from './hooks/use-design-system.js';
 import { ArrowForward, MenuDropdownArrowIcon } from './icons.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Merge } from './types.js';
+import { Box } from './core.js';
 
 const defaultMenuDropdownProps = {
   space: '4',
@@ -52,28 +54,55 @@ const defaultMenuDropdownProps = {
   background: '0',
 } satisfies FlexProps;
 
-export type MenuButtonProps = ButtonProps;
+export type MenuButtonFallbackProps = Omit<MenuProps, 'fallback'>;
 
-export type MenuProps = Merge<
-  MenuButtonProps,
-  PropsWithChildren<{
-    label: ReactNode;
-    initialPlacement?: Placement;
-    onOpenChange?: (isOpen: boolean) => void;
-    menuDropdownProps?: FlexProps;
-    nested?: boolean;
-  }>
+type MenuCommonProps = PropsWithChildren<{
+  initialPlacement?: Placement;
+  onOpenChange?: (isOpen: boolean) => void;
+  menuDropdownProps?: FlexProps;
+  nested?: boolean;
+  fallback?: FC<MenuButtonFallbackProps>;
+  activator?: FC<MenuActivatorProps>;
+  label?: ReactNode;
+}>;
+
+export type MenuProps = Merge<ButtonProps<'button'>, MenuCommonProps>;
+
+export type MenuActivatorProps = PropsWithChildren<
+  Omit<ButtonProps, 'onClick'> & { isNested?: boolean }
 >;
 
-const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
+const DefaultMenuActivator = forwardRef(
+  (
+    { isNested, ...props }: MenuActivatorProps,
+    forwardedRef: Ref<HTMLButtonElement>,
+  ) => {
+    return (
+      <Button
+        iconEnd={<MenuDropdownArrowIcon />}
+        ref={forwardedRef}
+        icon={isNested && <ArrowForward />}
+        {...(isNested && {
+          // Indicates this is a nested <Menu /> acting as a <MenuItem />.
+          role: 'menuitem',
+        })}
+        // className: `${isNested ? 'MenuItem' : 'RootMenu'}`,
+        {...props}
+      />
+    );
+  },
+);
+
+const MenuInner = forwardRef<HTMLButtonElement, MenuProps>(
   (
     {
       children,
-      className,
       label,
       initialPlacement = 'bottom-start',
       onOpenChange,
       menuDropdownProps,
+      activator,
+      className,
       ...props
     },
     forwardedRef,
@@ -108,7 +137,7 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
     const parentId = useFloatingParentNodeId();
     const isNested = parentId != null;
 
-    const { x, y, strategy, refs, context } = useFloating<HTMLButtonElement>({
+    const { x, y, strategy, refs, context } = useFloating<HTMLElement>({
       nodeId,
       open: isOpen,
       onOpenChange: openChange,
@@ -237,27 +266,26 @@ const MenuComponent = forwardRef<HTMLButtonElement, MenuProps>(
 
     const referenceRef = useMergeRefs([refs.setReference, forwardedRef]);
 
+    const activatorProps: MenuActivatorProps = {
+      className,
+      ...getReferenceProps({
+        ...props,
+        onClick(e) {
+          e.stopPropagation();
+        },
+      }),
+      children: label,
+    };
+
     return (
       <FloatingNode id={nodeId}>
-        <Button
-          iconEnd={<MenuDropdownArrowIcon />}
-          ref={referenceRef}
-          {...getReferenceProps({
-            ...props,
-            ...(className && { className: clsx(className) }),
-            // className: `${isNested ? 'MenuItem' : 'RootMenu'}`,
-            onClick(e) {
-              e.stopPropagation();
-            },
-            ...(isNested && {
-              // Indicates this is a nested <Menu /> acting as a <MenuItem />.
-              role: 'menuitem',
-            }),
-          })}
-          icon={isNested && <ArrowForward />}
-        >
-          {label}
-        </Button>
+        {activator ? (
+          <Box component="button" ref={referenceRef} {...activatorProps}>
+            {activator({ isNested })}
+          </Box>
+        ) : (
+          <DefaultMenuActivator ref={referenceRef} {...activatorProps} />
+        )}
 
         <FloatingPortal>
           <DesignSystem {...ds}>
@@ -323,12 +351,12 @@ const Menu = forwardRef<HTMLButtonElement, MenuProps>((props, ref) => {
   if (parentId === null) {
     return (
       <FloatingTree>
-        <MenuComponent {...props} ref={ref} />
+        <MenuInner {...props} ref={ref} />
       </FloatingTree>
     );
   }
 
-  return <MenuComponent {...props} ref={ref} />;
+  return <MenuInner {...props} ref={ref} />;
 });
 
 export default Menu;

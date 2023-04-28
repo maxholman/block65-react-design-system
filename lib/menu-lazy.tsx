@@ -1,14 +1,19 @@
-import { Suspense, lazy, type FC, type PropsWithChildren } from 'react';
+import { Suspense, lazy, type FC } from 'react';
 import { Button } from './buttons.js';
-import type { MenuButtonProps, MenuProps } from './menu.js';
 import { InfoIcon } from './icons.js';
+import type {
+  MenuButtonFallbackProps,
+  MenuProps,
+  MenuActivatorProps,
+} from './menu.js';
 
 const MenuLazy = lazy(async () => {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return await import('./menu.js');
   } catch (err) {
     return {
-      default: ({ children, ...props }: MenuButtonProps) => (
+      default: ({ children, ...props }) => (
         <Button tone="critical" icon={<InfoIcon />} {...props}>
           {Object(err).name || 'Error'}
         </Button>
@@ -17,27 +22,22 @@ const MenuLazy = lazy(async () => {
   }
 });
 
-export const Menu: FC<PropsWithChildren<MenuProps>> = (props) => {
-  const {
-    label,
-    menuDropdownProps,
-    initialPlacement,
-    nested,
-    onOpenChange,
-    ...rest
-  } = props;
+const Fallback: FC<MenuButtonFallbackProps> = ({ label, ...rest }) => {
+  return (
+    <Button busy {...rest}>
+      {label}
+    </Button>
+  );
+};
+
+export const Menu: FC<MenuProps> = (props) => {
+  const { fallback, ...fallbackProps } = props;
 
   return (
-    <Suspense
-      fallback={
-        <Button busy {...rest}>
-          {props.label}
-        </Button>
-      }
-    >
+    <Suspense fallback={<Fallback {...fallbackProps} />}>
       <MenuLazy {...props} />
     </Suspense>
   );
 };
 
-export type { MenuProps, MenuButtonProps };
+export type { MenuProps, MenuActivatorProps };
