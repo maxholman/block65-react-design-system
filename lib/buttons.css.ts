@@ -15,8 +15,8 @@ export type ButtonVariant =
   | 'transparent';
 
 export const iconClass = style({
+  maxHeight: currentCapHeight,
   width: '1em',
-  maxHeight: '1em',
   aspectRatio: '1/1',
 });
 
@@ -41,8 +41,10 @@ export const buttonClassName = style([
         outlineWidth: genericVars.border.width['3'],
         outlineColor: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
       },
+
       // mouse, touch, or stylus
       '&:focus:not(:focus-visible)': {},
+
       // both
       '&:focus-visible,&:focus:not(:focus-visible)': {},
 

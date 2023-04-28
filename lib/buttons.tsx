@@ -80,34 +80,36 @@ const MaybeIcon: FC<{
     </Flex>
   ) : null;
 
-const buttonVariantProps: Record<ButtonVariant, FlexProps> = {
+const buttonVariantProps = {
   none: {
     background: 'none',
     borderVariant: 'transparent',
   },
   solid: {
     background: '3',
-    borderVariant: 'normal',
     borderTone: 'accent',
+    borderVariant: 'strong',
+    borderHover: 'strong',
   },
   ghost: {
-    background: '1',
+    background: '0',
     backgroundHover: '2',
-    borderVariant: 'normal',
     borderTone: 'accent',
+    borderVariant: 'subtle',
     borderHover: 'normal',
   },
   subtle: {
     background: '2',
     backgroundHover: '2',
     borderVariant: 'subtle',
+    borderHover: 'normal',
   },
   transparent: {
-    background: 'none',
     borderVariant: 'transparent',
-    backgroundHover: '1',
+    background: 'none',
+    backgroundHover: '2',
   },
-};
+} satisfies Record<ButtonVariant, FlexProps>;
 
 function getVariantProps(variant: ButtonVariant, tone: Tone) {
   return {
