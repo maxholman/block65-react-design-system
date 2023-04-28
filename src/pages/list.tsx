@@ -7,6 +7,7 @@ import {
   Heading,
   Inline,
   List,
+  ListItem,
   Panel,
   Secondary,
   Text,
@@ -60,36 +61,36 @@ export const ListPage: FC = () => (
           </Block>
           <Block>
             <List>
-              <Text>
+              <ListItem>
                 Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
                 excepteur ea commodo duis reprehenderit. Qui duis cupidatat
                 mollit laboris mollit proident velit magna. Excepteur anim est
                 pariatur.
-              </Text>
-              <Text>
+              </ListItem>
+              <ListItem>
                 Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
                 excepteur ea commodo duis reprehenderit. Qui duis cupidatat
                 mollit laboris mollit proident velit magna. Excepteur anim est
                 pariatur.
-              </Text>
-              <Text>
+              </ListItem>
+              <ListItem>
                 Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
                 excepteur ea commodo duis reprehenderit. Qui duis cupidatat
                 mollit laboris mollit proident velit magna. Excepteur anim est
                 pariatur.
-              </Text>
-              <Text>
+              </ListItem>
+              <ListItem>
                 Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
                 excepteur ea commodo duis reprehenderit. Qui duis cupidatat
                 mollit laboris mollit proident velit magna. Excepteur anim est
                 pariatur.
-              </Text>
-              <Text>
+              </ListItem>
+              <ListItem>
                 Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
                 excepteur ea commodo duis reprehenderit. Qui duis cupidatat
                 mollit laboris mollit proident velit magna. Excepteur anim est
                 pariatur.
-              </Text>
+              </ListItem>
             </List>
           </Block>
 

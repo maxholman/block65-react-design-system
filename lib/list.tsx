@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import { Children } from 'react';
 import type { Space } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import {
@@ -41,10 +40,13 @@ export const List = <T extends keyof ReactHTMLAttributesHacked>({
     className={[listClass, listVariants[space], className]}
     {...props}
   >
-    {Children.map(children, (child) => (
-      <Box component="li" className={listItemClass}>
-        {child}
-      </Box>
-    ))}
+    {children}
   </Box>
+);
+
+export const ListItem = ({
+  className,
+  ...props
+}: BoxBasedComponentProps<'li'>) => (
+  <Box component="li" className={[className, listItemClass]} {...props} />
 );
