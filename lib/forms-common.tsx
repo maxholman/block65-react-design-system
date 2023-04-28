@@ -29,7 +29,7 @@ export function formInputProps(
         autoComplete: 'url',
         minLength: 3,
         maxLength: 2048,
-        pattern: '^(https?://)?[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$',
+        pattern: '^(https?:\\/\\/)?(([a-z0-9-]+)\\.)+([a-z0-9-]+){2,}(/.*)?$',
         placeholder: 'https://www.example.com',
       } satisfies BoxBasedComponentProps<'input'>;
     case 'email':
@@ -38,7 +38,7 @@ export function formInputProps(
         autoComplete: 'email',
         minLength: 6,
         maxLength: 320,
-        pattern: '^[^@]+@[^@]+.[^@]+$',
+        pattern: '^[^@]+@[^@]+\\.[^@]{2,}$',
         placeholder: 'email@example.com',
       } satisfies BoxBasedComponentProps<'input'>;
     default: {
