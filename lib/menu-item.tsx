@@ -10,6 +10,6 @@ export type MenuItemProps = Merge<
   }
 >;
 
-export const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
-  (props, ref) => <Block {...props} ref={ref} role="menuitem" />,
-);
+export const MenuItem = forwardRef<HTMLElement, MenuItemProps>((props, ref) => (
+  <Block {...props} ref={ref} role="menuitem" />
+));
