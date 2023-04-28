@@ -10,82 +10,102 @@ import { fontThemeVars } from '../typography.css.js';
 const interFontTheme = createTheme(fontThemeVars, {
   // aim for 2.5rem - 40px
   '6': {
-    capHeight: withUnit(29.1),
     values: precomputeValues({
-      capHeight: 29.1,
-      leading: 29.1 * 1.4,
+      capHeight: 29,
+      leading: 42, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(29),
   },
 
   // aim for 2rem - 32px
   '5': {
-    capHeight: withUnit(23.272727272),
     values: precomputeValues({
-      capHeight: 23.272727272,
-      leading: Math.round(23.272727272 * 1.4),
+      capHeight: 24,
+      leading: 38, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(24),
   },
 
   // aim for 1.5rem - 24px
   '4': {
-    capHeight: withUnit(17.5),
     values: precomputeValues({
-      capHeight: 17.5,
-      leading: 17.5 * 1.4,
+      capHeight: 17,
+      leading: 27, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(17),
   },
 
   '3': {
     // aim for 1.25rem - 20px
-    capHeight: withUnit(14.6),
     values: precomputeValues({
-      capHeight: 14.6,
-      leading: 14.6 * 1.4,
+      capHeight: 14,
+      leading: 22, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(14),
   },
 
   '2': {
     // aim for 1.1rem - 17.6px
-    capHeight: withUnit(12.8),
     values: precomputeValues({
-      capHeight: 12.8,
-      leading: 12.8 * 1.5,
+      capHeight: 13,
+      leading: 20, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(13),
   },
 
   '1': {
     // aim for 1rem - 16px
-    capHeight: withUnit(11.636363),
     values: precomputeValues({
-      capHeight: 11.636363,
-      leading: 11.636363 * 1.5,
+      capHeight: 12,
+      leading: 20, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(12),
   },
 
   // aim for 0.75rem - 12px
   '0': {
-    capHeight: '8.727272',
     values: precomputeValues({
-      capHeight: 8.727272,
-      leading: 8.727272 * 1.55,
+      capHeight: 9,
+      leading: 14, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(9),
   },
 
   // aim for 0.5rem - 8px
   '00': {
-    capHeight: '5.818181',
     values: precomputeValues({
-      capHeight: 5.818181,
-      leading: 5.818181 * 1.7,
+      capHeight: 6,
+      leading: 10, // manually set based on cap height and whether the descenders are showing
       fontMetrics: interFontMetrics,
     }),
+
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(6),
   },
 });
 
