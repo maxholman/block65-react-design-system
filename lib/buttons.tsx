@@ -23,9 +23,9 @@ import { fontSizeVariants, type FontSize } from './typography.css.js';
 
 export type ButtonCommonProps = {
   variant?: ButtonVariant;
-  busy?: boolean;
-  compact?: boolean;
-  inline?: boolean;
+  busy?: boolean | Falsy;
+  compact?: boolean | Falsy;
+  inline?: boolean | Falsy;
   tone?: Tone;
   icon?: ReactElement | FC | Falsy;
   iconStart?: ReactElement | FC | Falsy;
@@ -116,10 +116,28 @@ function getVariantProps(variant: ButtonVariant, tone: Tone) {
   };
 }
 
+export const UnstyledButton = forwardRef(
+  <T extends keyof ReactHTMLAttributesHacked = 'button'>(
+    { component = 'button', className, ...props }: FlexProps<T>,
+    ref: ForwardedRef<HTMLButtonElement>,
+  ) => (
+    <Flex
+      component={component}
+      ref={ref}
+      // if this is going to be an actual button element - default to button
+      // type so that it doesn't submit forms by default
+      {...(component === 'button' && {
+        type: ('type' in props && props.type) || 'button',
+      })}
+      className={[className, buttonClassName]}
+      {...props}
+    />
+  ),
+);
+
 const ButtonInternal = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'button'>(
     {
-      component = 'button',
       variant = 'solid',
       tone = 'accent',
       space = '2',
@@ -141,55 +159,48 @@ const ButtonInternal = forwardRef(
     }: ButtonInternalProps<T>,
     ref: ForwardedRef<HTMLButtonElement>,
   ) => {
-    const paddingAndFontProps: FlexProps = compact
-      ? {
-          className: fontSizeVariants[fontSize || 0],
-          paddingBlock:
-            paddingBlock === null
-              ? paddingBlock
-              : paddingBlock || padding || '2',
+    const paddingAndFontProps = (
+      compact
+        ? {
+            className: fontSizeVariants[fontSize || 0],
+            paddingBlock:
+              paddingBlock === null
+                ? paddingBlock
+                : paddingBlock || padding || '2',
 
-          paddingInline:
-            paddingInline === null
-              ? paddingInline
-              : paddingInline || padding || '3',
-        }
-      : {
-          className: fontSize && fontSizeVariants[fontSize],
-          paddingBlock:
-            paddingBlock === null
-              ? paddingBlock
-              : paddingBlock || padding || '3',
+            paddingInline:
+              paddingInline === null
+                ? paddingInline
+                : paddingInline || padding || '3',
+          }
+        : {
+            className: fontSize && fontSizeVariants[fontSize],
+            paddingBlock:
+              paddingBlock === null
+                ? paddingBlock
+                : paddingBlock || padding || '3',
 
-          paddingInline:
-            paddingInline === null
-              ? paddingInline
-              : paddingInline || padding || '5',
-        };
+            paddingInline:
+              paddingInline === null
+                ? paddingInline
+                : paddingInline || padding || '5',
+          }
+    ) satisfies FlexProps;
 
     return (
-      <Flex
+      <UnstyledButton
         ref={ref}
-        component={component}
-        flexGrow={flexGrow}
-        space={space}
         flexDirection={flexDirection}
+        space={space}
         {...getVariantProps(variant, tone)}
         {...paddingAndFontProps}
         {...props}
         className={[
           className,
-          // buttonVariantClasses[variant],
-          buttonClassName,
           toneVariants[tone],
           busy && busyButtonClass,
           inline && inlineBleedClass,
         ]}
-        // if this is going to be an actual button element - default to button
-        // typeo so that it doesn't submit forms by default
-        {...(component === 'button' && {
-          type: ('type' in props && props.type) || 'button',
-        })}
       >
         <MaybeIcon icon={iconStart || icon} busy={busy} />
 
@@ -213,7 +224,7 @@ const ButtonInternal = forwardRef(
           </Flex>
         )}
         {iconEnd && <MaybeIcon icon={iconEnd} busy={busy} />}
-      </Flex>
+      </UnstyledButton>
     );
   },
 );
@@ -224,7 +235,6 @@ export const Button = forwardRef(
     ref: ForwardedRef<HTMLButtonElement>,
   ) => (
     <ButtonInternal
-      component="button"
       ref={ref}
       rounded="medium"
       justifyContent="center"
@@ -246,15 +256,6 @@ export const ButtonLink: FC<ButtonLinkProps> = ({ safe = true, ...props }) => (
   />
 );
 
-export const ButtonIcon: FC<ButtonIconProps> = ({ icon, label, ...props }) => (
-  <ButtonInternal
-    aria-label={label}
-    space="0"
-    alignItems="center"
-    justifyContent="center"
-    paddingInline="7"
-    className={[iconClass]}
-    icon={icon}
-    {...props}
-  />
+export const ButtonIcon: FC<ButtonIconProps> = ({ label, ...props }) => (
+  <Button aria-label={label} {...props} />
 );
