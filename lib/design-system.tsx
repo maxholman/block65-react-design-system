@@ -24,7 +24,9 @@ import {
 } from './schemes/color.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
-type DesignSystemProps<T extends keyof ReactHTMLAttributesHacked> = Merge<
+export type DesignSystemProps<
+  T extends keyof ReactHTMLAttributesHacked = 'div',
+> = Merge<
   BoxBasedComponentProps<T>,
   PropsWithChildren<{
     contrastScheme?: ContrastScheme;
