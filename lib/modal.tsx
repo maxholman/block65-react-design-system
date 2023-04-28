@@ -48,11 +48,12 @@ const ModalInner: FC<InnerProps> = ({
   dismissable = true,
   close,
   heading,
+  ...props
 }) => {
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Panel className={modalPanelClass}>
+    <Panel className={modalPanelClass} {...props}>
       <Inline flexWrap="nowrap">
         {isStringLike(heading) ? (
           <Heading level="3" textOverflow="ellipsis">
@@ -76,7 +77,7 @@ const ModalInner: FC<InnerProps> = ({
           </Inline>
         )}
       </Inline>
-      <Block>{children}</Block>
+      <Block flexGrow>{children}</Block>
     </Panel>
   );
 };
@@ -117,13 +118,13 @@ export const Modal = forwardRef(
     return createPortal(
       <DesignSystem {...ds} integrationMode>
         <Box className={modalClass}>
-          <Box
+          <Block
             component="div"
             ref={ref}
             className={[className, commonDimensionsClass]}
           >
-            <ModalInner {...{ children, close, heading }} />
-          </Box>
+            <ModalInner {...{ children, close, heading }} {...props} />
+          </Block>
         </Box>
       </DesignSystem>,
       document.body,
