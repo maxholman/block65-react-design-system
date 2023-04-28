@@ -59,8 +59,6 @@ export const visiblyHiddenClass = style({
   visibility: 'hidden',
 });
 
-// WARN: this is defined last so it can override other styles
-// with the same specificity
 export const busyButtonClass = style({
   pointerEvents: 'none',
   selectors: {
