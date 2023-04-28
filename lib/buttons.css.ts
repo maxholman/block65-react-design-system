@@ -26,7 +26,6 @@ export const buttonClassName = style([
       [currentCapHeight]: genericVars.text.capHeights[1],
     },
     cursor: 'pointer',
-    borderStyle: 'solid',
     userSelect: 'none',
     selectors: {
       '&[disabled]': {
