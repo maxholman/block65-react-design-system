@@ -7,14 +7,29 @@ import type {
   MenuActivatorProps,
 } from './menu.js';
 
+function withoutMenuProps({
+  label,
+  initialPlacement,
+  onOpenChange,
+  menuDropdownProps,
+  nested,
+  activator,
+  ...rest
+}: MenuProps) {
+  return rest;
+}
+
 const MenuLazy = lazy(async () => {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 5000));
     return await import('./menu.js');
   } catch (err) {
     return {
       default: ({ children, ...props }) => (
-        <Button tone="critical" icon={<InfoIcon />} {...props}>
+        <Button
+          tone="critical"
+          icon={<InfoIcon />}
+          {...withoutMenuProps(props)}
+        >
           {Object(err).name || 'Error'}
         </Button>
       ),
@@ -22,10 +37,10 @@ const MenuLazy = lazy(async () => {
   }
 });
 
-const Fallback: FC<MenuButtonFallbackProps> = ({ label, ...rest }) => {
+const Fallback: FC<MenuButtonFallbackProps> = (props) => {
   return (
-    <Button busy {...rest}>
-      {label}
+    <Button busy {...withoutMenuProps}>
+      {props.label}
     </Button>
   );
 };
