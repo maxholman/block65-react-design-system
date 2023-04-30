@@ -45,8 +45,8 @@ export const PanelsPage: FC = () => (
 
     <Heading>Overrides</Heading>
 
-    <Panel variant="subtle" tone="critical">
-      <Panel variant="subtle" padding="10" tone="critical">
+    <Panel variant="ghost">
+      <Panel variant="subtle" padding="10">
         Padding override <Code>10</Code>
         <Inline></Inline>
       </Panel>
