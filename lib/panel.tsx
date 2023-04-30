@@ -16,7 +16,7 @@ export type PanelProps<T extends keyof ReactHTMLAttributesHacked = 'section'> =
 
 export const Panel = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'section'>(
-    { className, ...props }: PanelProps<T>,
+    props: PanelProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Block
@@ -26,7 +26,6 @@ export const Panel = forwardRef(
       padding="6"
       variant="ghost"
       tone="neutral"
-      background="1"
       {...props}
     />
   ),
