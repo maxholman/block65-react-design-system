@@ -13,20 +13,27 @@ import type { Merge } from './types.js';
 import { fontSizeVariants } from './typography.css.js';
 import { Text } from './typography.js';
 
-export const Callout: FC<
-  Merge<
-    BoxBasedComponentProps<'div'>,
-    {
-      tone?: Exclude<Tone, 'accent'>;
-      align?: never;
-    }
-  >
-> = ({ children, className, rounded = 'medium', tone = 'info', ...props }) => {
+type CalloutCommonProps = {
+  tone?: Exclude<Tone, 'accent'>;
+  align?: never;
+};
+
+export type CalloutProps = Merge<
+  BoxBasedComponentProps<'div'>,
+  CalloutCommonProps
+>;
+
+export const Callout: FC<CalloutProps> = ({
+  tone = 'info',
+  children,
+  className,
+  ...props
+}) => {
   return (
     <Inline
       component="div"
       background="3"
-      rounded={rounded}
+      rounded="medium"
       className={[
         className,
         calloutClass,
