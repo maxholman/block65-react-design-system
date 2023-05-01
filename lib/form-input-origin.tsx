@@ -70,6 +70,7 @@ export const FormInputOrigin = forwardRef<
       autoFocus,
       defaultValue,
       customValidity,
+      onChange,
       ...props
     },
     incomingRef,
@@ -179,7 +180,7 @@ export const FormInputOrigin = forwardRef<
             autoFocus={definitelyAutoFocus}
             {...inputTypeProps}
             onChange={(e) => {
-              props.onChange?.(e);
+              onChange?.(e);
               setValue(e.target.value);
             }}
             value={value}
