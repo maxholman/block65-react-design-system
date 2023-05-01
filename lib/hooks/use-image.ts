@@ -93,8 +93,8 @@ export function useImage(src: string | null, withCors = false) {
 
 export function useFavicon(hostname: string | null) {
   const favicon = useImage(
-    // hostname ? `https://icons.duckduckgo.com/ip3/${hostname}.ico` : null,
     hostname ? `https://icons.colacube.dev/i/${hostname}` : null,
+    // hostname ? `https://icons.duckduckgo.com/ip3/${hostname}.ico` : null,
     // hostname ? `https://www.google.com/s2/favicons?domain=${hostname}` : null,
   );
 
