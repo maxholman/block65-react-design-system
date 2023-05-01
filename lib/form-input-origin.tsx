@@ -195,13 +195,13 @@ export const FormInputOrigin = forwardRef<
             justifyContent="center"
             paddingInline="5"
           >
-            {!favicon.busy && !favicon.error && favicon.src && (
+            {dns.busy && <Spinner className={formInputOriginIcon} />}
+
+            {!dns.busy && !favicon.error && favicon.src && (
               <img className={formInputOriginIcon} src={favicon.src} />
             )}
 
-            {favicon.busy && <Spinner className={formInputOriginIcon} />}
-
-            {(!favicon.src || favicon.error) && (
+            {!dns.busy && (!favicon.src || favicon.error) && (
               <GlobeColorIcon className={formInputOriginIcon} />
             )}
           </Block>
