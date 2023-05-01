@@ -12,7 +12,7 @@ export function formInputProps(
       paddingInline: '0',
       tabIndex: -1,
       autoFocus: false,
-      inert: true,
+      inert: '',
     }),
     ...(!props.readOnly && {
       borderTone: 'neutral',
