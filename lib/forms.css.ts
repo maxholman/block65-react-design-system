@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { createVar, fallbackVar, style } from '@vanilla-extract/css';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { createVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import {
