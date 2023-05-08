@@ -36,6 +36,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
 import { DesignSystem } from './design-system.js';
@@ -61,7 +62,7 @@ type MenuCommonProps = PropsWithChildren<{
   onOpenChange?: (isOpen: boolean) => void;
   menuDropdownProps?: FlexProps;
   nested?: boolean;
-  fallback?: FC<MenuButtonFallbackProps>;
+  fallback?: ReactElement;
   activator?: FC<MenuActivatorProps>;
   label?: ReactNode;
 }>;
