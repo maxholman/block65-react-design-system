@@ -73,6 +73,22 @@ export const FormsPage: FC = () => (
         messageTone="promo"
       />
 
+      <FormSelect
+        label="Birth Month"
+        defaultValue="Feb"
+        message={
+          <>
+            Feb is the <Strong>best</Strong> month btw
+          </>
+        }
+      >
+        <option />
+        <option value="Jan">Jan</option>
+        <option value="Feb">Feb</option>
+        <option value="Mar">Mar</option>
+        <option value="Apr">Apr</option>
+      </FormSelect>
+
       <Grid
         cols={{
           all: 2,
@@ -142,21 +158,7 @@ export const FormsPage: FC = () => (
         defaultValue="Royale"
         rows={5}
       />
-      <FormSelect
-        label="Birth Month"
-        defaultValue="Feb"
-        message={
-          <>
-            Feb is the <Strong>best</Strong> month btw
-          </>
-        }
-      >
-        <option />
-        <option value="Jan">Jan</option>
-        <option value="Feb">Feb</option>
-        <option value="Mar">Mar</option>
-        <option value="Apr">Apr</option>
-      </FormSelect>
+
       <FormSelect
         multiple
         label="Other months you might like"
