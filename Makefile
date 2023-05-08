@@ -37,6 +37,7 @@ distclean: clean
 
 .PHONY: test
 test: node_modules vite.config.ts
+	pnpm tsc --noEmit
 	pnpm vitest run
 
 .PHONY: dev
