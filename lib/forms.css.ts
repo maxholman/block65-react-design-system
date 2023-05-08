@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { createVar, style } from '@vanilla-extract/css';
+import { createVar, fallbackVar, style } from '@vanilla-extract/css';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
@@ -226,11 +226,18 @@ export const formInputSelectWrapperSingle = style([
     alignItems: 'center',
     selectors: {
       '&::after': {
+        cursor: 'pointer',
+        pointerEvents: 'none',
         gridArea: formInputSelectGridAreaName,
         content: JSON.stringify(''),
         justifySelf: 'flex-end',
-        // width: genericVars.space[5],
-        // marginRight: defaultInputPadding,
+        width: '0.75em',
+        // the same as the inline padding for inputs + border size
+        marginInline: calc.add(
+          genericVars.space[5],
+          genericVars.border.width[1],
+        ),
+        display: 'block',
         aspectRatio: '2/1',
         backgroundColor: 'currentColor',
         clipPath: 'polygon(100% 0%, 0 0%, 50% 100%)',
