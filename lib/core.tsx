@@ -38,6 +38,10 @@ import {
   borderVariants,
   type BorderVariant,
   type BorderWidth,
+  roundedStartStartVariants,
+  roundedEndEndVariants,
+  roundedEndStartVariants,
+  roundedStartEndVariants,
 } from './core.css.js';
 import { borderToneVariants, toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
@@ -69,7 +73,15 @@ export type BoxBasedComponentProps<
     tooltip?: ReactNode;
     textAlign?: TextAlign | Falsy;
     textOverflow?: TextOverflow | Falsy;
+
     rounded?: Rounded | Falsy;
+    roundedStart?: Rounded | Falsy;
+    roundedStartStart?: Rounded | Falsy;
+    roundedStartEnd?: Rounded | Falsy;
+    roundedEnd?: Rounded | Falsy;
+    roundedEndStart?: Rounded | Falsy;
+    roundedEndEnd?: Rounded | Falsy;
+
     tone?: Tone | Falsy;
     boxShadow?: Shadow | Falsy;
     background?: Background | Falsy;
@@ -97,6 +109,13 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     textOverflow,
     tooltip,
     rounded,
+    roundedStart,
+    roundedStartStart,
+    roundedStartEnd,
+    roundedEnd,
+    roundedEndStart,
+    roundedEndEnd,
+
     boxShadow,
 
     space,
@@ -187,6 +206,24 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
 
           textAlign && textAlignVariants[textAlign],
           isNotFalsy(rounded) && roundedVariants[rounded],
+
+          isNotFalsy(roundedStart) && [
+            roundedStartStartVariants[roundedStart],
+            roundedStartEndVariants[roundedStart],
+          ],
+          isNotFalsy(roundedEnd) && [
+            roundedEndStartVariants[roundedEnd],
+            roundedEndEndVariants[roundedEnd],
+          ],
+
+          isNotFalsy(roundedStartStart) &&
+            roundedStartStartVariants[roundedStartStart],
+          isNotFalsy(roundedStartEnd) &&
+            roundedStartEndVariants[roundedStartEnd],
+          isNotFalsy(roundedEndStart) &&
+            roundedEndStartVariants[roundedEndStart],
+          isNotFalsy(roundedEndEnd) && roundedEndEndVariants[roundedEndEnd],
+
           isNotFalsy(boxShadow) && boxShadowVariants[boxShadow],
 
           tone && toneVariants[tone],

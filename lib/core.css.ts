@@ -31,6 +31,39 @@ export const roundedVariants = styleVariants(genericVars.radius, (v) => [
   },
 ]);
 
+export const roundedStartStartVariants = styleVariants(
+  genericVars.radius,
+  (v) => [
+    {
+      borderStartStartRadius: v,
+    },
+  ],
+);
+
+export const roundedStartEndVariants = styleVariants(
+  genericVars.radius,
+  (v) => [
+    {
+      borderStartEndRadius: v,
+    },
+  ],
+);
+
+export const roundedEndStartVariants = styleVariants(
+  genericVars.radius,
+  (v) => [
+    {
+      borderEndStartRadius: v,
+    },
+  ],
+);
+
+export const roundedEndEndVariants = styleVariants(genericVars.radius, (v) => [
+  {
+    borderEndEndRadius: v,
+  },
+]);
+
 export type Background = 'none' | '0' | '1' | '2' | '3' | '4';
 
 export type BackgroundHover = Background;
