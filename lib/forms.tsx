@@ -122,13 +122,11 @@ export const FormInputLabel: FC<
 
 export const FormInputMessage: FC<
   Pick<FormInputProps, 'messageTone' | 'message'>
-> = ({ message, messageTone }) => {
-  return (
+> = ({ message, messageTone }) => (
     <Text fontSize="0" tone={messageTone} className={formInputMessage}>
       {message}
     </Text>
   );
-};
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (
@@ -192,9 +190,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
 export const FormInputEmail = forwardRef<
   HTMLInputElement,
   Omit<FormInputProps, 'type'>
->((props, ref) => {
-  return <FormInput ref={ref} type="email" {...props} />;
-});
+>((props, ref) => <FormInput ref={ref} type="email" {...props} />);
 
 export const FormInputPassword = forwardRef<
   HTMLInputElement,

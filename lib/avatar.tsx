@@ -59,8 +59,7 @@ export const Avatar = <T extends keyof ReactHTMLAttributesHacked>({
   image,
   className,
   children,
-}: AvatarProps<T>) => {
-  return (
+}: AvatarProps<T>) => (
     <Box
       rounded="maximum"
       className={[
@@ -87,4 +86,3 @@ export const Avatar = <T extends keyof ReactHTMLAttributesHacked>({
       )}
     </Box>
   );
-};

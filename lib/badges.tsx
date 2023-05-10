@@ -1,11 +1,11 @@
 import type { FC, PropsWithChildren } from 'react';
 import { type BadgeVariant, badgeClassName } from './badges.css.js';
 import type { BoxBasedComponentProps } from './core.js';
+import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 import { Text } from './typography.js';
-import { useStringLikeDetector } from './hooks/use-string-like.js';
 
 type CommonBadgeProps = {
   variant?: BadgeVariant;

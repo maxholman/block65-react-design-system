@@ -1,3 +1,4 @@
+import { type Placement } from '@floating-ui/dom';
 import { clsx, type ClassValue } from 'clsx';
 import {
   Suspense,
@@ -11,9 +12,14 @@ import {
   backgroundHoverVariants,
   backgroundVariants,
   borderHoverVariants,
+  borderVariants,
   borderWidthVariants,
   boxShadowVariants,
   flexDirectionVariants,
+  roundedEndEndVariants,
+  roundedEndStartVariants,
+  roundedStartEndVariants,
+  roundedStartStartVariants,
   roundedVariants,
   textAlignVariants,
   textOverflowVariants,
@@ -27,6 +33,8 @@ import {
   viewportSpaceVariants,
   type Background,
   type BorderHoverVariant,
+  type BorderVariant,
+  type BorderWidth,
   type Falsy,
   type FlexDirection,
   type OrResponsive,
@@ -35,13 +43,6 @@ import {
   type Space,
   type TextAlign,
   type TextOverflow,
-  borderVariants,
-  type BorderVariant,
-  type BorderWidth,
-  roundedStartStartVariants,
-  roundedEndEndVariants,
-  roundedEndStartVariants,
-  roundedStartEndVariants,
 } from './core.css.js';
 import { borderToneVariants, toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
@@ -205,6 +206,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
             ),
 
           textAlign && textAlignVariants[textAlign],
+
           isNotFalsy(rounded) && roundedVariants[rounded],
 
           isNotFalsy(roundedStart) && [

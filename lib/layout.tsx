@@ -51,10 +51,6 @@ function getVariantProps(
   props: Pick<FlexProps, 'tone'>,
 ): BoxBasedComponentProps {
   switch (variant) {
-    case 'none':
-      return {
-        background: 'none',
-      };
     case 'solid':
       return {
         background: '3',
@@ -76,6 +72,11 @@ function getVariantProps(
       return {
         background: 'none',
         borderVariant: 'transparent',
+      };
+    case 'none':
+    default:
+      return {
+        background: 'none',
       };
   }
 }

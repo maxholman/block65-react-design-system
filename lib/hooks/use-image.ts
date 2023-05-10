@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useBusyError, useWithBusyError } from './use-busy-error.js';
 import { useAbortController } from './use-abort-controller.js';
+import { useBusyError, useWithBusyError } from './use-busy-error.js';
 
 export function useImageStandard(src: string | null) {
   const [{ busy, error }, set] = useBusyError(!!src);
@@ -72,10 +72,9 @@ export function useImage(src: string | null, withCors = false) {
   );
 
   useEffect(() => {
-    if (!src) {
-      return;
+    if (src) {
+      fetchImage(src);
     }
-    fetchImage(src);
 
     return () => {
       if (imageSrc) {

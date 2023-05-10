@@ -33,13 +33,11 @@ const MenuLazy = lazy(async () => {
   }
 });
 
-const Fallback: FC<MenuButtonFallbackProps> = (props) => {
-  return (
+const Fallback: FC<MenuButtonFallbackProps> = (props) => (
     <Button tone="neutral" busy {...withoutMenuProps(props)}>
       {props.label}
     </Button>
   );
-};
 
 export const Menu: FC<MenuProps> = (withFallbackProps) => {
   const { fallback, ...props } = withFallbackProps;

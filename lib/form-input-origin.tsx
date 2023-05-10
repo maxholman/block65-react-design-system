@@ -15,16 +15,16 @@ import {
   type FormInputProps,
 } from './forms.js';
 import { useAutoFocus } from './hooks/use-auto-focus.js';
+import { useCombinedRefs } from './hooks/use-combined-refs.js';
+import { useCustomValidity } from './hooks/use-custom-validity.js';
 import { ReturnCode, useDoH } from './hooks/use-doh.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { useFavicon } from './hooks/use-image.js';
+import { useInputIsValid } from './hooks/use-input-is-valid.js';
 import { GlobeColorIcon } from './icons.js';
 import { Block, Inline } from './layout.js';
 import { Spinner } from './loaders.js';
 import type { Merge } from './types.js';
-import { useInputIsValid } from './hooks/use-input-is-valid.js';
-import { useCustomValidity } from './hooks/use-custom-validity.js';
-import { useCombinedRefs } from './hooks/use-combined-refs.js';
 
 function guessUrl(url: string) {
   if (!url) {

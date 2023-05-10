@@ -23,8 +23,7 @@ const GitHubLogo: FC = () => (
   </svg>
 );
 
-export const LoginPattern = () => {
-  return (
+export const LoginPattern = () => (
     <Block alignSelf="center" style={{ maxWidth: '30em' }}>
       <Inline justifyContent="center">
         <Avatar ident="a" label="🐈" size="6" />
@@ -50,4 +49,3 @@ export const LoginPattern = () => {
       </Inline>
     </Block>
   );
-};

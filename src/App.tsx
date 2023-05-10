@@ -29,8 +29,6 @@ import { BadgesPage } from './pages/badges.js';
 import { ButtonsPage } from './pages/buttons.js';
 import { CalloutPage } from './pages/callout.js';
 import { CorePage } from './pages/core.js';
-import { DropdownMenuIframe } from './pages/menu-iframe.js';
-import { DropdownMenuPage } from './pages/menu.js';
 import { FormsPage } from './pages/forms.js';
 import { GridPage } from './pages/grid.js';
 import { IconsPage } from './pages/icons.js';
@@ -38,10 +36,12 @@ import { LayoutPage } from './pages/layout.js';
 import { ListPage } from './pages/list.js';
 import { LoadersPage } from './pages/loaders.js';
 import { MediaQueryPage } from './pages/media-query.js';
+import { DropdownMenuIframe } from './pages/menu-iframe.js';
+import { DropdownMenuPage } from './pages/menu.js';
 import { ModalPage } from './pages/modal.js';
 import { PanelsPage } from './pages/panels.js';
-import { TypographyPage } from './pages/typography.js';
 import { PatternPage } from './pages/patterns.js';
+import { TypographyPage } from './pages/typography.js';
 
 const fakeNames = [
   ...[

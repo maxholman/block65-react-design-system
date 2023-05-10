@@ -9,8 +9,7 @@ import {
   Text,
 } from '../../lib/main.js';
 
-export const LoadersPage: FC = () => {
-  return (
+export const LoadersPage: FC = () => (
     <>
       <Heading level="3">The worlds busiest page</Heading>
 
@@ -94,4 +93,3 @@ export const LoadersPage: FC = () => {
       </Grid>
     </>
   );
-};

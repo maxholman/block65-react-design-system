@@ -20,6 +20,7 @@ export function useTraceUpdate<
       if (callback) {
         callback(changedProps);
       } else {
+        // eslint-disable-next-line no-console
         console.debug('Changed props:', changedProps);
       }
     }

@@ -48,8 +48,7 @@ export const CorePage: FC = () => (
               'normal',
               'subtle' /* , 'transparent' */,
             ] as BorderHoverVariant[]
-          ).map((border) => {
-            return (
+          ).map((border) => (
               <Panel key={border}>
                 <Heading>
                   border={border}, hover={borderHover}
@@ -86,8 +85,7 @@ export const CorePage: FC = () => (
                   ))}
                 </Inline>
               </Panel>
-            );
-          })}
+            ))}
         </Block>
       ))}
     </Panel>

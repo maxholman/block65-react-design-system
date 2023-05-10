@@ -28,8 +28,7 @@ export const Callout: FC<CalloutProps> = ({
   children,
   className,
   ...props
-}) => {
-  return (
+}) => (
     <Inline
       component="div"
       background="3"
@@ -52,4 +51,3 @@ export const Callout: FC<CalloutProps> = ({
       </Text>
     </Inline>
   );
-};

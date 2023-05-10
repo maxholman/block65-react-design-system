@@ -39,12 +39,12 @@ import {
   type ReactElement,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
+import { Box } from './core.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { ArrowForward, MenuDropdownArrowIcon } from './icons.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Merge } from './types.js';
-import { Box } from './core.js';
 
 const defaultMenuDropdownProps = {
   space: '4',
@@ -77,8 +77,7 @@ const DefaultMenuActivator = forwardRef(
   (
     { isNested, ...props }: MenuActivatorProps,
     forwardedRef: Ref<HTMLButtonElement>,
-  ) => {
-    return (
+  ) => (
       <Button
         iconEnd={<MenuDropdownArrowIcon />}
         ref={forwardedRef}
@@ -90,8 +89,7 @@ const DefaultMenuActivator = forwardRef(
         // className: `${isNested ? 'MenuItem' : 'RootMenu'}`,
         {...props}
       />
-    );
-  },
+    ),
 );
 
 const MenuInner = forwardRef<HTMLButtonElement, MenuProps>(
