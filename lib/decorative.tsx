@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { forwardRef } from 'react';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import { dividerStyle } from './decorative.css.js';
 
@@ -13,11 +13,14 @@ export type DividerProps = Pick<
   | 'paddingBlock'
 >;
 
-export const Divider: FC<DividerProps> = ({ className, ...props }) => (
-  <Box
-    component="hr"
-    className={[className, dividerStyle]}
-    {...props}
-    background="2"
-  />
+export const Divider = forwardRef<HTMLHRElement, DividerProps>(
+  ({ className, ...props }, ref) => (
+    <Box
+      ref={ref}
+      component="hr"
+      className={[className, dividerStyle]}
+      {...props}
+      background="2"
+    />
+  ),
 );
