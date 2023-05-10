@@ -61,7 +61,7 @@ export type BoxBasedComponentProps<
     className?: ClassValue;
     component?: T | undefined;
 
-    space?: OrResponsive<Space> | Falsy;
+    space?: OrResponsive<Space | Falsy> | Falsy;
     flexDirection?: OrResponsive<FlexDirection> | Falsy;
 
     margin?: OrResponsive<Space> | Falsy;

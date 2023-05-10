@@ -1,5 +1,5 @@
 import type { ClassValue } from 'clsx';
-import type { Responsive, Viewport } from './core.css.js';
+import type { Falsy, Responsive, Viewport } from './core.css.js';
 import { typedObjectEntries } from './utils.js';
 
 export function isNotFalsy<T>(value: T | null | undefined | false): value is T {
@@ -17,7 +17,7 @@ export function differentOriginLinkProps(href: string) {
 }
 
 export function matchViewportVariants<T extends string | number>(
-  resp: Responsive<T>,
+  resp: Responsive<T | Falsy>,
   variants: Record<Viewport, Record<T, string>>,
 ): ClassValue[] {
   return typedObjectEntries(resp)
