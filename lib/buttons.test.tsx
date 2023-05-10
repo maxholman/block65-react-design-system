@@ -16,11 +16,11 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="tone_toneVariants_accent__y2da5n3 buttons_buttonClassName__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewport_all_paddingBlock_3__1rbo53vej core_viewport_all_paddingInline_5__1rbo53vby core_textAlignVariants_center__1rbo53vj core_roundedVariants_medium__1rbo53v2 tone_borderToneVariants_accent__y2da5nc core_borderWidthVariants_2__1rbo53vm1 core_borderBaseClass__1rbo53vlq core_borderVariants_strong__1rbo53vlu core_borderBaseClass__1rbo53vlq core_borderHoverVariants_strong__1rbo53vly core_borderBaseClass__1rbo53vlq core_backgroundVariants_3__1rbo53v8 core_flexDirectionVariants_row__1rbo53vm7 core_viewport_all_space_2__1rbo53vmu"
+        class="tone_toneVariants_accent__y2da5n3 buttons_buttonClassName__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewport_all_paddingBlock_3__1rbo53vf3 core_viewport_all_paddingInline_5__1rbo53vci core_textAlignVariants_center__1rbo53v13 core_roundedVariants_medium__1rbo53v2 tone_borderToneVariants_accent__y2da5nc core_borderWidthVariants_2__1rbo53vml core_borderBaseClass__1rbo53vma core_borderVariants_strong__1rbo53vme core_borderBaseClass__1rbo53vma core_borderHoverVariants_strong__1rbo53vmi core_borderBaseClass__1rbo53vma core_backgroundVariants_3__1rbo53vs core_flexDirectionVariants_row__1rbo53vmr core_viewport_all_space_2__1rbo53vne"
         type="button"
       >
         <div
-          class="layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vm7 core_viewport_all_space_2__1rbo53vmu"
+          class="layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vmr core_viewport_all_space_2__1rbo53vne"
         >
           Click Me
         </div>
