@@ -46,6 +46,7 @@ import {
 } from './core.css.js';
 import { borderToneVariants, toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
+import type { TooltipProps } from './tooltip.js';
 import type {
   Merge,
   ReactHTMLAttributesHacked,
@@ -72,6 +73,8 @@ export type BoxBasedComponentProps<
     paddingInline?: OrResponsive<Space> | Falsy;
 
     tooltip?: ReactNode;
+    tooltipInitialPlacement?: Placement | Falsy;
+
     textAlign?: TextAlign | Falsy;
     textOverflow?: TextOverflow | Falsy;
 
@@ -108,7 +111,10 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     paddingInline,
     textAlign,
     textOverflow,
+
     tooltip,
+    tooltipInitialPlacement,
+
     rounded,
     roundedStart,
     roundedStartStart,
@@ -266,9 +272,15 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   );
 
   if (tooltip) {
+    const tooltipProps: TooltipProps = {
+      content: tooltip,
+      ...(tooltipInitialPlacement && {
+        initialPlacement: tooltipInitialPlacement,
+      }),
+    };
     return (
       <Suspense fallback={el}>
-        <TooltipLazy content={tooltip}>{el}</TooltipLazy>
+        <TooltipLazy {...tooltipProps}>{el}</TooltipLazy>
       </Suspense>
     );
   }
