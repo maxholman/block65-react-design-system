@@ -8,7 +8,7 @@ export function useImageStandard(src: string | null) {
   useEffect(() => {
     if (!src) {
       set(false);
-      return;
+      return () => {};
     }
 
     const image = new Image();
@@ -64,6 +64,7 @@ export function useImage(src: string | null, withCors = false) {
             withCors ? URL.createObjectURL(await response.blob()) : s,
           );
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.error(`Failed to fetch image: ${err}`);
         }
       });

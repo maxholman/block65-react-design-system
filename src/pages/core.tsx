@@ -49,43 +49,43 @@ export const CorePage: FC = () => (
               'subtle' /* , 'transparent' */,
             ] as BorderHoverVariant[]
           ).map((border) => (
-              <Panel key={border}>
-                <Heading>
-                  border={border}, hover={borderHover}
-                </Heading>
-                <Inline key={borderHover}>
-                  {(
-                    [
-                      'accent',
-                      // 'critical',
-                      // 'neutral',
-                      // 'positive',
-                      // 'promo',
-                      // 'info',
-                      // 'warn',
-                    ] as Tone[]
-                  ).map((tone) => (
-                    <Fragment key={tone}>
-                      {(['0', '1', '2', '3', '4'] as Background[]).map(
-                        (variant) => (
-                          <Flex
-                            flexDirection="row"
-                            tone={tone}
-                            background={variant}
-                            borderVariant={border}
-                            borderHover={borderHover}
-                            rounded="medium"
-                            padding="5"
-                          >
-                            {variant}
-                          </Flex>
-                        ),
-                      )}
-                    </Fragment>
-                  ))}
-                </Inline>
-              </Panel>
-            ))}
+            <Panel key={border}>
+              <Heading>
+                border={border}, hover={borderHover}
+              </Heading>
+              <Inline key={borderHover}>
+                {(
+                  [
+                    'accent',
+                    // 'critical',
+                    // 'neutral',
+                    // 'positive',
+                    // 'promo',
+                    // 'info',
+                    // 'warn',
+                  ] as Tone[]
+                ).map((tone) => (
+                  <Fragment key={tone}>
+                    {(['0', '1', '2', '3', '4'] as Background[]).map(
+                      (variant) => (
+                        <Flex
+                          flexDirection="row"
+                          tone={tone}
+                          background={variant}
+                          borderVariant={border}
+                          borderHover={borderHover}
+                          rounded="medium"
+                          padding="5"
+                        >
+                          {variant}
+                        </Flex>
+                      ),
+                    )}
+                  </Fragment>
+                ))}
+              </Inline>
+            </Panel>
+          ))}
         </Block>
       ))}
     </Panel>

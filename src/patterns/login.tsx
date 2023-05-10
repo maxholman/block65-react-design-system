@@ -24,28 +24,23 @@ const GitHubLogo: FC = () => (
 );
 
 export const LoginPattern = () => (
-    <Block alignSelf="center" style={{ maxWidth: '30em' }}>
-      <Inline justifyContent="center">
-        <Avatar ident="a" label="🐈" size="6" />
-      </Inline>
-      <Form>
-        <FormInputEmail required autoFocus />
-        <FormInputPassword placeholder="Password" required />
-        <Button type="submit">Login</Button>
-      </Form>
-      <Divider />
-      <Button
-        variant="subtle"
-        icon={<GitHubLogo />}
-        type="submit"
-        tone="neutral"
-      >
-        Login with GitHub
-      </Button>
-      <Inline justifyContent="center">
-        <Text secondary>
-          <TextLink weight="none">Don't have an account? Sign up</TextLink>
-        </Text>
-      </Inline>
-    </Block>
-  );
+  <Block alignSelf="center" style={{ maxWidth: '30em' }}>
+    <Inline justifyContent="center">
+      <Avatar ident="a" label="🐈" size="6" />
+    </Inline>
+    <Form>
+      <FormInputEmail required autoFocus />
+      <FormInputPassword placeholder="Password" required />
+      <Button type="submit">Login</Button>
+    </Form>
+    <Divider />
+    <Button variant="subtle" icon={<GitHubLogo />} type="submit" tone="neutral">
+      Login with GitHub
+    </Button>
+    <Inline justifyContent="center">
+      <Text secondary>
+        <TextLink weight="none">Don't have an account? Sign up</TextLink>
+      </Text>
+    </Inline>
+  </Block>
+);

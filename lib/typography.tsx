@@ -105,12 +105,12 @@ function headingProps(level: HeadingLevel): CommonTextProps {
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ level = '3', className, ...props }, ref) => (
-      <Text
-        ref={ref}
-        component={`h${level}`}
-        className={[className, headingVariantClasses[level]]}
-        {...headingProps(level)}
-        {...props}
-      />
-    ),
+    <Text
+      ref={ref}
+      component={`h${level}`}
+      className={[className, headingVariantClasses[level]]}
+      {...headingProps(level)}
+      {...props}
+    />
+  ),
 );

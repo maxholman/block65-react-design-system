@@ -123,10 +123,10 @@ export const FormInputLabel: FC<
 export const FormInputMessage: FC<
   Pick<FormInputProps, 'messageTone' | 'message'>
 > = ({ message, messageTone }) => (
-    <Text fontSize="0" tone={messageTone} className={formInputMessage}>
-      {message}
-    </Text>
-  );
+  <Text fontSize="0" tone={messageTone} className={formInputMessage}>
+    {message}
+  </Text>
+);
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (

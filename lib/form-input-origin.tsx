@@ -35,10 +35,10 @@ function guessUrl(url: string) {
     // You should check for https elsewhere if it's part of the validation
     const fqUrl = new URL(url.match(/^https?:\/\//) ? url : `https://${url}`);
     if (fqUrl.hostname.match(/\..{2,255}/) !== null) {
-      // eslint-disable-next-line consistent-return
       return fqUrl;
     }
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.warn(`URL "${String(url)}" caused ${Object(err).message}`);
   }
   return null;

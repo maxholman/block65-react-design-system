@@ -60,29 +60,29 @@ export const Avatar = <T extends keyof ReactHTMLAttributesHacked>({
   className,
   children,
 }: AvatarProps<T>) => (
-    <Box
-      rounded="maximum"
-      className={[
-        avatarClassName,
-        fontSizeVariantVars[size],
-        avatarVariants[variant],
-        getIdentClassName(ident),
-        className,
-      ]}
-    >
-      {image ? (
-        <Box
-          component="img"
-          rounded="maximum"
-          src={image}
-          className={avatarImgClass}
-        />
-      ) : (
-        children || (
-          <Text fontSize={size} tone={null}>
-            {extractInitials(label)}
-          </Text>
-        )
-      )}
-    </Box>
-  );
+  <Box
+    rounded="maximum"
+    className={[
+      avatarClassName,
+      fontSizeVariantVars[size],
+      avatarVariants[variant],
+      getIdentClassName(ident),
+      className,
+    ]}
+  >
+    {image ? (
+      <Box
+        component="img"
+        rounded="maximum"
+        src={image}
+        className={avatarImgClass}
+      />
+    ) : (
+      children || (
+        <Text fontSize={size} tone={null}>
+          {extractInitials(label)}
+        </Text>
+      )
+    )}
+  </Box>
+);

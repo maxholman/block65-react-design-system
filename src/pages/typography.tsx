@@ -155,10 +155,10 @@ export const TypographyPage: FC = () => (
       <Heading level="2">Tones are toney</Heading>
 
       {(['accent', 'critical'] as const).map((tone) => (
-          <Text tone={tone} key={tone}>
-            {tone}
-          </Text>
-        ))}
+        <Text tone={tone} key={tone}>
+          {tone}
+        </Text>
+      ))}
     </Panel>
 
     <Panel variant="ghost">

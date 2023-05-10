@@ -78,18 +78,18 @@ const DefaultMenuActivator = forwardRef(
     { isNested, ...props }: MenuActivatorProps,
     forwardedRef: Ref<HTMLButtonElement>,
   ) => (
-      <Button
-        iconEnd={<MenuDropdownArrowIcon />}
-        ref={forwardedRef}
-        icon={isNested && <ArrowForward />}
-        {...(isNested && {
-          // Indicates this is a nested <Menu /> acting as a <MenuItem />.
-          role: 'menuitem',
-        })}
-        // className: `${isNested ? 'MenuItem' : 'RootMenu'}`,
-        {...props}
-      />
-    ),
+    <Button
+      iconEnd={<MenuDropdownArrowIcon />}
+      ref={forwardedRef}
+      icon={isNested && <ArrowForward />}
+      {...(isNested && {
+        // Indicates this is a nested <Menu /> acting as a <MenuItem />.
+        role: 'menuitem',
+      })}
+      // className: `${isNested ? 'MenuItem' : 'RootMenu'}`,
+      {...props}
+    />
+  ),
 );
 
 const MenuInner = forwardRef<HTMLButtonElement, MenuProps>(

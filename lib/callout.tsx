@@ -29,25 +29,25 @@ export const Callout: FC<CalloutProps> = ({
   className,
   ...props
 }) => (
-    <Inline
-      component="div"
-      background="3"
-      rounded="medium"
-      className={[
-        className,
-        calloutClass,
-        fontSizeVariants[1],
-        toneVariants[tone],
-      ]}
-      role="alert"
-      aria-live="polite"
-      {...props}
-    >
-      <div className={calloutTextIconWrapperClass}>
-        <InfoIcon className={calloutTextIconClass} />
-      </div>
-      <Text className={calloutTextClass} tone={tone}>
-        {children}
-      </Text>
-    </Inline>
-  );
+  <Inline
+    component="div"
+    background="3"
+    rounded="medium"
+    className={[
+      className,
+      calloutClass,
+      fontSizeVariants[1],
+      toneVariants[tone],
+    ]}
+    role="alert"
+    aria-live="polite"
+    {...props}
+  >
+    <div className={calloutTextIconWrapperClass}>
+      <InfoIcon className={calloutTextIconClass} />
+    </div>
+    <Text className={calloutTextClass} tone={tone}>
+      {children}
+    </Text>
+  </Inline>
+);
