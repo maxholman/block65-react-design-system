@@ -37,6 +37,7 @@ distclean: clean
 
 .PHONY: test
 test: node_modules vite.config.ts
+	$(MAKE) lint
 	pnpm tsc --noEmit
 	pnpm vitest run
 
@@ -47,6 +48,11 @@ dev:
 .PHONY: dev-server
 dev-server: node_modules vite.config.ts
 	pnpm vite dev
+
+.PHONY: lint
+lint: node_modules
+	pnpm eslint  .
+	pnpm prettier --check .
 
 .PHONY: pretty
 pretty: node_modules
