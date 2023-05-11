@@ -5,12 +5,14 @@ import {
   type ForwardedRef,
   type PropsWithChildren,
   type ReactNode,
+  useRef,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { ButtonIcon } from './buttons.js';
 import type { Falsy } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import { DesignSystem } from './design-system.js';
+import { useCombinedRefs } from './hooks/use-combined-refs.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { CloseIcon } from './icons.js';
@@ -27,9 +29,10 @@ import type { Merge } from './types.js';
 import { Heading } from './typography.js';
 
 type InnerProps<T extends string = ''> = PropsWithChildren<{
-  close: (returnValue: T | '') => void;
+  close: (returnValue: T | '' | 'dismiss') => void;
   heading?: ReactNode | Falsy;
   dismissable?: true | Falsy;
+  lightDismiss?: true | Falsy;
 }>;
 
 export type DialogProps<
@@ -66,7 +69,7 @@ const ModalInner: FC<InnerProps> = ({
           <Inline component="form" method="dialog" justifySelf="end">
             <ButtonIcon
               variant="transparent"
-              onClick={() => close && close('')}
+              onClick={() => close('')}
               type="submit"
               className={buttonClass}
               value="close"
@@ -93,17 +96,17 @@ export const Modal = forwardRef(
       heading,
       ...props
     }: DialogProps<T, 'div'>,
-    ref: ForwardedRef<HTMLDivElement | null>,
+    forwardedRef: ForwardedRef<HTMLDivElement | null>,
   ) => {
     const ds = useDesignSystem();
 
-    const { dismissable = true } = props;
+    const { dismissable = true, lightDismiss = dismissable } = props;
 
     useEffect(() => {
       if (dismissable) {
         const escapeHandler = (e: KeyboardEvent) => {
-          if (e.key === 'Escape' && close) {
-            close('');
+          if (e.key === 'Escape') {
+            close('dismiss');
           }
         };
 
@@ -114,6 +117,26 @@ export const Modal = forwardRef(
       }
       return () => {};
     }, [close, dismissable]);
+
+    const backdropRef = useRef<HTMLDivElement>(null);
+    const ref = useCombinedRefs(forwardedRef, backdropRef);
+
+    useEffect(() => {
+      const el = backdropRef.current;
+      if (lightDismiss && el) {
+        const handler = (e: MouseEvent) => {
+          if (e.target === e.currentTarget) {
+            close('dismiss');
+          }
+        };
+
+        el.addEventListener('click', handler);
+        return (): void => {
+          el.removeEventListener('click', handler);
+        };
+      }
+      return () => {};
+    }, [close, lightDismiss]);
 
     return createPortal(
       <DesignSystem {...ds} integrationMode>
