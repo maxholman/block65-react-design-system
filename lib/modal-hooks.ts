@@ -93,23 +93,26 @@ export function useModal<T extends string>(
     [open],
   );
 
-  const showModal = (): void => {
+  const showModal = useCallback((): void => {
     toggleOpen(true);
-  };
+  }, [toggleOpen]);
 
   // Modals are always Modal, hence the name, so we dont need this
   /** @deprecated */
-  const show = (): void => {
+  const show = useCallback((): void => {
     toggleOpen(true);
-  };
+  }, [toggleOpen]);
 
-  const close = (returnValue: T | ''): void => {
-    toggleOpen(false);
-    modalEmitterRef.current.close(returnValue);
-    if (onClose) {
-      onClose(returnValue);
-    }
-  };
+  const close = useCallback(
+    (returnValue: T | ''): void => {
+      toggleOpen(false);
+      modalEmitterRef.current.close(returnValue);
+      if (onClose) {
+        onClose(returnValue);
+      }
+    },
+    [onClose, toggleOpen],
+  );
 
   return [{ ref, open, show, showModal, close }, closeEvent] as const;
 }
