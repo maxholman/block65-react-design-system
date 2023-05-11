@@ -17,6 +17,8 @@ export function useDialog<T extends string>(
   const ref = useRef<HTMLDialogElement | null>(null);
 
   const modalEmitterRef = useRef(new ModalEmitter<T>());
+
+  // is this a memory leak? it adds a listener on every call
   const closeEvent = useCallback(
     () =>
       new Promise<T | ''>((resolve) => {
@@ -78,6 +80,8 @@ export function useModal<T extends string>(
   const [open, toggleOpen] = useToggle();
 
   const modalEmitterRef = useRef(new ModalEmitter<T>());
+
+  // is this a memory leak? it adds a listener on every call
   const closeEvent = useCallback(
     () =>
       new Promise<T | ''>((resolve) => {
