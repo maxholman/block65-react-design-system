@@ -14,6 +14,7 @@ import {
 
 export const ModalPage: FC = () => {
   const [modal] = useModal();
+  const [modal2] = useModal();
   const [dialog] = useDialog();
 
   return (
@@ -24,15 +25,35 @@ export const ModalPage: FC = () => {
         </Inline>
 
         <Inline>
+          <Button onClick={() => modal2.showModal()}>modal2</Button>
+        </Inline>
+
+        <Inline>
           <Button onClick={() => dialog.showModal()}>dialog</Button>
         </Inline>
 
         {modal.open && (
           <Modal {...modal} heading="Hi, I'm a Modal ggg qqqq!">
-            <Callout tone="promo">You can press ESC to close</Callout>
+            <Callout tone="promo">
+              You can press ESC or click away to close
+            </Callout>
             <Form>
               <FormInput autoFocus label="Name" />
             </Form>
+          </Modal>
+        )}
+
+        {modal2.open && (
+          <Modal
+            dismissable={false}
+            {...modal2}
+            heading="Hi, I'm a Modal2 ggg qqqq!"
+          >
+            <Callout tone="warn">You CANNOT press ESC to close</Callout>
+            <Form>
+              <FormInput autoFocus label="Name" />
+            </Form>
+            <Button onClick={() => modal2.close('dismiss')}>close</Button>
           </Modal>
         )}
 
