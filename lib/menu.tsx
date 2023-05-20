@@ -37,6 +37,7 @@ import {
   type ReactNode,
   type Ref,
   type ReactElement,
+  type ForwardedRef,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
 import { Box } from './core.js';
@@ -70,15 +71,16 @@ type MenuCommonProps = PropsWithChildren<{
 export type MenuProps = Merge<ButtonProps<'button'>, MenuCommonProps>;
 
 export type MenuActivatorProps = PropsWithChildren<
-  Omit<ButtonProps, 'onClick'> & { isNested?: boolean }
+  Omit<ButtonProps<'div'>, 'onClick'> & { isNested?: boolean }
 >;
 
 const DefaultMenuActivator = forwardRef(
   (
     { isNested, ...props }: MenuActivatorProps,
-    forwardedRef: Ref<HTMLButtonElement>,
+    forwardedRef: ForwardedRef<HTMLDivElement>,
   ) => (
     <Button
+      component="div"
       iconEnd={<MenuDropdownArrowIcon />}
       ref={forwardedRef}
       icon={isNested && <ArrowForward />}
