@@ -12,7 +12,6 @@ import { ButtonIcon } from './buttons.js';
 import type { Falsy } from './core.css.js';
 import { Box, type BoxBasedComponentProps } from './core.js';
 import { DesignSystem } from './design-system.js';
-import { useCombinedRefs } from './hooks/use-combined-refs.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { CloseIcon } from './icons.js';
@@ -119,7 +118,6 @@ export const Modal = forwardRef(
     }, [close, dismissable]);
 
     const backdropRef = useRef<HTMLDivElement>(null);
-    const ref = useCombinedRefs(forwardedRef, backdropRef);
 
     useEffect(() => {
       const el = backdropRef.current;
@@ -140,10 +138,10 @@ export const Modal = forwardRef(
 
     return createPortal(
       <DesignSystem {...ds} integrationMode>
-        <Box className={modalClass}>
+        <Box className={modalClass} ref={backdropRef}>
           <Block
             component="div"
-            ref={ref}
+            ref={forwardedRef}
             className={[className, commonDimensionsClass]}
           >
             <ModalInner {...{ children, close, heading }} {...props} />
