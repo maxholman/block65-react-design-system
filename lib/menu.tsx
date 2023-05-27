@@ -35,7 +35,6 @@ import {
   type FC,
   type PropsWithChildren,
   type ReactNode,
-  type Ref,
   type ReactElement,
   type ForwardedRef,
 } from 'react';
@@ -94,7 +93,7 @@ const DefaultMenuActivator = forwardRef(
   ),
 );
 
-const MenuInner = forwardRef<HTMLButtonElement, MenuProps>(
+const MenuInner = forwardRef<HTMLDivElement, MenuProps>(
   (
     {
       children,
@@ -281,7 +280,7 @@ const MenuInner = forwardRef<HTMLButtonElement, MenuProps>(
     return (
       <FloatingNode id={nodeId}>
         {activator ? (
-          <Box component="button" ref={referenceRef} {...activatorProps}>
+          <Box ref={referenceRef} {...activatorProps}>
             {activator({ isNested })}
           </Box>
         ) : (
@@ -346,7 +345,7 @@ const MenuInner = forwardRef<HTMLButtonElement, MenuProps>(
   },
 );
 
-const Menu = forwardRef<HTMLButtonElement, MenuProps>((props, ref) => {
+const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
   const parentId = useFloatingParentNodeId();
 
   if (parentId === null) {
