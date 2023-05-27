@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { focusableClassName, focusRadiusVar } from './focusable.css.js';
+import { focusRadiusVar, focusableClassName } from './focusable.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
 import { hsl } from './utils.js';
 
