@@ -53,9 +53,7 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 
-export type BoxBasedComponentProps<
-  T extends keyof ReactHTMLAttributesHacked = 'div',
-> = Merge<
+export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
   ReactHTMLAttributesHacked[T],
   {
     className?: ClassValue;

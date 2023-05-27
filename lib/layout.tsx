@@ -1,6 +1,6 @@
 import { forwardRef, type ForwardedRef, type PropsWithChildren } from 'react';
 import { type Falsy, type OrResponsive } from './core.css.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import {
   alignItemsVariants,
   alignSelfVariants,
@@ -23,7 +23,7 @@ export type Variant = 'none' | 'solid' | 'ghost' | 'subtle' | 'transparent';
 
 export type FlexProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
   Merge<
-    BoxBasedComponentProps<T>,
+    BoxProps<T>,
     PropsWithChildren<{
       alignSelf?: Placement | Falsy;
       alignItems?: Placement | Falsy;
@@ -49,7 +49,7 @@ export type InlineProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
 function getVariantProps(
   variant: Variant,
   props: Pick<FlexProps, 'tone'>,
-): BoxBasedComponentProps {
+): BoxProps {
   switch (variant) {
     case 'solid':
       return {

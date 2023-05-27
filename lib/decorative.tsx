@@ -1,9 +1,9 @@
 import { forwardRef } from 'react';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import { dividerStyle } from './decorative.css.js';
 
 export type DividerProps = Pick<
-  BoxBasedComponentProps<'hr'>,
+  BoxProps<'hr'>,
   | 'className'
   | 'margin'
   | 'marginInline'

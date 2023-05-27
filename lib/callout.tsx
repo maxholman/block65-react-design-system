@@ -5,7 +5,7 @@ import {
   calloutTextIconClass,
   calloutTextIconWrapperClass,
 } from './callout.css.js';
-import type { BoxBasedComponentProps } from './core.js';
+import type { BoxProps } from './core.js';
 import { InfoIcon } from './icons.js';
 import { Inline } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
@@ -18,10 +18,7 @@ type CalloutCommonProps = {
   align?: never;
 };
 
-export type CalloutProps = Merge<
-  BoxBasedComponentProps<'div'>,
-  CalloutCommonProps
->;
+export type CalloutProps = Merge<BoxProps<'div'>, CalloutCommonProps>;
 
 export const Callout: FC<CalloutProps> = ({
   tone = 'info',

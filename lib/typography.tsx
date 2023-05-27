@@ -23,7 +23,7 @@ export type { FontSize, HeadingLevel, TextOverflow, TextAlign };
 
 export type HeadingProps = PropsWithChildren<
   Merge<
-    BoxBasedComponentProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
+    BoxProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
     {
       level?: HeadingLevel;
     } & CommonTextProps
@@ -67,20 +67,15 @@ export const Text = forwardRef(
   ),
 );
 
-export const Strong: FC<BoxBasedComponentProps<'span'>> = ({
-  className,
-  ...props
-}) => <Box component="span" {...props} className={[strongClass, className]} />;
+export const Strong: FC<BoxProps<'span'>> = ({ className, ...props }) => (
+  <Box component="span" {...props} className={[strongClass, className]} />
+);
 
-export const Code: FC<BoxBasedComponentProps<'code'>> = ({
-  className,
-  ...props
-}) => <Box component="code" {...props} className={[codeClass, className]} />;
+export const Code: FC<BoxProps<'code'>> = ({ className, ...props }) => (
+  <Box component="code" {...props} className={[codeClass, className]} />
+);
 
-export const Secondary: FC<BoxBasedComponentProps<'span'>> = ({
-  className,
-  ...props
-}) => (
+export const Secondary: FC<BoxProps<'span'>> = ({ className, ...props }) => (
   <Box component="span" className={[secondaryClass, className]} {...props} />
 );
 

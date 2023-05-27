@@ -7,13 +7,13 @@ import {
   type OrResponsive,
   type Space,
 } from './core.css.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import { gridClass } from './grid.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
 export type GridProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
   Merge<
-    BoxBasedComponentProps<T>,
+    BoxProps<T>,
     {
       space?: OrResponsive<Space>;
       cols?: OrResponsive<Columns>;

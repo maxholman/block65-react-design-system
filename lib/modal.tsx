@@ -10,7 +10,7 @@ import {
 import { createPortal } from 'react-dom';
 import { ButtonIcon } from './buttons.js';
 import type { Falsy } from './core.css.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
@@ -38,7 +38,7 @@ export type DialogProps<
   T extends string,
   C extends 'dialog' | 'div' = 'dialog',
 > = Merge<
-  BoxBasedComponentProps<C>,
+  BoxProps<C>,
   InnerProps<T> & {
     show: () => void;
     showModal: () => void;

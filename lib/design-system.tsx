@@ -5,7 +5,7 @@ import type {
   ReactElement,
 } from 'react';
 import { Context } from './context.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import { genericThemeClass } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import {
@@ -27,7 +27,7 @@ import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 export type DesignSystemProps<
   T extends keyof ReactHTMLAttributesHacked = 'div',
 > = Merge<
-  BoxBasedComponentProps<T>,
+  BoxProps<T>,
   PropsWithChildren<{
     contrastScheme?: ContrastScheme;
     colorScheme?: ColorScheme;

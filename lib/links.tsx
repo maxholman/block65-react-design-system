@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren } from 'react';
 import { differentOriginLinkProps } from './component-utils.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import { linkStyleVariant, type LinkWeight } from './links.css.js';
 import type { Merge } from './types.js';
 
@@ -10,7 +10,7 @@ type TextLinkCommonProps = {
 };
 
 export type TextLinkProps = PropsWithChildren<
-  Merge<BoxBasedComponentProps<'a'>, TextLinkCommonProps>
+  Merge<BoxProps<'a'>, TextLinkCommonProps>
 >;
 
 // `TextLink` is expect to be wrapped in a `Text` component

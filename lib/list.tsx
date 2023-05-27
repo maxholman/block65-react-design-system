@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Space } from './core.css.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import {
   listClass,
   listColsVar,
@@ -17,7 +17,7 @@ type ListCommonProps = {
 };
 
 export type ListProps<T extends keyof ReactHTMLAttributesHacked = 'ul'> = Merge<
-  BoxBasedComponentProps<T>,
+  BoxProps<T>,
   ListCommonProps
 >;
 
@@ -44,9 +44,6 @@ export const List = <T extends keyof ReactHTMLAttributesHacked>({
   </Box>
 );
 
-export const ListItem = ({
-  className,
-  ...props
-}: BoxBasedComponentProps<'li'>) => (
+export const ListItem = ({ className, ...props }: BoxProps<'li'>) => (
   <Box component="li" className={[className, listItemClass]} {...props} />
 );

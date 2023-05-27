@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import {
   inlineSpinnerClass,
   trackCircleClassName,
@@ -11,7 +11,7 @@ import {
 import type { Merge } from './types.js';
 
 export type SpinnerProps = Merge<
-  BoxBasedComponentProps<'span'>,
+  BoxProps<'span'>,
   {
     inline?: boolean;
     size?: SpinnerSize;

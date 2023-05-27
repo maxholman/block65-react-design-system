@@ -1,6 +1,6 @@
 import { type InputHTMLAttributes } from 'react';
 import type { Space } from './core.css.js';
-import type { BoxBasedComponentProps } from './core.js';
+import type { BoxProps } from './core.js';
 
 export const defaultFormInputSpace: Space = '4';
 
@@ -20,7 +20,7 @@ export function formInputProps(
       tone: 'neutral',
       background: '0',
     }),
-  } satisfies BoxBasedComponentProps<'input' | 'textarea'>;
+  } satisfies BoxProps<'input' | 'textarea'>;
 
   switch (props.type) {
     case 'url':
@@ -31,7 +31,7 @@ export function formInputProps(
         maxLength: 2048,
         pattern: '^(https?:\\/\\/)?(([a-z0-9-]+)\\.)+([a-z0-9-]+){2,}(/.*)?$',
         placeholder: 'https://www.example.com',
-      } satisfies BoxBasedComponentProps<'input'>;
+      } satisfies BoxProps<'input'>;
     case 'email':
       return {
         ...common,
@@ -40,7 +40,7 @@ export function formInputProps(
         maxLength: 320,
         pattern: '^[^@]+@[^@]+\\.[^@]{2,}$',
         placeholder: 'email@example.com',
-      } satisfies BoxBasedComponentProps<'input'>;
+      } satisfies BoxProps<'input'>;
     default: {
       return common;
     }

@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren } from 'react';
-import { type BadgeVariant, badgeClassName } from './badges.css.js';
-import type { BoxBasedComponentProps } from './core.js';
+import { badgeClassName, type BadgeVariant } from './badges.css.js';
+import type { BoxProps } from './core.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
 import { toneVariants, type Tone } from './tone.css.js';
@@ -56,8 +56,6 @@ type BadgeLinkProps = CommonBadgeProps & {
   href?: string;
 };
 
-export const BadgeLink: FC<
-  Merge<BoxBasedComponentProps<'a' | 'button'>, BadgeLinkProps>
-> = (props) => (
-  <Badge component={'href' in props ? 'a' : 'button'} {...props} />
-);
+export const BadgeLink: FC<Merge<BoxProps<'a' | 'button'>, BadgeLinkProps>> = (
+  props,
+) => <Badge component={'href' in props ? 'a' : 'button'} {...props} />;

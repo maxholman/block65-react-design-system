@@ -13,7 +13,7 @@ import {
   type ReactNode,
 } from 'react';
 import type { Falsy } from './core.css.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import { defaultFormInputSpace, formInputProps } from './forms-common.js';
 import {
   fieldLabelStyle,
@@ -68,7 +68,7 @@ type CommonFormInputProps = {
 
 export type FormInputProps = Merge<
   // InputHTMLAttributes<HTMLInputElement>,
-  BoxBasedComponentProps<'input'>,
+  BoxProps<'input'>,
   CommonFormInputProps
 >;
 
@@ -329,7 +329,7 @@ type FormSelectCommonProps = {
 };
 
 export type FormSelectProps = PropsWithChildren<
-  Merge<BoxBasedComponentProps<'select'>, FormSelectCommonProps>
+  Merge<BoxProps<'select'>, FormSelectCommonProps>
 >;
 
 export const FormSelect: FC<FormSelectProps> = ({
@@ -392,7 +392,7 @@ export const FormSelect: FC<FormSelectProps> = ({
 const FormInputCheckRadio: FC<
   PropsWithChildren<
     Merge<
-      BoxBasedComponentProps<'input'>,
+      BoxProps<'input'>,
       {
         label: ReactNode;
         className?: ClassValue;
@@ -548,7 +548,7 @@ export const FormInputCheckboxGroup: FC<
 };
 
 export type FormTextAreaProps = Merge<
-  BoxBasedComponentProps<'textarea'>,
+  BoxProps<'textarea'>,
   CommonFormInputProps
 >;
 
