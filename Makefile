@@ -40,6 +40,7 @@ test: node_modules vite.config.ts
 	$(MAKE) lint
 	pnpm tsc --noEmit
 	pnpm vitest run
+	pnpm bundlesize
 
 .PHONY: dev
 dev:

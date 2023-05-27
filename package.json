@@ -48,6 +48,7 @@
     "clsx": "^1.2.1"
   },
   "devDependencies": {
+    "@block65/bundlesize": "^1.0.1",
     "@block65/eslint-config": "^9.0.0",
     "@block65/mrr": "^5.1.1",
     "@capsizecss/metrics": "^1.1.1",
