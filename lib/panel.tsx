@@ -17,10 +17,10 @@ export type PanelProps<T extends keyof ReactHTMLAttributesHacked = 'section'> =
 export const Panel = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'section'>(
     props: PanelProps<T>,
-    ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
+    forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Block
-      ref={ref}
+      ref={forwardedRef}
       component="section"
       rounded="medium"
       padding="6"
