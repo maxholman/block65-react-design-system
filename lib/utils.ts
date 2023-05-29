@@ -63,7 +63,7 @@ export function hslValues(
   l: string | number,
   a: string | number,
 ) {
-  return [h, s, l, ...(a.toString() !== '1' ? [a] : [])].join(',');
+  return [h, s, l, ...(a.toString() !== '1' ? ['/', a] : [])].join(' ');
 }
 
 export function hsl(
