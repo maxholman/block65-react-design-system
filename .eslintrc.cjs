@@ -11,7 +11,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['**/*.css.ts', 'src/pages/**/*.tsx'],
+      files: ['**/*.css.ts', 'src/**/*.tsx'],
       rules: {
         'import/no-extraneous-dependencies': [
           'error',
