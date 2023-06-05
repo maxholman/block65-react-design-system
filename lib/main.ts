@@ -28,6 +28,8 @@ export * from './modal-hooks.js';
 export * from './fonts/inter.css.js';
 export * from './fonts/roboto.css.js';
 
+export * from './icons.js';
+
 export type { ColorScheme, ContrastScheme } from './schemes/color.css.js';
 export type { Tone } from './tone.css.js';
 export type { Background } from './core.css.js';
