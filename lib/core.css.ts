@@ -462,7 +462,7 @@ const columnsVariantCols: Record<Columns, Columns> = {
 export const viewportGridColumnsVariants = viewportStyleVariants(
   columnsVariantCols,
   (cols) => ({
-    gridTemplateColumns: `repeat(${cols}, 1fr)`,
+    gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
   }),
   'cols',
 );
