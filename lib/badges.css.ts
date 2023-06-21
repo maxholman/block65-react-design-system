@@ -6,7 +6,6 @@ import type { Variant } from './layout.js';
 export type BadgeVariant = Exclude<Variant, 'none'>;
 
 export const badgeClassName = style({
-  cursor: 'default',
   fontWeight: genericVars.text.weight.medium,
   textTransform: 'uppercase',
 });
