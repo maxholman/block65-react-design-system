@@ -56,20 +56,20 @@ export const spinnerSizeVariantClassNames = styleVariants({
 const circleBase = style({
   fill: 'none',
   stroke: 'currentColor',
-  strokeWidth: '10', // must match the radius in the SVG markup
+  strokeWidth: '10', // must be less than the radius in the SVG markup
 });
 
 export const trackCircleClassName = style([
   circleBase,
   {
-    color: 'transparent', // hsl(0, 0, contrastSchemeVars.background2.l, 0),
+    color: 'transparent',
   },
 ]);
 
 export const runnerCircleClassName = style([
   circleBase,
   {
-    color: 'currentColor', // hsl(0, 0, contrastSchemeVars.foreground0.l, 0.75),
+    color: 'currentColor',
     strokeDasharray: '90,360',
     strokeDashoffset: 0,
   },
