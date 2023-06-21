@@ -20,6 +20,7 @@ import {
   foregroundVariants,
   neutralise,
   neutraliseHover,
+  overflowVariants,
   roundedEndEndVariants,
   roundedEndStartVariants,
   roundedStartEndVariants,
@@ -39,6 +40,7 @@ import {
   type Falsy,
   type FlexDirection,
   type OrResponsive,
+  type Overflow,
   type Rounded,
   type Shadow,
   type Space,
@@ -99,6 +101,7 @@ export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
 
     textAlign?: TextAlign | Falsy;
     textOverflow?: TextOverflow | Falsy;
+    overflow?: Overflow | Falsy;
 
     rounded?: Rounded | Falsy;
     roundedStart?: Rounded | Falsy;
@@ -135,6 +138,9 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     paddingInline,
     textAlign,
     textOverflow,
+
+
+    overflow,
 
     tooltip,
     tooltipInitialPlacement,
@@ -299,6 +305,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
 
           flexDirectionClass,
           !textOverflow && spaceClass,
+          overflow && overflowVariants[overflow],
         ) || undefined,
       ref,
     },
