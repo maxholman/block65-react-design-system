@@ -18,6 +18,7 @@ import {
   boxShadowVariants,
   flexDirectionVariants,
   foregroundVariants,
+  hiddenClass,
   neutralise,
   neutraliseHover,
   overflowVariants,
@@ -187,7 +188,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
       : undefined,
 
     ...props
-  }: BoxBasedComponentProps<T>,
+  }: BoxProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
 ) => {
   ifDebugBuild(() => {
@@ -227,6 +228,10 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
           className,
 
           spaceClass,
+
+          // we dont extract out the prop, we just force a display none
+          // so we can keep the element attribute for accessibility?
+          props.hidden && hiddenClass,
 
           isNotFalsy(margin) &&
             marginBlock !== margin &&
