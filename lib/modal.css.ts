@@ -77,10 +77,6 @@ export const modalClass = style({
   },
 });
 
-export const modalPanelClass = style({
-  boxShadow: genericVars.boxShadow[4],
-});
-
 export const commonDimensionsClass = style({
   '@media': typedObjectFromEntries(
     typedObjectEntries(commonViewportRules).map(([viewport, rule]) => [

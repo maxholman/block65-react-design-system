@@ -1,11 +1,11 @@
 import {
   forwardRef,
   useEffect,
+  useRef,
   type FC,
   type ForwardedRef,
   type PropsWithChildren,
   type ReactNode,
-  useRef,
 } from 'react';
 import { createPortal } from 'react-dom';
 import { ButtonIcon } from './buttons.js';
@@ -21,9 +21,7 @@ import {
   commonDimensionsClass,
   dialogClass,
   modalClass,
-  modalPanelClass,
 } from './modal.css.js';
-import { Panel } from './panel.js';
 import type { Merge } from './types.js';
 import { Heading } from './typography.js';
 
@@ -55,19 +53,21 @@ const ModalInner: FC<InnerProps> = ({
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Panel className={modalPanelClass} {...props}>
+    <Block
+      component="section"
+      rounded="medium"
+      padding="8"
+      background="1"
+      boxShadow="2"
+      {...props}
+    >
       <Inline flexWrap="nowrap">
-        {isStringLike(heading) ? (
-          <Heading level="3" textOverflow="ellipsis">
-            {heading}
-          </Heading>
-        ) : (
-          heading
-        )}
+        {isStringLike(heading) ? <Heading>{heading}</Heading> : heading}
         {dismissable && (
           <Inline component="form" method="dialog" justifySelf="end">
             <ButtonIcon
               variant="transparent"
+              backgroundHover={null}
               onClick={() => close('')}
               type="submit"
               className={buttonClass}
@@ -80,7 +80,7 @@ const ModalInner: FC<InnerProps> = ({
         )}
       </Inline>
       <Block flexGrow>{children}</Block>
-    </Panel>
+    </Block>
   );
 };
 
@@ -140,7 +140,6 @@ export const Modal = forwardRef(
       <DesignSystem {...ds} integrationMode>
         <Box className={modalClass} ref={backdropRef}>
           <Block
-            component="div"
             ref={forwardedRef}
             className={[className, commonDimensionsClass]}
           >
