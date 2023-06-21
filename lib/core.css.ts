@@ -378,6 +378,17 @@ export const paddingInlineVariants = styleVariants(
   ],
 );
 
+export type Overflow = 'hidden' | 'scroll';
+
+export const overflowVariants = styleVariants({
+  hidden: {
+    overflow: 'hidden',
+  },
+  scroll: {
+    overflow: 'scroll',
+  },
+} satisfies Record<Overflow, StyleRule>);
+
 export type TextOverflow = 'ellipsis' | 'clip' | 'break';
 
 const textOverflowCssProps: Record<TextOverflow, StyleRule> = {
