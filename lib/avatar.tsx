@@ -11,7 +11,7 @@ import { fontSizeVariantVars, type FontSize } from './typography.css.js';
 
 type CommonAvatarProps = {
   label: string;
-  ident: string;
+  ident?: string;
   variant?: AvatarVariant;
   size?: FontSize;
   image?: string;
