@@ -42,10 +42,10 @@
     "preversion": "make test"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.2.9",
-    "@floating-ui/react": "^0.24.2",
-    "@floating-ui/react-dom": "^2.0.0",
-    "clsx": "^1.2.1"
+    "@floating-ui/dom": "^1.4.2",
+    "@floating-ui/react": "^0.24.3",
+    "@floating-ui/react-dom": "^2.0.1",
+    "clsx": "^1.2.1",
   },
   "devDependencies": {
     "@block65/bundlesize": "^1.0.1",
