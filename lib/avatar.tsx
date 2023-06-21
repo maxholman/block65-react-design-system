@@ -110,11 +110,7 @@ export const Avatar = <T extends keyof ReactHTMLAttributesHacked>({
         className={avatarImgClass}
       />
     ) : (
-      children || (
-        <Text fontSize={size} tone={null}>
-          {extractInitials(label)}
-        </Text>
-      )
+      children || extractInitials(label)
     )}
-  </Box>
+  </Flex>
 );
