@@ -14,7 +14,12 @@ import {
 } from 'react';
 import type { Falsy } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
-import { defaultFormInputSpace, formInputProps } from './forms-common.js';
+import {
+  defaultFormInputSpace,
+  formInputBoxProps,
+  formInputElProps,
+  formInputProps,
+} from './forms-common.js';
 import {
   fieldLabelStyle,
   formInputCheckRadioLabel,
@@ -23,7 +28,6 @@ import {
   formInputCheckboxInput,
   formInputHack,
   formInputInnerClassName,
-  formInputMessage,
   formInputNotCheckRadioClassName,
   formInputOuterClassName,
   formInputPasswordIcon,
@@ -122,8 +126,8 @@ export const FormInputLabel: FC<
 
 export const FormInputMessage: FC<
   Pick<FormInputProps, 'messageTone' | 'message'>
-> = ({ message, messageTone }) => (
-  <Text fontSize="0" tone={messageTone} className={formInputMessage}>
+> = ({ message, messageTone = 'neutral' }) => (
+  <Text fontSize="0" foreground="6" tone={messageTone}>
     {message}
   </Text>
 );
@@ -215,25 +219,13 @@ export const FormInputPassword = forwardRef<
     const id = useIdWithDefault(props.id);
     const definitelyAutoFocus = useAutoFocus(autoFocus);
 
-    const {
-      borderTone,
-      borderWidth,
-      background,
-      paddingInline,
-      tone,
-      ...inputTypeProps
-    } = formInputProps({
+    const propsWithElType = {
       type: 'password',
       ...props,
-    });
-
-    const fakeInputProps = {
-      borderTone,
-      borderWidth,
-      background,
-      paddingInline,
-      tone,
     };
+
+    const inputElProps = formInputElProps(propsWithElType);
+    const inputBoxProps = formInputBoxProps(propsWithElType);
 
     const [visible, toggleVisible] = useToggle();
 
@@ -273,7 +265,7 @@ export const FormInputPassword = forwardRef<
           flexWrap="nowrap"
           alignItems={null}
           space="0"
-          {...fakeInputProps}
+          {...inputBoxProps}
         >
           <Box
             component="input"
@@ -287,7 +279,7 @@ export const FormInputPassword = forwardRef<
               formInputNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
-            {...inputTypeProps}
+            {...inputElProps}
             {...props}
             id={id}
           />
@@ -345,7 +337,7 @@ export const FormSelect: FC<FormSelectProps> = ({
   const id = useIdWithDefault(props.id);
   const isStringLike = useStringLikeDetector();
 
-  const inputTypeProps = formInputProps({});
+  const inputTypeProps = formInputProps();
 
   const ref = useCustomValidity<HTMLSelectElement>(customValidity);
 

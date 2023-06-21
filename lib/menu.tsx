@@ -33,18 +33,18 @@ import {
   useRef,
   useState,
   type FC,
-  type PropsWithChildren,
-  type ReactNode,
-  type ReactElement,
   type ForwardedRef,
+  type PropsWithChildren,
+  type ReactElement,
+  type ReactNode,
+  type Ref,
 } from 'react';
 import { Button, type ButtonProps } from './buttons.js';
-import { Box } from './core.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { ArrowForward, MenuDropdownArrowIcon } from './icons.js';
 import { Flex, type FlexProps } from './layout.js';
-import type { Merge } from './types.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
 const defaultMenuDropdownProps = {
   space: '4',
@@ -57,17 +57,21 @@ const defaultMenuDropdownProps = {
 
 export type MenuButtonFallbackProps = Omit<MenuProps, 'fallback'>;
 
-type MenuCommonProps = PropsWithChildren<{
-  initialPlacement?: Placement;
-  onOpenChange?: (isOpen: boolean) => void;
-  menuDropdownProps?: FlexProps;
-  nested?: boolean;
-  fallback?: ReactElement;
-  activator?: FC<MenuActivatorProps>;
-  label?: ReactNode;
-}>;
+type MenuCommonProps<T extends keyof ReactHTMLElementsHacked> =
+  PropsWithChildren<{
+    initialPlacement?: Placement;
+    onOpenChange?: (isOpen: boolean) => void;
+    menuDropdownProps?: FlexProps<T>;
+    nested?: boolean;
+    fallback?: ReactElement;
+    activator?: FC<MenuActivatorProps>;
+    label?: ReactNode;
+  }>;
 
-export type MenuProps = Merge<ButtonProps<'button'>, MenuCommonProps>;
+export type MenuProps = Merge<
+  Omit<ButtonProps<'div'>, 'component'>,
+  MenuCommonProps<'div'>
+>;
 
 export type MenuActivatorProps = PropsWithChildren<
   Omit<ButtonProps<'div'>, 'onClick'> & { isNested?: boolean }
@@ -93,19 +97,19 @@ const DefaultMenuActivator = forwardRef(
   ),
 );
 
-const MenuInner = forwardRef<HTMLDivElement, MenuProps>(
+const MenuInner = forwardRef(
   (
     {
+      initialPlacement = 'bottom-start',
       children,
       label,
-      initialPlacement = 'bottom-start',
       onOpenChange,
       menuDropdownProps,
       activator,
       className,
       ...props
-    },
-    forwardedRef,
+    }: MenuProps,
+    forwardedRef: Ref<HTMLDivElement>,
   ) => {
     const ds = useDesignSystem();
 
@@ -280,9 +284,9 @@ const MenuInner = forwardRef<HTMLDivElement, MenuProps>(
     return (
       <FloatingNode id={nodeId}>
         {activator ? (
-          <Box ref={referenceRef} {...activatorProps}>
+          <Flex ref={referenceRef} {...activatorProps}>
             {activator({ isNested })}
-          </Box>
+          </Flex>
         ) : (
           <DefaultMenuActivator ref={referenceRef} {...activatorProps} />
         )}
@@ -345,18 +349,20 @@ const MenuInner = forwardRef<HTMLDivElement, MenuProps>(
   },
 );
 
-const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref) => {
-  const parentId = useFloatingParentNodeId();
+const Menu = forwardRef(
+  (props: MenuProps, forwardedRef: Ref<HTMLDivElement>) => {
+    const parentId = useFloatingParentNodeId();
 
-  if (parentId === null) {
-    return (
-      <FloatingTree>
-        <MenuInner {...props} ref={ref} />
-      </FloatingTree>
-    );
-  }
+    if (parentId === null) {
+      return (
+        <FloatingTree>
+          <MenuInner {...props} ref={forwardedRef} />
+        </FloatingTree>
+      );
+    }
 
-  return <MenuInner {...props} ref={ref} />;
-});
+    return <MenuInner {...props} ref={forwardedRef} />;
+  },
+);
 
 export default Menu;

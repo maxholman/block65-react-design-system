@@ -1,7 +1,12 @@
-import { forwardRef, type FC, type PropsWithChildren } from 'react';
-import type { Falsy, TextAlign, TextOverflow } from './core.css.js';
-import { Box, type BoxBasedComponentProps } from './core.js';
-import { toneVariants, type Tone } from './tone.css.js';
+import {
+  forwardRef,
+  type FC,
+  type ForwardedRef,
+  type PropsWithChildren,
+} from 'react';
+import type { Falsy, TextOverflow } from './core.css.js';
+import { Box, type BoxProps } from './core.js';
+import { type Tone } from './tone.css.js';
 import type {
   Merge,
   ReactHTMLAttributesHacked,
@@ -9,61 +14,64 @@ import type {
 } from './types.js';
 import {
   codeClass,
-  fontSizeVariants,
   headingVariantClasses,
   secondaryClass,
-  strongClass,
-  textClass,
-  type FontSize,
   type HeadingLevel,
 } from './typography.css.js';
 
-// exported types to assist with consumers who create augmented components
-export type { FontSize, HeadingLevel, TextOverflow, TextAlign };
-
-export type HeadingProps = PropsWithChildren<
-  Merge<
-    BoxProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
-    {
-      level?: HeadingLevel;
-    } & CommonTextProps
-  >
->;
-
 type CommonTextProps = {
-  // font size is only available on Text to encourage its use
-  fontSize?: FontSize | Falsy;
   secondary?: boolean | Falsy;
   tone?: Tone | Falsy;
+  textOverflow?: TextOverflow | Falsy;
 };
 
-export type TextProps<T extends keyof ReactHTMLAttributesHacked> =
-  PropsWithChildren<Merge<BoxBasedComponentProps<T>, CommonTextProps>>;
+export type TextProps<T extends keyof ReactHTMLAttributesHacked = 'p'> =
+  PropsWithChildren<
+    Merge<
+      Omit<
+        BoxProps<T>,
+        | 'flexDirection'
+        | 'flexWrap'
+        | 'space'
+        // | 'margin'
+        // | 'marginBlock'
+        // | 'marginInline'
+        // | 'padding'
+        // | 'paddingBlock'
+        // | 'paddingInline'
+        | 'textOverflow'
+        | 'overflow'
+      >,
+      CommonTextProps
+    >
+  >;
 
 export const Text = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'p'>(
     {
       component = 'p',
-      fontSize = '1',
-      tone = 'neutral',
       className,
       secondary,
+      textOverflow,
+      children,
       ...props
     }: TextProps<T>,
-    ref: React.ForwardedRef<ReactHTMLElementsHacked[T]>,
+    forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Box
-      ref={ref}
       component={component}
-      className={[
-        className,
-        textClass,
-        fontSize && fontSizeVariants[fontSize],
-        tone && toneVariants[tone],
-        secondary && secondaryClass,
-      ]}
+      ref={forwardedRef}
+      className={[className, secondary && secondaryClass]}
       {...props}
-    />
+    >
+      {textOverflow && children ? (
+        <Box component="span" textOverflow={textOverflow}>
+          {children}
+        </Box>
+      ) : (
+        children
+      )}
+    </Box>
   ),
 );
 
@@ -79,7 +87,7 @@ export const Secondary: FC<BoxProps<'span'>> = ({ className, ...props }) => (
   <Box component="span" className={[secondaryClass, className]} {...props} />
 );
 
-function headingProps(level: HeadingLevel): CommonTextProps {
+function headingProps(level: HeadingLevel): HeadingProps {
   switch (level) {
     case '1':
       return { fontSize: '5' };
@@ -94,9 +102,18 @@ function headingProps(level: HeadingLevel): CommonTextProps {
     case '6':
       return { fontSize: '0', secondary: true };
     default:
-      return { fontSize: '1' };
+      return {};
   }
 }
+
+export type HeadingProps = PropsWithChildren<
+  Merge<
+    TextProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
+    {
+      level?: HeadingLevel;
+    }
+  >
+>;
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ level = '3', className, ...props }, ref) => (

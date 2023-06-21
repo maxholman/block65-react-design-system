@@ -120,7 +120,7 @@ const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
 
 const headingClassName = style({
   vars: {
-    [toneL]: contrastSchemeVars.foreground0.l,
+    // [toneL]: contrastSchemeVars.foreground0.l,
   },
 });
 

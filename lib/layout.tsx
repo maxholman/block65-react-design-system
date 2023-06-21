@@ -8,7 +8,6 @@ import {
   flexShrinkClass,
   flexWrapVariants,
   justifyContentVariants,
-  justifySelfBlockVariants,
   justifySelfInlineVariants,
   type Placement,
   type Wrap,
@@ -19,7 +18,13 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 
-export type Variant = 'none' | 'solid' | 'ghost' | 'subtle' | 'transparent';
+export type Variant =
+  | 'none'
+  | 'subtle'
+  | 'solid'
+  | 'vibrant'
+  | 'ghost'
+  | 'transparent';
 
 export type FlexProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
   Merge<
@@ -28,15 +33,20 @@ export type FlexProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
       alignSelf?: Placement | Falsy;
       alignItems?: Placement | Falsy;
 
+      /**
+       * This is a `Grid` child style
+       *
+       * Use `flexGrow` on a sibling to justify in a flex container or `justifyContent`
+       * on the parent if it is a only child
+       */
       justifySelf?: Placement | Falsy;
+
       justifyContent?: Placement | Falsy;
 
       flexGrow?: OrResponsive<boolean> | Falsy;
       flexShrink?: OrResponsive<boolean> | Falsy;
 
       flexWrap?: Wrap | true | Falsy;
-
-      variant?: Variant | Falsy;
     }>
   >;
 
@@ -46,45 +56,9 @@ export type BlockProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
 export type InlineProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
   FlexProps<T>;
 
-function getVariantProps(
-  variant: Variant,
-  props: Pick<FlexProps, 'tone'>,
-): BoxProps {
-  switch (variant) {
-    case 'solid':
-      return {
-        background: '3',
-        borderTone: props.tone || 'accent',
-        borderVariant: 'normal',
-      };
-    case 'ghost':
-      return {
-        background: '1',
-        borderVariant: 'subtle',
-        borderTone: props.tone || 'accent',
-      };
-    case 'subtle':
-      return {
-        background: '2',
-        borderVariant: 'subtle',
-      };
-    case 'transparent':
-      return {
-        background: 'none',
-        borderVariant: 'transparent',
-      };
-    case 'none':
-    default:
-      return {
-        background: 'none',
-      };
-  }
-}
-
 export const Flex = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     {
-      component = 'div',
       flexDirection = 'row',
       flexWrap,
       alignSelf,
@@ -94,43 +68,34 @@ export const Flex = forwardRef(
       className,
       flexGrow,
       flexShrink,
-      variant,
       ...props
     }: FlexProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-  ) => {
-    const isRow = flexDirection === 'row';
+  ) => (
+    <Box
+      ref={ref}
+      flexDirection={flexDirection}
+      className={[
+        className,
 
-    return (
-      <Box
-        component={component}
-        ref={ref}
-        flexDirection={flexDirection}
-        {...(variant && getVariantProps(variant, props))}
-        className={[
-          className,
+        flexGrow === true && flexGrowClass.true,
+        flexGrow === false && flexGrowClass.false,
 
-          alignSelf && alignSelfVariants[alignSelf],
+        flexShrink === true && flexShrinkClass.true,
+        flexShrink === false && flexShrinkClass.false,
 
-          flexGrow === true && flexGrowClass.true,
-          flexGrow === false && flexGrowClass.false,
+        flexWrap && flexWrapVariants[flexWrap === true ? 'wrap' : flexWrap],
 
-          flexShrink === true && flexShrinkClass.true,
-          flexShrink === false && flexShrinkClass.false,
+        alignItems && alignItemsVariants[alignItems],
+        alignSelf && alignSelfVariants[alignSelf],
 
-          flexWrap && flexWrapVariants[flexWrap === true ? 'wrap' : flexWrap],
+        justifyContent && justifyContentVariants[justifyContent],
 
-          alignItems && alignItemsVariants[alignItems],
-
-          justifyContent && justifyContentVariants[justifyContent],
-
-          isRow && justifySelf && justifySelfInlineVariants[justifySelf],
-          !isRow && justifySelf && justifySelfBlockVariants[justifySelf],
-        ]}
-        {...props}
-      />
-    );
-  },
+        justifySelf && justifySelfInlineVariants[justifySelf],
+      ]}
+      {...props}
+    />
+  ),
 );
 
 export const Block = forwardRef(

@@ -1,50 +1,92 @@
-import type { FC } from 'react';
+import { cloneElement, type FC, type ReactNode } from 'react';
 import {
   calloutClass,
   calloutTextClass,
   calloutTextIconClass,
   calloutTextIconWrapperClass,
 } from './callout.css.js';
+import type { Falsy } from './core.css.js';
 import type { BoxProps } from './core.js';
 import { InfoIcon } from './icons.js';
-import { Inline } from './layout.js';
-import { toneVariants, type Tone } from './tone.css.js';
-import type { Merge } from './types.js';
+import { Inline, type Variant } from './layout.js';
+import { type Tone } from './tone.css.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import { fontSizeVariants } from './typography.css.js';
 import { Text } from './typography.js';
+import { isValidElementOfType } from './utils.js';
+
+type CalloutVariant = Variant;
 
 type CalloutCommonProps = {
   tone?: Exclude<Tone, 'accent'>;
   align?: never;
+  children: ReactNode;
+  variant?: CalloutVariant;
 };
 
-export type CalloutProps = Merge<BoxProps<'div'>, CalloutCommonProps>;
+export type CalloutProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
+  Merge<BoxProps<T>, CalloutCommonProps>;
+
+function getCalloutVariantProps(
+  variant: CalloutVariant | Falsy,
+): Partial<Pick<BoxProps, 'background' | 'border' | 'foreground'>> {
+  switch (variant) {
+    case 'solid':
+      return {
+        background: '6',
+        // border: '6',
+      };
+    case 'vibrant':
+      return {
+        background: '10',
+        // border: '10',
+      };
+    case 'ghost':
+      return {
+        border: '6',
+        // foreground: '6',
+      };
+    case 'subtle':
+      return {
+        // border: '4',
+        background: '3',
+      };
+    case 'transparent': {
+      return {
+        // foreground: '6',
+      };
+    }
+    case 'none':
+    default:
+      return {};
+  }
+}
 
 export const Callout: FC<CalloutProps> = ({
-  tone = 'info',
+  variant = 'solid',
   children,
   className,
   ...props
 }) => (
   <Inline
     component="div"
-    background="3"
     rounded="medium"
-    className={[
-      className,
-      calloutClass,
-      fontSizeVariants[1],
-      toneVariants[tone],
-    ]}
+    className={[className, calloutClass, fontSizeVariants[1]]}
     role="alert"
     aria-live="polite"
+    {...getCalloutVariantProps(variant)}
     {...props}
   >
     <div className={calloutTextIconWrapperClass}>
       <InfoIcon className={calloutTextIconClass} />
     </div>
-    <Text className={calloutTextClass} tone={tone}>
-      {children}
-    </Text>
+
+    {isValidElementOfType(children, Text) ? (
+      cloneElement(children, {
+        className: calloutTextClass,
+      })
+    ) : (
+      <Text className={calloutTextClass}>{children}</Text>
+    )}
   </Inline>
 );
