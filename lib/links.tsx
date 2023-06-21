@@ -13,7 +13,10 @@ export type TextLinkProps = PropsWithChildren<
   Merge<BoxProps<'a'>, TextLinkCommonProps>
 >;
 
-// `TextLink` is expect to be wrapped in a `Text` component
+/**
+ * A `TextLink` is expect to be wrapped in a `Text` component
+ *
+ */
 export const TextLink: FC<TextLinkProps> = ({
   weight = 'normal',
   safe = true,
