@@ -3,4 +3,5 @@ build
 coverage
 tmp
 .vscode
-.idea
+
+pnpm-lock.yaml
