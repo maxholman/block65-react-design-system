@@ -1,9 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { style } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
-import { contrastSchemeVars } from './schemes/color.css.js';
 import { fontSizeVariants } from './typography.css.js';
-import { hsl } from './utils.js';
 
 export const tooltipClass = style([
   fontSizeVariants[0],
@@ -11,11 +8,6 @@ export const tooltipClass = style([
     position: 'absolute',
     top: '0',
     left: '0',
-    background: hsl(0, 0, contrastSchemeVars.foreground0.l, 0.9),
-    color: hsl(0, 0, contrastSchemeVars.background0.l),
-    padding: genericVars.space[4],
-    borderRadius: genericVars.radius.medium,
-    pointerEvents: 'none',
     width: 'max-content',
   },
 ]);

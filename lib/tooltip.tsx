@@ -1,11 +1,19 @@
 import type { Placement } from '@floating-ui/react';
+import { clsx } from 'clsx';
 import {
   cloneElement,
+  forwardRef,
   isValidElement,
   type FC,
+  type HTMLAttributes,
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
+import {
+  backgroundVariants,
+  paddingVariants,
+  roundedVariants,
+} from './core.css.js';
 import { useTooltipState } from './hooks/use-tooltip-state.js';
 import { tooltipClass } from './tooltip.css.js';
 
@@ -24,6 +32,23 @@ export type TooltipProps = PropsWithChildren<{
   left: 'right',
 }; */
 
+const TooltipActual = forwardRef<
+  HTMLElement,
+  PropsWithChildren<HTMLAttributes<HTMLSpanElement>>
+>(({ className, ...props }, ref) => (
+  <span
+    ref={ref}
+    className={clsx([
+      className,
+      tooltipClass,
+      paddingVariants['4'],
+      roundedVariants.medium,
+      backgroundVariants['14'],
+    ])}
+    {...props}
+  />
+));
+
 export const Tooltip: FC<TooltipProps> = ({
   content,
   children,
@@ -31,12 +56,10 @@ export const Tooltip: FC<TooltipProps> = ({
   initialPlacement,
 }) => {
   const {
-    reference,
-    floating,
-    strategy,
-    x,
-    y,
+    refs,
+    floatingStyles,
     open,
+
     getReferenceProps,
     getFloatingProps,
     // placement,
@@ -47,32 +70,22 @@ export const Tooltip: FC<TooltipProps> = ({
     ...(initialPlacement && { placement: initialPlacement }),
   });
 
-  const validChildren = isValidElement(children) ? (
-    children
-  ) : (
-    <span>{children}</span>
-  );
+  const child = isValidElement(children) ? children : <span>{children}</span>;
 
   // const arrowPlacement = placement.split('-')[0] as Side;
 
   return (
     <>
-      {cloneElement(
-        validChildren,
-        getReferenceProps({ ref: reference, ...validChildren.props }),
-      )}
+      {cloneElement(child, {
+        ...child.props,
+        ref: refs.setReference,
+        ...getReferenceProps(),
+      })}
       {open && (
-        <span
-          ref={floating}
-          {...getFloatingProps({
-            className: tooltipClass,
-            style: {
-              position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
-              visibility: x == null ? 'hidden' : 'visible',
-            },
-          })}
+        <TooltipActual
+          ref={refs.setFloating}
+          style={floatingStyles}
+          {...getFloatingProps()}
         >
           {/* <span
             ref={arrowRef}
@@ -84,7 +97,7 @@ export const Tooltip: FC<TooltipProps> = ({
             }}
           /> */}
           {content}
-        </span>
+        </TooltipActual>
       )}
     </>
   );
