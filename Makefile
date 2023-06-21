@@ -18,6 +18,9 @@ build/tokens.scss: node_modules build bin/token.ts
 build: $(SRCS) node_modules vite.config.ts
 	NODE_ENV=production pnpm vite build
 
+debug: $(SRCS) node_modules vite.config.ts
+	DEBUG_BUILD=1 NODE_ENV=production pnpm vite build --outDir=build/debug
+
 .PHONY: types
 types: node_modules
 	pnpm tsc --emitDeclarationOnly

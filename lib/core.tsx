@@ -46,6 +46,10 @@ import {
   type TextAlign,
   type TextOverflow,
 } from './core.css.js';
+import {
+  debugLogger as debugBuildLogger,
+  ifDebugBuild,
+} from './debug-logger.js';
 import { borderToneVariants, toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type { TooltipProps } from './tooltip.js';
@@ -166,6 +170,18 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
 ) => {
+  ifDebugBuild(() => {
+    if (background && background === backgroundHover) {
+      debugBuildLogger('WARN: background === backgroundHover');
+    }
+    if (+(backgroundHover || 0) + 1 === +(background || 0)) {
+      debugBuildLogger(`WARN: use backgroundHover=${AUTO}`);
+    }
+    if (border && border === borderHover) {
+      debugBuildLogger('WARN: border === borderHover');
+    }
+  });
+
   const resolvedBackgroundHover =
     backgroundHover === AUTO ? resolveAutoSwatch(background) : backgroundHover;
 

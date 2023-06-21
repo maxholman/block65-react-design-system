@@ -4,9 +4,14 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 
-export default defineConfig({
-  // @ts-expect-error - guessing vite react plugin doesnt like node16 mode reso
-  plugins: [react(), vanillaExtractPlugin()],
+const debugBuild = !!process.env.DEBUG_BUILD;
+
+export default defineConfig(() => ({
+  plugins: [
+    // @ts-expect-error - guessing vite react plugin doesnt like node16 mode reso
+    react(),
+    vanillaExtractPlugin(debugBuild ? { identifiers: 'debug' } : {}),
+  ],
   build: {
     outDir: 'build',
     target: 'es2021',
@@ -22,8 +27,17 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
     },
+
     sourcemap: true,
+
+    minify: !debugBuild,
+    cssMinify: !debugBuild,
   },
+
+  define: {
+    ...(debugBuild && { __DEBUG_BUILD__: debugBuild }),
+  },
+
   test: {
     setupFiles: './src/test/setup.ts',
     globals: true,
@@ -35,4 +49,4 @@ export default defineConfig({
       web: [/\.css.ts$/],
     },
   },
-});
+}));
