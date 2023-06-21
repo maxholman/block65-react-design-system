@@ -29,7 +29,8 @@ const commonViewportRules: Record<Viewport, StyleRule> = {
 };
 
 const commonBackdropProps: StyleRule = {
-  backdropFilter: 'blur(0.5rem)',
+  // WARN: Brightness should probably be a var based on contrast scheme?
+  backdropFilter: 'blur(0.5rem) brightness(0.95)',
 };
 
 export const dialogClass = style({
