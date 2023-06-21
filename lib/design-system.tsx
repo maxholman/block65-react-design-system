@@ -9,18 +9,18 @@ import { Box, type BoxProps } from './core.js';
 import { genericThemeClass } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import {
-  type ColorScheme,
-  type ContrastScheme,
+  defaultColorThemeClass,
   forcedDarkClass,
   forcedDarkLessContrastClass,
   forcedDarkMoreContrastClass,
-  defaultBgFgClass,
-  defaultColorThemeClass,
   forcedLightClass,
   forcedLightLessContrastClass,
   forcedLightMoreContrastClass,
   mediaPrefersColorSchemeClass,
   mediaPrefersContrastSchemeClass,
+  type ColorScheme,
+  type ContrastScheme,
+  defaultBgFgClass,
 } from './schemes/color.css.js';
 import type { Merge, ReactHTMLAttributesHacked } from './types.js';
 
