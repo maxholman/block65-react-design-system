@@ -12,10 +12,14 @@ import {
   backgroundHoverVariants,
   backgroundVariants,
   borderHoverVariants,
+  borderTransparentClass,
   borderVariants,
   borderWidthVariants,
   boxShadowVariants,
   flexDirectionVariants,
+  foregroundVariants,
+  neutralise,
+  neutraliseHover,
   roundedEndEndVariants,
   roundedEndStartVariants,
   roundedStartEndVariants,
@@ -31,9 +35,6 @@ import {
   viewportPaddingInlineVariants,
   viewportPaddingVariants,
   viewportSpaceVariants,
-  type Background,
-  type BorderHoverVariant,
-  type BorderVariant,
   type BorderWidth,
   type Falsy,
   type FlexDirection,
@@ -41,6 +42,7 @@ import {
   type Rounded,
   type Shadow,
   type Space,
+  type Swatch,
   type TextAlign,
   type TextOverflow,
 } from './core.css.js';
@@ -52,6 +54,24 @@ import type {
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
+
+function resolveAutoSwatch(bg: Swatch | Falsy) {
+  if (!bg) {
+    return bg;
+  }
+
+  const nextBg: Swatch | string = (Number.parseInt(bg, 10) + 1).toString();
+
+  if (objectKeysInclude(backgroundVariants, nextBg)) {
+    return nextBg;
+  }
+
+  return bg;
+}
+
+const AUTO = 'auto';
+
+type BackgroundHover = Swatch | typeof AUTO;
 
 export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
   ReactHTMLAttributesHacked[T],
@@ -86,13 +106,15 @@ export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
 
     tone?: Tone | Falsy;
     boxShadow?: Shadow | Falsy;
-    background?: Background | Falsy;
-    backgroundHover?: Background | Falsy;
 
+    background?: Swatch | Falsy;
+    backgroundHover?: BackgroundHover | Falsy;
+
+    foreground?: Swatch | Falsy;
+
+    border?: Swatch | Falsy;
+    borderHover?: Swatch | Falsy;
     borderWidth?: BorderWidth | Falsy;
-    borderHover?: BorderHoverVariant | Falsy;
-    borderTone?: Tone | Falsy;
-    borderVariant?: BorderVariant | Falsy;
   }
 >;
 
@@ -125,20 +147,28 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
 
     space,
     flexDirection,
-    tone,
 
     background,
     backgroundHover,
 
-    borderVariant,
-    borderTone = borderVariant && tone,
-    borderWidth = borderVariant && '2',
+    foreground,
+
+    border,
     borderHover,
+    borderWidth = border || borderHover ? '1' : undefined,
+
+    // tone is defaulted only if backgrounds are required
+    tone = isNotFalsy(background || backgroundHover || border || borderHover)
+      ? 'neutral'
+      : undefined,
 
     ...props
   }: BoxBasedComponentProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
 ) => {
+  const resolvedBackgroundHover =
+    backgroundHover === AUTO ? resolveAutoSwatch(background) : backgroundHover;
+
   const flexDirectionClass =
     flexDirection &&
     (typeof flexDirection === 'string'
@@ -232,22 +262,24 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
 
           isNotFalsy(boxShadow) && boxShadowVariants[boxShadow],
 
-          tone && toneVariants[tone],
+          isNotFalsy(tone) && toneVariants[tone],
 
-          borderTone && borderToneVariants[borderTone],
+          tone === 'neutral' && neutralise,
+          tone === 'neutral' &&
+            (borderHover || resolvedBackgroundHover) &&
+            neutraliseHover,
+
+          isNotFalsy(foreground) && foregroundVariants[foreground],
+
+          (isNotFalsy(border) && borderVariants[border]) ||
+            borderTransparentClass,
+          isNotFalsy(borderHover) && borderHoverVariants[borderHover],
           isNotFalsy(borderWidth) && borderWidthVariants[borderWidth],
 
-          borderVariant && borderVariants[borderVariant],
-
-          // activate the border variant if it looks like we need it
-          !borderVariant &&
-            (borderTone || borderWidth) &&
-            borderVariants.normal,
-          borderHover && borderHoverVariants[borderHover],
-
           isNotFalsy(background) && backgroundVariants[background],
-          isNotFalsy(backgroundHover) &&
-            backgroundHoverVariants[backgroundHover],
+          isNotFalsy(resolvedBackgroundHover) &&
+            resolvedBackgroundHover !== background &&
+            backgroundHoverVariants[resolvedBackgroundHover],
 
           flexDirectionClass,
           !textOverflow && spaceClass,
