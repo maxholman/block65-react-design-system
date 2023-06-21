@@ -9,8 +9,8 @@ import {
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
-import { toneH, toneL, toneS } from './tone.css.js';
-import { hsl } from './utils.js';
+import { toneH } from './tone.css.js';
+import { oklch } from './utils.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -41,17 +41,13 @@ export const fontThemeVars = createThemeContract({
   '6': fontThemeVarsShape,
 });
 
+/** @deprecated */
 export const textClass = style({
-  // text should just inherit unless a tone is specified
-  color: hsl(
-    toneH,
-    toneS,
-    fallbackVar(toneL, contrastSchemeVars.foreground1.l),
-  ),
+  // WARN: DO NOT USE COLOR, IT CAUSES ALL SORTS OF ISSUES
 });
 
 export const secondaryClass = style({
-  color: hsl(toneH, 0, contrastSchemeVars.foreground2.l),
+  color: oklch(contrastSchemeVars.swatch[7].l, 0, toneH),
 });
 
 export const strongClass = style({

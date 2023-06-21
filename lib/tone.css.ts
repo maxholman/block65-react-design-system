@@ -11,25 +11,11 @@ export type Tone =
   | 'positive'
   | 'info';
 
+// export const toneL = createVar();
 export const toneH = createVar();
-export const toneS = createVar();
-export const toneL = createVar();
 
 export const toneVariants = styleVariants(colorThemeVars.tones, (tone) => ({
   vars: {
     [toneH]: tone.h,
-    [toneS]: tone.s,
   },
 }));
-
-export const borderH = createVar();
-export const borderS = createVar();
-export const borderToneVariants = styleVariants(
-  colorThemeVars.tones,
-  (tone) => ({
-    vars: {
-      [borderH]: tone.h,
-      [borderS]: tone.s,
-    },
-  }),
-);
