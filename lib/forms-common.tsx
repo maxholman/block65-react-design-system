@@ -4,8 +4,8 @@ import type { BoxProps } from './core.js';
 
 export const defaultFormInputSpace: Space = '4';
 
-export function formInputProps(
-  props: InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
+export function formInputBoxProps(
+  props: InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> = {},
 ) {
   const common = {
     ...(props.readOnly && {
@@ -15,34 +15,46 @@ export function formInputProps(
       inert: '',
     }),
     ...(!props.readOnly && {
-      borderTone: 'neutral',
+      border: '5',
       borderWidth: '1',
-      tone: 'neutral',
       background: '0',
     }),
   } satisfies BoxProps<'input' | 'textarea'>;
 
+  return common;
+}
+
+export function formInputElProps(
+  props: InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> = {},
+) {
   switch (props.type) {
     case 'url':
       return {
-        ...common,
         autoComplete: 'url',
         minLength: 3,
         maxLength: 2048,
         pattern: '^(https?:\\/\\/)?(([a-z0-9-]+)\\.)+([a-z0-9-]+){2,}(/.*)?$',
         placeholder: 'https://www.example.com',
-      } satisfies BoxProps<'input'>;
+      } satisfies InputHTMLAttributes<HTMLInputElement>;
     case 'email':
       return {
-        ...common,
         autoComplete: 'email',
         minLength: 6,
         maxLength: 320,
         pattern: '^[^@]+@[^@]+\\.[^@]{2,}$',
         placeholder: 'email@example.com',
-      } satisfies BoxProps<'input'>;
+      } satisfies InputHTMLAttributes<HTMLInputElement>;
     default: {
-      return common;
+      return {};
     }
   }
+}
+
+export function formInputProps(
+  props: InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> = {},
+) {
+  return {
+    ...formInputElProps(props),
+    ...formInputBoxProps(props),
+  };
 }

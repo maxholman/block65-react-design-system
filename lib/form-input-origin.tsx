@@ -1,7 +1,11 @@
 import { forwardRef, useMemo, useState } from 'react';
 import type { Falsy } from './core.css.js';
 import { Box } from './core.js';
-import { defaultFormInputSpace, formInputProps } from './forms-common.js';
+import {
+  defaultFormInputSpace,
+  formInputBoxProps,
+  formInputElProps,
+} from './forms-common.js';
 import {
   formInputInnerClassName,
   formInputNotCheckRadioClassName,
@@ -81,25 +85,13 @@ export const FormInputOrigin = forwardRef<
     const ourRef = useCustomValidity<HTMLInputElement>(customValidity);
     const ref = useCombinedRefs(incomingRef, ourRef);
 
-    const {
-      borderTone,
-      borderWidth,
-      background,
-      paddingInline,
-      tone,
-      ...inputTypeProps
-    } = formInputProps({
+    const inputPropsWithType = {
       type: 'url',
       ...props,
-    });
-
-    const fakeInputProps = {
-      borderTone,
-      borderWidth,
-      background,
-      paddingInline,
-      tone,
     };
+
+    const inputElProps = formInputElProps(inputPropsWithType);
+    const inputBoxProps = formInputBoxProps(inputPropsWithType);
 
     const [value, setValue] = useState<string>(
       props.value || defaultValue || '',
@@ -162,7 +154,7 @@ export const FormInputOrigin = forwardRef<
           className={[formInputOuterClassName, formInputNotCheckRadioClassName]}
           flexWrap="nowrap"
           alignItems={null}
-          {...fakeInputProps}
+          {...inputBoxProps}
         >
           <Box
             component="input"
@@ -178,7 +170,7 @@ export const FormInputOrigin = forwardRef<
               formInputNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
-            {...inputTypeProps}
+            {...inputElProps}
             onChange={(e) => {
               onChange?.(e);
               setValue(e.target.value);
