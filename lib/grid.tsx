@@ -27,7 +27,7 @@ export const Grid = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
 }: GridProps<T>): ReactElement | null => {
   // defaults to the count of children
   const resolvedCols: OrResponsive<Columns> = cols || {
-    all: Math.min(Children.count(props.children), 5) as Columns,
+    all: Math.min(Children.count(props.children), 10) as Columns,
   };
   const colsByViewport =
     typeof resolvedCols === 'number' ? { all: resolvedCols } : resolvedCols;
