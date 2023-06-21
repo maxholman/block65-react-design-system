@@ -16,11 +16,10 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="tone_toneVariants_accent__y2da5n3 buttons_buttonClassName__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewport_all_paddingBlock_3__1rbo53vf3 core_viewport_all_paddingInline_5__1rbo53vci core_textAlignVariants_center__1rbo53v13 core_roundedVariants_medium__1rbo53v2 tone_borderToneVariants_accent__y2da5nc core_borderWidthVariants_2__1rbo53vml core_borderBaseClass__1rbo53vma core_borderVariants_strong__1rbo53vme core_borderBaseClass__1rbo53vma core_borderHoverVariants_strong__1rbo53vmi core_borderBaseClass__1rbo53vma core_backgroundVariants_3__1rbo53vs core_flexDirectionVariants_row__1rbo53vmr core_viewport_all_space_2__1rbo53vne"
-        type="button"
+        class="typography_fontSizeVariantVars_1__16o63x1c buttons_buttonClassName__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewport_all_space_2__1rbo53vo3 core_viewport_all_paddingBlock_4__1rbo53vg9 core_viewport_all_paddingInline_5__1rbo53vdn core_textAlignVariants_center__1rbo53v28 core_roundedVariants_medium__1rbo53v2 tone_toneVariants_accent__y2da5n2 core_borderVariants_6__1rbo53vsk core_borderBaseClass__1rbo53vs5 core_borderHoverVariants_6__1rbo53vt0 core_borderWidthVariants_2__1rbo53vs8 core_borderBaseClass__1rbo53vs5 core_backgroundVariants_7__1rbo53v11 core_bgStyle__1rbo53vt core_flexDirectionVariants_row__1rbo53vng"
       >
         <div
-          class="layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_flexDirectionVariants_row__1rbo53vmr core_viewport_all_space_2__1rbo53vne"
+          class="typography_textClass__16o63x17 typography_fontSizeVariantVars_1__16o63x1c capsize_capsizeStyle__1d0g9qk4 typography__16o63x1m core_textAlignVariants_center__1rbo53v28"
         >
           Click Me
         </div>
