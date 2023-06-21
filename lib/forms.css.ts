@@ -2,15 +2,14 @@ import { createVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
 import { genericVars } from './design-system.css.js';
 import {
-  focusableClassName,
   focusColorVar,
   focusVisibleClassName,
   focusWidthVar,
+  focusableClassName,
 } from './focusable.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
-import { toneL } from './tone.css.js';
 import { fontSizeVariantVars } from './typography.css.js';
-import { hsl } from './utils.js';
+import { oklch } from './utils.js';
 
 const borderWidthVar = createVar();
 
@@ -22,7 +21,9 @@ export const formInputPasswordToggleButton = style({
   cursor: 'pointer',
   selectors: {
     '&:hover,&:focus-visible': {
-      backgroundColor: hsl(0, 0, contrastSchemeVars.background1.l),
+      // we dont use the backgroundHover prop for this because we
+      // are also using it for focus-visible
+      backgroundColor: oklch(contrastSchemeVars.swatch[6].l, 0, 0),
     },
   },
 });
@@ -30,8 +31,8 @@ export const formInputPasswordToggleButton = style({
 export const formInputHack = style({
   flexGrow: 1,
   flexShrink: 1,
-  // this is arguably a little hack because it doesnt seem
-  // possible to override the defualt user agent style sheet
+  // this is arguably a little hack because it doesn't seem
+  // possible to override the default user agent style sheet
   // for input width
   width: '100%',
 });
@@ -60,7 +61,7 @@ export const formInputInnerClassName = style([
   {
     selectors: {
       '&::placeholder': {
-        color: hsl(0, 0, contrastSchemeVars.foreground2.l),
+        color: oklch(contrastSchemeVars.swatch[6].l, 0, 0),
       },
     },
   },
@@ -96,8 +97,9 @@ export const formInputCheckRadioBase = style([
     cursor: 'pointer',
     color: focusColorVar,
 
-    width: '100%',
     aspectRatio: '1/1',
+
+    alignSelf: 'center',
     justifySelf: 'center',
 
     selectors: {
@@ -138,19 +140,13 @@ export const formInputCheckRadioWrapper = style([
   {
     display: 'grid',
     gridTemplateColumns: '1em auto',
-    fontSize: '1.2em',
+    // fontSize: '1.2em',
   },
 ]);
 
 export const formInputCheckRadioLabel = style({
   alignSelf: 'center',
   gridColumn: 2,
-});
-
-export const formInputMessage = style({
-  vars: {
-    [toneL]: contrastSchemeVars.foreground2.l,
-  },
 });
 
 export const formInputCheckRadioMessage = style({
@@ -161,6 +157,8 @@ export const formInputCheckRadioMessage = style({
 export const formInputCheckboxInput = style([
   formInputCheckRadioBase,
   {
+    width: '100%',
+
     selectors: {
       '&::before': {
         clipPath:
@@ -183,12 +181,12 @@ export const formInputRadioInput = style([
   formInputCheckRadioBase,
   {
     borderRadius: genericVars.radius.maximum,
+    width: '1rem',
     selectors: {
       '&::before': {
-        borderRadius: genericVars.radius.maximum,
-        // size and colour of the dot
-        // height: '0.35em',
+        height: '0.5rem',
         aspectRatio: '1/1',
+        borderRadius: genericVars.radius.maximum,
         boxShadow: 'inset 1em 1em currentColor',
       },
     },

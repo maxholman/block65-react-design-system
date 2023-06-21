@@ -25,7 +25,12 @@ const MenuLazy = lazy(async () => {
   } catch (err) {
     return {
       default: ({ children, ...props }) => (
-        <Button tone="warn" icon={<InfoIcon />} {...withoutMenuProps(props)}>
+        <Button
+          component="div"
+          tone="warn"
+          icon={<InfoIcon />}
+          {...withoutMenuProps(props)}
+        >
           {Object(err).name || 'Error'}
         </Button>
       ),
@@ -34,7 +39,7 @@ const MenuLazy = lazy(async () => {
 });
 
 const Fallback: FC<MenuButtonFallbackProps> = (props) => (
-  <Button tone="neutral" busy {...withoutMenuProps(props)}>
+  <Button component="div" tone="neutral" busy {...withoutMenuProps(props)}>
     {props.label}
   </Button>
 );

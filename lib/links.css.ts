@@ -3,7 +3,7 @@ import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { focusRadiusVar, focusableClassName } from './focusable.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
-import { hsl } from './utils.js';
+import { oklch } from './utils.js';
 
 export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
 
@@ -13,10 +13,10 @@ const linkClassName = style([
   focusableClassName,
   {
     vars: {
-      [linkColorVar]: hsl(
+      [linkColorVar]: oklch(
+        contrastSchemeVars.swatch[6].l,
+        contrastSchemeVars.swatch[6].c,
         colorThemeVars.tones.accent.h,
-        colorThemeVars.tones.accent.s,
-        contrastSchemeVars.foreground2.l,
       ),
     },
     cursor: 'pointer',

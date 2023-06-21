@@ -86,7 +86,7 @@ globalStyle(withResetClass('::marker'), {
 /* fix the feature of 'hidden' attribute.
    display:revert; revert to element instead of attribute */
 globalStyle(withResetClass(':where([hidden])'), {
-  display: 'none!important',
+  display: 'none',
 });
 
 /* revert for bug in Chromium browsers

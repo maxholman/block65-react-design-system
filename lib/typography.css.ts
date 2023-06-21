@@ -122,6 +122,8 @@ const headingClassName = style({
   vars: {
     // [toneL]: contrastSchemeVars.foreground0.l,
   },
+  // @ts-expect-error - not implemented in csstype yet - https://github.com/frenic/csstype/issues/177
+  textWrap: 'balanced',
 });
 
 export const headingVariantClasses = styleVariants(levelVariants, (rules) => [
