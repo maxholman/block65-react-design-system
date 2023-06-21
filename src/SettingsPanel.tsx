@@ -1,21 +1,18 @@
 import type { FC } from 'react';
-import { useLocalStorageState } from '../lib/hooks/use-localstorage-state.js';
 import {
   FormInputRadio,
   FormInputRadioGroup,
   Grid,
   Heading,
-  type ColorScheme,
-  type ContrastScheme,
 } from '../lib/main.js';
+import { useSettings } from './use-settings.js';
 
 export const SettingsPanel: FC = () => {
-  const [colorScheme, setColorScheme] = useLocalStorageState<ColorScheme>(
-    'color-scheme',
-    'auto',
-  );
-  const [contrastScheme, setContrastScheme] =
-    useLocalStorageState<ContrastScheme>('contrast-scheme', 'auto');
+  const [
+    { colorScheme, contrastScheme },
+    { setColorScheme, setContrastScheme },
+  ] = useSettings();
+
   return (
     <Grid
       cols={{

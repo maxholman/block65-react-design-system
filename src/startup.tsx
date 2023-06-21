@@ -1,6 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { IntlProvider } from 'react-intl';
 import { App } from './App.js';
+import { SettingsProvider } from './SettingsContext.js';
 
 const el = document.getElementById('root');
 
@@ -10,6 +12,10 @@ if (!el) {
 
 createRoot(el).render(
   <StrictMode>
-    <App />
+    <IntlProvider locale="en">
+      <SettingsProvider>
+        <App />
+      </SettingsProvider>
+    </IntlProvider>
   </StrictMode>,
 );
