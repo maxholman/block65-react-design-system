@@ -11,7 +11,7 @@ import {
 
 export const LoadersPage: FC = () => (
   <>
-    <Heading level="3">The worlds busiest page</Heading>
+    <Heading>The worlds busiest page</Heading>
 
     <Grid
       cols={{
@@ -73,8 +73,12 @@ export const LoadersPage: FC = () => (
       <Panel>
         <Callout>
           <Text>
-            <Spinner inline />
-            woot
+            MMMMM
+            <Spinner />
+            BBBBB test test test test test test test test test test test test
+            test test test test test test test test test test test test test
+            test test test test test test test test test test test test test
+            test test test
           </Text>
         </Callout>
       </Panel>

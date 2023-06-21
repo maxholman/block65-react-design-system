@@ -1,27 +1,27 @@
 import { Route, Router, Routes } from '@block65/mrr';
 import type { FC } from 'react';
-import { Block, Heading } from '../lib/main.js';
+import { Block, Heading } from '../../../lib/main.js';
+import { AvatarsPage } from '../avatars.js';
+import { BadgesPage } from '../badges.js';
+import { ButtonsPage } from '../buttons.js';
+import { CalloutPage } from '../callout.js';
+import { CorePage } from '../core.js';
+import { FormsPage } from '../forms.js';
+import { GridPage } from '../grid.js';
+import { IconsPage } from '../icons.js';
+import { LayoutPage } from '../layout.js';
+import { ListPage } from '../list.js';
+import { LoadersPage } from '../loaders.js';
+import { MediaQueryPage } from '../media-query.js';
+import { DropdownMenuIframe } from '../menu-iframe.js';
+import { DropdownMenuPage } from '../menu.js';
+import { ModalPage } from '../modal.js';
+import { PanelsPage } from '../panels.js';
+import { PatternPage } from '../patterns.js';
+import { SwatchesPage } from '../swatches.js';
+import { TypographyPage } from '../typography.js';
 import { NavigationPanel } from './NavigationPanel.js';
 import { SettingsPanel } from './SettingsPanel.js';
-import { AvatarsPage } from './pages/avatars.js';
-import { BadgesPage } from './pages/badges.js';
-import { ButtonsPage } from './pages/buttons.js';
-import { CalloutPage } from './pages/callout.js';
-import { CorePage } from './pages/core.js';
-import { FormsPage } from './pages/forms.js';
-import { GridPage } from './pages/grid.js';
-import { IconsPage } from './pages/icons.js';
-import { LayoutPage } from './pages/layout.js';
-import { ListPage } from './pages/list.js';
-import { LoadersPage } from './pages/loaders.js';
-import { MediaQueryPage } from './pages/media-query.js';
-import { DropdownMenuIframe } from './pages/menu-iframe.js';
-import { DropdownMenuPage } from './pages/menu.js';
-import { ModalPage } from './pages/modal.js';
-import { PanelsPage } from './pages/panels.js';
-import { PatternPage } from './pages/patterns.js';
-import { SwatchesPage } from './pages/swatches.js';
-import { TypographyPage } from './pages/typography.js';
 
 export const MainRouter: FC = () => (
   <Router>

@@ -16,17 +16,16 @@ import {
 
 export const ListPage: FC = () => (
   <>
-    <Panel>
+    <Panel variant="ghost">
       <Text>
-        Question{' '}
+        Question Mark{' '}
         <Tooltip
           initialOpen
-          initialPlacement="bottom"
+          initialPlacement="right"
           content="This is more information"
         >
           <HelpIcon />
-        </Tooltip>{' '}
-        Mark
+        </Tooltip>
       </Text>
     </Panel>
 

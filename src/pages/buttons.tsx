@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
-import type { ButtonVariant } from '../../lib/buttons.css.js';
+import { HelpIcon } from '../../lib/icons.js';
 import {
   Block,
   Button,
@@ -14,8 +14,9 @@ import {
   Text,
   UnstyledButton,
   type Tone,
+  type Variant,
 } from '../../lib/main.js';
-import { CrescentMoonIcon, SunIcon } from '../icons.js';
+import { CrescentMoonIcon, SunIcon } from './components/icons.js';
 
 export const ButtonsPage: FC = () => (
   <>
@@ -31,6 +32,7 @@ export const ButtonsPage: FC = () => (
         </Button>
 
         <Button variant="ghost">Ghost</Button>
+
         <Button variant="ghost" tone="neutral">
           Neutral Ghost
         </Button>
@@ -78,6 +80,9 @@ export const ButtonsPage: FC = () => (
         <Button variant="subtle">Subtle</Button>
         <Button icon={<CrescentMoonIcon />} variant="subtle">
           Subtle
+        </Button>
+        <Button iconEnd={<CrescentMoonIcon />} variant="subtle">
+          EndIcon
         </Button>
       </Inline>
     </Panel>
@@ -230,7 +235,8 @@ export const ButtonsPage: FC = () => (
                 'ghost',
                 'transparent',
                 'none',
-              ] as ButtonVariant[]
+                'vibrant',
+              ] as Variant[]
             ).map((variant) => (
               <Button variant={variant} tone={tone} key={variant}>
                 {variant}
@@ -382,6 +388,16 @@ export const ButtonsPage: FC = () => (
             💩
           </Button>
         </Block>
+      </Panel>
+
+      <Panel>
+        <ButtonIcon
+          component="div"
+          variant="transparent"
+          tone="neutral"
+          label=""
+          icon={<HelpIcon />}
+        />
       </Panel>
     </Block>
   </>

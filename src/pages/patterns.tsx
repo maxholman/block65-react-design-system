@@ -1,16 +1,33 @@
 import type { FC } from 'react';
-import { Block, Grid, Heading, Panel } from '../../lib/main.js';
+import { Block, Heading, Panel } from '../../lib/main.js';
 import { LoginPattern } from '../patterns/login.js';
+import { SelectorPattern } from '../patterns/panel-selector.js';
+import { PanelTogglerPattern } from '../patterns/panel-toggler.js';
+import { WithColorSchemes } from './components/WithColorSchemes.js';
 
 export const PatternPage: FC = () => (
   <>
-    <Grid cols={3}>
-      <Block>
+    <Block>
+      <Panel variant="ghost" hidden>
         <Heading>Login</Heading>
-        <Panel variant={null} background="0" boxShadow="4" padding="10">
+        <WithColorSchemes>
           <LoginPattern />
-        </Panel>
-      </Block>
-    </Grid>
+        </WithColorSchemes>
+      </Panel>
+
+      <Panel variant="ghost">
+        <Heading>Selector</Heading>
+        <WithColorSchemes>
+          <SelectorPattern />
+        </WithColorSchemes>
+      </Panel>
+
+      <Panel variant="ghost">
+        <Heading>PanelTogglerPattern</Heading>
+        <WithColorSchemes>
+          <PanelTogglerPattern />
+        </WithColorSchemes>
+      </Panel>
+    </Block>
   </>
 );

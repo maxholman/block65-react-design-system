@@ -3,6 +3,7 @@ import {
   Block,
   Grid,
   Heading,
+  Inline,
   Panel,
   Secondary,
   Strong,
@@ -12,6 +13,97 @@ import {
 
 export const TypographyPage: FC = () => (
   <>
+    <Panel variant="ghost" overflow="hidden">
+      <Heading level="1">Text Overflow</Heading>
+
+      <Inline>
+        <Text textOverflow="ellipsis">
+          Overflowing with verbosity and verbiage, the cascading deluge of
+          textual expanse inundates the digital canvas. Words burst forth from
+          their designated boundaries, defying containment within their
+          allocated spaces. Sentences elongate and expand, breaching the
+          boundaries of paragraphs and pouring into the realm of chaos. The
+          relentless surge of letters, like an unstoppable flood, engulfs the
+          tranquil whitespace, submerging the design in a sea of textual
+          madness. In this tidal wave of linguistic overflow, coherence is lost
+          amidst the jumble of letters, as the words scramble for recognition in
+          a frenzied dance of typographical disarray.
+        </Text>
+      </Inline>
+
+      {/* <Grid cols={2}>
+        <Inline>
+          <Text textOverflow="ellipsis">
+            Text spills, defying boundaries and rules. Overflowing words
+          </Text>
+          <Text textOverflow="ellipsis">
+            engulf the design. Letters overflow, drowning the whitespace.
+          </Text>
+          <Text textOverflow="ellipsis">
+            Typography rebels, defying containment and order. The canvas
+          </Text>
+          <Text textOverflow="ellipsis">
+            trembles under text's weight. Words merge, creating a chaotic
+          </Text>
+          <Text textOverflow="ellipsis">
+            jumble. Coherence lost in typographic disarray. Design struggles
+          </Text>
+          <Text textOverflow="ellipsis">
+            amidst the textual deluge. Graphical elements suffocate, submerged
+          </Text>
+          <Text textOverflow="ellipsis">
+            in letters. The designer tames chaos, crafting harmony.
+          </Text>
+          <Text textOverflow="ellipsis">
+            Overflowing with verbosity and verbiage, the cascading deluge of
+            textual expanse inundates the digital canvas. Words burst forth from
+            their designated boundaries, defying containment within their
+            allocated spaces. Sentences elongate and expand, breaching the
+            boundaries of paragraphs and pouring into the realm of chaos. The
+            relentless surge of letters, like an unstoppable flood, engulfs the
+            tranquil whitespace, submerging the design in a sea of textual
+            madness. In this tidal wave of linguistic overflow, coherence is
+            lost amidst the jumble of letters, as the words scramble for
+            recognition in a frenzied dance of typographical disarray.
+          </Text>
+        </Inline>
+        <Text textOverflow="ellipsis">
+          Paradigm-shattering, the text overfloweth, casting aside the
+          conventions of structure and order. Like a wild river unleashed, words
+          surge and spill uncontrollably across the digital landscape.
+          Paragraphs, once intended as havens of contained meaning, become mere
+          vessels unable to withstand the torrential downpour of letters.
+          Sentences intertwine, forming a labyrinth of verbosity where coherence
+          and comprehension are but distant dreams. The canvas trembles under
+          the weight of the overflow, a chaotic symphony of typographic
+          rebellion.
+        </Text>
+        <Text textOverflow="ellipsis">
+          In this tumultuous expanse of textual chaos, the very fabric of design
+          strains against the relentless tide of words. Graphical elements gasp
+          for breath, suffocated by the ceaseless onslaught of letters jostling
+          for attention. Whitespace, once a sanctuary of visual respite, is
+          engulfed, drowned beneath the surface of a linguistic deluge. The eyes
+          strain to find refuge, seeking solace in the fleeting islands of
+          serenity amidst the sea of overflowing text. Yet, even in the darkest
+          depths of this typographic tempest, the allure of creativity remains,
+          beckoning with the promise of order amidst the chaos.
+        </Text>
+        <Text textOverflow="ellipsis">
+          Amidst the cacophony of overflowing text, the designer's task
+          transforms into a delicate dance of taming the untamable. With
+          meticulous precision, they navigate the treacherous waters of excess,
+          delicately sculpting the textual landscape. They wield their
+          typographic arsenal, employing font sizes, line heights, and margins
+          as shields against the unrelenting tide. Through judicious editing and
+          artful layout, they seek harmony within the disorder, coaxing the text
+          to find its rightful place. For in this realm of overflowing words,
+          where disorder reigns supreme, the designer emerges as a guiding
+          beacon, shaping chaos into an elegant symphony of visual storytelling.
+        </Text>
+      </Grid> */}
+    </Panel>
+
     <Panel variant="ghost">
       <Block>
         <Heading level="1">Heading 1</Heading>
@@ -22,7 +114,7 @@ export const TypographyPage: FC = () => (
         <Text>Normal Text</Text>
       </Block>
       <Block>
-        <Heading level="3">Heading 3</Heading>
+        <Heading>Heading 3</Heading>
         <Text>Normal Text</Text>
       </Block>
       <Block>
@@ -42,7 +134,7 @@ export const TypographyPage: FC = () => (
       <Text>Looks horrible</Text>
     </Panel>
 
-    <Panel variant="ghost">
+    <Panel variant="ghost" space="10">
       <Text fontSize="00">
         fontSize 00: In the neon-soaked metropolis of Zephyr City,
         cyber-enhanced humans and androids coexist in a fragile harmony. The
@@ -139,14 +231,14 @@ export const TypographyPage: FC = () => (
       <Heading level="2">Links are linky</Heading>
 
       <Text>
-        Sometimes I like to look at{' '}
-        <TextLink href="/buttons">normal buttons</TextLink>,{' '}
+        Sometimes I like to look at <TextLink href="/buttons">buttons</TextLink>
+        ,{' '}
         <TextLink href="/panels" weight="strong">
-          strong panels
+          panels
         </TextLink>{' '}
         or{' '}
         <TextLink href="/badges" weight="weak">
-          weak badges
+          badges
         </TextLink>
       </Text>
     </Panel>

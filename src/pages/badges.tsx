@@ -15,6 +15,7 @@ const badgeVariantNames: BadgeVariant[] = [
   'subtle',
   'ghost',
   'transparent',
+  'vibrant',
 ];
 
 const badgeToneNames: Tone[] = [
@@ -29,7 +30,7 @@ const badgeToneNames: Tone[] = [
 export const BadgesPage: FC = () => (
   <>
     <Panel variant="ghost">
-      <Heading level="3">Variants</Heading>
+      <Heading>Variants</Heading>
 
       <Grid
         cols={{
@@ -54,7 +55,7 @@ export const BadgesPage: FC = () => (
     </Panel>
 
     <Panel variant="ghost">
-      <Heading level="3">Examples</Heading>
+      <Heading>Examples</Heading>
       <Grid
         cols={{
           all: 3,

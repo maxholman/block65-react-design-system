@@ -4,7 +4,7 @@ import {
   FormInputRadioGroup,
   Grid,
   Heading,
-} from '../lib/main.js';
+} from '../../../lib/main.js';
 import { useSettings } from './use-settings.js';
 
 export const SettingsPanel: FC = () => {

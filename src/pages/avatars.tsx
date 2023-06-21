@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { Fragment, type FC } from 'react';
 import { Avatar, Grid, Panel, type FontSize, Block } from '../../lib/main.js';
 
 const fakeNames = [
@@ -606,17 +606,16 @@ export const AvatarsPage: FC = () => (
       }}
       space="10"
     >
-      {Array.from(fakeNames, (name, idx) => {
+      {fakeNames.map((name, idx) => {
         const fontSize = ((idx % 6) + 1).toString() as FontSize;
         return (
-          <>
+          <Fragment key={idx}>
             <Block alignSelf="center" justifySelf="center">
-              <Avatar key={idx} ident={name} label={name} size={fontSize} />
+              <Avatar ident={name} label={name} size={fontSize} />
             </Block>
             <Block alignSelf="center" justifySelf="center">
               <Avatar
                 variant="ghost"
-                key={idx}
                 ident={name}
                 label={name}
                 size={fontSize}
@@ -624,14 +623,13 @@ export const AvatarsPage: FC = () => (
             </Block>
             <Block alignSelf="center" justifySelf="center">
               <Avatar
-                variant="ghost"
-                key={idx}
+                variant="subtle"
                 ident={name}
                 label={name}
                 size={fontSize}
               />
             </Block>
-          </>
+          </Fragment>
         );
       })}
     </Grid>

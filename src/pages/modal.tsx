@@ -33,7 +33,7 @@ export const ModalPage: FC = () => {
         </Inline>
 
         {modal.open && (
-          <Modal {...modal} heading="Hi, I'm a Modal ggg qqqq!">
+          <Modal {...modal} heading="Hi, I'm a Modal ggg qqqq!e">
             <Callout tone="promo">
               You can press ESC or click away to close
             </Callout>
@@ -47,9 +47,9 @@ export const ModalPage: FC = () => {
           <Modal
             dismissable={false}
             {...modal2}
-            heading="Hi, I'm a Modal2 ggg qqqq!"
+            heading="Hi, I'm a Modal2 ggg qqqq!e"
           >
-            <Callout tone="warn">You CANNOT press ESC to close</Callout>
+            <Callout tone="critical">You CANNOT press ESC to close</Callout>
             <Form>
               <FormInput autoFocus label="Name" />
             </Form>

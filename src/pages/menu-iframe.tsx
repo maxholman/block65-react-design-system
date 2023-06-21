@@ -8,7 +8,6 @@ import {
   MenuItem,
   TextLink,
   UnstyledButton,
-  type MenuActivatorProps,
   type MenuProps,
 } from '../../lib/main.js';
 import type {} from '../../lib/menu.js';
@@ -39,7 +38,7 @@ const RandomMenu: FC<Omit<MenuProps, 'label'>> = (props) => (
 
 const CustomActivatorMenu: FC<Omit<MenuProps, 'label'>> = (props) => (
   <Menu
-    activator={({ variant, ...p }: MenuActivatorProps) => (
+    activator={({ variant, ...p }) => (
       // <Button rounded="maximum" {...p} />
       <UnstyledButton {...p}>
         <Avatar ident="poop" label="lol" />

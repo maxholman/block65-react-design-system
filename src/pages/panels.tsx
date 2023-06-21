@@ -7,17 +7,21 @@ const PanelGrid = () => (
       <Heading>solid</Heading>
       <Text>solid</Text>
     </Panel>
-    <Panel variant="ghost">
-      <Heading>ghost</Heading>
-      <Text>ghost</Text>
-    </Panel>
     <Panel variant="subtle">
       <Heading>subtle</Heading>
       <Text>subtle</Text>
     </Panel>
+    <Panel variant="ghost">
+      <Heading>ghost</Heading>
+      <Text>ghost</Text>
+    </Panel>
     <Panel variant="transparent">
       <Heading>transparent</Heading>
       <Text>transparent</Text>
+    </Panel>
+    <Panel variant="none">
+      <Heading>none</Heading>
+      <Text>none</Text>
     </Panel>
   </Grid>
 );

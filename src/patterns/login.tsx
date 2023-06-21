@@ -24,7 +24,7 @@ const GitHubLogo: FC = () => (
 );
 
 export const LoginPattern = () => (
-  <Block alignSelf="center" style={{ maxWidth: '30em' }}>
+  <Block alignSelf="center" margin="10">
     <Inline justifyContent="center">
       <Avatar ident="a" label="🐈" size="6" />
     </Inline>

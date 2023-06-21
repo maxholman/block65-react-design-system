@@ -3,6 +3,7 @@ import {
   Badge,
   Block,
   Button,
+  Grid,
   Heading,
   Inline,
   Panel,
@@ -13,21 +14,21 @@ export const LayoutPage: FC = () => (
   <Panel variant="ghost">
     <Block>
       <Block>
-        <Badge>Block</Badge>
-        <Button>Block</Button>
-        <Button>Block</Button>
-        <Button>Block</Button>
+        <Badge>Badge</Badge>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
       </Block>
     </Block>
     <Block>
       <Inline>
-        <Text>Inline</Text>
-        <Button>Inline</Button>
-        <Button>Inline</Button>
+        <Text>Text</Text>
+        <Button>Button</Button>
+        <Button>Button</Button>
       </Inline>
     </Block>
 
-    <Heading>Inline justifySelf</Heading>
+    <Heading>Inline justifySelf (Grid Only)</Heading>
     <Panel variant="ghost">
       <Inline justifySelf="start">
         <Badge>start</Badge>
@@ -41,7 +42,7 @@ export const LayoutPage: FC = () => (
     </Panel>
 
     <Heading>Block justifySelf</Heading>
-    <Panel variant="ghost" style={{ height: '20rem' }}>
+    <Grid>
       <Block justifySelf="start">
         <Badge>start</Badge>
       </Block>
@@ -51,6 +52,6 @@ export const LayoutPage: FC = () => (
       <Block justifySelf="end">
         <Badge>end</Badge>
       </Block>
-    </Panel>
+    </Grid>
   </Panel>
 );
