@@ -19,3 +19,5 @@ export {
 } from './use-localstorage-state.js';
 export { useToggle } from './use-toggle.js';
 export { useTraceUpdate } from './use-trace-update.js';
+export { useCookieState } from './use-cookie-state.js';
+export { useNavigatorOnline } from './use-navigator-online.js';
