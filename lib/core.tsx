@@ -52,7 +52,7 @@ import {
   debugLogger as debugBuildLogger,
   ifDebugBuild,
 } from './debug-logger.js';
-import { borderToneVariants, toneVariants, type Tone } from './tone.css.js';
+import { toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type { TooltipProps } from './tooltip.js';
 import type {
@@ -60,6 +60,13 @@ import type {
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
 } from './types.js';
+import {
+  fontSizeVariants,
+  fontWeightVariants,
+  type FontSize,
+  type FontWeight,
+} from './typography.css.js';
+import { objectKeysInclude } from './utils.js';
 
 function resolveAutoSwatch(bg: Swatch | Falsy) {
   if (!bg) {
@@ -101,6 +108,9 @@ export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
 
     textAlign?: TextAlign | Falsy;
     textOverflow?: TextOverflow | Falsy;
+    fontSize?: FontSize | Falsy;
+    fontWeight?: FontWeight | Falsy;
+
     overflow?: Overflow | Falsy;
 
     rounded?: Rounded | Falsy;
@@ -130,15 +140,19 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     children,
     component,
     className,
+
     margin,
     marginBlock,
     marginInline,
     padding,
     paddingBlock,
     paddingInline,
+
     textAlign,
     textOverflow,
 
+    fontSize,
+    fontWeight,
 
     overflow,
 
@@ -211,6 +225,8 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
       className:
         clsx(
           className,
+
+          spaceClass,
 
           isNotFalsy(margin) &&
             marginBlock !== margin &&
@@ -304,24 +320,16 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
             backgroundHoverVariants[resolvedBackgroundHover],
 
           flexDirectionClass,
-          !textOverflow && spaceClass,
+
           overflow && overflowVariants[overflow],
+          textOverflow && textOverflowVariants[textOverflow],
+
+          fontSize && fontSizeVariants[fontSize],
+          fontWeight && fontWeightVariants[fontWeight],
         ) || undefined,
       ref,
     },
-    textOverflow && children ? (
-      <span
-        className={clsx([
-          flexDirectionClass,
-          spaceClass,
-          textOverflow && textOverflowVariants[textOverflow],
-        ])}
-      >
-        {children}
-      </span>
-    ) : (
-      children
-    ),
+    children,
   );
 
   if (tooltip) {
