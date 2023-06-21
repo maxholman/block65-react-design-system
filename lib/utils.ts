@@ -139,6 +139,19 @@ export function typedObjectFromEntries<T extends EntriesType>(
   return Object.fromEntries(arr) as EntriesToObject<T>;
 }
 
+export function typedObjectKeys<T extends string>(
+  obj: Record<T, unknown>,
+): T[] {
+  return Object.keys(obj) as T[];
+}
+
+export function objectKeysInclude<T extends string>(
+  obj: Record<T, unknown>,
+  key: T | unknown,
+): key is T {
+  return Object.keys(obj).includes(`${key}`);
+}
+
 export function typedObjectEntries<T extends Record<string, unknown>>(
   obj: T,
 ): [keyof T, T[keyof T]][] {
