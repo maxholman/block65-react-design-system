@@ -544,3 +544,8 @@ export const neutraliseHover = style({
     },
   },
 });
+
+// this must be defined after other display styles so that it takes precedence
+export const hiddenClass = style({
+  display: 'none',
+});
