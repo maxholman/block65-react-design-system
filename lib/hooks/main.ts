@@ -8,6 +8,7 @@ export {
 export { useCombinedRefs } from './use-combined-refs.js';
 export { useCustomValidity } from './use-custom-validity.js';
 export { useDebouncedCallback, useDebouncedValue } from './use-debounced.js';
+export { useThrottledCallback } from './use-throttled-callback.js';
 export { useDesignSystem } from './use-design-system.js';
 export { ReturnCode, useDoH } from './use-doh.js';
 export { useIdWithDefault } from './use-id-with-default.js';
