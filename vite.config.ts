@@ -35,7 +35,7 @@ export default defineConfig(() => ({
   },
 
   define: {
-    ...(debugBuild && { __DEBUG_BUILD__: debugBuild }),
+    __DEBUG_BUILD__: debugBuild,
   },
 
   test: {

@@ -16,6 +16,10 @@
       "types": "./dist/lib/main.d.ts",
       "default": "./build/main.js"
     },
+    "./debug": {
+      "types": "./dist/lib/main.d.ts",
+      "default": "./build/debug/main.js"
+    },
     "./css": {
       "default": "./build/style.css"
     },
