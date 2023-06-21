@@ -22,7 +22,7 @@ export const Spinner: FC<SpinnerProps> = ({
   size = '1',
   className,
   children,
-  inline,
+  inline = true,
   ...props
 }) => (
   <Box
