@@ -52,6 +52,7 @@ export function useCookie<T extends JsonValue>(
       const item = cookies.get(namespace);
       return item ? JSON.parse(item) : resolvedInitialValue.current;
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.warn({ err }, Object(err).message);
       return resolvedInitialValue.current;
     }

@@ -1,4 +1,4 @@
-import { lazy, type FC, Suspense } from 'react';
+import { Suspense, lazy, type FC } from 'react';
 import type { TooltipProps } from './tooltip.js';
 
 export const TooltipLazy = lazy(() => import('./tooltip.js'));
