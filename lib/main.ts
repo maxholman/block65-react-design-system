@@ -32,5 +32,6 @@ export * from './icons.js';
 
 export type { ColorScheme, ContrastScheme } from './schemes/color.css.js';
 export type { Tone } from './tone.css.js';
-export type { Background } from './core.css.js';
+export type * from './core.css.js';
 export type { BadgeVariant } from './badges.css.js';
+export type { FontSize } from './typography.css.js';
