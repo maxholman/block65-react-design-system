@@ -5,7 +5,6 @@ import {
   style,
   styleVariants,
   type StyleRule,
-  fallbackVar,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
@@ -19,6 +18,7 @@ export const lineGap = createVar();
 export const lineHeightRatio = createVar();
 
 export type FontSize = '00' | '0' | '1' | '2' | '3' | '4' | '5' | '6';
+export type FontWeight = keyof typeof genericVars.text.weight;
 
 const fontThemeVarsShape = {
   capHeight: 'cap-height',
@@ -51,7 +51,7 @@ export const secondaryClass = style({
 });
 
 export const strongClass = style({
-  fontWeight: genericVars.text.weight.bold,
+  fontWeight: genericVars.text.weight.semiBold,
 });
 
 export const codeClass = style({
@@ -71,6 +71,15 @@ export const fontSizeVariants = styleVariants(fontThemeVars, (_, key) => [
   fontSizeVariantVars[key],
   fontSizeVariantTextStyles[key],
 ]);
+
+export const fontWeightVariants = styleVariants(
+  genericVars.text.weight,
+  (value) => [
+    {
+      fontWeight: value,
+    },
+  ],
+);
 
 const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
   '1': [

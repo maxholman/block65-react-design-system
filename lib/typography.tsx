@@ -67,8 +67,8 @@ export const Text = forwardRef(
   ),
 );
 
-export const Strong: FC<BoxProps<'span'>> = ({ className, ...props }) => (
-  <Box component="span" {...props} className={[strongClass, className]} />
+export const Strong: FC<BoxProps<'span'>> = (props) => (
+  <Box component="span" fontWeight="semiBold" {...props} />
 );
 
 export const Code: FC<BoxProps<'code'>> = ({ className, ...props }) => (
