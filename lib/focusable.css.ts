@@ -2,7 +2,7 @@
 import { createVar, style } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { colorThemeVars, contrastSchemeVars } from './schemes/color.css.js';
-import { hsl } from './utils.js';
+import { oklch } from './utils.js';
 
 export const focusColorVar = createVar();
 export const focusRadiusVar = createVar();
@@ -10,10 +10,10 @@ export const focusWidthVar = createVar();
 
 export const focusableClassName = style({
   vars: {
-    [focusColorVar]: hsl(
+    [focusColorVar]: oklch(
+      contrastSchemeVars.swatch[7].l,
+      contrastSchemeVars.swatch[7].c,
       colorThemeVars.tones.accent.h,
-      colorThemeVars.tones.accent.s,
-      contrastSchemeVars.foreground2.l,
     ),
     [focusRadiusVar]: genericVars.radius.small,
     [focusWidthVar]: genericVars.border.width['2'],

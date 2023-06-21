@@ -1,15 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { style } from '@vanilla-extract/css';
+import { fgSwatchC, fgSwatchL } from './core.css.js';
 import { genericVars } from './design-system.css.js';
-import { contrastSchemeVars } from './schemes/color.css.js';
-import { toneH, toneL, toneS } from './tone.css.js';
+import { toneH } from './tone.css.js';
 import { currentCapHeight } from './typography.css.js';
-import { hsl } from './utils.js';
+import { oklch } from './utils.js';
 
 export const calloutClass = style({
-  vars: {
-    [toneL]: contrastSchemeVars.foreground1.l,
-  },
   padding: currentCapHeight,
   display: 'grid',
   gridTemplateColumns: 'auto 1fr',
@@ -29,7 +26,7 @@ export const calloutTextIconClass = style({
   width: '1em',
   height: '1em',
   aspectRatio: '1/1',
-  color: hsl(toneH, toneS, toneL),
+  color: oklch(fgSwatchL, fgSwatchC, toneH),
 });
 
 export const calloutTextClass = style({

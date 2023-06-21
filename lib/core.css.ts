@@ -8,8 +8,8 @@ import {
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
 import { contrastSchemeVars } from './schemes/color.css.js';
-import { borderH, borderS, toneH, toneS } from './tone.css.js';
-import { hsl, typedObjectEntries, typedObjectFromEntries } from './utils.js';
+import { toneH } from './tone.css.js';
+import { oklch, typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
 
@@ -64,54 +64,114 @@ export const roundedEndEndVariants = styleVariants(genericVars.radius, (v) => [
   },
 ]);
 
-export type Background = 'none' | '0' | '1' | '2' | '3' | '4';
+export type Swatch =
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10'
+  | '11'
+  | '12'
+  | '13'
+  | '14'
+  | '15';
 
-export type BackgroundHover = Background;
+export const bgSwatchL = createVar();
+export const bgSwatchC = createVar();
+export const fgSwatchL = createVar();
+export const fgSwatchC = createVar();
 
-const backgroundStyles = {
-  none: {
-    backgroundColor: 'transparent',
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
-  },
-  '0': {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background0.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
-  },
-  '1': {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background1.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
-  },
-  '2': {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background2.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground0.l),
-  },
-  '3': {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background3.l),
-    color: hsl(toneH, toneS, 100),
-  },
-  '4': {
-    backgroundColor: hsl(toneH, toneS, contrastSchemeVars.background4.l),
-    color: hsl(toneH, toneS, contrastSchemeVars.foreground5.l),
-  },
-} satisfies Record<Background, ComplexStyleRule>;
+const bgStyle = {
+  backgroundColor: oklch(bgSwatchL, bgSwatchC, toneH),
+  color: oklch(fgSwatchL, fgSwatchC, toneH),
+};
 
-export const backgroundVariants = styleVariants(backgroundStyles, (styles) => [
-  styles,
-]);
+// this is hard coded to be light, as it is used to
+// contrast against solid colours
+const commonFg = {
+  c: '0',
+  l: '98%',
+};
+
+const backgroundVariantMatrix: Record<
+  Swatch,
+  [bg: { c: string; l: string }, fg: { c: string; l: string }]
+> = {
+  0: [contrastSchemeVars.swatch['0'], contrastSchemeVars.swatch['14']],
+  1: [contrastSchemeVars.swatch['1'], contrastSchemeVars.swatch['14']],
+  2: [contrastSchemeVars.swatch['2'], contrastSchemeVars.swatch['14']],
+  3: [contrastSchemeVars.swatch['3'], contrastSchemeVars.swatch['14']],
+  4: [contrastSchemeVars.swatch['4'], contrastSchemeVars.swatch['14']],
+
+  5: [contrastSchemeVars.swatch['5'], contrastSchemeVars.swatch['14']],
+  6: [contrastSchemeVars.swatch['6'], commonFg],
+  7: [contrastSchemeVars.swatch['7'], commonFg],
+  8: [contrastSchemeVars.swatch['8'], commonFg],
+  9: [contrastSchemeVars.swatch['9'], commonFg],
+  10: [contrastSchemeVars.swatch['10'], commonFg],
+
+  11: [contrastSchemeVars.swatch['11'], commonFg],
+  12: [contrastSchemeVars.swatch['12'], contrastSchemeVars.swatch['1']],
+  13: [contrastSchemeVars.swatch['13'], contrastSchemeVars.swatch['1']],
+  14: [contrastSchemeVars.swatch['14'], contrastSchemeVars.swatch['1']],
+  15: [contrastSchemeVars.swatch['15'], contrastSchemeVars.swatch['1']],
+};
+
+export const backgroundVariants = styleVariants(
+  backgroundVariantMatrix,
+  ([bg, fg]) => [
+    {
+      ...bgStyle,
+      vars: {
+        [bgSwatchL]: bg.l,
+        [bgSwatchC]: bg.c,
+        [fgSwatchL]: fg.l,
+        [fgSwatchC]: fg.c,
+      },
+    },
+  ],
+);
+
+export const foregroundVariants = styleVariants(
+  contrastSchemeVars.swatch,
+  (swatch) => [
+    {
+      vars: {
+        [fgSwatchL]: swatch.l,
+        [fgSwatchC]: swatch.c,
+      },
+      color: oklch(fgSwatchL, fgSwatchC, toneH),
+    },
+  ],
+);
 
 export const backgroundHoverVariants = styleVariants(
-  typedObjectFromEntries(
-    typedObjectEntries(backgroundStyles).map(([key, value]) => [
-      key as BackgroundHover,
-      [
-        {
-          selectors: {
-            '&:hover': value,
+  backgroundVariantMatrix,
+  ([bg]) => [
+    {
+      // this is needed because if you dont have a background set
+      // the hover does not take because it just changes the vars
+      ...bgStyle,
+    },
+    {
+      selectors: {
+        '&:hover': {
+          vars: {
+            [bgSwatchL]: bg.l,
+            [bgSwatchC]: bg.c,
+            // [fgSwatchL]: fg.l,
+            // [fgSwatchC]: fg.c,
           },
         },
-      ],
-    ]),
-  ),
+      },
+    },
+  ],
 );
 
 export type Shadow = '1' | '2' | '3' | '4' | '5' | '6';
@@ -347,90 +407,6 @@ export const textOverflowVariants = styleVariants(
 
 export type FlexDirection = 'row' | 'column';
 
-export type BorderVariant = 'transparent' | 'subtle' | 'normal' | 'strong';
-export type BorderHoverVariant = BorderVariant;
-
-const borderL = createVar();
-
-const borderBaseClass = style({
-  borderStyle: 'solid',
-});
-
-const borderVariantStyles: Record<BorderVariant, StyleRule> = {
-  transparent: {
-    borderColor: 'transparent',
-  },
-  subtle: {
-    vars: {
-      [borderL]: contrastSchemeVars.background2.l,
-    },
-    borderColor: hsl(borderH, borderS, borderL),
-  },
-  normal: {
-    vars: {
-      [borderL]: contrastSchemeVars.background3.l,
-    },
-    borderColor: hsl(borderH, borderS, borderL),
-  },
-  strong: {
-    vars: {
-      [borderL]: contrastSchemeVars.background3.l,
-    },
-    borderColor: hsl(borderH, borderS, borderL),
-  },
-};
-
-const borderHoverVariantStyles: Record<BorderHoverVariant, StyleRule> = {
-  transparent: {
-    borderColor: 'transparent',
-  },
-  subtle: {
-    vars: {
-      [borderL]: contrastSchemeVars.foreground1.l,
-    },
-    borderColor: hsl(borderH, borderS, borderL),
-  },
-  normal: {
-    vars: {
-      [borderL]: contrastSchemeVars.foreground3.l,
-    },
-    borderColor: hsl(borderH, borderS, borderL),
-  },
-  strong: {
-    vars: {
-      [borderL]: contrastSchemeVars.foreground2.l,
-    },
-    borderColor: hsl(borderH, borderS, borderL),
-  },
-};
-
-export const borderVariants = styleVariants(borderVariantStyles, (rule) => [
-  borderBaseClass,
-  rule,
-]);
-
-export const borderHoverVariants = styleVariants(
-  borderHoverVariantStyles,
-  (rule) => [
-    borderBaseClass,
-    {
-      selectors: {
-        '&:hover': rule,
-      },
-    },
-  ],
-);
-
-export const borderWidthVariants = styleVariants(
-  genericVars.border.width,
-  (space) => [
-    borderBaseClass,
-    {
-      borderWidth: space,
-    },
-  ],
-);
-
 export const flexDirectionVariants = styleVariants(
   {
     row: {
@@ -474,3 +450,81 @@ export const viewportGridColumnsVariants = viewportStyleVariants(
   }),
   'cols',
 );
+
+const borderAdjust = createVar();
+const borderL = createVar();
+const borderC = createVar();
+
+const borderBaseClass = style({
+  vars: {
+    [borderAdjust]: borderL,
+
+    // light
+    // [borderAdjust]: calc.add(borderL, '-5%'),
+
+    // dark
+    // [borderAdjust]: calc.add(bgSwatchL, '25%'),
+  },
+  borderStyle: 'solid',
+  borderColor: oklch(borderAdjust, borderC, toneH),
+});
+
+export const borderWidthVariants = styleVariants(
+  genericVars.border.width,
+  (space) => [
+    borderBaseClass,
+    {
+      borderWidth: space,
+    },
+  ],
+);
+
+export const borderVariants = styleVariants(contrastSchemeVars.swatch, (s) => [
+  borderBaseClass,
+  {
+    vars: {
+      [borderL]: s.l,
+      [borderC]: s.c,
+    },
+  },
+]);
+
+export const borderTransparentClass = style({
+  borderColor: 'transparent',
+});
+
+export const borderHoverVariants = styleVariants(
+  contrastSchemeVars.swatch,
+  (swatch) => [
+    {
+      selectors: {
+        '&:hover': {
+          vars: {
+            [borderL]: swatch.l,
+            [borderC]: swatch.c,
+          },
+        },
+      },
+    },
+  ],
+);
+
+export const neutralise = style({
+  vars: {
+    [borderC]: '0',
+    [bgSwatchC]: '0',
+    [fgSwatchC]: '0',
+  },
+});
+
+export const neutraliseHover = style({
+  selectors: {
+    '&:hover': {
+      vars: {
+        [borderC]: '0',
+        [bgSwatchC]: '0',
+        [fgSwatchC]: '0',
+      },
+    },
+  },
+});
