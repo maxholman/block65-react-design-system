@@ -11,7 +11,7 @@ import {
 } from 'react';
 import type { UnionToIntersection, Writable } from 'type-fest';
 
-function flattenChildren(children: React.ReactNode): ReactNode[] {
+function flattenChildren(children: ReactNode): ReactNode[] {
   return Children.toArray(children).flatMap((child): ReactNode[] => {
     if (
       isValidElement<ComponentProps<typeof Fragment>>(child) &&
