@@ -69,6 +69,7 @@ export const DesignSystem = <
     >
       <Box
         component={component}
+        background="1"
         className={[
           className,
 
