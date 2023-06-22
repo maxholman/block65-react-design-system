@@ -150,8 +150,5 @@ export function useCookieState<T extends JsonValue>(
     ],
   );
 
-  useTraceUpdate({ cookieValue, options, setCookieValue });
-  useTraceUpdate({ state, setState });
-
   return [state, setState];
 }
