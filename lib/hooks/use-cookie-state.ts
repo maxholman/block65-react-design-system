@@ -43,7 +43,7 @@ export function useCookie<T extends JsonValue>(
 
   const resolvedInitialValue = useRef(resolveValue(initialValue));
 
-  const getCookieValue = useCallback(() => {
+  const getCookieValue = useCallback((): T | undefined => {
     if (typeof window === 'undefined') {
       return resolvedInitialValue.current;
     }
@@ -61,7 +61,7 @@ export function useCookie<T extends JsonValue>(
   const setCookieValue = useCallback(
     (
       value: T | undefined,
-      options?: RestrictedCookieAttributes,
+      options: RestrictedCookieAttributes = {},
     ): T | undefined => {
       if (typeof window !== 'undefined') {
         const resolvedOptions = {
