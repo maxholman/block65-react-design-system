@@ -43,8 +43,8 @@
     "build/*.scss"
   ],
   "scripts": {
-    "preversion": "make test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preversion": "make test"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.4.2",
