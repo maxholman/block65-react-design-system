@@ -59,6 +59,9 @@ export const NavigationPanel: FC = () => (
       <Link href="/avatars">
         <TextLink>Avatars</TextLink>
       </Link>
+      <Link href="/hooks">
+        <TextLink>Hooks</TextLink>
+      </Link>
     </Inline>
   </Panel>
 );

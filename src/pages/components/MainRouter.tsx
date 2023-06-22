@@ -8,6 +8,7 @@ import { CalloutPage } from '../callout.js';
 import { CorePage } from '../core.js';
 import { FormsPage } from '../forms.js';
 import { GridPage } from '../grid.js';
+import { HooksPage } from '../hooks.js';
 import { IconsPage } from '../icons.js';
 import { LayoutPage } from '../layout.js';
 import { ListPage } from '../list.js';
@@ -90,6 +91,9 @@ export const MainRouter: FC = () => (
                 </Route>
                 <Route path="/avatars">
                   <AvatarsPage />
+                </Route>
+                <Route path="/hooks">
+                  <HooksPage />
                 </Route>
                 <Route>
                   <Heading>404</Heading>
