@@ -64,11 +64,13 @@ export function useCookie<T extends JsonValue>(
       options?: RestrictedCookieAttributes,
     ): T | undefined => {
       if (typeof window !== 'undefined') {
-        const resolvedOptions: CookieAttributes = {
-          sameSite: 'strict',
-          ...options,
-          secure: true,
-        };
+        const resolvedOptions = {
+          sameSite: options.sameSite || 'strict',
+          secure: options.secure || true,
+          expires: options.expires,
+          domain: options.domain,
+          path: options.path,
+        } satisfies CookieAttributes;
 
         if (!value || value === resolvedInitialValue.current) {
           cookies.remove(namespace, resolvedOptions);
@@ -127,11 +129,25 @@ export function useCookieState<T extends JsonValue>(
         ? value(cookieValue())
         : value;
 
-      setCookieValue(resolvedValue, options);
+      setCookieValue(resolvedValue, {
+        sameSite: options?.sameSite,
+        secure: options?.secure,
+        expires: options?.expires,
+        domain: options?.domain,
+        path: options?.path,
+      });
       setStateValue(resolvedValue);
     },
 
-    [cookieValue, options, setCookieValue],
+    [
+      cookieValue,
+      options?.domain,
+      options?.expires,
+      options?.path,
+      options?.sameSite,
+      options?.secure,
+      setCookieValue,
+    ],
   );
 
   useTraceUpdate({ cookieValue, options, setCookieValue });
