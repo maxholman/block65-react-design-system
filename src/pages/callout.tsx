@@ -1,8 +1,9 @@
 import type { FC } from 'react';
-import { Callout, Grid, Panel } from '../../lib/main.js';
+import { Callout, Grid } from '../../lib/main.js';
+import { WithColorSchemes } from './components/WithColorSchemes.js';
 
 export const CalloutPage: FC = () => (
-  <Panel variant="ghost">
+  <WithColorSchemes>
     <Callout tone="critical">Critical</Callout>
     <Callout tone="critical">
       Critical. Critical. Critical. Critical. Critical. Critical. Critical.
@@ -24,5 +25,5 @@ export const CalloutPage: FC = () => (
       <Callout tone="positive">Overwhelmingly positive!</Callout>
       <Callout tone="positive">Overwhelmingly positive!</Callout>
     </Grid>
-  </Panel>
+  </WithColorSchemes>
 );
