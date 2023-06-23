@@ -30,17 +30,7 @@ export type TextProps<T extends keyof ReactHTMLAttributesHacked = 'p'> =
     Merge<
       Omit<
         BoxProps<T>,
-        | 'flexDirection'
-        | 'flexWrap'
-        | 'space'
-        // | 'margin'
-        // | 'marginBlock'
-        // | 'marginInline'
-        // | 'padding'
-        // | 'paddingBlock'
-        // | 'paddingInline'
-        | 'textOverflow'
-        | 'overflow'
+        'flexDirection' | 'flexWrap' | 'space' | 'textOverflow' | 'overflow'
       >,
       CommonTextProps
     >
@@ -62,6 +52,7 @@ export const Text = forwardRef(
       component={component}
       ref={forwardedRef}
       className={[className, secondary && secondaryClass]}
+      fontSize="1"
       {...props}
     >
       {textOverflow && children ? (
