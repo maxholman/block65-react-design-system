@@ -1,4 +1,4 @@
-import { cloneElement, type FC, type ReactNode } from 'react';
+import { cloneElement, type FC, type ReactNode, Children } from 'react';
 import {
   calloutClass,
   calloutTextClass,
@@ -7,6 +7,7 @@ import {
 } from './callout.css.js';
 import type { Falsy } from './core.css.js';
 import type { BoxProps } from './core.js';
+import { debugLogger, ifDebugBuild } from './debug-logger.js';
 import { InfoIcon } from './icons.js';
 import { Inline, type Variant } from './layout.js';
 import { type Tone } from './tone.css.js';
@@ -67,26 +68,39 @@ export const Callout: FC<CalloutProps> = ({
   children,
   className,
   ...props
-}) => (
-  <Inline
-    component="div"
-    rounded="medium"
-    className={[className, calloutClass, fontSizeVariants[1]]}
-    role="alert"
-    aria-live="polite"
-    {...getCalloutVariantProps(variant)}
-    {...props}
-  >
-    <div className={calloutTextIconWrapperClass}>
-      <InfoIcon className={calloutTextIconClass} />
-    </div>
+}) => {
+  ifDebugBuild(() => {
+    if (
+      isValidElementOfType(children, Text) &&
+      Children.count(children) === 1
+    ) {
+      debugLogger(
+        'There is no need to have a single Text component as a child of Callout',
+      );
+    }
+  });
 
-    {isValidElementOfType(children, Text) ? (
-      cloneElement(children, {
-        className: calloutTextClass,
-      })
-    ) : (
-      <Text className={calloutTextClass}>{children}</Text>
-    )}
-  </Inline>
-);
+  return (
+    <Inline
+      component="div"
+      rounded="medium"
+      className={[className, calloutClass, fontSizeVariants[1]]}
+      role="alert"
+      aria-live="polite"
+      {...getCalloutVariantProps(variant)}
+      {...props}
+    >
+      <div className={calloutTextIconWrapperClass}>
+        <InfoIcon className={calloutTextIconClass} />
+      </div>
+
+      {isValidElementOfType(children, Text) ? (
+        cloneElement(children, {
+          className: calloutTextClass,
+        })
+      ) : (
+        <Text className={calloutTextClass}>{children}</Text>
+      )}
+    </Inline>
+  );
+};
