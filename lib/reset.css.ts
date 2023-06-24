@@ -7,8 +7,8 @@ function withResetClass(...selectors: string[]) {
   return `:where(${resetClass}) ${selectors.join(',')}`;
 }
 
-// Based on:
-// The new CSS reset - version 1.8.4 (last updated 14.2.2023)
+// Based on the-new-css-reset
+// The new CSS reset - version 1.9 (last updated 19.6.2023)
 
 const everythingSelector =
   '*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *))';
@@ -17,6 +17,7 @@ globalStyle(
   /*
     Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
     - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
  */
   withResetClass(everythingSelector),
   {
