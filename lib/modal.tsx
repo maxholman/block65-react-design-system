@@ -46,6 +46,7 @@ export type DialogProps<
 const ModalInner: FC<InnerProps> = ({
   children,
   dismissable = true,
+  lightDismiss,
   close,
   heading,
   ...props
