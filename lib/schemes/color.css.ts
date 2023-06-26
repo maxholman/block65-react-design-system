@@ -140,7 +140,7 @@ const sharedVars = {
   // standard
   '6': {
     l: '58%',
-    c: '0.2',
+    c: '0.18',
   },
   '7': {
     l: '59%',
@@ -169,7 +169,7 @@ const darkStyleRule: ComplexStyleRule = {
       },
 
       '1': {
-        l: '19%',
+        l: '23%',
         c: '0.015',
       },
       '2': {
