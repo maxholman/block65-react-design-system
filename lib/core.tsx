@@ -136,6 +136,25 @@ export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
   }
 >;
 
+const bgFgMap: Record<Swatch, Swatch> = {
+  '0': '15',
+  '1': '12',
+  '2': '12',
+  '3': '12',
+  '4': '12',
+  '5': '15',
+  '6': '15',
+  '7': '15',
+  '8': '15',
+  '9': '15',
+  '10': '14',
+  '11': '3',
+  '12': '3',
+  '13': '3',
+  '14': '3',
+  '15': '4',
+};
+
 const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
   {
     children,
@@ -176,7 +195,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     background,
     backgroundHover,
 
-    foreground,
+    foreground = isNotFalsy(background) && bgFgMap[background],
 
     border,
     borderHover,
@@ -312,14 +331,15 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
             (borderHover || resolvedBackgroundHover) &&
             neutraliseHover,
 
-          isNotFalsy(foreground) && foregroundVariants[foreground],
-
           (isNotFalsy(border) && borderVariants[border]) ||
             borderTransparentClass,
           isNotFalsy(borderHover) && borderHoverVariants[borderHover],
           isNotFalsy(borderWidth) && borderWidthVariants[borderWidth],
 
+          isNotFalsy(foreground) && foregroundVariants[foreground],
+
           isNotFalsy(background) && backgroundVariants[background],
+
           isNotFalsy(resolvedBackgroundHover) &&
             resolvedBackgroundHover !== background &&
             backgroundHoverVariants[resolvedBackgroundHover],
