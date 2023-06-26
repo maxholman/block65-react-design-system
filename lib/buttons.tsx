@@ -87,9 +87,9 @@ function getButtonVariantProps({
   switch (variant) {
     case 'solid':
       return {
-        foreground: disabled ? '6' : '3',
+        foreground: disabled ? '6' : '1',
         background: disabled ? '2' : '6',
-        border: disabled ? '5' : '6',
+        border: disabled ? '2' : '6',
         borderHover: '7',
       };
     case 'vibrant':
@@ -100,7 +100,7 @@ function getButtonVariantProps({
     case 'ghost':
       return {
         border: disabled ? '5' : '6',
-        foreground: disabled ? '6' : '8',
+        foreground: disabled ? '6' : '11',
         background: disabled ? '0' : '1',
         backgroundHover: '1',
       };
