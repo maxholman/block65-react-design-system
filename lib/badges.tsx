@@ -20,6 +20,7 @@ import { Text } from './typography.js';
 type CommonBadgeProps = {
   variant?: BadgeVariant;
   tone?: Tone;
+  disabled?: boolean;
 };
 
 export type BadgeProps<T extends keyof ReactHTMLAttributesHacked> =
@@ -31,13 +32,13 @@ function getBadgeVariantProps(
   switch (variant) {
     case 'solid':
       return {
-        foreground: '15',
+        foreground: '1',
         background: '6',
         border: '6',
       };
     case 'vibrant':
       return {
-        foreground: '15',
+        foreground: '1',
         background: '10',
         border: '10',
       };
