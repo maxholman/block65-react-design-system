@@ -27,9 +27,10 @@ import { Text } from './typography.js';
 type ButtonVariant = Variant;
 
 export type ButtonCommonProps = {
-  busy?: boolean | Falsy;
-  compact?: boolean | Falsy;
-  inline?: boolean | Falsy;
+  busy?: boolean | undefined;
+  disabled?: boolean | undefined;
+  compact?: boolean | undefined;
+  inline?: boolean | undefined;
   icon?: ReactElement | FC | Falsy;
   iconStart?: ReactElement | FC | Falsy;
   iconEnd?: ReactElement | FC | Falsy;
@@ -76,17 +77,19 @@ const IconBox: FC<{
   </Box>
 );
 
-function getButtonVariantProps(
-  variant: Variant | Falsy,
-): Pick<
+function getButtonVariantProps({
+  variant,
+  disabled,
+}: Partial<Pick<ButtonCommonProps, 'disabled' | 'variant'>>): Pick<
   BoxProps,
   'background' | 'backgroundHover' | 'border' | 'borderHover' | 'foreground'
 > {
   switch (variant) {
     case 'solid':
       return {
-        background: '6',
-        border: '6',
+        foreground: disabled ? '6' : '3',
+        background: disabled ? '2' : '6',
+        border: disabled ? '5' : '6',
         borderHover: '7',
       };
     case 'vibrant':
@@ -96,14 +99,14 @@ function getButtonVariantProps(
       };
     case 'ghost':
       return {
-        border: '6',
-        foreground: '8',
-        background: '1',
+        border: disabled ? '5' : '6',
+        foreground: disabled ? '6' : '8',
+        background: disabled ? '0' : '1',
         backgroundHover: '1',
       };
     case 'subtle':
       return {
-        foreground: '13',
+        foreground: disabled ? '6' : '14',
         borderHover: '4',
         background: '3',
       };
@@ -200,7 +203,7 @@ export const Button = forwardRef(
         alignItems="center"
         borderWidth="2"
         backgroundHover="auto"
-        {...getButtonVariantProps(variant)}
+        {...getButtonVariantProps({ variant, disabled: props.disabled })}
         {...compactProps}
         {...props}
         className={[
