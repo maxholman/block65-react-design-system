@@ -12,7 +12,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
-import type { Falsy } from './core.css.js';
+import type { Falsy, Tone } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
 import {
   defaultFormInputSpace,
@@ -46,7 +46,6 @@ import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { useToggle } from './hooks/use-toggle.js';
 import { PasswordInvisibleIcon, PasswordVisibleIcon } from './icons.js';
 import { Block, Inline, type BlockProps } from './layout.js';
-import type { Tone } from './tone.css.js';
 import type { Merge } from './types.js';
 import { Secondary, Strong, Text } from './typography.js';
 import {

@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
+import { toneH } from './core.css.js';
 import type { Variant } from './layout.js';
-import { toneH } from './tone.css.js';
 import { currentCapHeight } from './typography.css.js';
 
 export type AvatarVariant = Exclude<Variant, 'none'> | 'image';

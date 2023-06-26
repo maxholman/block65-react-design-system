@@ -7,8 +7,7 @@ import {
   type StyleRule,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { contrastSchemeVars } from './schemes/color.css.js';
-import { toneH } from './tone.css.js';
+import { contrastSchemeVars, colorThemeVars } from './schemes/color.css.js';
 import { oklch, typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
@@ -22,6 +21,23 @@ export type OrResponsive<T> = T | Responsive<T>;
 // accepting null means we can skip default assignments and specifically
 // disable when consuming
 export type Falsy = false | null | undefined;
+
+export type Tone =
+  | 'accent'
+  | 'warn'
+  | 'neutral'
+  | 'critical'
+  | 'promo'
+  | 'positive'
+  | 'info';
+
+export const toneH = createVar();
+
+export const toneVariants = styleVariants(colorThemeVars.tones, (tone) => ({
+  vars: {
+    [toneH]: tone.h,
+  },
+}));
 
 export type Rounded = 'medium' | 'none' | 'small' | 'large' | 'maximum';
 

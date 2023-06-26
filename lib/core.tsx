@@ -48,12 +48,13 @@ import {
   type Swatch,
   type TextAlign,
   type TextOverflow,
+  type Tone,
+  toneVariants,
 } from './core.css.js';
 import {
   debugLogger as debugBuildLogger,
   ifDebugBuild,
 } from './debug-logger.js';
-import { toneVariants, type Tone } from './tone.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type { TooltipProps } from './tooltip.js';
 import type {

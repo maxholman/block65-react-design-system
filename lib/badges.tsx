@@ -5,11 +5,10 @@ import {
   type ForwardedRef,
 } from 'react';
 import { badgeClassName, type BadgeVariant } from './badges.css.js';
-import type { Falsy } from './core.css.js';
+import type { Falsy, Tone } from './core.css.js';
 import type { BoxProps } from './core.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
-import { type Tone } from './tone.css.js';
 import type {
   Merge,
   ReactHTMLAttributesHacked,

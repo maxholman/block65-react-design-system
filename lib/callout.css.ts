@@ -1,8 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { style } from '@vanilla-extract/css';
-import { fgSwatchC, fgSwatchL } from './core.css.js';
+import { fgSwatchC, fgSwatchL, toneH } from './core.css.js';
 import { genericVars } from './design-system.css.js';
-import { toneH } from './tone.css.js';
 import { currentCapHeight } from './typography.css.js';
 import { oklch } from './utils.js';
 

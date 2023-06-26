@@ -4,9 +4,8 @@ import {
   type ForwardedRef,
   type PropsWithChildren,
 } from 'react';
-import type { Falsy, TextOverflow } from './core.css.js';
+import type { Falsy, TextOverflow, Tone } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
-import { type Tone } from './tone.css.js';
 import type {
   Merge,
   ReactHTMLAttributesHacked,

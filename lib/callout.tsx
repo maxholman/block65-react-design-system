@@ -5,12 +5,11 @@ import {
   calloutTextIconClass,
   calloutTextIconWrapperClass,
 } from './callout.css.js';
-import type { Falsy } from './core.css.js';
+import type { Falsy, Tone } from './core.css.js';
 import type { BoxProps } from './core.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
 import { InfoIcon } from './icons.js';
 import { Inline, type Variant } from './layout.js';
-import { type Tone } from './tone.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import { fontSizeVariants } from './typography.css.js';
 import { Text } from './typography.js';

@@ -6,8 +6,7 @@ import {
   style,
   type ComplexStyleRule,
 } from '@vanilla-extract/css';
-import type { Swatch } from '../core.css.js';
-import type { Tone } from '../tone.css.js';
+import type { Swatch, Tone } from '../core.css.js';
 
 export type ColorScheme = 'dark' | 'light' | 'auto';
 
