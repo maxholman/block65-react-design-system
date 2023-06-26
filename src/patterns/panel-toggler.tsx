@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import {
   Block,
+  Button,
   Code,
   Heading,
+  Inline,
   MenuIcon,
   Text,
   UnstyledButton,
@@ -60,6 +62,10 @@ export const PanelTogglerPattern = () => {
           </Heading>
         </Block>
       </UnstyledButton>
+
+      <Inline>
+        <Button disabled={!selectedItem}>Go</Button>
+      </Inline>
     </>
   );
 };

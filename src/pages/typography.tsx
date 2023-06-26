@@ -3,7 +3,6 @@ import {
   Block,
   Grid,
   Heading,
-  Inline,
   Panel,
   Secondary,
   Strong,
@@ -13,23 +12,22 @@ import {
 
 export const TypographyPage: FC = () => (
   <>
+    <Block>
+      <Text textOverflow="ellipsis">
+        Overflowing with verbosity and verbiage, the cascading deluge of textual
+        expanse inundates the digital canvas. Words burst forth from their
+        designated boundaries, defying containment within their allocated
+        spaces. Sentences elongate and expand, breaching the boundaries of
+        paragraphs and pouring into the realm of chaos. The relentless surge of
+        letters, like an unstoppable flood, engulfs the tranquil whitespace,
+        submerging the design in a sea of textual madness. In this tidal wave of
+        linguistic overflow, coherence is lost amidst the jumble of letters, as
+        the words scramble for recognition in a frenzied dance of typographical
+        disarray.
+      </Text>
+    </Block>
     <Panel variant="ghost" overflow="hidden">
       <Heading level="1">Text Overflow</Heading>
-
-      <Inline>
-        <Text textOverflow="ellipsis">
-          Overflowing with verbosity and verbiage, the cascading deluge of
-          textual expanse inundates the digital canvas. Words burst forth from
-          their designated boundaries, defying containment within their
-          allocated spaces. Sentences elongate and expand, breaching the
-          boundaries of paragraphs and pouring into the realm of chaos. The
-          relentless surge of letters, like an unstoppable flood, engulfs the
-          tranquil whitespace, submerging the design in a sea of textual
-          madness. In this tidal wave of linguistic overflow, coherence is lost
-          amidst the jumble of letters, as the words scramble for recognition in
-          a frenzied dance of typographical disarray.
-        </Text>
-      </Inline>
 
       {/* <Grid cols={2}>
         <Inline>

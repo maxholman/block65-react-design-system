@@ -17,6 +17,7 @@ import {
   type Variant,
 } from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from './components/icons.js';
+import { WithColorSchemes } from './components/WithColorSchemes.js';
 
 export const ButtonsPage: FC = () => (
   <>
@@ -138,19 +139,31 @@ export const ButtonsPage: FC = () => (
       </Inline>
     </Panel>
 
-    <Block>
-      <Heading level="2">Disabled Buttons</Heading>
-      <Text>These buttons are physically challenged</Text>
-      <Inline>
-        <Button disabled>Button</Button>
-        <Button disabled variant="ghost">
-          Ghost
-        </Button>
-        <Button disabled variant="subtle">
-          Subtle
-        </Button>
-      </Inline>
-    </Block>
+    <WithColorSchemes>
+      <Block>
+        <Heading level="2">Disabled Buttons</Heading>
+        <Text>These buttons are physically challenged</Text>
+        {[false, true].map((disabled) => (
+          <Block>
+            <Inline>
+              <Button disabled={disabled}>Button</Button>
+              <Button disabled={disabled} variant="ghost">
+                Ghost
+              </Button>
+              <Button disabled={disabled} variant="subtle">
+                Subtle
+              </Button>
+              <Button disabled={disabled} tone="positive">
+                Pos
+              </Button>
+              <Button disabled={disabled} variant="transparent">
+                Transparent
+              </Button>
+            </Inline>
+          </Block>
+        ))}
+      </Block>
+    </WithColorSchemes>
 
     <Block>
       <Heading level="2">Growing Shrinking Buttons</Heading>
