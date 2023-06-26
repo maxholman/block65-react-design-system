@@ -11,6 +11,8 @@ import {
 } from 'react';
 import {
   backgroundVariants,
+  foregroundVariants,
+  neutralise,
   paddingVariants,
   roundedVariants,
 } from './core.css.js';
@@ -43,7 +45,9 @@ const TooltipActual = forwardRef<
       tooltipClass,
       paddingVariants['4'],
       roundedVariants.medium,
-      backgroundVariants['14'],
+      backgroundVariants['13'],
+      foregroundVariants['2'],
+      neutralise,
     ])}
     {...props}
   />
