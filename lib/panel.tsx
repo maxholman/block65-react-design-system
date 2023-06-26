@@ -53,17 +53,17 @@ function getPanelVariantProps(
 
 export const Panel = forwardRef(
   <T extends keyof ReactHTMLAttributesHacked = 'section'>(
-    { variant, ...props }: PanelProps<T>,
+    { variant = 'ghost', ...props }: PanelProps<T>,
     forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Block
       ref={forwardedRef}
       component="section"
       rounded="medium"
-      paddingInline="6"
       // I "think" this looks better with a +1 because of the negative margins
-      // in the Text component which is frequently the first child
-      paddingBlock="7"
+      // in `Text` based componments which are frequently the first child
+      paddingBlock={props.padding || '7'}
+      paddingInline={props.padding || '6'}
       tone="neutral"
       borderWidth="2"
       {...getPanelVariantProps(variant)}
