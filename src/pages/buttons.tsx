@@ -144,7 +144,7 @@ export const ButtonsPage: FC = () => (
         <Heading level="2">Disabled Buttons</Heading>
         <Text>These buttons are physically challenged</Text>
         {[false, true].map((disabled) => (
-          <Block>
+          <Block key={String(disabled)}>
             <Inline>
               <Button disabled={disabled}>Button</Button>
               <Button disabled={disabled} variant="ghost">
