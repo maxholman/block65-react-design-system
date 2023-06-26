@@ -15,6 +15,8 @@ export type TextLinkProps = PropsWithChildren<
 
 /**
  * A `TextLink` is expect to be wrapped in a `Text` component
+ * Think that <Text><TextLink>...</TextLink></Text>
+ * is akin to <p><a>...</a></p>
  *
  */
 export const TextLink: FC<TextLinkProps> = ({
