@@ -16,8 +16,8 @@ import {
   type Tone,
   type Variant,
 } from '../../lib/main.js';
-import { CrescentMoonIcon, SunIcon } from './components/icons.js';
 import { WithColorSchemes } from './components/WithColorSchemes.js';
+import { CrescentMoonIcon, SunIcon } from './components/icons.js';
 
 export const ButtonsPage: FC = () => (
   <>
