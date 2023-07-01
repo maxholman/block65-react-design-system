@@ -2,25 +2,29 @@ import {
   forwardRef,
   useMemo,
   useState,
-  type HTMLAttributes,
   type ForwardedRef,
+  type HTMLAttributes,
+  type ReactNode,
+  type SyntheticEvent,
 } from 'react';
-import type { Merge } from 'type-fest';
 import { useThrottledCallback } from './hooks/use-throttled-callback.js';
-import { Block } from './layout.js';
+import { Block, type BlockProps } from './layout.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import {
   innerClassName,
   itemClassName,
   windowClassName,
 } from './virtual.css.js';
 
-export type VirtualizedListProps = Merge<
-  HTMLAttributes<HTMLDivElement>,
+export type VirtualizedListProps<
+  T extends keyof ReactHTMLElementsHacked = 'div',
+> = Merge<
+  BlockProps<T>,
   {
     numItems: number;
     renderItem: (
       props: { index: number } & HTMLAttributes<HTMLDivElement>,
-    ) => JSX.Element;
+    ) => ReactNode;
     itemHeight: number | ((props: { index: number }) => number);
     listHeight: number;
     overscan?: number;
@@ -28,7 +32,7 @@ export type VirtualizedListProps = Merge<
 >;
 
 export const VirtualizedList = forwardRef(
-  (
+  <T extends keyof ReactHTMLElementsHacked = 'div'>(
     {
       numItems,
       itemHeight,
@@ -36,8 +40,8 @@ export const VirtualizedList = forwardRef(
       listHeight,
       overscan = 0,
       ...props
-    }: VirtualizedListProps,
-    forwardedRef?: ForwardedRef<HTMLDivElement | null>,
+    }: VirtualizedListProps<T>,
+    forwardedRef?: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => {
     const [scrollTop, setScrollTop] = useState(0);
 
@@ -48,7 +52,7 @@ export const VirtualizedList = forwardRef(
       [numItems],
     );
 
-    const [innerHeight, items] = fakeArray.reduce<[number, JSX.Element[]]>(
+    const [innerHeight, items] = fakeArray.reduce<[number, ReactNode[]]>(
       (previousValue, index) => {
         const [itemTop, els] = previousValue;
 
@@ -86,7 +90,9 @@ export const VirtualizedList = forwardRef(
       <Block
         overflow="scroll"
         className={windowClassName}
-        onScroll={(e) => throttledSetScrollTop(e.currentTarget.scrollTop)}
+        onScroll={(e: SyntheticEvent) =>
+          throttledSetScrollTop(e.currentTarget.scrollTop)
+        }
         ref={forwardedRef}
         {...props}
       >
