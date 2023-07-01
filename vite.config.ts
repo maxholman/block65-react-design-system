@@ -36,6 +36,11 @@ export default defineConfig(() => ({
 
   define: {
     __DEBUG_BUILD__: debugBuild,
+    // this is mostly to strip out some garbage in floating ui
+    // see also https://github.com/floating-ui/floating-ui/issues/933
+    'process.env.NODE_ENV': JSON.stringify(
+      debugBuild ? 'development' : 'production',
+    ),
   },
 
   test: {
