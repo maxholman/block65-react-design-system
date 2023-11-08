@@ -53,7 +53,7 @@ import type {
 } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/naming-convention
-export type DetailedHTMLFactory<TAttributes, _TElement> = TAttributes;
+type DetailedHTMLFactory<TAttributes, _TElement> = TAttributes;
 
 export interface ReactHTMLAttributesHacked {
   a: DetailedHTMLFactory<
@@ -260,6 +260,7 @@ export interface ReactHTMLAttributesHacked {
   ruby: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
   s: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
   samp: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
+  search: DetailedHTMLFactory<HTMLAttributes<HTMLElement>, HTMLElement>;
   slot: DetailedHTMLFactory<
     SlotHTMLAttributes<HTMLSlotElement>,
     HTMLSlotElement

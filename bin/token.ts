@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { paramCase } from 'param-case';
+import { camelCase } from 'change-case';
 import { colorThemeVars, contrastSchemeVars, genericVars } from '#vars';
 
 function isPlainObject(obj: unknown): obj is Record<string, unknown> {
@@ -27,7 +27,7 @@ function extractCustomPropertyNames(
 }
 
 function writeScss([v, ident]: [string, string]) {
-  process.stdout.write(`$${paramCase(v)}: ${ident};`);
+  process.stdout.write(`$${camelCase(v)}: ${ident};`);
   process.stdout.write('\n');
 }
 
