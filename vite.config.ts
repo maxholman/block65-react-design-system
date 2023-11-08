@@ -21,7 +21,7 @@ export default defineConfig(() => ({
         vars: resolve(__dirname, 'lib/vars.ts'),
         hooks: resolve(__dirname, 'lib/hooks/main.ts'),
       },
-      formats: ['es' as const] ,
+      formats: ['es' as const],
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
