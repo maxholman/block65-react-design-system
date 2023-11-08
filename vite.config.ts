@@ -8,7 +8,6 @@ const debugBuild = !!process.env.DEBUG_BUILD;
 
 export default defineConfig(() => ({
   plugins: [
-    // @ts-expect-error - guessing vite react plugin doesnt like node16 mode reso
     react(),
     vanillaExtractPlugin(debugBuild ? { identifiers: 'debug' } : {}),
   ],
@@ -22,7 +21,7 @@ export default defineConfig(() => ({
         vars: resolve(__dirname, 'lib/vars.ts'),
         hooks: resolve(__dirname, 'lib/hooks/main.ts'),
       },
-      formats: ['es'],
+      formats: ['es' as const] ,
     },
     rollupOptions: {
       external: ['react', 'react-dom', 'react/jsx-runtime'],
