@@ -1,8 +1,10 @@
 import type { FC } from 'react';
-import { Block, Heading, Panel } from '../../lib/main.js';
+import { Block, Heading } from '../../lib/main.js';
+import { BasicPopover } from '../patterns/basic-popover.js';
 import { LoginPattern } from '../patterns/login.js';
 import { SelectorPattern } from '../patterns/panel-selector.js';
 import { PanelTogglerPattern } from '../patterns/panel-toggler.js';
+import { Panel } from '../reference-impl/main.js';
 import { WithColorSchemes } from './components/WithColorSchemes.js';
 
 export const PatternPage: FC = () => (
@@ -28,6 +30,11 @@ export const PatternPage: FC = () => (
           <PanelTogglerPattern />
         </WithColorSchemes>
       </Panel>
+
+      <Heading>BasicPopover</Heading>
+      <WithColorSchemes>
+        <BasicPopover />
+      </WithColorSchemes>
     </Block>
   </>
 );

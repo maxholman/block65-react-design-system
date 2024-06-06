@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createTheme, createThemeContract } from '@vanilla-extract/css';
-import { contrastSchemeVars } from './schemes/color.css.js';
 
 export const genericVars = createThemeContract({
   text: {
@@ -25,6 +24,8 @@ export const genericVars = createThemeContract({
     },
     lineHeight: {
       normal: 'text-line-height-normal',
+      paragraph: 'text-line-height-paragraph',
+      heading: 'text-line-height-heading',
     },
   },
   border: {
@@ -40,11 +41,11 @@ export const genericVars = createThemeContract({
     },
   },
   radius: {
-    none: 'radius-none',
-    small: 'radius-small',
-    medium: 'radius-medium',
-    large: 'radius-large',
-    maximum: 'radius-tight',
+    0: 'radius-0',
+    1: 'radius-1',
+    2: 'radius-2',
+    3: 'radius-3',
+    50: 'radius-50',
   },
   space: {
     '000': 'space-000',
@@ -66,14 +67,6 @@ export const genericVars = createThemeContract({
     '14': 'space-14',
     '15': 'space-15',
     '16': 'space-16',
-  },
-  boxShadow: {
-    '1': 'box-shadow-1',
-    '2': 'box-shadow-2',
-    '3': 'box-shadow-3',
-    '4': 'box-shadow-4',
-    '5': 'box-shadow-5',
-    '6': 'box-shadow-6',
   },
 });
 
@@ -100,6 +93,8 @@ export const genericThemeClass = createTheme(genericVars, {
     },
     lineHeight: {
       normal: '1.5',
+      paragraph: '1.6',
+      heading: '1.3',
     },
   },
   border: {
@@ -117,11 +112,11 @@ export const genericThemeClass = createTheme(genericVars, {
   radius: {
     // these are tuned to be distinguished at DPR3
     // but may not be different at lower densities
-    none: '0',
-    small: '0.125em',
-    medium: '0.25em',
-    large: '0.5em',
-    maximum: '50%',
+    0: '0',
+    1: '0.125em',
+    2: '0.25em',
+    3: '0.5em',
+    50: '50%',
   },
 
   space: {
@@ -145,12 +140,4 @@ export const genericThemeClass = createTheme(genericVars, {
     '15': '10rem',
     '16': '15rem',
   },
-  boxShadow: {
-    '1': `0 1px 2px -1px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 9%))`,
-    '2': `0 3px 5px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 3%)), 0 7px 14px -5px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 5%))`,
-    '3': `0 -1px 3px 0 hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 2%)), 0 1px 2px -5px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 2%)), 0 2px 5px -5px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 4%)), 0 4px 12px -5px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 5%)), 0 12px 15px -5px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 7%))`,
-    '4': `0 -2px 5px 0 hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 2%)), 0 1px 1px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 3%)), 0 2px 2px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 3%)), 0 5px 5px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 4%)), 0 9px 9px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 5%)), 0 16px 16px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 6%))`,
-    '5': `0 -1px 2px 0 hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 2%)), 0 2px 1px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 3%)), 0 5px 5px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 3%)), 0 10px 10px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 4%)), 0 20px 20px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 5%)), 0 40px 40px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 7%))`,
-    '6': `0 -1px 2px 0 hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 2%)), 0 3px 2px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 3%)), 0 7px 5px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 3%)), 0 12px 10px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 4%)), 0 22px 18px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 5%)), 0 41px 33px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 6%)), 0 100px 80px -2px hsl(${contrastSchemeVars.shadowHsl} / calc(${contrastSchemeVars.shadowStrength} + 7%))`,
-  } satisfies Record<`${number}`, string>,
 });

@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import { Callout, Grid } from '../../lib/main.js';
+import { Grid } from '../../lib/main.js';
+import { Callout } from '../reference-impl/main.js';
 import { WithColorSchemes } from './components/WithColorSchemes.js';
 
 export const CalloutPage: FC = () => (

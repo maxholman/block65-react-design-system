@@ -1,71 +1,29 @@
-import { cloneElement, type FC, type ReactNode, Children } from 'react';
+import { Children, cloneElement, type FC, type ReactNode } from 'react';
 import {
   calloutClass,
   calloutTextClass,
   calloutTextIconClass,
   calloutTextIconWrapperClass,
 } from './callout.css.js';
-import type { Falsy, Tone } from './core.css.js';
-import type { BoxProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
 import { InfoIcon } from './icons.js';
-import { Inline, type Variant } from './layout.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { fontSizeVariants } from './typography.css.js';
 import { Text } from './typography.js';
 import { isValidElementOfType } from './utils.js';
 
-type CalloutVariant = Variant;
-
 type CalloutCommonProps = {
-  tone?: Exclude<Tone, 'accent'>;
   align?: never;
   children: ReactNode;
-  variant?: CalloutVariant;
 };
 
 export type CalloutProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
   Merge<BoxProps<T>, CalloutCommonProps>;
 
-function getCalloutVariantProps(
-  variant: CalloutVariant | Falsy,
-): Partial<Pick<BoxProps, 'background' | 'border' | 'foreground'>> {
-  switch (variant) {
-    case 'solid':
-      return {
-        background: '6',
-        // border: '6',
-      };
-    case 'vibrant':
-      return {
-        background: '10',
-        // border: '10',
-      };
-    case 'ghost':
-      return {
-        border: '6',
-        // foreground: '6',
-      };
-    case 'subtle':
-      return {
-        // border: '4',
-        background: '3',
-      };
-    case 'transparent': {
-      return {
-        // foreground: '6',
-      };
-    }
-    case 'none':
-    default:
-      return {};
-  }
-}
-
 export const Callout: FC<CalloutProps> = ({
-  variant = 'solid',
   children,
   className,
+  space = '3',
   ...props
 }) => {
   ifDebugBuild(() => {
@@ -80,13 +38,15 @@ export const Callout: FC<CalloutProps> = ({
   });
 
   return (
-    <Inline
+    <Box
+      space={space}
       component="div"
-      rounded="medium"
-      className={[className, calloutClass, fontSizeVariants[1]]}
+      rounded="2"
+      className={[className, calloutClass]}
+      overflow="hidden"
       role="alert"
+      capSize="1"
       aria-live="polite"
-      {...getCalloutVariantProps(variant)}
       {...props}
     >
       <div className={calloutTextIconWrapperClass}>
@@ -98,8 +58,10 @@ export const Callout: FC<CalloutProps> = ({
           className: calloutTextClass,
         })
       ) : (
-        <Text className={calloutTextClass}>{children}</Text>
+        <Text capSize="1" className={calloutTextClass}>
+          {children}
+        </Text>
       )}
-    </Inline>
+    </Box>
   );
 };

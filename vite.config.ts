@@ -6,51 +6,55 @@ import { defineConfig } from 'vitest/config';
 
 const debugBuild = !!process.env.DEBUG_BUILD;
 
-export default defineConfig(() => ({
-  plugins: [
-    react(),
-    vanillaExtractPlugin(debugBuild ? { identifiers: 'debug' } : {}),
-  ],
-  build: {
-    outDir: 'build',
-    target: 'es2021',
+export default defineConfig((config) => {
+  // eslint-disable-next-line no-console
+  console.log(`mode is ${config.mode} and debugBuild is ${debugBuild}`);
+  return {
+    plugins: [
+      react(),
+      vanillaExtractPlugin(debugBuild ? { identifiers: 'debug' } : {}),
+    ],
+    build: {
+      outDir: 'build',
+      target: 'es2021',
 
-    lib: {
-      entry: {
-        main: resolve(__dirname, 'lib/main.ts'),
-        vars: resolve(__dirname, 'lib/vars.ts'),
-        hooks: resolve(__dirname, 'lib/hooks/main.ts'),
+      lib: {
+        entry: {
+          main: resolve(__dirname, 'lib/main.ts'),
+          vars: resolve(__dirname, 'lib/vars.ts'),
+          hooks: resolve(__dirname, 'lib/hooks/main.ts'),
+          reference: resolve(__dirname, 'src/reference-impl/main.ts'),
+        },
+        formats: ['es'],
       },
-      formats: ['es' as const],
+      rollupOptions: {
+        external: ['react', 'react-dom', 'react/jsx-runtime'],
+      },
+
+      sourcemap: true,
+
+      minify: !debugBuild,
+      cssMinify: !debugBuild,
     },
-    rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+
+    define: {
+      __DEBUG_BUILD__: debugBuild,
+      // this is mostly to strip out some garbage in floating ui
+      // see also https://github.com/floating-ui/floating-ui/issues/933
+      'process.env.NODE_ENV': JSON.stringify(config.mode),
+      // 'process.env.NODE_ENV': JSON.stringify(config.mode),
     },
 
-    sourcemap: true,
+    test: {
+      setupFiles: './src/test/setup.ts',
+      globals: true,
+      environment: 'jsdom',
 
-    minify: !debugBuild,
-    cssMinify: !debugBuild,
-  },
-
-  define: {
-    __DEBUG_BUILD__: debugBuild,
-    // this is mostly to strip out some garbage in floating ui
-    // see also https://github.com/floating-ui/floating-ui/issues/933
-    'process.env.NODE_ENV': JSON.stringify(
-      debugBuild ? 'development' : 'production',
-    ),
-  },
-
-  test: {
-    setupFiles: './src/test/setup.ts',
-    globals: true,
-    environment: 'jsdom',
-
-    // thanks to @uglow
-    // https://github.com/vanilla-extract-css/vanilla-extract/issues/940#issuecomment-1363327843
-    transformMode: {
-      web: [/\.css.ts$/],
+      // thanks to @uglow
+      // https://github.com/vanilla-extract-css/vanilla-extract/issues/940#issuecomment-1363327843
+      transformMode: {
+        web: [/\.css.ts$/],
+      },
     },
-  },
-}));
+  };
+});

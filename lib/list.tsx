@@ -8,7 +8,7 @@ import {
   listItemClass,
   listVariants,
 } from './list.css.js';
-import type { Merge, ReactHTMLAttributesHacked } from './types.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
 type ListCommonProps = {
   variant?: 'ordered' | 'unordered';
@@ -16,12 +16,12 @@ type ListCommonProps = {
   cols?: `${number}`;
 };
 
-export type ListProps<T extends keyof ReactHTMLAttributesHacked = 'ul'> = Merge<
+export type ListProps<T extends keyof ReactHTMLElementsHacked = 'ul'> = Merge<
   BoxProps<T>,
   ListCommonProps
 >;
 
-export const List = <T extends keyof ReactHTMLAttributesHacked>({
+export const List = <T extends keyof ReactHTMLElementsHacked>({
   variant,
   component,
   space = '5',
@@ -34,7 +34,7 @@ export const List = <T extends keyof ReactHTMLAttributesHacked>({
     component={
       (component || variant === 'ordered'
         ? 'ol'
-        : 'ul') as keyof ReactHTMLAttributesHacked
+        : 'ul') as keyof ReactHTMLElementsHacked
     }
     style={assignInlineVars({ [listColsVar]: cols })}
     className={[listClass, listVariants[space], className]}

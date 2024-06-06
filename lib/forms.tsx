@@ -5,14 +5,13 @@ import {
   forwardRef,
   useEffect,
   useRef,
-  type ComponentProps,
   type FC,
   type InputHTMLAttributes,
   type LabelHTMLAttributes,
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
-import type { Falsy, Tone } from './core.css.js';
+import type { Falsy } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
 import {
   defaultFormInputSpace,
@@ -21,7 +20,6 @@ import {
   formInputProps,
 } from './forms-common.js';
 import {
-  fieldLabelStyle,
   formInputCheckRadioLabel,
   formInputCheckRadioMessage,
   formInputCheckRadioWrapper,
@@ -64,7 +62,6 @@ type CommonFormInputProps = {
   secondaryLabel?: ReactNode;
   tertiaryLabel?: ReactNode;
   message?: ReactNode;
-  messageTone?: Tone | Falsy;
   autoFocus?: boolean | 'force' | undefined;
   customValidity?: string;
 };
@@ -78,7 +75,7 @@ export type FormInputProps = Merge<
 export const Form = forwardRef<
   HTMLFormElement,
   PropsWithChildren<BlockProps<'form'>>
->(({ space = '7', children, ...props }, ref) => (
+>(({ space = '9', children, ...props }, ref) => (
   <Block space={space} component="form" {...props} ref={ref}>
     {Children.map(children, (child) => {
       // if it's a block element and no space is defined, use the space this
@@ -97,7 +94,7 @@ export const FormInputLabel: FC<
     secondary?: ReactNode;
     tertiary?: ReactNode;
   }
-> = ({ className, secondary, tertiary, children, ...props }) => {
+> = ({ secondary, tertiary, children, ...props }) => {
   const isStringLike = useStringLikeDetector();
 
   return (
@@ -107,11 +104,11 @@ export const FormInputLabel: FC<
         space="2"
         component="label"
         flexGrow
-        className={[fieldLabelStyle, className]}
+        alignItems="center"
       >
         {isStringLike(children) ? (
           <>
-            <Strong>{children}</Strong>
+            <Strong capSize="0">{children}</Strong>
             {secondary && <Secondary>{secondary}</Secondary>}
           </>
         ) : (
@@ -123,13 +120,9 @@ export const FormInputLabel: FC<
   );
 };
 
-export const FormInputMessage: FC<
-  Pick<FormInputProps, 'messageTone' | 'message'>
-> = ({ message, messageTone = 'neutral' }) => (
-  <Text fontSize="0" foreground="6" tone={messageTone}>
-    {message}
-  </Text>
-);
+export const FormInputMessage: FC<Pick<FormInputProps, 'message'>> = ({
+  message,
+}) => <Text fontSize="0">{message}</Text>;
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (
@@ -140,7 +133,6 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       secondaryLabel,
       tertiaryLabel,
       message,
-      messageTone,
       autoFocus,
       customValidity,
       ...props
@@ -170,7 +162,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         <Box
           ref={ref}
           component="input"
-          rounded="medium"
+          rounded="2"
           padding="5"
           className={[
             formInputOuterClassName,
@@ -182,22 +174,22 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           autoFocus={definitelyAutoFocus}
           id={id}
         />
-        {message && (
-          <FormInputMessage messageTone={messageTone} message={message} />
-        )}
+        {message && <FormInputMessage message={message} />}
       </Block>
     );
   },
 );
 
+export type FormInputPropsNoType = Omit<FormInputProps, 'type'>;
+
 export const FormInputEmail = forwardRef<
   HTMLInputElement,
-  Omit<FormInputProps, 'type'>
+  FormInputPropsNoType
 >((props, ref) => <FormInput ref={ref} type="email" {...props} />);
 
 export const FormInputPassword = forwardRef<
   HTMLInputElement,
-  Omit<FormInputProps, 'type'> & { behaviour?: 'toggle' | 'reveal' }
+  FormInputPropsNoType & { behaviour?: 'toggle' | 'reveal' }
 >(
   (
     {
@@ -207,7 +199,7 @@ export const FormInputPassword = forwardRef<
       secondaryLabel,
       tertiaryLabel,
       message,
-      messageTone,
+
       behaviour = 'toggle',
       autoFocus,
       customValidity,
@@ -259,7 +251,7 @@ export const FormInputPassword = forwardRef<
         {description}
 
         <Inline
-          rounded="medium"
+          rounded="2"
           className={[formInputOuterClassName, formInputNotCheckRadioClassName]}
           flexWrap="nowrap"
           alignItems={null}
@@ -271,7 +263,7 @@ export const FormInputPassword = forwardRef<
             ref={ref}
             padding="5"
             type={visible ? 'text' : 'password'}
-            rounded="medium"
+            rounded="2"
             className={[
               formInputInnerClassName,
               formInputHack,
@@ -301,9 +293,7 @@ export const FormInputPassword = forwardRef<
           </Block>
         </Inline>
 
-        {message && (
-          <FormInputMessage messageTone={messageTone} message={message} />
-        )}
+        {message && <FormInputMessage message={message} />}
       </Block>
     );
   },
@@ -359,7 +349,7 @@ export const FormSelect: FC<FormSelectProps> = ({
       >
         <Box
           component="select"
-          rounded="medium"
+          rounded="2"
           className={[formInputSelect, formInputNotCheckRadioClassName]}
           padding="5"
           id={id}
@@ -380,19 +370,21 @@ export const FormSelect: FC<FormSelectProps> = ({
   );
 };
 
+type FormInputCheckRadioProps<
+  T extends 'radio' | 'checkbox' = 'radio' | 'checkbox',
+> = Merge<
+  BoxProps<'input'>,
+  {
+    label: ReactNode;
+    className?: ClassValue;
+    message?: ReactNode;
+    type?: T;
+    customValidity?: string | Falsy;
+  }
+>;
+
 const FormInputCheckRadio: FC<
-  PropsWithChildren<
-    Merge<
-      BoxProps<'input'>,
-      {
-        label: ReactNode;
-        className?: ClassValue;
-        message?: ReactNode;
-        type: 'radio' | 'checkbox';
-        customValidity?: string | Falsy;
-      }
-    >
-  >
+  Merge<BoxProps<'input'>, FormInputCheckRadioProps>
 > = ({ className, message, label, customValidity, ...props }) => {
   const id = useIdWithDefault(props.id);
   const isStringLike = useStringLikeDetector();
@@ -402,10 +394,10 @@ const FormInputCheckRadio: FC<
   const inputTypeProps = formInputProps(props);
 
   return (
-    <Block space="3" className={formInputCheckRadioWrapper}>
+    <Box space="3" className={formInputCheckRadioWrapper}>
       <Box
         component="input"
-        rounded="small"
+        rounded="1"
         ref={ref}
         className={[
           className,
@@ -436,13 +428,13 @@ const FormInputCheckRadio: FC<
         ) : (
           <Box className={formInputCheckRadioLabel}>{message}</Box>
         ))}
-    </Block>
+    </Box>
   );
 };
 
-export const FormInputRadio: FC<
-  Omit<ComponentProps<typeof FormInputCheckRadio>, 'type'>
-> = (props) => <FormInputCheckRadio type="radio" {...props} />;
+export const FormInputRadio: FC<FormInputCheckRadioProps<'radio'>> = (
+  props,
+) => <FormInputCheckRadio type="radio" {...props} />;
 
 export const FormInputRadioGroup: FC<
   PropsWithChildren<
@@ -489,9 +481,9 @@ export const FormInputRadioGroup: FC<
   );
 };
 
-export const FormInputCheckbox: FC<
-  Omit<ComponentProps<typeof FormInputCheckRadio>, 'type'>
-> = (props) => <FormInputCheckRadio type="checkbox" {...props} />;
+export const FormInputCheckbox: FC<FormInputCheckRadioProps<'checkbox'>> = (
+  props,
+) => <FormInputCheckRadio type="checkbox" {...props} />;
 
 export const FormInputCheckboxGroup: FC<
   PropsWithChildren<
@@ -552,8 +544,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
       secondaryLabel,
       tertiaryLabel,
       message,
-      messageTone,
-      rounded = 'medium',
+      rounded = '2',
       autoFocus,
       ...props
     },
@@ -625,8 +616,8 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         />
         {message && (
           <Inline>
-            <Text fontSize="0" tone={messageTone}>
-              {messageTone ? message : <Secondary>{message}</Secondary>}
+            <Text fontSize="0">
+              <Secondary>{message}</Secondary>
             </Text>
           </Inline>
         )}

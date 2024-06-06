@@ -1,28 +1,23 @@
 import type { FC } from 'react';
+import { Grid, Heading, Inline, Text } from '../../lib/main.js';
 import {
   Badge,
-  Grid,
-  Heading,
-  Inline,
   Panel,
-  Text,
-  type BadgeVariant,
+  type BoxVariant,
   type Tone,
-} from '../../lib/main.js';
+} from '../reference-impl/main.js';
 
-const badgeVariantNames: BadgeVariant[] = [
+const badgeVariantNames: BoxVariant[] = [
   'solid',
   'subtle',
   'ghost',
   'transparent',
-  'vibrant',
 ];
 
 const badgeToneNames: Tone[] = [
   'critical',
   'positive',
   'info',
-  'neutral',
   'warn',
   'promo',
 ];

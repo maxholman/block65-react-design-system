@@ -49,10 +49,7 @@ import type { Merge, ReactHTMLElementsHacked } from './types.js';
 const defaultMenuDropdownProps = {
   space: '4',
   padding: '0',
-  boxShadow: '2',
   flexDirection: 'column',
-  tone: 'neutral',
-  background: '0',
 } satisfies FlexProps;
 
 export type MenuButtonFallbackProps = Omit<MenuProps, 'fallback'>;

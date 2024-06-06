@@ -12,52 +12,39 @@ import {
   type Placement,
   type Wrap,
 } from './layout.css.js';
-import type {
-  Merge,
-  ReactHTMLAttributesHacked,
-  ReactHTMLElementsHacked,
-} from './types.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
-export type Variant =
-  | 'none'
-  | 'subtle'
-  | 'solid'
-  | 'vibrant'
-  | 'ghost'
-  | 'transparent';
+export type FlexProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
+  BoxProps<T>,
+  PropsWithChildren<{
+    alignSelf?: Placement | Falsy;
+    alignItems?: Placement | Falsy;
 
-export type FlexProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
-  Merge<
-    BoxProps<T>,
-    PropsWithChildren<{
-      alignSelf?: Placement | Falsy;
-      alignItems?: Placement | Falsy;
+    /**
+     * This is a `Grid` child style
+     *
+     * Use `flexGrow` on a sibling to justify in a flex container or `justifyContent`
+     * on the parent if it is a only child
+     */
+    justifySelf?: Placement | Falsy;
 
-      /**
-       * This is a `Grid` child style
-       *
-       * Use `flexGrow` on a sibling to justify in a flex container or `justifyContent`
-       * on the parent if it is a only child
-       */
-      justifySelf?: Placement | Falsy;
+    justifyContent?: Placement | Falsy;
 
-      justifyContent?: Placement | Falsy;
+    flexGrow?: OrResponsive<boolean> | Falsy;
+    flexShrink?: OrResponsive<boolean> | Falsy;
 
-      flexGrow?: OrResponsive<boolean> | Falsy;
-      flexShrink?: OrResponsive<boolean> | Falsy;
+    flexWrap?: Wrap | true | Falsy;
+  }>
+>;
 
-      flexWrap?: Wrap | true | Falsy;
-    }>
-  >;
-
-export type BlockProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
+export type BlockProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
   FlexProps<T>;
 
-export type InlineProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
+export type InlineProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
   FlexProps<T>;
 
 export const Flex = forwardRef(
-  <T extends keyof ReactHTMLAttributesHacked = 'div'>(
+  <T extends keyof ReactHTMLElementsHacked = 'div'>(
     {
       flexDirection = 'row',
       flexWrap,
@@ -99,14 +86,14 @@ export const Flex = forwardRef(
 );
 
 export const Block = forwardRef(
-  <T extends keyof ReactHTMLAttributesHacked = 'div'>(
+  <T extends keyof ReactHTMLElementsHacked = 'div'>(
     props: BlockProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => <Flex ref={ref} flexDirection="column" space="7" {...props} />,
 );
 
 export const Inline = forwardRef(
-  <T extends keyof ReactHTMLAttributesHacked = 'div'>(
+  <T extends keyof ReactHTMLElementsHacked = 'div'>(
     props: InlineProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (

@@ -65,6 +65,7 @@ export const modalClass = style({
     // '&:not([open])': {
     //   visibility: 'hidden',
     // },
+
     '&::before': {
       content: '',
       position: 'absolute',

@@ -1,6 +1,6 @@
 import { createContext, type FC, type PropsWithChildren } from 'react';
 import { useLocalStorageState } from '../../../lib/hooks/use-localstorage-state.js';
-import { type ColorScheme, type ContrastScheme } from '../../../lib/main.js';
+import type { ContrastScheme, ColorScheme } from '../../reference-impl/main.js';
 
 export const SettingsContext = createContext<{
   colorScheme: ColorScheme;

@@ -1,14 +1,6 @@
 import type { FC } from 'react';
-import {
-  Block,
-  Grid,
-  Heading,
-  Panel,
-  Secondary,
-  Strong,
-  Text,
-  TextLink,
-} from '../../lib/main.js';
+import { Block, Grid, Secondary, Strong, TextLink } from '../../lib/main.js';
+import { Heading, Panel, Text } from '../reference-impl/main.js';
 
 export const TypographyPage: FC = () => (
   <>

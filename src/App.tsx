@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { type FC } from 'react';
+import type { FC } from 'react';
 import {
   FormattedDate,
   FormattedMessage,
@@ -9,15 +9,23 @@ import {
 import { DesignSystem, interFontThemeClassName } from '../lib/main.js';
 import { MainRouter } from './pages/components/MainRouter.js';
 import { useSettings } from './pages/components/use-settings.js';
+import {
+  darkModeThemeClassName,
+  lightModeThemeClassName,
+} from './reference-impl/schemes.css.js';
 
 export const App: FC = () => {
-  const [{ colorScheme, contrastScheme }] = useSettings();
+  const [settings] = useSettings();
 
   return (
     <DesignSystem
-      colorScheme={colorScheme}
-      contrastScheme={contrastScheme}
-      className={[interFontThemeClassName]}
+      className={[
+        interFontThemeClassName,
+        settings.colorScheme === 'auto' && darkModeThemeClassName,
+
+        settings.colorScheme === 'dark' && darkModeThemeClassName,
+        settings.colorScheme === 'light' && lightModeThemeClassName,
+      ]}
       stringLikeComponents={[
         FormattedMessage,
         FormattedNumber,

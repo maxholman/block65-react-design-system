@@ -3,19 +3,21 @@ import { FormattedMessage } from 'react-intl';
 import { HelpIcon } from '../../lib/icons.js';
 import {
   Block,
-  Button,
-  ButtonIcon,
-  ButtonLink,
   Divider,
   Grid,
   Heading,
   Inline,
-  Panel,
-  Text,
   UnstyledButton,
-  type Tone,
-  type Variant,
 } from '../../lib/main.js';
+import { Text } from '../reference-impl/main.js';
+import {
+  Button,
+  ButtonIcon,
+  ButtonLink,
+  Panel,
+  type Tone,
+  type BoxVariant,
+} from '../reference-impl/main.js';
 import { WithColorSchemes } from './components/WithColorSchemes.js';
 import { CrescentMoonIcon, SunIcon } from './components/icons.js';
 
@@ -34,13 +36,9 @@ export const ButtonsPage: FC = () => (
 
         <Button variant="ghost">Ghost</Button>
 
-        <Button variant="ghost" tone="neutral">
-          Neutral Ghost
-        </Button>
+        <Button variant="ghost">Neutral Ghost</Button>
         <Button variant="subtle">Subtle</Button>
-        <Button tone="neutral" variant="subtle">
-          Neutral Subtle
-        </Button>
+        <Button variant="subtle">Neutral Subtle</Button>
         <Button variant="transparent">Transparent</Button>
       </Inline>
     </Panel>
@@ -154,7 +152,7 @@ export const ButtonsPage: FC = () => (
                 Subtle
               </Button>
               <Button disabled={disabled} tone="positive">
-                Pos
+                Positive
               </Button>
               <Button disabled={disabled} variant="transparent">
                 Transparent
@@ -168,51 +166,47 @@ export const ButtonsPage: FC = () => (
     <Block>
       <Heading level="2">Growing Shrinking Buttons</Heading>
       <Inline>
-        <Button flexShrink tone="neutral">
-          A
-        </Button>
+        <Button flexShrink>A</Button>
         <Button flexGrow tone="positive">
           B
         </Button>
       </Inline>
       <Grid>
-        <Button flexShrink tone="neutral">
-          A
-        </Button>
+        <Button flexShrink>A</Button>
         <Button tone="positive">B</Button>
       </Grid>
     </Block>
 
     <Panel>
-      <Heading level="2">Compact Buttons</Heading>
+      <Heading level="2">fontSize="0" Buttons</Heading>
       <Text>So cute</Text>
       <Inline>
-        <Button compact>Button</Button>
-        <Button compact variant="ghost">
+        <Button fontSize="0">Button</Button>
+        <Button fontSize="0" variant="ghost">
           Ghost
         </Button>
-        <Button compact variant="subtle">
+        <Button fontSize="0" variant="subtle">
           Subtle
         </Button>
-        <Button compact icon={<CrescentMoonIcon />}>
+        <Button fontSize="0" icon={<CrescentMoonIcon />}>
           Button
         </Button>
-        <Button compact busy>
+        <Button fontSize="0" busy>
           Button
         </Button>
-        <Button compact busy variant="ghost">
+        <Button fontSize="0" busy variant="ghost">
           Ghost
         </Button>
-        <Button compact busy variant="subtle">
+        <Button fontSize="0" busy variant="subtle">
           Subtle
         </Button>
-        <Button compact disabled>
+        <Button fontSize="0" disabled>
           Button
         </Button>
-        <Button compact disabled variant="ghost">
+        <Button fontSize="0" disabled variant="ghost">
           Ghost
         </Button>
-        <Button compact disabled variant="subtle">
+        <Button fontSize="0" disabled variant="subtle">
           Subtle
         </Button>
       </Inline>
@@ -229,15 +223,7 @@ export const ButtonsPage: FC = () => (
         }}
       >
         {(
-          [
-            'accent',
-            'warn',
-            'neutral',
-            'critical',
-            'promo',
-            'positive',
-            'info',
-          ] as Tone[]
+          ['accent', 'warn', 'critical', 'promo', 'positive', 'info'] as Tone[]
         ).map((tone) => (
           <Panel key={tone}>
             <Heading>{tone}</Heading>
@@ -249,7 +235,7 @@ export const ButtonsPage: FC = () => (
                 'transparent',
                 'none',
                 'vibrant',
-              ] as Variant[]
+              ] as BoxVariant[]
             ).map((variant) => (
               <Button variant={variant} tone={tone} key={variant}>
                 {variant}
@@ -262,7 +248,7 @@ export const ButtonsPage: FC = () => (
 
     <Panel>
       <Heading>Unstyled Buttons</Heading>
-      <UnstyledButton flexDirection="column" space="5" backgroundHover="2">
+      <UnstyledButton flexDirection="column" space="5">
         <Heading level="2">Things</Heading>
         <Text secondary>Stuff</Text>
         <Text secondary>Stuff</Text>
@@ -366,7 +352,7 @@ export const ButtonsPage: FC = () => (
           <Button
             fontSize="5"
             padding="10"
-            rounded="none"
+            rounded="0"
             variant="subtle"
             alignItems="start"
             flexDirection="column"
@@ -382,7 +368,7 @@ export const ButtonsPage: FC = () => (
           <Button
             fontSize="5"
             padding="10"
-            rounded="none"
+            rounded="0"
             variant="subtle"
             justifyContent="start"
             alignItems="start"
@@ -393,7 +379,7 @@ export const ButtonsPage: FC = () => (
           <Button
             fontSize="5"
             padding="10"
-            rounded="none"
+            rounded="0"
             variant="subtle"
             flexDirection="column"
             textAlign="start"
@@ -407,7 +393,6 @@ export const ButtonsPage: FC = () => (
         <ButtonIcon
           component="div"
           variant="transparent"
-          tone="neutral"
           label=""
           icon={<HelpIcon />}
         />

@@ -33,9 +33,6 @@ export const PanelTogglerPattern = () => {
             key={i}
             padding="6"
             paddingBlock="7"
-            background={isSelected ? '6' : '2'}
-            border="4"
-            tone={isSelected ? 'accent' : 'neutral'}
             flexDirection="row"
             onClick={() => setSelectedItem(isSelected ? undefined : i)}
           >
@@ -49,13 +46,7 @@ export const PanelTogglerPattern = () => {
         );
       })}
 
-      <UnstyledButton
-        padding="6"
-        paddingBlock="7"
-        background="1"
-        tone="accent"
-        flexDirection="row"
-      >
+      <UnstyledButton padding="6" paddingBlock="7" flexDirection="row">
         <Block justifyContent="center">
           <Heading level="4">
             <MenuIcon /> Add Payment Method

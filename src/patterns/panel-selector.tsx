@@ -5,13 +5,13 @@ import {
   Block,
   Button,
   Heading,
-  Panel,
   Text,
 } from '../../lib/main.js';
+import { Panel } from '../reference-impl/main.js';
 
 export const SelectorPattern = () => (
   <Link href="">
-    <Panel variant="subtle-ghost" flexDirection="row" component="a">
+    <Panel flexDirection="row" component="a">
       <Block>
         <Avatar label="🐱" size="3" />
       </Block>
@@ -21,7 +21,7 @@ export const SelectorPattern = () => (
       </Block>
 
       <Block justifyContent="center">
-        <Button variant="transparent" component="div">
+        <Button component="div">
           <ArrowForward />
         </Button>
       </Block>

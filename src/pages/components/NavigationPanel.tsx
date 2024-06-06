@@ -1,6 +1,7 @@
 import { Link } from '@block65/mrr';
 import type { FC } from 'react';
-import { Inline, Panel, TextLink } from '../../../lib/main.js';
+import { Inline, TextLink } from '../../../lib/main.js';
+import { Panel } from '../../reference-impl/main.js';
 
 export const NavigationPanel: FC = () => (
   <Panel variant="ghost">

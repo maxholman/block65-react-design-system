@@ -18,9 +18,8 @@ export function useAutoFocus(
     [autoFocus, mediaQuery, win],
   );
 
-  const [willAutoFocus, setWillAutoFocus] = useState<boolean>(
-    shouldAutoFocus(),
-  );
+  const [willAutoFocus, setWillAutoFocus] =
+    useState<boolean>(shouldAutoFocus());
 
   const onResize = useDebouncedCallback(
     useCallback(() => setWillAutoFocus(shouldAutoFocus()), [shouldAutoFocus]),

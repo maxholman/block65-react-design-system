@@ -2,12 +2,12 @@ import { type InputHTMLAttributes } from 'react';
 import type { Space } from './core.css.js';
 import type { BoxProps } from './core.js';
 
-export const defaultFormInputSpace: Space = '4';
+export const defaultFormInputSpace: Space = '5';
 
 export function formInputBoxProps(
   props: InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> = {},
 ) {
-  const common = {
+  const common: BoxProps<'input' | 'textarea'> = {
     ...(props.readOnly && {
       paddingInline: '0',
       tabIndex: -1,
@@ -15,11 +15,11 @@ export function formInputBoxProps(
       inert: '',
     }),
     ...(!props.readOnly && {
-      border: '5',
+      border: 'm5',
       borderWidth: '1',
-      background: '0',
+      background: 'm1',
     }),
-  } satisfies BoxProps<'input' | 'textarea'>;
+  };
 
   return common;
 }

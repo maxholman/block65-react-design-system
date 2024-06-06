@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { camelCase } from 'change-case';
-import { colorThemeVars, contrastSchemeVars, genericVars } from '#vars';
+import { genericVars } from '#vars';
 
 function isPlainObject(obj: unknown): obj is Record<string, unknown> {
   return (
@@ -33,8 +33,6 @@ function writeScss([v, ident]: [string, string]) {
 
 const propNames = extractCustomPropertyNames({
   ...genericVars,
-  color: colorThemeVars,
-  contrast: contrastSchemeVars,
 });
 
 propNames.forEach(writeScss);

@@ -1,6 +1,7 @@
 import type { FC } from 'react';
-import { Grid, Heading, Panel, Text } from '../../lib/main.js';
+import { Grid, Heading, Text } from '../../lib/main.js';
 import { lorem } from '../lorem.js';
+import { Panel } from '../reference-impl/main.js';
 
 export const GridPage: FC = () => (
   <Panel variant="ghost">

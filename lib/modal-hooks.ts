@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useToggle } from './hooks/use-toggle.js';
 
 class ModalEmitter<T extends string> extends EventTarget {
-  public close(detail: T | '') {
+  public close(detail: T | 'dismiss') {
     this.dispatchEvent(
       new CustomEvent('close', {
         detail,
@@ -12,7 +12,7 @@ class ModalEmitter<T extends string> extends EventTarget {
 }
 
 export function useDialog<T extends string>(
-  onClose?: (returnValue: T | '') => void,
+  onClose?: (returnValue: T | 'dismiss') => void,
 ) {
   const ref = useRef<HTMLDialogElement | null>(null);
 
@@ -21,32 +21,29 @@ export function useDialog<T extends string>(
   // is this a memory leak? it adds a listener on every call
   const closeEvent = useCallback(
     () =>
-      new Promise<T | ''>((resolve) => {
+      new Promise<T | 'dismiss'>((resolve) => {
         if (!ref.current?.open) {
           resolve(
-            ref.current?.returnValue ? (ref.current?.returnValue as T) : '',
+            ref.current?.returnValue
+              ? (ref.current?.returnValue as T)
+              : 'dismiss',
           );
         }
         modalEmitterRef.current.addEventListener(
           'close',
-          (e: Event | CustomEvent<T>) => resolve('detail' in e ? e.detail : ''),
+          (e: Event | CustomEvent<T>) =>
+            resolve('detail' in e ? e.detail : 'dismiss'),
           { once: true },
         );
       }),
     [],
   );
 
-  const showModal = () => {
+  const show = () => {
     ref.current?.showModal();
   };
 
-  // Modals are always Modal, hence the name, so we dont need this
-  /** @deprecated */
-  const show = () => {
-    ref.current?.show();
-  };
-
-  const close = useCallback((returnValue: T | '') => {
+  const close = useCallback((returnValue: T | 'dismiss') => {
     ref.current?.close(returnValue);
   }, []);
 
@@ -54,7 +51,7 @@ export function useDialog<T extends string>(
     const el = ref.current;
 
     function handler(this: HTMLDialogElement) {
-      const returnValue = this.returnValue as T | '';
+      const returnValue = this.returnValue as T | 'dismiss';
       modalEmitterRef.current.close(returnValue);
       if (onClose) {
         onClose(returnValue);
@@ -68,47 +65,32 @@ export function useDialog<T extends string>(
     };
   }, [onClose]);
 
-  const props = useMemo(() => ({ ref, show, showModal, close }), [close]);
-  return [props, closeEvent] as const;
+  const dialog = useMemo(() => ({ ref, show, close }), [close]);
+  return [dialog, closeEvent] as const;
 }
 
 export function useModal<T extends string>(
-  onClose?: (returnValue: T | '') => void,
+  onClose?: (returnValue: T | 'dismiss') => void,
 ) {
-  const ref = useRef<HTMLDivElement | null>(null);
-
   const [open, toggleOpen] = useToggle();
-
+  const ref = useRef<HTMLDivElement | null>(null);
   const modalEmitterRef = useRef(new ModalEmitter<T>());
 
-  // is this a memory leak? it adds a listener on every call
-  const closeEvent = useCallback(
-    () =>
-      new Promise<T | ''>((resolve) => {
-        if (!open) {
-          resolve('');
-        }
-        modalEmitterRef.current.addEventListener(
-          'close',
-          (e: Event | CustomEvent<T>) => resolve('detail' in e ? e.detail : ''),
-          { once: true },
-        );
-      }),
-    [open],
-  );
-
-  const showModal = useCallback((): void => {
+  const show = useCallback(() => {
     toggleOpen(true);
-  }, [toggleOpen]);
 
-  // Modals are always Modal, hence the name, so we dont need this
-  /** @deprecated */
-  const show = useCallback((): void => {
-    toggleOpen(true);
+    return new Promise<T | 'dismiss'>((resolve) => {
+      modalEmitterRef.current.addEventListener(
+        'close',
+        (e: Event | CustomEvent<T>) =>
+          resolve('detail' in e ? e.detail : 'dismiss'),
+        { once: true },
+      );
+    });
   }, [toggleOpen]);
 
   const close = useCallback(
-    (returnValue: T | ''): void => {
+    (returnValue: T | 'dismiss'): void => {
       toggleOpen(false);
       modalEmitterRef.current.close(returnValue);
       if (onClose) {
@@ -118,5 +100,10 @@ export function useModal<T extends string>(
     [onClose, toggleOpen],
   );
 
-  return [{ ref, open, show, showModal, close }, closeEvent] as const;
+  const modal = useMemo(
+    () => ({ ref, open, show, close }),
+    [ref, open, show, close],
+  );
+
+  return modal;
 }

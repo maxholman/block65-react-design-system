@@ -9,17 +9,9 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
-import {
-  backgroundVariants,
-  foregroundVariants,
-  neutralise,
-  paddingVariants,
-  roundedVariants,
-} from './core.css.js';
+import { paddingVariants, roundedVariants } from './core.css.js';
 import { useTooltipState } from './hooks/use-tooltip-state.js';
 import { tooltipClass } from './tooltip.css.js';
-
-export type TooltipState = ReturnType<typeof useTooltipState>;
 
 export type TooltipProps = PropsWithChildren<{
   content: ReactNode;
@@ -44,10 +36,7 @@ const TooltipActual = forwardRef<
       className,
       tooltipClass,
       paddingVariants['4'],
-      roundedVariants.medium,
-      backgroundVariants['13'],
-      foregroundVariants['2'],
-      neutralise,
+      roundedVariants['2'],
     ])}
     {...props}
   />

@@ -6,21 +6,21 @@ import {
   type Columns,
   type OrResponsive,
   type Space,
+  type Falsy,
 } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
 import { gridClass } from './grid.css.js';
-import type { Merge, ReactHTMLAttributesHacked } from './types.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
-export type GridProps<T extends keyof ReactHTMLAttributesHacked = 'div'> =
-  Merge<
-    BoxProps<T>,
-    {
-      space?: OrResponsive<Space>;
-      cols?: OrResponsive<Columns>;
-    }
-  >;
+export type GridProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
+  BoxProps<T>,
+  {
+    space?: OrResponsive<Space | Falsy>;
+    cols?: OrResponsive<Columns>;
+  }
+>;
 
-export const Grid = <T extends keyof ReactHTMLAttributesHacked = 'div'>({
+export const Grid = <T extends keyof ReactHTMLElementsHacked = 'div'>({
   className,
   cols,
   ...props

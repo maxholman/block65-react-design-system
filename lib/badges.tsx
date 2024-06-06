@@ -1,67 +1,22 @@
 import {
   forwardRef,
   type FC,
-  type PropsWithChildren,
   type ForwardedRef,
+  type PropsWithChildren,
 } from 'react';
-import { badgeClassName, type BadgeVariant } from './badges.css.js';
-import type { Falsy, Tone } from './core.css.js';
+import { badgeClassName } from './badges.css.js';
 import type { BoxProps } from './core.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
-import type {
-  Merge,
-  ReactHTMLAttributesHacked,
-  ReactHTMLElementsHacked,
-} from './types.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import { Text } from './typography.js';
 
-type CommonBadgeProps = {
-  variant?: BadgeVariant;
-  tone?: Tone;
-  disabled?: boolean;
-};
-
-export type BadgeProps<T extends keyof ReactHTMLAttributesHacked> =
-  PropsWithChildren<Merge<InlineProps<T>, CommonBadgeProps>>;
-
-function getBadgeVariantProps(
-  variant: BadgeVariant | Falsy,
-): Partial<Pick<BoxProps, 'background' | 'border' | 'foreground'>> {
-  switch (variant) {
-    case 'solid':
-      return {
-        foreground: '1',
-        background: '6',
-        border: '6',
-      };
-    case 'vibrant':
-      return {
-        foreground: '1',
-        background: '10',
-        border: '10',
-      };
-    case 'ghost':
-      return {
-        border: '6',
-        foreground: '6',
-      };
-    case 'subtle':
-      return {
-        foreground: '6',
-        background: '4',
-      };
-    case 'transparent':
-    default:
-      return {
-        foreground: '6',
-      };
-  }
-}
+export type BadgeProps<T extends keyof ReactHTMLElementsHacked> =
+  PropsWithChildren<InlineProps<T>>;
 
 export const Badge = forwardRef(
-  <T extends keyof ReactHTMLAttributesHacked>(
-    { className, children, variant = 'solid', ...props }: BadgeProps<T>,
+  <T extends keyof ReactHTMLElementsHacked>(
+    { className, children, ...props }: BadgeProps<T>,
     forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => {
     const isStringLike = useStringLikeDetector();
@@ -69,18 +24,16 @@ export const Badge = forwardRef(
     return (
       <Inline
         component="span"
-        ref={forwardedRef}
-        rounded="small"
+        rounded="1"
         padding="2"
-        tone="info"
         borderWidth="2"
         className={[badgeClassName, className]}
-        {...getBadgeVariantProps(variant)}
         {...props}
+        ref={forwardedRef}
       >
         {isStringLike(children) ? (
           <Text
-            fontSize="0"
+            capSize="0"
             fontWeight="medium"
             textOverflow="ellipsis"
             textAlign="center"
@@ -95,7 +48,7 @@ export const Badge = forwardRef(
   },
 );
 
-type BadgeLinkProps = CommonBadgeProps & {
+type BadgeLinkProps = {
   component?: never;
   href?: string;
 };

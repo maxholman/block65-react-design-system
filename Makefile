@@ -17,9 +17,10 @@ build/tokens.scss: node_modules build bin/token.ts
 
 build: $(SRCS) node_modules vite.config.ts
 	NODE_ENV=production pnpm vite build
+	$(MAKE) build/tokens.scss # this gets nuked by the vite build
 
-debug: $(SRCS) node_modules vite.config.ts
-	DEBUG_BUILD=1 NODE_ENV=production pnpm vite build --outDir=build/debug
+debug:
+	DEBUG_BUILD=1 $(MAKE) build
 
 .PHONY: types
 types: node_modules

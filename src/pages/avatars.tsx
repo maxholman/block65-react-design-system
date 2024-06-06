@@ -1,5 +1,6 @@
 import { Fragment, type FC } from 'react';
-import { Avatar, Grid, Panel, type FontSize, Block } from '../../lib/main.js';
+import { Block, Grid, type FontSize } from '../../lib/main.js';
+import { Avatar, Panel } from '../reference-impl/main.js';
 
 const fakeNames = [
   ...[
