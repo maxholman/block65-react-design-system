@@ -16,10 +16,10 @@ describe('Button', () => {
     // ASSERT
     expect(screen.getByRole('button')).toMatchInlineSnapshot(`
       <button
-        class="buttons_buttonClassName__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewport_all_space_2__1rbo53voa core_viewport_all_paddingBlock_5__1rbo53vgh core_viewport_all_paddingInline_5__1rbo53vdu core_roundedVariants_medium__1rbo53va core_toneVariants_accent__1rbo53v2 core_borderVariants_6__1rbo53vsr core_borderBaseClass__1rbo53vsc core_borderHoverVariants_7__1rbo53vt9 core_borderWidthVariants_2__1rbo53vsf core_borderBaseClass__1rbo53vsc core_foregroundVariants_1__1rbo53v1i core_backgroundVariants_6__1rbo53v17 core_backgroundHoverVariants_7__1rbo53v24 core_flexDirectionVariants_row__1rbo53vnn typography_fontSizeVariantVars_1__16o63x1c capsize_capsizeStyle__1d0g9qk4 typography__16o63x1m"
+        class="buttons_buttonClassName__jqajj21 layout_flexWrapVariants_nowrap__17vpgba3 layout_alignItemsVariants_center__17vpgba8 layout_justifyContentVariants_center__17vpgbak core_viewportStyleVariants_2__1rbo53vmg core_viewportStyleVariants_6__1rbo53veo core_viewportStyleVariants_7__1rbo53vc2 core_borderWidthVariants_2__1rbo53vqi core_borderBaseClass__1rbo53vqf core_flexDirectionVariants_row__1rbo53vlt typography_capSizeVariants_1__16o63x2v typography_capSizeVariantVars_1__16o63x1z typography_fontSizeVariantTextStyles_1__16o63x1f typography__16o63x1e capsize_capsizeStyle__1czb7fk4 typography__16o63x1d"
       >
         <div
-          class="core_textAlignVariants_center__1rbo53v2f core_borderTransparentClass__1rbo53vt1 typography_fontSizeVariantVars_1__16o63x1c capsize_capsizeStyle__1d0g9qk4 typography__16o63x1m"
+          class="core_textAlignVariants_center__1rbo53vr typography_capSizeVariants_1__16o63x2v typography_capSizeVariantVars_1__16o63x1z typography_fontSizeVariantTextStyles_1__16o63x1f typography__16o63x1e capsize_capsizeStyle__1czb7fk4 typography__16o63x1d"
         >
           Click Me
         </div>
