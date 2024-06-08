@@ -20,7 +20,6 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
       component="hr"
       className={[className, dividerStyle]}
       {...props}
-      background="2"
     />
   ),
 );

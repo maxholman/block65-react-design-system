@@ -2,36 +2,41 @@
 SRCS = $(wildcard lib/**)
 
 .PHONY: all
-all: types build build/tokens.scss
+all: build
 
 node_modules: package.json pnpm-lock.yaml
 	pnpm install
 	touch $@
 
-.PHONY: deps
-deps:
-	$(MAKE) node_modules
+bin/token.js: meta-bundle tsconfig-node.json
+	pnpm exec tsc -p tsconfig-node.json
 
-build/tokens.scss: node_modules build bin/token.ts
-	node --loader=ts-node/esm bin/token.ts > build/tokens.scss
+build/tokens.scss: bin/token.js meta-bundle
+	node $< > $@
+	pnpm exec tsc -b tsconfig-node.json --clean
 
-build: $(SRCS) node_modules vite.config.ts
+.PHONY: meta-bundle
+meta-bundle: $(SRCS) node_modules vite.config.ts types
 	NODE_ENV=production pnpm vite build
+	touch build
 
-debug: $(SRCS) node_modules vite.config.ts
-	DEBUG_BUILD=1 NODE_ENV=production pnpm vite build --outDir=build/debug
+build: meta-bundle build/tokens.scss
+
+debug:
+	DEBUG_BUILD=1 $(MAKE)
 
 .PHONY: types
-types: node_modules
-	pnpm tsc --emitDeclarationOnly
+types: node_modules tsconfig.json
+	pnpm exec tsc --emitDeclarationOnly
 
 .PHONY: types-watch
-types-watch: node_modules
-	pnpm tsc --emitDeclarationOnly -w
+types-watch: node_modules tsconfig.json
+	pnpm exec tsc --emitDeclarationOnly -w
 
 .PHONY: clean
-clean: node_modules
-	pnpm tsc -b --clean || true
+clean: node_modules tsconfig.json
+	pnpm exec tsc -b --clean
+	pnpm exec tsc -b tsconfig-node.json --clean
 	rm -rf build dist
 
 .PHONY: clean
@@ -39,10 +44,11 @@ distclean: clean
 	rm -rf node_modules
 
 .PHONY: test
-test: node_modules vite.config.ts
+test: node_modules tsconfig.json vite.config.ts
 	$(MAKE) lint
-	pnpm tsc --noEmit
+	pnpm exec tsc --noEmit
 	DEBUG_BUILD=true pnpm vitest run
+	$(MAKE) build
 	pnpm bundlesize
 
 .PHONY: dev
@@ -62,3 +68,6 @@ lint: node_modules
 pretty: node_modules
 	pnpm eslint --fix .
 	pnpm prettier --write .
+
+tsconfig.json: tsconfig-vite.src.json
+	pnpm exec tsc -p tsconfig-vite.src.json --showConfig > $@

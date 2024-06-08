@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import { Code, Grid, Heading, Inline, Panel, Text } from '../../lib/main.js';
+import { Code, Grid, Heading, Inline, Text } from '../../lib/main.js';
+import { Panel } from '../reference-impl/main.js';
 
 const PanelGrid = () => (
   <Grid cols={{ mobile: 1, all: 2 }}>
@@ -19,7 +20,7 @@ const PanelGrid = () => (
       <Heading>transparent</Heading>
       <Text>transparent</Text>
     </Panel>
-    <Panel variant="none">
+    <Panel>
       <Heading>none</Heading>
       <Text>none</Text>
     </Panel>

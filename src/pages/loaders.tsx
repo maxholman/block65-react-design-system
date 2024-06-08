@@ -1,13 +1,6 @@
 import type { FC } from 'react';
-import {
-  Button,
-  Callout,
-  Grid,
-  Heading,
-  Panel,
-  Spinner,
-  Text,
-} from '../../lib/main.js';
+import { Grid, Heading, Spinner, Text } from '../../lib/main.js';
+import { Button, Callout, Panel } from '../reference-impl/main.js';
 
 export const LoadersPage: FC = () => (
   <>
@@ -63,7 +56,7 @@ export const LoadersPage: FC = () => (
         <Spinner size="4" />
         <Spinner size="5" />
       </Panel>
-      <Panel alignItems="center" variant="solid" background="3">
+      <Panel alignItems="center" variant="solid">
         <Spinner size="1" />
         <Spinner size="2" />
         <Spinner size="3" />
@@ -72,14 +65,11 @@ export const LoadersPage: FC = () => (
       </Panel>
       <Panel>
         <Callout>
-          <Text>
-            MMMMM
-            <Spinner />
-            BBBBB test test test test test test test test test test test test
-            test test test test test test test test test test test test test
-            test test test test test test test test test test test test test
-            test test test
-          </Text>
+          MMMMM
+          <Spinner />
+          BBBBB test test test test test test test test test test test test test
+          test test test test test test test test test test test test test test
+          test test test test test test test test test test test test test test
         </Callout>
       </Panel>
       <Panel>

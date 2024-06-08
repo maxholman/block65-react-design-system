@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { useCookieState, useTraceUpdate } from '../../lib/hooks/main.js';
-import { FormInput, Panel } from '../../lib/main.js';
+import { FormInput } from '../../lib/main.js';
+import { Panel } from '../reference-impl/main.js';
 
 export const HooksPage: FC = () => {
   const [cookie, setCookie] = useCookieState<string>('pookiecookie', '🍪', {

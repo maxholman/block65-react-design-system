@@ -4,13 +4,9 @@ import {
   type ForwardedRef,
   type PropsWithChildren,
 } from 'react';
-import type { Falsy, TextOverflow, Tone } from './core.css.js';
+import type { Falsy } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
-import type {
-  Merge,
-  ReactHTMLAttributesHacked,
-  ReactHTMLElementsHacked,
-} from './types.js';
+import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import {
   codeClass,
   headingVariantClasses,
@@ -19,26 +15,21 @@ import {
 } from './typography.css.js';
 
 type CommonTextProps = {
-  secondary?: boolean | Falsy;
-  tone?: Tone | Falsy;
-  textOverflow?: TextOverflow | Falsy;
+  secondary?: true | Falsy;
 };
 
-export type TextProps<T extends keyof ReactHTMLAttributesHacked = 'p'> =
+export type TextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
   PropsWithChildren<
     Merge<
-      Omit<
-        BoxProps<T>,
-        'flexDirection' | 'flexWrap' | 'space' | 'textOverflow' | 'overflow'
-      >,
+      Omit<BoxProps<T>, 'flexDirection' | 'flexWrap' | 'space' | 'overflow'>,
       CommonTextProps
     >
   >;
 
 export const Text = forwardRef(
-  <T extends keyof ReactHTMLAttributesHacked = 'p'>(
+  <T extends keyof ReactHTMLElementsHacked = 'span'>(
     {
-      component = 'p',
+      component = 'span',
       className,
       secondary,
       textOverflow,
@@ -51,7 +42,6 @@ export const Text = forwardRef(
       component={component}
       ref={forwardedRef}
       className={[className, secondary && secondaryClass]}
-      fontSize="1"
       {...props}
     >
       {textOverflow && children ? (
@@ -66,7 +56,7 @@ export const Text = forwardRef(
 );
 
 export const Strong: FC<BoxProps<'span'>> = (props) => (
-  <Box component="span" fontWeight="semiBold" {...props} />
+  <Box component="span" fontWeight="bold" {...props} />
 );
 
 export const Code: FC<BoxProps<'code'>> = ({ className, ...props }) => (
@@ -109,10 +99,17 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ level = '3', className, ...props }, ref) => (
     <Text
       ref={ref}
+      lineHeight="heading"
       component={`h${level}`}
       className={[className, headingVariantClasses[level]]}
       {...headingProps(level)}
       {...props}
     />
+  ),
+);
+
+export const Paragraph = forwardRef<HTMLParagraphElement, TextProps>(
+  ({ className, ...props }, ref) => (
+    <Text ref={ref} lineHeight="paragraph" component="p" {...props} />
   ),
 );

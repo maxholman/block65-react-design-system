@@ -1,14 +1,6 @@
 import type { FC } from 'react';
-import {
-  Badge,
-  Block,
-  Button,
-  Grid,
-  Heading,
-  Inline,
-  Panel,
-  Text,
-} from '../../lib/main.js';
+import { Badge, Block, Grid, Heading, Inline, Text } from '../../lib/main.js';
+import { Button, Panel } from '../reference-impl/main.js';
 
 export const LayoutPage: FC = () => (
   <Panel variant="ghost">

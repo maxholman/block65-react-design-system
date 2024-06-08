@@ -9,18 +9,9 @@ import {
 } from 'react';
 import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import {
-  backgroundHoverVariants,
-  backgroundVariants,
-  borderHoverVariants,
-  borderTransparentClass,
-  borderVariants,
   borderWidthVariants,
-  boxShadowVariants,
   flexDirectionVariants,
-  foregroundVariants,
   hiddenClass,
-  neutralise,
-  neutraliseHover,
   overflowVariants,
   roundedEndEndVariants,
   roundedEndStartVariants,
@@ -43,18 +34,10 @@ import {
   type OrResponsive,
   type Overflow,
   type Rounded,
-  type Shadow,
   type Space,
-  type Swatch,
   type TextAlign,
   type TextOverflow,
-  type Tone,
-  toneVariants,
 } from './core.css.js';
-import {
-  debugLogger as debugBuildLogger,
-  ifDebugBuild,
-} from './debug-logger.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type { TooltipProps } from './tooltip.js';
 import type {
@@ -63,32 +46,16 @@ import type {
   ReactHTMLElementsHacked,
 } from './types.js';
 import {
+  capSizeVariants,
   fontSizeVariants,
   fontWeightVariants,
+  lineHeightVariants,
   type FontSize,
   type FontWeight,
+  type LineHeight,
 } from './typography.css.js';
-import { objectKeysInclude } from './utils.js';
 
-function resolveAutoSwatch(bg: Swatch | Falsy) {
-  if (!bg) {
-    return bg;
-  }
-
-  const nextBg: Swatch | string = (Number.parseInt(bg, 10) + 1).toString();
-
-  if (objectKeysInclude(backgroundVariants, nextBg)) {
-    return nextBg;
-  }
-
-  return bg;
-}
-
-const AUTO = 'auto';
-
-type BackgroundHover = Swatch | typeof AUTO;
-
-export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
+export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
   ReactHTMLAttributesHacked[T],
   {
     className?: ClassValue;
@@ -110,8 +77,11 @@ export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
 
     textAlign?: TextAlign | Falsy;
     textOverflow?: TextOverflow | Falsy;
+
     fontSize?: FontSize | Falsy;
+    capSize?: FontSize | Falsy;
     fontWeight?: FontWeight | Falsy;
+    lineHeight?: LineHeight | Falsy;
 
     overflow?: Overflow | Falsy;
 
@@ -123,40 +93,11 @@ export type BoxProps<T extends keyof ReactHTMLAttributesHacked = 'div'> = Merge<
     roundedEndStart?: Rounded | Falsy;
     roundedEndEnd?: Rounded | Falsy;
 
-    tone?: Tone | Falsy;
-    boxShadow?: Shadow | Falsy;
-
-    background?: Swatch | Falsy;
-    backgroundHover?: BackgroundHover | Falsy;
-
-    foreground?: Swatch | Falsy;
-
-    border?: Swatch | Falsy;
-    borderHover?: Swatch | Falsy;
     borderWidth?: BorderWidth | Falsy;
   }
 >;
 
-const bgFgMap: Record<Swatch, Swatch> = {
-  '0': '15',
-  '1': '12',
-  '2': '12',
-  '3': '12',
-  '4': '12',
-  '5': '15',
-  '6': '15',
-  '7': '15',
-  '8': '15',
-  '9': '15',
-  '10': '14',
-  '11': '3',
-  '12': '3',
-  '13': '3',
-  '14': '3',
-  '15': '4',
-};
-
-const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
+const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
   {
     children,
     component,
@@ -173,7 +114,9 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     textOverflow,
 
     fontSize,
+    capSize,
     fontWeight,
+    lineHeight,
 
     overflow,
 
@@ -188,44 +131,15 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
     roundedEndStart,
     roundedEndEnd,
 
-    boxShadow,
-
     space,
     flexDirection,
 
-    background,
-    backgroundHover,
-
-    foreground = isNotFalsy(background) && bgFgMap[background],
-
-    border,
-    borderHover,
-    borderWidth = border || borderHover ? '1' : undefined,
-
-    // tone is defaulted only if backgrounds are required
-    tone = isNotFalsy(background || backgroundHover || border || borderHover)
-      ? 'neutral'
-      : undefined,
+    borderWidth,
 
     ...props
   }: BoxProps<T>,
   ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
 ) => {
-  ifDebugBuild(() => {
-    if (background && background === backgroundHover) {
-      debugBuildLogger('WARN: background === backgroundHover');
-    }
-    if (+(backgroundHover || 0) + 1 === +(background || 0)) {
-      debugBuildLogger(`WARN: use backgroundHover=${AUTO}`);
-    }
-    if (border && border === borderHover) {
-      debugBuildLogger('WARN: border === borderHover');
-    }
-  });
-
-  const resolvedBackgroundHover =
-    backgroundHover === AUTO ? resolveAutoSwatch(background) : backgroundHover;
-
   const flexDirectionClass =
     flexDirection &&
     (typeof flexDirection === 'string'
@@ -323,27 +237,7 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
             roundedEndStartVariants[roundedEndStart],
           isNotFalsy(roundedEndEnd) && roundedEndEndVariants[roundedEndEnd],
 
-          isNotFalsy(boxShadow) && boxShadowVariants[boxShadow],
-
-          isNotFalsy(tone) && toneVariants[tone],
-
-          tone === 'neutral' && neutralise,
-          tone === 'neutral' &&
-            (borderHover || resolvedBackgroundHover) &&
-            neutraliseHover,
-
-          (isNotFalsy(border) && borderVariants[border]) ||
-            borderTransparentClass,
-          isNotFalsy(borderHover) && borderHoverVariants[borderHover],
           isNotFalsy(borderWidth) && borderWidthVariants[borderWidth],
-
-          isNotFalsy(foreground) && foregroundVariants[foreground],
-
-          isNotFalsy(background) && backgroundVariants[background],
-
-          isNotFalsy(resolvedBackgroundHover) &&
-            resolvedBackgroundHover !== background &&
-            backgroundHoverVariants[resolvedBackgroundHover],
 
           flexDirectionClass,
 
@@ -351,7 +245,10 @@ const BoxInner = <T extends keyof ReactHTMLAttributesHacked = 'div'>(
           textOverflow && textOverflowVariants[textOverflow],
 
           fontSize && fontSizeVariants[fontSize],
+          capSize && capSizeVariants[capSize],
           fontWeight && fontWeightVariants[fontWeight],
+
+          lineHeight && lineHeightVariants[lineHeight],
         ) || undefined,
       ref,
     },

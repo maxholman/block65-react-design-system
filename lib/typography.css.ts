@@ -6,10 +6,7 @@ import {
   styleVariants,
   type StyleRule,
 } from '@vanilla-extract/css';
-import { toneH } from './core.css.js';
 import { genericVars } from './design-system.css.js';
-import { contrastSchemeVars } from './schemes/color.css.js';
-import { oklch } from './utils.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
 
@@ -19,6 +16,7 @@ export const lineHeightRatio = createVar();
 
 export type FontSize = '00' | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 export type FontWeight = keyof typeof genericVars.text.weight;
+export type LineHeight = 'normal' | 'paragraph' | 'heading';
 
 const fontThemeVarsShape = {
   capHeight: 'cap-height',
@@ -41,13 +39,9 @@ export const fontThemeVars = createThemeContract({
   '6': fontThemeVarsShape,
 });
 
-/** @deprecated */
-export const textClass = style({
-  // WARN: DO NOT USE COLOR, IT CAUSES ALL SORTS OF ISSUES
-});
-
 export const secondaryClass = style({
-  color: oklch(contrastSchemeVars.swatch[7].l, 0, toneH),
+  // color: oklch(contrastSchemeVars.swatch.m8.l, 0, toneH),
+  opacity: 0.8,
 });
 
 export const strongClass = style({
@@ -58,25 +52,46 @@ export const codeClass = style({
   fontFamily: 'monospace',
 });
 
-export const fontSizeVariantVars = styleVariants(fontThemeVars, (vars) => ({
-  vars: { [currentCapHeight]: vars.capHeight },
-}));
-
 export const fontSizeVariantTextStyles = styleVariants(
   fontThemeVars,
   (vars) => [createTextStyle(vars.values)],
 );
 
-export const fontSizeVariants = styleVariants(fontThemeVars, (_, key) => [
-  fontSizeVariantVars[key],
+export const capSizeVariantVars = styleVariants(fontThemeVars, (vars) => ({
+  vars: { [currentCapHeight]: vars.capHeight },
+}));
+
+export const capSizeVariantTextStyles = styleVariants(fontThemeVars, (vars) => [
+  createTextStyle(vars.values),
+]);
+
+export const capSizeVariants = styleVariants(fontThemeVars, (_, key) => [
+  capSizeVariantVars[key],
   fontSizeVariantTextStyles[key],
 ]);
+
+export const fontSizeVariants = styleVariants(fontThemeVars, (_, key) => [
+  capSizeVariantVars[key],
+  fontSizeVariantTextStyles[key],
+]);
+
+// ///////////////////////////
 
 export const fontWeightVariants = styleVariants(
   genericVars.text.weight,
   (value) => [
     {
       fontWeight: value,
+      fontVariationSettings: `'wght' ${value}`,
+    },
+  ],
+);
+
+export const lineHeightVariants = styleVariants(
+  genericVars.text.lineHeight,
+  (value) => [
+    {
+      lineHeight: value,
     },
   ],
 );
@@ -122,8 +137,7 @@ const headingClassName = style({
   vars: {
     // [toneL]: contrastSchemeVars.foreground0.l,
   },
-  // @ts-expect-error - not implemented in csstype yet - https://github.com/frenic/csstype/issues/177
-  textWrap: 'balanced',
+  textWrap: 'balance',
 });
 
 export const headingVariantClasses = styleVariants(levelVariants, (rules) => [

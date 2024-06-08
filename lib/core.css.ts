@@ -1,14 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  createVar,
   style,
   styleVariants,
   type ComplexStyleRule,
   type StyleRule,
 } from '@vanilla-extract/css';
 import { genericVars } from './design-system.css.js';
-import { contrastSchemeVars, colorThemeVars } from './schemes/color.css.js';
-import { oklch, typedObjectEntries, typedObjectFromEntries } from './utils.js';
+import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
 
@@ -22,24 +20,7 @@ export type OrResponsive<T> = T | Responsive<T>;
 // disable when consuming
 export type Falsy = false | null | undefined;
 
-export type Tone =
-  | 'accent'
-  | 'warn'
-  | 'neutral'
-  | 'critical'
-  | 'promo'
-  | 'positive'
-  | 'info';
-
-export const toneH = createVar();
-
-export const toneVariants = styleVariants(colorThemeVars.tones, (tone) => ({
-  vars: {
-    [toneH]: tone.h,
-  },
-}));
-
-export type Rounded = 'medium' | 'none' | 'small' | 'large' | 'maximum';
+export type Rounded = '0' | '1' | '2' | '3' | '50';
 
 export const roundedVariants = styleVariants(genericVars.radius, (v) => [
   {
@@ -79,118 +60,6 @@ export const roundedEndEndVariants = styleVariants(genericVars.radius, (v) => [
     borderEndEndRadius: v,
   },
 ]);
-
-export type Swatch =
-  | '0'
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '5'
-  | '6'
-  | '7'
-  | '8'
-  | '9'
-  | '10'
-  | '11'
-  | '12'
-  | '13'
-  | '14'
-  | '15';
-
-export const bgSwatchL = createVar();
-export const bgSwatchC = createVar();
-export const fgSwatchL = createVar();
-export const fgSwatchC = createVar();
-
-const bgStyle = {
-  backgroundColor: oklch(bgSwatchL, bgSwatchC, toneH),
-  color: oklch(fgSwatchL, fgSwatchC, toneH),
-};
-
-// this is hard coded to be light, as it is used to
-// contrast against solid colours
-const commonFg = {
-  c: '0',
-  l: '98%',
-};
-
-const backgroundVariantMatrix: Record<
-  Swatch,
-  [bg: { c: string; l: string }, fg: { c: string; l: string }]
-> = {
-  0: [contrastSchemeVars.swatch['0'], contrastSchemeVars.swatch['14']],
-  1: [contrastSchemeVars.swatch['1'], contrastSchemeVars.swatch['14']],
-  2: [contrastSchemeVars.swatch['2'], contrastSchemeVars.swatch['14']],
-  3: [contrastSchemeVars.swatch['3'], contrastSchemeVars.swatch['14']],
-  4: [contrastSchemeVars.swatch['4'], contrastSchemeVars.swatch['14']],
-
-  5: [contrastSchemeVars.swatch['5'], contrastSchemeVars.swatch['14']],
-  6: [contrastSchemeVars.swatch['6'], commonFg],
-  7: [contrastSchemeVars.swatch['7'], commonFg],
-  8: [contrastSchemeVars.swatch['8'], commonFg],
-  9: [contrastSchemeVars.swatch['9'], commonFg],
-  10: [contrastSchemeVars.swatch['10'], commonFg],
-
-  11: [contrastSchemeVars.swatch['11'], commonFg],
-  12: [contrastSchemeVars.swatch['12'], contrastSchemeVars.swatch['1']],
-  13: [contrastSchemeVars.swatch['13'], contrastSchemeVars.swatch['1']],
-  14: [contrastSchemeVars.swatch['14'], contrastSchemeVars.swatch['1']],
-  15: [contrastSchemeVars.swatch['15'], contrastSchemeVars.swatch['1']],
-};
-
-export const backgroundVariants = styleVariants(
-  backgroundVariantMatrix,
-  ([bg, fg]) => [
-    {
-      ...bgStyle,
-      vars: {
-        [bgSwatchL]: bg.l,
-        [bgSwatchC]: bg.c,
-        [fgSwatchL]: fg.l,
-        [fgSwatchC]: fg.c,
-      },
-    },
-  ],
-);
-
-export const foregroundVariants = styleVariants(
-  contrastSchemeVars.swatch,
-  (swatch) => [
-    {
-      vars: {
-        [fgSwatchL]: swatch.l,
-        [fgSwatchC]: swatch.c,
-      },
-      color: oklch(fgSwatchL, fgSwatchC, toneH),
-    },
-  ],
-);
-
-export const backgroundHoverVariants = styleVariants(
-  backgroundVariantMatrix,
-  ([bg]) => [
-    {
-      // this is needed because if you dont have a background set
-      // the hover does not take because it just changes the vars
-      ...bgStyle,
-    },
-    {
-      selectors: {
-        '&:hover': {
-          vars: {
-            [bgSwatchL]: bg.l,
-            [bgSwatchC]: bg.c,
-            // [fgSwatchL]: fg.l,
-            // [fgSwatchC]: fg.c,
-          },
-        },
-      },
-    },
-  ],
-);
-
-export type Shadow = '1' | '2' | '3' | '4' | '5' | '6';
 
 export type TextAlign = 'start' | 'end' | 'center';
 
@@ -233,15 +102,6 @@ export const marginVariants = styleVariants(genericVars.space, (space) => [
   },
 ]);
 
-export const boxShadowVariants = styleVariants(
-  genericVars.boxShadow,
-  (shadow) => [
-    {
-      boxShadow: shadow,
-    },
-  ],
-);
-
 const viewportSizes: Record<
   Viewport,
   | Record<never, never>
@@ -276,31 +136,23 @@ export const precomputedViewportRules = typedObjectFromEntries(
 function viewportStyleVariants<
   Data extends Record<string | number, unknown>,
   Key extends keyof Data,
->(
-  data: Data,
-  mapData: (value: Data[Key], key: Key) => StyleRule,
-  debugId: string,
-) {
+>(data: Data, mapData: (value: Data[Key], key: Key) => StyleRule) {
   return typedObjectFromEntries(
     typedObjectEntries(precomputedViewportRules).map(([viewport, mqRule]) => [
       viewport,
-      styleVariants(
-        data,
-        (variant: Data[Key], k: Key): ComplexStyleRule => {
-          const rule = mapData(variant, k);
+      styleVariants(data, (variant: Data[Key], k: Key): ComplexStyleRule => {
+        const rule = mapData(variant, k);
 
-          if (viewport === 'all') {
-            return rule;
-          }
+        if (viewport === 'all') {
+          return rule;
+        }
 
-          return {
-            '@media': {
-              [mqRule]: rule,
-            },
-          };
-        },
-        debugId && `viewport_${viewport}_${debugId}`,
-      ),
+        return {
+          '@media': {
+            [mqRule]: rule,
+          },
+        };
+      }),
     ]),
   );
 }
@@ -310,7 +162,6 @@ export const viewportMarginVariants = viewportStyleVariants(
   (space) => ({
     margin: space,
   }),
-  'margin',
 );
 
 export const viewportMarginInlineVariants = viewportStyleVariants(
@@ -318,7 +169,6 @@ export const viewportMarginInlineVariants = viewportStyleVariants(
   (space) => ({
     marginInline: space,
   }),
-  'marginInline',
 );
 
 export const viewportMarginBlockVariants = viewportStyleVariants(
@@ -326,7 +176,6 @@ export const viewportMarginBlockVariants = viewportStyleVariants(
   (space) => ({
     marginBlock: space,
   }),
-  'marginBlock',
 );
 
 export const viewportPaddingVariants = viewportStyleVariants(
@@ -334,7 +183,6 @@ export const viewportPaddingVariants = viewportStyleVariants(
   (space) => ({
     padding: space,
   }),
-  'padding',
 );
 
 export const viewportPaddingInlineVariants = viewportStyleVariants(
@@ -342,7 +190,6 @@ export const viewportPaddingInlineVariants = viewportStyleVariants(
   (space) => ({
     paddingInline: space,
   }),
-  'paddingInline',
 );
 
 export const viewportPaddingBlockVariants = viewportStyleVariants(
@@ -350,7 +197,6 @@ export const viewportPaddingBlockVariants = viewportStyleVariants(
   (space) => ({
     paddingBlock: space,
   }),
-  'paddingBlock',
 );
 
 export const viewportFlexDirectionVariants = viewportStyleVariants(
@@ -359,7 +205,6 @@ export const viewportFlexDirectionVariants = viewportStyleVariants(
     display: 'flex',
     flexDirection: direction,
   }),
-  'flexDirection',
 );
 
 export const marginInlineVariants = viewportStyleVariants(
@@ -367,7 +212,6 @@ export const marginInlineVariants = viewportStyleVariants(
   (space) => ({
     marginInline: space,
   }),
-  'marginInline',
 );
 
 export const paddingVariants = styleVariants(genericVars.space, (space) => [
@@ -457,7 +301,6 @@ export const viewportSpaceVariants = viewportStyleVariants(
   (space) => ({
     gap: space,
   }),
-  'space',
 );
 
 export type Columns = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
@@ -480,25 +323,10 @@ export const viewportGridColumnsVariants = viewportStyleVariants(
   (cols) => ({
     gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
   }),
-  'cols',
 );
 
-const borderAdjust = createVar();
-const borderL = createVar();
-const borderC = createVar();
-
 const borderBaseClass = style({
-  vars: {
-    [borderAdjust]: borderL,
-
-    // light
-    // [borderAdjust]: calc.add(borderL, '-5%'),
-
-    // dark
-    // [borderAdjust]: calc.add(bgSwatchL, '25%'),
-  },
   borderStyle: 'solid',
-  borderColor: oklch(borderAdjust, borderC, toneH),
 });
 
 export const borderWidthVariants = styleVariants(
@@ -510,56 +338,6 @@ export const borderWidthVariants = styleVariants(
     },
   ],
 );
-
-export const borderVariants = styleVariants(contrastSchemeVars.swatch, (s) => [
-  borderBaseClass,
-  {
-    vars: {
-      [borderL]: s.l,
-      [borderC]: s.c,
-    },
-  },
-]);
-
-export const borderTransparentClass = style({
-  borderColor: 'transparent',
-});
-
-export const borderHoverVariants = styleVariants(
-  contrastSchemeVars.swatch,
-  (swatch) => [
-    {
-      selectors: {
-        '&:hover': {
-          vars: {
-            [borderL]: swatch.l,
-            [borderC]: swatch.c,
-          },
-        },
-      },
-    },
-  ],
-);
-
-export const neutralise = style({
-  vars: {
-    [borderC]: '0',
-    [bgSwatchC]: '0',
-    [fgSwatchC]: '0',
-  },
-});
-
-export const neutraliseHover = style({
-  selectors: {
-    '&:hover': {
-      vars: {
-        [borderC]: '0',
-        [bgSwatchC]: '0',
-        [fgSwatchC]: '0',
-      },
-    },
-  },
-});
 
 // this must be defined after other display styles so that it takes precedence
 export const hiddenClass = style({

@@ -7,9 +7,7 @@ import {
   focusWidthVar,
   focusableClassName,
 } from './focusable.css.js';
-import { contrastSchemeVars } from './schemes/color.css.js';
-import { fontSizeVariantVars } from './typography.css.js';
-import { oklch } from './utils.js';
+import { capSizeVariantVars } from './typography.css.js';
 
 const borderWidthVar = createVar();
 
@@ -23,7 +21,7 @@ export const formInputPasswordToggleButton = style({
     '&:hover,&:focus-visible': {
       // we dont use the backgroundHover prop for this because we
       // are also using it for focus-visible
-      backgroundColor: oklch(contrastSchemeVars.swatch[6].l, 0, 0),
+      // backgroundColor: oklch(contrastSchemeVars.swatch.v6.l, 0, 0),
     },
   },
 });
@@ -51,23 +49,25 @@ export const formInputOuterClassName = style({
       alignItems: 'center',
     },
     '&[readonly]': {
-      pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
+      // pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
+      // userSelect: 'auto',
+      cursor: 'text',
     },
   },
 });
 
 export const formInputInnerClassName = style([
-  fontSizeVariantVars[1],
+  capSizeVariantVars[1],
   {
     selectors: {
       '&::placeholder': {
-        color: oklch(contrastSchemeVars.swatch[6].l, 0, 0),
+        // color: oklch(contrastSchemeVars.swatch.v6.l, 0, 0),
       },
     },
   },
 ]);
 
-export const formInputNotCheckRadioClassName = style([
+export const formInputFocusNotCheckRadioClassName = style([
   focusVisibleClassName,
   {
     selectors: {
@@ -180,13 +180,13 @@ export const formInputCheckboxInput = style([
 export const formInputRadioInput = style([
   formInputCheckRadioBase,
   {
-    borderRadius: genericVars.radius.maximum,
+    borderRadius: genericVars.radius['50'],
     width: '1rem',
     selectors: {
       '&::before': {
         height: '0.5rem',
         aspectRatio: '1/1',
-        borderRadius: genericVars.radius.maximum,
+        borderRadius: genericVars.radius['50'],
         boxShadow: 'inset 1em 1em currentColor',
       },
     },
@@ -241,10 +241,6 @@ export const formInputSelectWrapperSingle = style([
     },
   },
 ]);
-
-export const fieldLabelStyle = style({
-  alignItems: 'center',
-});
 
 export const inputLabelStyle = style({
   cursor: 'pointer',

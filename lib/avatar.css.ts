@@ -1,10 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { toneH } from './core.css.js';
-import type { Variant } from './layout.js';
 import { currentCapHeight } from './typography.css.js';
-
-export type AvatarVariant = Exclude<Variant, 'none'> | 'image';
 
 export const avatarClassName = style({
   display: 'inline-grid',
@@ -21,15 +17,3 @@ export const avatarImgClass = style({
   overflow: 'hidden',
   aspectRatio: '1/1',
 });
-
-const numberOfColours = 100;
-
-export const identClasses = [
-  ...Array.from({ length: numberOfColours }).map((_, i) =>
-    style({
-      vars: {
-        [toneH]: `${Math.round(i * (360 / numberOfColours))}`,
-      },
-    }),
-  ),
-] as const;

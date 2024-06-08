@@ -14,6 +14,8 @@ import {
 } from '@floating-ui/react';
 import { useMemo, useRef, useState } from 'react';
 
+export { type Placement } from '@floating-ui/react-dom';
+
 export function useTooltipState({
   initialOpen = false,
   placement = 'top',

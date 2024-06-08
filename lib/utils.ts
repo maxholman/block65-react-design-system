@@ -9,14 +9,11 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
-import type { UnionToIntersection, Writable } from 'type-fest';
+import type { Entries } from 'type-fest';
 
 function flattenChildren(children: ReactNode): ReactNode[] {
   return Children.toArray(children).flatMap((child): ReactNode[] => {
-    if (
-      isValidElement<ComponentProps<typeof Fragment>>(child) &&
-      child.type === Fragment
-    ) {
+    if (isValidElement(child) && child.type === Fragment) {
       return flattenChildren(child.props.children);
     }
     return [child];
@@ -93,7 +90,7 @@ export function oklch(
   l: string | number,
   c: string | number,
   h: string | number,
-  a: string | number = 1,
+  a: string | number | undefined = 1,
 ) {
   return `oklch(${hslValues(maybeSuffix(l, '%'), c, h, a)})`;
 }
@@ -115,29 +112,17 @@ export function cloneElementIfValidElementOfType<T extends FC<any>>(
   return isValidElementOfType(child, type) ? cloneElement(child, props) : child;
 }
 
-// Credit: https://stackoverflow.com/questions/69019873/how-can-i-get-typed-object-entries-and-object-fromentries-in-typescript
-type EntriesType =
-  | [PropertyKey, unknown][]
-  | ReadonlyArray<readonly [PropertyKey, unknown]>;
-
-type UnionObjectFromArrayOfPairs<T extends EntriesType> =
-  Writable<T> extends (infer R)[]
-    ? R extends [infer key, infer val]
-      ? { [prop in key & PropertyKey]: val }
-      : never
-    : never;
-
-type MergeIntersectingObjects<T> = { [key in keyof T]: T[key] };
-
-type EntriesToObject<T extends EntriesType> = MergeIntersectingObjects<
-  UnionToIntersection<UnionObjectFromArrayOfPairs<T>>
->;
-
-export function typedObjectFromEntries<T extends EntriesType>(
-  arr: T,
-): EntriesToObject<T> {
-  return Object.fromEntries(arr) as EntriesToObject<T>;
-}
+export const typedObjectFromEntries = Object.fromEntries as <
+  Key extends PropertyKey,
+  TEntries extends ReadonlyArray<readonly [Key, unknown]>,
+>(
+  values: TEntries,
+) => {
+  [K in Extract<TEntries[number], readonly [Key, unknown]>[0]]: Extract<
+    TEntries[number],
+    readonly [K, unknown]
+  >[1];
+};
 
 export function typedObjectKeys<T extends string>(
   obj: Record<T, unknown>,
@@ -152,8 +137,6 @@ export function objectKeysInclude<T extends string>(
   return Object.keys(obj).includes(`${key}`);
 }
 
-export function typedObjectEntries<T extends Record<string, unknown>>(
-  obj: T,
-): [keyof T, T[keyof T]][] {
-  return Object.entries(obj) as [keyof T, T[keyof T]][];
+export function typedObjectEntries<T extends Record<string, unknown>>(obj: T) {
+  return Object.entries(obj) as Entries<T>;
 }

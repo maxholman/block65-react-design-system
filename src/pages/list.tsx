@@ -2,17 +2,16 @@ import type { FC } from 'react';
 import { HelpIcon } from '../../lib/icons.js';
 import {
   Block,
-  Button,
   Grid,
   Heading,
   Inline,
   List,
   ListItem,
-  Panel,
   Secondary,
   Text,
   Tooltip,
 } from '../../lib/main.js';
+import { Button, Panel } from '../reference-impl/main.js';
 
 export const ListPage: FC = () => (
   <>
@@ -110,7 +109,7 @@ export const ListPage: FC = () => (
               <Secondary>Want more?</Secondary>
             </Text>
           </Block>
-          <Text> We can do customised models and payment terms</Text>
+          <Text>We can do customised models and payment terms</Text>
           <Text>No wuckers</Text>
           <Button>Contact Us</Button>
         </Panel>

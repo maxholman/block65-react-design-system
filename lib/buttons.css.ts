@@ -1,11 +1,8 @@
 import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { toneH } from './core.css.js';
 import { genericVars } from './design-system.css.js';
 import { rotate } from './keyframes.css.js';
-import { contrastSchemeVars } from './schemes/color.css.js';
 import { currentCapHeight } from './typography.css.js';
-import { oklch } from './utils.js';
 
 export const iconClass = style({
   height: currentCapHeight,
@@ -15,9 +12,6 @@ export const iconClass = style({
 
 export const buttonClassName = style([
   {
-    // vars: {
-    //   [currentCapHeight]: genericVars.text.capHeights[1],
-    // },
     cursor: 'pointer',
     userSelect: 'none',
     selectors: {
@@ -32,11 +26,11 @@ export const buttonClassName = style([
         outlineStyle: 'solid',
         outlineOffset: genericVars.border.width['3'],
         outlineWidth: genericVars.border.width['3'],
-        outlineColor: oklch(
-          contrastSchemeVars.swatch[0].l,
-          contrastSchemeVars.swatch[0].c,
-          toneH,
-        ),
+        // outlineColor: oklch(
+        //   contrastSchemeVars.swatch.k0.l,
+        //   contrastSchemeVars.swatch.k0.c,
+        //   toneH,
+        // ),
       },
 
       // mouse, touch, or stylus
@@ -72,7 +66,7 @@ export const busyButtonClass = style({
       borderWidth: genericVars.border.width['2'],
       borderColor: 'transparent',
       borderTopColor: 'currentColor',
-      borderRadius: genericVars.radius.maximum,
+      borderRadius: genericVars.radius['50'],
 
       // busy indicator animation
       animationName: rotate,

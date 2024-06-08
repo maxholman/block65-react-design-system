@@ -34,7 +34,7 @@ export const LoginPattern = () => (
       <Button type="submit">Login</Button>
     </Form>
     <Divider />
-    <Button variant="subtle" icon={<GitHubLogo />} type="submit" tone="neutral">
+    <Button icon={<GitHubLogo />} type="submit">
       Login with GitHub
     </Button>
     <Inline justifyContent="center">

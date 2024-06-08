@@ -82,8 +82,21 @@ const interFontTheme = createTheme(fontThemeVars, {
     capHeight: withUnit(11.63636),
   },
 
-  // aim for 0.75rem - 12px
+  // aim for 0.875rem - 14px
   '0': {
+    values: precomputeValues({
+      capHeight: 10.1818,
+      leading: 17, // manually set based on cap height and whether the descenders are showing
+      fontMetrics: interFontMetrics,
+    }),
+
+    // this is present so other components can know the
+    // capHeight of this font size
+    capHeight: withUnit(10.1818),
+  },
+
+  // aim for 0.75rem - 12px
+  '00': {
     values: precomputeValues({
       capHeight: 8.72727,
       leading: 14, // manually set based on cap height and whether the descenders are showing
@@ -93,19 +106,6 @@ const interFontTheme = createTheme(fontThemeVars, {
     // this is present so other components can know the
     // capHeight of this font size
     capHeight: withUnit(8.72727),
-  },
-
-  // aim for 0.5rem - 8px
-  '00': {
-    values: precomputeValues({
-      capHeight: 6,
-      leading: 10, // manually set based on cap height and whether the descenders are showing
-      fontMetrics: interFontMetrics,
-    }),
-
-    // this is present so other components can know the
-    // capHeight of this font size
-    capHeight: withUnit(6),
   },
 });
 

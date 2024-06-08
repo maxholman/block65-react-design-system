@@ -1,5 +1,6 @@
 import { useRef, useState, type FC, useEffect } from 'react';
-import { Block, Heading, Panel } from '../../lib/main.js';
+import { Block, Heading } from '../../lib/main.js';
+import { Panel } from '../reference-impl/main.js';
 
 export const DropdownMenuPage: FC = () => {
   const ref = useRef<HTMLIFrameElement | null>(null);

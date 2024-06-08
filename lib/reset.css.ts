@@ -99,15 +99,14 @@ globalStyle(
     MozUserModify: 'read-write',
     WebkitUserModify: 'read-write',
     overflowWrap: 'break-word',
-    // @ts-expect-error - 'after-white-space' doesn't exist in the type defs
-    WebkitLineBreak: 'after-white-space',
+    // WebkitLineBreak: 'after-white-space',
     WebkitUserSelect: 'auto',
   },
 );
 
 /* apply back the draggable feature - exist only in Chromium and Safari */
 globalStyle(withResetClass(':where([draggable="true"])'), {
-  // @ts-expect-error - WebkitUserDrag doesn't exist in the type defs
+  // @ts-expect-error - only for Chromium and Safari
   WebkitUserDrag: 'element',
 });
 

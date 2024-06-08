@@ -25,8 +25,8 @@ import {
 import type { Merge } from './types.js';
 import { Heading } from './typography.js';
 
-type InnerProps<T extends string = ''> = PropsWithChildren<{
-  close: (returnValue: T | '' | 'dismiss') => void;
+type InnerProps<T extends string | 'dismiss' = 'dismiss'> = PropsWithChildren<{
+  close: (returnValue: T | 'dismiss') => void;
   heading?: ReactNode | Falsy;
   dismissable?: true | Falsy;
   lightDismiss?: true | Falsy;
@@ -37,9 +37,8 @@ export type DialogProps<
   C extends 'dialog' | 'div' = 'dialog',
 > = Merge<
   BoxProps<C>,
-  InnerProps<T> & {
+  InnerProps<T | 'dismiss'> & {
     show: () => void;
-    showModal: () => void;
   }
 >;
 
@@ -54,22 +53,13 @@ const ModalInner: FC<InnerProps> = ({
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Block
-      component="section"
-      rounded="medium"
-      padding="8"
-      background="1"
-      boxShadow="2"
-      {...props}
-    >
+    <Block component="section" padding="8" {...props}>
       <Inline flexWrap="nowrap">
         {isStringLike(heading) ? <Heading>{heading}</Heading> : heading}
         {dismissable && (
           <Inline component="form" method="dialog" justifySelf="end">
             <ButtonIcon
-              variant="transparent"
-              backgroundHover={null}
-              onClick={() => close('')}
+              onClick={() => close('dismiss')}
               type="submit"
               className={buttonClass}
               value="close"
@@ -92,7 +82,6 @@ export const Modal = forwardRef(
       className,
       close,
       show,
-      showModal,
       heading,
       ...props
     }: DialogProps<T, 'div'>,
@@ -155,15 +144,7 @@ export const Modal = forwardRef(
 
 export const Dialog = forwardRef(
   <T extends string>(
-    {
-      children,
-      className,
-      close,
-      show,
-      showModal,
-      heading,
-      ...props
-    }: DialogProps<T>,
+    { children, className, close, show, heading, ...props }: DialogProps<T>,
     ref: ForwardedRef<HTMLDialogElement | null>,
   ) => {
     const ds = useDesignSystem();

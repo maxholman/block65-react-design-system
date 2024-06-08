@@ -88,7 +88,6 @@ export const VirtualizedList = forwardRef(
 
     return (
       <Block
-        overflow="scroll"
         className={windowClassName}
         onScroll={(e: SyntheticEvent) =>
           throttledSetScrollTop(e.currentTarget.scrollTop)

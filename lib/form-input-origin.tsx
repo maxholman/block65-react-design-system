@@ -8,7 +8,7 @@ import {
 } from './forms-common.js';
 import {
   formInputInnerClassName,
-  formInputNotCheckRadioClassName,
+  formInputFocusNotCheckRadioClassName,
   formInputHack,
   formInputOriginIcon,
   formInputOuterClassName,
@@ -16,7 +16,7 @@ import {
 import {
   FormInputLabel,
   FormInputMessage,
-  type FormInputProps,
+  type FormInputPropsNoType,
 } from './forms.js';
 import { useAutoFocus } from './hooks/use-auto-focus.js';
 import { useCombinedRefs } from './hooks/use-combined-refs.js';
@@ -24,7 +24,6 @@ import { useCustomValidity } from './hooks/use-custom-validity.js';
 import { ReturnCode, useDoH } from './hooks/use-doh.js';
 import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { useFavicon } from './hooks/use-image.js';
-import { useInputIsValid } from './hooks/use-input-is-valid.js';
 import { GlobeColorIcon } from './icons.js';
 import { Block, Inline } from './layout.js';
 import { Spinner } from './loaders.js';
@@ -51,7 +50,7 @@ function guessUrl(url: string) {
 export const FormInputOrigin = forwardRef<
   HTMLInputElement,
   Merge<
-    Omit<FormInputProps, 'type'>,
+    FormInputPropsNoType,
     {
       value?: string;
       defaultValue?: string;
@@ -70,7 +69,6 @@ export const FormInputOrigin = forwardRef<
       secondaryLabel,
       tertiaryLabel,
       message,
-      messageTone,
       autoFocus,
       defaultValue,
       customValidity,
@@ -101,8 +99,6 @@ export const FormInputOrigin = forwardRef<
       () => guessUrl(value),
       [value],
     );
-
-    const isValid = useInputIsValid(ourRef);
 
     const dns = useDoH(
       syntacticallyValidValueAsUrl
@@ -150,8 +146,10 @@ export const FormInputOrigin = forwardRef<
         {description}
 
         <Inline
-          rounded="medium"
-          className={[formInputOuterClassName, formInputNotCheckRadioClassName]}
+          className={[
+            formInputOuterClassName,
+            formInputFocusNotCheckRadioClassName,
+          ]}
           flexWrap="nowrap"
           alignItems={null}
           {...inputBoxProps}
@@ -162,12 +160,11 @@ export const FormInputOrigin = forwardRef<
             // we switch to a text input if the value can be parsed into a valud
             // URL, so that we can accept values without leading https://
             type={syntacticallyValidValueAsUrl ? 'text' : 'url'}
-            rounded="medium"
             padding="5"
             className={[
               formInputInnerClassName,
               formInputHack,
-              formInputNotCheckRadioClassName,
+              formInputFocusNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
             {...inputElProps}
@@ -182,7 +179,6 @@ export const FormInputOrigin = forwardRef<
 
           <Block
             component="div"
-            rounded="medium"
             alignItems="center"
             justifyContent="center"
             paddingInline="5"
@@ -199,12 +195,7 @@ export const FormInputOrigin = forwardRef<
           </Block>
         </Inline>
 
-        {message && (
-          <FormInputMessage
-            messageTone={!isValid || finalValidity ? 'warn' : messageTone}
-            message={finalValidity || message}
-          />
-        )}
+        {message && <FormInputMessage message={finalValidity || message} />}
       </Block>
     );
   },

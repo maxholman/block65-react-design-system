@@ -19,7 +19,6 @@ import { DropdownMenuPage } from '../menu.js';
 import { ModalPage } from '../modal.js';
 import { PanelsPage } from '../panels.js';
 import { PatternPage } from '../patterns.js';
-import { SwatchesPage } from '../swatches.js';
 import { TypographyPage } from '../typography.js';
 import { NavigationPanel } from './NavigationPanel.js';
 import { SettingsPanel } from './SettingsPanel.js';
@@ -85,9 +84,6 @@ export const MainRouter: FC = () => (
                 </Route>
                 <Route path="/patterns">
                   <PatternPage />
-                </Route>
-                <Route path="/swatches">
-                  <SwatchesPage />
                 </Route>
                 <Route path="/avatars">
                   <AvatarsPage />
