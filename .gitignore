@@ -2,5 +2,7 @@ node_modules
 dist
 build
 coverage
+
 bin/*.js
-bin/*.d.ts
+bin/*.js
+vite.config.js

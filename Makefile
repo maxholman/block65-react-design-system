@@ -12,11 +12,12 @@ node_modules: package.json pnpm-lock.yaml
 deps:
 	$(MAKE) node_modules
 
-bin/token.js: bundle
+bin/token.js: bundle tsconfig-node.json
 	pnpm exec tsc -p tsconfig-node.json
 
 build/tokens.scss: bin/token.js bundle
 	node $< > $@
+	pnpm exec tsc -b tsconfig-node.json --clean
 
 .PHONY: bundle
 bundle: $(SRCS) node_modules vite.config.ts
@@ -29,16 +30,17 @@ debug:
 	DEBUG_BUILD=1 $(MAKE)
 
 .PHONY: types
-types: node_modules
-	pnpm tsc --emitDeclarationOnly
+types: node_modules tsconfig.json
+	pnpm exec tsc --emitDeclarationOnly
 
 .PHONY: types-watch
-types-watch: node_modules
-	pnpm tsc --emitDeclarationOnly -w
+types-watch: node_modules tsconfig.json
+	pnpm exec tsc --emitDeclarationOnly -w
 
 .PHONY: clean
-clean: node_modules
-	pnpm tsc -b --clean || true
+clean: node_modules tsconfig.json
+	pnpm exec tsc -b --clean
+	pnpm exec tsc -b tsconfig-node.json --clean
 	rm -rf build dist
 
 .PHONY: clean
@@ -46,9 +48,9 @@ distclean: clean
 	rm -rf node_modules
 
 .PHONY: test
-test: node_modules vite.config.ts
+test: node_modules tsconfig.json vite.config.ts
 	$(MAKE) lint
-	pnpm tsc --noEmit
+	pnpm exec tsc --noEmit
 	DEBUG_BUILD=true pnpm vitest run
 	$(MAKE) build
 	pnpm bundlesize
@@ -70,3 +72,6 @@ lint: node_modules
 pretty: node_modules
 	pnpm eslint --fix .
 	pnpm prettier --write .
+
+tsconfig.json: tsconfig-vite.src.json
+	pnpm exec tsc -p tsconfig-vite.src.json --showConfig > $@

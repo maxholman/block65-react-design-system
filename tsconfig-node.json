@@ -1,4 +1,8 @@
 {
   "extends": ["@tsconfig/node22", "@tsconfig/strictest"],
+  "compilerOptions": {
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "files": ["./vite.config.ts"],
   "include": ["./bin"]
 }
