@@ -2,29 +2,25 @@
 SRCS = $(wildcard lib/**)
 
 .PHONY: all
-all: types build build/tokens.scss
+all: build
 
 node_modules: package.json pnpm-lock.yaml
 	pnpm install
 	touch $@
 
-.PHONY: deps
-deps:
-	$(MAKE) node_modules
-
-bin/token.js: bundle tsconfig-node.json
+bin/token.js: meta-bundle tsconfig-node.json
 	pnpm exec tsc -p tsconfig-node.json
 
-build/tokens.scss: bin/token.js bundle
+build/tokens.scss: bin/token.js meta-bundle
 	node $< > $@
 	pnpm exec tsc -b tsconfig-node.json --clean
 
-.PHONY: bundle
-bundle: $(SRCS) node_modules vite.config.ts
+.PHONY: meta-bundle
+meta-bundle: $(SRCS) node_modules vite.config.ts types
 	NODE_ENV=production pnpm vite build
 	touch build
 
-build: bundle build/tokens.scss
+build: meta-bundle build/tokens.scss
 
 debug:
 	DEBUG_BUILD=1 $(MAKE)
