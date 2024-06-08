@@ -20,7 +20,6 @@ export const tooltipArrowClass = style({
     [arrowOffsetVar]: calc.negate(genericVars.space[4]),
   },
   position: 'absolute',
-  background: 'inherit',
   aspectRatio: '1/1',
   height: genericVars.space[5],
   clipPath: 'polygon(0 0, 100% 0, 50% 100%)',

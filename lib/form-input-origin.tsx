@@ -8,7 +8,7 @@ import {
 } from './forms-common.js';
 import {
   formInputInnerClassName,
-  formInputNotCheckRadioClassName,
+  formInputFocusNotCheckRadioClassName,
   formInputHack,
   formInputOriginIcon,
   formInputOuterClassName,
@@ -146,8 +146,10 @@ export const FormInputOrigin = forwardRef<
         {description}
 
         <Inline
-          rounded="2"
-          className={[formInputOuterClassName, formInputNotCheckRadioClassName]}
+          className={[
+            formInputOuterClassName,
+            formInputFocusNotCheckRadioClassName,
+          ]}
           flexWrap="nowrap"
           alignItems={null}
           {...inputBoxProps}
@@ -158,12 +160,11 @@ export const FormInputOrigin = forwardRef<
             // we switch to a text input if the value can be parsed into a valud
             // URL, so that we can accept values without leading https://
             type={syntacticallyValidValueAsUrl ? 'text' : 'url'}
-            rounded="2"
             padding="5"
             className={[
               formInputInnerClassName,
               formInputHack,
-              formInputNotCheckRadioClassName,
+              formInputFocusNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
             {...inputElProps}
@@ -178,7 +179,6 @@ export const FormInputOrigin = forwardRef<
 
           <Block
             component="div"
-            rounded="2"
             alignItems="center"
             justifyContent="center"
             paddingInline="5"

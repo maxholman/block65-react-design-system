@@ -49,7 +49,9 @@ export const formInputOuterClassName = style({
       alignItems: 'center',
     },
     '&[readonly]': {
-      pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
+      // pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
+      // userSelect: 'auto',
+      cursor: 'text',
     },
   },
 });
@@ -65,7 +67,7 @@ export const formInputInnerClassName = style([
   },
 ]);
 
-export const formInputNotCheckRadioClassName = style([
+export const formInputFocusNotCheckRadioClassName = style([
   focusVisibleClassName,
   {
     selectors: {

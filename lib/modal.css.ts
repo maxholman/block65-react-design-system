@@ -36,7 +36,6 @@ const commonBackdropProps: StyleRule = {
 export const dialogClass = style({
   // these are annoyingly not part of dialog element reset
   border: 0,
-  background: 'unset',
   padding: 0,
   margin: 0,
 
@@ -45,7 +44,6 @@ export const dialogClass = style({
       visibility: 'hidden',
     },
     '&::backdrop': {
-      background: 'unset',
       ...commonBackdropProps,
     },
   },

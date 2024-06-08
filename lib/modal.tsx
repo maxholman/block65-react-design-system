@@ -53,7 +53,7 @@ const ModalInner: FC<InnerProps> = ({
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Block component="section" rounded="2" padding="8" {...props}>
+    <Block component="section" padding="8" {...props}>
       <Inline flexWrap="nowrap">
         {isStringLike(heading) ? <Heading>{heading}</Heading> : heading}
         {dismissable && (

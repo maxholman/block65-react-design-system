@@ -41,7 +41,6 @@ export const Callout: FC<CalloutProps> = ({
     <Box
       space={space}
       component="div"
-      rounded="2"
       className={[className, calloutClass]}
       overflow="hidden"
       role="alert"

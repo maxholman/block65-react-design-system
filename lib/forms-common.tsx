@@ -8,16 +8,15 @@ export function formInputBoxProps(
   props: InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> = {},
 ) {
   const common: BoxProps<'input' | 'textarea'> = {
+    ...props,
     ...(props.readOnly && {
       paddingInline: '0',
       tabIndex: -1,
       autoFocus: false,
-      inert: '',
+      // inert: '',
     }),
     ...(!props.readOnly && {
-      border: 'm5',
       borderWidth: '1',
-      background: 'm1',
     }),
   };
 

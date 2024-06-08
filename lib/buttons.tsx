@@ -123,7 +123,6 @@ export const Button = forwardRef(
         space="2"
         flexDirection="row"
         flexWrap="nowrap"
-        rounded="2"
         justifyContent="center"
         alignItems="center"
         borderWidth="2"

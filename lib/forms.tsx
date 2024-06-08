@@ -26,7 +26,7 @@ import {
   formInputCheckboxInput,
   formInputHack,
   formInputInnerClassName,
-  formInputNotCheckRadioClassName,
+  formInputFocusNotCheckRadioClassName,
   formInputOuterClassName,
   formInputPasswordIcon,
   formInputPasswordToggleButton,
@@ -151,7 +151,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       <Block className={className} space={defaultFormInputSpace}>
         {label && (
           <FormInputLabel
-            htmlFor={id}
+            htmlFor={!inputTypeProps.readOnly ? id : undefined}
             secondary={secondaryLabel}
             tertiary={tertiaryLabel}
           >
@@ -162,15 +162,13 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         <Box
           ref={ref}
           component="input"
-          rounded="2"
           padding="5"
           className={[
             formInputOuterClassName,
             formInputInnerClassName,
-            formInputNotCheckRadioClassName,
+            !inputTypeProps.readOnly && formInputFocusNotCheckRadioClassName,
           ]}
           {...inputTypeProps}
-          {...props}
           autoFocus={definitelyAutoFocus}
           id={id}
         />
@@ -251,8 +249,10 @@ export const FormInputPassword = forwardRef<
         {description}
 
         <Inline
-          rounded="2"
-          className={[formInputOuterClassName, formInputNotCheckRadioClassName]}
+          className={[
+            formInputOuterClassName,
+            formInputFocusNotCheckRadioClassName,
+          ]}
           flexWrap="nowrap"
           alignItems={null}
           space="0"
@@ -263,11 +263,10 @@ export const FormInputPassword = forwardRef<
             ref={ref}
             padding="5"
             type={visible ? 'text' : 'password'}
-            rounded="2"
             className={[
               formInputInnerClassName,
               formInputHack,
-              formInputNotCheckRadioClassName,
+              formInputFocusNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
             {...inputElProps}
@@ -349,8 +348,7 @@ export const FormSelect: FC<FormSelectProps> = ({
       >
         <Box
           component="select"
-          rounded="2"
-          className={[formInputSelect, formInputNotCheckRadioClassName]}
+          className={[formInputSelect, formInputFocusNotCheckRadioClassName]}
           padding="5"
           id={id}
           ref={ref}
@@ -608,7 +606,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
           className={[
             formInputInnerClassName,
             formInputOuterClassName,
-            formInputNotCheckRadioClassName,
+            formInputFocusNotCheckRadioClassName,
           ]}
           {...inputTypeProps}
           {...props}
