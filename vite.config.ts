@@ -23,12 +23,22 @@ export default defineConfig((config) => {
           main: resolve(__dirname, 'lib/main.ts'),
           vars: resolve(__dirname, 'lib/vars.ts'),
           hooks: resolve(__dirname, 'lib/hooks/main.ts'),
-          reference: resolve(__dirname, 'src/reference-impl/main.ts'),
         },
         formats: ['es'],
       },
       rollupOptions: {
         external: ['react', 'react-dom', 'react/jsx-runtime'],
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+            if (id.includes('hooks')) {
+              return 'hooks';
+            }
+            return 'lib';
+          },
+        },
       },
 
       sourcemap: true,

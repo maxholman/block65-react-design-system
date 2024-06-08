@@ -12,15 +12,21 @@ node_modules: package.json pnpm-lock.yaml
 deps:
 	$(MAKE) node_modules
 
-build/tokens.scss: node_modules build bin/token.ts
-	node --loader=ts-node/esm bin/token.ts > build/tokens.scss
+bin/token.js: bundle
+	pnpm exec tsc -p tsconfig-node.json
 
-build: $(SRCS) node_modules vite.config.ts
+build/tokens.scss: bin/token.js bundle
+	node $< > $@
+
+.PHONY: bundle
+bundle: $(SRCS) node_modules vite.config.ts
 	NODE_ENV=production pnpm vite build
-	$(MAKE) build/tokens.scss # this gets nuked by the vite build
+	touch build
+
+build: bundle build/tokens.scss
 
 debug:
-	DEBUG_BUILD=1 $(MAKE) build
+	DEBUG_BUILD=1 $(MAKE)
 
 .PHONY: types
 types: node_modules
@@ -44,6 +50,7 @@ test: node_modules vite.config.ts
 	$(MAKE) lint
 	pnpm tsc --noEmit
 	DEBUG_BUILD=true pnpm vitest run
+	$(MAKE) build
 	pnpm bundlesize
 
 .PHONY: dev

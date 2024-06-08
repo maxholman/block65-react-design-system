@@ -2,6 +2,7 @@
   "extends": ["@tsconfig/vite-react", "@tsconfig/strictest"],
   "compilerOptions": {
     "noEmit": false,
+    "emitDeclarationOnly": true,
     "declaration": true,
     "outDir": "./dist",
     "types": ["vite/client"],
@@ -10,10 +11,9 @@
     "removeComments": false,
     "allowImportingTsExtensions": false,
     "rootDir": "./",
-
-    // why does this even exist?
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["."],
+  "files": ["./vite-env.d.ts"],
+  "include": ["./src", "./lib"],
   "exclude": ["./dist", "./build", "node_modules"]
 }
