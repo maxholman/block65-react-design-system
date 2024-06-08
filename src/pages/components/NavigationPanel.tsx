@@ -54,9 +54,6 @@ export const NavigationPanel: FC = () => (
       <Link href="/patterns">
         <TextLink>Patterns</TextLink>
       </Link>
-      <Link href="/swatches">
-        <TextLink>Swatches</TextLink>
-      </Link>
       <Link href="/avatars">
         <TextLink>Avatars</TextLink>
       </Link>

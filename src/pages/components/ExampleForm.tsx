@@ -36,14 +36,12 @@ export const ExampleForm: FC = () => (
       name="first"
       defaultValue="Queen"
       description="What even is the description?"
-      message="Don't write Queen in this field please"
-      messageTone="warn"
+      message={<Text tone="warn">Don't write Queen in this field please</Text>}
     />
     <FormInputEmail
       label="Email Address"
       name="email"
-      message="Work email address only"
-      messageTone="warn"
+      message={<Text tone="warn">Work email address only</Text>}
     />
     <FormInputOrigin
       label="Origin"
@@ -55,17 +53,15 @@ export const ExampleForm: FC = () => (
       label="Password"
       name="password"
       defaultValue="secret"
-      message="Tap to reveal"
+      message={<Text tone="critical">Tap to reveal</Text>}
       behaviour="reveal"
-      messageTone="critical"
     />
     <FormInputPassword
       label="Password"
       name="password"
       defaultValue="verysecret"
       behaviour="toggle"
-      message="Tap to toggle"
-      messageTone="promo"
+      message={<Text tone="promo">Tap to toggle</Text>}
     />
 
     <FormSelect
@@ -94,17 +90,15 @@ export const ExampleForm: FC = () => (
         label="Password"
         name="password"
         defaultValue="secret"
-        message="Tap to reveal"
+        message={<Text tone="critical">Tap to reveal</Text>}
         behaviour="reveal"
-        messageTone="critical"
       />
       <FormInputPassword
         label="Password"
         name="password"
         defaultValue="verysecret"
         behaviour="toggle"
-        message="Tap to toggle"
-        messageTone="promo"
+        message={<Text tone="promo">Tap to toggle</Text>}
       />
     </Grid>
 
@@ -191,7 +185,7 @@ export const ExampleForm: FC = () => (
       <FormInputCheckbox label={<h1>Heading Label</h1>} />
     </FormInputCheckboxGroup>
     <Block>
-      <Button>Save</Button>
+      <Button tone="accent">Save</Button>
       <Button variant="subtle">Subtle</Button>
       <Button variant="ghost">Ghost</Button>
     </Block>
