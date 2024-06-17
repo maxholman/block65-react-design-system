@@ -1,13 +1,6 @@
 import { createTheme, type MapLeafNodes } from '@vanilla-extract/css';
 import { buttonVars } from '../buttons.css.js';
-import { defaultThemeVars } from '../core.css.js';
 import { hslVar } from '../utils.js';
-
-const buttonVariantEmptyPlaceholder = {
-  fgColor: '',
-  bgColor: '',
-  borderColor: '',
-};
 
 export const buttonDarkThemeTokens = {
   border: {
@@ -31,7 +24,11 @@ export const buttonDarkThemeTokens = {
         bgColor: hslVar('var(--gray-9-hsl)'),
         borderColor: hslVar('var(--gray-9-hsl)'),
       },
-      active: buttonVariantEmptyPlaceholder,
+      active: {
+        fgColor: hslVar('var(--gray-2-hsl)'),
+        bgColor: hslVar('var(--red-7-hsl)'),
+        borderColor: hslVar('var(--red-9-hsl)'),
+      },
     },
 
     default: {
@@ -41,16 +38,20 @@ export const buttonDarkThemeTokens = {
         borderColor: hslVar('var(--gray-7-hsl)'),
       },
       hover: {
-        ...buttonVariantEmptyPlaceholder,
         fgColor: hslVar('var(--gray-2-hsl)'),
         bgColor: hslVar('var(--gray-8-hsl)'),
+        borderColor: hslVar('var(--gray-7-hsl)'),
       },
       disabled: {
         fgColor: hslVar('var(--gray-5-hsl)'),
         bgColor: hslVar('var(--gray-9-hsl)'),
         borderColor: hslVar('var(--gray-8-hsl)'),
       },
-      active: buttonVariantEmptyPlaceholder,
+      active: {
+        fgColor: hslVar('var(--gray-2-hsl)'),
+        bgColor: hslVar('var(--gray-8-hsl)'),
+        borderColor: hslVar('var(--gray-8-hsl)'),
+      },
     },
 
     primary: {
@@ -60,7 +61,7 @@ export const buttonDarkThemeTokens = {
         borderColor: hslVar('var(--green-6-hsl)'),
       },
       hover: {
-        ...buttonVariantEmptyPlaceholder,
+        fgColor: hslVar('var(--gray-1-hsl)'),
         bgColor: hslVar('var(--green-6-hsl)'),
         borderColor: hslVar('var(--green-7-hsl)'),
       },
@@ -70,44 +71,55 @@ export const buttonDarkThemeTokens = {
         borderColor: hslVar('var(--gray-8-hsl)'),
       },
       active: {
-        ...buttonVariantEmptyPlaceholder,
+        fgColor: hslVar('var(--gray-1-hsl)'),
+        bgColor: hslVar('var(--green-6-hsl)'),
+        borderColor: hslVar('var(--green-7-hsl)'),
       },
     },
 
     inactive: {
       rest: {
-        ...buttonVariantEmptyPlaceholder,
         fgColor: hslVar('var(--gray-4-hsl)'),
         bgColor: hslVar('var(--gray-8-hsl)'),
+        borderColor: hslVar('var(--gray-8-hsl)'),
       },
       active: {
-        ...buttonVariantEmptyPlaceholder,
+        fgColor: hslVar('var(--gray-4-hsl)'),
+        bgColor: hslVar('var(--gray-8-hsl)'),
+        borderColor: hslVar('var(--gray-8-hsl)'),
       },
       disabled: {
-        ...buttonVariantEmptyPlaceholder,
+        fgColor: hslVar('var(--gray-4-hsl)'),
+        bgColor: hslVar('var(--gray-8-hsl)'),
+        borderColor: hslVar('var(--gray-8-hsl)'),
       },
       hover: {
-        ...buttonVariantEmptyPlaceholder,
+        fgColor: hslVar('var(--gray-4-hsl)'),
+        bgColor: hslVar('var(--gray-8-hsl)'),
+        borderColor: hslVar('var(--gray-8-hsl)'),
       },
     },
 
     invisible: {
       rest: {
-        ...buttonVariantEmptyPlaceholder,
+        borderColor: 'transparent',
         fgColor: hslVar('var(--gray-2-hsl)'),
-        bgColor: hslVar(defaultThemeVars.bgColor),
+        bgColor: 'transparent',
       },
       hover: {
-        ...buttonVariantEmptyPlaceholder,
+        borderColor: 'transparent',
+        fgColor: hslVar('var(--gray-2-hsl)'),
         bgColor: hslVar('var(--gray-9-hsl)'),
       },
       disabled: {
-        ...buttonVariantEmptyPlaceholder,
         fgColor: hslVar('var(--gray-6-hsl)'),
+        bgColor: 'transparent',
         borderColor: hslVar('var(--gray-8-hsl)'),
       },
       active: {
-        ...buttonVariantEmptyPlaceholder,
+        borderColor: 'transparent',
+        fgColor: hslVar('var(--gray-2-hsl)'),
+        bgColor: hslVar('var(--gray-10-hsl)'),
       },
     },
   },

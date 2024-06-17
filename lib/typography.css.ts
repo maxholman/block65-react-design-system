@@ -45,7 +45,7 @@ export const secondaryClass = style({
 });
 
 export const strongClass = style({
-  fontWeight: genericVars.text.weight.semiBold,
+  fontWeight: genericVars.text.weight.medium,
 });
 
 export const codeClass = style({
@@ -117,7 +117,7 @@ const levelVariants: Record<HeadingLevel, Array<StyleRule | string>> = {
   ],
   '4': [
     {
-      fontWeight: genericVars.text.weight.semiBold,
+      fontWeight: genericVars.text.weight.medium,
       letterSpacing: '-0.05em',
     },
   ],

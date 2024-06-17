@@ -18,8 +18,7 @@ export const genericThemeTokens = {
       light: '300',
       normal: '400',
       medium: '500',
-      semiBold: '500',
-      bold: '600',
+      bold: '500',
       heavy: '900',
     },
     lineHeight: {

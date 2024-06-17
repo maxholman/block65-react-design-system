@@ -38,7 +38,6 @@ export const genericVars = createThemeContract({
       light: 'text-weight-light',
       normal: 'text-weight-normal',
       medium: 'text-weight-medium',
-      semiBold: 'text-weight-semi-bold',
       bold: 'text-weight-bold',
       heavy: 'text-weight-heavy',
     },

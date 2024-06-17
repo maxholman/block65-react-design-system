@@ -19,7 +19,7 @@ import { CrescentMoonIcon, SunIcon } from './components/icons.js';
 export const ButtonsPage: FC = () => (
   <>
     <Panel>
-      <Heading level="2">Vanilla</Heading>
+      <Heading>Vanilla</Heading>
 
       <Inline flexWrap>
         {(
@@ -38,7 +38,7 @@ export const ButtonsPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Heading level="2">Disabled</Heading>
+      <Heading>Disabled</Heading>
 
       <Inline flexWrap>
         {(
@@ -49,7 +49,7 @@ export const ButtonsPage: FC = () => (
             'invisible',
           ] satisfies ButtonVariant[]
         ).map((variant) => (
-          <Button variant={variant} key={variant}>
+          <Button disabled variant={variant} key={variant}>
             {variant}
           </Button>
         ))}
@@ -57,7 +57,7 @@ export const ButtonsPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Heading level="2">Links</Heading>
+      <Heading>Links</Heading>
 
       <Inline flexWrap>
         {(
@@ -80,7 +80,7 @@ export const ButtonsPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Heading level="2">With Start Icons</Heading>
+      <Heading>With Start Icons</Heading>
 
       <Inline flexWrap>
         {(
@@ -99,7 +99,7 @@ export const ButtonsPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Heading level="2">With End Icons</Heading>
+      <Heading>With End Icons</Heading>
 
       <Inline flexWrap>
         {(
@@ -122,7 +122,7 @@ export const ButtonsPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Heading level="2">Button Icons</Heading>
+      <Heading>Button Icons</Heading>
       <Inline>
         <ButtonIcon icon={<SunIcon />} label="Sun" />
         <ButtonIcon icon={<SunIcon />} label="Sun" />
@@ -137,7 +137,7 @@ export const ButtonsPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Heading level="2">Busy Buttons</Heading>
+      <Heading>Busy Buttons</Heading>
       <ExactText>These buttons are super busy</ExactText>
       <Inline flexWrap>
         <Button busy>Button</Button>
@@ -150,26 +150,8 @@ export const ButtonsPage: FC = () => (
       </Inline>
     </Panel>
 
-    <>
-      <Block>
-        <Heading level="2">Disabled Buttons</Heading>
-        <ExactText>These buttons are physically challenged</ExactText>
-        {[false, true].map((disabled) => (
-          <Block key={String(disabled)}>
-            <Inline>
-              <Button disabled={disabled}>Button</Button>
-              <Button disabled={disabled}>Ghost</Button>
-              <Button disabled={disabled}>Subtle</Button>
-              <Button disabled={disabled}>Positive</Button>
-              <Button disabled={disabled}>Transparent</Button>
-            </Inline>
-          </Block>
-        ))}
-      </Block>
-    </>
-
     <Block>
-      <Heading level="2">Growing Shrinking Buttons</Heading>
+      <Heading>Growing Shrinking Buttons</Heading>
       <Inline>
         <Button flexShrink>A</Button>
         <Button flexGrow>B</Button>
@@ -181,7 +163,7 @@ export const ButtonsPage: FC = () => (
     </Block>
 
     <Panel>
-      <Heading level="2">capSize="0" Buttons</Heading>
+      <Heading>capSize="0" Buttons</Heading>
       <ExactText>So cute</ExactText>
       <Inline>
         <Button capSize="0">Button</Button>
@@ -240,7 +222,7 @@ export const ButtonsPage: FC = () => (
     <Panel>
       <Heading>Unstyled Buttons</Heading>
       <UnstyledButton flexDirection="column" space="5">
-        <Heading level="2">Things</Heading>
+        <Heading>Things</Heading>
         <ExactText secondary>Stuff</ExactText>
         <ExactText secondary>Stuff</ExactText>
         <ExactText secondary>Stuff</ExactText>

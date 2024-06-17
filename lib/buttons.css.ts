@@ -1,6 +1,5 @@
 import {
   createThemeContract,
-  fallbackVar,
   style,
   styleVariants,
 } from '@vanilla-extract/css';
@@ -39,12 +38,12 @@ type ButtonStateVars = {
   };
 };
 
-const buttonStateVars: ButtonStateVars = {
+const buttonStateVars = {
   rest: { bgColor: '', fgColor: '', borderColor: '' },
   hover: { bgColor: '', fgColor: '', borderColor: '' },
   disabled: { bgColor: '', fgColor: '', borderColor: '' },
   active: { bgColor: '', fgColor: '', borderColor: '' },
-};
+} as const;
 
 export const buttonVars = createThemeContract({
   border: {
@@ -71,21 +70,22 @@ export const buttonVariantClassNames = styleVariants(
   (v) => ({
     color: v.rest.fgColor,
     backgroundColor: v.rest.bgColor,
-    borderColor: fallbackVar(v.rest.borderColor, v.rest.bgColor),
+    borderColor: v.rest.borderColor,
     selectors: {
       '&:hover': {
+        color: v.hover.fgColor,
         backgroundColor: v.hover.bgColor,
-        borderColor: fallbackVar(v.hover.borderColor, v.hover.bgColor),
+        borderColor: v.hover.borderColor,
       },
       '&:disabled': {
         color: v.disabled.fgColor,
         backgroundColor: v.disabled.bgColor,
-        borderColor: fallbackVar(v.disabled.borderColor, v.disabled.bgColor),
+        borderColor: v.disabled.borderColor,
       },
       '&:active': {
         color: v.active.fgColor,
         backgroundColor: v.active.bgColor,
-        borderColor: fallbackVar(v.active.borderColor, v.active.bgColor),
+        borderColor: v.active.borderColor,
       },
     },
   }),
