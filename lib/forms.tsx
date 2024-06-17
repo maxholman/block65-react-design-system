@@ -45,7 +45,7 @@ import { useToggle } from './hooks/use-toggle.js';
 import { PasswordInvisibleIcon, PasswordVisibleIcon } from './icons.js';
 import { Block, Inline, type BlockProps } from './layout.js';
 import type { Merge } from './types.js';
-import { Secondary, Strong, Text } from './typography.js';
+import { Secondary, Strong, ExactText } from './typography.js';
 import {
   cloneElementIfValidElementOfType,
   isValidElementOfType,
@@ -72,21 +72,22 @@ export type FormInputProps = Merge<
   CommonFormInputProps
 >;
 
-export const Form = forwardRef<
-  HTMLFormElement,
-  PropsWithChildren<BlockProps<'form'>>
->(({ space = '9', children, ...props }, ref) => (
-  <Block space={space} component="form" {...props} ref={ref}>
-    {Children.map(children, (child) => {
-      // if it's a block element and no space is defined, use the space this
-      // component has been given
-      if (isValidElementOfType(child, Block) && !child.props.space) {
-        return cloneElement(child, { ...child.props, space });
-      }
-      return child;
-    })}
-  </Block>
-));
+export type FormProps = BlockProps<'form'>;
+
+export const Form = forwardRef<HTMLFormElement, PropsWithChildren<FormProps>>(
+  ({ space = '9', children, ...props }, ref) => (
+    <Block space={space} component="form" {...props} ref={ref}>
+      {Children.map(children, (child) => {
+        // if it's a block element and no space is defined, use the space this
+        // component has been given
+        if (isValidElementOfType(child, Block) && !child.props.space) {
+          return cloneElement(child, { ...child.props, space });
+        }
+        return child;
+      })}
+    </Block>
+  ),
+);
 
 export const FormInputLabel: FC<
   PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>> & {
@@ -122,7 +123,7 @@ export const FormInputLabel: FC<
 
 export const FormInputMessage: FC<Pick<FormInputProps, 'message'>> = ({
   message,
-}) => <Text fontSize="0">{message}</Text>;
+}) => <ExactText fontSize="0">{message}</ExactText>;
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (
@@ -358,9 +359,9 @@ export const FormSelect: FC<FormSelectProps> = ({
       </div>
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0">
+          <ExactText secondary fontSize="0">
             {message}
-          </Text>
+          </ExactText>
         ) : (
           message
         ))}
@@ -407,22 +408,26 @@ const FormInputCheckRadio: FC<
       />
       {label &&
         (isStringLike(label) ? (
-          <Text
+          <ExactText
             component="label"
             className={[inputLabelStyle, formInputCheckRadioLabel]}
             secondary={!!props.disabled}
             htmlFor={id}
           >
             {label}
-          </Text>
+          </ExactText>
         ) : (
           <Box className={formInputCheckRadioLabel}>{label}</Box>
         ))}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0" className={formInputCheckRadioMessage}>
+          <ExactText
+            secondary
+            fontSize="0"
+            className={formInputCheckRadioMessage}
+          >
             {message}
-          </Text>
+          </ExactText>
         ) : (
           <Box className={formInputCheckRadioLabel}>{message}</Box>
         ))}
@@ -469,9 +474,9 @@ export const FormInputRadioGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0">
+          <ExactText secondary fontSize="0">
             {message}
-          </Text>
+          </ExactText>
         ) : (
           message
         ))}
@@ -518,9 +523,9 @@ export const FormInputCheckboxGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0">
+          <ExactText secondary fontSize="0">
             {message}
-          </Text>
+          </ExactText>
         ) : (
           message
         ))}
@@ -614,9 +619,9 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         />
         {message && (
           <Inline>
-            <Text fontSize="0">
+            <ExactText fontSize="0">
               <Secondary>{message}</Secondary>
-            </Text>
+            </ExactText>
           </Inline>
         )}
       </Block>

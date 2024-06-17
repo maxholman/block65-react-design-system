@@ -1,6 +1,5 @@
 import { useRef, useState, type FC, useEffect } from 'react';
-import { Block, Heading } from '../../lib/main.js';
-import { Panel } from '../reference-impl/main.js';
+import { Panel, Block, Heading } from '../../lib/main.js';
 
 export const DropdownMenuPage: FC = () => {
   const ref = useRef<HTMLIFrameElement | null>(null);
@@ -25,7 +24,7 @@ export const DropdownMenuPage: FC = () => {
   }, []);
 
   return (
-    <Panel variant="ghost" flexGrow>
+    <Panel flexGrow>
       <Heading level="1">Best dropdown eva</Heading>
       <Block
         component="iframe"

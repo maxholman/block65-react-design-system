@@ -1,42 +1,52 @@
 
 SRCS = $(wildcard lib/**)
 
-.PHONY: all
-all: build
+.DEFAULT_GOAL := build types
 
 node_modules: package.json pnpm-lock.yaml
 	pnpm install
 	touch $@
 
-bin/token.js: meta-bundle tsconfig-node.json
-	pnpm exec tsc -p tsconfig-node.json
+bin/token.js: dist build
 
-build/tokens.scss: bin/token.js meta-bundle
+tsconfig.json: tsconfig-vite.src.json
+	pnpm exec tsc -p tsconfig-vite.src.json --showConfig 1> $@
+
+src/rds.module.scss: bin/token.js build
 	node $< > $@
-	pnpm exec tsc -b tsconfig-node.json --clean
+	prettier --write $@
 
-.PHONY: meta-bundle
-meta-bundle: $(SRCS) node_modules vite.config.ts types
-	NODE_ENV=production pnpm vite build
-	touch build
+build: $(SRCS) node_modules vite.config.ts vite-env.d.ts
+	NODE_ENV=production pnpm exec vite build
+	touch $@
 
-build: meta-bundle build/tokens.scss
+.PHONY: build-watch
+build-watch: $(SRCS) node_modules vite.config.ts vite-env.d.ts
+	pnpm exec vite build --mode=development --clearScreen false
+	touch $@
 
+.PHONY: dev-server
+dev-server: node_modules vite.config.ts
+	pnpm exec vite dev --mode=development --clearScreen false
+
+dist-watch: node_modules tsconfig.json
+	pnpm exec tsc --emitDeclarationOnly --noEmit null -w --preserveWatchOutput
+
+.PHONY: dev
+dev:
+	NODE_ENV=development $(MAKE) -j 3 build-watch dev-server dist-watch
+
+.PHONY: debug
 debug:
 	DEBUG_BUILD=1 $(MAKE)
 
-.PHONY: types
-types: node_modules tsconfig.json
-	pnpm exec tsc --emitDeclarationOnly
-
-.PHONY: types-watch
-types-watch: node_modules tsconfig.json
-	pnpm exec tsc --emitDeclarationOnly -w
+dist: node_modules tsconfig.json
+	pnpm exec tsc --emitDeclarationOnly --noEmit null
 
 .PHONY: clean
 clean: node_modules tsconfig.json
 	pnpm exec tsc -b --clean
-	pnpm exec tsc -b tsconfig-node.json --clean
+	pnpm exec tsc -b tsconfig.node.json --clean
 	rm -rf build dist
 
 .PHONY: clean
@@ -49,25 +59,9 @@ test: node_modules tsconfig.json vite.config.ts
 	pnpm exec tsc --noEmit
 	DEBUG_BUILD=true pnpm vitest run
 	$(MAKE) build
-	pnpm bundlesize
-
-.PHONY: dev
-dev:
-	$(MAKE) -j 2 types-watch dev-server
-
-.PHONY: dev-server
-dev-server: node_modules vite.config.ts
-	pnpm vite dev
-
-.PHONY: lint
-lint: node_modules
-	pnpm eslint  .
-	pnpm prettier --check .
+	pnpm exec bundlesize
 
 .PHONY: pretty
 pretty: node_modules
-	pnpm eslint --fix .
-	pnpm prettier --write .
-
-tsconfig.json: tsconfig-vite.src.json
-	pnpm exec tsc -p tsconfig-vite.src.json --showConfig > $@
+	pnpm exec eslint --fix .
+	pnpm exec prettier --write .

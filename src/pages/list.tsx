@@ -8,15 +8,16 @@ import {
   List,
   ListItem,
   Secondary,
-  Text,
+  ExactText,
   Tooltip,
+  Button,
+  Panel,
 } from '../../lib/main.js';
-import { Button, Panel } from '../reference-impl/main.js';
 
 export const ListPage: FC = () => (
   <>
-    <Panel variant="ghost">
-      <Text>
+    <Panel>
+      <ExactText>
         Question Mark{' '}
         <Tooltip
           initialOpen
@@ -25,37 +26,37 @@ export const ListPage: FC = () => (
         >
           <HelpIcon />
         </Tooltip>
-      </Text>
+      </ExactText>
     </Panel>
 
-    <Panel variant="ghost">
+    <Panel>
       <Grid>
-        <Panel variant="ghost">
+        <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Early Adopter Plan</Heading>
-            <Text fontSize="0">
+            <ExactText fontSize="0">
               <Secondary>For those who like to adopt early </Secondary>
-            </Text>
+            </ExactText>
           </Block>
           <Block>
-            <Text>
+            <ExactText>
               Ex veniam cillum aliquip. Irure ex sunt excepteur ea commodo duis
               reprehenderit. Qui duis cupidatat mollit laboris mollit proident
               velit magna. Excepteur anim est pariatur. Also, look at this icon{' '}
               <Tooltip content={<span>This is more information.</span>}>
                 <HelpIcon />
               </Tooltip>
-            </Text>
+            </ExactText>
           </Block>
           <Block>
-            <Text>
+            <ExactText>
               Qui duis cupidatat mollit laboris mollit.Excepteur anim est
               pariatur.
-            </Text>
-            <Text>
+            </ExactText>
+            <ExactText>
               Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
               excepteur ea commodo duis reprehenderit.
-            </Text>
+            </ExactText>
           </Block>
           <Block>
             <List>
@@ -95,22 +96,22 @@ export const ListPage: FC = () => (
           <Block marginBlock="4" alignItems="center">
             <Inline>
               <Heading level="1">$18 USD</Heading>
-              <Text fontSize="0">p/m</Text>
+              <ExactText fontSize="0">p/m</ExactText>
             </Inline>
           </Block>
 
           <Button>Upgrade Now</Button>
         </Panel>
 
-        <Panel variant="ghost">
+        <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Custom Plan</Heading>
-            <Text fontSize="0">
+            <ExactText fontSize="0">
               <Secondary>Want more?</Secondary>
-            </Text>
+            </ExactText>
           </Block>
-          <Text>We can do customised models and payment terms</Text>
-          <Text>No wuckers</Text>
+          <ExactText>We can do customised models and payment terms</ExactText>
+          <ExactText>No wuckers</ExactText>
           <Button>Contact Us</Button>
         </Panel>
       </Grid>

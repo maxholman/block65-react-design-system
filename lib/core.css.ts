@@ -1,11 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
+  createThemeContract,
   style,
   styleVariants,
   type ComplexStyleRule,
   type StyleRule,
 } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
@@ -21,6 +20,97 @@ export type OrResponsive<T> = T | Responsive<T>;
 export type Falsy = false | null | undefined;
 
 export type Rounded = '0' | '1' | '2' | '3' | '50';
+
+export const genericVars = createThemeContract({
+  text: {
+    capHeights: {
+      '00': 'cap-height-00',
+      '0': 'cap-height-0',
+      '1': 'cap-height-1',
+      '2': 'cap-height-2',
+      '3': 'cap-height-3',
+      '4': 'cap-height-4',
+      '5': 'cap-height-5',
+    },
+    weight: {
+      thin: 'text-weight-thin',
+      extraLight: 'text-weight-extra-light',
+      light: 'text-weight-light',
+      normal: 'text-weight-normal',
+      medium: 'text-weight-medium',
+      semiBold: 'text-weight-semi-bold',
+      bold: 'text-weight-bold',
+      heavy: 'text-weight-heavy',
+    },
+    lineHeight: {
+      normal: 'text-line-height-normal',
+      paragraph: 'text-line-height-paragraph',
+      heading: 'text-line-height-heading',
+    },
+  },
+  border: {
+    width: {
+      '0': 'border-width-0',
+      '1': 'border-width-1',
+      '2': 'border-width-2',
+      '3': 'border-width-3',
+      '4': 'border-width-4',
+      '5': 'border-width-5',
+      '6': 'border-width-6',
+      '7': 'border-width-7',
+    },
+  },
+  radius: {
+    0: 'radius-0',
+    1: 'radius-1',
+    2: 'radius-2',
+    3: 'radius-3',
+    50: 'radius-50',
+  },
+  space: {
+    '000': 'space-000',
+    '00': 'space-00',
+    '0': 'space-0',
+    '1': 'space-1',
+    '2': 'space-2',
+    '3': 'space-3',
+    '4': 'space-4',
+    '5': 'space-5',
+    '6': 'space-6',
+    '7': 'space-7',
+    '8': 'space-8',
+    '9': 'space-9',
+    '10': 'space-10',
+    '11': 'space-11',
+    '12': 'space-12',
+    '13': 'space-13',
+    '14': 'space-14',
+    '15': 'space-15',
+    '16': 'space-16',
+  },
+});
+
+export const boxVars = createThemeContract({
+  border: {
+    radius: '',
+    width: '',
+  },
+  bgColor: {
+    default: '',
+    hover: '',
+    active: '',
+  },
+  borderColor: {
+    default: '',
+    hover: '',
+    active: '',
+  },
+  fgColor: {
+    default: '',
+    hover: '',
+    active: '',
+  },
+});
 
 export const roundedVariants = styleVariants(genericVars.radius, (v) => [
   {
@@ -341,5 +431,11 @@ export const borderWidthVariants = styleVariants(
 
 // this must be defined after other display styles so that it takes precedence
 export const hiddenClass = style({
-  display: 'none',
+  display: 'none!important',
+});
+
+export const defaultThemeVars = createThemeContract({
+  fgColor: '',
+  bgColor: '',
+  borderColor: '',
 });

@@ -1,6 +1,5 @@
 import type { FC } from 'react';
-import { Block, Box, Code } from '../../lib/main.js';
-import { Panel } from '../reference-impl/main.js';
+import { Block, Box, Code, Panel } from '../../lib/main.js';
 
 export const CorePage: FC = () => (
   <>

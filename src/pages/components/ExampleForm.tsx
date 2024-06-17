@@ -16,8 +16,9 @@ import {
   Inline,
   Strong,
   TextLink,
+  Button,
+  ExactText,
 } from '../../../lib/main.js';
-import { Button, Text } from '../../reference-impl/main.js';
 
 export const ExampleForm: FC = () => (
   <Form>
@@ -36,12 +37,12 @@ export const ExampleForm: FC = () => (
       name="first"
       defaultValue="Queen"
       description="What even is the description?"
-      message={<Text tone="warn">Don't write Queen in this field please</Text>}
+      message={<ExactText>Don't write Queen in this field please</ExactText>}
     />
     <FormInputEmail
       label="Email Address"
       name="email"
-      message={<Text tone="warn">Work email address only</Text>}
+      message={<ExactText>Work email address only</ExactText>}
     />
     <FormInputOrigin
       label="Origin"
@@ -53,7 +54,7 @@ export const ExampleForm: FC = () => (
       label="Password"
       name="password"
       defaultValue="secret"
-      message={<Text tone="critical">Tap to reveal</Text>}
+      message={<ExactText>Tap to reveal</ExactText>}
       behaviour="reveal"
     />
     <FormInputPassword
@@ -61,7 +62,7 @@ export const ExampleForm: FC = () => (
       name="password"
       defaultValue="verysecret"
       behaviour="toggle"
-      message={<Text tone="promo">Tap to toggle</Text>}
+      message={<ExactText>Tap to toggle</ExactText>}
     />
 
     <FormSelect
@@ -90,7 +91,7 @@ export const ExampleForm: FC = () => (
         label="Password"
         name="password"
         defaultValue="secret"
-        message={<Text tone="critical">Tap to reveal</Text>}
+        message={<ExactText>Tap to reveal</ExactText>}
         behaviour="reveal"
       />
       <FormInputPassword
@@ -98,7 +99,7 @@ export const ExampleForm: FC = () => (
         name="password"
         defaultValue="verysecret"
         behaviour="toggle"
-        message={<Text tone="promo">Tap to toggle</Text>}
+        message={<ExactText>Tap to toggle</ExactText>}
       />
     </Grid>
 
@@ -151,7 +152,7 @@ export const ExampleForm: FC = () => (
     <FormSelect
       multiple
       label="Other months you might like"
-      description={<Text>Choose 2 only please</Text>}
+      description={<ExactText>Choose 2 only please</ExactText>}
       defaultValue={['Feb', 'Mar']}
     >
       <option value="Jan">Jan</option>
@@ -185,9 +186,9 @@ export const ExampleForm: FC = () => (
       <FormInputCheckbox label={<h1>Heading Label</h1>} />
     </FormInputCheckboxGroup>
     <Block>
-      <Button tone="accent">Save</Button>
-      <Button variant="subtle">Subtle</Button>
-      <Button variant="ghost">Ghost</Button>
+      <Button>Save</Button>
+      <Button>Subtle</Button>
+      <Button>Ghost</Button>
     </Block>
   </Form>
 );

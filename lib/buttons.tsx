@@ -7,18 +7,27 @@ import {
   type ReactElement,
 } from 'react';
 import {
+  type ButtonVariant,
   busyButtonClass,
   buttonClassName,
   iconClass,
   inlineBleedClass,
   visiblyHiddenClass,
+  buttonVariantClassNames,
 } from './buttons.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import type { Falsy } from './core.css.js';
 import { Box } from './core.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { Text } from './typography.js';
+import { ExactText } from './typography.js';
+
+// Extracted out to its own type because `isValidElement` and `ReactElement`
+// don't have the same default value for props, so we need to specify it in
+// code later. This keeps it clean if/when we remove it in future and avoids
+// a stray `any`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ReactElementDefaultPropsType = any;
 
 export type ButtonCommonProps = {
   busy?: boolean | undefined;
@@ -28,6 +37,8 @@ export type ButtonCommonProps = {
   icon?: ReactElement | FC | Falsy;
   iconStart?: ReactElement | FC | Falsy;
   iconEnd?: ReactElement | FC | Falsy;
+
+  variant?: ButtonVariant | Falsy;
 };
 
 export type ButtonLinkProps = Merge<
@@ -38,14 +49,7 @@ export type ButtonLinkProps = Merge<
 >;
 
 export type ButtonProps<T extends keyof ReactHTMLElementsHacked = 'button'> =
-  Merge<FlexProps<T>, ButtonCommonProps>;
-
-// Extracted out to its own type because `isValidElement` and `ReactElement`
-// don't have the same default value for props, so we need to specify it in
-// code later. This keeps it clean if/when we remove it in future and avoids
-// a stray `any`
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ReactElementDefaultPropsType = any;
+  Merge<Omit<FlexProps<T>, 'fontSize'>, ButtonCommonProps>;
 
 export type ButtonIconProps<
   T extends keyof ReactHTMLElementsHacked = 'button',
@@ -57,6 +61,7 @@ export type ButtonIconProps<
   }
 >;
 
+/** @private */
 const IconBox: FC<{
   icon: ReactElement | FC;
   busy?: boolean | Falsy;
@@ -102,12 +107,13 @@ export const Button = forwardRef(
       paddingBlock,
       paddingInline,
       flexGrow,
+      capSize = '1',
+      variant = 'default',
       ...props
     }: ButtonProps<T>,
     ref: ForwardedRef<HTMLElement>,
   ) => {
     const baseProps = {
-      capSize: '1',
       paddingBlock:
         paddingBlock === null ? paddingBlock : paddingBlock || padding || '6',
 
@@ -130,6 +136,7 @@ export const Button = forwardRef(
         {...props}
         className={[
           className,
+          variant && buttonVariantClassNames[variant],
           busy && busyButtonClass,
           inline && inlineBleedClass,
         ]}
@@ -137,16 +144,16 @@ export const Button = forwardRef(
         {iconStart && <IconBox icon={iconStart} busy={busy} />}
 
         {children && (
-          <Text
+          <ExactText
             component="div"
             textAlign={textAlign}
-            capSize={baseProps.capSize}
+            capSize={capSize}
             className={[busy && visiblyHiddenClass]}
             aria-hidden={busy || undefined}
             aria-live={busy ? 'polite' : undefined}
           >
             {children}
-          </Text>
+          </ExactText>
         )}
 
         {iconEnd && <IconBox icon={iconEnd} busy={busy} />}

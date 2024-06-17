@@ -8,7 +8,7 @@ import {
   FormInputEmail,
   FormInputPassword,
   Inline,
-  Text,
+  ExactText,
   TextLink,
 } from '../../lib/main.js';
 
@@ -38,9 +38,9 @@ export const LoginPattern = () => (
       Login with GitHub
     </Button>
     <Inline justifyContent="center">
-      <Text secondary>
+      <ExactText secondary>
         <TextLink weight="none">Don't have an account? Sign up</TextLink>
-      </Text>
+      </ExactText>
     </Inline>
   </Block>
 );

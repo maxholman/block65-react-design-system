@@ -9,7 +9,7 @@ import { Box, type BoxProps } from './core.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
 import { InfoIcon } from './icons.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { Text } from './typography.js';
+import { ExactText } from './typography.js';
 import { isValidElementOfType } from './utils.js';
 
 type CalloutCommonProps = {
@@ -28,7 +28,7 @@ export const Callout: FC<CalloutProps> = ({
 }) => {
   ifDebugBuild(() => {
     if (
-      isValidElementOfType(children, Text) &&
+      isValidElementOfType(children, ExactText) &&
       Children.count(children) === 1
     ) {
       debugLogger(
@@ -52,14 +52,14 @@ export const Callout: FC<CalloutProps> = ({
         <InfoIcon className={calloutTextIconClass} />
       </div>
 
-      {isValidElementOfType(children, Text) ? (
+      {isValidElementOfType(children, ExactText) ? (
         cloneElement(children, {
           className: calloutTextClass,
         })
       ) : (
-        <Text capSize="1" className={calloutTextClass}>
+        <ExactText capSize="1" className={calloutTextClass}>
           {children}
-        </Text>
+        </ExactText>
       )}
     </Box>
   );

@@ -5,9 +5,9 @@ import {
   Block,
   Button,
   Heading,
-  Text,
+  ExactText,
+  Panel,
 } from '../../lib/main.js';
-import { Panel } from '../reference-impl/main.js';
 
 export const SelectorPattern = () => (
   <Link href="">
@@ -17,7 +17,7 @@ export const SelectorPattern = () => (
       </Block>
       <Block flexGrow justifyContent="center">
         <Heading level="5">Hello good evening</Heading>
-        <Text>I trust you are well</Text>
+        <ExactText>I trust you are well</ExactText>
       </Block>
 
       <Block justifyContent="center">

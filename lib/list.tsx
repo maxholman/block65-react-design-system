@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import type { Space } from './core.css.js';
 import { Box, type BoxProps } from './core.js';

@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { styleVariants, type ComplexStyleRule } from '@vanilla-extract/css';
 
 export type Placement = 'start' | 'center' | 'end';

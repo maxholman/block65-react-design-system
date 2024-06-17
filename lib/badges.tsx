@@ -9,7 +9,7 @@ import type { BoxProps } from './core.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { Text } from './typography.js';
+import { ExactText } from './typography.js';
 
 export type BadgeProps<T extends keyof ReactHTMLElementsHacked> =
   PropsWithChildren<InlineProps<T>>;
@@ -32,14 +32,14 @@ export const Badge = forwardRef(
         ref={forwardedRef}
       >
         {isStringLike(children) ? (
-          <Text
+          <ExactText
             capSize="0"
             fontWeight="medium"
             textOverflow="ellipsis"
             textAlign="center"
           >
             {children}
-          </Text>
+          </ExactText>
         ) : (
           children
         )}

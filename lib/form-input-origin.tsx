@@ -108,7 +108,6 @@ export const FormInputOrigin = forwardRef<
 
     const finalValidity = useMemo(() => {
       if (syntacticallyValidValueAsUrl && !dns.busy && dns.response) {
-        // eslint-disable-next-line default-case
         switch (dns.response.Status) {
           case ReturnCode.NoError:
             break;

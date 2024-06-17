@@ -8,10 +8,8 @@ import {
 import { useSettings } from './use-settings.js';
 
 export const SettingsPanel: FC = () => {
-  const [
-    { colorScheme, contrastScheme },
-    { setColorScheme, setContrastScheme },
-  ] = useSettings();
+  const [{ colorScheme, colorTheme }, { setColorScheme, setColorTheme }] =
+    useSettings();
 
   return (
     <Grid
@@ -47,20 +45,20 @@ export const SettingsPanel: FC = () => {
         <FormInputRadio
           // inline
           label="auto"
-          checked={!contrastScheme || contrastScheme === 'auto'}
-          onChange={() => setContrastScheme('auto')}
+          checked={!colorTheme || colorTheme === 'auto'}
+          onChange={() => setColorTheme('auto')}
         />
         <FormInputRadio
           // inline
           label="force less contrast"
-          checked={contrastScheme === 'less'}
-          onChange={() => setContrastScheme('less')}
+          checked={colorTheme === 'low-contrast'}
+          onChange={() => setColorTheme('low-contrast')}
         />
         <FormInputRadio
           // inline
-          label="force more contrast"
-          checked={contrastScheme === 'more'}
-          onChange={() => setContrastScheme('more')}
+          label="force high contrast"
+          checked={colorTheme === 'high-contrast'}
+          onChange={() => setColorTheme('high-contrast')}
         />
       </FormInputRadioGroup>
     </Grid>

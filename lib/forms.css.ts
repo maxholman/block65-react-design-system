@@ -1,6 +1,6 @@
 import { createVar, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { genericVars } from './design-system.css.js';
+import { genericVars } from './core.css.js';
 import {
   focusColorVar,
   focusVisibleClassName,

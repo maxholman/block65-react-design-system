@@ -1,30 +1,16 @@
 import type { FC } from 'react';
-import { Grid, Heading, Inline, Text } from '../../lib/main.js';
 import {
   Badge,
+  ExactText,
+  Grid,
+  Heading,
+  Inline,
   Panel,
-  type BoxVariant,
-  type Tone,
-} from '../reference-impl/main.js';
-
-const badgeVariantNames: BoxVariant[] = [
-  'solid',
-  'subtle',
-  'ghost',
-  'transparent',
-];
-
-const badgeToneNames: Tone[] = [
-  'critical',
-  'positive',
-  'info',
-  'warn',
-  'promo',
-];
+} from '../../lib/main.js';
 
 export const BadgesPage: FC = () => (
   <>
-    <Panel variant="ghost">
+    <Panel>
       <Heading>Variants</Heading>
 
       <Grid
@@ -34,22 +20,14 @@ export const BadgesPage: FC = () => (
           mobile: 1,
         }}
       >
-        {badgeVariantNames.map((variant) => (
-          <Panel variant="subtle" key={variant}>
-            <Heading level="4">{variant}</Heading>
-            <Inline flexWrap>
-              {badgeToneNames.map((tone) => (
-                <Badge variant={variant} tone={tone} key={tone}>
-                  {tone}
-                </Badge>
-              ))}
-            </Inline>
-          </Panel>
-        ))}
+        <Panel>
+          <Heading level="4">hello</Heading>
+          <Badge>tone</Badge>
+        </Panel>
       </Grid>
     </Panel>
 
-    <Panel variant="ghost">
+    <Panel>
       <Heading>Examples</Heading>
       <Grid
         cols={{
@@ -58,42 +36,42 @@ export const BadgesPage: FC = () => (
           mobile: 1,
         }}
       >
-        <Panel variant="subtle">
+        <Panel>
           <Inline>
             <Heading level="4">Default Badge</Heading>
             <Badge>Active</Badge>
           </Inline>
-          <Text>And some text</Text>
+          <ExactText>And some text</ExactText>
         </Panel>
         <Panel>
           <Inline>
             <Heading level="4" textOverflow="ellipsis">
               DBS Visa 4352
             </Heading>
-            <Badge tone="warn">Expires Soon</Badge>
+            <Badge>Expires Soon</Badge>
           </Inline>
-          <Text>And some text</Text>
+          <ExactText>And some text</ExactText>
         </Panel>
-        <Panel variant="transparent">
+        <Panel>
           <Inline>
             <Heading level="4">Default Badge</Heading>
-            <Badge tone="promo">50% Off</Badge>
+            <Badge>50% Off</Badge>
           </Inline>
-          <Text>And some text</Text>
+          <ExactText>And some text</ExactText>
         </Panel>
-        <Panel variant="ghost">
+        <Panel>
           <Inline>
             <Heading level="4">Trial Account</Heading>
-            <Badge tone="critical">Expired</Badge>
+            <Badge>Expired</Badge>
           </Inline>
-          <Text>Upgrade now</Text>
+          <ExactText>Upgrade now</ExactText>
         </Panel>
-        <Panel variant="ghost">
+        <Panel>
           <Inline>
             <Heading level="4">Messages (4)</Heading>
-            <Badge tone="positive">New</Badge>
+            <Badge>New</Badge>
           </Inline>
-          <Text>You've got mail!</Text>
+          <ExactText>You've got mail!</ExactText>
         </Panel>
       </Grid>
     </Panel>

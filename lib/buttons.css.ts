@@ -1,8 +1,64 @@
-import { style } from '@vanilla-extract/css';
+import {
+  createThemeContract,
+  fallbackVar,
+  style,
+  styleVariants,
+} from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { genericVars } from './design-system.css.js';
+import { genericVars } from './core.css.js';
 import { rotate } from './keyframes.css.js';
 import { currentCapHeight } from './typography.css.js';
+
+export type ButtonVariant =
+  | 'default'
+  | 'danger'
+  | 'invisible'
+  | 'inactive'
+  | 'primary';
+
+type ButtonStateVars = {
+  rest: {
+    bgColor: string;
+    fgColor: string;
+    borderColor: string;
+  };
+  hover: {
+    fgColor: string;
+    bgColor: string;
+    borderColor: string;
+  };
+  disabled: {
+    bgColor: string;
+    fgColor: string;
+    borderColor: string;
+  };
+  active: {
+    bgColor: string;
+    fgColor: string;
+    borderColor: string;
+  };
+};
+
+const buttonStateVars: ButtonStateVars = {
+  rest: { bgColor: '', fgColor: '', borderColor: '' },
+  hover: { bgColor: '', fgColor: '', borderColor: '' },
+  disabled: { bgColor: '', fgColor: '', borderColor: '' },
+  active: { bgColor: '', fgColor: '', borderColor: '' },
+};
+
+export const buttonVars = createThemeContract({
+  border: {
+    radius: '',
+    width: '',
+  },
+  variant: {
+    default: buttonStateVars,
+    danger: buttonStateVars,
+    primary: buttonStateVars,
+    invisible: buttonStateVars,
+    inactive: buttonStateVars,
+  } satisfies Record<ButtonVariant, ButtonStateVars>,
+});
 
 export const iconClass = style({
   height: currentCapHeight,
@@ -10,15 +66,42 @@ export const iconClass = style({
   lineHeight: 0,
 });
 
+export const buttonVariantClassNames = styleVariants(
+  buttonVars.variant,
+  (v) => ({
+    color: v.rest.fgColor,
+    backgroundColor: v.rest.bgColor,
+    borderColor: fallbackVar(v.rest.borderColor, v.rest.bgColor),
+    selectors: {
+      '&:hover': {
+        backgroundColor: v.hover.bgColor,
+        borderColor: fallbackVar(v.hover.borderColor, v.hover.bgColor),
+      },
+      '&:disabled': {
+        color: v.disabled.fgColor,
+        backgroundColor: v.disabled.bgColor,
+        borderColor: fallbackVar(v.disabled.borderColor, v.disabled.bgColor),
+      },
+      '&:active': {
+        color: v.active.fgColor,
+        backgroundColor: v.active.bgColor,
+        borderColor: fallbackVar(v.active.borderColor, v.active.bgColor),
+      },
+    },
+  }),
+);
+
 export const buttonClassName = style([
   {
     cursor: 'pointer',
     userSelect: 'none',
+    borderRadius: buttonVars.border.radius,
+    borderWidth: buttonVars.border.width,
     selectors: {
       '&[disabled]': {
         pointerEvents: 'none',
         cursor: 'default',
-        filter: 'grayscale(1)',
+        // filter: 'grayscale(1)',
       },
 
       // keyboard

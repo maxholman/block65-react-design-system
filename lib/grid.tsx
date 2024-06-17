@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Children, type ReactElement } from 'react';
 import { matchViewportVariants } from './component-utils.js';
 import {

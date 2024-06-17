@@ -2,21 +2,18 @@ import { Link } from '@block65/mrr';
 import type { FC } from 'react';
 import {
   Avatar,
+  ExactText,
   Grid,
   Inline,
   Menu,
   MenuItem,
+  type MenuProps,
   TextLink,
   UnstyledButton,
-  type Falsy,
-  type MenuProps,
 } from '../../lib/main.js';
-import type { BoxVariant, Tone } from '../reference-impl/main.js';
-import { Text } from '../reference-impl/main.js';
 
 type ThisMenuProps = MenuProps & {
-  variant?: BoxVariant | Falsy;
-  tone?: Tone | Falsy;
+  // variant?: BoxVariant | Falsy;
 };
 
 const RandomMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
@@ -31,14 +28,14 @@ const RandomMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
   >
     {Array.from({ length: 99 }).map((_, idx, arr) => (
       <MenuItem key={idx} label={(arr.length - idx).toString()}>
-        <Text tone="accent">
+        <ExactText>
           <Link href="/modals">
             <TextLink weight="weak" padding="3">
               {arr.length - idx} Bottles
             </TextLink>
             {/* <ButtonLink rounded="none">{arr.length - idx} Bottles</ButtonLink> */}
           </Link>
-        </Text>
+        </ExactText>
       </MenuItem>
     ))}
   </Menu>
@@ -59,13 +56,13 @@ const CustomActivatorMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
   >
     {Array.from({ length: 99 }).map((_, idx, arr) => (
       <MenuItem key={idx} label={(arr.length - idx).toString()}>
-        <Text tone="accent">
+        <ExactText>
           <Link href="/modals">
             <TextLink weight="weak" padding="3">
               {arr.length - idx} Bottles
             </TextLink>
           </Link>
-        </Text>
+        </ExactText>
       </MenuItem>
     ))}
   </Menu>
@@ -85,22 +82,22 @@ export const DropdownMenuIframe: FC = () => (
       <CustomActivatorMenu />
     </Inline>
     <Inline justifySelf="center">
-      <RandomMenu variant="subtle" />
+      <RandomMenu />
     </Inline>
     <Inline justifySelf="end">
-      <RandomMenu variant="transparent" />
+      <RandomMenu />
     </Inline>
     <Inline justifySelf="start">
       <RandomMenu />
     </Inline>
     <Inline justifySelf="center">
-      <RandomMenu tone="accent" />
+      <RandomMenu />
     </Inline>
     <Inline justifySelf="end">
-      <RandomMenu tone="promo" />
+      <RandomMenu />
     </Inline>
     <Inline justifySelf="start">
-      <RandomMenu tone="positive" />
+      <RandomMenu />
     </Inline>
     <Inline justifySelf="center">
       <RandomMenu />

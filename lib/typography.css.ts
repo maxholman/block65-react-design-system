@@ -6,7 +6,7 @@ import {
   styleVariants,
   type StyleRule,
 } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
+import { genericVars } from './core.css.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
 

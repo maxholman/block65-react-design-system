@@ -26,7 +26,7 @@ export type TextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
     >
   >;
 
-export const Text = forwardRef(
+export const ExactText = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'span'>(
     {
       component = 'span',
@@ -97,7 +97,7 @@ export type HeadingProps = PropsWithChildren<
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ level = '3', className, ...props }, ref) => (
-    <Text
+    <ExactText
       ref={ref}
       lineHeight="heading"
       component={`h${level}`}
@@ -110,6 +110,6 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
 
 export const Paragraph = forwardRef<HTMLParagraphElement, TextProps>(
   ({ className, ...props }, ref) => (
-    <Text ref={ref} lineHeight="paragraph" component="p" {...props} />
+    <ExactText ref={ref} lineHeight="paragraph" component="p" {...props} />
   ),
 );

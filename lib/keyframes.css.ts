@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { keyframes } from '@vanilla-extract/css';
 
 export const rotate = keyframes({

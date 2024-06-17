@@ -1,0 +1,9 @@
+@use './mixins.module.scss' as colorscheme;
+// @use './rds.module.scss' as rds with (
+//   $buttonVariantDangerRestFgColor: 'inherit'
+// );
+
+:root {
+  @include colorscheme.primer();
+  // @include rds.magic();
+}

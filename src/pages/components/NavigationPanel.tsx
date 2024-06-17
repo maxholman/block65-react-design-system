@@ -1,10 +1,9 @@
 import { Link } from '@block65/mrr';
 import type { FC } from 'react';
-import { Inline, TextLink } from '../../../lib/main.js';
-import { Panel } from '../../reference-impl/main.js';
+import { Inline, TextLink, Panel } from '../../../lib/main.js';
 
 export const NavigationPanel: FC = () => (
-  <Panel variant="ghost">
+  <Panel>
     <Inline space="5" flexWrap justifyContent="center">
       <Link href="/">
         <TextLink>Core</TextLink>

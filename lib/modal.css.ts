@@ -1,6 +1,6 @@
 import { style, type StyleRule } from '@vanilla-extract/css';
 import { precomputedViewportRules, type Viewport } from './core.css.js';
-import { genericVars } from './design-system.css.js';
+import { genericVars } from './core.css.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
 // WARN: ordering is important here as it affects the generated CSS

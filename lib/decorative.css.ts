@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { style } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
+import { genericVars } from './core.css.js';
 
 export const dividerStyle = style({
   height: genericVars.border.width[1],

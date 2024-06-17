@@ -6,7 +6,7 @@ import {
   Heading,
   Inline,
   MenuIcon,
-  Text,
+  ExactText,
   UnstyledButton,
 } from '../../lib/main.js';
 
@@ -38,9 +38,9 @@ export const PanelTogglerPattern = () => {
           >
             <Block justifyContent="center">
               <Heading level="4">UOB VISA Debit {i}</Heading>
-              <Text>
+              <ExactText>
                 Expires <Code>{i}/25</Code>
-              </Text>
+              </ExactText>
             </Block>
           </UnstyledButton>
         );

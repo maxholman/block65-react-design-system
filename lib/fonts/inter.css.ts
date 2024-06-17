@@ -1,13 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import interFontMetrics from '@capsizecss/metrics/inter';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { precomputeValues } from '@capsizecss/vanilla-extract';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { createTheme, style } from '@vanilla-extract/css';
+import { type MapLeafNodes, createTheme, style } from '@vanilla-extract/css';
 import { withUnit } from '../css-helpers.css.js';
 import { fontThemeVars } from '../typography.css.js';
 
-const interFontTheme = createTheme(fontThemeVars, {
+export const fontThemeTokens = {
   // aim for 2.5rem - 40px
   '6': {
     values: precomputeValues({
@@ -107,7 +104,9 @@ const interFontTheme = createTheme(fontThemeVars, {
     // capHeight of this font size
     capHeight: withUnit(8.72727),
   },
-});
+} satisfies MapLeafNodes<typeof fontThemeVars, string>;
+
+const interFontTheme = createTheme(fontThemeVars, fontThemeTokens);
 
 export const interFontThemeClassName = style([
   interFontTheme,

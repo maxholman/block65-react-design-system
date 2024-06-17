@@ -1,28 +1,34 @@
 import type { FC } from 'react';
-import { Code, Grid, Heading, Inline, Text } from '../../lib/main.js';
-import { Panel } from '../reference-impl/main.js';
+import {
+  Panel,
+  Code,
+  Grid,
+  Heading,
+  Inline,
+  ExactText,
+} from '../../lib/main.js';
 
 const PanelGrid = () => (
   <Grid cols={{ mobile: 1, all: 2 }}>
-    <Panel variant="solid">
+    <Panel>
       <Heading>solid</Heading>
-      <Text>solid</Text>
+      <ExactText>solid</ExactText>
     </Panel>
-    <Panel variant="subtle">
+    <Panel>
       <Heading>subtle</Heading>
-      <Text>subtle</Text>
+      <ExactText>subtle</ExactText>
     </Panel>
-    <Panel variant="ghost">
+    <Panel>
       <Heading>ghost</Heading>
-      <Text>ghost</Text>
+      <ExactText>ghost</ExactText>
     </Panel>
-    <Panel variant="transparent">
+    <Panel>
       <Heading>transparent</Heading>
-      <Text>transparent</Text>
+      <ExactText>transparent</ExactText>
     </Panel>
     <Panel>
       <Heading>none</Heading>
-      <Text>none</Text>
+      <ExactText>none</ExactText>
     </Panel>
   </Grid>
 );
@@ -30,14 +36,14 @@ const PanelGrid = () => (
 export const PanelsPage: FC = () => (
   <>
     <Heading>Panels</Heading>
-    <Panel variant="ghost">
+    <Panel>
       <PanelGrid />
     </Panel>
 
     <Heading>Nested</Heading>
     <Panel>
       <Grid cols={{ mobile: 1, all: 2 }}>
-        <Panel variant="subtle">
+        <Panel>
           <Heading>Nested</Heading>
           <PanelGrid />
         </Panel>
@@ -50,12 +56,12 @@ export const PanelsPage: FC = () => (
 
     <Heading>Overrides</Heading>
 
-    <Panel variant="ghost">
-      <Panel variant="subtle" padding="10">
+    <Panel>
+      <Panel padding="10">
         Padding override <Code>10</Code>
         <Inline></Inline>
       </Panel>
-      <Panel variant="subtle" padding="0">
+      <Panel padding="0">
         <Inline>
           Padding override <Code>0</Code>
         </Inline>

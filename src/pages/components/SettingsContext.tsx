@@ -1,12 +1,14 @@
 import { createContext, type FC, type PropsWithChildren } from 'react';
 import { useLocalStorageState } from '../../../lib/hooks/use-localstorage-state.js';
-import type { ContrastScheme, ColorScheme } from '../../reference-impl/main.js';
+
+type ColorTheme = 'high-contrast' | 'low-contrast' | 'auto';
+type ColorScheme = 'light' | 'dark' | 'auto';
 
 export const SettingsContext = createContext<{
   colorScheme: ColorScheme;
-  contrastScheme: ContrastScheme;
+  colorTheme: ColorTheme;
   setColorScheme: (colorScheme: ColorScheme) => void;
-  setContrastScheme: (contrastScheme: ContrastScheme) => void;
+  setColorTheme: (colorTheme: ColorTheme) => void;
 } | null>(null);
 
 export const SettingsProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -15,16 +17,18 @@ export const SettingsProvider: FC<PropsWithChildren> = ({ children }) => {
     'auto',
   );
 
-  const [contrastScheme, setContrastScheme] =
-    useLocalStorageState<ContrastScheme>('rds:contrast-scheme', 'auto');
+  const [ColorTheme, setColorTheme] = useLocalStorageState<ColorTheme>(
+    'rds:color-theme',
+    'auto',
+  );
 
   return (
     <SettingsContext.Provider
       value={{
         colorScheme,
-        contrastScheme,
+        colorTheme: ColorTheme,
         setColorScheme,
-        setContrastScheme,
+        setColorTheme,
       }}
     >
       {children}

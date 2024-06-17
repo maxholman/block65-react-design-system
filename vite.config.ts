@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { resolve } from 'node:path';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
@@ -7,7 +6,6 @@ import { defineConfig } from 'vitest/config';
 const debugBuild = !!process.env.DEBUG_BUILD;
 
 export default defineConfig((config) => {
-  // eslint-disable-next-line no-console
   console.log(`mode is ${config.mode} and debugBuild is ${debugBuild}`);
   return {
     plugins: [
@@ -16,7 +14,7 @@ export default defineConfig((config) => {
     ],
     build: {
       outDir: 'build',
-      target: 'es2021',
+      target: 'es2022',
 
       lib: {
         entry: {
@@ -27,7 +25,13 @@ export default defineConfig((config) => {
         formats: ['es'],
       },
       rollupOptions: {
-        external: ['react', 'react-dom', 'react/jsx-runtime'],
+        external: [
+          'react',
+          'react-dom',
+          'react/jsx-runtime',
+          'react/jsx-dev-runtime', // when importing built assets in dev
+          'react-intl',
+        ],
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -45,6 +49,14 @@ export default defineConfig((config) => {
 
       minify: !debugBuild,
       cssMinify: !debugBuild,
+    },
+
+    optimizeDeps: {
+      exclude: [
+        new URL('./build/main.js', import.meta.url).pathname,
+        new URL('./build/vars.js', import.meta.url).pathname,
+        new URL('./build/style.css', import.meta.url).pathname,
+      ],
     },
 
     define: {

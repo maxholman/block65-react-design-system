@@ -1,6 +1,5 @@
 import { Fragment, type FC } from 'react';
-import { Block, Grid, type FontSize } from '../../lib/main.js';
-import { Avatar, Panel } from '../reference-impl/main.js';
+import { Avatar, Panel, Block, Grid, type FontSize } from '../../lib/main.js';
 
 const fakeNames = [
   ...[
@@ -598,7 +597,7 @@ const fakeNames = [
 ];
 
 export const AvatarsPage: FC = () => (
-  <Panel variant="ghost">
+  <Panel>
     <Grid
       cols={{
         all: 6,
@@ -615,20 +614,10 @@ export const AvatarsPage: FC = () => (
               <Avatar ident={name} label={name} size={fontSize} />
             </Block>
             <Block alignSelf="center" justifySelf="center">
-              <Avatar
-                variant="ghost"
-                ident={name}
-                label={name}
-                size={fontSize}
-              />
+              <Avatar ident={name} label={name} size={fontSize} />
             </Block>
             <Block alignSelf="center" justifySelf="center">
-              <Avatar
-                variant="subtle"
-                ident={name}
-                label={name}
-                size={fontSize}
-              />
+              <Avatar ident={name} label={name} size={fontSize} />
             </Block>
           </Fragment>
         );

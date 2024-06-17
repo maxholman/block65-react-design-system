@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { style, globalStyle } from '@vanilla-extract/css';
 
 export const resetClass = style({});

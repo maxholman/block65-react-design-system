@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
+import { genericVars } from './core.css.js';
 import { focusRadiusVar, focusableClassName } from './focusable.css.js';
 
 export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
