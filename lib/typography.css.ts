@@ -50,6 +50,7 @@ export const strongClass = style({
 
 export const codeClass = style({
   fontFamily: 'monospace',
+  fontSize: 'inherit',
 });
 
 export const fontSizeVariantTextStyles = styleVariants(

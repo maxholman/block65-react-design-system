@@ -19,13 +19,14 @@
   grid-template-columns: auto 1fr;
   row-gap: 0;
   align-items: start;
+  border-style: solid;
 
   color: var(--fgColor-default);
-  border-radius: var(--callout-border-radius);
-  border-width: var(--callout-border-width);
+  border-radius: var(--callout-borderRadius);
+  border-width: var(--callout-borderWidth);
   padding: var(--callout-padding);
-  border-style: var(--callout-border-style, solid);
-  font-size: var(--callout-font-size);
+
+  font-size: var(--callout-fontSize);
 
   &.info {
     background-color: var(--bgColor-info-muted);

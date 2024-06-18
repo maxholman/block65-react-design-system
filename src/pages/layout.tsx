@@ -1,33 +1,8 @@
 import type { FC } from 'react';
-import {
-  Badge,
-  Block,
-  Grid,
-  Heading,
-  Inline,
-  Button,
-  Panel,
-  ExactText,
-} from '../../lib/main.js';
+import { Badge, Block, Grid, Heading, Inline, Panel } from '../../lib/main.js';
 
 export const LayoutPage: FC = () => (
   <Panel>
-    <Block>
-      <Block>
-        <Badge>Badge</Badge>
-        <Button>Button</Button>
-        <Button>Button</Button>
-        <Button>Button</Button>
-      </Block>
-    </Block>
-    <Block>
-      <Inline>
-        <ExactText>Text</ExactText>
-        <Button>Button</Button>
-        <Button>Button</Button>
-      </Inline>
-    </Block>
-
     <Heading>Inline justifySelf (Grid Only)</Heading>
     <Panel>
       <Inline justifySelf="start">

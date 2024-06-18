@@ -16,7 +16,6 @@ export const LoadersPage: FC = () => (
     <Grid
       cols={{
         all: 3,
-        desktop: 4,
         mobile: 2,
       }}
     >

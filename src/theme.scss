@@ -1,10 +1,14 @@
+@mixin common() {
+  --fgColor-white: var(--gray-0);
+  --fgColor-accent: var(--blue-5);
+}
+
 @mixin dark() {
+  @include common();
+
   /**
   MAIN COLORS
   */
-
-  --fgColor-accent: var(--blue-6);
-
   --bgColor-default: var(--gray-10);
   --fgColor-default: var(--gray-2);
   --fgColor-muted: var(--gray-1);
@@ -27,7 +31,7 @@
 
   /**
   BUTTONS
-*/
+  */
   --button-danger-fgColor-rest: var(--red-6);
   --button-danger-bgColor-rest: var(--gray-9);
   --button-danger-borderColor-rest: var(--gray-8);
@@ -113,15 +117,19 @@
   */
 
   --control-borderColor-rest: var(--gray-4);
-  --control-placeholderColor-rest: var(--gray-6);
 }
 
 @mixin light() {
+  @include common();
+
   /**
   MAIN COLORS
   */
-  --bgColor-default: var(--gray-9);
+  --fgColor-white: var(--gray-0);
+
+  --bgColor-default: var(--gray-0);
   --fgColor-default: var(--gray-9);
+  --fgColor-muted: var(--gray-4);
 
   --fgColor-info: var(--blue-5);
   --bgColor-info-muted: var(--blue-0);
@@ -132,18 +140,98 @@
   --borderColor-positive-muted: var(--green-1);
 
   --fgColor-error: var(--red-5);
-  --fgColor-error: var(--red-5);
   --bgColor-error-muted: var(--red-0);
   --borderColor-error-muted: var(--red-1);
 
-  --fgColor-attention: var(--yellow-3);
+  --fgColor-attention: var(--yellow-4);
   --bgColor-attention-muted: var(--yellow-0);
   --borderColor-attention-muted: var(--yellow-1);
 
   /**
+  BUTTONS
+  */
+  --button-danger-fgColor-rest: var(--red-5);
+  --button-danger-bgColor-rest: var(--red-1);
+  --button-danger-borderColor-rest: var(--red-4);
+
+  --button-danger-fgColor-hover: var(--gray-0);
+  --button-danger-bgColor-hover: var(--red-5);
+  --button-danger-borderColor-hover: var(--red-6);
+
+  --button-danger-fgColor-disabled: var(--red-3) / 70%;
+  --button-danger-bgColor-disabled: var(--red-1);
+  --button-danger-borderColor-disabled: var(--red-1);
+
+  --button-danger-fgColor-active: var(--gray-0);
+  --button-danger-bgColor-active: var(--red-6);
+  --button-danger-borderColor-active: var(--red-7);
+
+  --button-default-fgColor-rest: var(--gray-8);
+  --button-default-bgColor-rest: var(--gray-1);
+  --button-default-borderColor-rest: var(--gray-4);
+
+  --button-default-fgColor-hover: var(--gray-9);
+  --button-default-bgColor-hover: var(--gray-2);
+  --button-default-borderColor-hover: var(--gray-4);
+
+  --button-default-fgColor-disabled: var(--gray-6);
+  --button-default-bgColor-disabled: var(--gray-1);
+  --button-default-borderColor-disabled: var(--gray-1);
+
+  --button-default-fgColor-active: var(--gray-9);
+  --button-default-bgColor-active: var(--gray-2);
+  --button-default-borderColor-active: var(--gray-4);
+
+  --button-primary-fgColor-rest: var(--gray-0);
+  --button-primary-bgColor-rest: var(--green-5);
+  --button-primary-borderColor-rest: var(--green-6);
+
+  --button-primary-fgColor-hover: var(--gray-0);
+  --button-primary-bgColor-hover: var(--green-6);
+  --button-primary-borderColor-hover: var(--green-7);
+
+  --button-primary-fgColor-disabled: var(--gray-0) / 70%;
+  --button-primary-bgColor-disabled: var(--green-8);
+  --button-primary-borderColor-disabled: var(--gray-1);
+
+  --button-primary-fgColor-active: var(--gray-0);
+  --button-primary-bgColor-active: var(--green-6);
+  --button-primary-borderColor-active: var(--green-7);
+
+  --button-inactive-fgColor-rest: var(--gray-6);
+  --button-inactive-bgColor-rest: var(--gray-1);
+  --button-inactive-borderColor-rest: var(--gray-4);
+
+  --button-inactive-fgColor-active: var(--gray-6);
+  --button-inactive-bgColor-active: var(--gray-2);
+  --button-inactive-borderColor-active: var(--gray-4);
+
+  --button-inactive-fgColor-disabled: var(--gray-6);
+  --button-inactive-bgColor-disabled: var(--gray-1);
+  --button-inactive-borderColor-disabled: var(--gray-1);
+
+  --button-inactive-fgColor-hover: var(--gray-6);
+  --button-inactive-bgColor-hover: var(--gray-1);
+  --button-inactive-borderColor-hover: var(--gray-4);
+
+  --button-invisible-borderColor-rest: transparent;
+  --button-invisible-fgColor-rest: var(--gray-8);
+  --button-invisible-bgColor-rest: transparent;
+
+  --button-invisible-borderColor-hover: transparent;
+  --button-invisible-fgColor-hover: var(--gray-8);
+  --button-invisible-bgColor-hover: transparent;
+
+  --button-invisible-fgColor-disabled: var(--gray-9);
+  --button-invisible-bgColor-disabled: transparent;
+  --button-invisible-borderColor-disabled: var(--gray-1);
+
+  --button-invisible-borderColor-active: transparent;
+  --button-invisible-fgColor-active: var(--gray-8);
+  --button-invisible-bgColor-active: transparent;
+
+  /**
   CONTROLS
   */
-
-  --control-borderColor-rest: var(--gray-9);
-  --control-placeholderColor-rest: var(--gray-8);
+  --control-borderColor-rest: var(--gray-5);
 }

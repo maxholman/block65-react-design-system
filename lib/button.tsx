@@ -86,8 +86,8 @@ export const UnstyledButton = forwardRef(
       className={[className, styles.button]}
       // if this is going to be an actual button element - default to button
       // type so that it doesn't submit forms by default
-      {...(props.component === 'button' && {
-        type: ('type' in props && props.type) || 'button',
+      {...((!props.component || props.component === 'button') && {
+        type: 'type' in props ? props.type : 'button',
       })}
       {...props}
     />

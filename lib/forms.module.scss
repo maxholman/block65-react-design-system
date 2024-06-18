@@ -11,6 +11,10 @@ $formInputSelectGridAreaName: 's';
 .formInputPasswordToggleButton {
   cursor: pointer;
 
+  &:active {
+    color: var(--fgColor-accent);
+  }
+
   &:hover,
   &:focus-visible {
     // we don't use the backgroundHover prop for this because we
@@ -38,7 +42,7 @@ $formInputSelectGridAreaName: 's';
   color: var(--fgColor-default);
 
   border-radius: var(--control-borderRadius);
-  border-width: var(--control-browserWidth);
+  border-width: var(--control-outlineWidth, var(--control-borderWidth));
   border-color: var(--control-borderColor-rest);
 
   &[type='time'] {
@@ -55,7 +59,7 @@ $formInputSelectGridAreaName: 's';
 }
 
 .formInputInnerClassName {
-  // @include capSizeVariantVars(1);
+  border-radius: var(--control-borderRadius);
 
   &::placeholder {
     color: var(--fgColor-muted);
@@ -66,17 +70,14 @@ $formInputSelectGridAreaName: 's';
   // @extend focusVisibleClassName;
 
   &:focus {
-    // draw the outline over the border so that we can increase
-    // thickness without any layout shifts
-    outline-offset: calc(var(--_borderWidth) * -1);
     border-color: transparent;
     outline-style: solid;
-    outline-color: var(--focus-color-var);
-    outline-width: var(--focus-width-var);
+    outline-color: var(--fgColor-accent);
+    outline-width: var(--focusWidth);
   }
 
   &:focus-visible {
-    border-color: var(--focus-color-var);
+    border-color: var(--fgColor-accent);
   }
 }
 
@@ -87,24 +88,24 @@ $formInputSelectGridAreaName: 's';
 
   padding: revert;
   cursor: pointer;
-  color: var(--focus-color-var);
+  color: var(--fgColor-accent);
   aspect-ratio: 1 / 1;
   align-self: center;
   justify-self: center;
 
   &:focus-visible {
     outline-style: solid;
-    outline-color: var(--focus-color-var);
-    outline-offset: var(--focus-width-var);
-    outline-width: var(--focus-width-var);
+    outline-color: var(--fgColor-accent);
+    outline-offset: var(--control-outlineWidth);
+    outline-width: var(--control-outlineWidth);
   }
 
   &:focus-within {
-    color: var(--focus-color-var);
+    color: var(--fgColor-accent);
   }
 
   &:active {
-    outline-color: var(--focus-color-var);
+    outline-color: var(--fgColor-accent);
   }
 
   &::before {
@@ -154,7 +155,7 @@ $formInputSelectGridAreaName: 's';
     // size and color of the check
     aspect-ratio: 1 / 1;
     // height: 0.35em;
-    box-shadow: inset 1em 1em var(--fgColor-default);
+    box-shadow: inset 1em 1em var(--fgColor-white);
   }
 
   &:checked {

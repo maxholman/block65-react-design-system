@@ -1,6 +1,6 @@
 import { Link } from '@block65/mrr';
 import {
-  ArrowForward,
+  ArrowForwardIcon,
   Avatar,
   Block,
   Button,
@@ -22,7 +22,7 @@ export const SelectorPattern = () => (
 
       <Block justifyContent="center">
         <Button component="div">
-          <ArrowForward />
+          <ArrowForwardIcon />
         </Button>
       </Block>
     </Panel>

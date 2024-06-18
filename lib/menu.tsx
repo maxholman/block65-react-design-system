@@ -42,7 +42,7 @@ import {
 import { Button, type ButtonProps } from './button.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
-import { ArrowForward, MenuDropdownArrowIcon } from './icons.js';
+import { ArrowForwardIcon, MenuDropdownArrowIcon } from './icons.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
@@ -83,7 +83,7 @@ const DefaultMenuActivator = forwardRef(
       component="div"
       iconEnd={<MenuDropdownArrowIcon />}
       ref={forwardedRef}
-      icon={isNested && <ArrowForward />}
+      icon={isNested && <ArrowForwardIcon />}
       {...(isNested && {
         // Indicates this is a nested <Menu /> acting as a <MenuItem />.
         role: 'menuitem',

@@ -9,42 +9,44 @@ import {
 import { DesignSystem } from '../lib/design-system.js';
 import { interFontThemeClassName } from '../lib/fonts/inter.css.js';
 import { useColorSchemeEffect } from '../lib/hooks/use-color-scheme-effect.js';
-import { genericThemeClassName } from '../lib/themes/generic.css.js';
 import { MainRouter } from './MainRouter.js';
 import { SettingsProvider } from './pages/components/SettingsContext.js';
+import { useSettings } from './pages/components/use-settings.js';
 
 import './global.scss';
 
-export const App = () => {
-  useColorSchemeEffect();
+const AppInner = () => {
+  const [{ colorScheme }] = useSettings();
+
+  const [prefersDark] = useColorSchemeEffect(colorScheme);
+
+  console.log({ colorScheme, prefersDark });
 
   return (
-    <IntlProvider locale="en">
-      <SettingsProvider>
-        <DesignSystem
-          className={[
-            interFontThemeClassName,
-            genericThemeClassName,
-            // darkModeColorThemeClassName,
-            // buttonDarkThemeClassName,
-            // calloutDarkThemeClassName,
-          ]}
-          stringLikeComponents={[
-            FormattedMessage,
-            FormattedNumber,
-            FormattedTime,
-            FormattedDate,
-          ]}
-          space="10"
-          flexDirection="column"
-          style={{
-            flexGrow: 1,
-            minHeight: '100vh',
-          }}
-        >
-          <MainRouter />
-        </DesignSystem>
-      </SettingsProvider>
-    </IntlProvider>
+    <DesignSystem
+      className={interFontThemeClassName}
+      stringLikeComponents={[
+        FormattedMessage,
+        FormattedNumber,
+        FormattedTime,
+        FormattedDate,
+      ]}
+      space="10"
+      flexDirection="column"
+      style={{
+        flexGrow: 1,
+        minHeight: '100vh',
+      }}
+    >
+      <MainRouter />
+    </DesignSystem>
   );
 };
+
+export const App = () => (
+  <IntlProvider locale="en">
+    <SettingsProvider>
+      <AppInner />
+    </SettingsProvider>
+  </IntlProvider>
+);

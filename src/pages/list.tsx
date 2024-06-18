@@ -35,7 +35,7 @@ export const ListPage: FC = () => (
           <Block alignItems="center" space="5">
             <Heading level="2">Early Adopter Plan</Heading>
             <ExactText fontSize="0">
-              <Secondary>For those who like to adopt early </Secondary>
+              <Secondary>For those who like to adopt, early </Secondary>
             </ExactText>
           </Block>
           <Block>

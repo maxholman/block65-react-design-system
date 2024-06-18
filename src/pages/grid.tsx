@@ -7,38 +7,38 @@ export const GridPage: FC = () => (
     <Grid cols={4}>
       <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          transparent
+          {lorem.generateWords(2)}
         </Heading>
         <ExactText>{lorem.generateSentences(3)}</ExactText>
       </Panel>
       <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Ghost
+          {lorem.generateWords(1)}
         </Heading>
         <ExactText>{lorem.generateSentences(3)}</ExactText>
       </Panel>
       <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Subtle
+          {lorem.generateWords(2)}
         </Heading>
         <ExactText>{lorem.generateSentences(3)}</ExactText>
       </Panel>
       <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Standard
+          {lorem.generateWords(1)}
         </Heading>
         <ExactText>{lorem.generateSentences(3)}</ExactText>
       </Panel>
       <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Ghost
+          {lorem.generateWords(2)}
         </Heading>
         <ExactText>{lorem.generateParagraphs(1)}</ExactText>
       </Panel>
 
       <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Transparent
+          {lorem.generateWords(1)}
         </Heading>
         <ExactText>{lorem.generateParagraphs(1)}</ExactText>
       </Panel>

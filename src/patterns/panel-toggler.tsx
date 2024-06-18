@@ -18,7 +18,7 @@ export const PanelTogglerPattern = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectedItem(Math.floor(Math.random() * items.length));
-    }, 200000);
+    }, 2000);
 
     return () => clearInterval(interval);
   });

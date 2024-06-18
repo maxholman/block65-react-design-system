@@ -1,0 +1,95 @@
+// import { createVar, style, styleVariants } from '@vanilla-extract/css';
+// import { genericVars } from './core.css.js';
+// import { focusRadiusVar, focusableClassName } from './focusable.css.js';
+
+// const linkColorVar = createVar();
+
+// const linkClassName = style([
+//   focusableClassName,
+//   {
+//     // vars: {
+//     //   [linkColorVar]: oklch(
+//     //     contrastSchemeVars.swatch.v8.l,
+//     //     contrastSchemeVars.swatch.v8.c,
+//     //     colorThemeVars.tones.accent.h,
+//     //   ),
+//     // },
+//     cursor: 'pointer',
+//     selectors: {
+//       '&:focus-visible': {
+//         borderRadius: focusRadiusVar,
+//         outlineStyle: 'solid',
+//         outlineColor: 'currentColor',
+//         outlineWidth: genericVars.border.width['3'],
+//         outlineOffset: genericVars.border.width['3'],
+//       },
+//     },
+//   },
+// ]);
+
+// export const linkStyleVariant = styleVariants(
+//   {
+//     strong: {
+//       color: linkColorVar,
+//       fontWeight: genericVars.text.weight.medium,
+//     },
+//     normal: {
+//       color: linkColorVar,
+//     },
+//     none: {
+//       // color: linkColorVar,
+//     },
+//     weak: {
+//       textDecoration: 'underline',
+//       selectors: {
+//         '&:hover': {
+//           color: linkColorVar,
+//         },
+//       },
+//     },
+//   } as const,
+//   (cssProps) => [
+//     linkClassName,
+//     {
+//       selectors: {
+//         '&:hover': {
+//           textDecoration: 'underline',
+//         },
+//       },
+//       ...cssProps,
+//     },
+//   ],
+// );
+
+.link {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    border-radius: var(--focusRadius);
+    outline-style: solid;
+    outline-color: currentColor;
+    outline-width: var(--border-size-3);
+    outline-offset: var(--border-size-3);
+  }
+
+  &.strong {
+    color: var(--fgColor-accent);
+    font-weight: var(--font-weight-medium, 500);
+  }
+
+  &.normal {
+    color: var(--fgColor-accent);
+  }
+
+  &.weak {
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--fgColor-accent);
+    }
+  }
+}

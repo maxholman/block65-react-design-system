@@ -16,6 +16,7 @@ export const MediaQueryPage: FC = () => (
     >
       <Block>Responsive 1</Block>
       <Block>Responsive 2</Block>
+      <Block>Responsive 3</Block>
     </Block>
 
     <Grid

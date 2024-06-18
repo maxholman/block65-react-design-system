@@ -1,17 +1,31 @@
 import { useState, useLayoutEffect } from 'react';
 
-export function useColorSchemeEffect() {
-  const [prefersDark, setPrefersDark] = useState<boolean | null>(null);
+export function useColorSchemeEffect(
+  preference?: 'dark' | 'light' | 'auto' | undefined | null,
+) {
+  const [prefersDark, setPrefersDark] = useState<boolean | null>(
+    // eslint-disable-next-line no-nested-ternary
+    preference === 'dark' ? true : preference === 'light' ? false : null,
+  );
 
   useLayoutEffect(() => {
-    const mql = window.matchMedia('(prefers-color-scheme: dark)');
-
     const meta =
       document.querySelector('meta[name=color-scheme]') ||
       document.createElement('meta');
-
     meta.setAttribute('name', 'color-scheme');
-    meta.setAttribute('content', mql.matches ? 'dark' : 'light');
+
+    const prefersDarkMql =
+      !preference || preference === 'auto'
+        ? window.matchMedia('(prefers-color-scheme: dark)')
+        : {
+            matches: preference === 'dark',
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            addEventListener: (_eventName: 'change', _: unknown) => {},
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            removeEventListener: (_eventName: 'change', _: unknown) => {},
+          };
+
+    meta.setAttribute('content', prefersDarkMql.matches ? 'dark' : 'light');
 
     // probably new
     if (!meta.parentElement) {
@@ -27,14 +41,14 @@ export function useColorSchemeEffect() {
       );
     };
 
-    listener(mql);
+    listener(prefersDarkMql);
 
-    mql.addEventListener('change', listener);
+    prefersDarkMql.addEventListener('change', listener);
 
     return () => {
-      mql.removeEventListener('change', listener);
+      prefersDarkMql.removeEventListener('change', listener);
     };
-  }, [prefersDark]);
+  }, [preference, prefersDark]);
 
   return [prefersDark] as const;
 }

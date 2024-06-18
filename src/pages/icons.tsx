@@ -1,13 +1,33 @@
 import type { FC } from 'react';
-import { Block, Box } from '../../lib/main.js';
+import {
+  Grid,
+  HelpIcon,
+  InfoIcon,
+  MenuIcon,
+  CloseIcon,
+  ArrowBackIcon,
+  ArrowForwardIcon,
+  ClipboardIcon,
+  PasswordVisibleIcon,
+  PasswordInvisibleIcon,
+  GlobeColorIcon,
+  MenuDropdownArrowIcon,
+} from '../../lib/main.js';
 
 export const IconsPage: FC = () => (
   <>
-    <Box>
-      <Block>
-        <Block>Responsive 1</Block>
-        <Block>Responsive 2</Block>
-      </Block>
-    </Box>
+    <Grid cols={3} space="15">
+      <HelpIcon />
+      <InfoIcon />
+      <MenuIcon />
+      <CloseIcon />
+      <ArrowBackIcon />
+      <ArrowForwardIcon />
+      <ClipboardIcon />
+      <PasswordVisibleIcon />
+      <PasswordInvisibleIcon />
+      <GlobeColorIcon />
+      <MenuDropdownArrowIcon />
+    </Grid>
   </>
 );

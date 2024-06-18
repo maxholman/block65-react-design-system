@@ -6,8 +6,7 @@
 }
 
 html {
-  &[data-color-scheme='dark'],
-  &:not([data-color-mode]) {
+  &[data-color-scheme='dark']:not([data-color-mode]) {
     color-scheme: dark;
     @include theme.dark();
   }

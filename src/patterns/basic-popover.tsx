@@ -17,7 +17,7 @@ export const BasicPopover = () => (
         A subtle description text to explain <br />
         your product.
       </Paragraph>
-      <Button>Call to action</Button>
+      <Button variant="primary">Call to action</Button>
     </Block>
   </Block>
 );

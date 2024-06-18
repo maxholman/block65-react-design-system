@@ -1,11 +1,12 @@
 @use './open-props-scss' as op;
 
 :root {
-  --callout-border-radius: 0.25em; // em as it needs to be based on font size
-  --callout-border-width: #{op.$border-size-1};
+  --callout-borderRadius: 0.25em; // em as it needs to be based on font size
+  --callout-borderWidth: #{op.$border-size-1};
   --callout-padding: #{op.$size-2};
-  --callout-font-size: #{op.$font-size-2};
+  --callout-fontSize: #{op.$font-size-2};
 
   --control-borderRadius: 0.25em; // em as it needs to be based on font size
   --control-borderWidth: #{op.$border-size-1};
+  --control-outlineWidth: #{op.$border-size-1};
 }

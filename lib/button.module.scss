@@ -2,7 +2,7 @@
   cursor: pointer;
   user-select: none;
   border-radius: var(--control-borderRadius);
-  border-width: var(control-borderWidth);
+  border-width: var(--control-borderWidth);
 
   &.default {
     color: var(--button-default-fgColor-rest);

@@ -16,20 +16,21 @@ import {
 } from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from './components/icons.js';
 
+const variants = [
+  'primary',
+  'default',
+  'danger',
+  'inactive',
+  'invisible',
+] satisfies ButtonVariant[];
+
 export const ButtonsPage: FC = () => (
   <>
     <Panel>
       <Heading>Vanilla</Heading>
 
       <Inline flexWrap>
-        {(
-          [
-            'default',
-            'danger',
-            'inactive',
-            'invisible',
-          ] satisfies ButtonVariant[]
-        ).map((variant) => (
+        {variants.map((variant) => (
           <Button variant={variant} key={variant}>
             {variant}
           </Button>
@@ -41,14 +42,7 @@ export const ButtonsPage: FC = () => (
       <Heading>Disabled</Heading>
 
       <Inline flexWrap>
-        {(
-          [
-            'default',
-            'danger',
-            'inactive',
-            'invisible',
-          ] satisfies ButtonVariant[]
-        ).map((variant) => (
+        {variants.map((variant) => (
           <Button disabled variant={variant} key={variant}>
             {variant}
           </Button>
@@ -60,14 +54,7 @@ export const ButtonsPage: FC = () => (
       <Heading>Links</Heading>
 
       <Inline flexWrap>
-        {(
-          [
-            'default',
-            'danger',
-            'inactive',
-            'invisible',
-          ] satisfies ButtonVariant[]
-        ).map((variant) => (
+        {variants.map((variant) => (
           <ButtonLink
             href="https://eject.invalid"
             variant={variant}
@@ -83,14 +70,7 @@ export const ButtonsPage: FC = () => (
       <Heading>With Start Icons</Heading>
 
       <Inline flexWrap>
-        {(
-          [
-            'default',
-            'danger',
-            'inactive',
-            'invisible',
-          ] satisfies ButtonVariant[]
-        ).map((variant) => (
+        {variants.map((variant) => (
           <Button icon={<CrescentMoonIcon />} variant={variant} key={variant}>
             {variant}
           </Button>
@@ -102,14 +82,7 @@ export const ButtonsPage: FC = () => (
       <Heading>With End Icons</Heading>
 
       <Inline flexWrap>
-        {(
-          [
-            'default',
-            'danger',
-            'inactive',
-            'invisible',
-          ] satisfies ButtonVariant[]
-        ).map((variant) => (
+        {variants.map((variant) => (
           <Button
             iconEnd={<CrescentMoonIcon />}
             variant={variant}

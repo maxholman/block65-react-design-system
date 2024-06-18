@@ -76,7 +76,7 @@ export const MenuIcon = forwardRef<SVGSVGElement, IconProps>(
   ),
 );
 
-export const ArrowBack = forwardRef<SVGSVGElement, IconProps>(
+export const ArrowBackIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +112,7 @@ export const ArrowBack = forwardRef<SVGSVGElement, IconProps>(
   ),
 );
 
-export const ArrowForward = forwardRef<SVGSVGElement, IconProps>(
+export const ArrowForwardIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
