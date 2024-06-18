@@ -11,6 +11,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
+import styles from './forms.module.scss';
 import type { Falsy } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
 import {
@@ -19,23 +20,6 @@ import {
   formInputElProps,
   formInputProps,
 } from './forms-common.js';
-import {
-  formInputCheckRadioLabel,
-  formInputCheckRadioMessage,
-  formInputCheckRadioWrapper,
-  formInputCheckboxInput,
-  formInputHack,
-  formInputInnerClassName,
-  formInputFocusNotCheckRadioClassName,
-  formInputOuterClassName,
-  formInputPasswordIcon,
-  formInputPasswordToggleButton,
-  formInputRadioInput,
-  formInputSelect,
-  formInputSelectWrapperMultiple,
-  formInputSelectWrapperSingle,
-  inputLabelStyle,
-} from './forms.css.js';
 import { useAutoFocus } from './hooks/use-auto-focus.js';
 import { useCombinedRefs } from './hooks/use-combined-refs.js';
 import { useCustomValidity } from './hooks/use-custom-validity.js';
@@ -165,9 +149,10 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           component="input"
           padding="5"
           className={[
-            formInputOuterClassName,
-            formInputInnerClassName,
-            !inputTypeProps.readOnly && formInputFocusNotCheckRadioClassName,
+            styles.formInputOuterClassName,
+            styles.formInputInnerClassName,
+            !inputTypeProps.readOnly &&
+              styles.formInputFocusNotCheckRadioClassName,
           ]}
           {...inputTypeProps}
           autoFocus={definitelyAutoFocus}
@@ -230,7 +215,7 @@ export const FormInputPassword = forwardRef<
           };
 
     const iconProps = {
-      className: formInputPasswordIcon,
+      className: styles.formInputPasswordIcon,
     };
 
     const ourRef = useCustomValidity<HTMLInputElement>(customValidity);
@@ -251,8 +236,8 @@ export const FormInputPassword = forwardRef<
 
         <Inline
           className={[
-            formInputOuterClassName,
-            formInputFocusNotCheckRadioClassName,
+            styles.formInputOuterClassName,
+            styles.formInputFocusNotCheckRadioClassName,
           ]}
           flexWrap="nowrap"
           alignItems={null}
@@ -265,9 +250,9 @@ export const FormInputPassword = forwardRef<
             padding="5"
             type={visible ? 'text' : 'password'}
             className={[
-              formInputInnerClassName,
-              formInputHack,
-              formInputFocusNotCheckRadioClassName,
+              styles.formInputInnerClassName,
+              styles.formInputHack,
+              styles.formInputFocusNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
             {...inputElProps}
@@ -279,7 +264,7 @@ export const FormInputPassword = forwardRef<
             component="button"
             type="button"
             aria-pressed={visible}
-            className={formInputPasswordToggleButton}
+            className={styles.formInputPasswordToggleButton}
             paddingInline="5"
             alignItems="center"
             justifyContent="center"
@@ -343,13 +328,16 @@ export const FormSelect: FC<FormSelectProps> = ({
       <div
         className={
           props.multiple
-            ? formInputSelectWrapperMultiple
-            : formInputSelectWrapperSingle
+            ? styles.formInputSelectWrapperMultiple
+            : styles.formInputSelectWrapperSingle
         }
       >
         <Box
           component="select"
-          className={[formInputSelect, formInputFocusNotCheckRadioClassName]}
+          className={[
+            styles.formInputSelect,
+            styles.formInputFocusNotCheckRadioClassName,
+          ]}
           padding="5"
           id={id}
           ref={ref}
@@ -393,14 +381,16 @@ const FormInputCheckRadio: FC<
   const inputTypeProps = formInputProps(props);
 
   return (
-    <Box space="3" className={formInputCheckRadioWrapper}>
+    <Box space="3" className={styles.formInputCheckRadioWrapper}>
       <Box
         component="input"
         rounded="1"
         ref={ref}
         className={[
           className,
-          props.type === 'radio' ? formInputRadioInput : formInputCheckboxInput,
+          props.type === 'radio'
+            ? styles.formInputRadioInput
+            : styles.formInputCheckboxInput,
         ]}
         {...inputTypeProps}
         {...props}
@@ -410,26 +400,29 @@ const FormInputCheckRadio: FC<
         (isStringLike(label) ? (
           <ExactText
             component="label"
-            className={[inputLabelStyle, formInputCheckRadioLabel]}
+            className={[
+              styles.inputLabelStyle,
+              styles.formInputCheckRadioLabel,
+            ]}
             secondary={!!props.disabled}
             htmlFor={id}
           >
             {label}
           </ExactText>
         ) : (
-          <Box className={formInputCheckRadioLabel}>{label}</Box>
+          <Box className={styles.formInputCheckRadioLabel}>{label}</Box>
         ))}
       {message &&
         (isStringLike(message) ? (
           <ExactText
             secondary
             fontSize="0"
-            className={formInputCheckRadioMessage}
+            className={styles.formInputCheckRadioMessage}
           >
             {message}
           </ExactText>
         ) : (
-          <Box className={formInputCheckRadioLabel}>{message}</Box>
+          <Box className={styles.formInputCheckRadioLabel}>{message}</Box>
         ))}
     </Box>
   );
@@ -609,9 +602,9 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
           ref={combinedRef}
           padding="5"
           className={[
-            formInputInnerClassName,
-            formInputOuterClassName,
-            formInputFocusNotCheckRadioClassName,
+            styles.formInputInnerClassName,
+            styles.formInputOuterClassName,
+            styles.formInputFocusNotCheckRadioClassName,
           ]}
           {...inputTypeProps}
           {...props}

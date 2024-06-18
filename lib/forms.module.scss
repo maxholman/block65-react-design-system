@@ -1,0 +1,221 @@
+// @import './core.scss';
+// @import './focusable.scss';
+// @import './typography.scss';
+
+$formInputSelectGridAreaName: 's';
+
+.formInputPasswordIcon {
+  aspect-ratio: 1 / 1;
+}
+
+.formInputPasswordToggleButton {
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    // we don't use the backgroundHover prop for this because we
+    // are also using it for focus-visible
+    // background-color: oklch(contrastSchemeVars.swatch.v6.l, 0, 0);
+  }
+}
+
+.formInputHack {
+  flex-grow: 1;
+  flex-shrink: 1;
+  // this is arguably a little hack because it doesn't seem
+  // possible to override the default user agent style sheet
+  // for input width
+  width: 100%;
+}
+
+.formInputOriginIcon {
+  max-height: 1em;
+  width: 1em;
+  aspect-ratio: 1 / 1;
+}
+
+.formInputOuterClassName {
+  color: var(--fgColor-default);
+
+  border-radius: var(--control-borderRadius);
+  border-width: var(--control-browserWidth);
+  border-color: var(--control-borderColor-rest);
+
+  &[type='time'] {
+    display: initial;
+    // this is a little hack for chrome
+    align-items: center;
+  }
+
+  &[readonly] {
+    // pointer-events: none; // paired with tabindex="-1" to prevent focus
+    // user-select: auto;
+    cursor: text;
+  }
+}
+
+.formInputInnerClassName {
+  // @include capSizeVariantVars(1);
+
+  &::placeholder {
+    color: var(--fgColor-muted);
+  }
+}
+
+.formInputFocusNotCheckRadioClassName {
+  // @extend focusVisibleClassName;
+
+  &:focus {
+    // draw the outline over the border so that we can increase
+    // thickness without any layout shifts
+    outline-offset: calc(var(--_borderWidth) * -1);
+    border-color: transparent;
+    outline-style: solid;
+    outline-color: var(--focus-color-var);
+    outline-width: var(--focus-width-var);
+  }
+
+  &:focus-visible {
+    border-color: var(--focus-color-var);
+  }
+}
+
+.formInputCheckRadioBase {
+  @extend .formInputOuterClassName;
+  @extend .formInputInnerClassName;
+  // @extend .focusableClassName;
+
+  padding: revert;
+  cursor: pointer;
+  color: var(--focus-color-var);
+  aspect-ratio: 1 / 1;
+  align-self: center;
+  justify-self: center;
+
+  &:focus-visible {
+    outline-style: solid;
+    outline-color: var(--focus-color-var);
+    outline-offset: var(--focus-width-var);
+    outline-width: var(--focus-width-var);
+  }
+
+  &:focus-within {
+    color: var(--focus-color-var);
+  }
+
+  &:active {
+    outline-color: var(--focus-color-var);
+  }
+
+  &::before {
+    content: '';
+    transform: scale(0);
+    transition: 100ms transform ease-in-out;
+    height: 0.5em;
+  }
+
+  &:checked {
+    display: grid;
+    place-content: center;
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    filter: grayscale(1);
+  }
+}
+
+.formInputCheckRadioWrapper {
+  display: grid;
+  grid-template-columns: 1em auto;
+  // font-size: 1.2em;
+}
+
+.formInputCheckRadioLabel {
+  align-self: center;
+  grid-column: 2;
+}
+
+.formInputCheckRadioMessage {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.formInputCheckboxInput {
+  @extend .formInputCheckRadioBase;
+  width: 100%;
+
+  &::before {
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    // size and color of the check
+    aspect-ratio: 1 / 1;
+    // height: 0.35em;
+    box-shadow: inset 1em 1em var(--fgColor-default);
+  }
+
+  &:checked {
+    // background/border of the check
+    border-color: var(--fgColor-accent);
+    background-color: var(--fgColor-accent);
+  }
+}
+
+.formInputRadioInput {
+  @extend .formInputCheckRadioBase;
+  border-radius: 50%;
+  width: 1rem;
+
+  &::before {
+    height: 0.5rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    box-shadow: inset 1em 1em var(--fgColor-accent);
+  }
+}
+
+.formInputSelect {
+  @extend .formInputOuterClassName;
+  @extend .formInputInnerClassName;
+  cursor: pointer;
+  grid-area: $formInputSelectGridAreaName;
+}
+
+.formInputSelectWrapper {
+  display: grid;
+  grid-template-areas: $formInputSelectGridAreaName;
+}
+
+.formInputSelectWrapperMultiple {
+  @extend .formInputSelectWrapper;
+  line-height: var(--generic-vars-text-line-height-normal);
+}
+
+.formInputSelectWrapperSingle {
+  @extend .formInputSelectWrapper;
+  align-items: center;
+
+  &::after {
+    cursor: pointer;
+    pointer-events: none;
+    grid-area: $formInputSelectGridAreaName;
+    content: '';
+    justify-self: flex-end;
+    width: 0.75em;
+    // the same as the inline padding for inputs + border size
+    margin-inline: calc(
+      var(--generic-vars-space-5) + var(--generic-vars-border-width-1)
+    );
+    display: block;
+    aspect-ratio: 2 / 1;
+    background-color: currentColor;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  }
+}
+
+.inputLabelStyle {
+  cursor: pointer;
+}

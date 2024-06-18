@@ -1,9 +1,9 @@
 import { Children, cloneElement, type ReactNode } from 'react';
 import styles from './callout.module.scss';
-import { Case, Switch } from './switch.js';
 import { Box, type BoxProps } from './core.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
 import { InfoIcon } from './icons.js';
+import { Case, Switch } from './switch.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
 import { isValidElementOfType } from './utils.js';

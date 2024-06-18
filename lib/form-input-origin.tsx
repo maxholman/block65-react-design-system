@@ -1,4 +1,5 @@
 import { forwardRef, useMemo, useState } from 'react';
+import styles from './forms.module.scss';
 import type { Falsy } from './core.css.js';
 import { Box } from './core.js';
 import {
@@ -6,13 +7,6 @@ import {
   formInputBoxProps,
   formInputElProps,
 } from './forms-common.js';
-import {
-  formInputInnerClassName,
-  formInputFocusNotCheckRadioClassName,
-  formInputHack,
-  formInputOriginIcon,
-  formInputOuterClassName,
-} from './forms.css.js';
 import {
   FormInputLabel,
   FormInputMessage,
@@ -146,8 +140,8 @@ export const FormInputOrigin = forwardRef<
 
         <Inline
           className={[
-            formInputOuterClassName,
-            formInputFocusNotCheckRadioClassName,
+            styles.formInputOuterClassName,
+            styles.formInputFocusNotCheckRadioClassName,
           ]}
           flexWrap="nowrap"
           alignItems={null}
@@ -161,9 +155,9 @@ export const FormInputOrigin = forwardRef<
             type={syntacticallyValidValueAsUrl ? 'text' : 'url'}
             padding="5"
             className={[
-              formInputInnerClassName,
-              formInputHack,
-              formInputFocusNotCheckRadioClassName,
+              styles.formInputInnerClassName,
+              styles.formInputHack,
+              styles.formInputFocusNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
             {...inputElProps}
@@ -182,14 +176,14 @@ export const FormInputOrigin = forwardRef<
             justifyContent="center"
             paddingInline="5"
           >
-            {dns.busy && <Spinner className={formInputOriginIcon} />}
+            {dns.busy && <Spinner className={styles.formInputOriginIcon} />}
 
             {!dns.busy && !favicon.error && favicon.src && (
-              <img className={formInputOriginIcon} src={favicon.src} />
+              <img className={styles.formInputOriginIcon} src={favicon.src} />
             )}
 
             {!dns.busy && (!favicon.src || favicon.error) && (
-              <GlobeColorIcon className={formInputOriginIcon} />
+              <GlobeColorIcon className={styles.formInputOriginIcon} />
             )}
           </Block>
         </Inline>

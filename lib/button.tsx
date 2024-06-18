@@ -6,21 +6,20 @@ import {
   type ForwardedRef,
   type ReactElement,
 } from 'react';
-import {
-  type ButtonVariant,
-  busyButtonClass,
-  buttonClassName,
-  iconClass,
-  inlineBleedClass,
-  visiblyHiddenClass,
-  buttonVariantClassNames,
-} from './button.css.js';
+import styles from './button.module.scss';
 import { differentOriginLinkProps } from './component-utils.js';
 import type { Falsy } from './core.css.js';
 import { Box } from './core.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
+
+export type ButtonVariant =
+  | 'default'
+  | 'danger'
+  | 'invisible'
+  | 'inactive'
+  | 'primary';
 
 // Extracted out to its own type because `isValidElement` and `ReactElement`
 // don't have the same default value for props, so we need to specify it in
@@ -66,10 +65,13 @@ const IconBox: FC<{
   icon: ReactElement | FC;
   busy?: boolean | Falsy;
 }> = ({ icon, busy }) => (
-  <Box component="span" className={[iconClass, busy && visiblyHiddenClass]}>
+  <Box
+    component="span"
+    className={[styles.iconClass, busy && styles.visiblyHidden]}
+  >
     {isValidElement<ReactElementDefaultPropsType>(icon)
-      ? cloneElement(icon, { className: iconClass })
-      : icon({ className: iconClass })}
+      ? cloneElement(icon, { className: styles.iconClass })
+      : icon({ className: styles.iconClass })}
   </Box>
 );
 
@@ -81,7 +83,7 @@ export const UnstyledButton = forwardRef(
     <Flex
       component="button"
       ref={forwardedRef}
-      className={[className, buttonClassName]}
+      className={[className, styles.button]}
       // if this is going to be an actual button element - default to button
       // type so that it doesn't submit forms by default
       {...(props.component === 'button' && {
@@ -131,14 +133,13 @@ export const Button = forwardRef(
         flexWrap="nowrap"
         justifyContent="center"
         alignItems="center"
-        borderWidth="2"
         {...baseProps}
         {...props}
         className={[
           className,
-          variant && buttonVariantClassNames[variant],
-          busy && busyButtonClass,
-          inline && inlineBleedClass,
+          variant && styles[variant],
+          busy && styles.busyButtonClass,
+          inline && styles.inlineBleedClass,
         ]}
       >
         {iconStart && <IconBox icon={iconStart} busy={busy} />}
@@ -148,7 +149,7 @@ export const Button = forwardRef(
             component="div"
             textAlign={textAlign}
             capSize={capSize}
-            className={[busy && visiblyHiddenClass]}
+            className={[busy && styles.visiblyHidden]}
             aria-hidden={busy || undefined}
             aria-live={busy ? 'polite' : undefined}
           >

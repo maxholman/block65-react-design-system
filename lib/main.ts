@@ -13,7 +13,6 @@ export * from './avatar.js';
 export * from './badges.js';
 
 export * from './button.js';
-export type { ButtonVariant } from './button.css.js';
 
 export * from './callout.js';
 export * from './decorative.js';

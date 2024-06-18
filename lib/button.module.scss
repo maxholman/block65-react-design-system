@@ -1,0 +1,174 @@
+.button {
+  cursor: pointer;
+  user-select: none;
+  border-radius: var(--control-borderRadius);
+  border-width: var(control-borderWidth);
+
+  &.default {
+    color: var(--button-default-fgColor-rest);
+    background-color: var(--button-default-bgColor-rest);
+    &:hover {
+      color: var(--button-default-fgColor-hover);
+      background-color: var(--button-default-bgColor-hover);
+    }
+    &:focus {
+      color: var(--button-default-fgColor-hover);
+      background-color: var(--button-default-bgColor-hover);
+    }
+    &:active {
+      color: var(--button-default-fgColor-active);
+      background-color: var(--button-default-bgColor-active);
+    }
+  }
+
+  &.danger {
+    color: var(--button-danger-fgColor-rest);
+    background-color: var(--button-danger-bgColor-rest);
+    &:hover {
+      color: var(--button-danger-fgColor-hover);
+      background-color: var(--button-danger-bgColor-hover);
+    }
+    &:focus {
+      color: var(--button-danger-fgColor-hover);
+      background-color: var(--button-danger-bgColor-hover);
+    }
+    &:active {
+      color: var(--button-danger-fgColor-active);
+      background-color: var(--button-danger-bgColor-active);
+    }
+  }
+
+  &.invisible {
+    color: var(--button-invisible-fgColor-rest);
+    background-color: var(--button-invisible-bgColor-rest);
+    border-color: var(--button-invisible-borderColor-rest);
+    &:hover {
+      color: var(--button-invisible-fgColor-hover);
+      background-color: var(--button-invisible-bgColor-hover);
+      border-color: var(--button-invisible-borderColor-hover);
+    }
+    &:focus {
+      color: var(--button-invisible-fgColor-hover);
+      background-color: var(--button-invisible-bgColor-hover);
+      border-color: var(--button-invisible-borderColor-hover);
+    }
+    &:active {
+      color: var(--button-invisible-fgColor-active);
+      background-color: var(--button-invisible-bgColor-active);
+      border-color: var(--button-invisible-borderColor-active);
+    }
+  }
+
+  &.inactive {
+    color: var(--button-inactive-fgColor-rest);
+    background-color: var(--button-inactive-bgColor-rest);
+    border-color: var(--button-inactive-borderColor-rest);
+    &:hover {
+      color: var(--button-inactive-fgColor-hover);
+      background-color: var(--button-inactive-bgColor-hover);
+      border-color: var(--button-inactive-borderColor-hover);
+    }
+    &:focus {
+      color: var(--button-inactive-fgColor-hover);
+      background-color: var(--button-inactive-bgColor-hover);
+      border-color: var(--button-inactive-borderColor-hover);
+    }
+    &:active {
+      color: var(--button-inactive-fgColor-active);
+      background-color: var(--button-inactive-bgColor-active);
+      border-color: var(--button-inactive-borderColor-active);
+    }
+  }
+
+  &.primary {
+    color: var(--button-primary-fgColor-rest);
+    background-color: var(--button-primary-bgColor-rest);
+    border-color: var(--button-primary-borderColor-rest);
+    &:hover {
+      color: var(--button-primary-fgColor-hover);
+      background-color: var(--button-primary-bgColor-hover);
+      border-color: var(--button-primary-borderColor-hover);
+    }
+    &:focus {
+      color: var(--button-primary-fgColor-hover);
+      background-color: var(--button-primary-bgColor-hover);
+      border-color: var(--button-primary-borderColor-hover);
+    }
+    &:active {
+      color: var(--button-primary-fgColor-active);
+      background-color: var(--button-primary-bgColor-active);
+      border-color: var(--button-primary-borderColor-active);
+    }
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    cursor: default;
+    // filter: grayscale(1);
+  }
+
+  // keyboard
+  &:focus-visible {
+    outline-style: solid;
+    // outline-offset: map-get(map-get($genericVars, border), width[ '3']);
+    // outline-width: map-get(map-get($genericVars, border), width[ '3']);
+    // outline-color: oklch(
+    //   contrastSchemeVars.swatch.k0.l,
+    //   contrastSchemeVars.swatch.k0.c,
+    //   toneH,
+    // );
+  }
+
+  // mouse, touch, or stylus
+  &:focus:not(:focus-visible) {
+  }
+
+  // both
+  &:focus-visible,
+  &:focus:not(:focus-visible) {
+  }
+
+  // gives us the nice little animation on outlineOffset
+  &:active {
+    outline-offset: 0;
+  }
+}
+
+.icon {
+  height: currentCapHeight;
+  aspect-ratio: 1 / 1;
+  line-height: 0;
+}
+
+.visiblyHidden {
+  visibility: hidden;
+}
+
+.busyButton {
+  pointer-events: none;
+
+  &::after {
+    height: currentCapHeight;
+    aspect-ratio: 1 / 1;
+    content: '';
+    position: absolute;
+    margin: auto;
+
+    // busy indicator
+    border-style: solid;
+    // border-width: map-get(map-get($genericVars, border), width[ '2']);
+    border-color: transparent;
+    border-top-color: currentColor;
+    // border-radius: map-get(map-get($genericVars, radius), '50');
+
+    // busy indicator animation
+    animation-name: rotate;
+    animation-duration: 0.75s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
+.inlineBleed {
+  // margin-block: calc(map-get(map-get($genericVars, space), 0) * -1);
+}
