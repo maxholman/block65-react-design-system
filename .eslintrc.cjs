@@ -7,9 +7,9 @@ module.exports = {
 
     tsconfigRootDir: __dirname,
     project: [
-      './tsconfig.json',
-      './tsconfig.node.json',
-      './tsconfig.examples.json',
+      './tsconfig.eslint.json',
+      // './tsconfig.node.json',
+      // './tsconfig.examples.json',
     ],
   },
 
@@ -35,12 +35,13 @@ module.exports = {
       },
     },
     {
-      files: ['src/**/*.tsx', 'src/**/*.ts'],
+      files: ['src/**/*.tsx', 'src/**/*.ts', 'lib/**/*.tsx', 'lib/**/*.ts'],
       rules: {
         'import/no-extraneous-dependencies': [
           'error',
           { devDependencies: true },
         ],
+        '@typescript-eslint/no-import-type-side-effects': 'error',
       },
     },
   ],

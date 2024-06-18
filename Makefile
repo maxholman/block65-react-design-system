@@ -23,7 +23,7 @@ build: $(SRCS) node_modules vite.config.ts vite-env.d.ts
 .PHONY: build-watch
 build-watch: $(SRCS) node_modules vite.config.ts vite-env.d.ts
 	pnpm exec vite build --mode=development --clearScreen false
-	touch $@
+	touch -c build
 
 .PHONY: dev-server
 dev-server: node_modules vite.config.ts

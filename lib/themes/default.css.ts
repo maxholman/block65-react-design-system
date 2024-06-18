@@ -1,10 +1,25 @@
-import { type MapLeafNodes, style } from '@vanilla-extract/css';
-import type { defaultThemeVars } from '../core.css.js';
+import { type MapLeafNodes, createTheme } from '@vanilla-extract/css';
+import { colorModeThemeVars } from '../core.css.js';
 
-export const defaultEmptyThemeTokens = {
+export const darkModeDefaultThemeTokens = {
+  fgColor: 'var(--gray-0)',
+  bgColor: 'var(--gray-9)',
+  borderColor: 'var(--gray-9)',
+  bgColorAttentionMuted: '#30280f',
+} satisfies MapLeafNodes<typeof colorModeThemeVars, string>;
+
+export const lightModeDefaultThemeTokens = {
   fgColor: '',
   bgColor: '',
   borderColor: '',
-} satisfies MapLeafNodes<typeof defaultThemeVars, string>;
+  bgColorAttentionMuted: '',
+} satisfies MapLeafNodes<typeof colorModeThemeVars, string>;
 
-export const defaultThemeClassName = style(defaultEmptyThemeTokens);
+export const darkModeColorThemeClassName = createTheme(
+  colorModeThemeVars,
+  darkModeDefaultThemeTokens,
+);
+export const lightModeColorThemeClassName = createTheme(
+  colorModeThemeVars,
+  lightModeDefaultThemeTokens,
+);

@@ -1,28 +1,21 @@
-import type { FC } from 'react';
-import { Callout, Grid } from '../../lib/main.js';
+import { Fragment, type FC } from 'react';
+import { Callout, HelpIcon, type CalloutVariant } from '../../lib/main.js';
 
 export const CalloutPage: FC = () => (
   <>
-    <Callout>Critical</Callout>
-    <Callout>
-      Critical. Critical. Critical. Critical. Critical. Critical. Critical.
-      Critical. Critical. Critical.Critical. Critical. Critical. Critical.
-      Critical. Critical. Critical.Critical. Critical. Critical. Critical.
-      Critical. Critical. Critical. Critical. Critical. Critical.Critical.
-      Critical. Critical. Critical. Critical. Critical. Critical.
-    </Callout>
-    <Callout>Info</Callout>
-    <Callout>Positive</Callout>
-    <Callout>Promo</Callout>
-    <Callout>Warning</Callout>
-
-    <Grid>
-      <Callout>Overwhelmingly positive!</Callout>
-      <Callout>Overwhelmingly positive!</Callout>
-      <Callout>Overwhelmingly positive!</Callout>
-      <Callout>Overwhelmingly positive!</Callout>
-      <Callout>Overwhelmingly positive!</Callout>
-      <Callout>Overwhelmingly positive!</Callout>
-    </Grid>
+    {(
+      ['info', 'warning', 'critical', 'success'] satisfies CalloutVariant[]
+    ).map((variant) => (
+      <Fragment key={variant}>
+        <Callout variant={variant}>{variant}</Callout>
+        <Callout variant={variant}>pqLOOIIjjjIIFFFliIpyyyy</Callout>
+        <Callout icon={<HelpIcon />} variant={variant}>
+          {variant}. {variant}. {variant}. {variant}. {variant}. {variant}.{' '}
+          {variant}. {variant}. {variant}. {variant}. {variant}. {variant}.{' '}
+          {variant}. {variant}. {variant}. {variant}. {variant}. {variant}.{' '}
+          {variant}. {variant}. {variant}. {variant}.
+        </Callout>
+      </Fragment>
+    ))}
   </>
 );

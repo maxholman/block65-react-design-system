@@ -14,7 +14,7 @@ import {
   inlineBleedClass,
   visiblyHiddenClass,
   buttonVariantClassNames,
-} from './buttons.css.js';
+} from './button.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import type { Falsy } from './core.css.js';
 import { Box } from './core.js';

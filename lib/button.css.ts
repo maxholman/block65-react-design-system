@@ -59,12 +59,6 @@ export const buttonVars = createThemeContract({
   } satisfies Record<ButtonVariant, ButtonStateVars>,
 });
 
-export const iconClass = style({
-  height: currentCapHeight,
-  aspectRatio: '1/1',
-  lineHeight: 0,
-});
-
 export const buttonVariantClassNames = styleVariants(
   buttonVars.variant,
   (v) => ({
@@ -129,6 +123,12 @@ export const buttonClassName = style([
     },
   },
 ]);
+
+export const iconClass = style({
+  height: currentCapHeight,
+  aspectRatio: '1/1',
+  lineHeight: 0,
+});
 
 export const visiblyHiddenClass = style({
   visibility: 'hidden',

@@ -33,7 +33,7 @@ export const linkStyleVariant = styleVariants(
   {
     strong: {
       color: linkColorVar,
-      fontWeight: genericVars.text.weight.semiBold,
+      fontWeight: genericVars.text.weight.medium,
     },
     normal: {
       color: linkColorVar,

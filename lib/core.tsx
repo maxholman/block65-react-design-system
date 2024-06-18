@@ -1,4 +1,4 @@
-import { type Placement } from '@floating-ui/dom';
+import type { Placement } from '@floating-ui/dom';
 import { clsx, type ClassValue } from 'clsx';
 import {
   Suspense,

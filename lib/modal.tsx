@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { ButtonIcon } from './buttons.js';
+import { ButtonIcon } from './button.js';
 import type { Falsy } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
 import { DesignSystem } from './design-system.js';

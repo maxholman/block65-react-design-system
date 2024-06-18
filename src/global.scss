@@ -1,9 +1,19 @@
-@use './mixins.module.scss' as colorscheme;
-// @use './rds.module.scss' as rds with (
-//   $buttonVariantDangerRestFgColor: 'inherit'
-// );
+@use './theme.scss' as theme;
+@use './primer.module.scss' as primer;
 
 :root {
-  @include colorscheme.primer();
-  // @include rds.magic();
+  @include primer.vars();
+}
+
+html {
+  &[data-color-scheme='dark'],
+  &:not([data-color-mode]) {
+    color-scheme: dark;
+    @include theme.dark();
+  }
+
+  &[data-color-scheme='light'] {
+    color-scheme: light;
+    @include theme.light();
+  }
 }

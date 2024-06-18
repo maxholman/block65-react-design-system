@@ -1,4 +1,4 @@
-import { type InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes } from 'react';
 import type { Space } from './core.css.js';
 import type { BoxProps } from './core.js';
 

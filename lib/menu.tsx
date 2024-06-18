@@ -39,7 +39,7 @@ import {
   type ReactNode,
   type Ref,
 } from 'react';
-import { Button, type ButtonProps } from './buttons.js';
+import { Button, type ButtonProps } from './button.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { ArrowForward, MenuDropdownArrowIcon } from './icons.js';

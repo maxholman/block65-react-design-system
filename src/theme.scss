@@ -1,0 +1,42 @@
+@mixin dark() {
+  --bgColor-default: var(--gray-10);
+  --fgColor-default: var(--gray-2);
+
+  --fgColor-info: var(--blue-3);
+  --bgColor-info-muted: var(--blue-9);
+  --borderColor-info-muted: var(--blue-8);
+
+  --fgColor-positive: var(--green-5);
+  --bgColor-positive-muted: var(--green-9);
+  --borderColor-positive-muted: var(--green-8);
+
+  --fgColor-error: var(--red-6);
+  --bgColor-error-muted: var(--red-9);
+  --borderColor-error-muted: var(--red-8);
+
+  --fgColor-attention: var(--yellow-4);
+  --bgColor-attention-muted: var(--yellow-9);
+  --borderColor-attention-muted: var(--yellow-8);
+}
+
+@mixin light() {
+  --bgColor-default: var(--gray-9);
+  --fgColor-default: var(--gray-9);
+
+  --fgColor-info: var(--blue-5);
+  --bgColor-info-muted: var(--blue-0);
+  --borderColor-info-muted: var(--blue-1);
+
+  --fgColor-positive: var(--green-4);
+  --bgColor-positive-muted: var(--green-0);
+  --borderColor-positive-muted: var(--green-1);
+
+  --fgColor-error: var(--red-5);
+  --fgColor-error: var(--red-5);
+  --bgColor-error-muted: var(--red-0);
+  --borderColor-error-muted: var(--red-1);
+
+  --fgColor-attention: var(--yellow-3);
+  --bgColor-attention-muted: var(--yellow-0);
+  --borderColor-attention-muted: var(--yellow-1);
+}

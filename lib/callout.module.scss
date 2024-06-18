@@ -1,0 +1,79 @@
+// export type CalloutVariant = 'info' | 'warning' | 'critical' | 'success';
+
+@use './scss/capsize/main.scss' as inter with (
+  $font-metrics: (
+    capHeight: 2048,
+    ascent: 2728,
+    descent: -680,
+    lineGap: 0,
+    unitsPerEm: 2816,
+  )
+);
+
+.textTest16px {
+  @include inter.capsize(16px, 26px);
+}
+
+.calloutClass {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0;
+  align-items: start;
+
+  color: var(--fgColor-default);
+  border-radius: var(--callout-border-radius);
+  border-width: var(--callout-border-width);
+  padding: var(--callout-padding);
+  border-style: var(--callout-border-style, solid);
+  font-size: var(--callout-font-size);
+
+  &.info {
+    background-color: var(--bgColor-info-muted);
+    border-color: var(--borderColor-info-muted);
+    --callout-icon-fgColor: var(--fgColor-info);
+  }
+
+  &.warning {
+    background-color: var(--bgColor-attention-muted);
+    border-color: var(--borderColor-attention-muted);
+    --callout-icon-fgColor: var(--fgColor-attention);
+  }
+
+  &.critical {
+    background-color: var(--bgColor-error-muted);
+    border-color: var(--borderColor-error-muted);
+    --callout-icon-fgColor: var(--fgColor-error);
+  }
+
+  &.success {
+    background-color: var(--bgColor-positive-muted);
+    border-color: var(--borderColor-positive-muted);
+    --callout-icon-fgColor: var(--fgColor-positive);
+  }
+
+  .calloutIconWrapper {
+    grid-column: 1;
+    line-height: 0;
+  }
+
+  .calloutIcon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    aspect-ratio: 1/1;
+    color: var(--callout-icon-fgColor, var(--fgColor-default));
+  }
+
+  .calloutText {
+    @extend .textTest16px;
+    display: block;
+    grid-column: 2;
+    align-self: center;
+
+    .truncate {
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+  }
+}

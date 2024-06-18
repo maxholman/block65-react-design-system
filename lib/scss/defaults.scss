@@ -1,0 +1,8 @@
+@use './open-props-scss' as op;
+
+:root {
+  --callout-border-radius: 0.25em; // #{op.$radius-1};
+  --callout-border-width: #{op.$border-size-1};
+  --callout-padding: #{op.$size-2};
+  --callout-font-size: #{op.$font-size-2};
+}

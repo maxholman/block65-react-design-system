@@ -1,5 +1,5 @@
 import { forwardRef, type ForwardedRef, type PropsWithChildren } from 'react';
-import { type Falsy, type OrResponsive } from './core.css.js';
+import type { Falsy, OrResponsive } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
 import {
   alignItemsVariants,

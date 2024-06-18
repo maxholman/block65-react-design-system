@@ -1,10 +1,6 @@
-import { Children, cloneElement, type FC, type ReactNode } from 'react';
-import {
-  calloutClass,
-  calloutTextClass,
-  calloutTextIconClass,
-  calloutTextIconWrapperClass,
-} from './callout.css.js';
+import { Children, cloneElement, type ReactNode } from 'react';
+import styles from './callout.module.scss';
+import { Case, Switch } from './switch.js';
 import { Box, type BoxProps } from './core.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
 import { InfoIcon } from './icons.js';
@@ -12,27 +8,33 @@ import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
 import { isValidElementOfType } from './utils.js';
 
-type CalloutCommonProps = {
+export type CalloutVariant = 'info' | 'warning' | 'critical' | 'success';
+
+export type CalloutCommonProps = {
   align?: never;
   children: ReactNode;
+  icon?: ReactNode;
+  variant?: CalloutVariant;
 };
 
 export type CalloutProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
   Merge<BoxProps<T>, CalloutCommonProps>;
 
-export const Callout: FC<CalloutProps> = ({
+export const Callout = ({
   children,
   className,
   space = '3',
+  variant = 'info',
+  icon,
   ...props
-}) => {
+}: CalloutProps) => {
   ifDebugBuild(() => {
     if (
       isValidElementOfType(children, ExactText) &&
       Children.count(children) === 1
     ) {
       debugLogger(
-        'There is no need to have a single Text component as a child of Callout',
+        'There is no need to have a single ExactText component as a child of Callout',
       );
     }
   });
@@ -40,26 +42,42 @@ export const Callout: FC<CalloutProps> = ({
   return (
     <Box
       space={space}
-      component="div"
-      className={[className, calloutClass]}
-      overflow="hidden"
+      className={[className, styles.calloutClass, styles[variant]]}
       role="alert"
-      capSize="1"
       aria-live="polite"
       {...props}
     >
-      <div className={calloutTextIconWrapperClass}>
-        <InfoIcon className={calloutTextIconClass} />
-      </div>
+      <Box component="span" className={[styles.calloutIconWrapper]}>
+        {isValidElementOfType(icon, 'svg') ? (
+          cloneElement(icon, {
+            className: styles.calloutIcon,
+          })
+        ) : (
+          <Switch predicate={(v) => v === variant}>
+            <Case value="info">
+              <InfoIcon className={styles.calloutIcon} />
+            </Case>
+            <Case value="warning">
+              <InfoIcon className={styles.calloutIcon} />
+            </Case>
+            <Case value="critical">
+              <InfoIcon className={styles.calloutIcon} />
+            </Case>
+            <Case value="success">
+              <InfoIcon className={styles.calloutIcon} />
+            </Case>
+          </Switch>
+        )}
+      </Box>
 
       {isValidElementOfType(children, ExactText) ? (
         cloneElement(children, {
-          className: calloutTextClass,
+          className: styles.calloutText,
         })
       ) : (
-        <ExactText capSize="1" className={calloutTextClass}>
-          {children}
-        </ExactText>
+        <Box component="span" className={styles.calloutText}>
+          <span className={styles.truncate}>{children}</span>
+        </Box>
       )}
     </Box>
   );

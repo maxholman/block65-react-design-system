@@ -433,8 +433,9 @@ export const hiddenClass = style({
   display: 'none!important',
 });
 
-export const defaultThemeVars = createThemeContract({
+export const colorModeThemeVars = createThemeContract({
   fgColor: '',
   bgColor: '',
   borderColor: '',
+  bgColorAttentionMuted: '',
 });

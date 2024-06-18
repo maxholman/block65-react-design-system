@@ -1,10 +1,10 @@
 import { createTheme, type MapLeafNodes } from '@vanilla-extract/css';
-import { buttonVars } from '../buttons.css.js';
+import { buttonVars } from '../button.css.js';
 import { hslVar } from '../utils.js';
 
 export const buttonDarkThemeTokens = {
   border: {
-    radius: '2em',
+    radius: '0.5em',
     width: '1px',
   },
   variant: {

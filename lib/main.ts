@@ -1,3 +1,5 @@
+import './scss/defaults.scss';
+
 export * from './design-system.js';
 
 export { Block as Panel } from './layout.js';
@@ -10,8 +12,8 @@ export * from './layout.js';
 export * from './avatar.js';
 export * from './badges.js';
 
-export * from './buttons.js';
-export type { ButtonVariant } from './buttons.css.js';
+export * from './button.js';
+export type { ButtonVariant } from './button.css.js';
 
 export * from './callout.js';
 export * from './decorative.js';

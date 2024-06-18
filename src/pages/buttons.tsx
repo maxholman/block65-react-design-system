@@ -287,24 +287,6 @@ export const ButtonsPage: FC = () => (
       </Panel>
 
       <Panel>
-        <Heading>Padding override</Heading>
-        <Inline flexWrap="wrap">
-          <Button capSize="5" padding="10" icon={<CrescentMoonIcon />}>
-            padding="10"
-          </Button>
-          <Button capSize="5" paddingInline="10" icon={<CrescentMoonIcon />}>
-            paddingInline="10"
-          </Button>
-          <Button capSize="5" paddingBlock="10" icon={<CrescentMoonIcon />}>
-            paddingBlock="10"
-          </Button>
-          <ButtonLink padding="0" href="https://eject.invalid">
-            padding="0"
-          </ButtonLink>
-        </Inline>
-      </Panel>
-
-      <Panel>
         <Heading>Buttonish things</Heading>
         <Block space="0">
           <Button

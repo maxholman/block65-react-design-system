@@ -1,5 +1,5 @@
 import { Suspense, lazy, type FC } from 'react';
-import { Button } from './buttons.js';
+import { Button } from './button.js';
 import { InfoIcon } from './icons.js';
 import type {
   MenuButtonFallbackProps,
