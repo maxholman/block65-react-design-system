@@ -1,11 +1,9 @@
 import {
-  fallbackVar,
   keyframes,
   style,
   styleVariants,
   type StyleRule,
 } from '@vanilla-extract/css';
-import { currentCapHeight } from './typography.css.js';
 
 const rotate = keyframes({
   '0%': { transform: 'rotate(0deg)' },
@@ -23,8 +21,8 @@ export const spinnerClass = style({
 
 export const inlineSpinnerClass = style({
   display: 'inline-flex',
-  height: fallbackVar(currentCapHeight, '1em'),
-  width: fallbackVar(currentCapHeight, '1em'),
+  // height: fallbackVar(currentCapHeight, '1em'),
+  // width: fallbackVar(currentCapHeight, '1em'),
 });
 
 export type SpinnerSize = '1' | '2' | '3' | '4' | '5';

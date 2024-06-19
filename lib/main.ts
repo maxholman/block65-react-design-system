@@ -23,7 +23,6 @@ export * from './list.js';
 export * from './loaders.js';
 
 export * from './typography.js';
-export type { FontSize } from './typography.css.js';
 
 export * from './menu-item.js';
 export * from './menu-lazy.js';
@@ -32,9 +31,6 @@ export * from './tooltip-lazy.js';
 
 export * from './modal-hooks.js';
 export * from './modal.js';
-
-export * from './fonts/inter.css.js';
-export * from './fonts/roboto.css.js';
 
 export * from './icons.js';
 

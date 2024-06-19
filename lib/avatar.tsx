@@ -1,8 +1,7 @@
 import { avatarClassName, avatarImgClass } from './avatar.css.js';
-import type { Falsy } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { capSizeVariantVars, type FontSize } from './typography.css.js';
+import type { Merge, ReactHTMLElementsHacked, Falsy } from './types.js';
+import type { FontSize } from './typography.js';
 
 type CommonAvatarProps = {
   label?: string | Falsy;
@@ -41,8 +40,8 @@ export const Avatar = <T extends keyof ReactHTMLElementsHacked>({
   <Box
     rounded="50"
     fontSize={size}
-    fontWeight="heavy"
-    className={[className, avatarClassName, size && capSizeVariantVars[size]]}
+    fontWeight="bold"
+    className={[className, avatarClassName]}
   >
     {image ? (
       <Box

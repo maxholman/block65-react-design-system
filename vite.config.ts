@@ -1,4 +1,5 @@
 import { resolve } from 'node:path';
+import hash from '@emotion/hash';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
@@ -49,6 +50,22 @@ export default defineConfig((config) => {
 
       minify: !debugBuild,
       cssMinify: !debugBuild,
+    },
+
+    css: {
+      modules: {
+        ...(true && {
+          generateScopedName(...args) {
+            const [name, filename, css] = args;
+            console.log({ name, filename, css });
+            const className = `_${hash(args.join('_'))}`;
+            const [, file] = filename.match(/.*\/(.*?)\./) || ['unknown'];
+            return config.mode === 'development'
+              ? [file, name, className].join('_')
+              : className;
+          },
+        }),
+      },
     },
 
     optimizeDeps: {

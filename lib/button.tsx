@@ -65,13 +65,10 @@ const IconBox: FC<{
   icon: ReactElement | FC;
   busy?: boolean | Falsy;
 }> = ({ icon, busy }) => (
-  <Box
-    component="span"
-    className={[styles.iconClass, busy && styles.visiblyHidden]}
-  >
+  <Box component="span" className={[styles.icon, busy && styles.visiblyHidden]}>
     {isValidElement<ReactElementDefaultPropsType>(icon)
-      ? cloneElement(icon, { className: styles.iconClass })
-      : icon({ className: styles.iconClass })}
+      ? cloneElement(icon, { className: styles.icon })
+      : icon({ className: styles.icon })}
   </Box>
 );
 
@@ -138,8 +135,8 @@ export const Button = forwardRef(
         className={[
           className,
           variant && styles[variant],
-          busy && styles.busyButtonClass,
-          inline && styles.inlineBleedClass,
+          busy && styles.busy,
+          inline && styles.inlineBleed,
         ]}
       >
         {iconStart && <IconBox icon={iconStart} busy={busy} />}

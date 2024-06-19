@@ -73,6 +73,7 @@
     "@capsizecss/metrics": "^3.2.0",
     "@capsizecss/vanilla-extract": "^2.0.0",
     "@commitlint/config-conventional": "^19.2.2",
+    "@emotion/hash": "^0.9.1",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",

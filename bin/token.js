@@ -5,7 +5,6 @@ import {
   defaultThemeVars,
   defaultEmptyThemeTokens,
   fontThemeVars,
-  interFontThemeTokens,
   buttonVars,
   buttonDarkThemeTokens,
 } from '#vars';
@@ -52,7 +51,6 @@ const vars = extractCustomPropertyNames({
 const tokens = extractCustomPropertyNames({
   generic: genericThemeTokens,
   theme: defaultEmptyThemeTokens,
-  font: interFontThemeTokens,
   button: buttonDarkThemeTokens,
 });
 

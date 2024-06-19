@@ -1,7 +1,10 @@
 
 SRCS = $(wildcard lib/**)
 
-.DEFAULT_GOAL := build types
+.DEFAULT_GOAL := all
+
+.PHONY: all
+all: build types
 
 node_modules: package.json pnpm-lock.yaml
 	pnpm install

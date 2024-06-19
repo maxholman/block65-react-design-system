@@ -15,8 +15,10 @@ export type Responsive<T> = Partial<{
 
 export type OrResponsive<T> = T | Responsive<T>;
 
-// accepting null means we can skip default assignments and specifically
-// disable when consuming
+/**
+ * @deprecated
+ * @use types.js
+ */
 export type Falsy = false | null | undefined;
 
 export type Rounded = '0' | '1' | '2' | '3' | '50';

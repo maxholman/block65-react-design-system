@@ -1,8 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { fontSizeVariants } from './typography.css.js';
 
 export const tooltipClass = style([
-  fontSizeVariants[0],
+  // fontSizeVariants[0],
   {
     position: 'absolute',
     top: '0',

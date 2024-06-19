@@ -1,3 +1,5 @@
+@use './keyframes.module.scss' as keyframes;
+
 .button {
   cursor: pointer;
   user-select: none;
@@ -135,7 +137,7 @@
 }
 
 .icon {
-  height: currentCapHeight;
+  height: 1em;
   aspect-ratio: 1 / 1;
   line-height: 0;
 }
@@ -144,11 +146,11 @@
   visibility: hidden;
 }
 
-.busyButton {
+.busy {
   pointer-events: none;
 
   &::after {
-    height: currentCapHeight;
+    height: 1em;
     aspect-ratio: 1 / 1;
     content: '';
     position: absolute;
@@ -156,10 +158,10 @@
 
     // busy indicator
     border-style: solid;
-    // border-width: map-get(map-get($genericVars, border), width[ '2']);
+    border-width: 0.125em;
     border-color: transparent;
     border-top-color: currentColor;
-    // border-radius: map-get(map-get($genericVars, radius), '50');
+    border-radius: 50%;
 
     // busy indicator animation
     animation-name: rotate;

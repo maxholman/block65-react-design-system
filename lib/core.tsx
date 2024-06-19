@@ -7,6 +7,7 @@ import {
   type ForwardedRef,
   type ReactNode,
 } from 'react';
+import styles from './typography.module.scss';
 import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import {
   borderWidthVariants,
@@ -29,7 +30,6 @@ import {
   viewportPaddingVariants,
   viewportSpaceVariants,
   type BorderWidth,
-  type Falsy,
   type FlexDirection,
   type OrResponsive,
   type Overflow,
@@ -44,16 +44,21 @@ import type {
   Merge,
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
+  Falsy,
 } from './types.js';
-import {
-  capSizeVariants,
-  fontSizeVariants,
-  fontWeightVariants,
-  lineHeightVariants,
-  type FontSize,
-  type FontWeight,
-  type LineHeight,
-} from './typography.css.js';
+import type { FontSize, FontWeight, LineHeight } from './typography.js';
+
+function getFontSizeClassName(fontSize: FontSize | Falsy) {
+  return fontSize && styles[`fontSize-${fontSize}`];
+}
+
+function getFontWeightClassName(fontWeight: FontWeight | Falsy) {
+  return fontWeight && styles[`fontWeight-${fontWeight}`];
+}
+
+function getLineHeightClassName(lineHeight: LineHeight | Falsy) {
+  return lineHeight && styles[`lineHeight-${lineHeight}`];
+}
 
 export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
   ReactHTMLAttributesHacked[T],
@@ -80,6 +85,7 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
 
     fontSize?: FontSize | Falsy;
     capSize?: FontSize | Falsy;
+
     fontWeight?: FontWeight | Falsy;
     lineHeight?: LineHeight | Falsy;
 
@@ -244,11 +250,11 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
           overflow && overflowVariants[overflow],
           textOverflow && textOverflowVariants[textOverflow],
 
-          fontSize && fontSizeVariants[fontSize],
-          capSize && capSizeVariants[capSize],
-          fontWeight && fontWeightVariants[fontWeight],
+          getFontSizeClassName(fontSize),
+          getFontWeightClassName(fontWeight),
+          getLineHeightClassName(lineHeight),
 
-          lineHeight && lineHeightVariants[lineHeight],
+          // capSize && capSizeVariants[capSize],
         ) || undefined,
       ref,
     },
