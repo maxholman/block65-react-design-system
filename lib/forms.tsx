@@ -107,7 +107,11 @@ export const FormInputLabel: FC<
 
 export const FormInputMessage: FC<Pick<FormInputProps, 'message'>> = ({
   message,
-}) => <ExactText fontSize="0">{message}</ExactText>;
+}) => (
+  <ExactText secondary fontSize="0">
+    {message}
+  </ExactText>
+);
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (
