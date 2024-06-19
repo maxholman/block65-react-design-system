@@ -6,7 +6,16 @@ import {
   Heading,
   Inline,
   Panel,
+  type BadgeVariant,
 } from '../../lib/main.js';
+
+const variants = [
+  'default',
+  'info',
+  'positive',
+  'error',
+  'attention',
+] satisfies BadgeVariant[];
 
 export const BadgesPage: FC = () => (
   <>
@@ -22,7 +31,13 @@ export const BadgesPage: FC = () => (
       >
         <Panel>
           <Heading level="4">hello</Heading>
-          <Badge>tone</Badge>
+          <Inline>
+            {variants.map((variant) => (
+              <Badge key={variant} variant={variant}>
+                {variant}
+              </Badge>
+            ))}
+          </Inline>
         </Panel>
       </Grid>
     </Panel>
@@ -69,7 +84,7 @@ export const BadgesPage: FC = () => (
         <Panel>
           <Inline>
             <Heading level="4">Messages (4)</Heading>
-            <Badge>New</Badge>
+            <Badge variant="positive">New</Badge>
           </Inline>
           <ExactText>You've got mail!</ExactText>
         </Panel>

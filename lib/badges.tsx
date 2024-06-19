@@ -4,32 +4,38 @@ import {
   type ForwardedRef,
   type PropsWithChildren,
 } from 'react';
-import { badgeClassName } from './badges.css.js';
+import styles from './badge.module.css';
 import type { BoxProps } from './core.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
+import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
 
+export type BadgeVariant =
+  | 'default'
+  | 'info'
+  | 'positive'
+  | 'error'
+  | 'attention';
+
 export type BadgeProps<T extends keyof ReactHTMLElementsHacked> =
-  PropsWithChildren<InlineProps<T>>;
+  PropsWithChildren<InlineProps<T>> & { variant?: BadgeVariant | Falsy };
 
 export const Badge = forwardRef(
   <T extends keyof ReactHTMLElementsHacked>(
-    { className, children, ...props }: BadgeProps<T>,
+    { children, variant = 'default', className, ...props }: BadgeProps<T>,
     forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => {
     const isStringLike = useStringLikeDetector();
 
     return (
       <Inline
-        component="span"
-        rounded="1"
-        padding="2"
-        borderWidth="2"
-        className={[badgeClassName, className]}
-        {...props}
         ref={forwardedRef}
+        component="span"
+        padding="2"
+        paddingInline="3"
+        className={[className, styles.badge, variant && styles[variant]]}
+        {...props}
       >
         {isStringLike(children) ? (
           <ExactText

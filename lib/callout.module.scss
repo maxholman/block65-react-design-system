@@ -1,72 +1,52 @@
-// export type CalloutVariant = 'info' | 'warning' | 'critical' | 'success';
-
-@use './scss/capsize/main.scss' as inter with (
-  $font-metrics: (
-    capHeight: 2048,
-    ascent: 2728,
-    descent: -680,
-    lineGap: 0,
-    unitsPerEm: 2816,
-  )
-);
-
-.textTest16px {
-  @include inter.capsize(16px, 26px);
-}
-
-.calloutClass {
+.callout {
   display: grid;
   grid-template-columns: auto 1fr;
-  row-gap: 0;
-  align-items: start;
   border-style: solid;
 
   color: var(--fgColor-default);
-  border-radius: var(--callout-borderRadius);
-  border-width: var(--callout-borderWidth);
-  padding: var(--callout-padding);
 
-  font-size: var(--callout-fontSize);
+  border-radius: var(--control-borderRadius);
+  border-width: var(--control-borderWidth);
+  border-style: solid;
 
   &.info {
     background-color: var(--bgColor-info-muted);
     border-color: var(--borderColor-info-muted);
-    --callout-icon-fgColor: var(--fgColor-info);
+    --_icon-fgColor: var(--fgColor-info);
   }
 
   &.warning {
     background-color: var(--bgColor-attention-muted);
     border-color: var(--borderColor-attention-muted);
-    --callout-icon-fgColor: var(--fgColor-attention);
+    --_icon-fgColor: var(--fgColor-attention);
   }
 
   &.critical {
     background-color: var(--bgColor-error-muted);
     border-color: var(--borderColor-error-muted);
-    --callout-icon-fgColor: var(--fgColor-error);
+    --_icon-fgColor: var(--fgColor-error);
   }
 
   &.success {
     background-color: var(--bgColor-positive-muted);
     border-color: var(--borderColor-positive-muted);
-    --callout-icon-fgColor: var(--fgColor-positive);
+    --_icon-fgColor: var(--fgColor-positive);
   }
 
-  .calloutIconWrapper {
+  .iconWrapper {
     grid-column: 1;
     line-height: 0;
   }
 
-  .calloutIcon {
+  .icon {
     display: inline-block;
     width: 1em;
     height: 1em;
     aspect-ratio: 1/1;
-    color: var(--callout-icon-fgColor, var(--fgColor-default));
+    color: var(--_icon-fgColor, inherit);
   }
 
-  .calloutText {
-    @extend .textTest16px;
+  .text {
     display: block;
     grid-column: 2;
     align-self: center;

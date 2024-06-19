@@ -1,5 +1,6 @@
 @mixin constants() {
-  --fgColor-white: var(--gray-0);
+  --fgColor-black: #000;
+  --fgColor-white: #fff;
   --fgColor-accent: var(--blue-5);
 }
 
@@ -10,7 +11,7 @@
   MAIN COLORS
   */
   --bgColor-default: var(--gray-10);
-  --fgColor-default: var(--gray-2);
+  --fgColor-default: var(--gray-1);
   --fgColor-muted: var(--gray-1);
   --borderColor-muted: var(--gray-7);
 
@@ -101,7 +102,7 @@
   --button-invisible-fgColor-rest: var(--gray-2);
   --button-invisible-bgColor-rest: transparent;
 
-  --button-invisible-borderColor-hover: transparent;
+  --button-invisible-borderColor-hover: var(--gray-9);
   --button-invisible-fgColor-hover: var(--gray-2);
   --button-invisible-bgColor-hover: var(--gray-9);
 
@@ -116,8 +117,14 @@
   /**
   CONTROLS
   */
-
   --control-borderColor-rest: var(--gray-4);
+
+  /**
+  BADGES - default, info, positive, error, attention
+  */
+  --badge-fgColor-primary: var(--gray-0);
+  --badge-bgColor-primary: var(--green-5);
+  --badge-borderColor-primary: var(--green-6);
 }
 
 @mixin light() {
@@ -236,4 +243,11 @@
   CONTROLS
   */
   --control-borderColor-rest: var(--gray-5);
+
+  /**
+  BADGES
+  */
+  --badge-fgColor-primary: var(--gray-0);
+  --badge-bgColor-primary: var(--green-5);
+  --badge-borderColor-primary: var(--green-4);
 }

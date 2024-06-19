@@ -21,9 +21,7 @@ export const SelectorPattern = () => (
       </Block>
 
       <Block justifyContent="center">
-        <Button component="div">
-          <ArrowForwardIcon />
-        </Button>
+        <Button icon={<ArrowForwardIcon />}></Button>
       </Block>
     </Panel>
   </Link>

@@ -8,7 +8,6 @@ import {
   ButtonLink,
   Divider,
   ExactText,
-  Grid,
   Heading,
   Inline,
   Panel,
@@ -98,22 +97,21 @@ export const ButtonsPage: FC = () => (
     <Panel>
       <Heading>Button Icons</Heading>
       <Inline>
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" busy />
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" busy />
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" busy />
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" busy />
+        {variants.map((variant) => (
+          <ButtonIcon
+            icon={<SunIcon />}
+            label="Sun"
+            variant={variant}
+            key={variant}
+          />
+        ))}
       </Inline>
     </Panel>
 
     <Panel>
       <Heading>Busy Buttons</Heading>
       <ExactText>These buttons are super busy</ExactText>
-      <Inline flexWrap>
+      <Inline>
         {variants.map((variant) => (
           <Button busy variant={variant} key={variant}>
             {variant}
@@ -122,20 +120,8 @@ export const ButtonsPage: FC = () => (
       </Inline>
     </Panel>
 
-    <Block>
-      <Heading>Growing Shrinking Buttons</Heading>
-      <Inline>
-        <Button flexShrink>A</Button>
-        <Button flexGrow>B</Button>
-      </Inline>
-      <Grid>
-        <Button flexShrink>A</Button>
-        <Button>B</Button>
-      </Grid>
-    </Block>
-
     <Panel>
-      <Heading>smol buttons</Heading>
+      <Heading>Small buttons</Heading>
       <Paragraph>OMG So cute!</Paragraph>
       <Inline>
         {variants.map((variant) => (

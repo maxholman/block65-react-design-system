@@ -9,7 +9,6 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { ButtonIcon } from './button.js';
-import type { Falsy } from './core.css.js';
 import { Box, type BoxProps } from './core.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
@@ -22,7 +21,7 @@ import {
   dialogClass,
   modalClass,
 } from './modal.css.js';
-import type { Merge } from './types.js';
+import type { Falsy, Merge } from './types.js';
 import { Heading } from './typography.js';
 
 type InnerProps<T extends string | 'dismiss' = 'dismiss'> = PropsWithChildren<{

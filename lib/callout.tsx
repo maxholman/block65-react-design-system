@@ -42,29 +42,30 @@ export const Callout = ({
   return (
     <Box
       space={space}
-      className={[className, styles.calloutClass, styles[variant]]}
+      padding="3"
+      className={[className, styles.callout, styles[variant]]}
       role="alert"
       aria-live="polite"
       {...props}
     >
-      <Box component="span" className={[styles.calloutIconWrapper]}>
+      <Box component="span" className={[styles.iconWrapper]}>
         {isValidElementOfType(icon, 'svg') ? (
           cloneElement(icon, {
-            className: styles.calloutIcon,
+            className: styles.icon,
           })
         ) : (
           <Switch predicate={(v) => v === variant}>
             <Case value="info">
-              <InfoIcon className={styles.calloutIcon} />
+              <InfoIcon className={styles.icon} />
             </Case>
             <Case value="warning">
-              <InfoIcon className={styles.calloutIcon} />
+              <InfoIcon className={styles.icon} />
             </Case>
             <Case value="critical">
-              <InfoIcon className={styles.calloutIcon} />
+              <InfoIcon className={styles.icon} />
             </Case>
             <Case value="success">
-              <InfoIcon className={styles.calloutIcon} />
+              <InfoIcon className={styles.icon} />
             </Case>
           </Switch>
         )}
@@ -72,12 +73,10 @@ export const Callout = ({
 
       {isValidElementOfType(children, ExactText) ? (
         cloneElement(children, {
-          className: styles.calloutText,
+          className: styles.text,
         })
       ) : (
-        <Box component="span" className={styles.calloutText}>
-          <span className={styles.truncate}>{children}</span>
-        </Box>
+        <ExactText className={styles.text}>{children}</ExactText>
       )}
     </Box>
   );

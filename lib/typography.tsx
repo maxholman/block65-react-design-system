@@ -12,6 +12,7 @@ export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
 export type FontSize = '00' | '0' | '1' | '2' | '3' | '4' | '5' | '6';
 export type FontWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
 export type LineHeight = 'normal' | 'paragraph' | 'heading';
+export type TextWrap = 'pretty' | 'balance' | 'nowrap';
 
 type CommonTextProps = {
   secondary?: true | Falsy;
@@ -31,7 +32,6 @@ export const ExactText = forwardRef(
       component = 'span',
       className,
       secondary,
-      textOverflow,
       children,
       ...props
     }: TextProps<T>,
@@ -43,13 +43,7 @@ export const ExactText = forwardRef(
       className={[className, secondary && styles.secondary]}
       {...props}
     >
-      {textOverflow && children ? (
-        <Box component="span" textOverflow={textOverflow}>
-          {children}
-        </Box>
-      ) : (
-        children
-      )}
+      {children}
     </Box>
   ),
 );

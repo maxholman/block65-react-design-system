@@ -1,0 +1,35 @@
+.badge {
+  border-radius: var(--control-borderRadius);
+  border-width: var(--control-borderWidth);
+  border-style: solid;
+
+  &.default {
+    color: var(--fgColor);
+    background-color: var(--bgColor-default);
+    border-color: var(--borderColor-muted);
+  }
+
+  &.info {
+    color: var(--fgColor-info-muted);
+    background-color: var(--bgColor-info-muted);
+    border-color: var(--borderColor-info-muted);
+  }
+
+  &.positive {
+    color: var(--fgColor-positive-muted);
+    background-color: var(--bgColor-positive-muted);
+    border-color: var(--borderColor-positive-muted);
+  }
+
+  &.error {
+    color: var(--fgColor-error-muted);
+    background-color: var(--bgColor-error-muted);
+    border-color: var(--borderColor-error-muted);
+  }
+
+  &.attention {
+    color: var(--fgColor-attention-muted);
+    background-color: var(--bgColor-attention-muted);
+    border-color: var(--borderColor-attention-muted);
+  }
+}

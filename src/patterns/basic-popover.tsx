@@ -10,7 +10,7 @@ export const BasicPopover = () => (
       alignSelf="center"
       rounded="2"
     >
-      <Heading textAlign="center">
+      <Heading textAlign="center" textWrap="balance">
         This title does a great job of catching your attention
       </Heading>
       <Paragraph secondary fontSize="0" textAlign="center">

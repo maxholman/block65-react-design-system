@@ -9,15 +9,18 @@
   &.default {
     color: var(--button-default-fgColor-rest);
     background-color: var(--button-default-bgColor-rest);
-    &:hover {
+    &:hover,
+    &.hover {
       color: var(--button-default-fgColor-hover);
       background-color: var(--button-default-bgColor-hover);
     }
-    &:focus {
+    &:focus,
+    &.focus {
       color: var(--button-default-fgColor-hover);
       background-color: var(--button-default-bgColor-hover);
     }
-    &:active {
+    &:active,
+    &.active {
       color: var(--button-default-fgColor-active);
       background-color: var(--button-default-bgColor-active);
     }
@@ -26,15 +29,18 @@
   &.danger {
     color: var(--button-danger-fgColor-rest);
     background-color: var(--button-danger-bgColor-rest);
-    &:hover {
+    &:hover,
+    &.hover {
       color: var(--button-danger-fgColor-hover);
       background-color: var(--button-danger-bgColor-hover);
     }
-    &:focus {
+    &:focus,
+    &.focus {
       color: var(--button-danger-fgColor-hover);
       background-color: var(--button-danger-bgColor-hover);
     }
-    &:active {
+    &:active,
+    &.active {
       color: var(--button-danger-fgColor-active);
       background-color: var(--button-danger-bgColor-active);
     }
@@ -44,17 +50,20 @@
     color: var(--button-invisible-fgColor-rest);
     background-color: var(--button-invisible-bgColor-rest);
     border-color: var(--button-invisible-borderColor-rest);
-    &:hover {
+    &:hover,
+    &.hover {
       color: var(--button-invisible-fgColor-hover);
       background-color: var(--button-invisible-bgColor-hover);
       border-color: var(--button-invisible-borderColor-hover);
     }
-    &:focus {
+    &:focus,
+    &.focus {
       color: var(--button-invisible-fgColor-hover);
       background-color: var(--button-invisible-bgColor-hover);
       border-color: var(--button-invisible-borderColor-hover);
     }
-    &:active {
+    &:active,
+    &.active {
       color: var(--button-invisible-fgColor-active);
       background-color: var(--button-invisible-bgColor-active);
       border-color: var(--button-invisible-borderColor-active);
@@ -65,11 +74,11 @@
     color: var(--button-inactive-fgColor-rest);
     background-color: var(--button-inactive-bgColor-rest);
     border-color: var(--button-inactive-borderColor-rest);
-    &:hover {
-      color: var(--button-inactive-fgColor-hover);
-      background-color: var(--button-inactive-bgColor-hover);
-      border-color: var(--button-inactive-borderColor-hover);
-    }
+    // &:hover {
+    //   color: var(--button-inactive-fgColor-hover);
+    //   background-color: var(--button-inactive-bgColor-hover);
+    //   border-color: var(--button-inactive-borderColor-hover);
+    // }
     &:focus {
       color: var(--button-inactive-fgColor-hover);
       background-color: var(--button-inactive-bgColor-hover);
@@ -86,17 +95,20 @@
     color: var(--button-primary-fgColor-rest);
     background-color: var(--button-primary-bgColor-rest);
     border-color: var(--button-primary-borderColor-rest);
-    &:hover {
+    &:hover,
+    &.hover {
       color: var(--button-primary-fgColor-hover);
       background-color: var(--button-primary-bgColor-hover);
       border-color: var(--button-primary-borderColor-hover);
     }
-    &:focus {
+    &:focus,
+    &.focus {
       color: var(--button-primary-fgColor-hover);
       background-color: var(--button-primary-bgColor-hover);
       border-color: var(--button-primary-borderColor-hover);
     }
-    &:active {
+    &:active,
+    &.active {
       color: var(--button-primary-fgColor-active);
       background-color: var(--button-primary-bgColor-active);
       border-color: var(--button-primary-borderColor-active);

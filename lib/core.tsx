@@ -7,7 +7,8 @@ import {
   type ForwardedRef,
   type ReactNode,
 } from 'react';
-import styles from './typography.module.scss';
+import coreStyles from './core.module.scss';
+import typographyStyles from './typography.module.scss';
 import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import {
   borderWidthVariants,
@@ -46,18 +47,23 @@ import type {
   ReactHTMLElementsHacked,
   Falsy,
 } from './types.js';
-import type { FontSize, FontWeight, LineHeight } from './typography.js';
+import type {
+  FontSize,
+  FontWeight,
+  LineHeight,
+  TextWrap,
+} from './typography.js';
 
 function getFontSizeClassName(fontSize: FontSize | Falsy) {
-  return fontSize && styles[`fontSize-${fontSize}`];
+  return fontSize && typographyStyles[`fontSize-${fontSize}`];
 }
 
 function getFontWeightClassName(fontWeight: FontWeight | Falsy) {
-  return fontWeight && styles[`fontWeight-${fontWeight}`];
+  return fontWeight && typographyStyles[`fontWeight-${fontWeight}`];
 }
 
 function getLineHeightClassName(lineHeight: LineHeight | Falsy) {
-  return lineHeight && styles[`lineHeight-${lineHeight}`];
+  return lineHeight && typographyStyles[`lineHeight-${lineHeight}`];
 }
 
 export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
@@ -68,6 +74,7 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
 
     space?: OrResponsive<Space | Falsy> | Falsy;
     flexDirection?: OrResponsive<FlexDirection> | Falsy;
+    flexGrow?: OrResponsive<boolean> | Falsy;
 
     margin?: OrResponsive<Space> | Falsy;
     marginBlock?: OrResponsive<Space> | Falsy;
@@ -86,6 +93,7 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
     fontSize?: FontSize | Falsy;
     fontWeight?: FontWeight | Falsy;
     lineHeight?: LineHeight | Falsy;
+    textWrap?: TextWrap | Falsy;
 
     overflow?: Overflow | Falsy;
 
@@ -120,6 +128,7 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
     fontSize,
     fontWeight,
     lineHeight,
+    textWrap,
 
     overflow,
 
@@ -135,7 +144,9 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
     roundedEndEnd,
 
     space,
+
     flexDirection,
+    flexGrow,
 
     borderWidth,
 
@@ -169,6 +180,12 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
           // we dont extract out the prop, we just force a display none
           // so we can keep the element attribute for accessibility?
           props.hidden && hiddenClass,
+
+          flexGrow && coreStyles.flexGrow,
+
+          isNotFalsy(flexGrow)
+            ? coreStyles[`flexGrow${flexGrow ? 1 : 0}`]
+            : undefined,
 
           isNotFalsy(margin) &&
             marginBlock !== margin &&
@@ -246,6 +263,7 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
 
           overflow && overflowVariants[overflow],
           textOverflow && textOverflowVariants[textOverflow],
+          textWrap && coreStyles[`textWrap-${textWrap}`],
 
           getFontSizeClassName(fontSize),
           getFontWeightClassName(fontWeight),

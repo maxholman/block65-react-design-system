@@ -17,7 +17,6 @@ import {
   Strong,
   TextLink,
   Button,
-  ExactText,
   Heading,
 } from '../../../lib/main.js';
 

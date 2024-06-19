@@ -8,9 +8,10 @@ import {
 } from 'react';
 import styles from './button.module.scss';
 import { differentOriginLinkProps } from './component-utils.js';
-import { Box, BoxProps } from './core.js';
+import { Box, type BoxProps } from './core.js';
+import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Flex, type FlexProps } from './layout.js';
-import type { Merge, ReactHTMLElementsHacked, Falsy } from './types.js';
+import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
 
 // Extracted out to its own type because `isValidElement` and `ReactElement`
@@ -29,6 +30,8 @@ export type ButtonVariant =
   | 'inactive'
   | 'primary';
 
+export type ButtonState = 'active' | 'focus' | 'hover';
+
 export type ButtonCommonProps = {
   busy?: boolean | undefined;
   disabled?: boolean | undefined;
@@ -39,8 +42,8 @@ export type ButtonCommonProps = {
   iconEnd?: ReactElement | FC | Falsy;
 
   variant?: ButtonVariant | Falsy;
-
   size?: ButtonSize | Falsy;
+  state?: ButtonState | Falsy;
 };
 
 export type ButtonProps<T extends keyof ReactHTMLElementsHacked = 'button'> =
@@ -98,12 +101,14 @@ function getSizeProps(size: ButtonSize | Falsy) {
   switch (size) {
     case 'small':
       return {
+        space: '1',
         fontSize: '0',
         paddingBlock: '4',
         paddingInline: '5',
       } satisfies BoxProps;
     case 'large':
       return {
+        space: '2',
         fontSize: '3',
         paddingBlock: '6',
         paddingInline: '7',
@@ -111,8 +116,9 @@ function getSizeProps(size: ButtonSize | Falsy) {
     case 'medium':
     default:
       return {
-        paddingBlock: '6',
-        paddingInline: '7',
+        space: '2',
+        paddingBlock: '3',
+        paddingInline: '6',
       } satisfies BoxProps;
   }
 }
@@ -132,12 +138,14 @@ export const Button = forwardRef(
       paddingBlock,
       paddingInline,
       flexGrow,
+      state,
       size = 'medium',
       variant = 'default',
       ...props
     }: ButtonProps<T>,
     ref: ForwardedRef<HTMLElement>,
   ) => {
+    const isStringLike = useStringLikeDetector();
     const { fontSize, ...buttonSizeProps } = getSizeProps(size);
 
     const finalProps = {
@@ -145,10 +153,15 @@ export const Button = forwardRef(
       ...props,
     };
 
+    const busyAttributes = {
+      className: [busy && styles.visiblyHidden],
+      'aria-hidden': busy || undefined,
+      'aria-live': busy ? 'polite' : undefined,
+    } as const;
+
     return (
       <UnstyledButton
         ref={ref}
-        space="2"
         flexDirection="row"
         flexWrap="nowrap"
         justifyContent="center"
@@ -157,23 +170,26 @@ export const Button = forwardRef(
         className={[
           className,
           variant && styles[variant],
+          state && styles[state],
           busy && styles.busy,
           inline && styles.inlineBleed,
         ]}
       >
         {iconStart && <IconBox icon={iconStart} busy={busy} />}
 
-        {children && (
+        {isStringLike(children) ? (
           <ExactText
             component="div"
             textAlign={textAlign}
             fontSize={fontSize}
-            className={[busy && styles.visiblyHidden]}
-            aria-hidden={busy || undefined}
-            aria-live={busy ? 'polite' : undefined}
+            {...busyAttributes}
           >
             {children}
           </ExactText>
+        ) : (
+          <Box component="span" {...busyAttributes}>
+            {children}
+          </Box>
         )}
 
         {iconEnd && <IconBox icon={iconEnd} busy={busy} />}
