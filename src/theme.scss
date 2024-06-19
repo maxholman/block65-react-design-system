@@ -1,10 +1,10 @@
-@mixin common() {
+@mixin constants() {
   --fgColor-white: var(--gray-0);
   --fgColor-accent: var(--blue-5);
 }
 
 @mixin dark() {
-  @include common();
+  @include constants();
 
   /**
   MAIN COLORS
@@ -12,6 +12,7 @@
   --bgColor-default: var(--gray-10);
   --fgColor-default: var(--gray-2);
   --fgColor-muted: var(--gray-1);
+  --borderColor-muted: var(--gray-7);
 
   --fgColor-info: var(--blue-3);
   --bgColor-info-muted: var(--blue-9);
@@ -120,7 +121,7 @@
 }
 
 @mixin light() {
-  @include common();
+  @include constants();
 
   /**
   MAIN COLORS
@@ -130,6 +131,7 @@
   --bgColor-default: var(--gray-0);
   --fgColor-default: var(--gray-9);
   --fgColor-muted: var(--gray-4);
+  --borderColor-muted: var(--gray-9);
 
   --fgColor-info: var(--blue-5);
   --bgColor-info-muted: var(--blue-0);

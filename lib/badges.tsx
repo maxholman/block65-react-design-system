@@ -33,7 +33,7 @@ export const Badge = forwardRef(
       >
         {isStringLike(children) ? (
           <ExactText
-            capSize="0"
+            fontSize="0"
             fontWeight="medium"
             textOverflow="ellipsis"
             textAlign="center"

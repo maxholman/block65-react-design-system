@@ -8,18 +8,10 @@ import {
 } from 'react';
 import styles from './button.module.scss';
 import { differentOriginLinkProps } from './component-utils.js';
-import type { Falsy } from './core.css.js';
-import { Box } from './core.js';
+import { Box, BoxProps } from './core.js';
 import { Flex, type FlexProps } from './layout.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
+import type { Merge, ReactHTMLElementsHacked, Falsy } from './types.js';
 import { ExactText } from './typography.js';
-
-export type ButtonVariant =
-  | 'default'
-  | 'danger'
-  | 'invisible'
-  | 'inactive'
-  | 'primary';
 
 // Extracted out to its own type because `isValidElement` and `ReactElement`
 // don't have the same default value for props, so we need to specify it in
@@ -27,6 +19,15 @@ export type ButtonVariant =
 // a stray `any`
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ReactElementDefaultPropsType = any;
+
+export type ButtonSize = 'small' | 'medium' | 'large';
+
+export type ButtonVariant =
+  | 'default'
+  | 'danger'
+  | 'invisible'
+  | 'inactive'
+  | 'primary';
 
 export type ButtonCommonProps = {
   busy?: boolean | undefined;
@@ -38,7 +39,12 @@ export type ButtonCommonProps = {
   iconEnd?: ReactElement | FC | Falsy;
 
   variant?: ButtonVariant | Falsy;
+
+  size?: ButtonSize | Falsy;
 };
+
+export type ButtonProps<T extends keyof ReactHTMLElementsHacked = 'button'> =
+  Merge<FlexProps<T>, ButtonCommonProps>;
 
 export type ButtonLinkProps = Merge<
   ButtonProps<'a'>,
@@ -46,9 +52,6 @@ export type ButtonLinkProps = Merge<
     safe?: boolean;
   }
 >;
-
-export type ButtonProps<T extends keyof ReactHTMLElementsHacked = 'button'> =
-  Merge<Omit<FlexProps<T>, 'fontSize'>, ButtonCommonProps>;
 
 export type ButtonIconProps<
   T extends keyof ReactHTMLElementsHacked = 'button',
@@ -91,6 +94,29 @@ export const UnstyledButton = forwardRef(
   ),
 );
 
+function getSizeProps(size: ButtonSize | Falsy) {
+  switch (size) {
+    case 'small':
+      return {
+        fontSize: '0',
+        paddingBlock: '4',
+        paddingInline: '5',
+      } satisfies BoxProps;
+    case 'large':
+      return {
+        fontSize: '3',
+        paddingBlock: '6',
+        paddingInline: '7',
+      } satisfies BoxProps;
+    case 'medium':
+    default:
+      return {
+        paddingBlock: '6',
+        paddingInline: '7',
+      } satisfies BoxProps;
+  }
+}
+
 export const Button = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'button'>(
     {
@@ -106,21 +132,18 @@ export const Button = forwardRef(
       paddingBlock,
       paddingInline,
       flexGrow,
-      capSize = '1',
+      size = 'medium',
       variant = 'default',
       ...props
     }: ButtonProps<T>,
     ref: ForwardedRef<HTMLElement>,
   ) => {
-    const baseProps = {
-      paddingBlock:
-        paddingBlock === null ? paddingBlock : paddingBlock || padding || '6',
+    const { fontSize, ...buttonSizeProps } = getSizeProps(size);
 
-      paddingInline:
-        paddingInline === null
-          ? paddingInline
-          : paddingInline || padding || '7',
-    } satisfies FlexProps;
+    const finalProps = {
+      ...buttonSizeProps,
+      ...props,
+    };
 
     return (
       <UnstyledButton
@@ -130,8 +153,7 @@ export const Button = forwardRef(
         flexWrap="nowrap"
         justifyContent="center"
         alignItems="center"
-        {...baseProps}
-        {...props}
+        {...finalProps}
         className={[
           className,
           variant && styles[variant],
@@ -145,7 +167,7 @@ export const Button = forwardRef(
           <ExactText
             component="div"
             textAlign={textAlign}
-            capSize={capSize}
+            fontSize={fontSize}
             className={[busy && styles.visiblyHidden]}
             aria-hidden={busy || undefined}
             aria-live={busy ? 'polite' : undefined}

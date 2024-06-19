@@ -84,8 +84,6 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
     textOverflow?: TextOverflow | Falsy;
 
     fontSize?: FontSize | Falsy;
-    capSize?: FontSize | Falsy;
-
     fontWeight?: FontWeight | Falsy;
     lineHeight?: LineHeight | Falsy;
 
@@ -120,7 +118,6 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
     textOverflow,
 
     fontSize,
-    capSize,
     fontWeight,
     lineHeight,
 
@@ -253,8 +250,6 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
           getFontSizeClassName(fontSize),
           getFontWeightClassName(fontWeight),
           getLineHeightClassName(lineHeight),
-
-          // capSize && capSizeVariants[capSize],
         ) || undefined,
       ref,
     },

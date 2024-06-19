@@ -55,7 +55,7 @@ function maybeSuffix(value: string | number, suffix: string): string {
   return `${value}${suffix}`;
 }
 
-export function hslValues(
+function hslValues(
   h: string | number,
   s: string | number,
   l: string | number,
@@ -82,15 +82,6 @@ export function hsl(
     maybeSuffix(l, '%'),
     a,
   )})`;
-}
-
-export function lchValues(
-  l: string | number,
-  c: string | number,
-  h: string | number,
-  a: string | number = 1,
-) {
-  return [l, c, h, ...(a.toString() !== '1' ? [a] : [])].join(' ');
 }
 
 export function oklch(

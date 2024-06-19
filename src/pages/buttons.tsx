@@ -12,6 +12,7 @@ import {
   Heading,
   Inline,
   Panel,
+  Paragraph,
   UnstyledButton,
 } from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from './components/icons.js';
@@ -113,13 +114,11 @@ export const ButtonsPage: FC = () => (
       <Heading>Busy Buttons</Heading>
       <ExactText>These buttons are super busy</ExactText>
       <Inline flexWrap>
-        <Button busy>Button</Button>
-        <Button busy>Ghost</Button>
-        <Button busy>Subtle</Button>
-        <Button busy>Transparent</Button>
-        <Button busy icon={<CrescentMoonIcon />}>
-          This one has an Icon
-        </Button>
+        {variants.map((variant) => (
+          <Button busy variant={variant} key={variant}>
+            {variant}
+          </Button>
+        ))}
       </Inline>
     </Panel>
 
@@ -136,64 +135,49 @@ export const ButtonsPage: FC = () => (
     </Block>
 
     <Panel>
-      <Heading>capSize="0" Buttons</Heading>
-      <ExactText>So cute</ExactText>
+      <Heading>smol buttons</Heading>
+      <Paragraph>OMG So cute!</Paragraph>
       <Inline>
-        <Button capSize="0">Button</Button>
-        <Button capSize="0">Ghost</Button>
-        <Button capSize="0">Subtle</Button>
-        <Button capSize="0" icon={<CrescentMoonIcon />}>
-          Button
-        </Button>
-        <Button capSize="0" busy>
-          Button
-        </Button>
-        <Button capSize="0" busy>
-          Ghost
-        </Button>
-        <Button capSize="0" busy>
-          Subtle
-        </Button>
-        <Button capSize="0" disabled>
-          Button
-        </Button>
-        <Button capSize="0" disabled>
-          Ghost
-        </Button>
-        <Button capSize="0" disabled>
-          Subtle
-        </Button>
+        {variants.map((variant) => (
+          <>
+            <Button size="small" icon={<CrescentMoonIcon />}>
+              small
+            </Button>
+
+            <Button size="small" busy variant={variant} key={variant}>
+              {variant} busy
+            </Button>
+            <Button size="small" disabled variant={variant} key={variant}>
+              {variant} disabled
+            </Button>
+          </>
+        ))}
       </Inline>
     </Panel>
 
     <Panel>
-      <Heading>Tones</Heading>
+      <Heading>bui bui buttons</Heading>
+      <Paragraph>So fat!</Paragraph>
+      <Inline>
+        {variants.map((variant) => (
+          <>
+            <Button size="large" icon={<CrescentMoonIcon />}>
+              large
+            </Button>
 
-      <Grid
-        cols={{
-          all: 4,
-          tablet: 2,
-          mobile: 1,
-        }}
-      >
-        {(
-          [
-            'default',
-            'danger',
-            'invisible',
-            'inactive',
-            'primary',
-          ] satisfies ButtonVariant[]
-        ).map((variant) => (
-          <Button variant={variant} key={variant}>
-            {variant}
-          </Button>
+            <Button size="large" busy variant={variant} key={variant}>
+              {variant} busy
+            </Button>
+            <Button size="large" disabled variant={variant} key={variant}>
+              {variant} disabled
+            </Button>
+          </>
         ))}
-      </Grid>
+      </Inline>
     </Panel>
 
     <Panel>
-      <Heading>Unstyled Buttons</Heading>
+      <Heading>Unstyled Buttons with stuff inside</Heading>
       <UnstyledButton flexDirection="column" space="5">
         <Heading>Things</Heading>
         <ExactText secondary>Stuff</ExactText>
@@ -201,6 +185,8 @@ export const ButtonsPage: FC = () => (
         <ExactText secondary>Stuff</ExactText>
       </UnstyledButton>
     </Panel>
+
+    <Divider marginBlock="3" />
 
     <Panel>
       <Heading>Hello</Heading>
@@ -246,11 +232,11 @@ export const ButtonsPage: FC = () => (
         <Heading>Font Size</Heading>
         <ExactText>Buttons in context</ExactText>
         <Inline>
-          <Button capSize="5" icon={<CrescentMoonIcon />}>
+          <Button fontSize="5" icon={<CrescentMoonIcon />}>
             Eject
           </Button>
           <ButtonLink
-            capSize="5"
+            fontSize="5"
             href="https://eject.invalid"
             icon={<CrescentMoonIcon />}
           >
@@ -263,7 +249,7 @@ export const ButtonsPage: FC = () => (
         <Heading>Buttonish things</Heading>
         <Block space="0">
           <Button
-            capSize="5"
+            fontSize="5"
             padding="10"
             rounded="0"
             alignItems="start"
@@ -278,7 +264,7 @@ export const ButtonsPage: FC = () => (
             </Inline>
           </Button>
           <Button
-            capSize="5"
+            fontSize="5"
             padding="10"
             rounded="0"
             justifyContent="start"
@@ -288,7 +274,7 @@ export const ButtonsPage: FC = () => (
             Buttonish, but notjjjjqqqyyy
           </Button>
           <Button
-            capSize="5"
+            fontSize="5"
             padding="10"
             rounded="0"
             flexDirection="column"

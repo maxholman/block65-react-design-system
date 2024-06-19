@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { Box, type BoxProps } from './core.js';
-import { dividerStyle } from './decorative.css.js';
+import styles from './decorative.module.scss';
 
 export type DividerProps = Pick<
   BoxProps<'hr'>,
@@ -18,7 +18,7 @@ export const Divider = forwardRef<HTMLHRElement, DividerProps>(
     <Box
       ref={ref}
       component="hr"
-      className={[className, dividerStyle]}
+      className={[className, styles.divider]}
       {...props}
     />
   ),

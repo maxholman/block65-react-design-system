@@ -93,7 +93,7 @@ export const FormInputLabel: FC<
       >
         {isStringLike(children) ? (
           <>
-            <Strong capSize="0">{children}</Strong>
+            <Strong>{children}</Strong>
             {secondary && <Secondary>{secondary}</Secondary>}
           </>
         ) : (
@@ -221,6 +221,8 @@ export const FormInputPassword = forwardRef<
     const ourRef = useCustomValidity<HTMLInputElement>(customValidity);
     const ref = useCombinedRefs(forwardedRef, ourRef);
 
+    const isStringLike = useStringLikeDetector();
+
     return (
       <Block className={className} space={defaultFormInputSpace}>
         {label && (
@@ -278,7 +280,12 @@ export const FormInputPassword = forwardRef<
           </Block>
         </Inline>
 
-        {message && <FormInputMessage message={message} />}
+        {message &&
+          (isStringLike(message) ? (
+            <FormInputMessage message={message} />
+          ) : (
+            message
+          ))}
       </Block>
     );
   },
@@ -347,9 +354,7 @@ export const FormSelect: FC<FormSelectProps> = ({
       </div>
       {message &&
         (isStringLike(message) ? (
-          <ExactText secondary fontSize="0">
-            {message}
-          </ExactText>
+          <FormInputMessage message={message} />
         ) : (
           message
         ))}

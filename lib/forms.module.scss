@@ -43,7 +43,7 @@ $formInputSelectGridAreaName: 's';
 
   border-radius: var(--control-borderRadius);
   border-width: var(--control-outlineWidth, var(--control-borderWidth));
-  border-color: var(--control-borderColor-rest);
+  border-color: var(--control-borderColor-rest, var(--borderColor-muted));
 
   &[type='time'] {
     display: initial;
