@@ -7,8 +7,8 @@ import {
   type ReactElement,
 } from 'react';
 import styles from './button.module.scss';
-import { differentOriginLinkProps } from './component-utils.js';
 import { Box, type BoxProps } from './box.js';
+import { differentOriginLinkProps } from './component-utils.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';

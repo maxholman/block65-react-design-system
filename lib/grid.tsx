@@ -1,5 +1,4 @@
 import { Children, type ReactElement } from 'react';
-import { matchViewportVariants } from './component-utils.js';
 import {
   viewportGridColumnsVariants,
   type Columns,
@@ -8,6 +7,7 @@ import {
   type Falsy,
 } from './box.css.js';
 import { Box, type BoxProps } from './box.js';
+import { matchViewportVariants } from './component-utils.js';
 import { gridClass } from './grid.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 

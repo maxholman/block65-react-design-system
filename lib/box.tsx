@@ -9,7 +9,6 @@ import {
 } from 'react';
 import coreStyles from './box.module.scss';
 import typographyStyles from './typography.module.scss';
-import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import {
   borderWidthVariants,
   flexDirectionVariants,
@@ -39,6 +38,7 @@ import {
   type TextAlign,
   type TextOverflow,
 } from './box.css.js';
+import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type { TooltipProps } from './tooltip.js';
 import type {
