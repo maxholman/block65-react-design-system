@@ -2,7 +2,7 @@ import { Link } from '@block65/mrr';
 import type { FC } from 'react';
 import {
   Avatar,
-  ExactText,
+  Paragraph,
   Grid,
   Inline,
   Menu,
@@ -28,14 +28,14 @@ const RandomMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
   >
     {Array.from({ length: 99 }).map((_, idx, arr) => (
       <MenuItem key={idx} label={(arr.length - idx).toString()}>
-        <ExactText>
+        <Paragraph>
           <Link href="/modals">
             <TextLink weight="weak" padding="3">
               {arr.length - idx} Bottles
             </TextLink>
             {/* <ButtonLink rounded="none">{arr.length - idx} Bottles</ButtonLink> */}
           </Link>
-        </ExactText>
+        </Paragraph>
       </MenuItem>
     ))}
   </Menu>
@@ -56,13 +56,13 @@ const CustomActivatorMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
   >
     {Array.from({ length: 99 }).map((_, idx, arr) => (
       <MenuItem key={idx} label={(arr.length - idx).toString()}>
-        <ExactText>
+        <Paragraph>
           <Link href="/modals">
             <TextLink weight="weak" padding="3">
               {arr.length - idx} Bottles
             </TextLink>
           </Link>
-        </ExactText>
+        </Paragraph>
       </MenuItem>
     ))}
   </Menu>

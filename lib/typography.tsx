@@ -33,7 +33,7 @@ export type ExactTextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
         BoxProps<T>,
         'flexDirection' | 'flexWrap' | 'space' | 'overflow' | 'fontSize'
       >,
-      CommonTextProps & { capSize: FontSize }
+      CommonTextProps & { capSize?: FontSize }
     >
   >;
 
@@ -47,6 +47,7 @@ export const ExactText = forwardRef(
       ref={forwardedRef}
       className={[className, secondary && styles.secondary]}
       {...props}
+      capSize="1"
     />
   ),
 );

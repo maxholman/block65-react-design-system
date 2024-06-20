@@ -6,7 +6,7 @@ import {
   Heading,
   Inline,
   MenuIcon,
-  ExactText,
+  Paragraph,
   UnstyledButton,
   Badge,
 } from '../../lib/main.js';
@@ -43,9 +43,9 @@ export const PanelTogglerPattern = () => {
             <Inline flexGrow>
               <Block flexGrow>
                 <Heading level="4">UOB VISA Debit {i}</Heading>
-                <ExactText>
+                <Paragraph>
                   Expires <Code>{i}/25</Code>
-                </ExactText>
+                </Paragraph>
               </Block>
               <Badge
                 variant={isSelected ? 'positive' : 'default'}

@@ -5,30 +5,30 @@ import {
   Grid,
   Heading,
   Inline,
-  ExactText,
+  Paragraph,
 } from '../../lib/main.js';
 
 const PanelGrid = () => (
   <Grid cols={{ mobile: 1, all: 2 }}>
     <Panel>
       <Heading>solid</Heading>
-      <ExactText>solid</ExactText>
+      <Paragraph>solid</Paragraph>
     </Panel>
     <Panel>
       <Heading>subtle</Heading>
-      <ExactText>subtle</ExactText>
+      <Paragraph>subtle</Paragraph>
     </Panel>
     <Panel>
       <Heading>ghost</Heading>
-      <ExactText>ghost</ExactText>
+      <Paragraph>ghost</Paragraph>
     </Panel>
     <Panel>
       <Heading>transparent</Heading>
-      <ExactText>transparent</ExactText>
+      <Paragraph>transparent</Paragraph>
     </Panel>
     <Panel>
       <Heading>none</Heading>
-      <ExactText>none</ExactText>
+      <Paragraph>none</Paragraph>
     </Panel>
   </Grid>
 );

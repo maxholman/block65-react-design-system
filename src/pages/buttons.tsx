@@ -7,7 +7,7 @@ import {
   ButtonIcon,
   ButtonLink,
   Divider,
-  ExactText,
+  Paragraph,
   Heading,
   Inline,
   Panel,
@@ -110,7 +110,7 @@ export const ButtonsPage: FC = () => (
 
     <Panel>
       <Heading>Busy Buttons</Heading>
-      <ExactText>These buttons are super busy</ExactText>
+      <Paragraph>These buttons are super busy</Paragraph>
       <Inline>
         {variants.map((variant) => (
           <Button busy variant={variant} key={variant}>
@@ -166,9 +166,9 @@ export const ButtonsPage: FC = () => (
       <Heading>Unstyled Buttons with stuff inside</Heading>
       <UnstyledButton flexDirection="column" space="5">
         <Heading>Things</Heading>
-        <ExactText secondary>Stuff</ExactText>
-        <ExactText secondary>Stuff</ExactText>
-        <ExactText secondary>Stuff</ExactText>
+        <Paragraph secondary>Stuff</Paragraph>
+        <Paragraph secondary>Stuff</Paragraph>
+        <Paragraph secondary>Stuff</Paragraph>
       </UnstyledButton>
     </Panel>
 
@@ -176,17 +176,17 @@ export const ButtonsPage: FC = () => (
 
     <Panel>
       <Heading>Hello</Heading>
-      <ExactText>Buttons in context</ExactText>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
-        <ExactText>Like this</ExactText>
+        <Paragraph>Like this</Paragraph>
         <ButtonLink href="https://eject.invalid">Eject</ButtonLink>
-        <ExactText>and like this</ExactText>
+        <Paragraph>and like this</Paragraph>
       </Inline>
     </Panel>
 
     <Block>
       <Heading>Hello</Heading>
-      <ExactText>Buttons in context</ExactText>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
         <ButtonLink href="https://eject.invalid" icon={<CrescentMoonIcon />}>
           Eject
@@ -195,28 +195,28 @@ export const ButtonsPage: FC = () => (
       <Divider marginBlock="3" />
 
       <Heading>Hello</Heading>
-      <ExactText>Buttons in context</ExactText>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
-        <ExactText>Like this</ExactText>
+        <Paragraph>Like this</Paragraph>
         <ButtonLink href="https://eject.invalid" icon={<CrescentMoonIcon />}>
           Eject
         </ButtonLink>
-        <ExactText>and like this</ExactText>
+        <Paragraph>and like this</Paragraph>
       </Inline>
 
       <Heading>Hello</Heading>
-      <ExactText>Buttons in context</ExactText>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
-        <ExactText>Like this</ExactText>
+        <Paragraph>Like this</Paragraph>
         <ButtonLink href="https://eject.invalid" icon={<CrescentMoonIcon />}>
           Eject
         </ButtonLink>
-        <ExactText>and like this</ExactText>
+        <Paragraph>and like this</Paragraph>
       </Inline>
 
       <Panel>
         <Heading>Font Size</Heading>
-        <ExactText>Buttons in context</ExactText>
+        <Paragraph>Buttons in context</Paragraph>
         <Inline>
           <Button fontSize="5" icon={<CrescentMoonIcon />}>
             Eject

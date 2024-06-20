@@ -5,7 +5,7 @@ import {
   Block,
   Button,
   Heading,
-  ExactText,
+  Paragraph,
   Panel,
 } from '../../lib/main.js';
 
@@ -17,7 +17,7 @@ export const SelectorPattern = () => (
       </Block>
       <Block flexGrow justifyContent="center">
         <Heading level="5">Hello good evening</Heading>
-        <ExactText>I trust you are well</ExactText>
+        <Paragraph>I trust you are well</Paragraph>
       </Block>
 
       <Block justifyContent="center">

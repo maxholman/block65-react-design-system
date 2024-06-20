@@ -1,6 +1,6 @@
 @mixin constants() {
-  --fgColor-black: #000;
-  --fgColor-white: #fff;
+  --fgColor-black: var(--black);
+  --fgColor-white: var(--white);
   --fgColor-accent: var(--blue-5);
 }
 
@@ -12,7 +12,7 @@
   */
   --bgColor-default: var(--gray-10);
   --fgColor-default: var(--gray-1);
-  --fgColor-muted: var(--gray-1);
+  --fgColor-muted: var(--gray-3);
   --borderColor-muted: var(--gray-7);
 
   --fgColor-info: var(--blue-3);

@@ -8,7 +8,7 @@ import {
   List,
   ListItem,
   Secondary,
-  ExactText,
+  Paragraph,
   Tooltip,
   Button,
   Panel,
@@ -17,7 +17,7 @@ import {
 export const ListPage: FC = () => (
   <>
     <Panel>
-      <ExactText>
+      <Paragraph>
         Question Mark{' '}
         <Tooltip
           initialOpen
@@ -26,7 +26,7 @@ export const ListPage: FC = () => (
         >
           <HelpIcon />
         </Tooltip>
-      </ExactText>
+      </Paragraph>
     </Panel>
 
     <Panel>
@@ -34,29 +34,29 @@ export const ListPage: FC = () => (
         <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Early Adopter Plan</Heading>
-            <ExactText capSize="0">
+            <Paragraph capSize="0">
               <Secondary>For those who like to adopt, early </Secondary>
-            </ExactText>
+            </Paragraph>
           </Block>
           <Block>
-            <ExactText>
+            <Paragraph>
               Ex veniam cillum aliquip. Irure ex sunt excepteur ea commodo duis
               reprehenderit. Qui duis cupidatat mollit laboris mollit proident
               velit magna. Excepteur anim est pariatur. Also, look at this icon{' '}
               <Tooltip content={<span>This is more information.</span>}>
                 <HelpIcon />
               </Tooltip>
-            </ExactText>
+            </Paragraph>
           </Block>
           <Block>
-            <ExactText>
+            <Paragraph>
               Qui duis cupidatat mollit laboris mollit.Excepteur anim est
               pariatur.
-            </ExactText>
-            <ExactText>
+            </Paragraph>
+            <Paragraph>
               Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
               excepteur ea commodo duis reprehenderit.
-            </ExactText>
+            </Paragraph>
           </Block>
           <Block>
             <List>
@@ -96,7 +96,7 @@ export const ListPage: FC = () => (
           <Block marginBlock="4" alignItems="center">
             <Inline>
               <Heading level="1">$18 USD</Heading>
-              <ExactText capSize="0">p/m</ExactText>
+              <Paragraph capSize="0">p/m</Paragraph>
             </Inline>
           </Block>
 
@@ -106,12 +106,12 @@ export const ListPage: FC = () => (
         <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Custom Plan</Heading>
-            <ExactText capSize="0">
+            <Paragraph capSize="0">
               <Secondary>Want more?</Secondary>
-            </ExactText>
+            </Paragraph>
           </Block>
-          <ExactText>We can do customised models and payment terms</ExactText>
-          <ExactText>No wuckers</ExactText>
+          <Paragraph>We can do customised models and payment terms</Paragraph>
+          <Paragraph>No wuckers</Paragraph>
           <Button>Contact Us</Button>
         </Panel>
       </Grid>
