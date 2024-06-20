@@ -9,22 +9,15 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
+import styles from './tooltip.module.scss';
 import { paddingVariants, roundedVariants } from './box.css.js';
 import { useTooltipState } from './hooks/use-tooltip-state.js';
-import { tooltipClass } from './tooltip.css.js';
 
 export type TooltipProps = PropsWithChildren<{
   content: ReactNode;
   initialOpen?: boolean;
   initialPlacement?: Placement;
 }>;
-
-/* const staticSide: Record<Side, Side> = {
-  top: 'bottom',
-  right: 'left',
-  bottom: 'top',
-  left: 'right',
-}; */
 
 const TooltipActual = forwardRef<
   HTMLElement,
@@ -34,7 +27,7 @@ const TooltipActual = forwardRef<
     ref={ref}
     className={clsx([
       className,
-      tooltipClass,
+      styles.tooltip,
       paddingVariants['4'],
       roundedVariants['2'],
     ])}

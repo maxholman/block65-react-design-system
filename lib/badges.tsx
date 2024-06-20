@@ -1,15 +1,9 @@
-import {
-  forwardRef,
-  type FC,
-  type ForwardedRef,
-  type PropsWithChildren,
-} from 'react';
+import { forwardRef, type ForwardedRef } from 'react';
 import styles from './badge.module.css';
-import { Box, type BoxProps } from './box.js';
+import { Box } from './box.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
-import { Inline, type InlineProps } from './layout.js';
-import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
-import { ExactText } from './typography.js';
+import { Inline, type FlexProps } from './layout.js';
+import type { Falsy, ReactHTMLElementsHacked } from './types.js';
 
 export type BadgeVariant =
   | 'default'
@@ -19,7 +13,7 @@ export type BadgeVariant =
   | 'attention';
 
 export type BadgeProps<T extends keyof ReactHTMLElementsHacked> =
-  PropsWithChildren<InlineProps<T>> & { variant?: BadgeVariant | Falsy };
+  FlexProps<T> & { variant?: BadgeVariant | Falsy };
 
 export const Badge = forwardRef(
   <T extends keyof ReactHTMLElementsHacked>(
@@ -54,12 +48,3 @@ export const Badge = forwardRef(
     );
   },
 );
-
-type BadgeLinkProps = {
-  component?: never;
-  href?: string;
-};
-
-export const BadgeLink: FC<Merge<BoxProps<'a' | 'button'>, BadgeLinkProps>> = (
-  props,
-) => <Badge component={'href' in props ? 'a' : 'button'} {...props} />;

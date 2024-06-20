@@ -9,7 +9,7 @@ import {
 } from './list.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
-type ListCommonProps = {
+export type ListCommonProps = {
   variant?: 'ordered' | 'unordered';
   space?: Space;
   cols?: `${number}`;

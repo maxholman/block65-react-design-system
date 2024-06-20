@@ -50,8 +50,8 @@ export type ButtonProps<T extends keyof ReactHTMLElementsHacked = 'button'> =
   Merge<FlexProps<T>, ButtonCommonProps>;
 
 export type ButtonLinkProps = Merge<
-  ButtonProps<'a'>,
-  {
+  FlexProps<'a'>,
+  ButtonCommonProps & {
     safe?: boolean;
   }
 >;
@@ -59,8 +59,8 @@ export type ButtonLinkProps = Merge<
 export type ButtonIconProps<
   T extends keyof ReactHTMLElementsHacked = 'button',
 > = Merge<
-  ButtonProps<T>,
-  {
+  FlexProps<T>,
+  ButtonCommonProps & {
     label: string;
     icon: ReactElement<ReactElementDefaultPropsType>;
   }
@@ -118,7 +118,7 @@ function getSizeProps(size: ButtonSize | Falsy) {
       return {
         space: '2',
         fontSize: '1',
-        paddingBlock: '3',
+        paddingBlock: '5',
         paddingInline: '6',
       } satisfies BoxProps;
   }

@@ -1,9 +1,4 @@
-import {
-  forwardRef,
-  type FC,
-  type ForwardedRef,
-  type PropsWithChildren,
-} from 'react';
+import { forwardRef, type FC, type ForwardedRef } from 'react';
 import styles from './typography.module.scss';
 import { Box, type BoxProps } from './box.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
@@ -19,50 +14,20 @@ type CommonTextProps = {
 };
 
 export type ParagraphProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
-  PropsWithChildren<
-    Merge<
-      Omit<BoxProps<T>, 'flexDirection' | 'flexWrap' | 'space' | 'overflow'>,
-      CommonTextProps
-    >
+  Omit<
+    Merge<BoxProps<T>, CommonTextProps>,
+    'flexDirection' | 'flexWrap' | 'space' | 'overflow' | 'capSize'
   >;
 
 export type ExactTextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
-  PropsWithChildren<
-    Merge<
-      Omit<
-        BoxProps<T>,
-        'flexDirection' | 'flexWrap' | 'space' | 'overflow' | 'fontSize'
-      >,
-      CommonTextProps & { capSize?: FontSize }
-    >
+  Omit<
+    Merge<BoxProps<T>, CommonTextProps>,
+    'flexDirection' | 'flexWrap' | 'space' | 'overflow' | 'fontSize'
   >;
 
-export const ExactText = forwardRef(
-  <T extends keyof ReactHTMLElementsHacked = 'span'>(
-    { component = 'span', className, secondary, ...props }: ExactTextProps<T>,
-    forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
-  ) => (
-    <Box
-      component={component}
-      ref={forwardedRef}
-      className={[className, secondary && styles.secondary]}
-      {...props}
-      capSize="1"
-    />
-  ),
-);
-
-export const Strong: FC<BoxProps<'span'>> = (props) => (
-  <Box component="span" fontWeight="bold" {...props} />
-);
-
-export const Code: FC<BoxProps<'code'>> = ({ className, ...props }) => (
-  <Box component="code" {...props} className={[className, styles.code]} />
-);
-
-export const Secondary: FC<BoxProps<'span'>> = ({ className, ...props }) => (
-  <Box component="span" className={[className, styles.secondary]} {...props} />
-);
+export type HeadingProps = ParagraphProps & {
+  level?: HeadingLevel;
+};
 
 function headingProps(level: HeadingLevel): HeadingProps {
   switch (level) {
@@ -83,14 +48,20 @@ function headingProps(level: HeadingLevel): HeadingProps {
   }
 }
 
-export type HeadingProps = PropsWithChildren<
-  Merge<
-    ParagraphProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
-    {
-      level?: HeadingLevel;
-    }
-  >
->;
+export const ExactText = forwardRef(
+  <T extends keyof ReactHTMLElementsHacked = 'span'>(
+    { component = 'span', className, secondary, ...props }: ExactTextProps<T>,
+    forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
+  ) => (
+    <Box
+      component={component}
+      ref={forwardedRef}
+      className={[className, secondary && styles.secondary]}
+      {...props}
+      capSize="1"
+    />
+  ),
+);
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ level = '3', ...props }, ref) => (
@@ -105,7 +76,25 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
 );
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, ...props }, ref) => (
-    <Box ref={ref} lineHeight="paragraph" component="p" {...props} />
+  ({ className, secondary, ...props }, ref) => (
+    <Box
+      ref={ref}
+      className={[className, secondary && styles.secondary]}
+      lineHeight="paragraph"
+      component="p"
+      {...props}
+    />
   ),
+);
+
+export const Strong: FC<BoxProps<'span'>> = (props) => (
+  <Box component="span" fontWeight="bold" {...props} />
+);
+
+export const Code: FC<BoxProps<'code'>> = ({ className, ...props }) => (
+  <Box component="code" {...props} className={[className, styles.code]} />
+);
+
+export const Secondary: FC<BoxProps<'span'>> = ({ className, ...props }) => (
+  <Box component="span" className={[className, styles.secondary]} {...props} />
 );

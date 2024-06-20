@@ -30,7 +30,7 @@ $font-sizes: (6, 5, 4, 3, 2, 1, 0, '00');
 /**
 * Font weight
 */
-$weights: (bold, semiBold, medium, regular, light);
+$weights: (bold, semibold, medium, regular, light);
 
 @each $weight in $weights {
   .fontWeight-#{$weight} {

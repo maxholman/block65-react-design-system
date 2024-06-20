@@ -8,8 +8,8 @@ import {
   type SyntheticEvent,
 } from 'react';
 import { useThrottledCallback } from './hooks/use-throttled-callback.js';
-import { Block, type BlockProps } from './layout.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
+import { Block, type FlexProps } from './layout.js';
+import type { ReactHTMLElementsHacked } from './types.js';
 import {
   innerClassName,
   itemClassName,
@@ -18,18 +18,15 @@ import {
 
 export type VirtualizedListProps<
   T extends keyof ReactHTMLElementsHacked = 'div',
-> = Merge<
-  BlockProps<T>,
-  {
-    numItems: number;
-    renderItem: (
-      props: { index: number } & HTMLAttributes<HTMLDivElement>,
-    ) => ReactNode;
-    itemHeight: number | ((props: { index: number }) => number);
-    listHeight: number;
-    overscan?: number;
-  }
->;
+> = FlexProps<T> & {
+  numItems: number;
+  renderItem: (
+    props: { index: number } & HTMLAttributes<HTMLDivElement>,
+  ) => ReactNode;
+  itemHeight: number | ((props: { index: number }) => number);
+  listHeight: number;
+  overscan?: number;
+};
 
 export const VirtualizedList = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'div'>(

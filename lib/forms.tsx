@@ -27,7 +27,7 @@ import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { useToggle } from './hooks/use-toggle.js';
 import { PasswordInvisibleIcon, PasswordVisibleIcon } from './icons.js';
-import { Block, Inline, type BlockProps } from './layout.js';
+import { Block, Inline, type FlexProps } from './layout.js';
 import type { Merge } from './types.js';
 import { Secondary, Strong, ExactText } from './typography.js';
 import {
@@ -50,15 +50,9 @@ type CommonFormInputProps = {
   customValidity?: string;
 };
 
-export type FormInputProps = Merge<
-  // InputHTMLAttributes<HTMLInputElement>,
-  BoxProps<'input'>,
-  CommonFormInputProps
->;
+export type FormInputProps = Merge<BoxProps<'input'>, CommonFormInputProps>;
 
-export type FormProps = BlockProps<'form'>;
-
-export const Form = forwardRef<HTMLFormElement, PropsWithChildren<FormProps>>(
+export const Form = forwardRef<HTMLFormElement, FlexProps<'form'>>(
   ({ space = '9', children, ...props }, ref) => (
     <Block space={space} component="form" {...props} ref={ref}>
       {Children.map(children, (child) => {

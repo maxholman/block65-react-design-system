@@ -7,7 +7,6 @@ import {
   ButtonIcon,
   ButtonLink,
   Divider,
-  Paragraph,
   Heading,
   Inline,
   Panel,

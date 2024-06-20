@@ -64,12 +64,6 @@ function hslValues(
   return [h, s, l, ...(a.toString() !== '1' ? ['/', a] : [])].join(' ');
 }
 
-export function hslVar(tuple: string): string;
-export function hslVar(tuple: undefined): undefined;
-export function hslVar(tuple: string | undefined): string | undefined {
-  return typeof tuple !== 'undefined' ? `hsl(${tuple})` : undefined;
-}
-
 export function hsl(
   h: string | number,
   s: string | number,

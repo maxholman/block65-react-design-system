@@ -6,7 +6,7 @@ import type {
 } from 'react';
 import styles from './design-system.module.scss';
 import { Box, type BoxProps } from './box.js';
-import { Context } from './context.js';
+import { DesignSystemContext } from './design-system-context.js';
 import { resetClass } from './reset.css.js';
 import { genericThemeClassName } from './themes/generic.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
@@ -14,11 +14,11 @@ import type { Merge, ReactHTMLElementsHacked } from './types.js';
 export type DesignSystemProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
   Merge<
     BoxProps<T>,
-    PropsWithChildren<{
+    {
       integrationMode?: boolean;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       stringLikeComponents?: JSXElementConstructor<any>[];
-    }>
+    }
   >;
 
 export const DesignSystem = <
@@ -30,7 +30,7 @@ export const DesignSystem = <
   component = 'div',
   ...props
 }: DesignSystemProps<T>): ReactElement | null => (
-  <Context.Provider
+  <DesignSystemContext.Provider
     value={{
       className,
       ...(stringLikeComponents && { stringLikeComponents }),
@@ -50,7 +50,7 @@ export const DesignSystem = <
       ]}
       {...props}
     />
-  </Context.Provider>
+  </DesignSystemContext.Provider>
 );
 
 export const Reset: FC<PropsWithChildren> = (props) => (

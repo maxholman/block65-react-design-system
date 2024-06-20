@@ -34,8 +34,8 @@ export const ListPage: FC = () => (
         <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Early Adopter Plan</Heading>
-            <Paragraph capSize="0">
-              <Secondary>For those who like to adopt, early </Secondary>
+            <Paragraph secondary fontSize="0">
+              For those who like to adopt, early
             </Paragraph>
           </Block>
           <Block>
@@ -43,7 +43,10 @@ export const ListPage: FC = () => (
               Ex veniam cillum aliquip. Irure ex sunt excepteur ea commodo duis
               reprehenderit. Qui duis cupidatat mollit laboris mollit proident
               velit magna. Excepteur anim est pariatur. Also, look at this icon{' '}
-              <Tooltip content={<span>This is more information.</span>}>
+              <Tooltip
+                initialOpen
+                content={<span>This is more information.</span>}
+              >
                 <HelpIcon />
               </Tooltip>
             </Paragraph>
@@ -96,7 +99,7 @@ export const ListPage: FC = () => (
           <Block marginBlock="4" alignItems="center">
             <Inline>
               <Heading level="1">$18 USD</Heading>
-              <Paragraph capSize="0">p/m</Paragraph>
+              <Paragraph fontSize="0">p/m</Paragraph>
             </Inline>
           </Block>
 
@@ -106,7 +109,7 @@ export const ListPage: FC = () => (
         <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Custom Plan</Heading>
-            <Paragraph capSize="0">
+            <Paragraph fontSize="0">
               <Secondary>Want more?</Secondary>
             </Paragraph>
           </Block>

@@ -1,5 +1,5 @@
-import { forwardRef, type ForwardedRef, type PropsWithChildren } from 'react';
-import type { Falsy, OrResponsive } from './box.css.js';
+import { forwardRef, type ForwardedRef } from 'react';
+import type { OrResponsive } from './box.css.js';
 import { Box, type BoxProps } from './box.js';
 import {
   alignItemsVariants,
@@ -12,11 +12,11 @@ import {
   type Placement,
   type Wrap,
 } from './layout.css.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
+import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type FlexProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
   BoxProps<T>,
-  PropsWithChildren<{
+  {
     alignSelf?: Placement | Falsy;
     alignItems?: Placement | Falsy;
 
@@ -34,14 +34,8 @@ export type FlexProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
     flexShrink?: OrResponsive<boolean> | Falsy;
 
     flexWrap?: Wrap | true | Falsy;
-  }>
+  }
 >;
-
-export type BlockProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
-  FlexProps<T>;
-
-export type InlineProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
-  FlexProps<T>;
 
 export const Flex = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'div'>(
@@ -87,14 +81,14 @@ export const Flex = forwardRef(
 
 export const Block = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'div'>(
-    props: BlockProps<T>,
+    props: FlexProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => <Flex ref={ref} flexDirection="column" space="7" {...props} />,
 );
 
 export const Inline = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'div'>(
-    props: InlineProps<T>,
+    props: FlexProps<T>,
     ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Flex

@@ -66,12 +66,16 @@ type MenuCommonProps<T extends keyof ReactHTMLElementsHacked> =
   }>;
 
 export type MenuProps = Merge<
-  Omit<ButtonProps<'div'>, 'component'>,
-  MenuCommonProps<'div'>
+  ButtonProps<'div'>,
+  MenuCommonProps<'div'> & { component?: never; size?: never; onClick?: never }
 >;
 
-export type MenuActivatorProps = PropsWithChildren<
-  Omit<ButtonProps<'div'>, 'onClick'> & { isNested?: boolean }
+export type MenuActivatorProps = Merge<
+  ButtonProps<'div'>,
+  {
+    onClick?: never;
+    isNested?: boolean;
+  }
 >;
 
 const DefaultMenuActivator = forwardRef(
@@ -267,7 +271,7 @@ const MenuInner = forwardRef(
 
     const referenceRef = useMergeRefs([refs.setReference, forwardedRef]);
 
-    const activatorProps: MenuActivatorProps = {
+    const activatorProps = {
       className,
       ...getReferenceProps({
         ...props,
@@ -276,7 +280,7 @@ const MenuInner = forwardRef(
         },
       }),
       children: label,
-    };
+    } satisfies MenuActivatorProps;
 
     return (
       <FloatingNode id={nodeId}>

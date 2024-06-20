@@ -1,7 +1,7 @@
-import type { FC, PropsWithChildren } from 'react';
-import styles from './link.module.scss';
+import type { FC } from 'react';
 import { Box, type BoxProps } from './box.js';
 import { differentOriginLinkProps } from './component-utils.js';
+import styles from './link.module.scss';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
@@ -12,7 +12,7 @@ export type TextLinkCommonProps = {
 };
 
 export type TextLinkProps<T extends keyof ReactHTMLElementsHacked = 'a'> =
-  PropsWithChildren<Merge<BoxProps<T>, TextLinkCommonProps>>;
+  Merge<BoxProps<T>, TextLinkCommonProps>;
 
 /**
  * A `TextLink` is expect to be wrapped something like a `Paragraph` component

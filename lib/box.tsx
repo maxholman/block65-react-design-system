@@ -54,22 +54,6 @@ import type {
   TextWrap,
 } from './typography.js';
 
-function getCapSizeClassName(size: FontSize | Falsy) {
-  return size && typographyStyles[`capSize-${size}`];
-}
-
-function getFontSizeClassName(size: FontSize | Falsy) {
-  return size && typographyStyles[`fontSize-${size}`];
-}
-
-function getFontWeightClassName(weight: FontWeight | Falsy) {
-  return weight && typographyStyles[`fontWeight-${weight}`];
-}
-
-function getLineHeightClassName(height: LineHeight | Falsy) {
-  return height && typographyStyles[`lineHeight-${height}`];
-}
-
 export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
   ReactHTMLAttributesHacked[T],
   {
@@ -113,6 +97,22 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
     borderWidth?: BorderWidth | Falsy;
   }
 >;
+
+function getCapSizeClassName(size: FontSize | Falsy) {
+  return size && typographyStyles[`capSize-${size}`];
+}
+
+function getFontSizeClassName(size: FontSize | Falsy) {
+  return size && typographyStyles[`fontSize-${size}`];
+}
+
+function getFontWeightClassName(weight: FontWeight | Falsy) {
+  return weight && typographyStyles[`fontWeight-${weight}`];
+}
+
+function getLineHeightClassName(height: LineHeight | Falsy) {
+  return height && typographyStyles[`lineHeight-${height}`];
+}
 
 export const Box = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'div'>(
