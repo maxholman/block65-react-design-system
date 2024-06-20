@@ -1,67 +1,52 @@
-.fontSize-6 {
-  font-size: var(--text-fontSize-6);
+$font-sizes: (6, 5, 4, 3, 2, 1, 0, '00');
+
+@each $size in $font-sizes {
+  .fontSize-#{$size} {
+    font-size: var(--text-fontSize-#{$size});
+  }
 }
 
-.fontSize-5 {
-  font-size: var(--text-fontSize-5);
-}
+@each $size in $font-sizes {
+  .capSize-#{$size} {
+    font-size: var(--text-fontSize-capSize-#{$size});
+    padding: var(--text-padding-capSize-#{$size});
+    line-height: var(--text-lineHeight-capSize-#{$size});
 
-.fontSize-4 {
-  font-size: var(--text-fontSize-4);
-}
-
-.fontSize-3 {
-  font-size: var(--text-fontSize-3);
-}
-
-.fontSize-2 {
-  font-size: var(--text-fontSize-2);
-}
-
-.fontSize-1 {
-  font-size: var(--text-fontSize-1);
-}
-
-.fontSize-0 {
-  font-size: var(--text-fontSize-0);
-}
-
-.fontSize-00 {
-  font-size: var(--text-fontSize-00);
+    &::before {
+      content: '';
+      margin-top: var(--text-marginTop-capSize-#{$size});
+      display: block;
+      height: 0;
+    }
+    &::after {
+      content: '';
+      margin-top: var(--text-marginBottom-capSize-#{$size});
+      display: block;
+      height: 0;
+    }
+  }
 }
 
 /**
-  * Font weight
-  */
-.fontWeight-bold {
-  font-weight: var(--text-weight-bold);
-}
+* Font weight
+*/
+$weights: (bold, semiBold, medium, regular, light);
 
-.fontWeight-semibold {
-  font-weight: var(--text-weight-semiBold);
-}
-
-.fontWeight-medium {
-  font-weight: var(--text-weight-medium);
-}
-
-.fontWeight-regular {
-  font-weight: var(--text-weight-regular);
+@each $weight in $weights {
+  .fontWeight-#{$weight} {
+    font-weight: var(--text-weight-#{$weight});
+  }
 }
 
 /**
-  * Line height
-  */
-.lineHeight-regular {
-  line-height: var(--text-lineHeight-regular);
-}
+* Line height
+*/
+$heights: (regular, paragraph, heading);
 
-.lineHeight-paragraph {
-  line-height: var(--text-lineHeight-paragraph);
-}
-
-.lineHeight-heading {
-  line-height: var(--text-lineHeight-heading);
+@each $height in $heights {
+  .lineHeight-#{$height} {
+    line-height: var(--text-lineHeight-#{$height});
+  }
 }
 
 .secondary {

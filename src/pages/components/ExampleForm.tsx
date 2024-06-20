@@ -184,10 +184,10 @@ export const ExampleForm: FC = () => (
       <FormInputCheckbox disabled checked label="Dead last" />
       <FormInputCheckbox label={<Heading>Weird Heading Label</Heading>} />
     </FormInputCheckboxGroup>
-    <Block>
+    <Inline>
       <Button variant="primary">Save</Button>
       <Button variant="default">Reset</Button>
       <Button variant="danger">Delete</Button>
-    </Block>
+    </Inline>
   </Form>
 );

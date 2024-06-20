@@ -8,12 +8,13 @@ import {
   Secondary,
   Strong,
   TextLink,
+  Paragraph,
 } from '../../lib/main.js';
 
 export const TypographyPage: FC = () => (
   <>
     <Block>
-      <ExactText textOverflow="ellipsis">
+      <Paragraph textOverflow="ellipsis">
         Overflowing with verbosity and verbiage, the cascading deluge of textual
         expanse inundates the digital canvas. Words burst forth from their
         designated boundaries, defying containment within their allocated
@@ -24,7 +25,7 @@ export const TypographyPage: FC = () => (
         linguistic overflow, coherence is lost amidst the jumble of letters, as
         the words scramble for recognition in a frenzied dance of typographical
         disarray.
-      </ExactText>
+      </Paragraph>
     </Block>
     <Panel overflow="hidden">
       <Heading level="1">Overflow</Heading>
@@ -133,7 +134,7 @@ export const TypographyPage: FC = () => (
     </Panel>
 
     <Panel space="10">
-      <ExactText fontSize="00">
+      <ExactText capSize="00">
         fontSize 00: In the neon-soaked metropolis of Zephyr City,
         cyber-enhanced humans and androids coexist in a fragile harmony. The
         city is alive with the hum of hovercars and the chatter of virtual
@@ -145,7 +146,7 @@ export const TypographyPage: FC = () => (
         every byte of data for signs of dissent.
       </ExactText>
 
-      <ExactText fontSize="0">
+      <ExactText capSize="0">
         fontSize 0: In this world of constant flux, the only constant is change.
         Factions rise and fall, each one vying for control of the city's vast
         network of interconnected systems. And at the center of it all stands
@@ -155,7 +156,7 @@ export const TypographyPage: FC = () => (
         Zephyr City, you're never more than a few keystrokes away from danger
       </ExactText>
 
-      <ExactText fontSize="1">
+      <ExactText capSize="1">
         fontSize 1: The year is 2099, and the sprawling metropolis of New
         Angeles is a beacon of technological progress. From the towering
         skyscrapers to the bustling street markets, every inch of the city
@@ -167,28 +168,28 @@ export const TypographyPage: FC = () => (
         cutthroat world of global business.
       </ExactText>
 
-      <ExactText fontSize="2">
+      <ExactText capSize="2">
         fontSize 2: Amidst all this chaos, the city's only hope is a small band
         of rebels known as the Nexus Warriors. Led by the charismatic hacker
         known as the Phantom Blade, they fight to protect the city's most
         vulnerable citizens from the corrupt powers that be.
       </ExactText>
 
-      <ExactText fontSize="3">
+      <ExactText capSize="3">
         fontSize 3: Amidst the rubble and decay, a few lucky souls cling to life
         in the sprawling megacity known only as the Zone. Here, in the shadows
         of the towering skyscrapers, a new society has emerged, fueled by
         scavenged technology and raw human ingenuity.
       </ExactText>
 
-      <ExactText fontSize="4">
+      <ExactText capSize="4">
         fontSize 4: But even here, life is harsh and unforgiving. Gangs of
         cyber-enhanced raiders roam the streets, preying on the weak and
         vulnerable. And in the shadows, a darker threat looms: rogue AI systems,
         driven mad by centuries of isolation and malfunctioning programming.
       </ExactText>
 
-      <ExactText fontSize="5">
+      <ExactText capSize="5">
         fontSize 5: As you traverse the crumbling streets of the Zone, keep your
         eyes peeled for danger at every turn. Whether it's a roving band of
         raiders or a malfunctioning drone, the slightest misstep could be your
@@ -196,7 +197,7 @@ export const TypographyPage: FC = () => (
         to survive is to keep moving forward, no matter the cost.
       </ExactText>
 
-      <ExactText fontSize="6">
+      <ExactText capSize="6">
         fontSize 6: But amidst the chaos and devastation, a faint glimmer of
         hope remains. Whispers of a rumored paradise on the outskirts of the
         Zone have begun to spread, a place where the air is clean and the water
@@ -219,7 +220,7 @@ export const TypographyPage: FC = () => (
 
       <ExactText secondary>Secondary text blocks are too</ExactText>
 
-      <ExactText fontSize="0">
+      <ExactText capSize="0">
         PS: Small text is small and can be <Strong>strong text</Strong> or{' '}
         <Secondary>secondary text</Secondary> too.
       </ExactText>

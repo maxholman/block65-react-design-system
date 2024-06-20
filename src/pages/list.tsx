@@ -34,7 +34,7 @@ export const ListPage: FC = () => (
         <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Early Adopter Plan</Heading>
-            <ExactText fontSize="0">
+            <ExactText capSize="0">
               <Secondary>For those who like to adopt, early </Secondary>
             </ExactText>
           </Block>
@@ -96,7 +96,7 @@ export const ListPage: FC = () => (
           <Block marginBlock="4" alignItems="center">
             <Inline>
               <Heading level="1">$18 USD</Heading>
-              <ExactText fontSize="0">p/m</ExactText>
+              <ExactText capSize="0">p/m</ExactText>
             </Inline>
           </Block>
 
@@ -106,7 +106,7 @@ export const ListPage: FC = () => (
         <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Custom Plan</Heading>
-            <ExactText fontSize="0">
+            <ExactText capSize="0">
               <Secondary>Want more?</Secondary>
             </ExactText>
           </Block>

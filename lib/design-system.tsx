@@ -24,7 +24,6 @@ export type DesignSystemProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
 export const DesignSystem = <
   T extends Extract<keyof ReactHTMLElementsHacked, 'div' | 'dialog'>,
 >({
-  children,
   className,
   integrationMode,
   stringLikeComponents,
@@ -50,14 +49,10 @@ export const DesignSystem = <
         styles.designSystem,
       ]}
       {...props}
-    >
-      {children}
-    </Box>
+    />
   </Context.Provider>
 );
 
-export const Reset: FC<PropsWithChildren> = ({ children }) => (
-  <Box component="div" className={resetClass}>
-    {children}
-  </Box>
+export const Reset: FC<PropsWithChildren> = (props) => (
+  <Box component="div" className={resetClass} {...props} />
 );

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import {
   Badge,
-  ExactText,
+  Paragraph,
   Grid,
   Heading,
   Inline,
@@ -56,7 +56,7 @@ export const BadgesPage: FC = () => (
             <Heading level="4">Default Badge</Heading>
             <Badge>Active</Badge>
           </Inline>
-          <ExactText>And some text</ExactText>
+          <Paragraph>And some text</Paragraph>
         </Panel>
         <Panel>
           <Inline>
@@ -65,28 +65,28 @@ export const BadgesPage: FC = () => (
             </Heading>
             <Badge>Expires Soon</Badge>
           </Inline>
-          <ExactText>And some text</ExactText>
+          <Paragraph>And some text</Paragraph>
         </Panel>
         <Panel>
           <Inline>
             <Heading level="4">Default Badge</Heading>
             <Badge>50% Off</Badge>
           </Inline>
-          <ExactText>And some text</ExactText>
+          <Paragraph>And some text</Paragraph>
         </Panel>
         <Panel>
           <Inline>
             <Heading level="4">Trial Account</Heading>
             <Badge>Expired</Badge>
           </Inline>
-          <ExactText>Upgrade now</ExactText>
+          <Paragraph>Upgrade now</Paragraph>
         </Panel>
         <Panel>
           <Inline>
             <Heading level="4">Messages (4)</Heading>
             <Badge variant="positive">New</Badge>
           </Inline>
-          <ExactText>You've got mail!</ExactText>
+          <Paragraph>You've got mail!</Paragraph>
         </Panel>
       </Grid>
     </Panel>

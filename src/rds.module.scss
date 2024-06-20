@@ -5,13 +5,13 @@
 //  *
 //  * Last updated: 2024-06-18T02:40:19.256Z by mholman.
 //  */
-// $genericTextCapHeights0: 0.75rem !default;
-// $genericTextCapHeights1: 1rem !default;
-// $genericTextCapHeights2: 1.1rem !default;
-// $genericTextCapHeights3: 1.25rem !default;
-// $genericTextCapHeights4: 1.5rem !default;
-// $genericTextCapHeights5: 2rem !default;
-// $genericTextCapHeights00: 0.5rem !default;
+// $genericTextcapHeight0: 0.75rem !default;
+// $genericTextcapHeight1: 1rem !default;
+// $genericTextcapHeight2: 1.1rem !default;
+// $genericTextcapHeight3: 1.25rem !default;
+// $genericTextcapHeight4: 1.5rem !default;
+// $genericTextcapHeight5: 2rem !default;
+// $genericTextcapHeight00: 0.5rem !default;
 // $genericTextWeightThin: 100 !default;
 // $genericTextWeightExtraLight: 200 !default;
 // $genericTextWeightLight: 300 !default;
@@ -161,13 +161,13 @@
 // $buttonVariantInvisibleActiveBgColor: hsl(var(--gray-10-hsl)) !default;
 
 // @mixin magic {
-//   --text-capHeights-0__1rbo53v0: #{$genericTextCapHeights0};
-//   --text-capHeights-1__1rbo53v1: #{$genericTextCapHeights1};
-//   --text-capHeights-2__1rbo53v2: #{$genericTextCapHeights2};
-//   --text-capHeights-3__1rbo53v3: #{$genericTextCapHeights3};
-//   --text-capHeights-4__1rbo53v4: #{$genericTextCapHeights4};
-//   --text-capHeights-5__1rbo53v5: #{$genericTextCapHeights5};
-//   --text-capHeights-00__1rbo53v6: #{$genericTextCapHeights00};
+//   --text-capHeight-0__1rbo53v0: #{$genericTextcapHeight0};
+//   --text-capHeight-1__1rbo53v1: #{$genericTextcapHeight1};
+//   --text-capHeight-2__1rbo53v2: #{$genericTextcapHeight2};
+//   --text-capHeight-3__1rbo53v3: #{$genericTextcapHeight3};
+//   --text-capHeight-4__1rbo53v4: #{$genericTextcapHeight4};
+//   --text-capHeight-5__1rbo53v5: #{$genericTextcapHeight5};
+//   --text-capHeight-00__1rbo53v6: #{$genericTextcapHeight00};
 //   --text-weight-thin__1rbo53v7: #{$genericTextWeightThin};
 //   --text-weight-extraLight__1rbo53v8: #{$genericTextWeightExtraLight};
 //   --text-weight-light__1rbo53v9: #{$genericTextWeightLight};

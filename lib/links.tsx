@@ -15,8 +15,8 @@ export type TextLinkProps<T extends keyof ReactHTMLElementsHacked = 'a'> =
   PropsWithChildren<Merge<BoxProps<T>, TextLinkCommonProps>>;
 
 /**
- * A `TextLink` is expect to be wrapped in a `Text` component
- * Think that <Text><TextLink>...</TextLink></Text>
+ * A `TextLink` is expect to be wrapped something like a `Paragraph` component
+ * Think that <Paragraph><TextLink>...</TextLink></Paragraph>
  * is akin to <p><a>...</a></p>
  *
  */

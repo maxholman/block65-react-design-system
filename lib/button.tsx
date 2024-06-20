@@ -180,9 +180,9 @@ export const Button = forwardRef(
 
         {isStringLike(children) ? (
           <ExactText
-            component="div"
+            component="span"
             textAlign={textAlign}
-            fontSize={fontSize}
+            capSize={fontSize}
             {...busyAttributes}
           >
             {children}

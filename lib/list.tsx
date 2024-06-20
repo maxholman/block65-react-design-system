@@ -26,7 +26,6 @@ export const List = <T extends keyof ReactHTMLElementsHacked>({
   space = '5',
   className,
   cols = '1',
-  children,
   ...props
 }: ListProps<T>) => (
   <Box
@@ -38,9 +37,7 @@ export const List = <T extends keyof ReactHTMLElementsHacked>({
     style={assignInlineVars({ [listColsVar]: cols })}
     className={[listClass, listVariants[space], className]}
     {...props}
-  >
-    {children}
-  </Box>
+  />
 );
 
 export const ListItem = ({ className, ...props }: BoxProps<'li'>) => (

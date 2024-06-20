@@ -26,6 +26,7 @@ export const Callout = ({
   space = '3',
   variant = 'info',
   icon,
+  capSize = '1',
   ...props
 }: CalloutProps) => {
   ifDebugBuild(() => {
@@ -76,7 +77,9 @@ export const Callout = ({
           className: styles.text,
         })
       ) : (
-        <ExactText className={styles.text}>{children}</ExactText>
+        <ExactText capSize={capSize} className={styles.text}>
+          {children}
+        </ExactText>
       )}
     </Box>
   );

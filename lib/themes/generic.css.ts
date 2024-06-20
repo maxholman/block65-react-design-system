@@ -3,7 +3,7 @@ import { genericVars } from '../box.css.js';
 
 export const genericThemeTokens = {
   text: {
-    capHeights: {
+    capHeight: {
       '00': '0.5rem',
       '0': '0.75rem',
       '1': '1rem',

@@ -54,16 +54,20 @@ import type {
   TextWrap,
 } from './typography.js';
 
-function getFontSizeClassName(fontSize: FontSize | Falsy) {
-  return fontSize && typographyStyles[`fontSize-${fontSize}`];
+function getCapSizeClassName(size: FontSize | Falsy) {
+  return size && typographyStyles[`capSize-${size}`];
 }
 
-function getFontWeightClassName(fontWeight: FontWeight | Falsy) {
-  return fontWeight && typographyStyles[`fontWeight-${fontWeight}`];
+function getFontSizeClassName(size: FontSize | Falsy) {
+  return size && typographyStyles[`fontSize-${size}`];
 }
 
-function getLineHeightClassName(lineHeight: LineHeight | Falsy) {
-  return lineHeight && typographyStyles[`lineHeight-${lineHeight}`];
+function getFontWeightClassName(weight: FontWeight | Falsy) {
+  return weight && typographyStyles[`fontWeight-${weight}`];
+}
+
+function getLineHeightClassName(height: LineHeight | Falsy) {
+  return height && typographyStyles[`lineHeight-${height}`];
 }
 
 export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
@@ -91,6 +95,7 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
     textOverflow?: TextOverflow | Falsy;
 
     fontSize?: FontSize | Falsy;
+    capSize?: FontSize | Falsy;
     fontWeight?: FontWeight | Falsy;
     lineHeight?: LineHeight | Falsy;
     textWrap?: TextWrap | Falsy;
@@ -109,184 +114,186 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
   }
 >;
 
-const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
-  {
-    children,
-    component,
-    className,
-
-    margin,
-    marginBlock,
-    marginInline,
-    padding,
-    paddingBlock,
-    paddingInline,
-
-    textAlign,
-    textOverflow,
-
-    fontSize,
-    fontWeight,
-    lineHeight,
-    textWrap,
-
-    overflow,
-
-    tooltip,
-    tooltipInitialPlacement,
-
-    rounded,
-    roundedStart,
-    roundedStartStart,
-    roundedStartEnd,
-    roundedEnd,
-    roundedEndStart,
-    roundedEndEnd,
-
-    space,
-
-    flexDirection,
-    flexGrow,
-
-    borderWidth,
-
-    ...props
-  }: BoxProps<T>,
-  ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
-) => {
-  const flexDirectionClass =
-    flexDirection &&
-    (typeof flexDirection === 'string'
-      ? flexDirectionVariants[flexDirection]
-      : matchViewportVariants(flexDirection, viewportFlexDirectionVariants));
-
-  const spaceClass =
-    space &&
-    matchViewportVariants(
-      typeof space === 'string' ? { all: space } : space,
-      viewportSpaceVariants,
-    );
-
-  const el = createElement(
-    component || 'div',
+export const Box = forwardRef(
+  <T extends keyof ReactHTMLElementsHacked = 'div'>(
     {
-      ...props,
-      className:
-        clsx(
-          className,
+      children,
+      component,
+      className,
 
-          spaceClass,
+      margin,
+      marginBlock,
+      marginInline,
+      padding,
+      paddingBlock,
+      paddingInline,
 
-          // we dont extract out the prop, we just force a display none
-          // so we can keep the element attribute for accessibility?
-          props.hidden && hiddenClass,
+      textAlign,
+      textOverflow,
 
-          isNotFalsy(flexGrow)
-            ? coreStyles[`flexGrow-${flexGrow ? 1 : 0}`]
-            : undefined,
+      fontSize,
+      capSize,
+      fontWeight,
+      lineHeight,
+      textWrap,
 
-          isNotFalsy(margin) &&
-            marginBlock !== margin &&
-            matchViewportVariants(
-              typeof margin === 'string' ? { all: margin } : margin,
-              viewportMarginVariants,
-            ),
+      overflow,
 
-          isNotFalsy(marginBlock) &&
-            marginBlock !== margin &&
-            matchViewportVariants(
-              typeof marginBlock === 'string'
-                ? { all: marginBlock }
-                : marginBlock,
-              viewportMarginBlockVariants,
-            ),
+      tooltip,
+      tooltipInitialPlacement,
 
-          isNotFalsy(marginInline) &&
-            marginInline !== margin &&
-            matchViewportVariants(
-              typeof marginInline === 'string'
-                ? { all: marginInline }
-                : marginInline,
-              viewportMarginInlineVariants,
-            ),
+      rounded,
+      roundedStart,
+      roundedStartStart,
+      roundedStartEnd,
+      roundedEnd,
+      roundedEndStart,
+      roundedEndEnd,
 
-          isNotFalsy(padding) &&
-            matchViewportVariants(
-              typeof padding === 'string' ? { all: padding } : padding,
-              viewportPaddingVariants,
-            ),
+      space,
 
-          isNotFalsy(paddingBlock) &&
-            paddingBlock !== padding &&
-            matchViewportVariants(
-              typeof paddingBlock === 'string'
-                ? { all: paddingBlock }
-                : paddingBlock,
-              viewportPaddingBlockVariants,
-            ),
+      flexDirection,
+      flexGrow,
 
-          isNotFalsy(paddingInline) &&
-            paddingInline !== padding &&
-            matchViewportVariants(
-              typeof paddingInline === 'string'
-                ? { all: paddingInline }
-                : paddingInline,
-              viewportPaddingInlineVariants,
-            ),
+      borderWidth,
 
-          textAlign && textAlignVariants[textAlign],
+      ...props
+    }: BoxProps<T>,
+    ref: ForwardedRef<ReactHTMLElementsHacked[T]>,
+  ) => {
+    const flexDirectionClass =
+      flexDirection &&
+      (typeof flexDirection === 'string'
+        ? flexDirectionVariants[flexDirection]
+        : matchViewportVariants(flexDirection, viewportFlexDirectionVariants));
 
-          isNotFalsy(rounded) && roundedVariants[rounded],
+    const spaceClass =
+      space &&
+      matchViewportVariants(
+        typeof space === 'string' ? { all: space } : space,
+        viewportSpaceVariants,
+      );
 
-          isNotFalsy(roundedStart) && [
-            roundedStartStartVariants[roundedStart],
-            roundedStartEndVariants[roundedStart],
-          ],
-          isNotFalsy(roundedEnd) && [
-            roundedEndStartVariants[roundedEnd],
-            roundedEndEndVariants[roundedEnd],
-          ],
+    const el = createElement(
+      component || 'div',
+      {
+        ...props,
+        className:
+          clsx(
+            className,
 
-          isNotFalsy(roundedStartStart) &&
-            roundedStartStartVariants[roundedStartStart],
-          isNotFalsy(roundedStartEnd) &&
-            roundedStartEndVariants[roundedStartEnd],
-          isNotFalsy(roundedEndStart) &&
-            roundedEndStartVariants[roundedEndStart],
-          isNotFalsy(roundedEndEnd) && roundedEndEndVariants[roundedEndEnd],
+            spaceClass,
 
-          isNotFalsy(borderWidth) && borderWidthVariants[borderWidth],
+            // we dont extract out the prop, we just force a display none
+            // so we can keep the element attribute for accessibility?
+            props.hidden && hiddenClass,
 
-          flexDirectionClass,
+            isNotFalsy(flexGrow)
+              ? coreStyles[`flexGrow-${flexGrow ? 1 : 0}`]
+              : undefined,
 
-          overflow && overflowVariants[overflow],
-          textOverflow && textOverflowVariants[textOverflow],
-          textWrap && coreStyles[`textWrap-${textWrap}`],
+            isNotFalsy(margin) &&
+              marginBlock !== margin &&
+              matchViewportVariants(
+                typeof margin === 'string' ? { all: margin } : margin,
+                viewportMarginVariants,
+              ),
 
-          getFontSizeClassName(fontSize),
-          getFontWeightClassName(fontWeight),
-          getLineHeightClassName(lineHeight),
-        ) || undefined,
-      ref,
-    },
-    children,
-  );
+            isNotFalsy(marginBlock) &&
+              marginBlock !== margin &&
+              matchViewportVariants(
+                typeof marginBlock === 'string'
+                  ? { all: marginBlock }
+                  : marginBlock,
+                viewportMarginBlockVariants,
+              ),
 
-  if (tooltip) {
-    const tooltipProps: TooltipProps = {
-      content: tooltip,
-      ...(tooltipInitialPlacement && {
-        initialPlacement: tooltipInitialPlacement,
-      }),
-    };
-    return (
-      <Suspense fallback={el}>
-        <TooltipLazy {...tooltipProps}>{el}</TooltipLazy>
-      </Suspense>
+            isNotFalsy(marginInline) &&
+              marginInline !== margin &&
+              matchViewportVariants(
+                typeof marginInline === 'string'
+                  ? { all: marginInline }
+                  : marginInline,
+                viewportMarginInlineVariants,
+              ),
+
+            isNotFalsy(padding) &&
+              matchViewportVariants(
+                typeof padding === 'string' ? { all: padding } : padding,
+                viewportPaddingVariants,
+              ),
+
+            isNotFalsy(paddingBlock) &&
+              paddingBlock !== padding &&
+              matchViewportVariants(
+                typeof paddingBlock === 'string'
+                  ? { all: paddingBlock }
+                  : paddingBlock,
+                viewportPaddingBlockVariants,
+              ),
+
+            isNotFalsy(paddingInline) &&
+              paddingInline !== padding &&
+              matchViewportVariants(
+                typeof paddingInline === 'string'
+                  ? { all: paddingInline }
+                  : paddingInline,
+                viewportPaddingInlineVariants,
+              ),
+
+            textAlign && textAlignVariants[textAlign],
+
+            isNotFalsy(rounded) && roundedVariants[rounded],
+
+            isNotFalsy(roundedStart) && [
+              roundedStartStartVariants[roundedStart],
+              roundedStartEndVariants[roundedStart],
+            ],
+            isNotFalsy(roundedEnd) && [
+              roundedEndStartVariants[roundedEnd],
+              roundedEndEndVariants[roundedEnd],
+            ],
+
+            isNotFalsy(roundedStartStart) &&
+              roundedStartStartVariants[roundedStartStart],
+            isNotFalsy(roundedStartEnd) &&
+              roundedStartEndVariants[roundedStartEnd],
+            isNotFalsy(roundedEndStart) &&
+              roundedEndStartVariants[roundedEndStart],
+            isNotFalsy(roundedEndEnd) && roundedEndEndVariants[roundedEndEnd],
+
+            isNotFalsy(borderWidth) && borderWidthVariants[borderWidth],
+
+            flexDirectionClass,
+
+            overflow && overflowVariants[overflow],
+            textOverflow && textOverflowVariants[textOverflow],
+            textWrap && coreStyles[`textWrap-${textWrap}`],
+
+            getFontSizeClassName(fontSize),
+            getCapSizeClassName(capSize),
+            getFontWeightClassName(fontWeight),
+            getLineHeightClassName(lineHeight),
+          ) || undefined,
+        ref,
+      },
+      children,
     );
-  }
 
-  return el;
-};
+    if (tooltip) {
+      const tooltipProps: TooltipProps = {
+        content: tooltip,
+        ...(tooltipInitialPlacement && {
+          initialPlacement: tooltipInitialPlacement,
+        }),
+      };
+      return (
+        <Suspense fallback={el}>
+          <TooltipLazy {...tooltipProps}>{el}</TooltipLazy>
+        </Suspense>
+      );
+    }
 
-export const Box = forwardRef(BoxInner);
+    return el;
+  },
+);

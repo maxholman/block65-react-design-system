@@ -35,7 +35,9 @@ $prevent-collapse: 0.05;
   @return $number;
 }
 
-@mixin capsize($font-size, $line-height) {
+@mixin capsize($size-index, $font-size, $line-height) {
+  --text-fontSize-#{$size-index}: #{$font-size};
+
   $font-size: strip-unit($font-size);
   $line-height: strip-unit($line-height);
   $absolute-descent: math.abs(map.get($font-metrics, 'descent'));
@@ -70,37 +72,34 @@ $prevent-collapse: 0.05;
     0
   );
 
-  font-size: #{round-to($font-size, $precision)}px;
-  line-height: if(
+  $margin-top: #{round-to(
+      leading-trim(
+          $ascent-scale - $cap-height-scale + math.div($line-gap-scale, 2),
+          $specified-line-height-offset,
+          $font-size
+        ) * -1,
+      $precision
+    )}em;
+
+  $margin-bottom: #{round-to(
+      leading-trim(
+          $descent-scale + math.div($line-gap-scale, 2),
+          $specified-line-height-offset,
+          $font-size
+        ) * -1,
+      $precision
+    )}em;
+
+  $font-size: #{round-to($font-size, $precision)}px;
+  $line-height: if(
     $line-height,
     #{round-to($line-height, $precision)}px,
     'normal'
   );
-  padding: #{$prevent-collapse}px 0;
-  &::before {
-    content: '';
-    margin-top: #{round-to(
-        leading-trim(
-            $ascent-scale - $cap-height-scale + math.div($line-gap-scale, 2),
-            $specified-line-height-offset,
-            $font-size
-          ) * -1,
-        $precision
-      )}em;
-    display: block;
-    height: 0;
-  }
-  &::after {
-    content: '';
-    margin-top: #{round-to(
-        leading-trim(
-            $descent-scale + math.div($line-gap-scale, 2),
-            $specified-line-height-offset,
-            $font-size
-          ) * -1,
-        $precision
-      )}em;
-    display: block;
-    height: 0;
-  }
+
+  --text-fontSize-capSize-#{$size-index}: #{$font-size};
+  --text-lineHeight-capSize-#{$size-index}: #{$line-height};
+  --text-padding-capSize-#{$size-index}: #{$prevent-collapse}px 0;
+  --text-marginTop-capSize-#{$size-index}: #{$margin-top};
+  --text-marginBottom-capSize-#{$size-index}: #{$margin-bottom};
 }

@@ -25,7 +25,7 @@ export type Rounded = '0' | '1' | '2' | '3' | '50';
 
 export const genericVars = createThemeContract({
   text: {
-    capHeights: {
+    capHeight: {
       '00': 'cap-height-00',
       '0': 'cap-height-0',
       '1': 'cap-height-1',

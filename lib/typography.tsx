@@ -18,7 +18,7 @@ type CommonTextProps = {
   secondary?: true | Falsy;
 };
 
-export type TextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
+export type ParagraphProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
   PropsWithChildren<
     Merge<
       Omit<BoxProps<T>, 'flexDirection' | 'flexWrap' | 'space' | 'overflow'>,
@@ -26,15 +26,20 @@ export type TextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
     >
   >;
 
+export type ExactTextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
+  PropsWithChildren<
+    Merge<
+      Omit<
+        BoxProps<T>,
+        'flexDirection' | 'flexWrap' | 'space' | 'overflow' | 'fontSize'
+      >,
+      CommonTextProps & { capSize: FontSize }
+    >
+  >;
+
 export const ExactText = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'span'>(
-    {
-      component = 'span',
-      className,
-      secondary,
-      children,
-      ...props
-    }: TextProps<T>,
+    { component = 'span', className, secondary, ...props }: ExactTextProps<T>,
     forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Box
@@ -42,9 +47,7 @@ export const ExactText = forwardRef(
       ref={forwardedRef}
       className={[className, secondary && styles.secondary]}
       {...props}
-    >
-      {children}
-    </Box>
+    />
   ),
 );
 
@@ -81,7 +84,7 @@ function headingProps(level: HeadingLevel): HeadingProps {
 
 export type HeadingProps = PropsWithChildren<
   Merge<
-    TextProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
+    ParagraphProps<'h1' | 'h2' | 'h3' | 'h4' | 'h5'>,
     {
       level?: HeadingLevel;
     }
@@ -90,7 +93,7 @@ export type HeadingProps = PropsWithChildren<
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ({ level = '3', ...props }, ref) => (
-    <ExactText
+    <Box
       ref={ref}
       lineHeight="heading"
       component={`h${level}`}
@@ -100,8 +103,8 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   ),
 );
 
-export const Paragraph = forwardRef<HTMLParagraphElement, TextProps>(
+export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
   ({ className, ...props }, ref) => (
-    <ExactText ref={ref} lineHeight="paragraph" component="p" {...props} />
+    <Box ref={ref} lineHeight="paragraph" component="p" {...props} />
   ),
 );

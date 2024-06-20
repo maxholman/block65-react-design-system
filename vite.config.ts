@@ -56,8 +56,7 @@ export default defineConfig((config) => {
       modules: {
         ...(true && {
           generateScopedName(...args) {
-            const [name, filename, css] = args;
-            console.log({ name, filename, css });
+            const [name, filename, _css] = args;
             const className = `_${hash(args.join('_'))}`;
             const [, file] = filename.match(/.*\/(.*?)\./) || ['unknown'];
             return config.mode === 'development'

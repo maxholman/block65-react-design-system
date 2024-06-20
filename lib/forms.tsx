@@ -108,7 +108,7 @@ export const FormInputLabel: FC<
 export const FormInputMessage: FC<Pick<FormInputProps, 'message'>> = ({
   message,
 }) => (
-  <ExactText secondary fontSize="0">
+  <ExactText secondary capSize="0">
     {message}
   </ExactText>
 );
@@ -425,7 +425,7 @@ const FormInputCheckRadio: FC<
         (isStringLike(message) ? (
           <ExactText
             secondary
-            fontSize="0"
+            capSize="0"
             className={styles.formInputCheckRadioMessage}
           >
             {message}
@@ -476,7 +476,7 @@ export const FormInputRadioGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <ExactText secondary fontSize="0">
+          <ExactText secondary capSize="0">
             {message}
           </ExactText>
         ) : (
@@ -525,7 +525,7 @@ export const FormInputCheckboxGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <ExactText secondary fontSize="0">
+          <ExactText secondary capSize="0">
             {message}
           </ExactText>
         ) : (
@@ -621,7 +621,7 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         />
         {message && (
           <Inline>
-            <ExactText fontSize="0">
+            <ExactText capSize="0">
               <Secondary>{message}</Secondary>
             </ExactText>
           </Inline>

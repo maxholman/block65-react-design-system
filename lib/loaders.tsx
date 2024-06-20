@@ -15,13 +15,13 @@ export type SpinnerProps = Merge<
   {
     inline?: boolean;
     size?: SpinnerSize;
+    children?: never;
   }
 >;
 
 export const Spinner: FC<SpinnerProps> = ({
   size = '1',
   className,
-  children,
   inline = true,
   ...props
 }) => (
