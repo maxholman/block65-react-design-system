@@ -1,9 +1,9 @@
 import { Block, Button, Heading, Paragraph } from '../../lib/main.js';
 
 export const BasicPopover = () => (
-  <Block paddingBlock="15" alignItems="center">
+  <Block paddingBlock="15">
     <Block
-      style={{ maxWidth: '23rem' }}
+      style={{ maxWidth: '30rem' }}
       padding="12"
       space="10"
       alignItems="center"

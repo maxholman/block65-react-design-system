@@ -5,7 +5,7 @@ import {
   type PropsWithChildren,
 } from 'react';
 import styles from './typography.module.scss';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';

@@ -1,5 +1,5 @@
 import { createTheme, type MapLeafNodes } from '@vanilla-extract/css';
-import { genericVars } from '../core.css.js';
+import { genericVars } from '../box.css.js';
 
 export const genericThemeTokens = {
   text: {

@@ -8,14 +8,12 @@ export const HooksPage: FC = () => {
   });
 
   return (
-    <>
-      <Panel overflow="hidden">
-        <FormInput
-          label="Cookie"
-          value={cookie}
-          onChange={(e) => setCookie(e.target.value)}
-        />
-      </Panel>
-    </>
+    <Panel overflow="hidden">
+      <FormInput
+        label="Cookie"
+        value={cookie}
+        onChange={(e) => setCookie(e.target.value)}
+      />
+    </Panel>
   );
 };

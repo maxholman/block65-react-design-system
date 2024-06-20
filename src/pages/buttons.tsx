@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { Fragment, type FC } from 'react';
 import { HelpIcon } from '../../lib/icons.js';
 import type { ButtonVariant } from '../../lib/main.js';
 import {
@@ -125,18 +125,18 @@ export const ButtonsPage: FC = () => (
       <Paragraph>OMG So cute!</Paragraph>
       <Inline>
         {variants.map((variant) => (
-          <>
-            <Button size="small" icon={<CrescentMoonIcon />}>
-              small
+          <Fragment key={variant}>
+            <Button size="small" variant={variant} icon={<CrescentMoonIcon />}>
+              small {variant}
             </Button>
 
-            <Button size="small" busy variant={variant} key={variant}>
-              {variant} busy
+            <Button size="small" busy variant={variant}>
+              small {variant} busy
             </Button>
-            <Button size="small" disabled variant={variant} key={variant}>
-              {variant} disabled
+            <Button size="small" disabled variant={variant}>
+              small {variant} disabled
             </Button>
-          </>
+          </Fragment>
         ))}
       </Inline>
     </Panel>
@@ -146,18 +146,18 @@ export const ButtonsPage: FC = () => (
       <Paragraph>So fat!</Paragraph>
       <Inline>
         {variants.map((variant) => (
-          <>
+          <Fragment key={variant}>
             <Button size="large" icon={<CrescentMoonIcon />}>
               large
             </Button>
 
-            <Button size="large" busy variant={variant} key={variant}>
+            <Button size="large" busy variant={variant}>
               {variant} busy
             </Button>
-            <Button size="large" disabled variant={variant} key={variant}>
+            <Button size="large" disabled variant={variant}>
               {variant} disabled
             </Button>
-          </>
+          </Fragment>
         ))}
       </Inline>
     </Panel>

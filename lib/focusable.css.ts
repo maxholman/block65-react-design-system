@@ -1,5 +1,5 @@
 import { createVar, style } from '@vanilla-extract/css';
-import { genericVars } from './core.css.js';
+import { genericVars } from './box.css.js';
 
 export const focusColorVar = createVar();
 export const focusRadiusVar = createVar();

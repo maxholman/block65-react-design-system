@@ -6,8 +6,8 @@ import {
   type OrResponsive,
   type Space,
   type Falsy,
-} from './core.css.js';
-import { Box, type BoxProps } from './core.js';
+} from './box.css.js';
+import { Box, type BoxProps } from './box.js';
 import { gridClass } from './grid.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 

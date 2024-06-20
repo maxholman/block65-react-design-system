@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import styles from './decorative.module.scss';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 
 export type DividerProps = Pick<
   BoxProps<'hr'>,

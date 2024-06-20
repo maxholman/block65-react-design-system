@@ -6,7 +6,7 @@ import type {
 } from 'react';
 import styles from './design-system.module.scss';
 import { Context } from './context.js';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import { resetClass } from './reset.css.js';
 import { genericThemeClassName } from './themes/generic.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';

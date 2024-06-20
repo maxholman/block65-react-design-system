@@ -1,6 +1,6 @@
 import { assignInlineVars } from '@vanilla-extract/dynamic';
-import type { Space } from './core.css.js';
-import { Box, type BoxProps } from './core.js';
+import type { Space } from './box.css.js';
+import { Box, type BoxProps } from './box.js';
 import {
   listClass,
   listColsVar,

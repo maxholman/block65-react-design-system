@@ -9,7 +9,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { ButtonIcon } from './button.js';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';

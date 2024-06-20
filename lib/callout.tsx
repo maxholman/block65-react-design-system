@@ -1,6 +1,6 @@
 import { Children, cloneElement, type ReactNode } from 'react';
 import styles from './callout.module.scss';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
 import { InfoIcon } from './icons.js';
 import { Case, Switch } from './switch.js';

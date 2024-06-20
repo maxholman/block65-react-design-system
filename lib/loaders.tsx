@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import {
   inlineSpinnerClass,
   trackCircleClassName,

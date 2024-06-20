@@ -4,7 +4,7 @@ export * from './design-system.js';
 
 export { Block as Panel } from './layout.js';
 
-export * from './core.js';
+export * from './box.js';
 
 export * from './grid.js';
 export * from './layout.js';

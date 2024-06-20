@@ -7,7 +7,7 @@ import {
   type ForwardedRef,
   type ReactNode,
 } from 'react';
-import coreStyles from './core.module.scss';
+import coreStyles from './box.module.scss';
 import typographyStyles from './typography.module.scss';
 import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import {
@@ -38,7 +38,7 @@ import {
   type Space,
   type TextAlign,
   type TextOverflow,
-} from './core.css.js';
+} from './box.css.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type { TooltipProps } from './tooltip.js';
 import type {
@@ -181,10 +181,8 @@ const BoxInner = <T extends keyof ReactHTMLElementsHacked = 'div'>(
           // so we can keep the element attribute for accessibility?
           props.hidden && hiddenClass,
 
-          flexGrow && coreStyles.flexGrow,
-
           isNotFalsy(flexGrow)
-            ? coreStyles[`flexGrow${flexGrow ? 1 : 0}`]
+            ? coreStyles[`flexGrow-${flexGrow ? 1 : 0}`]
             : undefined,
 
           isNotFalsy(margin) &&

@@ -1,5 +1,5 @@
 import { type MapLeafNodes, createTheme } from '@vanilla-extract/css';
-import { colorModeThemeVars } from '../core.css.js';
+import { colorModeThemeVars } from '../box.css.js';
 
 export const darkModeDefaultThemeTokens = {
   fgColor: 'var(--gray-0)',

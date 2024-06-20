@@ -9,7 +9,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
-import { paddingVariants, roundedVariants } from './core.css.js';
+import { paddingVariants, roundedVariants } from './box.css.js';
 import { useTooltipState } from './hooks/use-tooltip-state.js';
 import { tooltipClass } from './tooltip.css.js';
 

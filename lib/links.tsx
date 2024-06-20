@@ -1,7 +1,7 @@
 import type { FC, PropsWithChildren } from 'react';
 import styles from './link.module.scss';
 import { differentOriginLinkProps } from './component-utils.js';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';

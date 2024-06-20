@@ -5,7 +5,7 @@ import {
   type PropsWithChildren,
 } from 'react';
 import styles from './badge.module.css';
-import type { BoxProps } from './core.js';
+import type { BoxProps } from './box.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type InlineProps } from './layout.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';

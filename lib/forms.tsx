@@ -12,8 +12,8 @@ import {
   type ReactNode,
 } from 'react';
 import styles from './forms.module.scss';
-import type { Falsy } from './core.css.js';
-import { Box, type BoxProps } from './core.js';
+import type { Falsy } from './box.css.js';
+import { Box, type BoxProps } from './box.js';
 import {
   defaultFormInputSpace,
   formInputBoxProps,

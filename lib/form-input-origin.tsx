@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, useState } from 'react';
 import styles from './forms.module.scss';
-import type { Falsy } from './core.css.js';
-import { Box } from './core.js';
+import type { Falsy } from './box.css.js';
+import { Box } from './box.js';
 import {
   defaultFormInputSpace,
   formInputBoxProps,

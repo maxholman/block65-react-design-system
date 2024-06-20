@@ -1,5 +1,5 @@
 import type { ClassValue } from 'clsx';
-import type { Falsy, Responsive, Viewport } from './core.css.js';
+import type { Falsy, Responsive, Viewport } from './box.css.js';
 import { typedObjectEntries } from './utils.js';
 
 export function isNotFalsy<T>(value: T | null | undefined | false): value is T {

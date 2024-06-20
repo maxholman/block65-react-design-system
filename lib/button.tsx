@@ -8,7 +8,7 @@ import {
 } from 'react';
 import styles from './button.module.scss';
 import { differentOriginLinkProps } from './component-utils.js';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
@@ -117,6 +117,7 @@ function getSizeProps(size: ButtonSize | Falsy) {
     default:
       return {
         space: '2',
+        fontSize: '1',
         paddingBlock: '3',
         paddingInline: '6',
       } satisfies BoxProps;
@@ -187,9 +188,11 @@ export const Button = forwardRef(
             {children}
           </ExactText>
         ) : (
-          <Box component="span" {...busyAttributes}>
-            {children}
-          </Box>
+          children && (
+            <Box flexGrow component="span" {...busyAttributes}>
+              {children}
+            </Box>
+          )
         )}
 
         {iconEnd && <IconBox icon={iconEnd} busy={busy} />}

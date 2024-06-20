@@ -1,5 +1,5 @@
 import { avatarClassName, avatarImgClass } from './avatar.css.js';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import type { Merge, ReactHTMLElementsHacked, Falsy } from './types.js';
 import type { FontSize } from './typography.js';
 
