@@ -1,135 +1,139 @@
-// import {
-//   createThemeContract,
-//   style,
-//   styleVariants,
-// } from '@vanilla-extract/css';
-// import { calc } from '@vanilla-extract/css-utils';
-// import { genericVars } from './core.css.js';
-// import { rotate } from './keyframes.css.js';
-// import { currentCapHeight } from './typography.css.js';
+import {
+  createGlobalThemeContract,
+  style,
+  styleVariants,
+} from '@vanilla-extract/css';
+import { calc } from '@vanilla-extract/css-utils';
+import { genericVars } from './box.css.js';
+import { createGlobalThemeMapFn } from './css-helpers.css.js';
+import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
-// const buttonStateVars = {
-//   rest: { bgColor: '', fgColor: '', borderColor: '' },
-//   hover: { bgColor: '', fgColor: '', borderColor: '' },
-//   disabled: { bgColor: '', fgColor: '', borderColor: '' },
-//   active: { bgColor: '', fgColor: '', borderColor: '' },
-// } as const;
+export type ButtonVariant =
+  | 'default'
+  | 'danger'
+  | 'invisible'
+  | 'inactive'
+  | 'primary';
 
-// export const buttonVars = createThemeContract({
-//   border: {
-//     radius: '',
-//     width: '',
-//   },
-//   variant: {
-//     default: buttonStateVars,
-//     danger: buttonStateVars,
-//     primary: buttonStateVars,
-//     invisible: buttonStateVars,
-//     inactive: buttonStateVars,
-//   },
-// });
+export type ButtonState = 'active' | 'disabled' | 'hover' | 'rest';
 
-// export const buttonVariantClassNames = styleVariants(
-//   buttonVars.variant,
-//   (v) => ({
-//     color: v.rest.fgColor,
-//     backgroundColor: v.rest.bgColor,
-//     borderColor: v.rest.borderColor,
-//     selectors: {
-//       '&:hover': {
-//         color: v.hover.fgColor,
-//         backgroundColor: v.hover.bgColor,
-//         borderColor: v.hover.borderColor,
-//       },
-//       '&:disabled': {
-//         color: v.disabled.fgColor,
-//         backgroundColor: v.disabled.bgColor,
-//         borderColor: v.disabled.borderColor,
-//       },
-//       '&:active': {
-//         color: v.active.fgColor,
-//         backgroundColor: v.active.bgColor,
-//         borderColor: v.active.borderColor,
-//       },
-//     },
-//   }),
-// );
+const buttonStateVarsShape = {
+  active: { bgColor: '', fgColor: '', borderColor: '' },
+  disabled: { bgColor: '', fgColor: '', borderColor: '' },
+  hover: { bgColor: '', fgColor: '', borderColor: '' },
+  rest: { bgColor: '', fgColor: '', borderColor: '' },
+} satisfies Record<ButtonState, { bgColor: ''; fgColor: ''; borderColor: '' }>;
 
-// export const buttonClassName = style([
-//   {
-//     cursor: 'pointer',
-//     userSelect: 'none',
-//     borderRadius: buttonVars.border.radius,
-//     borderWidth: buttonVars.border.width,
-//     selectors: {
-//       '&[disabled]': {
-//         pointerEvents: 'none',
-//         cursor: 'default',
-//         // filter: 'grayscale(1)',
-//       },
+export const buttonVars = createGlobalThemeContract(
+  {
+    border: {
+      radius: '',
+      width: '',
+    },
+  },
+  createGlobalThemeMapFn('button'),
+);
 
-//       // keyboard
-//       '&:focus-visible': {
-//         outlineStyle: 'solid',
-//         outlineOffset: genericVars.border.width['3'],
-//         outlineWidth: genericVars.border.width['3'],
-//         // outlineColor: oklch(
-//         //   contrastSchemeVars.swatch.k0.l,
-//         //   contrastSchemeVars.swatch.k0.c,
-//         //   toneH,
-//         // ),
-//       },
+export const buttonVariantVars = createGlobalThemeContract(
+  {
+    default: buttonStateVarsShape,
+    danger: buttonStateVarsShape,
+    primary: buttonStateVarsShape,
+    invisible: buttonStateVarsShape,
+    inactive: buttonStateVarsShape,
+  } satisfies Record<ButtonVariant, typeof buttonStateVarsShape>,
+  createGlobalThemeMapFn('button'),
+);
 
-//       // mouse, touch, or stylus
-//       '&:focus:not(:focus-visible)': {},
+export const buttonVariantClassNames = styleVariants(
+  buttonVariantVars,
+  (v) => ({
+    color: v.rest.fgColor,
+    backgroundColor: v.rest.bgColor,
+    borderColor: v.rest.borderColor,
+    selectors: {
+      '&:hover': {
+        color: v.hover.fgColor,
+        backgroundColor: v.hover.bgColor,
+        borderColor: v.hover.borderColor,
+      },
+      '&:disabled': {
+        color: v.disabled.fgColor,
+        backgroundColor: v.disabled.bgColor,
+        borderColor: v.disabled.borderColor,
+      },
+      '&:active': {
+        color: v.active.fgColor,
+        backgroundColor: v.active.bgColor,
+        borderColor: v.active.borderColor,
+      },
+    },
+  }),
+);
 
-//       // both
-//       '&:focus-visible,&:focus:not(:focus-visible)': {},
+export const buttonStateClassNames = typedObjectFromEntries(
+  typedObjectEntries(buttonVariantVars).map(([variant, stateVars]) => [
+    variant,
+    styleVariants(stateVars, (state) => ({
+      color: state.fgColor,
+      backgroundColor: state.bgColor,
+      borderColor: state.borderColor,
+    })),
+  ]),
+);
 
-//       // gives us the nice little animation on outlineOffset
-//       '&:active': {
-//         outlineOffset: 0,
-//       },
-//     },
-//   },
-// ]);
+export const buttonClassName = style([
+  {
+    cursor: 'pointer',
+    userSelect: 'none',
+    borderRadius: buttonVars.border.radius,
+    borderWidth: buttonVars.border.width,
+    selectors: {
+      '&[disabled]': {
+        pointerEvents: 'none',
+        cursor: 'default',
+        // filter: 'grayscale(1)',
+      },
 
-// export const iconClass = style({
-//   height: currentCapHeight,
-//   aspectRatio: '1/1',
-//   lineHeight: 0,
-// });
+      // keyboard
+      '&:focus-visible': {
+        outlineStyle: 'solid',
+        outlineOffset: genericVars.border.width['3'],
+        outlineWidth: genericVars.border.width['3'],
+        // outlineColor: oklch(
+        //   contrastSchemeVars.swatch.k0.l,
+        //   contrastSchemeVars.swatch.k0.c,
+        //   toneH,
+        // ),
+      },
 
-// export const visiblyHiddenClass = style({
-//   visibility: 'hidden',
-// });
+      // mouse, touch, or stylus
+      '&:focus:not(:focus-visible)': {},
 
-// export const busyButtonClass = style({
-//   pointerEvents: 'none',
-//   selectors: {
-//     '&::after': {
-//       height: currentCapHeight,
-//       aspectRatio: '1/1',
-//       content: '""',
-//       position: 'absolute',
-//       margin: 'auto',
+      // both
+      '&:focus-visible,&:focus:not(:focus-visible)': {},
 
-//       // busy indicator
-//       borderStyle: 'solid',
-//       borderWidth: genericVars.border.width['2'],
-//       borderColor: 'transparent',
-//       borderTopColor: 'currentColor',
-//       borderRadius: genericVars.radius['50'],
+      // gives us the nice little animation on outlineOffset
+      '&:active': {
+        outlineOffset: 0,
+      },
+    },
+  },
+]);
 
-//       // busy indicator animation
-//       animationName: rotate,
-//       animationDuration: '0.75s',
-//       animationIterationCount: 'infinite',
-//       animationTimingFunction: 'linear',
-//     },
-//   },
-// });
+export const iconClass = style({
+  aspectRatio: '1/1',
+  lineHeight: 0,
+});
 
-// export const inlineBleedClass = style({
-//   marginBlock: calc(genericVars.space[0]).negate().toString(),
-// });
+export const visiblyHiddenClass = style({
+  visibility: 'hidden',
+});
+
+export const busyButtonClass = style({
+  pointerEvents: 'none',
+});
+
+export const inlineBleedClass = style({
+  marginBlock: calc(genericVars.space[0]).negate().toString(),
+});

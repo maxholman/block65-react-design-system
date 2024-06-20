@@ -6,13 +6,25 @@ import {
   type ForwardedRef,
   type ReactElement,
 } from 'react';
-import styles from './button.module.scss';
 import { Box, type BoxProps } from './box.js';
+import type { ButtonState, ButtonVariant } from './button.css.js';
+import {
+  busyButtonClass,
+  buttonClassName,
+  buttonStateClassNames,
+  buttonVariantClassNames,
+  iconClass,
+  inlineBleedClass,
+  visiblyHiddenClass,
+} from './button.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
+import { Spinner } from './loaders.js';
+
+export { ButtonState, ButtonVariant };
 
 // Extracted out to its own type because `isValidElement` and `ReactElement`
 // don't have the same default value for props, so we need to specify it in
@@ -22,15 +34,6 @@ import { ExactText } from './typography.js';
 type ReactElementDefaultPropsType = any;
 
 export type ButtonSize = 'small' | 'medium' | 'large';
-
-export type ButtonVariant =
-  | 'default'
-  | 'danger'
-  | 'invisible'
-  | 'inactive'
-  | 'primary';
-
-export type ButtonState = 'active' | 'focus' | 'hover';
 
 export type ButtonCommonProps = {
   busy?: boolean | undefined;
@@ -71,10 +74,10 @@ const IconBox: FC<{
   icon: ReactElement | FC;
   busy?: boolean | Falsy;
 }> = ({ icon, busy }) => (
-  <Box component="span" className={[styles.icon, busy && styles.visiblyHidden]}>
+  <Box component="span" className={[iconClass, busy && visiblyHiddenClass]}>
     {isValidElement<ReactElementDefaultPropsType>(icon)
-      ? cloneElement(icon, { className: styles.icon })
-      : icon({ className: styles.icon })}
+      ? cloneElement(icon, { className: iconClass })
+      : icon({ className: iconClass })}
   </Box>
 );
 
@@ -86,7 +89,7 @@ export const UnstyledButton = forwardRef(
     <Flex
       component="button"
       ref={forwardedRef}
-      className={[className, styles.button]}
+      className={[className, buttonClassName]}
       // if this is going to be an actual button element - default to button
       // type so that it doesn't submit forms by default
       {...((!props.component || props.component === 'button') && {
@@ -155,7 +158,7 @@ export const Button = forwardRef(
     };
 
     const busyAttributes = {
-      className: [busy && styles.visiblyHidden],
+      className: [busy && visiblyHiddenClass],
       'aria-hidden': busy || undefined,
       'aria-live': busy ? 'polite' : undefined,
     } as const;
@@ -170,30 +173,37 @@ export const Button = forwardRef(
         {...finalProps}
         className={[
           className,
-          variant && styles[variant],
-          state && styles[state],
-          busy && styles.busy,
-          inline && styles.inlineBleed,
+
+          busy && busyButtonClass,
+          inline && inlineBleedClass,
+
+          // order is important here, as we want the state to override the variant
+          state && variant && buttonStateClassNames[variant][state],
+
+          variant && buttonVariantClassNames[variant],
         ]}
       >
         {iconStart && <IconBox icon={iconStart} busy={busy} />}
 
-        {isStringLike(children) ? (
-          <ExactText
-            component="span"
-            textAlign={textAlign}
-            capSize={fontSize}
-            {...busyAttributes}
-          >
-            {children}
-          </ExactText>
-        ) : (
-          children && (
-            <Box flexGrow component="span" {...busyAttributes}>
+        {!busy &&
+          (isStringLike(children) ? (
+            <ExactText
+              component="span"
+              textAlign={textAlign}
+              capSize={fontSize}
+              {...busyAttributes}
+            >
               {children}
-            </Box>
-          )
-        )}
+            </ExactText>
+          ) : (
+            children && (
+              <Box flexGrow component="span" {...busyAttributes}>
+                {children}
+              </Box>
+            )
+          ))}
+
+        {busy && <Spinner />}
 
         {iconEnd && <IconBox icon={iconEnd} busy={busy} />}
       </UnstyledButton>

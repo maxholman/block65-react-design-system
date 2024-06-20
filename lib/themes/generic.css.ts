@@ -1,17 +1,8 @@
-import { createTheme, type MapLeafNodes } from '@vanilla-extract/css';
+import { createGlobalTheme, type MapLeafNodes } from '@vanilla-extract/css';
 import { genericVars } from '../box.css.js';
 
 export const genericThemeTokens = {
   text: {
-    capHeight: {
-      '00': '0.5rem',
-      '0': '0.75rem',
-      '1': '1rem',
-      '2': '1.1rem',
-      '3': '1.25rem',
-      '4': '1.5rem',
-      '5': '2rem',
-    },
     weight: {
       thin: '100',
       extraLight: '200',
@@ -49,7 +40,6 @@ export const genericThemeTokens = {
     3: '0.5rem',
     50: '50%',
   },
-
   space: {
     '000': '-.5rem',
     '00': '-.25rem',
@@ -73,7 +63,8 @@ export const genericThemeTokens = {
   },
 } satisfies MapLeafNodes<typeof genericVars, string>;
 
-export const genericThemeClassName = createTheme(
+export const genericThemeClassName = createGlobalTheme(
+  ':root',
   genericVars,
   genericThemeTokens,
 );

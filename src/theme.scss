@@ -1,3 +1,9 @@
+@use './primer.module.scss' as primer;
+
+:root {
+  @include primer.vars();
+}
+
 @mixin constants() {
   --fgColor-black: var(--black);
   --fgColor-white: var(--white);
@@ -250,4 +256,19 @@
   --badge-fgColor-primary: var(--gray-0);
   --badge-bgColor-primary: var(--green-5);
   --badge-borderColor-primary: var(--green-4);
+}
+
+html {
+  // scroll bar avoids jank
+  overflow-y: scroll;
+
+  &[data-color-scheme='dark']:not([data-color-mode]) {
+    color-scheme: dark;
+    @include dark();
+  }
+
+  &[data-color-scheme='light'] {
+    color-scheme: light;
+    @include light();
+  }
 }

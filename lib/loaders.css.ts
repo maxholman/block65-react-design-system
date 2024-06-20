@@ -1,14 +1,5 @@
-import {
-  keyframes,
-  style,
-  styleVariants,
-  type StyleRule,
-} from '@vanilla-extract/css';
-
-const rotate = keyframes({
-  '0%': { transform: 'rotate(0deg)' },
-  '100%': { transform: 'rotate(360deg)' },
-});
+import { style, styleVariants, type StyleRule } from '@vanilla-extract/css';
+import { rotate } from './keyframes.css.js';
 
 export const spinnerClass = style({
   aspectRatio: '1/1',
@@ -20,9 +11,9 @@ export const spinnerClass = style({
 });
 
 export const inlineSpinnerClass = style({
-  display: 'inline-flex',
-  // height: fallbackVar(currentCapHeight, '1em'),
-  // width: fallbackVar(currentCapHeight, '1em'),
+  // display: 'inline-flex',
+  // maxHeight: '0.5em',
+  // width: '1em',
 });
 
 export type SpinnerSize = '1' | '2' | '3' | '4' | '5';

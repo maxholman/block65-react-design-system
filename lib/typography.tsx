@@ -64,15 +64,22 @@ export const ExactText = forwardRef(
 );
 
 export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ level = '3', ...props }, ref) => (
-    <Box
-      ref={ref}
-      lineHeight="heading"
-      component={`h${level}`}
-      {...headingProps(level)}
-      {...props}
-    />
-  ),
+  ({ className, secondary, level = '3', ...props }, ref) => {
+    const { secondary: headingIsSecondary, ...rest } = headingProps(level);
+    return (
+      <Box
+        ref={ref}
+        lineHeight="heading"
+        className={[
+          className,
+          (headingIsSecondary || secondary) && styles.secondary,
+        ]}
+        component={`h${level}`}
+        {...rest}
+        {...props}
+      />
+    );
+  },
 );
 
 export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(

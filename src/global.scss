@@ -1,24 +1,11 @@
-@use './theme.scss' as theme;
-@use './primer.module.scss' as primer;
-
 @use '../lib/fonts/inter.scss' as inter;
 
 :root {
-  @include primer.vars();
   @include inter.vars();
+  overflow-y: scroll; // jank prevention
 }
 
-html {
-  // scroll bar avoids jank
-  overflow-y: scroll;
-
-  &[data-color-scheme='dark']:not([data-color-mode]) {
-    color-scheme: dark;
-    @include theme.dark();
-  }
-
-  &[data-color-scheme='light'] {
-    color-scheme: light;
-    @include theme.light();
-  }
+#root {
+  display: flex;
+  min-height: 100vh;
 }

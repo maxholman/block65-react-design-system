@@ -1,4 +1,4 @@
-@use '../scss/capsize/main.scss' as inter with (
+@use '../scss/capsize.scss' as inter with (
   $font-metrics: (
     capHeight: 2048,
     ascent: 2728,
@@ -11,7 +11,6 @@
 @mixin vars {
   font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
-  // font-weight: var(--text-weight-regular);
   line-height: var(--text-lineHeight-regular);
   font-style: normal;
   font-variation-settings: 'slnt' 0;

@@ -53,8 +53,8 @@ export const BadgesPage: FC = () => (
       >
         <Panel>
           <Inline>
-            <Heading level="4">Default Badge</Heading>
-            <Badge>Active</Badge>
+            <Heading level="4">Status</Heading>
+            <Badge variant="info">Active</Badge>
           </Inline>
           <Paragraph>And some text</Paragraph>
         </Panel>
@@ -63,13 +63,13 @@ export const BadgesPage: FC = () => (
             <Heading level="4" textOverflow="ellipsis">
               DBS Visa 4352
             </Heading>
-            <Badge>Expires Soon</Badge>
+            <Badge variant="attention">Expires Soon</Badge>
           </Inline>
           <Paragraph>And some text</Paragraph>
         </Panel>
         <Panel>
           <Inline>
-            <Heading level="4">Default Badge</Heading>
+            <Heading level="4">Lol Badge</Heading>
             <Badge>50% Off</Badge>
           </Inline>
           <Paragraph>And some text</Paragraph>
@@ -77,7 +77,7 @@ export const BadgesPage: FC = () => (
         <Panel>
           <Inline>
             <Heading level="4">Trial Account</Heading>
-            <Badge>Expired</Badge>
+            <Badge variant="error">Expired</Badge>
           </Inline>
           <Paragraph>Upgrade now</Paragraph>
         </Panel>

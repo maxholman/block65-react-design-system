@@ -1,6 +1,4 @@
 import { forwardRef, useMemo, useState } from 'react';
-import styles from './forms.module.scss';
-import type { Falsy } from './box.css.js';
 import { Box } from './box.js';
 import {
   defaultFormInputSpace,
@@ -21,7 +19,14 @@ import { useFavicon } from './hooks/use-image.js';
 import { GlobeColorIcon } from './icons.js';
 import { Block, Inline } from './layout.js';
 import { Spinner } from './loaders.js';
-import type { Merge } from './types.js';
+import type { Falsy, Merge } from './types.js';
+import {
+  formInputOuterClassName,
+  formInputFocusNotCheckRadioClassName,
+  formInputInnerClassName,
+  formInputHack,
+  formInputOriginIcon,
+} from './forms.css.js';
 
 function guessUrl(url: string) {
   if (!url) {
@@ -140,8 +145,8 @@ export const FormInputOrigin = forwardRef<
 
         <Inline
           className={[
-            styles.formInputOuterClassName,
-            styles.formInputFocusNotCheckRadioClassName,
+            formInputOuterClassName,
+            formInputFocusNotCheckRadioClassName,
           ]}
           flexWrap="nowrap"
           alignItems={null}
@@ -155,9 +160,9 @@ export const FormInputOrigin = forwardRef<
             type={syntacticallyValidValueAsUrl ? 'text' : 'url'}
             padding="5"
             className={[
-              styles.formInputInnerClassName,
-              styles.formInputHack,
-              styles.formInputFocusNotCheckRadioClassName,
+              formInputInnerClassName,
+              formInputHack,
+              formInputFocusNotCheckRadioClassName,
             ]}
             autoFocus={definitelyAutoFocus}
             {...inputElProps}
@@ -176,14 +181,14 @@ export const FormInputOrigin = forwardRef<
             justifyContent="center"
             paddingInline="5"
           >
-            {dns.busy && <Spinner className={styles.formInputOriginIcon} />}
+            {dns.busy && <Spinner className={formInputOriginIcon} />}
 
             {!dns.busy && !favicon.error && favicon.src && (
-              <img className={styles.formInputOriginIcon} src={favicon.src} />
+              <img className={formInputOriginIcon} src={favicon.src} />
             )}
 
             {!dns.busy && (!favicon.src || favicon.error) && (
-              <GlobeColorIcon className={styles.formInputOriginIcon} />
+              <GlobeColorIcon className={formInputOriginIcon} />
             )}
           </Block>
         </Inline>

@@ -31,7 +31,7 @@ export const Spinner: FC<SpinnerProps> = ({
       className,
       spinnerClass,
       inline && inlineSpinnerClass,
-      spinnerSizeVariantClassNames[size],
+      !inline && spinnerSizeVariantClassNames[size],
     ]}
     {...props}
   >

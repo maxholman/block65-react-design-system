@@ -4,9 +4,9 @@ import type {
   PropsWithChildren,
   ReactElement,
 } from 'react';
-import styles from './design-system.module.scss';
 import { Box, type BoxProps } from './box.js';
 import { DesignSystemContext } from './design-system-context.js';
+import { designSystemClassName } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
 import { genericThemeClassName } from './themes/generic.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
@@ -46,7 +46,7 @@ export const DesignSystem = <
         // if we're in integration mode, the reset can only go around el
         integrationMode && resetClass,
 
-        styles.designSystem,
+        designSystemClassName,
       ]}
       {...props}
     />

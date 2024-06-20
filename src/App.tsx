@@ -6,13 +6,16 @@ import {
   FormattedTime,
   IntlProvider,
 } from 'react-intl';
-import { DesignSystem } from '../lib/design-system.js';
-import { useColorSchemeEffect } from '../lib/hooks/use-color-scheme-effect.js';
+import { useColorSchemeEffect } from '../lib/hooks/main.js';
+import { Block, DesignSystem } from '../lib/main.js';
 import { MainRouter } from './MainRouter.js';
 import { SettingsProvider } from './pages/components/SettingsContext.js';
 import { useSettings } from './pages/components/use-settings.js';
 
 import './global.scss';
+
+// import './theme.scss'; // SCSS version
+import './theme.css.js'; // Vanilla extract version
 
 const AppInner = () => {
   const [{ colorScheme }] = useSettings();
@@ -28,12 +31,11 @@ const AppInner = () => {
       ]}
       space="10"
       flexDirection="column"
-      style={{
-        flexGrow: 1,
-        minHeight: '100vh',
-      }}
+      flexGrow
     >
-      <MainRouter />
+      <Block flexGrow alignItems="center">
+        <MainRouter />
+      </Block>
     </DesignSystem>
   );
 };

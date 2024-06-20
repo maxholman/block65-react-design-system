@@ -32,19 +32,20 @@ build-watch: $(SRCS) node_modules vite.config.ts vite-env.d.ts
 dev-server: node_modules vite.config.ts
 	pnpm exec vite dev --mode=development --clearScreen false
 
-dist-watch: node_modules tsconfig.json
-	pnpm exec tsc --emitDeclarationOnly --noEmit null -w --preserveWatchOutput
+PHONY: typecheck
+typecheck: node_modules tsconfig.json
+	pnpm exec tsc --noEmit false --emitDeclarationOnly -w --preserveWatchOutput
 
 .PHONY: dev
 dev:
-	NODE_ENV=development $(MAKE) -j 3 build-watch dev-server dist-watch
+	NODE_ENV=development $(MAKE) -j 3 build-watch dev-server typecheck
 
 .PHONY: debug
 debug:
 	DEBUG_BUILD=1 $(MAKE)
 
 dist: node_modules tsconfig.json
-	pnpm exec tsc --emitDeclarationOnly --noEmit null
+	pnpm exec tsc --noEmit false --emitDeclarationOnly
 
 .PHONY: clean
 clean: node_modules tsconfig.json
@@ -57,12 +58,15 @@ distclean: clean
 	rm -rf node_modules
 
 .PHONY: test
-test: node_modules tsconfig.json vite.config.ts
-	$(MAKE) lint
-	pnpm exec tsc --noEmit
+test: lint dist build
 	DEBUG_BUILD=true pnpm vitest run
-	$(MAKE) build
+	DEBUG_BUILD=true pnpm vitest run
 	pnpm exec bundlesize
+
+.PHONY: lint
+lint: node_modules
+	pnpm exec eslint .
+	pnpm exec prettier --check .
 
 .PHONY: pretty
 pretty: node_modules

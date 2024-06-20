@@ -20,7 +20,6 @@ export default defineConfig((config) => {
       lib: {
         entry: {
           main: resolve(__dirname, 'lib/main.ts'),
-          vars: resolve(__dirname, 'lib/vars.ts'),
           hooks: resolve(__dirname, 'lib/hooks/main.ts'),
         },
         formats: ['es'],
@@ -56,7 +55,7 @@ export default defineConfig((config) => {
       modules: {
         ...(true && {
           generateScopedName(...args) {
-            const [name, filename, _css] = args;
+            const [name, filename /* , css */] = args;
             const className = `_${hash(args.join('_'))}`;
             const [, file] = filename.match(/.*\/(.*?)\./) || ['unknown'];
             return config.mode === 'development'

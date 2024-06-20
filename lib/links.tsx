@@ -1,7 +1,7 @@
 import type { FC } from 'react';
+import { linkStyleVariant } from './link.css.js';
 import { Box, type BoxProps } from './box.js';
 import { differentOriginLinkProps } from './component-utils.js';
-import styles from './link.module.scss';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
@@ -28,7 +28,7 @@ export const TextLink: FC<TextLinkProps> = ({
 }) => (
   <Box
     component="a"
-    className={[styles.link, styles[weight], className]}
+    className={[className, linkStyleVariant[weight]]}
     {...(safe && props.href && differentOriginLinkProps(props.href))}
     {...props}
   />
