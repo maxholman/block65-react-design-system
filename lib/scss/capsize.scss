@@ -37,6 +37,7 @@ $prevent-collapse: 0.05;
 
 @mixin capsize($size-index, $font-size, $line-height) {
   --text-fontSize-#{$size-index}: #{$font-size};
+  --text-lineHeight-#{$size-index}: #{$line-height};
 
   $font-size: strip-unit($font-size);
   $line-height: strip-unit($line-height);
@@ -97,9 +98,8 @@ $prevent-collapse: 0.05;
     'normal'
   );
 
-  --text-fontSize-capSize-#{$size-index}: #{$font-size};
-  --text-lineHeight-capSize-#{$size-index}: #{$line-height};
-  --text-padding-capSize-#{$size-index}: #{$prevent-collapse}px 0;
-  --text-marginTop-capSize-#{$size-index}: #{$margin-top};
-  --text-marginBottom-capSize-#{$size-index}: #{$margin-bottom};
+  --text-capSize-#{$size-index}-fontSize: #{$font-size};
+  --text-capSize-#{$size-index}-lineHeight: #{$line-height};
+  --text-capSize-#{$size-index}-baselineTrim: #{$margin-top};
+  --text-capSize-#{$size-index}-capHeightTrim: #{$margin-bottom};
 }

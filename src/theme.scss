@@ -1,7 +1,9 @@
 @use './primer.module.scss' as primer;
+// @use '../lib/fonts/inter.scss' as inter;
 
 :root {
   @include primer.vars();
+  // @include inter.vars();
 }
 
 @mixin constants() {

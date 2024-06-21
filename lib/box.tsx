@@ -271,6 +271,7 @@ export const Box = forwardRef(
 
             overflow && overflowVariants[overflow],
             textOverflow && textOverflowVariants[textOverflow],
+
             textWrap && coreStyles[`textWrap-${textWrap}`],
 
             getFontSizeClassName(fontSize),

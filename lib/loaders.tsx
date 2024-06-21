@@ -27,6 +27,8 @@ export const Spinner: FC<SpinnerProps> = ({
 }) => (
   <Box
     component="span"
+    role="progressbar"
+    aria-busy="true"
     className={[
       className,
       spinnerClass,

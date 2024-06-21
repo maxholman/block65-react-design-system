@@ -5,5 +5,4 @@ import { globalVars } from './box.css.js';
 export const designSystemClassName = style({
   color: globalVars.color.fgColor,
   backgroundColor: globalVars.color.bgColor,
-  fontSize: '1em',
 });

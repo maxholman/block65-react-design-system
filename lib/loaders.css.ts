@@ -1,19 +1,21 @@
 import { style, styleVariants, type StyleRule } from '@vanilla-extract/css';
-import { rotate } from './keyframes.css.js';
+import { rotate, fadeIn } from './keyframes.css.js';
+
+const rotateAnimation = `${rotate} 0.65s linear infinite`;
+
+// legend: <name> <duration> <timing-function> <delay> <iteration-count> <direction>
+const fadeInAnimation = `${fadeIn} 600ms ease 1 900ms forwards`;
 
 export const spinnerClass = style({
+  opacity: 0,
   aspectRatio: '1/1',
   transformOrigin: 'center center',
-  animationName: rotate,
-  animationDuration: '.75s',
-  animationIterationCount: 'infinite',
-  animationTimingFunction: 'linear',
+  animation: [rotateAnimation, fadeInAnimation].join(','),
 });
 
 export const inlineSpinnerClass = style({
-  // display: 'inline-flex',
-  // maxHeight: '0.5em',
-  // width: '1em',
+  display: 'inline-flex',
+  width: '1em',
 });
 
 export type SpinnerSize = '1' | '2' | '3' | '4' | '5';

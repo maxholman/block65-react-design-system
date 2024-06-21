@@ -6,12 +6,13 @@ import {
   secondaryClassName,
   type FontSize,
   type FontWeight,
-  type HeadingLevel,
   type LineHeight,
   type TextWrap,
 } from './typography.css.js';
 
-export type { FontSize, FontWeight, HeadingLevel, LineHeight, TextWrap };
+export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
+
+export type { FontSize, FontWeight, LineHeight, TextWrap };
 
 export type CommonTextProps = {
   secondary?: true | Falsy;
@@ -61,8 +62,8 @@ export const ExactText = forwardRef(
       component={component}
       ref={forwardedRef}
       className={[className, secondary && secondaryClassName]}
-      {...props}
       capSize="1"
+      {...props}
     />
   ),
 );

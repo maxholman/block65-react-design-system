@@ -1,7 +1,4 @@
-@use '../lib/fonts/inter.scss' as inter;
-
 :root {
-  @include inter.vars();
   overflow-y: scroll; // jank prevention
 }
 

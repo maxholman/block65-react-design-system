@@ -255,7 +255,7 @@ export const TypographyPage: FC = () => (
     </Panel>
 
     <Panel>
-      <Heading level="1">ExactText Align</Heading>
+      <Heading>ExactText Align</Heading>
 
       <Grid cols={2}>
         <Panel>
