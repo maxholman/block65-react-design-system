@@ -1,15 +1,16 @@
 import { Link } from '@block65/mrr';
+import type { FC } from 'react';
 import {
   ArrowForwardIcon,
   Avatar,
   Block,
   Button,
   Heading,
-  Paragraph,
   Panel,
+  Paragraph,
 } from '../../lib/main.js';
 
-export const SelectorPattern = () => (
+export const SelectorPattern: FC = () => (
   <Link href="">
     <Panel flexDirection="row" component="a">
       <Block>

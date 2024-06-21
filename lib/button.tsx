@@ -20,9 +20,9 @@ import {
 import { differentOriginLinkProps } from './component-utils.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Flex, type FlexProps } from './layout.js';
+import { Spinner } from './loaders.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
-import { Spinner } from './loaders.js';
 
 export { ButtonState, ButtonVariant };
 

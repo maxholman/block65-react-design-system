@@ -6,6 +6,13 @@ import {
   formInputElProps,
 } from './forms-common.js';
 import {
+  formInputOuterClassName,
+  formInputFocusNotCheckRadioClassName,
+  formInputInnerClassName,
+  formInputHack,
+  formInputOriginIcon,
+} from './forms.css.js';
+import {
   FormInputLabel,
   FormInputMessage,
   type FormInputPropsNoType,
@@ -20,13 +27,6 @@ import { GlobeColorIcon } from './icons.js';
 import { Block, Inline } from './layout.js';
 import { Spinner } from './loaders.js';
 import type { Falsy, Merge } from './types.js';
-import {
-  formInputOuterClassName,
-  formInputFocusNotCheckRadioClassName,
-  formInputInnerClassName,
-  formInputHack,
-  formInputOriginIcon,
-} from './forms.css.js';
 
 function guessUrl(url: string) {
   if (!url) {

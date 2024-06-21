@@ -1,7 +1,7 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
-import { badgeVariantVars } from '../lib/badge.css.js';
 import { globalVars } from '../lib/box.css.js';
 import { buttonVariantVars } from '../lib/button.css.js';
+import { purposeVariantVars } from '../lib/purpose.css.js';
 import * as primer from './primer.js';
 
 const darkSelector =
@@ -13,20 +13,18 @@ createGlobalTheme(darkSelector, globalVars, {
   color: {
     brand: primer.orange2,
     accent: primer.blue5,
-    default: {
-      fg: primer.gray1,
-      bg: primer.gray10,
-      border: primer.gray9,
-    },
+    fgColor: primer.gray1,
+    bgColor: primer.gray10,
+    borderColor: primer.gray9,
     muted: {
-      fg: primer.gray3,
-      bg: primer.gray1,
-      border: primer.gray6,
+      fgColor: primer.gray3,
+      bgColor: primer.gray1,
+      borderColor: primer.gray6,
     },
     emphasis: {
-      fg: primer.gray6,
-      bg: primer.gray2,
-      border: primer.gray3,
+      fgColor: primer.gray6,
+      bgColor: primer.gray2,
+      borderColor: primer.gray3,
     },
   },
 });
@@ -36,79 +34,19 @@ createGlobalTheme(lightSelector, globalVars, {
   color: {
     brand: primer.orange6,
     accent: primer.blue6,
-    default: {
-      fg: primer.gray9,
-      bg: primer.gray0,
-      border: primer.gray1,
-    },
+    fgColor: primer.gray9,
+    bgColor: primer.gray0,
+    borderColor: primer.gray1,
     muted: {
-      fg: primer.gray6,
-      bg: primer.gray1,
-      border: primer.gray4,
+      fgColor: primer.gray6,
+      bgColor: primer.gray1,
+      borderColor: primer.gray4,
     },
     emphasis: {
-      fg: primer.gray3,
-      bg: primer.gray2,
-      border: primer.gray6,
+      fgColor: primer.gray3,
+      bgColor: primer.gray2,
+      borderColor: primer.gray6,
     },
-  },
-});
-
-// badges dark mode
-createGlobalTheme(darkSelector, badgeVariantVars, {
-  attention: {
-    bgColor: primer.yellow4,
-    borderColor: primer.yellow6,
-    fgColor: primer.gray0,
-  },
-  default: {
-    bgColor: primer.gray1,
-    borderColor: primer.gray4,
-    fgColor: primer.gray8,
-  },
-  error: {
-    bgColor: primer.red1,
-    borderColor: primer.red4,
-    fgColor: primer.red5,
-  },
-  info: {
-    bgColor: primer.blue1,
-    borderColor: primer.blue2,
-    fgColor: primer.blue5,
-  },
-  positive: {
-    bgColor: primer.green5,
-    borderColor: primer.green6,
-    fgColor: primer.gray0,
-  },
-});
-
-// badges light mode
-createGlobalTheme(lightSelector, badgeVariantVars, {
-  attention: {
-    bgColor: primer.yellow1,
-    borderColor: primer.yellow2,
-    fgColor: primer.yellow9,
-  },
-  default: {
-    bgColor: primer.gray1,
-    borderColor: primer.gray4,
-    fgColor: primer.gray8,
-  },
-  error: {
-    bgColor: primer.red1,
-    borderColor: primer.red4,
-    fgColor: primer.red5,
-  },
-  info: {
-    bgColor: primer.blue1,
-    borderColor: primer.blue2,
-    fgColor: primer.blue5,
-  },
-  positive: {
-    bgColor: primer.green2,
-    borderColor: primer.green3,
-    fgColor: primer.green9,
   },
 });
 
@@ -336,6 +274,114 @@ createGlobalTheme(lightSelector, buttonVariantVars, {
       bgColor: primer.green5,
       borderColor: primer.green6,
       fgColor: primer.gray0,
+    },
+  },
+});
+
+// purpose dark mode
+createGlobalTheme(darkSelector, purposeVariantVars, {
+  critical: {
+    bgColor: primer.red1,
+    borderColor: primer.red4,
+    fgColor: primer.red6,
+    muted: {
+      bgColor: primer.red9,
+      borderColor: primer.red8,
+      fgColor: primer.gray1,
+    },
+  },
+  info: {
+    bgColor: primer.blue1,
+    borderColor: primer.blue2,
+    fgColor: primer.blue5,
+    muted: {
+      bgColor: primer.blue9,
+      borderColor: primer.blue8,
+      fgColor: primer.gray1,
+    },
+  },
+  attention: {
+    bgColor: primer.yellow4,
+    borderColor: primer.yellow6,
+    fgColor: primer.yellow1,
+    muted: {
+      bgColor: primer.yellow9,
+      borderColor: primer.yellow8,
+      fgColor: primer.gray1,
+    },
+  },
+  default: {
+    bgColor: primer.gray9,
+    borderColor: primer.gray4,
+    fgColor: primer.gray6,
+    muted: {
+      bgColor: primer.gray9,
+      borderColor: primer.gray8,
+      fgColor: primer.gray1,
+    },
+  },
+  positive: {
+    bgColor: primer.green5,
+    borderColor: primer.green6,
+    fgColor: primer.green1,
+    muted: {
+      bgColor: primer.green9,
+      borderColor: primer.green8,
+      fgColor: primer.gray1,
+    },
+  },
+});
+
+// purpose light mode
+createGlobalTheme(lightSelector, purposeVariantVars, {
+  critical: {
+    bgColor: primer.red1,
+    borderColor: primer.red2,
+    fgColor: primer.red6,
+    muted: {
+      bgColor: primer.red0,
+      borderColor: primer.red1,
+      fgColor: primer.red5,
+    },
+  },
+  info: {
+    bgColor: primer.blue1,
+    borderColor: primer.blue2,
+    fgColor: primer.blue6,
+    muted: {
+      bgColor: primer.blue0,
+      borderColor: primer.blue1,
+      fgColor: primer.blue5,
+    },
+  },
+  attention: {
+    bgColor: primer.yellow1,
+    borderColor: primer.yellow2,
+    fgColor: primer.yellow5,
+    muted: {
+      bgColor: primer.yellow0,
+      borderColor: primer.yellow1,
+      fgColor: primer.yellow5,
+    },
+  },
+  default: {
+    bgColor: primer.gray1,
+    borderColor: primer.gray2,
+    fgColor: primer.gray7,
+    muted: {
+      bgColor: primer.gray0,
+      borderColor: primer.gray1,
+      fgColor: primer.gray6,
+    },
+  },
+  positive: {
+    bgColor: primer.green1,
+    borderColor: primer.green2,
+    fgColor: primer.green5,
+    muted: {
+      bgColor: primer.green0,
+      borderColor: primer.green1,
+      fgColor: primer.green5,
     },
   },
 });

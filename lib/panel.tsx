@@ -1,14 +1,10 @@
 import { Block, type FlexProps } from './layout.js';
+import { panelClassName } from './panel.css.js';
 import type { ReactHTMLElementsHacked } from './react-html-elements.js';
 
-export const Panel = <T extends keyof ReactHTMLElementsHacked>(
-  props: FlexProps<T>,
-) => (
-  <Block
-    padding="3"
-    {...props}
-    style={{
-      border: '1px solid #888',
-    }}
-  />
+export const Panel = <T extends keyof ReactHTMLElementsHacked>({
+  className,
+  ...props
+}: FlexProps<T>) => (
+  <Block className={[className, panelClassName]} {...props} />
 );

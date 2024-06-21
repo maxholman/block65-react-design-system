@@ -1,17 +1,11 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { genericVars, globalVars } from './box.css.js';
 import { focusRadiusVar, focusableClassName } from './focusable.css.js';
+import { textVariantVars } from './typography.css.js';
 
 const linkClassName = style([
   focusableClassName,
   {
-    // vars: {
-    //   [linkColorVar]: oklch(
-    //     contrastSchemeVars.swatch.v8.l,
-    //     contrastSchemeVars.swatch.v8.c,
-    //     colorThemeVars.tones.accent.h,
-    //   ),
-    // },
     cursor: 'pointer',
     selectors: {
       '&:focus-visible': {
@@ -29,7 +23,7 @@ export const linkStyleVariant = styleVariants(
   {
     strong: {
       color: globalVars.color.accent,
-      fontWeight: genericVars.text.weight.medium,
+      fontWeight: textVariantVars.fontWeight.medium,
     },
     normal: {
       color: globalVars.color.accent,

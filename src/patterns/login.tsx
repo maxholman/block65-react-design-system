@@ -23,7 +23,7 @@ const GitHubLogo: FC = () => (
   </svg>
 );
 
-export const LoginPattern = () => (
+export const LoginPattern: FC = () => (
   <Block alignSelf="center" margin="10">
     <Inline justifyContent="center">
       <Avatar ident="a" label="🐈" size="6" />

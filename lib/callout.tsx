@@ -1,20 +1,47 @@
 import { Children, cloneElement, type ReactNode } from 'react';
-import styles from './callout.module.scss';
 import { Box, type BoxProps } from './box.js';
+import {
+  calloutStyleVariants,
+  iconClassName,
+  iconWrapperClassName,
+  textClassName,
+} from './callout.css.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
-import { InfoIcon } from './icons.js';
-import { Case, Switch } from './switch.js';
+import {
+  AttentionIcon,
+  CriticalIcon,
+  InfoIcon,
+  PositiveIcon,
+} from './icons.js';
+import type { PurposeVariant } from './purpose.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
 import { isValidElementOfType } from './utils.js';
 
-export type CalloutVariant = 'info' | 'warning' | 'critical' | 'success';
+export type { PurposeVariant as CalloutVariant };
+
+function variantIcon(variant: PurposeVariant): ReactNode {
+  const props = { className: iconClassName };
+
+  switch (variant) {
+    case 'critical':
+      return <CriticalIcon {...props} />;
+    case 'positive':
+      return <PositiveIcon {...props} />;
+    case 'attention':
+      return <AttentionIcon {...props} />;
+    case 'default':
+    case 'info':
+    default:
+      return <InfoIcon {...props} />;
+  }
+}
 
 export type CalloutCommonProps = {
   align?: never;
   children: ReactNode;
   icon?: ReactNode;
-  variant?: CalloutVariant;
+  variant?: PurposeVariant;
 };
 
 export type CalloutProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
@@ -43,41 +70,25 @@ export const Callout = ({
   return (
     <Box
       space={space}
-      padding="3"
-      className={[className, styles.callout, styles[variant]]}
+      className={[className, calloutStyleVariants[variant]]}
       role="alert"
       aria-live="polite"
       {...props}
     >
-      <Box component="span" className={[styles.iconWrapper]}>
-        {isValidElementOfType(icon, 'svg') ? (
-          cloneElement(icon, {
-            className: styles.icon,
-          })
-        ) : (
-          <Switch predicate={(v) => v === variant}>
-            <Case value="info">
-              <InfoIcon className={styles.icon} />
-            </Case>
-            <Case value="warning">
-              <InfoIcon className={styles.icon} />
-            </Case>
-            <Case value="critical">
-              <InfoIcon className={styles.icon} />
-            </Case>
-            <Case value="success">
-              <InfoIcon className={styles.icon} />
-            </Case>
-          </Switch>
-        )}
+      <Box component="span" className={iconWrapperClassName}>
+        {isValidElementOfType(icon, 'svg')
+          ? cloneElement(icon, {
+              className: iconClassName,
+            })
+          : variantIcon(variant)}
       </Box>
 
       {isValidElementOfType(children, ExactText) ? (
         cloneElement(children, {
-          className: styles.text,
+          className: textClassName,
         })
       ) : (
-        <ExactText capSize={capSize} className={styles.text}>
+        <ExactText capSize={capSize} className={textClassName}>
           {children}
         </ExactText>
       )}

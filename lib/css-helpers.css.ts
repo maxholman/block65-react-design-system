@@ -1,9 +1,11 @@
 import { calc } from '@vanilla-extract/css-utils';
 
 export function createGlobalThemeMapFn(
-  prefix: string,
+  prefix = '',
 ): (value: string | null, path: Array<string>) => string {
-  return (value, path) => `${prefix}-${value}${path.join('-')}`;
+  const delim = '-';
+  const fullPrefix = prefix ? `${prefix}${delim}` : '';
+  return (value, path) => `${fullPrefix}${value}${path.join(delim)}`;
 }
 
 export function withUnit(value: string | number, unit = 'px') {

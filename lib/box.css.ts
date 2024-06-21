@@ -23,44 +23,26 @@ export const globalVars = createGlobalThemeContract(
     color: {
       brand: '',
       accent: '',
+      fgColor: '',
+      bgColor: '',
+      borderColor: '',
       muted: {
-        fg: '',
-        bg: '',
-        border: '',
-      },
-      default: {
-        fg: '',
-        bg: '',
-        border: '',
+        fgColor: '',
+        bgColor: '',
+        borderColor: '',
       },
       emphasis: {
-        fg: '',
-        bg: '',
-        border: '',
+        fgColor: '',
+        bgColor: '',
+        borderColor: '',
       },
     },
   },
-  createGlobalThemeMapFn('global'),
+  createGlobalThemeMapFn(),
 );
 
 export const genericVars = createGlobalThemeContract(
   {
-    text: {
-      weight: {
-        thin: '',
-        extraLight: '',
-        light: '',
-        normal: '',
-        medium: '',
-        bold: '',
-        heavy: '',
-      },
-      lineHeight: {
-        normal: '',
-        paragraph: '',
-        heading: '',
-      },
-    },
     border: {
       width: {
         '0': '',

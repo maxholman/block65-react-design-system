@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import { linkStyleVariant } from './link.css.js';
 import { Box, type BoxProps } from './box.js';
 import { differentOriginLinkProps } from './component-utils.js';
+import { linkStyleVariant } from './link.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';

@@ -8,7 +8,7 @@ import {
 import { useSettings } from './use-settings.js';
 
 export const SettingsPanel: FC = () => {
-  const [{ colorScheme, colorTheme }, { setColorScheme, setColorTheme }] =
+  const { colorScheme, colorTheme, setColorScheme, setColorTheme } =
     useSettings();
 
   return (

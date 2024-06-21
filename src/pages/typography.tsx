@@ -106,34 +106,33 @@ export const TypographyPage: FC = () => (
     <Panel>
       <Block>
         <Heading level="1">Heading 1</Heading>
-        <ExactText>Normal ExactText</ExactText>
+        <Paragraph>Normal Paragraph</Paragraph>
       </Block>
       <Block>
         <Heading level="2">Heading 2</Heading>
-        <ExactText>Normal ExactText</ExactText>
+        <Paragraph>Normal Paragraph</Paragraph>
       </Block>
       <Block>
         <Heading>Heading 3</Heading>
-        <ExactText>Normal ExactText</ExactText>
+        <Paragraph>Normal Paragraph</Paragraph>
       </Block>
       <Block>
         <Heading level="4">Heading 4</Heading>
-        <ExactText>Normal ExactText</ExactText>
+        <Paragraph>Normal Paragraph</Paragraph>
       </Block>
       <Block>
         <Heading level="5">Heading 5</Heading>
-        <ExactText>Normal ExactText</ExactText>
+        <Paragraph>Normal Paragraph</Paragraph>
       </Block>
-    </Panel>
-
-    <Panel>
-      <Block space="0">
-        <Heading level="1">Heading 1</Heading>
+      <Block>
+        <Heading level="6">Heading 6</Heading>
+        <Paragraph>Normal Paragraph</Paragraph>
       </Block>
-      <ExactText>Looks horrible</ExactText>
     </Panel>
 
     <Panel space="10">
+      <Heading>ExactText capsizes</Heading>
+
       <ExactText capSize="00">
         fontSize 00: In the neon-soaked metropolis of Zephyr City,
         cyber-enhanced humans and androids coexist in a fragile harmony. The
@@ -210,20 +209,20 @@ export const TypographyPage: FC = () => (
     </Panel>
 
     <Panel>
-      <ExactText>
+      <Paragraph>
         <Strong>Strong text</Strong> is strong.
-      </ExactText>
+      </Paragraph>
 
-      <ExactText>
+      <Paragraph>
         Inline <Secondary>Secondary text</Secondary> is secondary
-      </ExactText>
+      </Paragraph>
 
-      <ExactText secondary>Secondary text blocks are too</ExactText>
+      <Paragraph secondary>Secondary text blocks are too</Paragraph>
 
-      <ExactText capSize="0">
+      <Paragraph fontSize="0">
         PS: Small text is small and can be <Strong>strong text</Strong> or{' '}
         <Secondary>secondary text</Secondary> too.
-      </ExactText>
+      </Paragraph>
     </Panel>
 
     <Panel>

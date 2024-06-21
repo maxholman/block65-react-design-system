@@ -1,18 +1,13 @@
 import { forwardRef, type ForwardedRef } from 'react';
-import {
-  badgeClassName,
-  badgeVariantClassNames,
-  type BadgeVariant,
-} from './badge.css.js';
+import { badgeVariantClassNames } from './badge.css.js';
 import { Box } from './box.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type FlexProps } from './layout.js';
+import type { PurposeVariant } from './purpose.css.js';
 import type { Falsy, ReactHTMLElementsHacked } from './types.js';
 
-export type { BadgeVariant };
-
 export type BadgeProps<T extends keyof ReactHTMLElementsHacked> =
-  FlexProps<T> & { variant?: BadgeVariant | Falsy };
+  FlexProps<T> & { variant?: PurposeVariant | Falsy };
 
 export const Badge = forwardRef(
   <T extends keyof ReactHTMLElementsHacked>(
@@ -27,11 +22,7 @@ export const Badge = forwardRef(
         component="span"
         padding="2"
         paddingInline="3"
-        className={[
-          className,
-          badgeClassName,
-          variant && badgeVariantClassNames[variant],
-        ]}
+        className={[className, variant && badgeVariantClassNames[variant]]}
         {...props}
       >
         {isStringLike(children) ? (

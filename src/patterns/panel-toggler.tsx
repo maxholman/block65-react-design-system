@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import {
   Block,
   Button,
@@ -13,7 +13,7 @@ import {
 
 const items = [1, 2, 3];
 
-export const PanelTogglerPattern = () => {
+export const PanelTogglerPattern: FC = () => {
   const [selectedItem, setSelectedItem] = useState<number>();
 
   useEffect(() => {

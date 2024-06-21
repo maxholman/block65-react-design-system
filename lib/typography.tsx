@@ -1,15 +1,19 @@
 import { forwardRef, type FC, type ForwardedRef } from 'react';
-import styles from './typography.module.scss';
 import { Box, type BoxProps } from './box.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
+import {
+  codeClassName,
+  secondaryClassName,
+  type FontSize,
+  type FontWeight,
+  type HeadingLevel,
+  type LineHeight,
+  type TextWrap,
+} from './typography.css.js';
 
-export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
-export type FontSize = '00' | '0' | '1' | '2' | '3' | '4' | '5' | '6';
-export type FontWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
-export type LineHeight = 'normal' | 'paragraph' | 'heading';
-export type TextWrap = 'pretty' | 'balance' | 'nowrap';
+export type { FontSize, FontWeight, HeadingLevel, LineHeight, TextWrap };
 
-type CommonTextProps = {
+export type CommonTextProps = {
   secondary?: true | Falsy;
 };
 
@@ -56,7 +60,7 @@ export const ExactText = forwardRef(
     <Box
       component={component}
       ref={forwardedRef}
-      className={[className, secondary && styles.secondary]}
+      className={[className, secondary && secondaryClassName]}
       {...props}
       capSize="1"
     />
@@ -72,7 +76,7 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
         lineHeight="heading"
         className={[
           className,
-          (headingIsSecondary || secondary) && styles.secondary,
+          (headingIsSecondary || secondary) && secondaryClassName,
         ]}
         component={`h${level}`}
         {...rest}
@@ -86,7 +90,7 @@ export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
   ({ className, secondary, ...props }, ref) => (
     <Box
       ref={ref}
-      className={[className, secondary && styles.secondary]}
+      className={[className, secondary && secondaryClassName]}
       lineHeight="paragraph"
       component="p"
       {...props}
@@ -99,9 +103,13 @@ export const Strong: FC<BoxProps<'span'>> = (props) => (
 );
 
 export const Code: FC<BoxProps<'code'>> = ({ className, ...props }) => (
-  <Box component="code" {...props} className={[className, styles.code]} />
+  <Box component="code" {...props} className={[className, codeClassName]} />
 );
 
 export const Secondary: FC<BoxProps<'span'>> = ({ className, ...props }) => (
-  <Box component="span" className={[className, styles.secondary]} {...props} />
+  <Box
+    component="span"
+    className={[className, secondaryClassName]}
+    {...props}
+  />
 );

@@ -5,15 +5,7 @@ import {
   styleVariants,
 } from '@vanilla-extract/css';
 import { createGlobalThemeMapFn } from './css-helpers.css.js';
-
-export type BadgeVariant =
-  | 'default'
-  | 'info'
-  | 'positive'
-  | 'error'
-  | 'attention';
-
-const badgeVarsShape = { bgColor: '', fgColor: '', borderColor: '' };
+import { purposeVariantVars } from './purpose.css.js';
 
 export const badgeVars = createGlobalThemeContract(
   {
@@ -22,28 +14,20 @@ export const badgeVars = createGlobalThemeContract(
       width: '',
     },
   },
-  createGlobalThemeMapFn('badge'),
+  createGlobalThemeMapFn('badge-default'),
 );
 
-export const badgeVariantVars = createGlobalThemeContract(
-  {
-    default: badgeVarsShape,
-    info: badgeVarsShape,
-    positive: badgeVarsShape,
-    error: badgeVarsShape,
-    attention: badgeVarsShape,
-  } satisfies Record<BadgeVariant, typeof badgeVarsShape>,
-  createGlobalThemeMapFn('badge'),
-);
-
-export const badgeVariantClassNames = styleVariants(badgeVariantVars, (v) => ({
-  color: v.fgColor,
-  backgroundColor: v.bgColor,
-  borderColor: fallbackVar(v.borderColor, v.bgColor),
-}));
-
-export const badgeClassName = style({
+const badgeClassName = style({
   borderRadius: badgeVars.border.radius,
   borderWidth: badgeVars.border.width,
   borderStyle: 'solid',
 });
+
+export const badgeVariantClassNames = styleVariants(purposeVariantVars, (v) => [
+  badgeClassName,
+  {
+    color: v.fgColor,
+    backgroundColor: v.bgColor,
+    borderColor: fallbackVar(v.borderColor, v.bgColor),
+  },
+]);

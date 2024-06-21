@@ -1,4 +1,5 @@
 /// <reference types="vite/client" />
+import type { FC } from 'react';
 import {
   FormattedDate,
   FormattedMessage,
@@ -13,12 +14,11 @@ import { SettingsProvider } from './pages/components/SettingsContext.js';
 import { useSettings } from './pages/components/use-settings.js';
 
 import './global.scss';
-
 // import './theme.scss'; // SCSS version
 import './theme.css.js'; // Vanilla extract version
 
 const AppInner = () => {
-  const [{ colorScheme }] = useSettings();
+  const { colorScheme } = useSettings();
   useColorSchemeEffect(colorScheme);
 
   return (
@@ -40,7 +40,7 @@ const AppInner = () => {
   );
 };
 
-export const App = () => (
+export const App: FC = () => (
   <IntlProvider locale="en">
     <SettingsProvider>
       <AppInner />

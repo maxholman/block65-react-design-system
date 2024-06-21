@@ -21,6 +21,10 @@ export const InfoIcon = forwardRef<SVGSVGElement, IconProps>(
   ),
 );
 
+export const AttentionIcon = InfoIcon;
+export const CriticalIcon = InfoIcon;
+export const PositiveIcon = InfoIcon;
+
 export const HelpIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg

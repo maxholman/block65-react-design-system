@@ -1,10 +1,17 @@
 import { Fragment, type FC } from 'react';
-import { Callout, HelpIcon, type CalloutVariant } from '../../lib/main.js';
+import { Callout, HelpIcon } from '../../lib/main.js';
+import type { PurposeVariant } from '../../lib/purpose.css.js';
 
 export const CalloutPage: FC = () => (
   <>
     {(
-      ['info', 'warning', 'critical', 'success'] satisfies CalloutVariant[]
+      [
+        'default',
+        'info',
+        'attention',
+        'critical',
+        'positive',
+      ] satisfies PurposeVariant[]
     ).map((variant) => (
       <Fragment key={variant}>
         <Callout variant={variant}>{variant}</Callout>

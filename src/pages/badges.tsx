@@ -1,21 +1,21 @@
 import type { FC } from 'react';
 import {
   Badge,
-  Paragraph,
   Grid,
   Heading,
   Inline,
   Panel,
-  type BadgeVariant,
+  Paragraph,
 } from '../../lib/main.js';
+import type { PurposeVariant } from '../../lib/purpose.css.js';
 
 const variants = [
   'default',
   'info',
   'positive',
-  'error',
+  'critical',
   'attention',
-] satisfies BadgeVariant[];
+] satisfies PurposeVariant[];
 
 export const BadgesPage: FC = () => (
   <>
@@ -77,7 +77,7 @@ export const BadgesPage: FC = () => (
         <Panel>
           <Inline>
             <Heading level="4">Trial Account</Heading>
-            <Badge variant="error">Expired</Badge>
+            <Badge variant="critical">Expired</Badge>
           </Inline>
           <Paragraph>Upgrade now</Paragraph>
         </Panel>

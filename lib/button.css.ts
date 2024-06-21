@@ -31,7 +31,7 @@ export const buttonVars = createGlobalThemeContract(
       width: '',
     },
   },
-  createGlobalThemeMapFn('button'),
+  createGlobalThemeMapFn('button-default'),
 );
 
 export const buttonVariantVars = createGlobalThemeContract(

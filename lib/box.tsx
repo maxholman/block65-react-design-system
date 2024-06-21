@@ -8,7 +8,6 @@ import {
   type ReactNode,
 } from 'react';
 import coreStyles from './box.module.scss';
-import typographyStyles from './typography.module.scss';
 import {
   borderWidthVariants,
   flexDirectionVariants,
@@ -42,17 +41,21 @@ import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import { TooltipLazy } from './tooltip-lazy.js';
 import type { TooltipProps } from './tooltip.js';
 import type {
+  Falsy,
   Merge,
   ReactHTMLAttributesHacked,
   ReactHTMLElementsHacked,
-  Falsy,
 } from './types.js';
-import type {
-  FontSize,
-  FontWeight,
-  LineHeight,
-  TextWrap,
-} from './typography.js';
+import {
+  capSizeVariantClassNames,
+  fontSizeVariantClassNames,
+  fontWeightVariantClassNames,
+  lineHeightVariantClassNames,
+  type FontSize,
+  type FontWeight,
+  type LineHeight,
+  type TextWrap,
+} from './typography.css.js';
 
 export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
   ReactHTMLAttributesHacked[T],
@@ -99,19 +102,19 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
 >;
 
 function getCapSizeClassName(size: FontSize | Falsy) {
-  return size && typographyStyles[`capSize-${size}`];
+  return size && capSizeVariantClassNames[size];
 }
 
 function getFontSizeClassName(size: FontSize | Falsy) {
-  return size && typographyStyles[`fontSize-${size}`];
+  return size && fontSizeVariantClassNames[size];
 }
 
 function getFontWeightClassName(weight: FontWeight | Falsy) {
-  return weight && typographyStyles[`fontWeight-${weight}`];
+  return weight && fontWeightVariantClassNames[weight];
 }
 
 function getLineHeightClassName(height: LineHeight | Falsy) {
-  return height && typographyStyles[`lineHeight-${height}`];
+  return height && lineHeightVariantClassNames[height];
 }
 
 export const Box = forwardRef(

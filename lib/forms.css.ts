@@ -8,6 +8,8 @@ import {
   focusWidthVar,
   focusableClassName,
 } from './focusable.css.js';
+import { purposeVariantVars } from './purpose.css.js';
+import { textVariantVars } from './typography.css.js';
 
 export const formControlVars = createGlobalThemeContract(
   {
@@ -76,6 +78,9 @@ export const formInputInnerClassName = style([
 export const formInputFocusNotCheckRadioClassName = style([
   focusVisibleClassName,
   {
+    outlineWidth: formControlVars.outline.width,
+    borderRadius: formControlVars.border.radius,
+    borderColor: purposeVariantVars.default.muted.borderColor,
     selectors: {
       '&:focus': {
         // draw the outline over the border so that we can increase
@@ -219,7 +224,7 @@ const formInputSelectWrapper = style({
 export const formInputSelectWrapperMultiple = style([
   formInputSelectWrapper,
   {
-    lineHeight: genericVars.text.lineHeight.normal,
+    lineHeight: textVariantVars.lineHeight.normal,
   },
 ]);
 

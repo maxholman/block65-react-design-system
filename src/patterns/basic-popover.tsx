@@ -1,6 +1,7 @@
+import type { FC } from 'react';
 import { Block, Button, Heading, Paragraph } from '../../lib/main.js';
 
-export const BasicPopover = () => (
+export const BasicPopover: FC = () => (
   <Block paddingBlock="15">
     <Block
       style={{ maxWidth: '20rem' }}

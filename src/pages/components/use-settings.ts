@@ -8,16 +8,5 @@ export function useSettings() {
     throw new Error('useSettings must be used within SettingsProvider');
   }
 
-  const { colorScheme, colorTheme, setColorScheme, setColorTheme } = ctx;
-
-  return [
-    {
-      colorScheme,
-      colorTheme,
-    },
-    {
-      setColorScheme,
-      setColorTheme,
-    },
-  ] as const;
+  return ctx;
 }

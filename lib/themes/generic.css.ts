@@ -2,22 +2,6 @@ import { createGlobalTheme, type MapLeafNodes } from '@vanilla-extract/css';
 import { genericVars } from '../box.css.js';
 
 export const genericThemeTokens = {
-  text: {
-    weight: {
-      thin: '100',
-      extraLight: '200',
-      light: '300',
-      normal: '400',
-      medium: '500',
-      bold: '500',
-      heavy: '900',
-    },
-    lineHeight: {
-      normal: '1.5',
-      paragraph: '1.6',
-      heading: '1.3',
-    },
-  },
   border: {
     width: {
       0: '0',
