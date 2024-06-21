@@ -7,10 +7,18 @@ const rotateAnimation = `${rotate} 0.65s linear infinite`;
 const fadeInAnimation = `${fadeIn} 600ms ease 1 900ms forwards`;
 
 export const spinnerClass = style({
-  opacity: 0,
   aspectRatio: '1/1',
   transformOrigin: 'center center',
-  animation: [rotateAnimation, fadeInAnimation].join(','),
+});
+
+export const spinnerAnimationVariantClassNames = styleVariants({
+  delay: {
+    opacity: 0,
+    animation: [rotateAnimation, fadeInAnimation].join(','),
+  },
+  regular: {
+    animation: rotateAnimation,
+  },
 });
 
 export const inlineSpinnerClass = style({

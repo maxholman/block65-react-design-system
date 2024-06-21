@@ -42,8 +42,8 @@ export const LoadersPage: FC = () => (
       </Panel>
 
       <Panel>
-        <ExactText secondary>MMMMM </ExactText>
-        <Spinner inline />
+        <ExactText secondary>MMMMM delay</ExactText>
+        <Spinner inline delay />
         <ExactText secondary>BBBBB</ExactText>
       </Panel>
 

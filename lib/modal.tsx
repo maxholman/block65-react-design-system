@@ -14,12 +14,12 @@ import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { CloseIcon } from './icons.js';
-import { Block, Inline } from './layout.js';
+import { Block, Flex, Inline } from './layout.js';
 import {
-  buttonClass,
   commonDimensionsClass,
   dialogClass,
-  modalClass,
+  modalClassName,
+  modalInnerClassName,
 } from './modal.css.js';
 import type { Falsy, Merge } from './types.js';
 import { Heading } from './typography.js';
@@ -52,7 +52,12 @@ const ModalInner: FC<InnerProps> = ({
   const isStringLike = useStringLikeDetector();
 
   return (
-    <Block component="section" padding="8" {...props}>
+    <Block
+      component="section"
+      padding="8"
+      className={modalInnerClassName}
+      {...props}
+    >
       <Inline flexWrap="nowrap">
         {isStringLike(heading) ? <Heading>{heading}</Heading> : heading}
         {dismissable && (
@@ -60,7 +65,7 @@ const ModalInner: FC<InnerProps> = ({
             <ButtonIcon
               onClick={() => close('dismiss')}
               type="submit"
-              className={buttonClass}
+              variant="invisible"
               value="close"
               label="close"
               autoFocus={false}
@@ -127,14 +132,18 @@ export const Modal = forwardRef(
 
     return createPortal(
       <DesignSystem {...ds} integrationMode>
-        <Box className={modalClass} ref={backdropRef}>
+        <Flex
+          justifyContent="center"
+          className={modalClassName}
+          ref={backdropRef}
+        >
           <Block
             ref={forwardedRef}
             className={[className, commonDimensionsClass]}
           >
             <ModalInner {...{ children, close, heading }} {...props} />
           </Block>
-        </Box>
+        </Flex>
       </DesignSystem>,
       document.body,
     );

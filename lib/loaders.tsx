@@ -5,6 +5,7 @@ import {
   trackCircleClassName,
   runnerCircleClassName,
   spinnerClass,
+  spinnerAnimationVariantClassNames,
   spinnerSizeVariantClassNames,
   type SpinnerSize,
 } from './loaders.css.js';
@@ -16,6 +17,7 @@ export type SpinnerProps = Merge<
     inline?: boolean;
     size?: SpinnerSize;
     children?: never;
+    delay?: boolean;
   }
 >;
 
@@ -23,6 +25,7 @@ export const Spinner: FC<SpinnerProps> = ({
   size = '1',
   className,
   inline = true,
+  delay = false,
   ...props
 }) => (
   <Box
@@ -32,6 +35,9 @@ export const Spinner: FC<SpinnerProps> = ({
     className={[
       className,
       spinnerClass,
+      delay
+        ? spinnerAnimationVariantClassNames.delay
+        : spinnerAnimationVariantClassNames.regular,
       inline && inlineSpinnerClass,
       !inline && spinnerSizeVariantClassNames[size],
     ]}

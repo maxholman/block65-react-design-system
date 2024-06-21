@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import { forwardRef, type SVGProps } from 'react';
-import styles from './icons.module.scss';
+import { iconClassName } from './icons.css.js';
 
 export type IconProps = SVGProps<SVGSVGElement>;
 
@@ -12,7 +12,7 @@ export const InfoIcon = forwardRef<SVGSVGElement, IconProps>(
       strokeWidth="0"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="2 2 20 20"
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       {...props}
     >
       <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>{' '}
@@ -30,7 +30,7 @@ export const HelpIcon = forwardRef<SVGSVGElement, IconProps>(
     <svg
       xmlns="http://www.w3.org/2000/svg"
       ref={ref}
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       fill="currentColor"
       viewBox="2 2 20 20"
       {...props}
@@ -46,7 +46,7 @@ export const CloseIcon = forwardRef<SVGSVGElement, IconProps>(
     <svg
       xmlns="http://www.w3.org/2000/svg"
       ref={ref}
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       fill="currentColor"
       viewBox="0 0 512 512"
       {...props}
@@ -62,7 +62,7 @@ export const MenuIcon = forwardRef<SVGSVGElement, IconProps>(
     <svg
       xmlns="http://www.w3.org/2000/svg"
       ref={ref}
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       viewBox="64 128 384 256"
       stroke="currentColor"
       fill="currentColor"
@@ -85,7 +85,7 @@ export const ArrowBackIcon = forwardRef<SVGSVGElement, IconProps>(
     <svg
       xmlns="http://www.w3.org/2000/svg"
       ref={ref}
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       viewBox="0 0 512 512"
       {...props}
     >
@@ -121,7 +121,7 @@ export const ArrowForwardIcon = forwardRef<SVGSVGElement, IconProps>(
     <svg
       xmlns="http://www.w3.org/2000/svg"
       ref={ref}
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       viewBox="0 0 512 512"
       {...props}
     >
@@ -155,7 +155,7 @@ export const ArrowForwardIcon = forwardRef<SVGSVGElement, IconProps>(
 export const ClipboardIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +177,7 @@ export const ClipboardIcon = forwardRef<SVGSVGElement, IconProps>(
 export const PasswordVisibleIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       stroke="currentColor"
       fill="currentColor"
       strokeWidth="0"
@@ -198,7 +198,7 @@ export const PasswordVisibleIcon = forwardRef<SVGSVGElement, IconProps>(
 export const PasswordInvisibleIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       stroke="currentColor"
       fill="currentColor"
       strokeWidth="0"
@@ -219,7 +219,7 @@ export const GlobeColorIcon = forwardRef<SVGSVGElement, IconProps>(
   ({ className, ...props }, ref) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx([className, styles.icon])}
+      className={clsx([className, iconClassName])}
       fill="currentColor"
       stroke="currentColor"
       strokeWidth="0"

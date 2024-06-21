@@ -7,7 +7,6 @@ import {
   type ForwardedRef,
   type ReactNode,
 } from 'react';
-import coreStyles from './box.module.scss';
 import {
   borderWidthVariants,
   flexDirectionVariants,
@@ -36,6 +35,10 @@ import {
   type Space,
   type TextAlign,
   type TextOverflow,
+  flexGrowClassName,
+  flexShrinkClass,
+  flexWrapVariants,
+  type Wrap,
 } from './box.css.js';
 import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import { TooltipLazy } from './tooltip-lazy.js';
@@ -66,6 +69,8 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
     space?: OrResponsive<Space | Falsy> | Falsy;
     flexDirection?: OrResponsive<FlexDirection> | Falsy;
     flexGrow?: OrResponsive<boolean> | Falsy;
+    flexShrink?: OrResponsive<boolean> | Falsy;
+    flexWrap?: Wrap | true | Falsy;
 
     margin?: OrResponsive<Space> | Falsy;
     marginBlock?: OrResponsive<Space> | Falsy;
@@ -157,6 +162,8 @@ export const Box = forwardRef(
 
       flexDirection,
       flexGrow,
+      flexShrink,
+      flexWrap,
 
       borderWidth,
 
@@ -191,9 +198,13 @@ export const Box = forwardRef(
             // so we can keep the element attribute for accessibility?
             props.hidden && hiddenClass,
 
-            isNotFalsy(flexGrow)
-              ? coreStyles[`flexGrow-${flexGrow ? 1 : 0}`]
-              : undefined,
+            flexGrow === true && flexGrowClassName.true,
+            flexGrow === false && flexGrowClassName.false,
+
+            flexShrink === true && flexShrinkClass.true,
+            flexShrink === false && flexShrinkClass.false,
+
+            flexWrap && flexWrapVariants[flexWrap === true ? 'wrap' : flexWrap],
 
             isNotFalsy(margin) &&
               marginBlock !== margin &&
@@ -271,8 +282,6 @@ export const Box = forwardRef(
 
             overflow && overflowVariants[overflow],
             textOverflow && textOverflowVariants[textOverflow],
-
-            textWrap && coreStyles[`textWrap-${textWrap}`],
 
             getFontSizeClassName(fontSize),
             getCapSizeClassName(capSize),

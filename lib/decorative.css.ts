@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { genericVars } from './box.css.js';
+import { genericVars, globalVars } from './box.css.js';
 
-export const dividerStyle = style({
+export const dividerClassName = style({
   height: genericVars.border.width[1],
+  backgroundColor: globalVars.color.muted.borderColor,
 });

@@ -361,6 +361,28 @@ export const flexDirectionVariants = styleVariants(
   (props) => props,
 );
 
+export const flexGrowClassName = styleVariants<
+  Record<`${boolean}`, ComplexStyleRule>
+>({
+  true: { flexGrow: 1 },
+  false: { flexGrow: 0 },
+});
+
+export const flexShrinkClass = styleVariants<
+  Record<`${boolean}`, ComplexStyleRule>
+>({
+  true: { flexShrink: 1 },
+  false: { flexShrink: 0 },
+});
+
+export type Wrap = 'wrap' | 'nowrap' | 'wrapReverse';
+
+export const flexWrapVariants = styleVariants<Record<Wrap, ComplexStyleRule>>({
+  wrap: { flexWrap: 'wrap' },
+  nowrap: { flexWrap: 'nowrap' },
+  wrapReverse: { flexWrap: 'wrap-reverse' },
+});
+
 export const spaceVariants = styleVariants(genericVars.space, (space) => ({
   gap: space,
 }));

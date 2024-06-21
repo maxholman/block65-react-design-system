@@ -1,24 +1,15 @@
 import { forwardRef } from 'react';
-import styles from './decorative.module.scss';
 import { Box, type BoxProps } from './box.js';
+import { dividerClassName } from './decorative.css.js';
 
-export type DividerProps = Pick<
-  BoxProps<'hr'>,
-  | 'className'
-  | 'margin'
-  | 'marginInline'
-  | 'marginBlock'
-  | 'padding'
-  | 'paddingInline'
-  | 'paddingBlock'
->;
+export type DividerProps = BoxProps<'hr'>;
 
 export const Divider = forwardRef<HTMLHRElement, DividerProps>(
   ({ className, ...props }, ref) => (
     <Box
       ref={ref}
       component="hr"
-      className={[className, styles.divider]}
+      className={[className, dividerClassName]}
       {...props}
     />
   ),

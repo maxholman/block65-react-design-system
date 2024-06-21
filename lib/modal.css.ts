@@ -1,5 +1,9 @@
 import { style, type StyleRule } from '@vanilla-extract/css';
-import { precomputedViewportRules, type Viewport } from './box.css.js';
+import {
+  globalVars,
+  precomputedViewportRules,
+  type Viewport,
+} from './box.css.js';
 import { genericVars } from './box.css.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 
@@ -49,8 +53,7 @@ export const dialogClass = style({
   },
 });
 
-export const modalClass = style({
-  display: 'flex',
+export const modalClassName = style({
   position: 'fixed',
   top: 0,
   left: 0,
@@ -58,7 +61,6 @@ export const modalClass = style({
   width: '100vw',
   height: '100vh',
   zIndex: 100,
-  justifyContent: 'center',
   selectors: {
     // '&:not([open])': {
     //   visibility: 'hidden',
@@ -77,6 +79,14 @@ export const modalClass = style({
   },
 });
 
+export const modalInnerClassName = style({
+  backgroundColor: globalVars.color.bgColor,
+  borderRadius: globalVars.border.radius,
+  outlineColor: globalVars.color.borderColor,
+  outlineWidth: globalVars.border.width,
+  outlineStyle: 'solid',
+});
+
 export const commonDimensionsClass = style({
   '@media': typedObjectFromEntries(
     typedObjectEntries(commonViewportRules).map(([viewport, rule]) => [
@@ -84,12 +94,4 @@ export const commonDimensionsClass = style({
       rule,
     ]),
   ),
-});
-
-export const iconClass = style({
-  aspectRatio: '1/1',
-});
-
-export const buttonClass = style({
-  // aspectRatio: '1/1',
 });

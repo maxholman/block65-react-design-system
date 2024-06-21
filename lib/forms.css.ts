@@ -1,6 +1,6 @@
 import { createGlobalThemeContract, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { genericVars } from './box.css.js';
+import { genericVars, globalVars } from './box.css.js';
 import { createGlobalThemeMapFn } from './css-helpers.css.js';
 import {
   focusColorVar,
@@ -178,7 +178,7 @@ export const formInputCheckboxInput = style([
         // size and color of the check
         aspectRatio: '1/1',
         // height: '0.35em',
-        boxShadow: `inset 1em 1em ${'red'}`,
+        boxShadow: `inset 1em 1em ${globalVars.color.accent}`,
       },
       '&:checked': {
         // background/border of the check
@@ -199,7 +199,7 @@ export const formInputRadioInput = style([
         height: '0.5rem',
         aspectRatio: '1/1',
         borderRadius: '50%',
-        boxShadow: 'inset 1em 1em currentColor',
+        boxShadow: `inset 1em 1em ${globalVars.color.accent}`,
       },
     },
   },
