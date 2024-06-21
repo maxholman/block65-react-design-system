@@ -51,7 +51,7 @@ export const textVariantVars = createGlobalThemeContract(
       semibold: '',
       bold: '',
     } satisfies Record<FontWeight, string>,
-    fontSize: {
+    size: {
       body: fontSizeShape,
       small: fontSizeShape,
       '00': fontSizeShape,
@@ -99,7 +99,7 @@ export const fontWeightVariantClassNames = styleVariants(
 );
 
 export const fontSizeVariantClassNames = styleVariants(
-  textVariantVars.fontSize,
+  textVariantVars.size,
   (value) => ({
     fontSize: value.fontSize,
   }),

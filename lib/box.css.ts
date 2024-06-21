@@ -37,6 +37,10 @@ export const globalVars = createGlobalThemeContract(
         borderColor: '',
       },
     },
+    border: {
+      width: '',
+      radius: '',
+    },
   },
   createGlobalThemeMapFn(),
 );

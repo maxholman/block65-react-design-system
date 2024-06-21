@@ -1,4 +1,5 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
+import openPropsTokens from 'open-props/style-dictionary-tokens';
 import { globalVars } from '../lib/box.css.js';
 import { buttonVariantVars } from '../lib/button.css.js';
 import { purposeVariantVars } from '../lib/purpose.css.js';
@@ -8,45 +9,47 @@ const darkSelector =
   'html[data-color-scheme="dark"], html:not([data-color-scheme])';
 const lightSelector = 'html[data-color-scheme="light"]';
 
+createGlobalTheme(':root', globalVars.border, {
+  radius: openPropsTokens.radius[2].value,
+  width: openPropsTokens.border.size[1].value,
+});
+
 // general colors dark mode
-createGlobalTheme(darkSelector, globalVars, {
-  color: {
-    brand: primer.orange2,
-    accent: primer.blue5,
-    fgColor: primer.gray1,
-    bgColor: primer.gray10,
-    borderColor: primer.gray9,
-    muted: {
-      fgColor: primer.gray3,
-      bgColor: primer.gray1,
-      borderColor: primer.gray6,
-    },
-    emphasis: {
-      fgColor: primer.gray6,
-      bgColor: primer.gray2,
-      borderColor: primer.gray3,
-    },
+
+createGlobalTheme(darkSelector, globalVars.color, {
+  brand: primer.orange2,
+  accent: primer.blue5,
+  fgColor: primer.gray1,
+  bgColor: primer.gray10,
+  borderColor: primer.gray9,
+  muted: {
+    fgColor: primer.gray3,
+    bgColor: primer.gray1,
+    borderColor: primer.gray6,
+  },
+  emphasis: {
+    fgColor: primer.gray6,
+    bgColor: primer.gray2,
+    borderColor: primer.gray3,
   },
 });
 
 // general colors light mode
-createGlobalTheme(lightSelector, globalVars, {
-  color: {
-    brand: primer.orange6,
-    accent: primer.blue6,
-    fgColor: primer.gray9,
-    bgColor: primer.gray0,
-    borderColor: primer.gray1,
-    muted: {
-      fgColor: primer.gray6,
-      bgColor: primer.gray1,
-      borderColor: primer.gray4,
-    },
-    emphasis: {
-      fgColor: primer.gray3,
-      bgColor: primer.gray2,
-      borderColor: primer.gray6,
-    },
+createGlobalTheme(lightSelector, globalVars.color, {
+  brand: primer.orange6,
+  accent: primer.blue6,
+  fgColor: primer.gray9,
+  bgColor: primer.gray0,
+  borderColor: primer.gray1,
+  muted: {
+    fgColor: primer.gray6,
+    bgColor: primer.gray1,
+    borderColor: primer.gray4,
+  },
+  emphasis: {
+    fgColor: primer.gray3,
+    bgColor: primer.gray2,
+    borderColor: primer.gray6,
   },
 });
 

@@ -39,7 +39,7 @@ createGlobalTheme(globalSelector, textVariantVars.capSize, {
   small: interCapSize(10),
 });
 
-createGlobalTheme(globalSelector, textVariantVars.fontSize, {
+createGlobalTheme(globalSelector, textVariantVars.size, {
   '00': fontSize(12),
   0: fontSize(14),
   1: fontSize(16),
@@ -55,7 +55,7 @@ createGlobalTheme(globalSelector, textVariantVars.fontSize, {
 createGlobalTheme(globalSelector, textVariantVars.lineHeight, {
   heading: '1.2',
   normal: 'initial',
-  paragraph: '1.6',
+  paragraph: '1.45',
 });
 
 createGlobalTheme(globalSelector, textVariantVars.fontWeight, {
