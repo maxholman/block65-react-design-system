@@ -14,9 +14,10 @@ import {
 
 type ThisMenuProps = MenuProps & {
   // variant?: BoxVariant | Falsy;
+  label?: never;
 };
 
-const RandomMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
+const RandomMenu: FC<ThisMenuProps> = (props) => (
   <Menu
     label="Menu Yeah!"
     initialPlacement="bottom"
@@ -41,7 +42,7 @@ const RandomMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
   </Menu>
 );
 
-const CustomActivatorMenu: FC<Omit<ThisMenuProps, 'label'>> = (props) => (
+const CustomActivatorMenu: FC<ThisMenuProps> = (props) => (
   <Menu
     activator={(p) => (
       <UnstyledButton {...p}>
