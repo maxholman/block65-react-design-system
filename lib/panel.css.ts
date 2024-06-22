@@ -1,5 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { globalVars, panelVars } from './ve.css.js';
+import { globalVars, panelVars } from './vars.css.js';
 
 export const panelClassName = style({
   borderColor: globalVars.color.muted.borderColor,

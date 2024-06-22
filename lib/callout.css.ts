@@ -1,6 +1,6 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { purposeVariantVars } from './purpose.css.js';
-import { calloutVars, globalVars } from './ve.css.js';
+import { calloutVars, globalVars } from './vars.css.js';
 
 const calloutClassName = style({
   display: 'grid',

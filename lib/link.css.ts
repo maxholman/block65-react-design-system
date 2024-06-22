@@ -1,7 +1,7 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { focusRadiusVar, focusableClassName } from './focusable.css.js';
 import { textVariantVars } from './typography.css.js';
-import { generalVars, globalVars } from './ve.css.js';
+import { propsVars, globalVars } from './vars.css.js';
 
 const linkClassName = style([
   focusableClassName,
@@ -12,8 +12,8 @@ const linkClassName = style([
         borderRadius: focusRadiusVar,
         outlineStyle: 'solid',
         outlineColor: 'currentColor',
-        outlineWidth: generalVars.border.width['3'],
-        outlineOffset: generalVars.border.width['3'],
+        outlineWidth: propsVars.border.width['3'],
+        outlineOffset: propsVars.border.width['3'],
       },
     },
   },

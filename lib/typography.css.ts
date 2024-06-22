@@ -5,7 +5,7 @@ import {
   styleVariants,
 } from '@vanilla-extract/css';
 import { createGlobalThemeMapFn } from './css-helpers.js';
-import { globalVars } from './ve.css.js';
+import { globalVars } from './vars.css.js';
 
 export type FontSize =
   | 'body'

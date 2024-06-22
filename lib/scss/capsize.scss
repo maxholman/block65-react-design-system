@@ -36,8 +36,8 @@ $prevent-collapse: 0.05;
 }
 
 @mixin capsize($size-index, $font-size, $line-height) {
-  --text-fontSize-#{$size-index}: #{$font-size};
-  --text-lineHeight-#{$size-index}: #{$line-height};
+  --text-size-#{$size-index}-fontSize: #{$font-size};
+  --text-size-#{$size-index}-lineHeight: #{$line-height};
 
   $font-size: strip-unit($font-size);
   $line-height: strip-unit($line-height);

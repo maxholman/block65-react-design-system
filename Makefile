@@ -4,13 +4,20 @@ SRCS = $(wildcard lib/**)
 .DEFAULT_GOAL := all
 
 .PHONY: all
-all: build types
+all: build dist build/global.scss build/global.css
 
 node_modules: package.json pnpm-lock.yaml
 	pnpm install
 	touch $@
 
-bin/token.js: dist build
+dist/bin/token.js: build bin/token.ts ${SRCS}
+	pnpm exec tsc -b
+
+build/global.css: dist/bin/token.js
+	node dist/bin/token.js -t css > $@
+
+build/global.scss: dist/bin/token.js
+	node dist/bin/token.js -t scss > $@
 
 tsconfig.json: tsconfig-vite.src.json
 	pnpm exec tsc -p tsconfig-vite.src.json --showConfig 1> $@
@@ -34,7 +41,7 @@ dev-server: node_modules vite.config.ts
 
 PHONY: typecheck
 typecheck: node_modules tsconfig.json
-	pnpm exec tsc --noEmit false --emitDeclarationOnly -w --preserveWatchOutput
+	pnpm exec tsc  -w --preserveWatchOutput
 
 .PHONY: dev
 dev:
@@ -45,7 +52,7 @@ debug:
 	DEBUG_BUILD=1 $(MAKE)
 
 dist: node_modules tsconfig.json
-	pnpm exec tsc --noEmit false --emitDeclarationOnly
+	pnpm exec tsc
 
 .PHONY: clean
 clean: node_modules tsconfig.json

@@ -6,7 +6,7 @@ import {
 import { calc } from '@vanilla-extract/css-utils';
 import { createGlobalThemeMapFn } from './css-helpers.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { generalVars, globalVars } from './ve.css.js';
+import { propsVars, globalVars } from './vars.css.js';
 
 export type ButtonVariant =
   | 'default'
@@ -88,8 +88,8 @@ export const buttonClassName = style([
       // keyboard
       '&:focus-visible': {
         outlineStyle: 'solid',
-        outlineOffset: generalVars.border.width['3'],
-        outlineWidth: generalVars.border.width['3'],
+        outlineOffset: propsVars.border.width['3'],
+        outlineWidth: propsVars.border.width['3'],
         // outlineColor: oklch(
         //   contrastSchemeVars.swatch.k0.l,
         //   contrastSchemeVars.swatch.k0.c,
@@ -125,5 +125,5 @@ export const busyButtonClass = style({
 });
 
 export const inlineBleedClass = style({
-  marginBlock: calc(generalVars.space[0]).negate().toString(),
+  marginBlock: calc(propsVars.space[0]).negate().toString(),
 });

@@ -20,8 +20,8 @@ export default defineConfig((config) => {
       lib: {
         entry: {
           main: resolve(__dirname, 'lib/main.ts'),
+          vars: resolve(__dirname, 'lib/vars.ts'),
           hooks: resolve(__dirname, 'lib/hooks/main.ts'),
-          token: resolve(__dirname, 'bin/token.ts'),
         },
         formats: ['es'],
       },

@@ -5,20 +5,30 @@
   "license": "UNLICENSED",
   "sideEffects": false,
   "type": "module",
+  "imports": {
+    "#vars": {
+      "types": "./dist/lib/vars.d.ts",
+      "default": "./build/vars.js"
+    }
+  },
   "exports": {
     ".": {
       "types": "./dist/lib/main.d.ts",
       "default": "./build/main.js"
     },
-    "./css": {
-      "default": "./build/style.css"
-    },
     "./hooks": {
       "types": "./dist/lib/hooks/main.js",
       "default": "./build/hooks.js"
     },
+    "./css": "./build/style.css",
+    "./css/global": "./build/global.css",
+    "./scss/global": "./build/global.scss",
     "./scss/capsize": {
       "sass": "./lib/scss/capsize.scss"
+    },
+    "./vanilla-extract": {
+      "types": "./dist/lib/vars.d.ts",
+      "default": "./build/vars.js"
     }
   },
   "files": [
@@ -98,10 +108,14 @@
     "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-intl": "^6.6.8"
+    "react-intl": "^6.6.8",
+    "@vanilla-extract/css": "^1.15.3"
   },
   "peerDependenciesMeta": {
     "react-intl": {
+      "optional": true
+    },
+    "@vanilla-extract/css": {
       "optional": true
     }
   },

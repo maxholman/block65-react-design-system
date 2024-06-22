@@ -5,6 +5,7 @@ import {
 import openPropsTokens from 'open-props/style-dictionary-tokens';
 import { createGlobalThemeMapFn } from './css-helpers.js';
 
+export const globalVarsMapFnPrefix = '';
 export const globalVars = createGlobalThemeContract(
   {
     color: {
@@ -29,15 +30,21 @@ export const globalVars = createGlobalThemeContract(
       radius: '',
     },
   },
-  createGlobalThemeMapFn(),
+  createGlobalThemeMapFn(globalVarsMapFnPrefix),
 );
+// this is just a partial definition for the borders
+export const globalTokens = {
+  border: {
+    radius: openPropsTokens.radius[2].value,
+    width: openPropsTokens.border.size[1].value,
+  },
+} satisfies MapLeafNodes<Pick<typeof globalVars, 'border'>, string>;
 
-export const globalVarTokens: MapLeafNodes<typeof globalVars.border, string> = {
-  radius: openPropsTokens.radius[2].value,
-  width: openPropsTokens.border.size[1].value,
-};
-
-export const generalVars = createGlobalThemeContract(
+/**
+ * Props vars
+ */
+export const propsVarsMapFnPrefix = 'props';
+export const propsVars = createGlobalThemeContract(
   {
     border: {
       width: {
@@ -80,10 +87,9 @@ export const generalVars = createGlobalThemeContract(
       '16': '',
     },
   },
-  createGlobalThemeMapFn('general-default'),
+  createGlobalThemeMapFn(propsVarsMapFnPrefix),
 );
-
-export const generalTokens = {
+export const propsTokens = {
   border: {
     width: {
       0: '0',
@@ -127,8 +133,12 @@ export const generalTokens = {
     '15': '10rem',
     '16': '15rem',
   },
-} satisfies MapLeafNodes<typeof generalVars, string>;
+} satisfies MapLeafNodes<typeof propsVars, string>;
 
+/**
+ * Callout vars
+ */
+export const calloutVarsMapFnPrefix = 'callout';
 export const calloutVars = createGlobalThemeContract(
   {
     // border: {
@@ -137,9 +147,13 @@ export const calloutVars = createGlobalThemeContract(
     // },
     padding: '',
   },
-  createGlobalThemeMapFn('callout-default'),
+  createGlobalThemeMapFn(calloutVarsMapFnPrefix),
 );
 
+/**
+ * Button vars
+ */
+export const buttonVarsMapFnPrefix = 'button';
 export const buttonVars = createGlobalThemeContract(
   {
     // border: {
@@ -147,9 +161,13 @@ export const buttonVars = createGlobalThemeContract(
     //   width: '',
     // },
   },
-  createGlobalThemeMapFn('button-default'),
+  createGlobalThemeMapFn(buttonVarsMapFnPrefix),
 );
 
+/**
+ * Badge vars
+ */
+export const badgeVarsMapFnPrefix = 'badge';
 export const badgeVars = createGlobalThemeContract(
   {
     // border: {
@@ -157,9 +175,13 @@ export const badgeVars = createGlobalThemeContract(
     //   width: '',
     // },
   },
-  createGlobalThemeMapFn('badge-default'),
+  createGlobalThemeMapFn(badgeVarsMapFnPrefix),
 );
 
+/**
+ * Panel vars
+ */
+export const panelVarsMapFnPrefix = 'panel';
 export const panelVars = createGlobalThemeContract(
   {
     // border: {
@@ -171,16 +193,19 @@ export const panelVars = createGlobalThemeContract(
       block: '',
     },
   },
-  createGlobalThemeMapFn('panel-default'),
+  createGlobalThemeMapFn(panelVarsMapFnPrefix),
 );
-
-export const panelTokens: MapLeafNodes<typeof panelVars, string> = {
+export const panelTokens = {
   padding: {
     inline: openPropsTokens.size[3].value,
-    block: openPropsTokens.size[3].value,
+    block: propsVars.space['4'],
   },
-};
+} satisfies MapLeafNodes<typeof panelVars, string>;
 
+/**
+ * Form control vars
+ */
+export const formControlVarsMapFnPrefix = 'formControl';
 export const formControlVars = createGlobalThemeContract(
   {
     // border: {
@@ -191,11 +216,10 @@ export const formControlVars = createGlobalThemeContract(
       width: '',
     },
   },
-  createGlobalThemeMapFn('control-default'),
+  createGlobalThemeMapFn(formControlVarsMapFnPrefix),
 );
-
-export const formControlTokens: MapLeafNodes<typeof formControlVars, string> = {
+export const formControlTokens = {
   outline: {
     width: openPropsTokens.border.size[1].value,
   },
-};
+} satisfies MapLeafNodes<typeof formControlVars, string>;

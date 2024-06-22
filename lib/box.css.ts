@@ -5,7 +5,7 @@ import {
   type StyleRule,
 } from '@vanilla-extract/css';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { generalVars } from './ve.css.js';
+import { propsVars } from './vars.css.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
 
@@ -17,14 +17,14 @@ export type OrResponsive<T> = T | Responsive<T>;
 
 export type Rounded = '0' | '1' | '2' | '3' | '50';
 
-export const roundedVariants = styleVariants(generalVars.radius, (v) => [
+export const roundedVariants = styleVariants(propsVars.radius, (v) => [
   {
     borderRadius: v,
   },
 ]);
 
 export const roundedStartStartVariants = styleVariants(
-  generalVars.radius,
+  propsVars.radius,
   (v) => [
     {
       borderStartStartRadius: v,
@@ -32,25 +32,19 @@ export const roundedStartStartVariants = styleVariants(
   ],
 );
 
-export const roundedStartEndVariants = styleVariants(
-  generalVars.radius,
-  (v) => [
-    {
-      borderStartEndRadius: v,
-    },
-  ],
-);
+export const roundedStartEndVariants = styleVariants(propsVars.radius, (v) => [
+  {
+    borderStartEndRadius: v,
+  },
+]);
 
-export const roundedEndStartVariants = styleVariants(
-  generalVars.radius,
-  (v) => [
-    {
-      borderEndStartRadius: v,
-    },
-  ],
-);
+export const roundedEndStartVariants = styleVariants(propsVars.radius, (v) => [
+  {
+    borderEndStartRadius: v,
+  },
+]);
 
-export const roundedEndEndVariants = styleVariants(generalVars.radius, (v) => [
+export const roundedEndEndVariants = styleVariants(propsVars.radius, (v) => [
   {
     borderEndEndRadius: v,
   },
@@ -91,7 +85,7 @@ export type Space =
   | '14'
   | '15';
 
-export const marginVariants = styleVariants(generalVars.space, (space) => [
+export const marginVariants = styleVariants(propsVars.space, (space) => [
   {
     margin: space,
   },
@@ -153,42 +147,42 @@ function viewportStyleVariants<
 }
 
 export const viewportMarginVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     margin: space,
   }),
 );
 
 export const viewportMarginInlineVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     marginInline: space,
   }),
 );
 
 export const viewportMarginBlockVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     marginBlock: space,
   }),
 );
 
 export const viewportPaddingVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     padding: space,
   }),
 );
 
 export const viewportPaddingInlineVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     paddingInline: space,
   }),
 );
 
 export const viewportPaddingBlockVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     paddingBlock: space,
   }),
@@ -203,35 +197,29 @@ export const viewportFlexDirectionVariants = viewportStyleVariants(
 );
 
 export const marginInlineVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     marginInline: space,
   }),
 );
 
-export const paddingVariants = styleVariants(generalVars.space, (space) => [
+export const paddingVariants = styleVariants(propsVars.space, (space) => [
   {
     padding: space,
   },
 ]);
 
-export const paddingBlockVariants = styleVariants(
-  generalVars.space,
-  (space) => [
-    {
-      paddingBlock: space,
-    },
-  ],
-);
+export const paddingBlockVariants = styleVariants(propsVars.space, (space) => [
+  {
+    paddingBlock: space,
+  },
+]);
 
-export const paddingInlineVariants = styleVariants(
-  generalVars.space,
-  (space) => [
-    {
-      paddingInline: space,
-    },
-  ],
-);
+export const paddingInlineVariants = styleVariants(propsVars.space, (space) => [
+  {
+    paddingInline: space,
+  },
+]);
 
 export type Overflow = 'hidden' | 'scroll';
 
@@ -309,12 +297,12 @@ export const flexWrapVariants = styleVariants<Record<Wrap, ComplexStyleRule>>({
   wrapReverse: { flexWrap: 'wrap-reverse' },
 });
 
-export const spaceVariants = styleVariants(generalVars.space, (space) => ({
+export const spaceVariants = styleVariants(propsVars.space, (space) => ({
   gap: space,
 }));
 
 export const viewportSpaceVariants = viewportStyleVariants(
-  generalVars.space,
+  propsVars.space,
   (space) => ({
     gap: space,
   }),
@@ -347,7 +335,7 @@ const borderBaseClass = style({
 });
 
 export const borderWidthVariants = styleVariants(
-  generalVars.border.width,
+  propsVars.border.width,
   (space) => [
     borderBaseClass,
     {

@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { generalVars, globalVars } from './ve.css.js';
+import { propsVars, globalVars } from './vars.css.js';
 
 export const dividerClassName = style({
-  height: generalVars.border.width[1],
+  height: propsVars.border.width[1],
   backgroundColor: globalVars.color.muted.borderColor,
 });

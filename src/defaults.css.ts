@@ -2,18 +2,17 @@ import { createGlobalTheme } from '@vanilla-extract/css';
 import {
   formControlTokens,
   formControlVars,
-  generalTokens,
-  generalVars,
+  propsTokens,
+  propsVars,
   globalVars,
-  globalVarTokens,
+  globalTokens,
   panelTokens,
   panelVars,
-} from '../lib/ve.css.js';
+} from '../lib/vars.css.js';
 
 const defaultsSelector = ':root';
 
-createGlobalTheme(defaultsSelector, globalVars.border, globalVarTokens);
+createGlobalTheme(defaultsSelector, globalVars.border, globalTokens.border);
 createGlobalTheme(defaultsSelector, panelVars.padding, panelTokens.padding);
 createGlobalTheme(defaultsSelector, formControlVars, formControlTokens);
-
-createGlobalTheme(defaultsSelector, generalVars, generalTokens);
+createGlobalTheme(defaultsSelector, propsVars, propsTokens);

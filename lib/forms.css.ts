@@ -8,7 +8,7 @@ import {
 } from './focusable.css.js';
 import { purposeVariantVars } from './purpose.css.js';
 import { textVariantVars } from './typography.css.js';
-import { formControlVars, generalVars, globalVars } from './ve.css.js';
+import { formControlVars, propsVars, globalVars } from './vars.css.js';
 
 export const formInputPasswordIcon = style({
   aspectRatio: '1/1',
@@ -155,7 +155,7 @@ export const formInputCheckboxInput = style([
   formInputCheckRadioBase,
   {
     width: '100%',
-    borderRadius: generalVars.radius[2],
+    borderRadius: propsVars.radius[2],
 
     selectors: {
       '&::before': {
@@ -227,10 +227,7 @@ export const formInputSelectWrapperSingle = style([
         justifySelf: 'flex-end',
         width: '0.75em',
         // the same as the inline padding for inputs + border size
-        marginInline: calc.add(
-          generalVars.space[5],
-          generalVars.border.width[1],
-        ),
+        marginInline: calc.add(propsVars.space[5], propsVars.border.width[1]),
         display: 'block',
         aspectRatio: '2/1',
         backgroundColor: 'currentColor',

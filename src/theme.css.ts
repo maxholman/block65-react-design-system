@@ -1,7 +1,7 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
 import { buttonVariantVars } from '../lib/button.css.js';
 import { purposeVariantVars } from '../lib/purpose.css.js';
-import { globalVars } from '../lib/ve.css.js';
+import { globalVars } from '../lib/vars.css.js';
 import * as primer from './primer.js';
 
 const darkSelector =

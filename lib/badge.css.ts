@@ -1,6 +1,6 @@
 import { fallbackVar, style, styleVariants } from '@vanilla-extract/css';
 import { purposeVariantVars } from './purpose.css.js';
-import { globalVars } from './ve.css.js';
+import { globalVars } from './vars.css.js';
 
 const badgeClassName = style({
   borderRadius: globalVars.border.radius,

@@ -1,14 +1,14 @@
 import { style, type StyleRule } from '@vanilla-extract/css';
 import { precomputedViewportRules, type Viewport } from './box.css.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { generalVars, globalVars } from './ve.css.js';
+import { propsVars, globalVars } from './vars.css.js';
 
 // WARN: ordering is important here as it affects the generated CSS
 // it should be the opposite order of viewportSizes (I think)
 const commonViewportRules: Record<Viewport, StyleRule> = {
   tablet: {
     width: '60vw',
-    padding: generalVars.space[6],
+    padding: propsVars.space[6],
     marginInline: 'auto',
   },
 
@@ -20,7 +20,7 @@ const commonViewportRules: Record<Viewport, StyleRule> = {
 
   desktop: {
     width: '35rem',
-    marginBlock: generalVars.space[8],
+    marginBlock: propsVars.space[8],
     marginInline: 'auto',
   },
 
