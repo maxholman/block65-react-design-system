@@ -3,6 +3,4 @@ dist
 build
 coverage
 
-bin/*.js
-bin/*.js
-vite.config.js
+*.tsbuildinfo

@@ -1,20 +1,17 @@
 import { avatarClassName, avatarImgClass } from './avatar.css.js';
-import type { Falsy } from './core.css.js';
-import { Box, type BoxProps } from './core.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { capSizeVariantVars, type FontSize } from './typography.css.js';
+import { Box, type BoxProps } from './box.js';
+import type { ReactHTMLElementsHacked, Falsy } from './types.js';
+import type { FontSize } from './typography.js';
 
-type CommonAvatarProps = {
+export type CommonAvatarProps = {
   label?: string | Falsy;
   ident?: string | Falsy;
   size?: FontSize | Falsy;
   image?: string | Falsy;
 };
 
-export type AvatarProps<T extends keyof ReactHTMLElementsHacked> = Merge<
-  BoxProps<T>,
-  CommonAvatarProps
->;
+export type AvatarProps<T extends keyof ReactHTMLElementsHacked> = BoxProps<T> &
+  CommonAvatarProps;
 
 function extractInitials(text: string): string {
   // if its an email address, strip off the domain
@@ -41,8 +38,8 @@ export const Avatar = <T extends keyof ReactHTMLElementsHacked>({
   <Box
     rounded="50"
     fontSize={size}
-    fontWeight="heavy"
-    className={[className, avatarClassName, size && capSizeVariantVars[size]]}
+    fontWeight="bold"
+    className={[className, avatarClassName]}
   >
     {image ? (
       <Box

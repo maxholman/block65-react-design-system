@@ -1,0 +1,105 @@
+// capsize.scss
+@use 'sass:map';
+@use 'sass:math';
+
+$font-metrics: (
+  capHeight: 1456,
+  ascent: 1900,
+  descent: -500,
+  lineGap: 0,
+  unitsPerEm: 2048,
+) !default;
+
+$precision: 4;
+$prevent-collapse: 0.05;
+
+@function to-scale($value, $font-size) {
+  @return math.div($value, $font-size);
+}
+
+@function leading-trim($value, $specified-line-height-offset, $font-size) {
+  @return $value - to-scale($specified-line-height-offset, $font-size) +
+    to-scale($prevent-collapse, $font-size);
+}
+
+@function round-to($float, $decimal) {
+  $pow: math.pow(10, $decimal);
+  @return math.div(round($float * $pow), $pow);
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+@mixin capsize($size-index, $font-size, $line-height) {
+  --text-size-#{$size-index}-fontSize: #{$font-size};
+  --text-size-#{$size-index}-lineHeight: #{$line-height};
+
+  $font-size: strip-unit($font-size);
+  $line-height: strip-unit($line-height);
+  $absolute-descent: math.abs(map.get($font-metrics, 'descent'));
+  $cap-height-scale: math.div(
+    map.get($font-metrics, 'capHeight'),
+    map.get($font-metrics, 'unitsPerEm')
+  );
+  $descent-scale: math.div(
+    $absolute-descent,
+    map.get($font-metrics, 'unitsPerEm')
+  );
+  $ascent-scale: math.div(
+    map.get($font-metrics, 'ascent'),
+    map.get($font-metrics, 'unitsPerEm')
+  );
+  $line-gap-scale: math.div(
+    map.get($font-metrics, 'lineGap'),
+    map.get($font-metrics, 'unitsPerEm')
+  );
+
+  $content-area: map.get($font-metrics, 'ascent') +
+    map.get($font-metrics, 'lineGap') + $absolute-descent;
+  $line-height-scale: math.div(
+    $content-area,
+    map.get($font-metrics, 'unitsPerEm')
+  );
+  $line-height-normal: $line-height-scale * $font-size;
+
+  $specified-line-height-offset: if(
+    $line-height,
+    math.div($line-height-normal - $line-height, 2),
+    0
+  );
+
+  $margin-top: #{round-to(
+      leading-trim(
+          $ascent-scale - $cap-height-scale + math.div($line-gap-scale, 2),
+          $specified-line-height-offset,
+          $font-size
+        ) * -1,
+      $precision
+    )}em;
+
+  $margin-bottom: #{round-to(
+      leading-trim(
+          $descent-scale + math.div($line-gap-scale, 2),
+          $specified-line-height-offset,
+          $font-size
+        ) * -1,
+      $precision
+    )}em;
+
+  $font-size: #{round-to($font-size, $precision)}px;
+  $line-height: if(
+    $line-height,
+    #{round-to($line-height, $precision)}px,
+    'normal'
+  );
+
+  --text-capSize-#{$size-index}-fontSize: #{$font-size};
+  --text-capSize-#{$size-index}-lineHeight: #{$line-height};
+  --text-capSize-#{$size-index}-baselineTrim: #{$margin-top};
+  --text-capSize-#{$size-index}-capHeightTrim: #{$margin-bottom};
+}

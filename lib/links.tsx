@@ -1,20 +1,22 @@
-import type { FC, PropsWithChildren } from 'react';
+import type { FC } from 'react';
+import { Box, type BoxProps } from './box.js';
 import { differentOriginLinkProps } from './component-utils.js';
-import { Box, type BoxProps } from './core.js';
-import { linkStyleVariant, type LinkWeight } from './links.css.js';
+import { linkStyleVariant } from './link.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
-type TextLinkCommonProps = {
+export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
+
+export type TextLinkCommonProps = {
   weight?: LinkWeight;
   safe?: boolean;
 };
 
 export type TextLinkProps<T extends keyof ReactHTMLElementsHacked = 'a'> =
-  PropsWithChildren<Merge<BoxProps<T>, TextLinkCommonProps>>;
+  Merge<BoxProps<T>, TextLinkCommonProps>;
 
 /**
- * A `TextLink` is expect to be wrapped in a `Text` component
- * Think that <Text><TextLink>...</TextLink></Text>
+ * A `TextLink` is expect to be wrapped something like a `Paragraph` component
+ * Think that <Paragraph><TextLink>...</TextLink></Paragraph>
  * is akin to <p><a>...</a></p>
  *
  */
@@ -26,7 +28,7 @@ export const TextLink: FC<TextLinkProps> = ({
 }) => (
   <Box
     component="a"
-    className={[linkStyleVariant[weight], className]}
+    className={[className, linkStyleVariant[weight]]}
     {...(safe && props.href && differentOriginLinkProps(props.href))}
     {...props}
   />

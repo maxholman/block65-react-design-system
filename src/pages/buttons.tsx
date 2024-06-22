@@ -1,347 +1,231 @@
-import type { FC } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { Fragment, type FC } from 'react';
 import { HelpIcon } from '../../lib/icons.js';
+import type { ButtonVariant } from '../../lib/main.js';
 import {
   Block,
-  Divider,
-  Grid,
-  Heading,
-  Inline,
-  UnstyledButton,
-} from '../../lib/main.js';
-import { Text } from '../reference-impl/main.js';
-import {
   Button,
   ButtonIcon,
   ButtonLink,
+  Divider,
+  Heading,
+  Inline,
   Panel,
-  type Tone,
-  type BoxVariant,
-} from '../reference-impl/main.js';
-import { WithColorSchemes } from './components/WithColorSchemes.js';
+  Paragraph,
+  UnstyledButton,
+} from '../../lib/main.js';
 import { CrescentMoonIcon, SunIcon } from './components/icons.js';
+
+const variants = [
+  'primary',
+  'default',
+  'danger',
+  'inactive',
+  'invisible',
+] satisfies ButtonVariant[];
 
 export const ButtonsPage: FC = () => (
   <>
     <Panel>
-      <Heading level="2">Variants</Heading>
+      <Heading>Vanilla</Heading>
+
       <Inline flexWrap>
-        <Button>
-          <FormattedMessage
-            id="button"
-            defaultMessage="Button"
-            description="Button"
-          />
-        </Button>
-
-        <Button variant="ghost">Ghost</Button>
-
-        <Button variant="ghost">Neutral Ghost</Button>
-        <Button variant="subtle">Subtle</Button>
-        <Button variant="subtle">Neutral Subtle</Button>
-        <Button variant="transparent">Transparent</Button>
-      </Inline>
-    </Panel>
-    <Panel>
-      <Heading level="2">Buttons with Icons</Heading>
-      <Inline flexWrap>
-        <Button icon={<CrescentMoonIcon />}>Button</Button>
-        <Button icon={<CrescentMoonIcon />} variant="ghost">
-          Ghost
-        </Button>
-        <Button icon={<CrescentMoonIcon />} variant="subtle">
-          Subtle
-        </Button>
-        <Button icon={<CrescentMoonIcon />} variant="transparent">
-          Transparent
-        </Button>
-      </Inline>
-    </Panel>
-    <Panel>
-      <Heading level="2">All together</Heading>
-      <Inline flexWrap>
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-
-        <Button>
-          <FormattedMessage
-            id="button"
-            defaultMessage="Button"
-            description="Button"
-          />
-        </Button>
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-
-        <Button icon={<CrescentMoonIcon />}>Button</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button icon={<CrescentMoonIcon />} variant="ghost">
-          Ghost
-        </Button>
-        <Button variant="subtle">Subtle</Button>
-        <Button icon={<CrescentMoonIcon />} variant="subtle">
-          Subtle
-        </Button>
-        <Button iconEnd={<CrescentMoonIcon />} variant="subtle">
-          EndIcon
-        </Button>
-      </Inline>
-    </Panel>
-
-    <Panel>
-      <Heading level="2">Button Links</Heading>
-      <Inline>
-        <ButtonLink href="https://eject.invalid">Button</ButtonLink>
-        <ButtonLink href="https://eject.invalid" variant="ghost">
-          Ghost
-        </ButtonLink>
-        <ButtonLink href="https://eject.invalid" variant="subtle">
-          Subtle
-        </ButtonLink>
-        <ButtonLink href="https://eject.invalid" variant="transparent">
-          Transparent
-        </ButtonLink>
-      </Inline>
-    </Panel>
-
-    <Panel>
-      <Heading level="2">Button Icons</Heading>
-      <Inline>
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" busy />
-        <ButtonIcon icon={<SunIcon />} label="Sun" variant="ghost" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" variant="ghost" busy />
-        <ButtonIcon icon={<SunIcon />} label="Sun" variant="subtle" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" variant="subtle" busy />
-        <ButtonIcon icon={<SunIcon />} label="Sun" variant="transparent" />
-        <ButtonIcon icon={<SunIcon />} label="Sun" variant="transparent" busy />
-      </Inline>
-    </Panel>
-
-    <Panel>
-      <Heading level="2">Busy Buttons</Heading>
-      <Text>These buttons are super busy</Text>
-      <Inline flexWrap>
-        <Button busy>Button</Button>
-        <Button busy variant="ghost">
-          Ghost
-        </Button>
-        <Button busy variant="subtle">
-          Subtle
-        </Button>
-        <Button busy variant="transparent">
-          Transparent
-        </Button>
-        <Button busy icon={<CrescentMoonIcon />} variant="subtle">
-          This one has an Icon
-        </Button>
-      </Inline>
-    </Panel>
-
-    <WithColorSchemes>
-      <Block>
-        <Heading level="2">Disabled Buttons</Heading>
-        <Text>These buttons are physically challenged</Text>
-        {[false, true].map((disabled) => (
-          <Block key={String(disabled)}>
-            <Inline>
-              <Button disabled={disabled}>Button</Button>
-              <Button disabled={disabled} variant="ghost">
-                Ghost
-              </Button>
-              <Button disabled={disabled} variant="subtle">
-                Subtle
-              </Button>
-              <Button disabled={disabled} tone="positive">
-                Positive
-              </Button>
-              <Button disabled={disabled} variant="transparent">
-                Transparent
-              </Button>
-            </Inline>
-          </Block>
+        {variants.map((variant) => (
+          <Button variant={variant} key={variant}>
+            {variant}
+          </Button>
         ))}
-      </Block>
-    </WithColorSchemes>
-
-    <Block>
-      <Heading level="2">Growing Shrinking Buttons</Heading>
-      <Inline>
-        <Button flexShrink>A</Button>
-        <Button flexGrow tone="positive">
-          B
-        </Button>
-      </Inline>
-      <Grid>
-        <Button flexShrink>A</Button>
-        <Button tone="positive">B</Button>
-      </Grid>
-    </Block>
-
-    <Panel>
-      <Heading level="2">fontSize="0" Buttons</Heading>
-      <Text>So cute</Text>
-      <Inline>
-        <Button fontSize="0">Button</Button>
-        <Button fontSize="0" variant="ghost">
-          Ghost
-        </Button>
-        <Button fontSize="0" variant="subtle">
-          Subtle
-        </Button>
-        <Button fontSize="0" icon={<CrescentMoonIcon />}>
-          Button
-        </Button>
-        <Button fontSize="0" busy>
-          Button
-        </Button>
-        <Button fontSize="0" busy variant="ghost">
-          Ghost
-        </Button>
-        <Button fontSize="0" busy variant="subtle">
-          Subtle
-        </Button>
-        <Button fontSize="0" disabled>
-          Button
-        </Button>
-        <Button fontSize="0" disabled variant="ghost">
-          Ghost
-        </Button>
-        <Button fontSize="0" disabled variant="subtle">
-          Subtle
-        </Button>
       </Inline>
     </Panel>
 
     <Panel>
-      <Heading>Tones</Heading>
+      <Heading>Disabled</Heading>
 
-      <Grid
-        cols={{
-          all: 4,
-          tablet: 2,
-          mobile: 1,
-        }}
-      >
-        {(
-          ['accent', 'warn', 'critical', 'promo', 'positive', 'info'] as Tone[]
-        ).map((tone) => (
-          <Panel key={tone}>
-            <Heading>{tone}</Heading>
-            {(
-              [
-                'solid',
-                'subtle',
-                'ghost',
-                'transparent',
-                'none',
-                'vibrant',
-              ] as BoxVariant[]
-            ).map((variant) => (
-              <Button variant={variant} tone={tone} key={variant}>
-                {variant}
-              </Button>
-            ))}
-          </Panel>
+      <Inline flexWrap>
+        {variants.map((variant) => (
+          <Button disabled variant={variant} key={variant}>
+            {variant}
+          </Button>
         ))}
-      </Grid>
+      </Inline>
     </Panel>
 
     <Panel>
-      <Heading>Unstyled Buttons</Heading>
+      <Heading>Links</Heading>
+
+      <Inline flexWrap>
+        {variants.map((variant) => (
+          <ButtonLink
+            href="https://eject.invalid"
+            variant={variant}
+            key={variant}
+          >
+            {variant}
+          </ButtonLink>
+        ))}
+      </Inline>
+    </Panel>
+
+    <Panel>
+      <Heading>With Start Icons</Heading>
+
+      <Inline flexWrap>
+        {variants.map((variant) => (
+          <Button icon={<CrescentMoonIcon />} variant={variant} key={variant}>
+            {variant}
+          </Button>
+        ))}
+      </Inline>
+    </Panel>
+
+    <Panel>
+      <Heading>With End Icons</Heading>
+
+      <Inline flexWrap>
+        {variants.map((variant) => (
+          <Button
+            iconEnd={<CrescentMoonIcon />}
+            variant={variant}
+            key={variant}
+          >
+            {variant}
+          </Button>
+        ))}
+      </Inline>
+    </Panel>
+
+    <Panel>
+      <Heading>Button Icons</Heading>
+      <Inline>
+        {variants.map((variant) => (
+          <ButtonIcon
+            icon={<SunIcon />}
+            label="Sun"
+            variant={variant}
+            key={variant}
+          />
+        ))}
+      </Inline>
+    </Panel>
+
+    <Panel>
+      <Heading>Busy Buttons</Heading>
+      <Paragraph>These buttons are super busy</Paragraph>
+      <Inline>
+        {variants.map((variant) => (
+          <Button busy variant={variant} key={variant}>
+            {variant}
+          </Button>
+        ))}
+      </Inline>
+    </Panel>
+
+    <Panel>
+      <Heading>Small buttons</Heading>
+      <Paragraph>OMG So cute!</Paragraph>
+      <Inline>
+        {variants.map((variant) => (
+          <Fragment key={variant}>
+            <Button size="small" variant={variant} icon={<CrescentMoonIcon />}>
+              small {variant}
+            </Button>
+
+            <Button size="small" busy variant={variant}>
+              small {variant} busy
+            </Button>
+            <Button size="small" disabled variant={variant}>
+              small {variant} disabled
+            </Button>
+          </Fragment>
+        ))}
+      </Inline>
+    </Panel>
+
+    <Panel>
+      <Heading>bui bui buttons</Heading>
+      <Paragraph>So fat!</Paragraph>
+      <Inline>
+        {variants.map((variant) => (
+          <Fragment key={variant}>
+            <Button size="large" icon={<CrescentMoonIcon />}>
+              large
+            </Button>
+
+            <Button size="large" busy variant={variant}>
+              {variant} busy
+            </Button>
+            <Button size="large" disabled variant={variant}>
+              {variant} disabled
+            </Button>
+          </Fragment>
+        ))}
+      </Inline>
+    </Panel>
+
+    <Panel>
+      <Heading>Unstyled Buttons with stuff inside</Heading>
       <UnstyledButton flexDirection="column" space="5">
-        <Heading level="2">Things</Heading>
-        <Text secondary>Stuff</Text>
-        <Text secondary>Stuff</Text>
-        <Text secondary>Stuff</Text>
+        <Heading>Things</Heading>
+        <Paragraph secondary>Stuff</Paragraph>
+        <Paragraph secondary>Stuff</Paragraph>
+        <Paragraph secondary>Stuff</Paragraph>
       </UnstyledButton>
     </Panel>
 
+    <Divider marginBlock="3" />
+
     <Panel>
       <Heading>Hello</Heading>
-      <Text>Buttons in context</Text>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
-        <Text>Like this</Text>
-        <ButtonLink href="https://eject.invalid" tone="critical">
-          Eject
-        </ButtonLink>
-        <Text>and like this</Text>
+        <Paragraph>Like this</Paragraph>
+        <ButtonLink href="https://eject.invalid">Eject</ButtonLink>
+        <Paragraph>and like this</Paragraph>
       </Inline>
     </Panel>
 
     <Block>
       <Heading>Hello</Heading>
-      <Text>Buttons in context</Text>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
-        <ButtonLink
-          href="https://eject.invalid"
-          tone="critical"
-          icon={<CrescentMoonIcon />}
-        >
+        <ButtonLink href="https://eject.invalid" icon={<CrescentMoonIcon />}>
           Eject
         </ButtonLink>
       </Inline>
       <Divider marginBlock="3" />
 
       <Heading>Hello</Heading>
-      <Text>Buttons in context</Text>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
-        <Text>Like this</Text>
-        <ButtonLink
-          href="https://eject.invalid"
-          tone="critical"
-          icon={<CrescentMoonIcon />}
-        >
+        <Paragraph>Like this</Paragraph>
+        <ButtonLink href="https://eject.invalid" icon={<CrescentMoonIcon />}>
           Eject
         </ButtonLink>
-        <Text>and like this</Text>
+        <Paragraph>and like this</Paragraph>
       </Inline>
 
       <Heading>Hello</Heading>
-      <Text>Buttons in context</Text>
+      <Paragraph>Buttons in context</Paragraph>
       <Inline>
-        <Text>Like this</Text>
-        <ButtonLink
-          href="https://eject.invalid"
-          tone="critical"
-          icon={<CrescentMoonIcon />}
-        >
+        <Paragraph>Like this</Paragraph>
+        <ButtonLink href="https://eject.invalid" icon={<CrescentMoonIcon />}>
           Eject
         </ButtonLink>
-        <Text>and like this</Text>
+        <Paragraph>and like this</Paragraph>
       </Inline>
 
       <Panel>
         <Heading>Font Size</Heading>
-        <Text>Buttons in context</Text>
+        <Paragraph>Buttons in context</Paragraph>
         <Inline>
-          <Button fontSize="5" tone="critical" icon={<CrescentMoonIcon />}>
+          <Button fontSize="5" icon={<CrescentMoonIcon />}>
             Eject
           </Button>
           <ButtonLink
             fontSize="5"
             href="https://eject.invalid"
-            tone="critical"
             icon={<CrescentMoonIcon />}
           >
             Eject
-          </ButtonLink>
-        </Inline>
-      </Panel>
-
-      <Panel>
-        <Heading>Padding override</Heading>
-        <Inline flexWrap="wrap">
-          <Button fontSize="5" padding="10" icon={<CrescentMoonIcon />}>
-            padding="10"
-          </Button>
-          <Button fontSize="5" paddingInline="10" icon={<CrescentMoonIcon />}>
-            paddingInline="10"
-          </Button>
-          <Button fontSize="5" paddingBlock="10" icon={<CrescentMoonIcon />}>
-            paddingBlock="10"
-          </Button>
-          <ButtonLink padding="0" href="https://eject.invalid">
-            padding="0"
           </ButtonLink>
         </Inline>
       </Panel>
@@ -353,7 +237,6 @@ export const ButtonsPage: FC = () => (
             fontSize="5"
             padding="10"
             rounded="0"
-            variant="subtle"
             alignItems="start"
             flexDirection="column"
             textAlign="start"
@@ -369,7 +252,6 @@ export const ButtonsPage: FC = () => (
             fontSize="5"
             padding="10"
             rounded="0"
-            variant="subtle"
             justifyContent="start"
             alignItems="start"
             textAlign="start"
@@ -380,7 +262,6 @@ export const ButtonsPage: FC = () => (
             fontSize="5"
             padding="10"
             rounded="0"
-            variant="subtle"
             flexDirection="column"
             textAlign="start"
           >
@@ -390,12 +271,7 @@ export const ButtonsPage: FC = () => (
       </Panel>
 
       <Panel>
-        <ButtonIcon
-          component="div"
-          variant="transparent"
-          label=""
-          icon={<HelpIcon />}
-        />
+        <ButtonIcon component="div" label="" icon={<HelpIcon />} />
       </Panel>
     </Block>
   </>

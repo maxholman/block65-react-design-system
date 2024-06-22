@@ -1,27 +1,47 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { style } from '@vanilla-extract/css';
-import { currentCapHeight } from './typography.css.js';
+import { createVar, style, styleVariants } from '@vanilla-extract/css';
+import { purposeVariantVars } from './purpose.css.js';
+import { calloutVars, globalVars } from './vars.css.js';
 
-export const calloutClass = style({
-  padding: currentCapHeight,
+const calloutClassName = style({
   display: 'grid',
   gridTemplateColumns: 'auto 1fr',
-  rowGap: 0,
-  alignItems: 'start',
+  borderStyle: 'solid',
+  borderRadius: globalVars.border.radius,
+  borderWidth: globalVars.border.width,
+  padding: calloutVars.padding,
 });
 
-export const calloutTextIconWrapperClass = style({
+const iconColorVar = createVar();
+export const calloutStyleVariants = styleVariants(
+  purposeVariantVars,
+  (variant) => [
+    calloutClassName,
+    {
+      backgroundColor: variant.muted.bgColor,
+      borderColor: variant.muted.borderColor,
+      color: variant.muted.fgColor,
+      vars: {
+        [iconColorVar]: variant.fgColor,
+      },
+    },
+  ],
+);
+
+export const iconWrapperClassName = style({
   gridColumn: 1,
   lineHeight: 0,
 });
 
-export const calloutTextIconClass = style({
+export const iconClassName = style({
   display: 'inline-block',
   width: '1em',
   height: '1em',
   aspectRatio: '1/1',
+  color: iconColorVar,
 });
 
-export const calloutTextClass = style({
+export const textClassName = style({
+  display: 'block',
   gridColumn: 2,
+  alignSelf: 'center',
 });

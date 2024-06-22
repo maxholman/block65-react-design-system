@@ -9,9 +9,8 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
-import { paddingVariants, roundedVariants } from './core.css.js';
 import { useTooltipState } from './hooks/use-tooltip-state.js';
-import { tooltipClass } from './tooltip.css.js';
+import { tooltipClassName } from './tooltip.css.js';
 
 export type TooltipProps = PropsWithChildren<{
   content: ReactNode;
@@ -19,27 +18,11 @@ export type TooltipProps = PropsWithChildren<{
   initialPlacement?: Placement;
 }>;
 
-/* const staticSide: Record<Side, Side> = {
-  top: 'bottom',
-  right: 'left',
-  bottom: 'top',
-  left: 'right',
-}; */
-
 const TooltipActual = forwardRef<
   HTMLElement,
   PropsWithChildren<HTMLAttributes<HTMLSpanElement>>
 >(({ className, ...props }, ref) => (
-  <span
-    ref={ref}
-    className={clsx([
-      className,
-      tooltipClass,
-      paddingVariants['4'],
-      roundedVariants['2'],
-    ])}
-    {...props}
-  />
+  <span ref={ref} className={clsx([className, tooltipClassName])} {...props} />
 ));
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -48,24 +31,13 @@ export const Tooltip: FC<TooltipProps> = ({
   initialOpen = false,
   initialPlacement,
 }) => {
-  const {
-    refs,
-    floatingStyles,
-    open,
-
-    getReferenceProps,
-    getFloatingProps,
-    // placement,
-    // arrowRef,
-    // middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-  } = useTooltipState({
-    initialOpen,
-    ...(initialPlacement && { placement: initialPlacement }),
-  });
+  const { refs, floatingStyles, open, getReferenceProps, getFloatingProps } =
+    useTooltipState({
+      initialOpen,
+      ...(initialPlacement && { placement: initialPlacement }),
+    });
 
   const child = isValidElement(children) ? children : <span>{children}</span>;
-
-  // const arrowPlacement = placement.split('-')[0] as Side;
 
   return (
     <>
@@ -80,15 +52,6 @@ export const Tooltip: FC<TooltipProps> = ({
           style={floatingStyles}
           {...getFloatingProps()}
         >
-          {/* <span
-            ref={arrowRef}
-            className={tooltipArrowClass}
-            style={{
-              left: arrowX != null ? `${arrowX}px` : '',
-              top: arrowY != null ? `${arrowY}px` : '',
-              [staticSide[arrowPlacement]]: arrowOffsetVar,
-            }}
-          /> */}
           {content}
         </TooltipActual>
       )}

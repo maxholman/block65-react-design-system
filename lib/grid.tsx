@@ -1,16 +1,14 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Children, type ReactElement } from 'react';
-import { matchViewportVariants } from './component-utils.js';
+import { Children } from 'react';
 import {
   viewportGridColumnsVariants,
   type Columns,
   type OrResponsive,
   type Space,
-  type Falsy,
-} from './core.css.js';
-import { Box, type BoxProps } from './core.js';
+} from './box.css.js';
+import { Box, type BoxProps } from './box.js';
+import { matchViewportVariants } from './component-utils.js';
 import { gridClass } from './grid.css.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
+import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type GridProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
   BoxProps<T>,
@@ -24,7 +22,7 @@ export const Grid = <T extends keyof ReactHTMLElementsHacked = 'div'>({
   className,
   cols,
   ...props
-}: GridProps<T>): ReactElement | null => {
+}: GridProps<T>) => {
   // defaults to the count of children
   const resolvedCols: OrResponsive<Columns> = cols || {
     all: Math.min(Children.count(props.children), 10) as Columns,

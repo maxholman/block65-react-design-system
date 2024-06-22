@@ -1,6 +1,6 @@
-import { type InputHTMLAttributes } from 'react';
-import type { Space } from './core.css.js';
-import type { BoxProps } from './core.js';
+import type { InputHTMLAttributes } from 'react';
+import type { Space } from './box.css.js';
+import type { BoxProps } from './box.js';
 
 export const defaultFormInputSpace: Space = '5';
 

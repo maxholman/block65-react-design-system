@@ -1,15 +1,14 @@
-import { createVar, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { genericVars } from './design-system.css.js';
 import {
   focusColorVar,
   focusVisibleClassName,
   focusWidthVar,
   focusableClassName,
 } from './focusable.css.js';
-import { capSizeVariantVars } from './typography.css.js';
-
-const borderWidthVar = createVar();
+import { purposeVariantVars } from './purpose.css.js';
+import { textVariantVars } from './typography.css.js';
+import { formControlVars, propsVars, globalVars } from './vars.css.js';
 
 export const formInputPasswordIcon = style({
   aspectRatio: '1/1',
@@ -49,20 +48,15 @@ export const formInputOuterClassName = style({
       alignItems: 'center',
     },
     '&[readonly]': {
-      // pointerEvents: 'none', // paired with tabindex="-1" to prevent focus
-      // userSelect: 'auto',
       cursor: 'text',
     },
   },
 });
 
 export const formInputInnerClassName = style([
-  capSizeVariantVars[1],
   {
     selectors: {
-      '&::placeholder': {
-        // color: oklch(contrastSchemeVars.swatch.v6.l, 0, 0),
-      },
+      '&::placeholder': {},
     },
   },
 ]);
@@ -70,11 +64,14 @@ export const formInputInnerClassName = style([
 export const formInputFocusNotCheckRadioClassName = style([
   focusVisibleClassName,
   {
+    outlineWidth: formControlVars.outline.width,
+    borderRadius: globalVars.border.radius,
+    borderColor: purposeVariantVars.default.muted.borderColor,
     selectors: {
       '&:focus': {
         // draw the outline over the border so that we can increase
         // thickness without any layout shifts
-        outlineOffset: calc(borderWidthVar).negate().toString(),
+        // outlineOffset: calc(borderWidthVar).negate().toString(),
         borderColor: 'transparent',
 
         outlineStyle: 'solid',
@@ -158,6 +155,7 @@ export const formInputCheckboxInput = style([
   formInputCheckRadioBase,
   {
     width: '100%',
+    borderRadius: propsVars.radius[2],
 
     selectors: {
       '&::before': {
@@ -166,7 +164,7 @@ export const formInputCheckboxInput = style([
         // size and color of the check
         aspectRatio: '1/1',
         // height: '0.35em',
-        boxShadow: `inset 1em 1em ${'white'}`,
+        boxShadow: `inset 1em 1em ${globalVars.color.accent}`,
       },
       '&:checked': {
         // background/border of the check
@@ -180,14 +178,14 @@ export const formInputCheckboxInput = style([
 export const formInputRadioInput = style([
   formInputCheckRadioBase,
   {
-    borderRadius: genericVars.radius['50'],
+    borderRadius: '50%',
     width: '1rem',
     selectors: {
       '&::before': {
         height: '0.5rem',
         aspectRatio: '1/1',
-        borderRadius: genericVars.radius['50'],
-        boxShadow: 'inset 1em 1em currentColor',
+        borderRadius: '50%',
+        boxShadow: `inset 1em 1em ${globalVars.color.accent}`,
       },
     },
   },
@@ -212,7 +210,7 @@ const formInputSelectWrapper = style({
 export const formInputSelectWrapperMultiple = style([
   formInputSelectWrapper,
   {
-    lineHeight: genericVars.text.lineHeight.normal,
+    lineHeight: textVariantVars.lineHeight.normal,
   },
 ]);
 
@@ -229,10 +227,7 @@ export const formInputSelectWrapperSingle = style([
         justifySelf: 'flex-end',
         width: '0.75em',
         // the same as the inline padding for inputs + border size
-        marginInline: calc.add(
-          genericVars.space[5],
-          genericVars.border.width[1],
-        ),
+        marginInline: calc.add(propsVars.space[5], propsVars.border.width[1]),
         display: 'block',
         aspectRatio: '2/1',
         backgroundColor: 'currentColor',

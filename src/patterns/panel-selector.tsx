@@ -1,15 +1,16 @@
 import { Link } from '@block65/mrr';
+import type { FC } from 'react';
 import {
-  ArrowForward,
+  ArrowForwardIcon,
   Avatar,
   Block,
   Button,
   Heading,
-  Text,
+  Panel,
+  Paragraph,
 } from '../../lib/main.js';
-import { Panel } from '../reference-impl/main.js';
 
-export const SelectorPattern = () => (
+export const SelectorPattern: FC = () => (
   <Link href="">
     <Panel flexDirection="row" component="a">
       <Block>
@@ -17,13 +18,11 @@ export const SelectorPattern = () => (
       </Block>
       <Block flexGrow justifyContent="center">
         <Heading level="5">Hello good evening</Heading>
-        <Text>I trust you are well</Text>
+        <Paragraph>I trust you are well</Paragraph>
       </Block>
 
       <Block justifyContent="center">
-        <Button component="div">
-          <ArrowForward />
-        </Button>
+        <Button icon={<ArrowForwardIcon />}></Button>
       </Block>
     </Panel>
   </Link>

@@ -1,31 +1,31 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/// <reference types="vite/client" />
 import type { FC } from 'react';
 import {
   FormattedDate,
   FormattedMessage,
   FormattedNumber,
   FormattedTime,
+  IntlProvider,
 } from 'react-intl';
-import { DesignSystem, interFontThemeClassName } from '../lib/main.js';
-import { MainRouter } from './pages/components/MainRouter.js';
+import { useColorSchemeEffect } from '../lib/hooks/main.js';
+import { DesignSystem } from '../lib/main.js';
+import { MainRouter } from './MainRouter.js';
+import { SettingsProvider } from './pages/components/SettingsContext.js';
 import { useSettings } from './pages/components/use-settings.js';
-import {
-  darkModeThemeClassName,
-  lightModeThemeClassName,
-} from './reference-impl/schemes.css.js';
 
-export const App: FC = () => {
-  const [settings] = useSettings();
+import './global.scss'; // SCSS version, includes inter vars
+// import './theme.scss'; // SCSS version
+
+import './inter.css.js'; // Vanilla extract version
+import './theme.css.js'; // Vanilla extract version
+import './defaults.css.js'; // Vanilla extract version
+
+const AppInner = () => {
+  const { colorScheme } = useSettings();
+  useColorSchemeEffect(colorScheme);
 
   return (
     <DesignSystem
-      className={[
-        interFontThemeClassName,
-        settings.colorScheme === 'auto' && darkModeThemeClassName,
-
-        settings.colorScheme === 'dark' && darkModeThemeClassName,
-        settings.colorScheme === 'light' && lightModeThemeClassName,
-      ]}
       stringLikeComponents={[
         FormattedMessage,
         FormattedNumber,
@@ -34,12 +34,17 @@ export const App: FC = () => {
       ]}
       space="10"
       flexDirection="column"
-      style={{
-        flexGrow: 1,
-        minHeight: '100vh',
-      }}
+      flexGrow
     >
       <MainRouter />
     </DesignSystem>
   );
 };
+
+export const App: FC = () => (
+  <IntlProvider locale="en">
+    <SettingsProvider>
+      <AppInner />
+    </SettingsProvider>
+  </IntlProvider>
+);

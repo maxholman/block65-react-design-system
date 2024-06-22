@@ -1,0 +1,8 @@
+:root {
+  overflow-y: scroll; // jank prevention
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+}

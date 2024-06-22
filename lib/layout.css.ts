@@ -1,28 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { styleVariants, type ComplexStyleRule } from '@vanilla-extract/css';
 
 export type Placement = 'start' | 'center' | 'end';
-export type Wrap = 'wrap' | 'nowrap' | 'wrapReverse';
-
-export const flexShrinkClass = styleVariants<
-  Record<`${boolean}`, ComplexStyleRule>
->({
-  true: { flexShrink: 1 },
-  false: { flexShrink: 0 },
-});
-
-export const flexWrapVariants = styleVariants<Record<Wrap, ComplexStyleRule>>({
-  wrap: { flexWrap: 'wrap' },
-  nowrap: { flexWrap: 'nowrap' },
-  wrapReverse: { flexWrap: 'wrap-reverse' },
-});
-
-export const flexGrowClass = styleVariants<
-  Record<`${boolean}`, ComplexStyleRule>
->({
-  true: { flexGrow: 1 },
-  false: { flexGrow: 0 },
-});
 
 export const alignItemsVariants = styleVariants<
   Record<Placement, ComplexStyleRule>

@@ -1,9 +1,10 @@
 {
   "extends": ["@tsconfig/vite-react", "@tsconfig/strictest"],
   "compilerOptions": {
+    "composite": true,
     "declaration": true,
+    "noEmit": false,
     "outDir": "./dist",
-    "types": ["vite/client"],
     "allowJs": false,
     "checkJs": false,
     "removeComments": false,
@@ -12,6 +13,7 @@
     "noPropertyAccessFromIndexSignature": false
   },
   "files": ["./vite-env.d.ts"],
-  "include": ["./src", "./lib"],
-  "exclude": ["./dist", "./build", "node_modules"]
+  "include": ["./lib", "./src", "./bin"],
+  "exclude": ["./dist", "./build", "node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

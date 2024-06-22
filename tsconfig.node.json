@@ -1,0 +1,13 @@
+{
+  "extends": ["@tsconfig/node22", "@tsconfig/strictest"],
+  "compilerOptions": {
+    "composite": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "files": ["vite.config.ts"]
+}

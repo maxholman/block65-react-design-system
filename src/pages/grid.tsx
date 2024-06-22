@@ -1,47 +1,46 @@
 import type { FC } from 'react';
-import { Grid, Heading, Text } from '../../lib/main.js';
+import { Panel, Grid, Heading, Paragraph } from '../../lib/main.js';
 import { lorem } from '../lorem.js';
-import { Panel } from '../reference-impl/main.js';
 
 export const GridPage: FC = () => (
-  <Panel variant="ghost">
+  <Panel>
     <Grid cols={4}>
-      <Panel variant="transparent">
+      <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          transparent
+          {lorem.generateWords(2)}
         </Heading>
-        <Text>{lorem.generateSentences(3)}</Text>
+        <Paragraph>{lorem.generateSentences(3)}</Paragraph>
       </Panel>
-      <Panel variant="ghost">
+      <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Ghost
+          {lorem.generateWords(1)}
         </Heading>
-        <Text>{lorem.generateSentences(3)}</Text>
+        <Paragraph>{lorem.generateSentences(3)}</Paragraph>
       </Panel>
-      <Panel variant="subtle">
+      <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Subtle
+          {lorem.generateWords(2)}
         </Heading>
-        <Text>{lorem.generateSentences(3)}</Text>
+        <Paragraph>{lorem.generateSentences(3)}</Paragraph>
       </Panel>
-      <Panel variant="solid">
+      <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Standard
+          {lorem.generateWords(1)}
         </Heading>
-        <Text>{lorem.generateSentences(3)}</Text>
+        <Paragraph>{lorem.generateSentences(3)}</Paragraph>
       </Panel>
-      <Panel variant="ghost">
+      <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Ghost
+          {lorem.generateWords(2)}
         </Heading>
-        <Text>{lorem.generateParagraphs(1)}</Text>
+        <Paragraph>{lorem.generateParagraphs(1)}</Paragraph>
       </Panel>
 
-      <Panel variant="transparent">
+      <Panel>
         <Heading level="2" textOverflow="ellipsis">
-          Transparent
+          {lorem.generateWords(1)}
         </Heading>
-        <Text>{lorem.generateParagraphs(1)}</Text>
+        <Paragraph>{lorem.generateParagraphs(1)}</Paragraph>
       </Panel>
     </Grid>
   </Panel>

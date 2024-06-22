@@ -1,17 +1,16 @@
 import { forwardRef, useMemo, useState } from 'react';
-import type { Falsy } from './core.css.js';
-import { Box } from './core.js';
+import { Box } from './box.js';
 import {
   defaultFormInputSpace,
   formInputBoxProps,
   formInputElProps,
 } from './forms-common.js';
 import {
-  formInputInnerClassName,
+  formInputOuterClassName,
   formInputFocusNotCheckRadioClassName,
+  formInputInnerClassName,
   formInputHack,
   formInputOriginIcon,
-  formInputOuterClassName,
 } from './forms.css.js';
 import {
   FormInputLabel,
@@ -27,7 +26,7 @@ import { useFavicon } from './hooks/use-image.js';
 import { GlobeColorIcon } from './icons.js';
 import { Block, Inline } from './layout.js';
 import { Spinner } from './loaders.js';
-import type { Merge } from './types.js';
+import type { Falsy, Merge } from './types.js';
 
 function guessUrl(url: string) {
   if (!url) {
@@ -108,7 +107,6 @@ export const FormInputOrigin = forwardRef<
 
     const finalValidity = useMemo(() => {
       if (syntacticallyValidValueAsUrl && !dns.busy && dns.response) {
-        // eslint-disable-next-line default-case
         switch (dns.response.Status) {
           case ReturnCode.NoError:
             break;

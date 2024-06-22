@@ -39,10 +39,10 @@ import {
   type ReactNode,
   type Ref,
 } from 'react';
-import { Button, type ButtonProps } from './buttons.js';
+import { Button, type ButtonProps } from './button.js';
 import { DesignSystem } from './design-system.js';
 import { useDesignSystem } from './hooks/use-design-system.js';
-import { ArrowForward, MenuDropdownArrowIcon } from './icons.js';
+import { ArrowForwardIcon, MenuDropdownArrowIcon } from './icons.js';
 import { Flex, type FlexProps } from './layout.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
@@ -66,12 +66,16 @@ type MenuCommonProps<T extends keyof ReactHTMLElementsHacked> =
   }>;
 
 export type MenuProps = Merge<
-  Omit<ButtonProps<'div'>, 'component'>,
-  MenuCommonProps<'div'>
+  ButtonProps<'div'>,
+  MenuCommonProps<'div'> & { component?: never; size?: never; onClick?: never }
 >;
 
-export type MenuActivatorProps = PropsWithChildren<
-  Omit<ButtonProps<'div'>, 'onClick'> & { isNested?: boolean }
+export type MenuActivatorProps = Merge<
+  ButtonProps<'div'>,
+  {
+    onClick?: never;
+    isNested?: boolean;
+  }
 >;
 
 const DefaultMenuActivator = forwardRef(
@@ -83,7 +87,7 @@ const DefaultMenuActivator = forwardRef(
       component="div"
       iconEnd={<MenuDropdownArrowIcon />}
       ref={forwardedRef}
-      icon={isNested && <ArrowForward />}
+      icon={isNested && <ArrowForwardIcon />}
       {...(isNested && {
         // Indicates this is a nested <Menu /> acting as a <MenuItem />.
         role: 'menuitem',
@@ -267,7 +271,7 @@ const MenuInner = forwardRef(
 
     const referenceRef = useMergeRefs([refs.setReference, forwardedRef]);
 
-    const activatorProps: MenuActivatorProps = {
+    const activatorProps = {
       className,
       ...getReferenceProps({
         ...props,
@@ -276,7 +280,7 @@ const MenuInner = forwardRef(
         },
       }),
       children: label,
-    };
+    } satisfies MenuActivatorProps;
 
     return (
       <FloatingNode id={nodeId}>

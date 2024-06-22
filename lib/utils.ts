@@ -4,6 +4,7 @@ import {
   cloneElement,
   Fragment,
   isValidElement,
+  type JSXElementConstructor,
   type ComponentProps,
   type FC,
   type ReactElement,
@@ -54,7 +55,7 @@ function maybeSuffix(value: string | number, suffix: string): string {
   return `${value}${suffix}`;
 }
 
-export function hslValues(
+function hslValues(
   h: string | number,
   s: string | number,
   l: string | number,
@@ -77,15 +78,6 @@ export function hsl(
   )})`;
 }
 
-export function lchValues(
-  l: string | number,
-  c: string | number,
-  h: string | number,
-  a: string | number = 1,
-) {
-  return [l, c, h, ...(a.toString() !== '1' ? [a] : [])].join(' ');
-}
-
 export function oklch(
   l: string | number,
   c: string | number,
@@ -95,11 +87,12 @@ export function oklch(
   return `oklch(${hslValues(maybeSuffix(l, '%'), c, h, a)})`;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isValidElementOfType<T extends FC<any>>(
-  child: ReactNode,
-  type: T,
-): child is ReactElement<ComponentProps<T>> {
+export function isValidElementOfType<
+  T extends
+    | keyof JSX.IntrinsicElements
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    | JSXElementConstructor<any>,
+>(child: ReactNode, type: T): child is ReactElement<ComponentProps<T>> {
   return isValidElement(child) && child.type === type;
 }
 

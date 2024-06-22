@@ -1,6 +1,5 @@
 import type { FC } from 'react';
-import { Grid, Heading } from '../../lib/main.js';
-import { Panel } from '../reference-impl/main.js';
+import { Grid, Heading, Panel } from '../../lib/main.js';
 import { ExampleForm } from './components/ExampleForm.js';
 
 export const FormsPage: FC = () => (

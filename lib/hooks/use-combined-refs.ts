@@ -1,8 +1,4 @@
-import {
-  type ForwardedRef,
-  type MutableRefObject,
-  type RefCallback,
-} from 'react';
+import type { ForwardedRef, MutableRefObject, RefCallback } from 'react';
 
 export function useCombinedRefs<T>(
   ...refs: (RefCallback<T> | MutableRefObject<T> | ForwardedRef<T>)[]

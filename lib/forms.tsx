@@ -1,4 +1,4 @@
-import { type ClassValue } from 'clsx';
+import type { ClassValue } from 'clsx';
 import {
   Children,
   cloneElement,
@@ -11,8 +11,7 @@ import {
   type PropsWithChildren,
   type ReactNode,
 } from 'react';
-import type { Falsy } from './core.css.js';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import {
   defaultFormInputSpace,
   formInputBoxProps,
@@ -24,9 +23,9 @@ import {
   formInputCheckRadioMessage,
   formInputCheckRadioWrapper,
   formInputCheckboxInput,
+  formInputFocusNotCheckRadioClassName,
   formInputHack,
   formInputInnerClassName,
-  formInputFocusNotCheckRadioClassName,
   formInputOuterClassName,
   formInputPasswordIcon,
   formInputPasswordToggleButton,
@@ -43,9 +42,9 @@ import { useIdWithDefault } from './hooks/use-id-with-default.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { useToggle } from './hooks/use-toggle.js';
 import { PasswordInvisibleIcon, PasswordVisibleIcon } from './icons.js';
-import { Block, Inline, type BlockProps } from './layout.js';
-import type { Merge } from './types.js';
-import { Secondary, Strong, Text } from './typography.js';
+import { Block, Inline, type FlexProps } from './layout.js';
+import type { Falsy, Merge } from './types.js';
+import { ExactText, Secondary, Strong } from './typography.js';
 import {
   cloneElementIfValidElementOfType,
   isValidElementOfType,
@@ -66,27 +65,22 @@ type CommonFormInputProps = {
   customValidity?: string;
 };
 
-export type FormInputProps = Merge<
-  // InputHTMLAttributes<HTMLInputElement>,
-  BoxProps<'input'>,
-  CommonFormInputProps
->;
+export type FormInputProps = Merge<BoxProps<'input'>, CommonFormInputProps>;
 
-export const Form = forwardRef<
-  HTMLFormElement,
-  PropsWithChildren<BlockProps<'form'>>
->(({ space = '9', children, ...props }, ref) => (
-  <Block space={space} component="form" {...props} ref={ref}>
-    {Children.map(children, (child) => {
-      // if it's a block element and no space is defined, use the space this
-      // component has been given
-      if (isValidElementOfType(child, Block) && !child.props.space) {
-        return cloneElement(child, { ...child.props, space });
-      }
-      return child;
-    })}
-  </Block>
-));
+export const Form = forwardRef<HTMLFormElement, FlexProps<'form'>>(
+  ({ space = '9', children, ...props }, ref) => (
+    <Block space={space} component="form" {...props} ref={ref}>
+      {Children.map(children, (child) => {
+        // if it's a block element and no space is defined, use the space this
+        // component has been given
+        if (isValidElementOfType(child, Block) && !child.props.space) {
+          return cloneElement(child, { ...child.props, space });
+        }
+        return child;
+      })}
+    </Block>
+  ),
+);
 
 export const FormInputLabel: FC<
   PropsWithChildren<LabelHTMLAttributes<HTMLLabelElement>> & {
@@ -108,7 +102,7 @@ export const FormInputLabel: FC<
       >
         {isStringLike(children) ? (
           <>
-            <Strong capSize="0">{children}</Strong>
+            <Strong>{children}</Strong>
             {secondary && <Secondary>{secondary}</Secondary>}
           </>
         ) : (
@@ -122,7 +116,11 @@ export const FormInputLabel: FC<
 
 export const FormInputMessage: FC<Pick<FormInputProps, 'message'>> = ({
   message,
-}) => <Text fontSize="0">{message}</Text>;
+}) => (
+  <ExactText secondary capSize="0">
+    {message}
+  </ExactText>
+);
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
   (
@@ -235,6 +233,8 @@ export const FormInputPassword = forwardRef<
     const ourRef = useCustomValidity<HTMLInputElement>(customValidity);
     const ref = useCombinedRefs(forwardedRef, ourRef);
 
+    const isStringLike = useStringLikeDetector();
+
     return (
       <Block className={className} space={defaultFormInputSpace}>
         {label && (
@@ -292,7 +292,12 @@ export const FormInputPassword = forwardRef<
           </Block>
         </Inline>
 
-        {message && <FormInputMessage message={message} />}
+        {message &&
+          (isStringLike(message) ? (
+            <FormInputMessage message={message} />
+          ) : (
+            message
+          ))}
       </Block>
     );
   },
@@ -358,9 +363,7 @@ export const FormSelect: FC<FormSelectProps> = ({
       </div>
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0">
-            {message}
-          </Text>
+          <FormInputMessage message={message} />
         ) : (
           message
         ))}
@@ -395,7 +398,6 @@ const FormInputCheckRadio: FC<
     <Box space="3" className={formInputCheckRadioWrapper}>
       <Box
         component="input"
-        rounded="1"
         ref={ref}
         className={[
           className,
@@ -407,22 +409,26 @@ const FormInputCheckRadio: FC<
       />
       {label &&
         (isStringLike(label) ? (
-          <Text
+          <ExactText
             component="label"
             className={[inputLabelStyle, formInputCheckRadioLabel]}
             secondary={!!props.disabled}
             htmlFor={id}
           >
             {label}
-          </Text>
+          </ExactText>
         ) : (
           <Box className={formInputCheckRadioLabel}>{label}</Box>
         ))}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0" className={formInputCheckRadioMessage}>
+          <ExactText
+            secondary
+            capSize="0"
+            className={formInputCheckRadioMessage}
+          >
             {message}
-          </Text>
+          </ExactText>
         ) : (
           <Box className={formInputCheckRadioLabel}>{message}</Box>
         ))}
@@ -469,9 +475,9 @@ export const FormInputRadioGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0">
+          <ExactText secondary capSize="0">
             {message}
-          </Text>
+          </ExactText>
         ) : (
           message
         ))}
@@ -518,9 +524,9 @@ export const FormInputCheckboxGroup: FC<
       )}
       {message &&
         (isStringLike(message) ? (
-          <Text secondary fontSize="0">
+          <ExactText secondary capSize="0">
             {message}
-          </Text>
+          </ExactText>
         ) : (
           message
         ))}
@@ -542,7 +548,6 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
       secondaryLabel,
       tertiaryLabel,
       message,
-      rounded = '2',
       autoFocus,
       ...props
     },
@@ -598,7 +603,6 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         )}
         {description}
         <Box
-          rounded={rounded}
           component="textarea"
           autoFocus={definitelyAutoFocus}
           ref={combinedRef}
@@ -614,9 +618,9 @@ export const FormTextArea = forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
         />
         {message && (
           <Inline>
-            <Text fontSize="0">
+            <ExactText capSize="0">
               <Secondary>{message}</Secondary>
-            </Text>
+            </ExactText>
           </Inline>
         )}
       </Block>

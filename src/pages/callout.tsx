@@ -1,30 +1,28 @@
-import type { FC } from 'react';
-import { Grid } from '../../lib/main.js';
-import { Callout } from '../reference-impl/main.js';
-import { WithColorSchemes } from './components/WithColorSchemes.js';
+import { Fragment, type FC } from 'react';
+import { Callout, HelpIcon } from '../../lib/main.js';
+import type { PurposeVariant } from '../../lib/purpose.css.js';
 
 export const CalloutPage: FC = () => (
-  <WithColorSchemes>
-    <Callout tone="critical">Critical</Callout>
-    <Callout tone="critical">
-      Critical. Critical. Critical. Critical. Critical. Critical. Critical.
-      Critical. Critical. Critical.Critical. Critical. Critical. Critical.
-      Critical. Critical. Critical.Critical. Critical. Critical. Critical.
-      Critical. Critical. Critical. Critical. Critical. Critical.Critical.
-      Critical. Critical. Critical. Critical. Critical. Critical.
-    </Callout>
-    <Callout tone="info">Info</Callout>
-    <Callout tone="positive">Positive</Callout>
-    <Callout tone="promo">Promo</Callout>
-    <Callout tone="warn">Warning</Callout>
-
-    <Grid>
-      <Callout tone="positive">Overwhelmingly positive!</Callout>
-      <Callout tone="positive">Overwhelmingly positive!</Callout>
-      <Callout tone="positive">Overwhelmingly positive!</Callout>
-      <Callout tone="positive">Overwhelmingly positive!</Callout>
-      <Callout tone="positive">Overwhelmingly positive!</Callout>
-      <Callout tone="positive">Overwhelmingly positive!</Callout>
-    </Grid>
-  </WithColorSchemes>
+  <>
+    {(
+      [
+        'default',
+        'info',
+        'attention',
+        'critical',
+        'positive',
+      ] satisfies PurposeVariant[]
+    ).map((variant) => (
+      <Fragment key={variant}>
+        <Callout variant={variant}>{variant}</Callout>
+        <Callout variant={variant}>pqLOOIIjjjIIFFFliIpyyyy</Callout>
+        <Callout icon={<HelpIcon />} variant={variant}>
+          {variant}. {variant}. {variant}. {variant}. {variant}. {variant}.{' '}
+          {variant}. {variant}. {variant}. {variant}. {variant}. {variant}.{' '}
+          {variant}. {variant}. {variant}. {variant}. {variant}. {variant}.{' '}
+          {variant}. {variant}. {variant}. {variant}.
+        </Callout>
+      </Fragment>
+    ))}
+  </>
 );

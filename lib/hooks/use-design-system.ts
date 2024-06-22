@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { Context } from '../context.js';
+import { DesignSystemContext } from '../design-system-context.js';
 
 export function useDesignSystem() {
-  return useContext(Context);
+  return useContext(DesignSystemContext);
 }

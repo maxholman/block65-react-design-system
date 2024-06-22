@@ -1,9 +1,9 @@
 import { forwardRef, type ReactNode } from 'react';
-import { Block, type BlockProps } from './layout.js';
+import { Block, type FlexProps } from './layout.js';
 import type { Merge } from './types.js';
 
 export type MenuItemProps = Merge<
-  BlockProps,
+  FlexProps,
   {
     label: string;
     children?: ReactNode;

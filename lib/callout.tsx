@@ -1,38 +1,68 @@
-import { Children, cloneElement, type FC, type ReactNode } from 'react';
+import { Children, cloneElement, type ReactNode } from 'react';
+import { Box, type BoxProps } from './box.js';
 import {
-  calloutClass,
-  calloutTextClass,
-  calloutTextIconClass,
-  calloutTextIconWrapperClass,
+  calloutStyleVariants,
+  iconClassName,
+  iconWrapperClassName,
+  textClassName,
 } from './callout.css.js';
-import { Box, type BoxProps } from './core.js';
 import { debugLogger, ifDebugBuild } from './debug-logger.js';
-import { InfoIcon } from './icons.js';
+import {
+  AttentionIcon,
+  CriticalIcon,
+  InfoIcon,
+  PositiveIcon,
+} from './icons.js';
+import type { PurposeVariant } from './purpose.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { Text } from './typography.js';
+import { ExactText } from './typography.js';
 import { isValidElementOfType } from './utils.js';
 
-type CalloutCommonProps = {
+export type { PurposeVariant as CalloutVariant };
+
+function variantIcon(variant: PurposeVariant): ReactNode {
+  const props = { className: iconClassName };
+
+  switch (variant) {
+    case 'critical':
+      return <CriticalIcon {...props} />;
+    case 'positive':
+      return <PositiveIcon {...props} />;
+    case 'attention':
+      return <AttentionIcon {...props} />;
+    case 'default':
+    case 'info':
+    default:
+      return <InfoIcon {...props} />;
+  }
+}
+
+export type CalloutCommonProps = {
   align?: never;
   children: ReactNode;
+  icon?: ReactNode;
+  variant?: PurposeVariant;
 };
 
 export type CalloutProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
   Merge<BoxProps<T>, CalloutCommonProps>;
 
-export const Callout: FC<CalloutProps> = ({
+export const Callout = ({
   children,
   className,
   space = '3',
+  variant = 'info',
+  icon,
+  capSize = '1',
   ...props
-}) => {
+}: CalloutProps) => {
   ifDebugBuild(() => {
     if (
-      isValidElementOfType(children, Text) &&
+      isValidElementOfType(children, ExactText) &&
       Children.count(children) === 1
     ) {
       debugLogger(
-        'There is no need to have a single Text component as a child of Callout',
+        'There is no need to have a single ExactText component as a child of Callout',
       );
     }
   });
@@ -40,26 +70,27 @@ export const Callout: FC<CalloutProps> = ({
   return (
     <Box
       space={space}
-      component="div"
-      className={[className, calloutClass]}
-      overflow="hidden"
+      className={[className, calloutStyleVariants[variant]]}
       role="alert"
-      capSize="1"
       aria-live="polite"
       {...props}
     >
-      <div className={calloutTextIconWrapperClass}>
-        <InfoIcon className={calloutTextIconClass} />
-      </div>
+      <Box component="span" className={iconWrapperClassName}>
+        {isValidElementOfType(icon, 'svg')
+          ? cloneElement(icon, {
+              className: iconClassName,
+            })
+          : variantIcon(variant)}
+      </Box>
 
-      {isValidElementOfType(children, Text) ? (
+      {isValidElementOfType(children, ExactText) ? (
         cloneElement(children, {
-          className: calloutTextClass,
+          className: textClassName,
         })
       ) : (
-        <Text capSize="1" className={calloutTextClass}>
+        <ExactText capSize={capSize} className={textClassName}>
           {children}
-        </Text>
+        </ExactText>
       )}
     </Box>
   );

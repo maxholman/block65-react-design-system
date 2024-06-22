@@ -1,30 +1,19 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { createVar, style, styleVariants } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { focusRadiusVar, focusableClassName } from './focusable.css.js';
-
-export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
-
-const linkColorVar = createVar();
+import { textVariantVars } from './typography.css.js';
+import { propsVars, globalVars } from './vars.css.js';
 
 const linkClassName = style([
   focusableClassName,
   {
-    // vars: {
-    //   [linkColorVar]: oklch(
-    //     contrastSchemeVars.swatch.v8.l,
-    //     contrastSchemeVars.swatch.v8.c,
-    //     colorThemeVars.tones.accent.h,
-    //   ),
-    // },
     cursor: 'pointer',
     selectors: {
       '&:focus-visible': {
         borderRadius: focusRadiusVar,
         outlineStyle: 'solid',
         outlineColor: 'currentColor',
-        outlineWidth: genericVars.border.width['3'],
-        outlineOffset: genericVars.border.width['3'],
+        outlineWidth: propsVars.border.width['3'],
+        outlineOffset: propsVars.border.width['3'],
       },
     },
   },
@@ -33,11 +22,11 @@ const linkClassName = style([
 export const linkStyleVariant = styleVariants(
   {
     strong: {
-      color: linkColorVar,
-      fontWeight: genericVars.text.weight.semiBold,
+      color: globalVars.color.accent,
+      fontWeight: textVariantVars.fontWeight.medium,
     },
     normal: {
-      color: linkColorVar,
+      color: globalVars.color.accent,
     },
     none: {
       // color: linkColorVar,
@@ -46,7 +35,7 @@ export const linkStyleVariant = styleVariants(
       textDecoration: 'underline',
       selectors: {
         '&:hover': {
-          color: linkColorVar,
+          color: globalVars.color.accent,
         },
       },
     },

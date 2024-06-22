@@ -1,6 +1,13 @@
 import type { FC } from 'react';
-import { Grid, Heading, Spinner, Text } from '../../lib/main.js';
-import { Button, Callout, Panel } from '../reference-impl/main.js';
+import {
+  Grid,
+  Heading,
+  Spinner,
+  Button,
+  Callout,
+  Panel,
+  ExactText,
+} from '../../lib/main.js';
 
 export const LoadersPage: FC = () => (
   <>
@@ -9,36 +16,35 @@ export const LoadersPage: FC = () => (
     <Grid
       cols={{
         all: 3,
-        desktop: 4,
         mobile: 2,
       }}
     >
-      <Panel variant="ghost">
-        <Text>
+      <Panel>
+        <ExactText>
           MMMMM
           <Spinner inline />
           BBBBB
-        </Text>
+        </ExactText>
       </Panel>
 
-      <Panel variant="ghost">
-        <Text secondary>
+      <Panel>
+        <ExactText secondary>
           MMMMM
           <Spinner inline />
           BBBBB
-        </Text>
+        </ExactText>
       </Panel>
 
-      <Panel variant="ghost">
-        <Text>MMMMM </Text>
+      <Panel>
+        <ExactText>MMMMM </ExactText>
         <Spinner inline />
-        <Text>BBBBB</Text>
+        <ExactText>BBBBB</ExactText>
       </Panel>
 
-      <Panel variant="ghost">
-        <Text secondary>MMMMM </Text>
-        <Spinner inline />
-        <Text secondary>BBBBB</Text>
+      <Panel>
+        <ExactText secondary>MMMMM delay</ExactText>
+        <Spinner inline delay />
+        <ExactText secondary>BBBBB</ExactText>
       </Panel>
 
       <Spinner size="1" />
@@ -56,7 +62,7 @@ export const LoadersPage: FC = () => (
         <Spinner size="4" />
         <Spinner size="5" />
       </Panel>
-      <Panel alignItems="center" variant="solid">
+      <Panel alignItems="center">
         <Spinner size="1" />
         <Spinner size="2" />
         <Spinner size="3" />
@@ -78,7 +84,7 @@ export const LoadersPage: FC = () => (
           <Spinner />
           button
         </Button>
-        <Button variant="ghost">
+        <Button>
           Spinner in a
           <Spinner />
           button

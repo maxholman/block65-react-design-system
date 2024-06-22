@@ -8,7 +8,7 @@ import {
   FormInputEmail,
   FormInputPassword,
   Inline,
-  Text,
+  Paragraph,
   TextLink,
 } from '../../lib/main.js';
 
@@ -23,7 +23,7 @@ const GitHubLogo: FC = () => (
   </svg>
 );
 
-export const LoginPattern = () => (
+export const LoginPattern: FC = () => (
   <Block alignSelf="center" margin="10">
     <Inline justifyContent="center">
       <Avatar ident="a" label="🐈" size="6" />
@@ -38,9 +38,9 @@ export const LoginPattern = () => (
       Login with GitHub
     </Button>
     <Inline justifyContent="center">
-      <Text secondary>
+      <Paragraph secondary>
         <TextLink weight="none">Don't have an account? Sign up</TextLink>
-      </Text>
+      </Paragraph>
     </Inline>
   </Block>
 );

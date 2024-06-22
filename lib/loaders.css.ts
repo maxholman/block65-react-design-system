@@ -1,31 +1,29 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import {
-  fallbackVar,
-  keyframes,
-  style,
-  styleVariants,
-  type StyleRule,
-} from '@vanilla-extract/css';
-import { currentCapHeight } from './typography.css.js';
+import { style, styleVariants, type StyleRule } from '@vanilla-extract/css';
+import { rotate, fadeIn } from './keyframes.css.js';
 
-const rotate = keyframes({
-  '0%': { transform: 'rotate(0deg)' },
-  '100%': { transform: 'rotate(360deg)' },
-});
+const rotateAnimation = `${rotate} 0.65s linear infinite`;
+
+// legend: <name> <duration> <timing-function> <delay> <iteration-count> <direction>
+const fadeInAnimation = `${fadeIn} 600ms ease 1 900ms forwards`;
 
 export const spinnerClass = style({
   aspectRatio: '1/1',
   transformOrigin: 'center center',
-  animationName: rotate,
-  animationDuration: '.75s',
-  animationIterationCount: 'infinite',
-  animationTimingFunction: 'linear',
+});
+
+export const spinnerAnimationVariantClassNames = styleVariants({
+  delay: {
+    opacity: 0,
+    animation: [rotateAnimation, fadeInAnimation].join(','),
+  },
+  regular: {
+    animation: rotateAnimation,
+  },
 });
 
 export const inlineSpinnerClass = style({
   display: 'inline-flex',
-  height: fallbackVar(currentCapHeight, '1em'),
-  width: fallbackVar(currentCapHeight, '1em'),
+  width: '1em',
 });
 
 export type SpinnerSize = '1' | '2' | '3' | '4' | '5';

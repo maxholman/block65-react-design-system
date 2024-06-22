@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import type { Falsy } from '../core.css.js';
+import type { Falsy } from '../types.js';
 
 export function useCustomValidity<
   T extends HTMLInputElement | HTMLSelectElement,

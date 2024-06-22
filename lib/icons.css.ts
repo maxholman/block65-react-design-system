@@ -1,8 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { fallbackVar, style } from '@vanilla-extract/css';
-import { currentCapHeight } from './typography.css.js';
+import { style } from '@vanilla-extract/css';
 
 export const iconClassName = style({
   display: 'inline-block',
-  height: fallbackVar(currentCapHeight, '1em'),
+  height: '1em',
 });

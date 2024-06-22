@@ -1,0 +1,254 @@
+/* Gray shades */
+$gray-0: #f6f8fa;
+$gray-1: #eaeef2;
+$gray-2: #d0d7de;
+$gray-3: #afb8c1;
+$gray-4: #8c959f;
+$gray-5: #6e7781;
+$gray-6: #57606a;
+$gray-7: #424a53;
+$gray-8: #32383f;
+$gray-9: #24292f;
+$gray-10: #1b1f24;
+
+$gray: (
+  0: $gray-0,
+  1: $gray-1,
+  2: $gray-2,
+  3: $gray-3,
+  4: $gray-4,
+  5: $gray-5,
+  6: $gray-6,
+  7: $gray-7,
+  8: $gray-8,
+  9: $gray-9,
+  10: $gray-10,
+);
+
+/* Blue shades */
+$blue-0: #ddf4ff;
+$blue-1: #b6e3ff;
+$blue-2: #80ccff;
+$blue-3: #54aeff;
+$blue-4: #218bff;
+$blue-5: #0969da;
+$blue-6: #0550ae;
+$blue-7: #033d8b;
+$blue-8: #0a3069;
+$blue-9: #002155;
+
+$blue: (
+  0: $blue-0,
+  1: $blue-1,
+  2: $blue-2,
+  3: $blue-3,
+  4: $blue-4,
+  5: $blue-5,
+  6: $blue-6,
+  7: $blue-7,
+  8: $blue-8,
+  9: $blue-9,
+);
+
+/* Green shades */
+$green-0: #dafbe1;
+$green-1: #aceebb;
+$green-2: #6fdd8b;
+$green-3: #4ac26b;
+$green-4: #2da44e;
+$green-5: #1a7f37;
+$green-6: #116329;
+$green-7: #044f1e;
+$green-8: #003d16;
+$green-9: #002d11;
+
+$green: (
+  0: $green-0,
+  1: $green-1,
+  2: $green-2,
+  3: $green-3,
+  4: $green-4,
+  5: $green-5,
+  6: $green-6,
+  7: $green-7,
+  8: $green-8,
+  9: $green-9,
+);
+
+/* Yellow shades */
+$yellow-0: #fff8c5;
+$yellow-1: #fae17d;
+$yellow-2: #eac54f;
+$yellow-3: #d4a72c;
+$yellow-4: #bf8700;
+$yellow-5: #9a6700;
+$yellow-6: #7d4e00;
+$yellow-7: #633c01;
+$yellow-8: #4d2d00;
+$yellow-9: #3b2300;
+
+$yellow: (
+  0: $yellow-0,
+  1: $yellow-1,
+  2: $yellow-2,
+  3: $yellow-3,
+  4: $yellow-4,
+  5: $yellow-5,
+  6: $yellow-6,
+  7: $yellow-7,
+  8: $yellow-8,
+  9: $yellow-9,
+);
+
+/* Orange shades */
+$orange-0: #fff1e5;
+$orange-1: #ffd8b5;
+$orange-2: #ffb77c;
+$orange-3: #fb8f44;
+$orange-4: #e16f24;
+$orange-5: #bc4c00;
+$orange-6: #953800;
+$orange-7: #762c00;
+$orange-8: #5c2200;
+$orange-9: #471700;
+
+$orange: (
+  0: $orange-0,
+  1: $orange-1,
+  2: $orange-2,
+  3: $orange-3,
+  4: $orange-4,
+  5: $orange-5,
+  6: $orange-6,
+  7: $orange-7,
+  8: $orange-8,
+  9: $orange-9,
+);
+
+/* Red shades */
+$red-0: #ffebe9;
+$red-1: #ffcecb;
+$red-2: #ffaba8;
+$red-3: #ff8182;
+$red-4: #fa4549;
+$red-5: #cf222e;
+$red-6: #a40e26;
+$red-7: #82071e;
+$red-8: #660018;
+$red-9: #4c0014;
+
+$red: (
+  0: $red-0,
+  1: $red-1,
+  2: $red-2,
+  3: $red-3,
+  4: $red-4,
+  5: $red-5,
+  6: $red-6,
+  7: $red-7,
+  8: $red-8,
+  9: $red-9,
+);
+
+/* Purple shades */
+$purple-0: #fbefff;
+$purple-1: #ecd8ff;
+$purple-2: #d8b9ff;
+$purple-3: #c297ff;
+$purple-4: #a475f9;
+$purple-5: #8250df;
+$purple-6: #6639ba;
+$purple-7: #512a97;
+$purple-8: #3e1f79;
+$purple-9: #2e1461;
+
+$purple: (
+  0: $purple-0,
+  1: $purple-1,
+  2: $purple-2,
+  3: $purple-3,
+  4: $purple-4,
+  5: $purple-5,
+  6: $purple-6,
+  7: $purple-7,
+  8: $purple-8,
+  9: $purple-9,
+);
+
+/* Pink shades */
+$pink-0: #ffeff7;
+$pink-1: #ffd3eb;
+$pink-2: #ffadda;
+$pink-3: #ff80c8;
+$pink-4: #e85aad;
+$pink-5: #bf3989;
+$pink-6: #99286e;
+$pink-7: #772057;
+$pink-8: #611347;
+$pink-9: #4d0336;
+
+$pink: (
+  0: $pink-0,
+  1: $pink-1,
+  2: $pink-2,
+  3: $pink-3,
+  4: $pink-4,
+  5: $pink-5,
+  6: $pink-6,
+  7: $pink-7,
+  8: $pink-8,
+  9: $pink-9,
+);
+
+/* Coral shades */
+$coral-0: #fff0eb;
+$coral-1: #ffd6cc;
+$coral-2: #ffb4a1;
+$coral-3: #fd8c73;
+$coral-4: #ec6547;
+$coral-5: #c4432b;
+$coral-6: #9e2f1c;
+$coral-7: #801f0f;
+$coral-8: #691105;
+$coral-9: #510901;
+
+$coral: (
+  0: $coral-0,
+  1: $coral-1,
+  2: $coral-2,
+  3: $coral-3,
+  4: $coral-4,
+  5: $coral-5,
+  6: $coral-6,
+  7: $coral-7,
+  8: $coral-8,
+  9: $coral-9,
+);
+
+/* Black and white */
+$black: #1b1f24;
+$white: #ffffff;
+
+$colors: (
+  gray: $gray,
+  blue: $blue,
+  green: $green,
+  yellow: $yellow,
+  orange: $orange,
+  red: $red,
+  purple: $purple,
+  pink: $pink,
+  coral: $coral,
+);
+
+@mixin vars {
+  // get everything as css vars
+  --black: #{$black};
+  --white: #{$white};
+
+  @each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      --#{""+$color}-#{$shade}: #{$value};
+    }
+  }
+}

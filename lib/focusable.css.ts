@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createVar, style } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
+import { propsVars } from './vars.css.js';
 
 export const focusColorVar = createVar();
 export const focusRadiusVar = createVar();
@@ -13,8 +12,8 @@ export const focusableClassName = style({
     //   contrastSchemeVars.swatch.v7.c,
     //   colorThemeVars.tones.accent.h,
     // ),
-    [focusRadiusVar]: genericVars.radius['1'],
-    [focusWidthVar]: genericVars.border.width['2'],
+    [focusRadiusVar]: propsVars.radius['1'],
+    [focusWidthVar]: propsVars.border.width['2'],
   },
 });
 
@@ -25,7 +24,7 @@ export const focusVisibleClassName = style([
       '&:focus-visible': {
         outlineStyle: 'solid',
         outlineWidth: focusWidthVar,
-        outlineOffset: genericVars.space['00'],
+        outlineOffset: propsVars.space['00'],
         outlineColor: focusColorVar,
       },
     },

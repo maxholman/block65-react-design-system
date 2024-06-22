@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
+import { propsVars } from './vars.css.js';
 
 export const listColsVar = createVar();
 
@@ -20,7 +19,7 @@ export const listItemClass = style({
   },
 });
 
-export const listVariants = styleVariants(genericVars.space, (space) => [
+export const listVariants = styleVariants(propsVars.space, (space) => [
   listClass,
   {
     gap: space,

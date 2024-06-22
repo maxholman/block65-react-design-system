@@ -1,10 +1,11 @@
 import type { FC } from 'react';
-import { Box, type BoxProps } from './core.js';
+import { Box, type BoxProps } from './box.js';
 import {
   inlineSpinnerClass,
   trackCircleClassName,
   runnerCircleClassName,
   spinnerClass,
+  spinnerAnimationVariantClassNames,
   spinnerSizeVariantClassNames,
   type SpinnerSize,
 } from './loaders.css.js';
@@ -15,23 +16,30 @@ export type SpinnerProps = Merge<
   {
     inline?: boolean;
     size?: SpinnerSize;
+    children?: never;
+    delay?: boolean;
   }
 >;
 
 export const Spinner: FC<SpinnerProps> = ({
   size = '1',
   className,
-  children,
   inline = true,
+  delay = false,
   ...props
 }) => (
   <Box
     component="span"
+    role="progressbar"
+    aria-busy="true"
     className={[
       className,
       spinnerClass,
+      delay
+        ? spinnerAnimationVariantClassNames.delay
+        : spinnerAnimationVariantClassNames.regular,
       inline && inlineSpinnerClass,
-      spinnerSizeVariantClassNames[size],
+      !inline && spinnerSizeVariantClassNames[size],
     ]}
     {...props}
   >

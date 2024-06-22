@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import {
   Block,
   Button,
@@ -6,19 +6,20 @@ import {
   Heading,
   Inline,
   MenuIcon,
-  Text,
+  Paragraph,
   UnstyledButton,
+  Badge,
 } from '../../lib/main.js';
 
 const items = [1, 2, 3];
 
-export const PanelTogglerPattern = () => {
+export const PanelTogglerPattern: FC = () => {
   const [selectedItem, setSelectedItem] = useState<number>();
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSelectedItem(Math.floor(Math.random() * items.length));
-    }, 200000);
+    }, 1000);
 
     return () => clearInterval(interval);
   });
@@ -29,20 +30,31 @@ export const PanelTogglerPattern = () => {
         const isSelected = i === selectedItem;
 
         return (
-          <UnstyledButton
+          <Button
             key={i}
             padding="6"
             paddingBlock="7"
             flexDirection="row"
+            textAlign="start"
+            justifyContent="start"
+            state={isSelected ? 'active' : undefined}
             onClick={() => setSelectedItem(isSelected ? undefined : i)}
           >
-            <Block justifyContent="center">
-              <Heading level="4">UOB VISA Debit {i}</Heading>
-              <Text>
-                Expires <Code>{i}/25</Code>
-              </Text>
-            </Block>
-          </UnstyledButton>
+            <Inline flexGrow>
+              <Block flexGrow>
+                <Heading level="4">UOB VISA Debit {i}</Heading>
+                <Paragraph>
+                  Expires <Code>{i}/25</Code>
+                </Paragraph>
+              </Block>
+              <Badge
+                variant={isSelected ? 'positive' : 'default'}
+                justifySelf="end"
+              >
+                {isSelected ? 'Selected' : 'Select'}
+              </Badge>
+            </Inline>
+          </Button>
         );
       })}
 

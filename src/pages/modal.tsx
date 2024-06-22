@@ -8,8 +8,9 @@ import {
   Modal,
   useDialog,
   useModal,
+  Callout,
+  Panel,
 } from '../../lib/main.js';
-import { Callout, Panel } from '../reference-impl/main.js';
 import { ExampleForm } from './components/ExampleForm.js';
 
 export const ModalPage: FC = () => {
@@ -20,7 +21,7 @@ export const ModalPage: FC = () => {
 
   return (
     <>
-      <Panel variant="ghost">
+      <Panel>
         <Inline>
           <Button onClick={() => modal.show()}>modal</Button>
         </Inline>
@@ -39,9 +40,7 @@ export const ModalPage: FC = () => {
 
         {modal.open && (
           <Modal {...modal} heading="Hi, I'm a Modal ggg qqqq!e">
-            <Callout tone="promo">
-              You can press ESC or click away to close
-            </Callout>
+            <Callout>You can press ESC or click away to close</Callout>
             <Form>
               <FormInput autoFocus label="Name" />
             </Form>
@@ -54,7 +53,7 @@ export const ModalPage: FC = () => {
             {...modal2}
             heading="Hi, I'm a Modal2 ggg qqqq!e"
           >
-            <Callout tone="critical">You CANNOT press ESC to close</Callout>
+            <Callout>You CANNOT press ESC to close</Callout>
             <Form>
               <FormInput autoFocus label="Name" />
             </Form>
@@ -68,14 +67,14 @@ export const ModalPage: FC = () => {
             {...modal2}
             heading="Hi, I'm a Modal2 ggg qqqq!e"
           >
-            <Callout tone="critical">You CANNOT press ESC to close</Callout>
+            <Callout>You CANNOT press ESC to close</Callout>
             <ExampleForm />
             <Button onClick={() => modal3.close('dismiss')}>close</Button>
           </Modal>
         )}
 
         <Dialog {...dialog} heading="Hi, I'm a Dialog ggg qqqq!">
-          <Callout tone="info">You can press ESC to close</Callout>
+          <Callout>You can press ESC to close</Callout>
           <Form method="dialog">
             <FormInput autoFocus label="Name" />
           </Form>

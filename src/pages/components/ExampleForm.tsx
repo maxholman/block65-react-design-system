@@ -16,18 +16,18 @@ import {
   Inline,
   Strong,
   TextLink,
+  Button,
+  Heading,
 } from '../../../lib/main.js';
-import { Button, Text } from '../../reference-impl/main.js';
 
 export const ExampleForm: FC = () => (
   <Form>
     <FormInput
       type="text"
-      label={<blockquote>Type of Helicopter</blockquote>}
-      name="pronoun"
+      label="Type of Helicopter"
       defaultValue="Bell 47"
       readOnly
-      secondaryLabel="(readonly)"
+      secondaryLabel="(read only)"
       message="You are not allowed to change this field"
     />
     <FormInput
@@ -36,12 +36,12 @@ export const ExampleForm: FC = () => (
       name="first"
       defaultValue="Queen"
       description="What even is the description?"
-      message={<Text tone="warn">Don't write Queen in this field please</Text>}
+      message="Don't write Queen in this field please"
     />
     <FormInputEmail
       label="Email Address"
       name="email"
-      message={<Text tone="warn">Work email address only</Text>}
+      message="Work email address only"
     />
     <FormInputOrigin
       label="Origin"
@@ -53,7 +53,7 @@ export const ExampleForm: FC = () => (
       label="Password"
       name="password"
       defaultValue="secret"
-      message={<Text tone="critical">Tap to reveal</Text>}
+      message="Tap to reveal"
       behaviour="reveal"
     />
     <FormInputPassword
@@ -61,7 +61,7 @@ export const ExampleForm: FC = () => (
       name="password"
       defaultValue="verysecret"
       behaviour="toggle"
-      message={<Text tone="promo">Tap to toggle</Text>}
+      message="Tap to toggle"
     />
 
     <FormSelect
@@ -90,7 +90,7 @@ export const ExampleForm: FC = () => (
         label="Password"
         name="password"
         defaultValue="secret"
-        message={<Text tone="critical">Tap to reveal</Text>}
+        message="Tap to reveal"
         behaviour="reveal"
       />
       <FormInputPassword
@@ -98,7 +98,7 @@ export const ExampleForm: FC = () => (
         name="password"
         defaultValue="verysecret"
         behaviour="toggle"
-        message={<Text tone="promo">Tap to toggle</Text>}
+        message="Tap to toggle"
       />
     </Grid>
 
@@ -151,7 +151,7 @@ export const ExampleForm: FC = () => (
     <FormSelect
       multiple
       label="Other months you might like"
-      description={<Text>Choose 2 only please</Text>}
+      description="Choose 2 only please"
       defaultValue={['Feb', 'Mar']}
     >
       <option value="Jan">Jan</option>
@@ -182,12 +182,12 @@ export const ExampleForm: FC = () => (
       <FormInputCheckbox label="35+" />
       <FormInputCheckbox disabled label="Dead" />
       <FormInputCheckbox disabled checked label="Dead last" />
-      <FormInputCheckbox label={<h1>Heading Label</h1>} />
+      <FormInputCheckbox label={<Heading>Weird Heading Label</Heading>} />
     </FormInputCheckboxGroup>
-    <Block>
-      <Button tone="accent">Save</Button>
-      <Button variant="subtle">Subtle</Button>
-      <Button variant="ghost">Ghost</Button>
-    </Block>
+    <Inline>
+      <Button variant="primary">Save</Button>
+      <Button variant="default">Reset</Button>
+      <Button variant="danger">Delete</Button>
+    </Inline>
   </Form>
 );

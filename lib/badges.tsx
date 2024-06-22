@@ -1,45 +1,40 @@
-import {
-  forwardRef,
-  type FC,
-  type ForwardedRef,
-  type PropsWithChildren,
-} from 'react';
-import { badgeClassName } from './badges.css.js';
-import type { BoxProps } from './core.js';
+import { forwardRef, type ForwardedRef } from 'react';
+import { badgeVariantClassNames } from './badge.css.js';
+import { Box } from './box.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
-import { Inline, type InlineProps } from './layout.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
-import { Text } from './typography.js';
+import { Inline, type FlexProps } from './layout.js';
+import type { PurposeVariant } from './purpose.css.js';
+import type { Falsy, ReactHTMLElementsHacked } from './types.js';
 
 export type BadgeProps<T extends keyof ReactHTMLElementsHacked> =
-  PropsWithChildren<InlineProps<T>>;
+  FlexProps<T> & { variant?: PurposeVariant | Falsy };
 
 export const Badge = forwardRef(
   <T extends keyof ReactHTMLElementsHacked>(
-    { className, children, ...props }: BadgeProps<T>,
+    { children, variant = 'default', className, ...props }: BadgeProps<T>,
     forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => {
     const isStringLike = useStringLikeDetector();
 
     return (
       <Inline
-        component="span"
-        rounded="1"
-        padding="2"
-        borderWidth="2"
-        className={[badgeClassName, className]}
-        {...props}
         ref={forwardedRef}
+        component="span"
+        padding="2"
+        paddingInline="3"
+        className={[className, variant && badgeVariantClassNames[variant]]}
+        {...props}
       >
         {isStringLike(children) ? (
-          <Text
-            capSize="0"
+          <Box
+            component="span"
+            fontSize="0"
             fontWeight="medium"
             textOverflow="ellipsis"
             textAlign="center"
           >
             {children}
-          </Text>
+          </Box>
         ) : (
           children
         )}
@@ -47,12 +42,3 @@ export const Badge = forwardRef(
     );
   },
 );
-
-type BadgeLinkProps = {
-  component?: never;
-  href?: string;
-};
-
-export const BadgeLink: FC<Merge<BoxProps<'a' | 'button'>, BadgeLinkProps>> = (
-  props,
-) => <Badge component={'href' in props ? 'a' : 'button'} {...props} />;

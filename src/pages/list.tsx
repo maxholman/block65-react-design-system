@@ -8,15 +8,16 @@ import {
   List,
   ListItem,
   Secondary,
-  Text,
+  Paragraph,
   Tooltip,
+  Button,
+  Panel,
 } from '../../lib/main.js';
-import { Button, Panel } from '../reference-impl/main.js';
 
 export const ListPage: FC = () => (
   <>
-    <Panel variant="ghost">
-      <Text>
+    <Panel>
+      <Paragraph>
         Question Mark{' '}
         <Tooltip
           initialOpen
@@ -25,37 +26,40 @@ export const ListPage: FC = () => (
         >
           <HelpIcon />
         </Tooltip>
-      </Text>
+      </Paragraph>
     </Panel>
 
-    <Panel variant="ghost">
+    <Panel>
       <Grid>
-        <Panel variant="ghost">
+        <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Early Adopter Plan</Heading>
-            <Text fontSize="0">
-              <Secondary>For those who like to adopt early </Secondary>
-            </Text>
+            <Paragraph secondary fontSize="0">
+              For those who like to adopt, early
+            </Paragraph>
           </Block>
           <Block>
-            <Text>
+            <Paragraph>
               Ex veniam cillum aliquip. Irure ex sunt excepteur ea commodo duis
               reprehenderit. Qui duis cupidatat mollit laboris mollit proident
               velit magna. Excepteur anim est pariatur. Also, look at this icon{' '}
-              <Tooltip content={<span>This is more information.</span>}>
+              <Tooltip
+                initialOpen
+                content={<span>This is more information.</span>}
+              >
                 <HelpIcon />
               </Tooltip>
-            </Text>
+            </Paragraph>
           </Block>
           <Block>
-            <Text>
+            <Paragraph>
               Qui duis cupidatat mollit laboris mollit.Excepteur anim est
               pariatur.
-            </Text>
-            <Text>
+            </Paragraph>
+            <Paragraph>
               Ex veniam consectetur veniam cillum aliquip. Irure ex sunt
               excepteur ea commodo duis reprehenderit.
-            </Text>
+            </Paragraph>
           </Block>
           <Block>
             <List>
@@ -95,22 +99,22 @@ export const ListPage: FC = () => (
           <Block marginBlock="4" alignItems="center">
             <Inline>
               <Heading level="1">$18 USD</Heading>
-              <Text fontSize="0">p/m</Text>
+              <Paragraph fontSize="0">p/m</Paragraph>
             </Inline>
           </Block>
 
           <Button>Upgrade Now</Button>
         </Panel>
 
-        <Panel variant="ghost">
+        <Panel>
           <Block alignItems="center" space="5">
             <Heading level="2">Custom Plan</Heading>
-            <Text fontSize="0">
+            <Paragraph fontSize="0">
               <Secondary>Want more?</Secondary>
-            </Text>
+            </Paragraph>
           </Block>
-          <Text>We can do customised models and payment terms</Text>
-          <Text>No wuckers</Text>
+          <Paragraph>We can do customised models and payment terms</Paragraph>
+          <Paragraph>No wuckers</Paragraph>
           <Button>Contact Us</Button>
         </Panel>
       </Grid>

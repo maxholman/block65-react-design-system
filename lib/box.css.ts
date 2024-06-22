@@ -1,12 +1,11 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   style,
   styleVariants,
   type ComplexStyleRule,
   type StyleRule,
 } from '@vanilla-extract/css';
-import { genericVars } from './design-system.css.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
+import { propsVars } from './vars.css.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
 
@@ -16,20 +15,16 @@ export type Responsive<T> = Partial<{
 
 export type OrResponsive<T> = T | Responsive<T>;
 
-// accepting null means we can skip default assignments and specifically
-// disable when consuming
-export type Falsy = false | null | undefined;
-
 export type Rounded = '0' | '1' | '2' | '3' | '50';
 
-export const roundedVariants = styleVariants(genericVars.radius, (v) => [
+export const roundedVariants = styleVariants(propsVars.radius, (v) => [
   {
     borderRadius: v,
   },
 ]);
 
 export const roundedStartStartVariants = styleVariants(
-  genericVars.radius,
+  propsVars.radius,
   (v) => [
     {
       borderStartStartRadius: v,
@@ -37,25 +32,19 @@ export const roundedStartStartVariants = styleVariants(
   ],
 );
 
-export const roundedStartEndVariants = styleVariants(
-  genericVars.radius,
-  (v) => [
-    {
-      borderStartEndRadius: v,
-    },
-  ],
-);
+export const roundedStartEndVariants = styleVariants(propsVars.radius, (v) => [
+  {
+    borderStartEndRadius: v,
+  },
+]);
 
-export const roundedEndStartVariants = styleVariants(
-  genericVars.radius,
-  (v) => [
-    {
-      borderEndStartRadius: v,
-    },
-  ],
-);
+export const roundedEndStartVariants = styleVariants(propsVars.radius, (v) => [
+  {
+    borderEndStartRadius: v,
+  },
+]);
 
-export const roundedEndEndVariants = styleVariants(genericVars.radius, (v) => [
+export const roundedEndEndVariants = styleVariants(propsVars.radius, (v) => [
   {
     borderEndEndRadius: v,
   },
@@ -96,7 +85,7 @@ export type Space =
   | '14'
   | '15';
 
-export const marginVariants = styleVariants(genericVars.space, (space) => [
+export const marginVariants = styleVariants(propsVars.space, (space) => [
   {
     margin: space,
   },
@@ -158,42 +147,42 @@ function viewportStyleVariants<
 }
 
 export const viewportMarginVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     margin: space,
   }),
 );
 
 export const viewportMarginInlineVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     marginInline: space,
   }),
 );
 
 export const viewportMarginBlockVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     marginBlock: space,
   }),
 );
 
 export const viewportPaddingVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     padding: space,
   }),
 );
 
 export const viewportPaddingInlineVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     paddingInline: space,
   }),
 );
 
 export const viewportPaddingBlockVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     paddingBlock: space,
   }),
@@ -208,35 +197,29 @@ export const viewportFlexDirectionVariants = viewportStyleVariants(
 );
 
 export const marginInlineVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     marginInline: space,
   }),
 );
 
-export const paddingVariants = styleVariants(genericVars.space, (space) => [
+export const paddingVariants = styleVariants(propsVars.space, (space) => [
   {
     padding: space,
   },
 ]);
 
-export const paddingBlockVariants = styleVariants(
-  genericVars.space,
-  (space) => [
-    {
-      paddingBlock: space,
-    },
-  ],
-);
+export const paddingBlockVariants = styleVariants(propsVars.space, (space) => [
+  {
+    paddingBlock: space,
+  },
+]);
 
-export const paddingInlineVariants = styleVariants(
-  genericVars.space,
-  (space) => [
-    {
-      paddingInline: space,
-    },
-  ],
-);
+export const paddingInlineVariants = styleVariants(propsVars.space, (space) => [
+  {
+    paddingInline: space,
+  },
+]);
 
 export type Overflow = 'hidden' | 'scroll';
 
@@ -292,12 +275,34 @@ export const flexDirectionVariants = styleVariants(
   (props) => props,
 );
 
-export const spaceVariants = styleVariants(genericVars.space, (space) => ({
+export const flexGrowClassName = styleVariants<
+  Record<`${boolean}`, ComplexStyleRule>
+>({
+  true: { flexGrow: 1 },
+  false: { flexGrow: 0 },
+});
+
+export const flexShrinkClass = styleVariants<
+  Record<`${boolean}`, ComplexStyleRule>
+>({
+  true: { flexShrink: 1 },
+  false: { flexShrink: 0 },
+});
+
+export type Wrap = 'wrap' | 'nowrap' | 'wrapReverse';
+
+export const flexWrapVariants = styleVariants<Record<Wrap, ComplexStyleRule>>({
+  wrap: { flexWrap: 'wrap' },
+  nowrap: { flexWrap: 'nowrap' },
+  wrapReverse: { flexWrap: 'wrap-reverse' },
+});
+
+export const spaceVariants = styleVariants(propsVars.space, (space) => ({
   gap: space,
 }));
 
 export const viewportSpaceVariants = viewportStyleVariants(
-  genericVars.space,
+  propsVars.space,
   (space) => ({
     gap: space,
   }),
@@ -330,7 +335,7 @@ const borderBaseClass = style({
 });
 
 export const borderWidthVariants = styleVariants(
-  genericVars.border.width,
+  propsVars.border.width,
   (space) => [
     borderBaseClass,
     {
@@ -341,5 +346,5 @@ export const borderWidthVariants = styleVariants(
 
 // this must be defined after other display styles so that it takes precedence
 export const hiddenClass = style({
-  display: 'none',
+  display: 'none!important',
 });
