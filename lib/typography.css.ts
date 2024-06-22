@@ -4,8 +4,8 @@ import {
   style,
   styleVariants,
 } from '@vanilla-extract/css';
-import { globalVars } from './box.css.js';
-import { createGlobalThemeMapFn } from './css-helpers.css.js';
+import { createGlobalThemeMapFn } from './css-helpers.js';
+import { globalVars } from './ve.css.js';
 
 export type FontSize =
   | 'body'

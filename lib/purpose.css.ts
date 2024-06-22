@@ -1,5 +1,5 @@
 import { createGlobalThemeContract } from '@vanilla-extract/css';
-import { createGlobalThemeMapFn } from './css-helpers.css.js';
+import { createGlobalThemeMapFn } from './css-helpers.js';
 
 export type PurposeVariant =
   | 'default'

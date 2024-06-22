@@ -8,7 +8,6 @@ import { Box, type BoxProps } from './box.js';
 import { DesignSystemContext } from './design-system-context.js';
 import { designSystemClassName } from './design-system.css.js';
 import { resetClass } from './reset.css.js';
-import { genericThemeClassName } from './themes/generic.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
 export type DesignSystemProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
@@ -40,8 +39,6 @@ export const DesignSystem = <
       component={component}
       className={[
         className,
-
-        genericThemeClassName,
 
         // if we're in integration mode, the reset can only go around el
         integrationMode && resetClass,

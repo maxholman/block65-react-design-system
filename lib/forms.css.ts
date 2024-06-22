@@ -1,7 +1,5 @@
-import { createGlobalThemeContract, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { genericVars, globalVars } from './box.css.js';
-import { createGlobalThemeMapFn } from './css-helpers.css.js';
 import {
   focusColorVar,
   focusVisibleClassName,
@@ -10,19 +8,7 @@ import {
 } from './focusable.css.js';
 import { purposeVariantVars } from './purpose.css.js';
 import { textVariantVars } from './typography.css.js';
-
-export const formControlVars = createGlobalThemeContract(
-  {
-    border: {
-      radius: '',
-      width: '',
-    },
-    outline: {
-      width: '',
-    },
-  },
-  createGlobalThemeMapFn('control'),
-);
+import { formControlVars, generalVars, globalVars } from './ve.css.js';
 
 export const formInputPasswordIcon = style({
   aspectRatio: '1/1',
@@ -79,7 +65,7 @@ export const formInputFocusNotCheckRadioClassName = style([
   focusVisibleClassName,
   {
     outlineWidth: formControlVars.outline.width,
-    borderRadius: formControlVars.border.radius,
+    borderRadius: globalVars.border.radius,
     borderColor: purposeVariantVars.default.muted.borderColor,
     selectors: {
       '&:focus': {
@@ -169,7 +155,7 @@ export const formInputCheckboxInput = style([
   formInputCheckRadioBase,
   {
     width: '100%',
-    borderRadius: genericVars.radius[2],
+    borderRadius: generalVars.radius[2],
 
     selectors: {
       '&::before': {
@@ -242,8 +228,8 @@ export const formInputSelectWrapperSingle = style([
         width: '0.75em',
         // the same as the inline padding for inputs + border size
         marginInline: calc.add(
-          genericVars.space[5],
-          genericVars.border.width[1],
+          generalVars.space[5],
+          generalVars.border.width[1],
         ),
         display: 'block',
         aspectRatio: '2/1',

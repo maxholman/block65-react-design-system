@@ -1,12 +1,11 @@
 import {
-  createGlobalThemeContract,
   style,
   styleVariants,
   type ComplexStyleRule,
   type StyleRule,
 } from '@vanilla-extract/css';
-import { createGlobalThemeMapFn } from './css-helpers.css.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
+import { generalVars } from './ve.css.js';
 
 export type Viewport = 'mobile' | 'tablet' | 'desktop' | 'wide' | 'all';
 
@@ -18,87 +17,14 @@ export type OrResponsive<T> = T | Responsive<T>;
 
 export type Rounded = '0' | '1' | '2' | '3' | '50';
 
-export const globalVars = createGlobalThemeContract(
-  {
-    color: {
-      brand: '',
-      accent: '',
-      fgColor: '',
-      bgColor: '',
-      borderColor: '',
-      muted: {
-        fgColor: '',
-        bgColor: '',
-        borderColor: '',
-      },
-      emphasis: {
-        fgColor: '',
-        bgColor: '',
-        borderColor: '',
-      },
-    },
-    border: {
-      width: '',
-      radius: '',
-    },
-  },
-  createGlobalThemeMapFn(),
-);
-
-export const genericVars = createGlobalThemeContract(
-  {
-    border: {
-      width: {
-        '0': '',
-        '1': '',
-        '2': '',
-        '3': '',
-        '4': '',
-        '5': '',
-        '6': '',
-        '7': '',
-      },
-    },
-    radius: {
-      0: '',
-      1: '',
-      2: '',
-      3: '',
-      50: '',
-    },
-    space: {
-      '000': '',
-      '00': '',
-      '0': '',
-      '1': '',
-      '2': '',
-      '3': '',
-      '4': '',
-      '5': '',
-      '6': '',
-      '7': '',
-      '8': '',
-      '9': '',
-      '10': '',
-      '11': '',
-      '12': '',
-      '13': '',
-      '14': '',
-      '15': '',
-      '16': '',
-    },
-  },
-  createGlobalThemeMapFn('generic'),
-);
-
-export const roundedVariants = styleVariants(genericVars.radius, (v) => [
+export const roundedVariants = styleVariants(generalVars.radius, (v) => [
   {
     borderRadius: v,
   },
 ]);
 
 export const roundedStartStartVariants = styleVariants(
-  genericVars.radius,
+  generalVars.radius,
   (v) => [
     {
       borderStartStartRadius: v,
@@ -107,7 +33,7 @@ export const roundedStartStartVariants = styleVariants(
 );
 
 export const roundedStartEndVariants = styleVariants(
-  genericVars.radius,
+  generalVars.radius,
   (v) => [
     {
       borderStartEndRadius: v,
@@ -116,7 +42,7 @@ export const roundedStartEndVariants = styleVariants(
 );
 
 export const roundedEndStartVariants = styleVariants(
-  genericVars.radius,
+  generalVars.radius,
   (v) => [
     {
       borderEndStartRadius: v,
@@ -124,7 +50,7 @@ export const roundedEndStartVariants = styleVariants(
   ],
 );
 
-export const roundedEndEndVariants = styleVariants(genericVars.radius, (v) => [
+export const roundedEndEndVariants = styleVariants(generalVars.radius, (v) => [
   {
     borderEndEndRadius: v,
   },
@@ -165,7 +91,7 @@ export type Space =
   | '14'
   | '15';
 
-export const marginVariants = styleVariants(genericVars.space, (space) => [
+export const marginVariants = styleVariants(generalVars.space, (space) => [
   {
     margin: space,
   },
@@ -227,42 +153,42 @@ function viewportStyleVariants<
 }
 
 export const viewportMarginVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     margin: space,
   }),
 );
 
 export const viewportMarginInlineVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     marginInline: space,
   }),
 );
 
 export const viewportMarginBlockVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     marginBlock: space,
   }),
 );
 
 export const viewportPaddingVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     padding: space,
   }),
 );
 
 export const viewportPaddingInlineVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     paddingInline: space,
   }),
 );
 
 export const viewportPaddingBlockVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     paddingBlock: space,
   }),
@@ -277,20 +203,20 @@ export const viewportFlexDirectionVariants = viewportStyleVariants(
 );
 
 export const marginInlineVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     marginInline: space,
   }),
 );
 
-export const paddingVariants = styleVariants(genericVars.space, (space) => [
+export const paddingVariants = styleVariants(generalVars.space, (space) => [
   {
     padding: space,
   },
 ]);
 
 export const paddingBlockVariants = styleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => [
     {
       paddingBlock: space,
@@ -299,7 +225,7 @@ export const paddingBlockVariants = styleVariants(
 );
 
 export const paddingInlineVariants = styleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => [
     {
       paddingInline: space,
@@ -383,12 +309,12 @@ export const flexWrapVariants = styleVariants<Record<Wrap, ComplexStyleRule>>({
   wrapReverse: { flexWrap: 'wrap-reverse' },
 });
 
-export const spaceVariants = styleVariants(genericVars.space, (space) => ({
+export const spaceVariants = styleVariants(generalVars.space, (space) => ({
   gap: space,
 }));
 
 export const viewportSpaceVariants = viewportStyleVariants(
-  genericVars.space,
+  generalVars.space,
   (space) => ({
     gap: space,
   }),
@@ -421,7 +347,7 @@ const borderBaseClass = style({
 });
 
 export const borderWidthVariants = styleVariants(
-  genericVars.border.width,
+  generalVars.border.width,
   (space) => [
     borderBaseClass,
     {

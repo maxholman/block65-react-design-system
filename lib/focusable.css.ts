@@ -1,5 +1,5 @@
 import { createVar, style } from '@vanilla-extract/css';
-import { genericVars } from './box.css.js';
+import { generalVars } from './ve.css.js';
 
 export const focusColorVar = createVar();
 export const focusRadiusVar = createVar();
@@ -12,8 +12,8 @@ export const focusableClassName = style({
     //   contrastSchemeVars.swatch.v7.c,
     //   colorThemeVars.tones.accent.h,
     // ),
-    [focusRadiusVar]: genericVars.radius['1'],
-    [focusWidthVar]: genericVars.border.width['2'],
+    [focusRadiusVar]: generalVars.radius['1'],
+    [focusWidthVar]: generalVars.border.width['2'],
   },
 });
 
@@ -24,7 +24,7 @@ export const focusVisibleClassName = style([
       '&:focus-visible': {
         outlineStyle: 'solid',
         outlineWidth: focusWidthVar,
-        outlineOffset: genericVars.space['00'],
+        outlineOffset: generalVars.space['00'],
         outlineColor: focusColorVar,
       },
     },

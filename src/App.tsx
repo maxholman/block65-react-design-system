@@ -18,6 +18,7 @@ import './global.scss'; // SCSS version, includes inter vars
 
 import './inter.css.js'; // Vanilla extract version
 import './theme.css.js'; // Vanilla extract version
+import './defaults.css.js'; // Vanilla extract version
 
 const AppInner = () => {
   const { colorScheme } = useSettings();

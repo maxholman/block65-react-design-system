@@ -1,18 +1,12 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
-import openPropsTokens from 'open-props/style-dictionary-tokens';
-import { globalVars } from '../lib/box.css.js';
 import { buttonVariantVars } from '../lib/button.css.js';
 import { purposeVariantVars } from '../lib/purpose.css.js';
+import { globalVars } from '../lib/ve.css.js';
 import * as primer from './primer.js';
 
 const darkSelector =
   'html[data-color-scheme="dark"], html:not([data-color-scheme])';
 const lightSelector = 'html[data-color-scheme="light"]';
-
-createGlobalTheme(':root', globalVars.border, {
-  radius: openPropsTokens.radius[2].value,
-  width: openPropsTokens.border.size[1].value,
-});
 
 // general colors dark mode
 

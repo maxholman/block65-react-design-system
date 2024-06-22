@@ -1,29 +1,13 @@
-import {
-  createGlobalThemeContract,
-  createVar,
-  style,
-  styleVariants,
-} from '@vanilla-extract/css';
-import { createGlobalThemeMapFn } from './css-helpers.css.js';
+import { createVar, style, styleVariants } from '@vanilla-extract/css';
 import { purposeVariantVars } from './purpose.css.js';
-
-export const calloutVars = createGlobalThemeContract(
-  {
-    border: {
-      radius: '',
-      width: '',
-    },
-    padding: '',
-  },
-  createGlobalThemeMapFn('callout-default'),
-);
+import { calloutVars, globalVars } from './ve.css.js';
 
 const calloutClassName = style({
   display: 'grid',
   gridTemplateColumns: 'auto 1fr',
   borderStyle: 'solid',
-  borderRadius: calloutVars.border.radius,
-  borderWidth: calloutVars.border.width,
+  borderRadius: globalVars.border.radius,
+  borderWidth: globalVars.border.width,
   padding: calloutVars.padding,
 });
 

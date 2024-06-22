@@ -1,25 +1,10 @@
-import {
-  createGlobalThemeContract,
-  fallbackVar,
-  style,
-  styleVariants,
-} from '@vanilla-extract/css';
-import { createGlobalThemeMapFn } from './css-helpers.css.js';
+import { fallbackVar, style, styleVariants } from '@vanilla-extract/css';
 import { purposeVariantVars } from './purpose.css.js';
-
-export const badgeVars = createGlobalThemeContract(
-  {
-    border: {
-      radius: '',
-      width: '',
-    },
-  },
-  createGlobalThemeMapFn('badge-default'),
-);
+import { globalVars } from './ve.css.js';
 
 const badgeClassName = style({
-  borderRadius: badgeVars.border.radius,
-  borderWidth: badgeVars.border.width,
+  borderRadius: globalVars.border.radius,
+  borderWidth: globalVars.border.width,
   borderStyle: 'solid',
 });
 

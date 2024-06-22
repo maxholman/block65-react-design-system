@@ -4,9 +4,9 @@ import {
   styleVariants,
 } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
-import { genericVars } from './box.css.js';
-import { createGlobalThemeMapFn } from './css-helpers.css.js';
+import { createGlobalThemeMapFn } from './css-helpers.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
+import { generalVars, globalVars } from './ve.css.js';
 
 export type ButtonVariant =
   | 'default'
@@ -23,16 +23,6 @@ const buttonStateVarsShape = {
   hover: { bgColor: '', fgColor: '', borderColor: '' },
   rest: { bgColor: '', fgColor: '', borderColor: '' },
 } satisfies Record<ButtonState, { bgColor: ''; fgColor: ''; borderColor: '' }>;
-
-export const buttonVars = createGlobalThemeContract(
-  {
-    border: {
-      radius: '',
-      width: '',
-    },
-  },
-  createGlobalThemeMapFn('button-default'),
-);
 
 export const buttonVariantVars = createGlobalThemeContract(
   {
@@ -86,8 +76,8 @@ export const buttonClassName = style([
   {
     cursor: 'pointer',
     userSelect: 'none',
-    borderRadius: buttonVars.border.radius,
-    borderWidth: buttonVars.border.width,
+    borderRadius: globalVars.border.radius,
+    borderWidth: globalVars.border.width,
     selectors: {
       '&[disabled]': {
         pointerEvents: 'none',
@@ -98,8 +88,8 @@ export const buttonClassName = style([
       // keyboard
       '&:focus-visible': {
         outlineStyle: 'solid',
-        outlineOffset: genericVars.border.width['3'],
-        outlineWidth: genericVars.border.width['3'],
+        outlineOffset: generalVars.border.width['3'],
+        outlineWidth: generalVars.border.width['3'],
         // outlineColor: oklch(
         //   contrastSchemeVars.swatch.k0.l,
         //   contrastSchemeVars.swatch.k0.c,
@@ -135,5 +125,5 @@ export const busyButtonClass = style({
 });
 
 export const inlineBleedClass = style({
-  marginBlock: calc(genericVars.space[0]).negate().toString(),
+  marginBlock: calc(generalVars.space[0]).negate().toString(),
 });

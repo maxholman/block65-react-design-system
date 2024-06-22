@@ -1,6 +1,3 @@
-// import './scss/defaults.scss'; // scss version
-import './defaults.css.js'; // vanilla extract version
-
 export * from './design-system.js';
 export * from './box.js';
 export * from './grid.js';

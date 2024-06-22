@@ -51,6 +51,6 @@
     }
   ],
   "files": ["./vite-env.d.ts"],
-  "include": ["./lib", "./src"],
+  "include": ["./lib", "./src", "./bin"],
   "exclude": ["./dist", "./build", "node_modules"]
 }

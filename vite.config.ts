@@ -21,6 +21,7 @@ export default defineConfig((config) => {
         entry: {
           main: resolve(__dirname, 'lib/main.ts'),
           hooks: resolve(__dirname, 'lib/hooks/main.ts'),
+          token: resolve(__dirname, 'bin/token.ts'),
         },
         formats: ['es'],
       },

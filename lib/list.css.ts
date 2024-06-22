@@ -1,5 +1,5 @@
 import { createVar, style, styleVariants } from '@vanilla-extract/css';
-import { genericVars } from './box.css.js';
+import { generalVars } from './ve.css.js';
 
 export const listColsVar = createVar();
 
@@ -19,7 +19,7 @@ export const listItemClass = style({
   },
 });
 
-export const listVariants = styleVariants(genericVars.space, (space) => [
+export const listVariants = styleVariants(generalVars.space, (space) => [
   listClass,
   {
     gap: space,
