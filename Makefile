@@ -10,27 +10,26 @@ node_modules: package.json pnpm-lock.yaml
 	pnpm install
 	touch $@
 
-dist/bin/token.js: build bin/token.ts ${SRCS}
+dist/bin/token.js: node_modules build bin/token.ts ${SRCS}
 	pnpm exec tsc -b
 
-dist/bin/open-props-tokens.js: bin/open-props-tokens.ts
+dist/bin/open-props-tokens.js: node_modules bin/open-props-tokens.ts
 	pnpm exec tsc -b
+	pnpm exec prettier --write $@
 
 lib/generated/open-props-tokens.ts: dist/bin/open-props-tokens.js
 	node $< > $@
 
-build/global.css: dist/bin/token.js
+build/global.css: node_modules dist/bin/token.js
 	node dist/bin/token.js -t css > $@
+	pnpm exec prettier --write $@
 
-build/global.scss: dist/bin/token.js
-	node dist/bin/token.js -t scss > $@
-
-tsconfig.json: tsconfig-vite.src.json
+tsconfig.json: node_modules tsconfig-vite.src.json
 	pnpm exec tsc -p tsconfig-vite.src.json --showConfig 1> $@
 
-src/rds.module.scss: bin/token.js build
+src/rds.module.scss: node_modules bin/token.js build
 	node $< > $@
-	prettier --write $@
+	pnpm exec prettier --write $@
 
 build: $(SRCS) node_modules vite.config.ts vite-env.d.ts
 	NODE_ENV=production pnpm exec vite build
@@ -71,7 +70,7 @@ distclean: clean
 	rm -rf node_modules
 
 .PHONY: test
-test: lint dist build
+test: node_modules lint dist build
 	DEBUG_BUILD=true pnpm vitest run
 	DEBUG_BUILD=true pnpm vitest run
 	pnpm exec bundlesize
