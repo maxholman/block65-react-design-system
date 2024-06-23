@@ -16,7 +16,8 @@ export default defineConfig((config) => {
     ],
     build: {
       outDir: 'build',
-      target: 'es2022',
+      target: 'esnext',
+
 
       lib: {
         entry: {
@@ -28,6 +29,7 @@ export default defineConfig((config) => {
       },
       rollupOptions: {
         external: [
+          /^@floating-ui\/.*/,
           'react',
           'react-dom',
           'react/jsx-runtime',
@@ -41,10 +43,15 @@ export default defineConfig((config) => {
               filename: 'build/visualizer.html',
             }),
         ],
+        output: {
+          preserveModules: true, // presume the consuming library is going to bundle it
+        },
       },
 
       sourcemap: true,
 
+      // we have these on even with modules, so that we can estimate the size of
+      // the library when bundled
       minify: !debugBuild,
       cssMinify: !debugBuild,
     },

@@ -50,6 +50,6 @@
     }
   ],
   "files": ["./vite-env.d.ts"],
-  "include": ["./lib", "./src", "./bin"],
+  "include": ["./lib", "./src"],
   "exclude": ["./dist", "./build", "node_modules"]
 }

@@ -7,6 +7,8 @@ import {
   textVariantVars,
 } from './vars.css.js';
 
+export type LinkVariant = 'strong' | 'normal' | 'weak' | 'none';
+
 const textLinkClassName = style([
   focusableClassName,
   {

@@ -4,13 +4,13 @@ import { createWriteStream } from 'node:fs';
 import { PassThrough } from 'node:stream';
 import { parseArgs } from 'node:util';
 import { camelCase } from 'change-case';
+import { leafNodeMapper, type PathStr, type VarFn, vargEx } from './utils.js';
 import {
   formControlTokens,
   globalTokens,
   panelTokens,
   propsTokens,
-} from '../lib/defaults.js';
-import { leafNodeMapper, type PathStr, type VarFn, vargEx } from './utils.js';
+} from '#defaults';
 import {
   badgeVars,
   badgeVarsMapFnPrefix,

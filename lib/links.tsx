@@ -2,9 +2,10 @@ import type { FC } from 'react';
 import { Box, type BoxProps } from './box.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import { textLinkVariantClassNames } from './link.css.js';
+import type { LinkVariant } from './link.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
-export type LinkVariant = 'strong' | 'normal' | 'weak' | 'none';
+export type { LinkVariant };
 
 export type TextLinkCommonProps = {
   variant?: LinkVariant;

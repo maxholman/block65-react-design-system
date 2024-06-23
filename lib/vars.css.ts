@@ -1,6 +1,6 @@
 import { createGlobalThemeContract } from '@vanilla-extract/css';
 import { createGlobalThemeMapFn } from './css-helpers.js';
-import type { LinkVariant } from './links.js';
+import type { LinkVariant } from './link.css.js';
 import type { FontSize, FontWeight, LineHeight } from './typography.css.js';
 
 export const globalVarsMapFnPrefix = '';

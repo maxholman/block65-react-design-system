@@ -4,7 +4,7 @@ SRCS = $(wildcard lib/**)
 .DEFAULT_GOAL := all
 
 .PHONY: all
-all: build dist build/global.scss build/global.css
+all: build dist build/global.scss build/global.css lib/generated/open-props-tokens.ts
 
 node_modules: package.json pnpm-lock.yaml
 	pnpm install
@@ -12,6 +12,12 @@ node_modules: package.json pnpm-lock.yaml
 
 dist/bin/token.js: build bin/token.ts ${SRCS}
 	pnpm exec tsc -b
+
+dist/bin/open-props-tokens.js: bin/open-props-tokens.ts
+	pnpm exec tsc -b
+
+lib/generated/open-props-tokens.ts: dist/bin/open-props-tokens.js
+	node $< > $@
 
 build/global.css: dist/bin/token.js
 	node dist/bin/token.js -t css > $@

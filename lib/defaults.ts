@@ -1,5 +1,5 @@
 import type { MapLeafNodes } from '@vanilla-extract/css';
-import openPropsTokens from 'open-props/style-dictionary-tokens' with { type: 'json' };
+import * as openPropsTokens from './generated/open-props-tokens.js';
 import {
   type formControlVars,
   globalVars,
@@ -12,8 +12,8 @@ import {
 // this is just a partial definition for the borders
 export const globalTokens = {
   border: {
-    radius: openPropsTokens.radius[2].value,
-    width: openPropsTokens.border.size[1].value,
+    radius: openPropsTokens.radius2,
+    width: openPropsTokens.borderSize2,
   },
 } satisfies MapLeafNodes<Pick<typeof globalVars, 'border'>, string>;
 
@@ -122,13 +122,13 @@ export const defaultTextLinkTokens = {
 
 export const formControlTokens = {
   outline: {
-    width: openPropsTokens.border.size[1].value,
+    width: openPropsTokens.borderSize1,
   },
 } satisfies MapLeafNodes<typeof formControlVars, string>;
 
 export const panelTokens = {
   padding: {
-    inline: openPropsTokens.size[3].value,
+    inline: openPropsTokens.size3,
     block: propsVars.space['4'],
   },
 } satisfies MapLeafNodes<typeof panelVars, string>;

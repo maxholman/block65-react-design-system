@@ -26,7 +26,7 @@ module.exports = {
       },
     },
     {
-      files: ['bin/*.js', '*.config.*'],
+      files: ['bin/*.ts', '*.config.*'],
       rules: {
         'import/no-extraneous-dependencies': [
           'error',
