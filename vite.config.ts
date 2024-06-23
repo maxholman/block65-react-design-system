@@ -56,9 +56,6 @@ export default defineConfig((config) => {
       },
 
       sourcemap: true,
-
-      // we have these on even with modules, so that we can estimate the size of
-      // the library when bundled
       minify: !debugBuild,
       cssMinify: !debugBuild,
     },
