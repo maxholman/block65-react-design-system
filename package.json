@@ -38,6 +38,8 @@
   "files": [
     "dist/lib/**/*.d.ts",
     "lib/scss/**/*.scss",
+    "build/*/*.js",
+    "build/*/*.js.map",
     "build/*.js",
     "build/*.js.map",
     "build/*.css",
