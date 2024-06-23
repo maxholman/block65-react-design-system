@@ -11,19 +11,19 @@
 @mixin vars {
   font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
-  line-height: var(--text-lineHeight-regular);
+  line-height: var(--text-lineHeight-normal);
   font-style: normal;
   font-variation-settings: 'slnt' 0;
 
   --text-fontWeight-bold: 700;
   --text-fontWeight-semibold: 600;
   --text-fontWeight-medium: 500;
-  --text-fontWeight-regular: 400;
+  --text-fontWeight-normal: 400;
   --text-fontWeight-light: 300;
 
   --text-letterSpacing-tight: -0.05em;
 
-  --text-lineHeight-regular: initial;
+  --text-lineHeight-normal: initial;
   --text-lineHeight-paragraph: 1.6;
   --text-lineHeight-heading: 1.3;
 

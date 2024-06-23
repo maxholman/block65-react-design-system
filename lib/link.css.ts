@@ -1,9 +1,15 @@
 import { style, styleVariants } from '@vanilla-extract/css';
 import { focusRadiusVar, focusableClassName } from './focusable.css.js';
-import { textVariantVars } from './typography.css.js';
-import { propsVars, globalVars } from './vars.css.js';
+import {
+  globalVars,
+  propsVars,
+  textLinkVars,
+  textVariantVars,
+} from './vars.css.js';
 
-const linkClassName = style([
+export type LinkVariant = 'strong' | 'normal' | 'weak' | 'none';
+
+const textLinkClassName = style([
   focusableClassName,
   {
     cursor: 'pointer',
@@ -19,7 +25,7 @@ const linkClassName = style([
   },
 ]);
 
-export const linkStyleVariant = styleVariants(
+export const linkStyleVariantLegacy = styleVariants(
   {
     strong: {
       color: globalVars.color.accent,
@@ -41,7 +47,7 @@ export const linkStyleVariant = styleVariants(
     },
   } as const,
   (cssProps) => [
-    linkClassName,
+    textLinkClassName,
     {
       selectors: {
         '&:hover': {
@@ -49,6 +55,27 @@ export const linkStyleVariant = styleVariants(
         },
       },
       ...cssProps,
+    },
+  ],
+);
+
+export const textLinkVariantClassNames = styleVariants(
+  textLinkVars,
+  (variant) => [
+    textLinkClassName,
+    {
+      fontWeight: variant.fontWeight,
+      color: variant.rest.fgColor,
+      textDecoration: variant.rest.textDecoration,
+      selectors: {
+        '&:hover,&:focus': {
+          color: variant.hover.fgColor,
+        },
+        '&:active': {
+          color: variant.hover.fgColor,
+          textDecoration: variant.hover.textDecoration,
+        },
+      },
     },
   ],
 );

@@ -9,6 +9,10 @@
     "#vars": {
       "types": "./dist/lib/vars.d.ts",
       "default": "./build/vars.js"
+    },
+    "#defaults": {
+      "types": "./dist/lib/defaults.d.ts",
+      "default": "./dist/lib/defaults.js"
     }
   },
   "exports": {
@@ -44,10 +48,6 @@
     "preversion": "make test"
   },
   "dependencies": {
-    "@floating-ui/dom": "^1.6.5",
-    "@floating-ui/react": "^0.26.17",
-    "@floating-ui/react-dom": "^2.1.0",
-    "@vanilla-extract/dynamic": "^2.1.1",
     "clsx": "^2.1.1",
     "js-cookie": "^3.0.5"
   },
@@ -75,6 +75,7 @@
     "@typescript-eslint/parser": "^7.13.1",
     "@vanilla-extract/css": "^1.15.3",
     "@vanilla-extract/css-utils": "^0.1.4",
+    "@vanilla-extract/dynamic": "^2.1.1",
     "@vanilla-extract/sprinkles": "^1.6.2",
     "@vanilla-extract/vite-plugin": "^4.0.11",
     "@vitejs/plugin-react": "^4.3.1",
@@ -96,20 +97,25 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-intl": "^6.6.8",
+    "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.77.6",
     "the-new-css-reset": "^1.11.2",
+    "ts-morph": "^22.0.0",
     "type-fest": "^4.20.1",
     "typescript": "^5.5.2",
     "vite": "^5.3.1",
     "vitest": "^1.6.0"
   },
   "peerDependencies": {
+    "@floating-ui/dom": "^1.6.5",
+    "@floating-ui/react": "^0.26.17",
+    "@floating-ui/react-dom": "^2.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vanilla-extract/css": "^1.15.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-intl": "^6.6.8",
-    "@vanilla-extract/css": "^1.15.3"
+    "react-intl": "^6.6.8"
   },
   "peerDependenciesMeta": {
     "react-intl": {

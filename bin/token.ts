@@ -6,19 +6,21 @@ import { parseArgs } from 'node:util';
 import { camelCase } from 'change-case';
 import { leafNodeMapper, type PathStr, type VarFn, vargEx } from './utils.js';
 import {
+  formControlTokens,
+  globalTokens,
+  panelTokens,
+  propsTokens,
+} from '#defaults';
+import {
   badgeVars,
   badgeVarsMapFnPrefix,
   buttonVars,
   buttonVarsMapFnPrefix,
-  formControlTokens,
   formControlVarsMapFnPrefix,
-  globalTokens,
   globalVars,
   globalVarsMapFnPrefix,
-  panelTokens,
   panelVars,
   panelVarsMapFnPrefix,
-  propsTokens,
   propsVars,
   propsVarsMapFnPrefix,
 } from '#vars';

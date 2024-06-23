@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import hash from '@emotion/hash';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vitest/config';
 
 const debugBuild = !!process.env.DEBUG_BUILD;
@@ -15,7 +16,7 @@ export default defineConfig((config) => {
     ],
     build: {
       outDir: 'build',
-      target: 'es2022',
+      target: 'esnext',
 
       lib: {
         entry: {
@@ -27,27 +28,29 @@ export default defineConfig((config) => {
       },
       rollupOptions: {
         external: [
+          /^@floating-ui\/.*/,
           'react',
           'react-dom',
           'react/jsx-runtime',
           'react/jsx-dev-runtime', // when importing built assets in dev
           'react-intl',
         ],
+        plugins: [
+          config.mode === 'development' &&
+            visualizer({
+              open: true,
+              filename: 'build/visualizer.html',
+            }),
+        ],
         output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-            if (id.includes('hooks')) {
-              return 'hooks';
-            }
-            return 'lib';
-          },
+          preserveModules: true, // presume the consuming library is going to bundle it
         },
       },
 
       sourcemap: true,
 
+      // we have these on even with modules, so that we can estimate the size of
+      // the library when bundled
       minify: !debugBuild,
       cssMinify: !debugBuild,
     },

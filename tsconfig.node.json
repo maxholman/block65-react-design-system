@@ -1,6 +1,8 @@
 {
   "extends": ["@tsconfig/node22", "@tsconfig/strictest"],
   "compilerOptions": {
+    "target": "esnext",
+    "lib": ["esnext"],
     "composite": true,
     "noPropertyAccessFromIndexSignature": false,
     "skipLibCheck": true,
@@ -9,5 +11,6 @@
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true
   },
-  "files": ["vite.config.ts"]
+  "files": ["vite.config.ts"],
+  "include": ["./bin"]
 }

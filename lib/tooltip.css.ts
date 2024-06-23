@@ -1,6 +1,5 @@
 import { style } from '@vanilla-extract/css';
-import { textVariantVars } from './typography.css.js';
-import { propsVars, globalVars } from './vars.css.js';
+import { propsVars, globalVars, textVariantVars } from './vars.css.js';
 
 export const tooltipClassName = style({
   width: 'max-content',

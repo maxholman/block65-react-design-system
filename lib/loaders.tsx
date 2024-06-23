@@ -37,7 +37,7 @@ export const Spinner: FC<SpinnerProps> = ({
       spinnerClass,
       delay
         ? spinnerAnimationVariantClassNames.delay
-        : spinnerAnimationVariantClassNames.regular,
+        : spinnerAnimationVariantClassNames.normal,
       inline && inlineSpinnerClass,
       !inline && spinnerSizeVariantClassNames[size],
     ]}

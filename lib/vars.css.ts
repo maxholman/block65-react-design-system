@@ -1,9 +1,7 @@
-import {
-  createGlobalThemeContract,
-  type MapLeafNodes,
-} from '@vanilla-extract/css';
-import openPropsTokens from 'open-props/style-dictionary-tokens';
+import { createGlobalThemeContract } from '@vanilla-extract/css';
 import { createGlobalThemeMapFn } from './css-helpers.js';
+import type { LinkVariant } from './link.css.js';
+import type { FontSize, FontWeight, LineHeight } from './typography.css.js';
 
 export const globalVarsMapFnPrefix = '';
 export const globalVars = createGlobalThemeContract(
@@ -32,13 +30,6 @@ export const globalVars = createGlobalThemeContract(
   },
   createGlobalThemeMapFn(globalVarsMapFnPrefix),
 );
-// this is just a partial definition for the borders
-export const globalTokens = {
-  border: {
-    radius: openPropsTokens.radius[2].value,
-    width: openPropsTokens.border.size[1].value,
-  },
-} satisfies MapLeafNodes<Pick<typeof globalVars, 'border'>, string>;
 
 /**
  * Props vars
@@ -89,51 +80,6 @@ export const propsVars = createGlobalThemeContract(
   },
   createGlobalThemeMapFn(propsVarsMapFnPrefix),
 );
-export const propsTokens = {
-  border: {
-    width: {
-      0: '0',
-      1: '0.05rem',
-      2: '0.15rem',
-      3: '0.2rem',
-      4: '0.3rem',
-      5: '0.5rem',
-      6: '0.75rem',
-      7: '1rem',
-    },
-  },
-  radius: {
-    // these are tuned to be distinguished at DPR3 but may not be different at
-    // lower densities they are rem so they dont scale with text size NOTE: we
-    // may need some `em` ones if we need fully curved buttons "pill" style
-    0: '0',
-    1: '0.125rem',
-    2: '0.25rem',
-    3: '0.5rem',
-    50: '50%',
-  },
-  space: {
-    '000': '-.5rem',
-    '00': '-.25rem',
-    '0': '0rem',
-    '1': '.125rem',
-    '2': '.25rem',
-    '3': '.375rem',
-    '4': '.5rem',
-    '5': '.625rem',
-    '6': '.75rem',
-    '7': '1rem',
-    '8': '1.25rem',
-    '9': '1.5rem',
-    '10': '1.75rem',
-    '11': '2rem',
-    '12': '3rem',
-    '13': '5rem',
-    '14': '7.5rem',
-    '15': '10rem',
-    '16': '15rem',
-  },
-} satisfies MapLeafNodes<typeof propsVars, string>;
 
 /**
  * Callout vars
@@ -195,12 +141,6 @@ export const panelVars = createGlobalThemeContract(
   },
   createGlobalThemeMapFn(panelVarsMapFnPrefix),
 );
-export const panelTokens = {
-  padding: {
-    inline: openPropsTokens.size[3].value,
-    block: propsVars.space['4'],
-  },
-} satisfies MapLeafNodes<typeof panelVars, string>;
 
 /**
  * Form control vars
@@ -218,8 +158,123 @@ export const formControlVars = createGlobalThemeContract(
   },
   createGlobalThemeMapFn(formControlVarsMapFnPrefix),
 );
-export const formControlTokens = {
-  outline: {
-    width: openPropsTokens.border.size[1].value,
+
+/**
+ * text variant vars
+ */
+
+const capSizeShape = {
+  fontSize: '',
+  lineHeight: '',
+  capHeightTrim: '',
+  baselineTrim: '',
+};
+
+const fontSizeShape = {
+  fontSize: '',
+  lineHeight: '',
+};
+
+export const textVarsMapFnPrefix = 'text';
+export const textVariantVars = createGlobalThemeContract(
+  {
+    lineHeight: {
+      normal: '',
+      paragraph: '',
+      heading: '',
+    } satisfies Record<LineHeight, string>,
+    fontWeight: {
+      light: '', // normally 300
+      normal: '', // normally 400
+      medium: '', // normally 500
+      semibold: '', // normally 600
+      bold: '', // normally 700
+    } satisfies Record<FontWeight, string>,
+    size: {
+      body: fontSizeShape,
+      small: fontSizeShape,
+      '00': fontSizeShape,
+      '0': fontSizeShape,
+      '1': fontSizeShape,
+      '2': fontSizeShape,
+      '3': fontSizeShape,
+      '4': fontSizeShape,
+      '5': fontSizeShape,
+      '6': fontSizeShape,
+    } satisfies Record<FontSize, typeof fontSizeShape>,
+    capSize: {
+      body: capSizeShape,
+      small: capSizeShape,
+      '00': capSizeShape,
+      '0': capSizeShape,
+      '1': capSizeShape,
+      '2': capSizeShape,
+      '3': capSizeShape,
+      '4': capSizeShape,
+      '5': capSizeShape,
+      '6': capSizeShape,
+    } satisfies Record<FontSize, typeof capSizeShape>,
   },
-} satisfies MapLeafNodes<typeof formControlVars, string>;
+  createGlobalThemeMapFn(textVarsMapFnPrefix),
+);
+
+/**
+ * text links vars
+ */
+export const textLinkVarsMapFnPrefix = 'textlink';
+export const textLinkVars = createGlobalThemeContract(
+  {
+    strong: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+    normal: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+    weak: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+    none: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+  } satisfies Record<
+    LinkVariant,
+    {
+      fontWeight: string;
+      rest: { fgColor: string; textDecoration: string };
+      hover: { fgColor: string; textDecoration: string };
+    }
+  >,
+  createGlobalThemeMapFn(textLinkVarsMapFnPrefix),
+);

@@ -7,8 +7,12 @@ import {
   focusableClassName,
 } from './focusable.css.js';
 import { purposeVariantVars } from './purpose.css.js';
-import { textVariantVars } from './typography.css.js';
-import { formControlVars, propsVars, globalVars } from './vars.css.js';
+import {
+  formControlVars,
+  globalVars,
+  propsVars,
+  textVariantVars,
+} from './vars.css.js';
 
 export const formInputPasswordIcon = style({
   aspectRatio: '1/1',

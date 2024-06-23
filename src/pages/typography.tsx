@@ -229,14 +229,17 @@ export const TypographyPage: FC = () => (
       <Heading level="2">Links are linky</Heading>
 
       <ExactText>
-        Sometimes I like to look at <TextLink href="/buttons">buttons</TextLink>
+        Sometimes I like to look at{' '}
+        <TextLink variant="strong" href="/buttons">
+          strong buttons
+        </TextLink>
         ,{' '}
-        <TextLink href="/panels" weight="strong">
-          panels
+        <TextLink href="/panels" variant="normal">
+          normal panels
         </TextLink>{' '}
         or{' '}
-        <TextLink href="/badges" weight="weak">
-          badges
+        <TextLink href="/badges" variant="weak">
+          weak badges
         </TextLink>
       </ExactText>
     </Panel>

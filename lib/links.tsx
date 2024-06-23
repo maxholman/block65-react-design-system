@@ -1,13 +1,14 @@
 import type { FC } from 'react';
 import { Box, type BoxProps } from './box.js';
 import { differentOriginLinkProps } from './component-utils.js';
-import { linkStyleVariant } from './link.css.js';
+import { textLinkVariantClassNames } from './link.css.js';
+import type { LinkVariant } from './link.css.js';
 import type { Merge, ReactHTMLElementsHacked } from './types.js';
 
-export type LinkWeight = 'strong' | 'normal' | 'weak' | 'none';
+export type { LinkVariant };
 
 export type TextLinkCommonProps = {
-  weight?: LinkWeight;
+  variant?: LinkVariant;
   safe?: boolean;
 };
 
@@ -21,14 +22,14 @@ export type TextLinkProps<T extends keyof ReactHTMLElementsHacked = 'a'> =
  *
  */
 export const TextLink: FC<TextLinkProps> = ({
-  weight = 'normal',
+  variant = 'normal',
   safe = true,
   className,
   ...props
 }) => (
   <Box
     component="a"
-    className={[className, linkStyleVariant[weight]]}
+    className={[className, textLinkVariantClassNames[variant]]}
     {...(safe && props.href && differentOriginLinkProps(props.href))}
     {...props}
   />
