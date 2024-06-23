@@ -33,17 +33,17 @@
     "./vanilla-extract": {
       "types": "./dist/lib/vars.d.ts",
       "default": "./build/vars.js"
+    },
+    "./open-props": {
+      "types": "./dist/lib/generated/open-props-tokens.d.ts",
+      "default": "./dist/lib/generated/open-props-tokens.js"
     }
   },
   "files": [
     "dist/lib/**/*.d.ts",
+    "dist/lib/generated/*",
     "lib/scss/**/*.scss",
-    "build/*/*.js",
-    "build/*/*.js.map",
-    "build/*.js",
-    "build/*.js.map",
-    "build/*.css",
-    "build/*.scss"
+    "build/**/*"
   ],
   "scripts": {
     "prepare": "husky",

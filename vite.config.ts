@@ -14,6 +14,7 @@ export default defineConfig((config) => {
       react(),
       vanillaExtractPlugin(debugBuild ? { identifiers: 'debug' } : {}),
     ],
+
     build: {
       outDir: 'build',
       target: 'esnext',
@@ -28,7 +29,6 @@ export default defineConfig((config) => {
       },
       rollupOptions: {
         external: [
-          /^@floating-ui\/.*/,
           'react',
           'react-dom',
           'react/jsx-runtime',
@@ -43,14 +43,19 @@ export default defineConfig((config) => {
             }),
         ],
         output: {
-          preserveModules: true, // presume the consuming library is going to bundle it
+          manualChunks(id) {
+            if (id.includes('@floating-ui')) {
+              return 'floating-ui';
+            }
+            if (id.includes('node_modules')) {
+              return 'vendor';
+            }
+            return 'main';
+          },
         },
       },
 
       sourcemap: true,
-
-      // we have these on even with modules, so that we can estimate the size of
-      // the library when bundled
       minify: !debugBuild,
       cssMinify: !debugBuild,
     },
@@ -70,9 +75,10 @@ export default defineConfig((config) => {
       },
     },
 
+    // this is for better dx with the import paths and hmr
     optimizeDeps: {
       exclude: [
-        new URL('./build/main.js', import.meta.url).pathname,
+        new URL('./build/defaults.js', import.meta.url).pathname,
         new URL('./build/vars.js', import.meta.url).pathname,
         new URL('./build/style.css', import.meta.url).pathname,
       ],

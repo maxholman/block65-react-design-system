@@ -9,7 +9,6 @@ import {
   textVariantVars,
 } from './vars.css.js';
 
-// this is just a partial definition for the borders
 export const globalTokens = {
   border: {
     radius: openPropsTokens.radius2,

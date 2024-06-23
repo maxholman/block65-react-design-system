@@ -1,5 +1,5 @@
 
-SRCS = $(wildcard lib/**)
+SRCS = $(wildcard lib/**/*.ts)
 
 .DEFAULT_GOAL := all
 
@@ -10,14 +10,13 @@ node_modules: package.json pnpm-lock.yaml
 	pnpm install
 	touch $@
 
-dist/bin/token.js: node_modules bin/token.ts build ${SRCS}
+dist/bin/token.js: dist
+
+dist/bin/open-props-tokens.js: lib/generated/open-props-tokens.ts
 	pnpm exec tsc -b
 
-dist/bin/open-props-tokens.js: node_modules bin/open-props-tokens.ts
-	pnpm exec tsc -b
-
-lib/generated/open-props-tokens.ts: dist/bin/open-props-tokens.js
-	node $< > $@
+lib/generated/open-props-tokens.ts:
+	node dist/bin/open-props-tokens.js > $@
 	pnpm exec prettier --write $@
 
 # SCSS
@@ -39,7 +38,7 @@ build: $(SRCS) node_modules vite.config.ts vite-env.d.ts
 	touch $@
 
 .PHONY: build-watch
-build-watch: $(SRCS) node_modules vite.config.ts vite-env.d.ts
+build-watch: node_modules vite.config.ts vite-env.d.ts
 	pnpm exec vite build --mode=development --clearScreen false
 	touch -c build
 
@@ -59,8 +58,9 @@ dev:
 debug:
 	DEBUG_BUILD=1 $(MAKE)
 
-dist: node_modules tsconfig.json
+dist: $(SRCS) node_modules tsconfig.json
 	pnpm exec tsc -b
+	touch $@
 
 .PHONY: clean
 clean: node_modules tsconfig.json
@@ -77,6 +77,7 @@ test: node_modules lint dist build
 	DEBUG_BUILD=true pnpm vitest run
 	DEBUG_BUILD=true pnpm vitest run
 	pnpm exec bundlesize
+	$(MAKE) smoketest
 
 .PHONY: lint
 lint: node_modules
@@ -87,3 +88,10 @@ lint: node_modules
 pretty: node_modules
 	pnpm exec eslint --fix .
 	pnpm exec prettier --write .
+
+.PHONY: smoketest
+smoketest: all
+	node -e 'import("@block65/react-design-system")'
+	node -e 'import("@block65/react-design-system/vanilla-extract")'
+	node -e 'import("@block65/react-design-system/hooks")'
+	node -e 'import("@block65/react-design-system/open-props")'
