@@ -39,7 +39,7 @@ export const LoginPattern: FC = () => (
     </Button>
     <Inline justifyContent="center">
       <Paragraph secondary>
-        <TextLink weight="none">Don't have an account? Sign up</TextLink>
+        <TextLink variant="none">Don't have an account? Sign up</TextLink>
       </Paragraph>
     </Inline>
   </Block>

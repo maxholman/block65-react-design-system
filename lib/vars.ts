@@ -1,12 +1,18 @@
 import {
+  defaultTextLinkTokens,
+  defaultTextTokens,
   formControlTokens,
-  formControlVars,
   globalTokens,
-  globalVars,
   panelTokens,
-  panelVars,
   propsTokens,
+} from './defaults.js';
+import {
+  formControlVars,
+  globalVars,
+  panelVars,
   propsVars,
+  textLinkVars,
+  textVariantVars,
 } from './vars.css.js';
 
 export {
@@ -14,15 +20,11 @@ export {
   badgeVarsMapFnPrefix,
   buttonVars,
   buttonVarsMapFnPrefix,
-  formControlTokens,
   formControlVarsMapFnPrefix,
-  globalTokens,
   globalVars,
   globalVarsMapFnPrefix,
-  panelTokens,
   panelVars,
   panelVarsMapFnPrefix,
-  propsTokens,
   propsVars,
   propsVarsMapFnPrefix,
 } from './vars.css.js';
@@ -34,6 +36,10 @@ export const vars = {
   panel: panelVars,
   formControl: formControlVars,
   props: propsVars,
+  text: {
+    fontWeight: textVariantVars.fontWeight,
+  },
+  textLinks: textLinkVars,
 };
 
 export const tokens = {
@@ -43,4 +49,8 @@ export const tokens = {
   panel: panelTokens,
   formControl: formControlTokens,
   props: propsTokens,
+  text: {
+    fontWeight: defaultTextTokens.fontWeight,
+  },
+  textLinks: defaultTextLinkTokens,
 };

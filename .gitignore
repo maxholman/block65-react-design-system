@@ -4,3 +4,4 @@ build
 coverage
 
 *.tsbuildinfo
+vite.config.ts.timestamp*

@@ -16,7 +16,7 @@ export const spinnerAnimationVariantClassNames = styleVariants({
     opacity: 0,
     animation: [rotateAnimation, fadeInAnimation].join(','),
   },
-  regular: {
+  normal: {
     animation: rotateAnimation,
   },
 });

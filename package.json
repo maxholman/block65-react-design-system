@@ -96,6 +96,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-intl": "^6.6.8",
+    "rollup-plugin-visualizer": "^5.12.0",
     "sass": "^1.77.6",
     "the-new-css-reset": "^1.11.2",
     "type-fest": "^4.20.1",
@@ -106,10 +107,10 @@
   "peerDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vanilla-extract/css": "^1.15.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-intl": "^6.6.8",
-    "@vanilla-extract/css": "^1.15.3"
+    "react-intl": "^6.6.8"
   },
   "peerDependenciesMeta": {
     "react-intl": {

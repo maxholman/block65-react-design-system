@@ -1,7 +1,7 @@
 import { precomputeValues } from '@capsizecss/core';
 import interFontMetrics from '@capsizecss/metrics/inter';
 import { createGlobalTheme, globalStyle } from '@vanilla-extract/css';
-import { textVariantVars } from '../lib/typography.css.js';
+import { textVariantVars } from '../lib/vars.css.js';
 
 function interCapSize(capHeightPx: number) {
   return precomputeValues({
@@ -59,9 +59,9 @@ createGlobalTheme(globalSelector, textVariantVars.lineHeight, {
 });
 
 createGlobalTheme(globalSelector, textVariantVars.fontWeight, {
-  bold: '700',
   light: '300',
-  medium: '500',
   normal: '400',
+  medium: '500',
   semibold: '600',
+  bold: '700',
 });

@@ -4,21 +4,23 @@ import { createWriteStream } from 'node:fs';
 import { PassThrough } from 'node:stream';
 import { parseArgs } from 'node:util';
 import { camelCase } from 'change-case';
+import {
+  formControlTokens,
+  globalTokens,
+  panelTokens,
+  propsTokens,
+} from '../lib/defaults.js';
 import { leafNodeMapper, type PathStr, type VarFn, vargEx } from './utils.js';
 import {
   badgeVars,
   badgeVarsMapFnPrefix,
   buttonVars,
   buttonVarsMapFnPrefix,
-  formControlTokens,
   formControlVarsMapFnPrefix,
-  globalTokens,
   globalVars,
   globalVarsMapFnPrefix,
-  panelTokens,
   panelVars,
   panelVarsMapFnPrefix,
-  propsTokens,
   propsVars,
   propsVarsMapFnPrefix,
 } from '#vars';

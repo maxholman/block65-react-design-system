@@ -31,7 +31,7 @@ const RandomMenu: FC<ThisMenuProps> = (props) => (
       <MenuItem key={idx} label={(arr.length - idx).toString()}>
         <Paragraph>
           <Link href="/modals">
-            <TextLink weight="weak" padding="3">
+            <TextLink variant="weak" padding="3">
               {arr.length - idx} Bottles
             </TextLink>
             {/* <ButtonLink rounded="none">{arr.length - idx} Bottles</ButtonLink> */}
@@ -59,7 +59,7 @@ const CustomActivatorMenu: FC<ThisMenuProps> = (props) => (
       <MenuItem key={idx} label={(arr.length - idx).toString()}>
         <Paragraph>
           <Link href="/modals">
-            <TextLink weight="weak" padding="3">
+            <TextLink variant="weak" padding="3">
               {arr.length - idx} Bottles
             </TextLink>
           </Link>

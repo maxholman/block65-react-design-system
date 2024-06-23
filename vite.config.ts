@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import hash from '@emotion/hash';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vitest/config';
 
 const debugBuild = !!process.env.DEBUG_BUILD;
@@ -33,17 +34,13 @@ export default defineConfig((config) => {
           'react/jsx-dev-runtime', // when importing built assets in dev
           'react-intl',
         ],
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-            if (id.includes('hooks')) {
-              return 'hooks';
-            }
-            return 'lib';
-          },
-        },
+        plugins: [
+          config.mode === 'development' &&
+            visualizer({
+              open: true,
+              filename: 'build/visualizer.html',
+            }),
+        ],
       },
 
       sourcemap: true,
