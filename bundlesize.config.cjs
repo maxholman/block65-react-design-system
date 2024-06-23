@@ -4,8 +4,8 @@
 module.exports = {
   files: [
     {
-      path: 'build/*.js',
-      maxSize: '46 kB',
+      path: 'build/**/*.js',
+      maxSize: '40 kB',
       compression: 'brotli',
     },
     {
