@@ -18,7 +18,6 @@ export default defineConfig((config) => {
       outDir: 'build',
       target: 'esnext',
 
-
       lib: {
         entry: {
           main: resolve(__dirname, 'lib/main.ts'),
