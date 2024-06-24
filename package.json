@@ -9,10 +9,6 @@
     "#vars": {
       "types": "./dist/lib/vars.d.ts",
       "default": "./build/vars.js"
-    },
-    "#defaults": {
-      "types": "./dist/lib/defaults.d.ts",
-      "default": "./dist/lib/defaults.js"
     }
   },
   "exports": {
