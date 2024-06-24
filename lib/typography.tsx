@@ -16,23 +16,22 @@ export type { FontSize, FontWeight, LineHeight, TextWrap };
 
 export type CommonTextProps = {
   secondary?: true | Falsy;
+  flexDirection?: never;
+  flexWrap?: never;
+  space?: never;
+  overflow?: never;
 };
 
 export type ParagraphProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
-  Omit<
-    Merge<BoxProps<T>, CommonTextProps>,
-    'flexDirection' | 'flexWrap' | 'space' | 'overflow' | 'capSize'
-  >;
+  Merge<BoxProps<T>, CommonTextProps>;
 
 export type ExactTextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
-  Omit<
-    Merge<BoxProps<T>, CommonTextProps>,
-    'flexDirection' | 'flexWrap' | 'space' | 'overflow' | 'fontSize'
-  >;
+  Merge<BoxProps<T>, CommonTextProps>;
 
-export type HeadingProps = ParagraphProps & {
-  level?: HeadingLevel;
-};
+export type HeadingProps<T extends keyof ReactHTMLElementsHacked = 'p'> = Merge<
+  BoxProps<T>,
+  CommonTextProps & { level?: HeadingLevel }
+>;
 
 function headingProps(level: HeadingLevel): HeadingProps {
   switch (level) {

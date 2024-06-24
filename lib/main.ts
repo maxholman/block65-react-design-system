@@ -22,4 +22,4 @@ export * from './icons.js';
 export * from './virtual.js';
 export * from './panel.js';
 
-export type { ReactHTMLElementsHacked } from './types.js';
+export type { ReactHTMLElementsHacked, Falsy } from './types.js';

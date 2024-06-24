@@ -1,29 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-restricted-syntax */
 import { createWriteStream } from 'node:fs';
 import { PassThrough } from 'node:stream';
 import { parseArgs } from 'node:util';
 import { camelCase } from 'change-case';
 import { leafNodeMapper, type PathStr, type VarFn, vargEx } from './utils.js';
-import {
-  formControlTokens,
-  globalTokens,
-  panelTokens,
-  propsTokens,
-} from '#defaults';
-import {
-  badgeVars,
-  badgeVarsMapFnPrefix,
-  buttonVars,
-  buttonVarsMapFnPrefix,
-  formControlVarsMapFnPrefix,
-  globalVars,
-  globalVarsMapFnPrefix,
-  panelVars,
-  panelVarsMapFnPrefix,
-  propsVars,
-  propsVarsMapFnPrefix,
-} from '#vars';
+import { vars, tokens } from '#vars';
 
 const {
   values: { type, outputPath },
@@ -40,19 +21,14 @@ const {
     },
   },
 });
+
 /**
  * vars
  */
 const knownVars = new Map<VarFn, { path: PathStr }>();
-for (const [vars, prefix] of [
-  [globalVars, globalVarsMapFnPrefix] as const,
-  [propsVars, propsVarsMapFnPrefix] as const,
-  [panelVars, panelVarsMapFnPrefix] as const,
-  [badgeVars, badgeVarsMapFnPrefix] as const,
-  [buttonVars, buttonVarsMapFnPrefix] as const,
-]) {
+for (const [prefix, v] of Object.entries(vars)) {
   leafNodeMapper(
-    vars,
+    v,
     (path, value) => {
       knownVars.set(value, { path });
     },
@@ -60,19 +36,14 @@ for (const [vars, prefix] of [
   );
 }
 
-/**
+/*
  * tokens
  */
 const knownTokens = new Map<VarFn, { value: string }>();
 
-for (const [vars, prefix] of [
-  [globalTokens, globalVarsMapFnPrefix] as const,
-  [propsTokens, propsVarsMapFnPrefix] as const,
-  [panelTokens, panelVarsMapFnPrefix] as const,
-  [formControlTokens, formControlVarsMapFnPrefix] as const,
-]) {
+for (const [prefix, t] of Object.entries(tokens)) {
   leafNodeMapper(
-    vars,
+    t,
     (path, value) => {
       knownTokens.set(path, { value });
     },

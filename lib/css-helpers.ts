@@ -1,8 +1,8 @@
 import { calc } from '@vanilla-extract/css-utils';
 
-export function createGlobalThemeMapFn(prefix = '') {
-  const delim = '-';
-  const fullPrefix = prefix ? `${prefix}${delim}` : '';
+export function createGlobalThemeMapFn<T extends string>(prefix: T) {
+  const delim = '-' as const;
+  const fullPrefix = prefix ? (`${prefix}${delim}` as const) : ('' as const);
   return Object.assign(
     (value: string | null, path: Array<string>) =>
       `${fullPrefix}${value}${path.join(delim)}`,

@@ -9,10 +9,6 @@
     "#vars": {
       "types": "./dist/lib/vars.d.ts",
       "default": "./build/vars.js"
-    },
-    "#defaults": {
-      "types": "./dist/lib/defaults.d.ts",
-      "default": "./dist/lib/defaults.js"
     }
   },
   "exports": {
@@ -50,6 +46,9 @@
     "preversion": "make test"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.6.5",
+    "@floating-ui/react": "^0.26.17",
+    "@floating-ui/react-dom": "^2.1.0",
     "clsx": "^2.1.1",
     "js-cookie": "^3.0.5"
   },
@@ -109,9 +108,6 @@
     "vitest": "^1.6.0"
   },
   "peerDependencies": {
-    "@floating-ui/dom": "^1.6.5",
-    "@floating-ui/react": "^0.26.17",
-    "@floating-ui/react-dom": "^2.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vanilla-extract/css": "^1.15.3",
