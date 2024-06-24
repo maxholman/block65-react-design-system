@@ -67,12 +67,15 @@ export const ExactText = forwardRef(
   ),
 );
 
-export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, secondary, level = '3', ...props }, ref) => {
+export const Heading = forwardRef(
+  <T extends keyof ReactHTMLElementsHacked>(
+    { className, secondary, level = '3', ...props }: HeadingProps<T>,
+    forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
+  ) => {
     const { secondary: headingIsSecondary, ...rest } = headingProps(level);
     return (
       <Box
-        ref={ref}
+        ref={forwardedRef}
         lineHeight="heading"
         className={[
           className,
@@ -86,10 +89,13 @@ export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   },
 );
 
-export const Paragraph = forwardRef<HTMLParagraphElement, ParagraphProps>(
-  ({ className, secondary, ...props }, ref) => (
+export const Paragraph = forwardRef(
+  <T extends keyof ReactHTMLElementsHacked = 'p'>(
+    { className, secondary, ...props }: ParagraphProps<T>,
+    forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
+  ) => (
     <Box
-      ref={ref}
+      ref={forwardedRef}
       className={[className, secondary && secondaryClassName]}
       lineHeight="paragraph"
       component="p"
