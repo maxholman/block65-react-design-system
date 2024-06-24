@@ -1,56 +1,61 @@
+import type { CSSVarFunction, MapLeafNodes } from '@vanilla-extract/css';
 import {
+  defaultGlobalTokens,
+  defaultPropsTokens,
   defaultTextLinkTokens,
   defaultTextTokens,
   formControlTokens,
-  globalTokens,
   panelTokens,
-  propsTokens,
-} from './defaults.js';
+} from './tokens.js';
 import {
-  formControlVars,
-  globalVars,
-  panelVars,
-  propsVars,
-  textLinkVars,
-  textVariantVars,
-} from './vars.css.js';
-
-export {
-  badgeVars,
-  badgeVarsMapFnPrefix,
   buttonVars,
   buttonVarsMapFnPrefix,
+  calloutVars,
+  calloutVarsMapFnPrefix,
+  formControlVars,
   formControlVarsMapFnPrefix,
   globalVars,
   globalVarsMapFnPrefix,
   panelVars,
   panelVarsMapFnPrefix,
+  type Prefix,
   propsVars,
   propsVarsMapFnPrefix,
+  textLinkVars,
+  textLinkVarsMapFnPrefix,
+  textVariantVars,
+  textVarsMapFnPrefix,
 } from './vars.css.js';
 
+type TokenPrimitive = string | CSSVarFunction;
+type TokenValue = TokenPrimitive | TokenObject;
+type TokenObject = { [Key in string]: TokenValue };
+
+type VarValue = CSSVarFunction | VarObject;
+type VarObject = { [Key in string]: VarValue };
+
 export const vars = {
-  global: {
-    border: globalVars.border,
-  },
-  panel: panelVars,
-  formControl: formControlVars,
-  props: propsVars,
-  text: {
-    fontWeight: textVariantVars.fontWeight,
-  },
-  textLinks: textLinkVars,
-};
+  [globalVarsMapFnPrefix]: globalVars,
+  [panelVarsMapFnPrefix]: panelVars,
+  [formControlVarsMapFnPrefix]: formControlVars,
+  [propsVarsMapFnPrefix]: propsVars,
+  [textVarsMapFnPrefix]: textVariantVars,
+  [textLinkVarsMapFnPrefix]: textLinkVars,
+  [buttonVarsMapFnPrefix]: buttonVars,
+  [calloutVarsMapFnPrefix]: calloutVars,
+  // [badgeVarsMapFnPrefix]: badgeVars,
+} satisfies Record<Prefix, VarObject>;
 
 export const tokens = {
-  global: {
-    border: globalTokens.border,
+  [globalVarsMapFnPrefix]: defaultGlobalTokens,
+  [panelVarsMapFnPrefix]: panelTokens,
+  [formControlVarsMapFnPrefix]: formControlTokens,
+  [propsVarsMapFnPrefix]: defaultPropsTokens,
+  [textVarsMapFnPrefix]: defaultTextTokens,
+  [textLinkVarsMapFnPrefix]: defaultTextLinkTokens,
+  [buttonVarsMapFnPrefix]: {},
+  [calloutVarsMapFnPrefix]: {
+    padding: '1rem',
   },
-  panel: panelTokens,
-  formControl: formControlTokens,
-  props: propsTokens,
-  text: {
-    fontWeight: defaultTextTokens.fontWeight,
-  },
-  textLinks: defaultTextLinkTokens,
-};
+  // [badgeVarsMapFnPrefix]: {} as TokenObject,
+} satisfies MapLeafNodes<typeof vars, TokenValue>;

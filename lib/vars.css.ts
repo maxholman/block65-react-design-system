@@ -3,7 +3,18 @@ import { createGlobalThemeMapFn } from './css-helpers.js';
 import type { LinkVariant } from './link.css.js';
 import type { FontSize, FontWeight, LineHeight } from './typography.css.js';
 
-export const globalVarsMapFnPrefix = '';
+export type Prefix =
+  | ''
+  | 'callout'
+  | 'button'
+  | 'panel'
+  | 'formControl'
+  | 'props'
+  | 'text'
+  | 'textlink';
+// | 'badge'
+
+export const globalVarsMapFnPrefix = '' satisfies Prefix;
 export const globalVars = createGlobalThemeContract(
   {
     color: {
@@ -34,7 +45,7 @@ export const globalVars = createGlobalThemeContract(
 /**
  * Props vars
  */
-export const propsVarsMapFnPrefix = 'props';
+export const propsVarsMapFnPrefix = 'props' satisfies Prefix;
 export const propsVars = createGlobalThemeContract(
   {
     border: {
@@ -84,7 +95,7 @@ export const propsVars = createGlobalThemeContract(
 /**
  * Callout vars
  */
-export const calloutVarsMapFnPrefix = 'callout';
+export const calloutVarsMapFnPrefix = 'callout' satisfies Prefix;
 export const calloutVars = createGlobalThemeContract(
   {
     // border: {
@@ -99,7 +110,7 @@ export const calloutVars = createGlobalThemeContract(
 /**
  * Button vars
  */
-export const buttonVarsMapFnPrefix = 'button';
+export const buttonVarsMapFnPrefix = 'button' satisfies Prefix;
 export const buttonVars = createGlobalThemeContract(
   {
     // border: {
@@ -110,24 +121,24 @@ export const buttonVars = createGlobalThemeContract(
   createGlobalThemeMapFn(buttonVarsMapFnPrefix),
 );
 
-/**
- * Badge vars
- */
-export const badgeVarsMapFnPrefix = 'badge';
-export const badgeVars = createGlobalThemeContract(
-  {
-    // border: {
-    //   radius: '',
-    //   width: '',
-    // },
-  },
-  createGlobalThemeMapFn(badgeVarsMapFnPrefix),
-);
+// /**
+//  * Badge vars
+//  */
+// export const badgeVarsMapFnPrefix = 'badge' satisfies Prefix;
+// export const badgeVars = createGlobalThemeContract(
+//   {
+//     // border: {
+//     //   radius: '',
+//     //   width: '',
+//     // },
+//   },
+//   createGlobalThemeMapFn(badgeVarsMapFnPrefix),
+// );
 
 /**
  * Panel vars
  */
-export const panelVarsMapFnPrefix = 'panel';
+export const panelVarsMapFnPrefix = 'panel' satisfies Prefix;
 export const panelVars = createGlobalThemeContract(
   {
     // border: {
@@ -145,7 +156,7 @@ export const panelVars = createGlobalThemeContract(
 /**
  * Form control vars
  */
-export const formControlVarsMapFnPrefix = 'formControl';
+export const formControlVarsMapFnPrefix = 'formControl' satisfies Prefix;
 export const formControlVars = createGlobalThemeContract(
   {
     // border: {
@@ -175,7 +186,7 @@ const fontSizeShape = {
   lineHeight: '',
 };
 
-export const textVarsMapFnPrefix = 'text';
+export const textVarsMapFnPrefix = 'text' satisfies Prefix;
 export const textVariantVars = createGlobalThemeContract(
   {
     lineHeight: {
@@ -221,7 +232,7 @@ export const textVariantVars = createGlobalThemeContract(
 /**
  * text links vars
  */
-export const textLinkVarsMapFnPrefix = 'textlink';
+export const textLinkVarsMapFnPrefix = 'textlink' satisfies Prefix;
 export const textLinkVars = createGlobalThemeContract(
   {
     strong: {
