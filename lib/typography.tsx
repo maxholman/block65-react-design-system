@@ -33,7 +33,9 @@ export type HeadingProps<T extends keyof ReactHTMLElementsHacked = 'p'> = Merge<
   CommonTextProps & { level?: HeadingLevel }
 >;
 
-function headingProps(level: HeadingLevel): HeadingProps {
+function headingProps(
+  level: HeadingLevel,
+): Partial<HeadingProps<`h${HeadingLevel}`>> {
   switch (level) {
     case '1':
       return { fontSize: '5', fontWeight: 'bold' };
@@ -44,9 +46,17 @@ function headingProps(level: HeadingLevel): HeadingProps {
     case '4':
       return { fontSize: '2', fontWeight: 'semibold' };
     case '5':
-      return { fontSize: '1', secondary: true, fontWeight: 'medium' };
+      return {
+        fontSize: '1',
+        secondary: true,
+        fontWeight: 'medium',
+      };
     case '6':
-      return { fontSize: '0', secondary: true, fontWeight: 'medium' };
+      return {
+        fontSize: '0',
+        secondary: true,
+        fontWeight: 'medium',
+      };
     default:
       return {};
   }
@@ -68,20 +78,26 @@ export const ExactText = forwardRef(
 );
 
 export const Heading = forwardRef(
-  <T extends keyof ReactHTMLElementsHacked>(
-    { className, secondary, level = '3', ...props }: HeadingProps<T>,
+  <T extends keyof ReactHTMLElementsHacked = 'h3'>(
+    {
+      level = '3',
+      component = `h${level}`,
+      className,
+      secondary,
+      ...props
+    }: HeadingProps<T>,
     forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => {
     const { secondary: headingIsSecondary, ...rest } = headingProps(level);
     return (
       <Box
+        component={component}
         ref={forwardedRef}
         lineHeight="heading"
         className={[
           className,
           (headingIsSecondary || secondary) && secondaryClassName,
         ]}
-        component={`h${level}`}
         {...rest}
         {...props}
       />
@@ -91,14 +107,14 @@ export const Heading = forwardRef(
 
 export const Paragraph = forwardRef(
   <T extends keyof ReactHTMLElementsHacked = 'p'>(
-    { className, secondary, ...props }: ParagraphProps<T>,
+    { component = 'p', className, secondary, ...props }: ParagraphProps<T>,
     forwardedRef: ForwardedRef<ReactHTMLElementsHacked[T]>,
   ) => (
     <Box
+      component={component}
       ref={forwardedRef}
       className={[className, secondary && secondaryClassName]}
       lineHeight="paragraph"
-      component="p"
       {...props}
     />
   ),
