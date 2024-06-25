@@ -1,4 +1,3 @@
-import type { MapLeafNodes } from '@vanilla-extract/css';
 import type { buttonVariantVars } from './button.css.js';
 import type { calloutVars } from './callout.css.js';
 import type { formControlVars } from './forms.css.js';
@@ -7,6 +6,7 @@ import type { textLinkVars } from './link.css.js';
 import type { panelVars } from './panel.css.js';
 import type { purposeVariantVars } from './purpose.css.js';
 import { textVariantVars } from './typography.css.js';
+import type { MapLeafNodes } from './vanilla-extract-css-types.js';
 import { globalVars, type propsVars } from './vars.css.js';
 
 export const defaultGlobalTokens = {

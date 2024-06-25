@@ -1,4 +1,3 @@
-import type { CSSVarFunction, MapLeafNodes } from '@vanilla-extract/css';
 import { badgeVars, badgeVarsMapFnPrefix } from './badge.css.js';
 import { buttonVariantMapFnPrefix, buttonVariantVars } from './button.css.js';
 import { calloutVars, calloutVarsMapFnPrefix } from './callout.css.js';
@@ -20,6 +19,10 @@ import {
   purposeVariantTokens,
 } from './tokens.js';
 import { textVariantVars, textVarsMapFnPrefix } from './typography.css.js';
+import type {
+  CSSVarFunction,
+  MapLeafNodes,
+} from './vanilla-extract-css-types.js';
 import {
   globalVars,
   globalVarsMapFnPrefix,
