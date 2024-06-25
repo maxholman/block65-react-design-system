@@ -1,7 +1,7 @@
 import { style, type StyleRule } from '@vanilla-extract/css';
 import { precomputedViewportRules, type Viewport } from './box.css.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { propsVars, globalVars } from './vars.css.js';
+import { propsVars, baseVars } from './vars.css.js';
 
 // WARN: ordering is important here as it affects the generated CSS
 // it should be the opposite order of viewportSizes (I think)
@@ -76,10 +76,10 @@ export const modalClassName = style({
 });
 
 export const modalInnerClassName = style({
-  backgroundColor: globalVars.color.bgColor,
-  borderRadius: globalVars.border.radius,
-  outlineColor: globalVars.color.borderColor,
-  outlineWidth: globalVars.border.width,
+  backgroundColor: baseVars.color.bgColor,
+  borderRadius: baseVars.border.radius,
+  outlineColor: baseVars.color.borderColor,
+  outlineWidth: baseVars.border.width,
   outlineStyle: 'solid',
 });
 

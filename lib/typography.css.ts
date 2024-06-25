@@ -5,7 +5,7 @@ import {
   styleVariants,
 } from '@vanilla-extract/css';
 import { createGlobalThemeMapFn } from './css-helpers.js';
-import { globalVars, type Prefix } from './vars.css.js';
+import { baseVars, type Prefix } from './vars.css.js';
 
 export type FontSize =
   | 'body'
@@ -84,7 +84,7 @@ export const textVariantVars = createGlobalThemeContract(
 );
 
 export const secondaryClassName = style({
-  color: globalVars.color.muted.fgColor,
+  color: baseVars.color.muted.fgColor,
 });
 
 export const strongClassName = style({
@@ -122,5 +122,5 @@ export const lineHeightVariantClassNames = styleVariants(
 );
 
 export const textClassName = style({
-  color: globalVars.color.fgColor,
+  color: baseVars.color.fgColor,
 });

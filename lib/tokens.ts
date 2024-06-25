@@ -7,7 +7,7 @@ import type { panelVars } from './panel.css.js';
 import type { purposeVariantVars } from './purpose.css.js';
 import { textVariantVars } from './typography.css.js';
 import type { MapLeafNodes } from './vanilla-extract-css-types.js';
-import { globalVars, type propsVars } from './vars.css.js';
+import { baseVars, type propsVars } from './vars.css.js';
 
 export const defaultGlobalTokens = {
   border: {
@@ -31,7 +31,7 @@ export const defaultGlobalTokens = {
       borderColor: openPropsTokens.gray5,
     },
   },
-} satisfies MapLeafNodes<typeof globalVars, string>;
+} satisfies MapLeafNodes<typeof baseVars, string>;
 
 export const defaultPropsTokens = {
   border: {
@@ -206,33 +206,33 @@ export const defaultTextLinkTokens = {
   strong: {
     fontWeight: textVariantVars.fontWeight.medium,
     rest: {
-      fgColor: globalVars.color.accent,
+      fgColor: baseVars.color.accent,
       textDecoration: 'underline',
     },
     hover: {
-      fgColor: globalVars.color.accent,
+      fgColor: baseVars.color.accent,
       textDecoration: 'underline',
     },
   },
   normal: {
     fontWeight: textVariantVars.fontWeight.normal,
     rest: {
-      fgColor: globalVars.color.accent,
+      fgColor: baseVars.color.accent,
       textDecoration: 'none',
     },
     hover: {
-      fgColor: globalVars.color.accent,
+      fgColor: baseVars.color.accent,
       textDecoration: 'underline',
     },
   },
   weak: {
     fontWeight: textVariantVars.fontWeight.normal,
     rest: {
-      fgColor: globalVars.color.fgColor,
+      fgColor: baseVars.color.fgColor,
       textDecoration: 'underline',
     },
     hover: {
-      fgColor: globalVars.color.accent,
+      fgColor: baseVars.color.accent,
       textDecoration: 'underline',
     },
   },

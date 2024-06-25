@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { globalVars } from './vars.css.js';
+import { baseVars } from './vars.css.js';
 
 export const designSystemClassName = style({
-  color: globalVars.color.fgColor,
-  backgroundColor: globalVars.color.bgColor,
+  color: baseVars.color.fgColor,
+  backgroundColor: baseVars.color.bgColor,
 });

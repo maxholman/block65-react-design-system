@@ -6,7 +6,7 @@ import {
 } from '@vanilla-extract/css';
 import { createGlobalThemeMapFn } from './css-helpers.js';
 import { purposeVariantVars } from './purpose.css.js';
-import { globalVars, type Prefix } from './vars.css.js';
+import { baseVars, type Prefix } from './vars.css.js';
 
 /**
  * Badge vars
@@ -24,8 +24,8 @@ export const badgeVars = createGlobalThemeContract(
 );
 
 const badgeClassName = style({
-  borderRadius: globalVars.border.radius,
-  borderWidth: globalVars.border.width,
+  borderRadius: baseVars.border.radius,
+  borderWidth: baseVars.border.width,
   borderStyle: 'solid',
 });
 

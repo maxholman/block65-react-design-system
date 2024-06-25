@@ -13,8 +13,8 @@ export type Prefix =
   | 'textlink'
   | 'badge';
 
-export const globalVarsMapFnPrefix = 'base' satisfies Prefix;
-export const globalVars = createGlobalThemeContract(
+export const baseVarsMapFnPrefix = 'base' satisfies Prefix;
+export const baseVars = createGlobalThemeContract(
   {
     color: {
       brand: '',
@@ -38,7 +38,7 @@ export const globalVars = createGlobalThemeContract(
       radius: '',
     },
   },
-  createGlobalThemeMapFn(globalVarsMapFnPrefix),
+  createGlobalThemeMapFn(baseVarsMapFnPrefix),
 );
 
 /**

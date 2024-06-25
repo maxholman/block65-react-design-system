@@ -24,12 +24,19 @@ import type {
   MapLeafNodes,
 } from './vanilla-extract-css-types.js';
 import {
-  globalVars,
-  globalVarsMapFnPrefix,
+  baseVars,
+  baseVarsMapFnPrefix,
   type Prefix,
   propsVars,
   propsVarsMapFnPrefix,
 } from './vars.css.js';
+
+// useful for creating utility functions downstream
+export type {
+  CSSVarFunction,
+  MapLeafNodes,
+  Contract,
+} from './vanilla-extract-css-types.js';
 
 type TokenPrimitive = string | CSSVarFunction;
 type TokenValues = TokenPrimitive | TokenObject;
@@ -39,7 +46,7 @@ type VarValues = CSSVarFunction | VarObject;
 type VarObject = { [Key in string]: VarValues };
 
 export const vars = {
-  [globalVarsMapFnPrefix]: globalVars,
+  [baseVarsMapFnPrefix]: baseVars,
   [panelVarsMapFnPrefix]: panelVars,
   [formControlVarsMapFnPrefix]: formControlVars,
   [propsVarsMapFnPrefix]: propsVars,
@@ -52,7 +59,7 @@ export const vars = {
 } satisfies Record<Prefix, VarObject>;
 
 export const tokens = {
-  [globalVarsMapFnPrefix]: defaultGlobalTokens,
+  [baseVarsMapFnPrefix]: defaultGlobalTokens,
   [panelVarsMapFnPrefix]: panelTokens,
   [formControlVarsMapFnPrefix]: formControlTokens,
   [propsVarsMapFnPrefix]: defaultPropsTokens,

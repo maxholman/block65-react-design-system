@@ -6,7 +6,7 @@ import {
 import { createGlobalThemeMapFn } from './css-helpers.js';
 import { focusableClassName, focusRadiusVar } from './focusable.css.js';
 import { textVariantVars } from './typography.css.js';
-import { globalVars, type Prefix, propsVars } from './vars.css.js';
+import { baseVars, type Prefix, propsVars } from './vars.css.js';
 
 export type LinkVariant = 'strong' | 'normal' | 'weak' | 'none';
 
@@ -90,11 +90,11 @@ const textLinkClassName = style([
 export const linkStyleVariantLegacy = styleVariants(
   {
     strong: {
-      color: globalVars.color.accent,
+      color: baseVars.color.accent,
       fontWeight: textVariantVars.fontWeight.medium,
     },
     normal: {
-      color: globalVars.color.accent,
+      color: baseVars.color.accent,
     },
     none: {
       // color: linkColorVar,
@@ -103,7 +103,7 @@ export const linkStyleVariantLegacy = styleVariants(
       textDecoration: 'underline',
       selectors: {
         '&:hover': {
-          color: globalVars.color.accent,
+          color: baseVars.color.accent,
         },
       },
     },

@@ -1,7 +1,7 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
 import { buttonVariantVars } from '../lib/button.css.js';
 import { purposeVariantVars } from '../lib/purpose.css.js';
-import { globalVars } from '../lib/vars.css.js';
+import { baseVars } from '../lib/vars.css.js';
 import * as primer from './primer.js';
 import { vars } from '#vars';
 
@@ -11,7 +11,7 @@ const lightSelector = 'html[data-color-scheme="light"]';
 
 // general colors dark mode
 
-createGlobalTheme(darkSelector, globalVars.color, {
+createGlobalTheme(darkSelector, baseVars.color, {
   brand: primer.orange2,
   accent: primer.blue5,
   fgColor: primer.gray1,
@@ -30,7 +30,7 @@ createGlobalTheme(darkSelector, globalVars.color, {
 });
 
 // general colors light mode
-createGlobalTheme(lightSelector, globalVars.color, {
+createGlobalTheme(lightSelector, baseVars.color, {
   brand: primer.orange6,
   accent: primer.blue6,
   fgColor: primer.gray9,

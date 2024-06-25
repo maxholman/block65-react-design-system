@@ -6,7 +6,7 @@ import {
 import { calc } from '@vanilla-extract/css-utils';
 import { createGlobalThemeMapFn } from './css-helpers.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { propsVars, globalVars, type Prefix } from './vars.css.js';
+import { propsVars, baseVars, type Prefix } from './vars.css.js';
 
 export type ButtonVariant =
   | 'default'
@@ -77,8 +77,8 @@ export const buttonClassName = style([
   {
     cursor: 'pointer',
     userSelect: 'none',
-    borderRadius: globalVars.border.radius,
-    borderWidth: globalVars.border.width,
+    borderRadius: baseVars.border.radius,
+    borderWidth: baseVars.border.width,
     selectors: {
       '&[disabled]': {
         pointerEvents: 'none',
