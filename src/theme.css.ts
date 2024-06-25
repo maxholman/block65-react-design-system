@@ -1,7 +1,4 @@
 import { createGlobalTheme } from '@vanilla-extract/css';
-import { buttonVariantVars } from '../lib/button.css.js';
-import { purposeVariantVars } from '../lib/purpose.css.js';
-import { baseVars } from '../lib/vars.css.js';
 import * as primer from './primer.js';
 import { vars } from '#vars';
 
@@ -10,8 +7,7 @@ const darkSelector =
 const lightSelector = 'html[data-color-scheme="light"]';
 
 // general colors dark mode
-
-createGlobalTheme(darkSelector, baseVars.color, {
+createGlobalTheme(darkSelector, vars.base.color, {
   brand: primer.orange2,
   accent: primer.blue5,
   fgColor: primer.gray1,
@@ -30,7 +26,7 @@ createGlobalTheme(darkSelector, baseVars.color, {
 });
 
 // general colors light mode
-createGlobalTheme(lightSelector, baseVars.color, {
+createGlobalTheme(lightSelector, vars.base.color, {
   brand: primer.orange6,
   accent: primer.blue6,
   fgColor: primer.gray9,
@@ -49,7 +45,7 @@ createGlobalTheme(lightSelector, baseVars.color, {
 });
 
 // buttons dark mode
-createGlobalTheme(darkSelector, buttonVariantVars, {
+createGlobalTheme(darkSelector, vars.button, {
   danger: {
     active: {
       bgColor: primer.red7,
@@ -163,7 +159,7 @@ createGlobalTheme(darkSelector, buttonVariantVars, {
 });
 
 // buttons light mode
-createGlobalTheme(lightSelector, buttonVariantVars, {
+createGlobalTheme(lightSelector, vars.button, {
   danger: {
     active: {
       bgColor: primer.red6,
@@ -331,7 +327,7 @@ createGlobalTheme(darkSelector, vars.purpose, {
 });
 
 // purpose light mode
-createGlobalTheme(lightSelector, purposeVariantVars, {
+createGlobalTheme(lightSelector, vars.purpose, {
   critical: {
     bgColor: primer.red1,
     borderColor: primer.red2,

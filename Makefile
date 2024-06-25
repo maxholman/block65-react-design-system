@@ -30,7 +30,6 @@ build/global.css: node_modules dist/bin/token.js
 	pnpm exec prettier --write $@
 
 tsconfig.json: node_modules tsconfig-vite.src.json
-	echo "// last updated: $(shell date)" > $@
 	pnpm exec tsc -p tsconfig-vite.src.json --showConfig 1>> $@
 
 build: $(SRCS) node_modules vite.config.ts vite-env.d.ts
