@@ -1,13 +1,75 @@
-import { style, styleVariants } from '@vanilla-extract/css';
-import { focusRadiusVar, focusableClassName } from './focusable.css.js';
 import {
-  globalVars,
-  propsVars,
-  textLinkVars,
-  textVariantVars,
-} from './vars.css.js';
+  createGlobalThemeContract,
+  style,
+  styleVariants,
+} from '@vanilla-extract/css';
+import { createGlobalThemeMapFn } from './css-helpers.js';
+import { focusableClassName, focusRadiusVar } from './focusable.css.js';
+import { textVariantVars } from './typography.css.js';
+import { globalVars, type Prefix, propsVars } from './vars.css.js';
 
 export type LinkVariant = 'strong' | 'normal' | 'weak' | 'none';
+
+/**
+ * text links vars
+ */
+export const textLinkVarsMapFnPrefix = 'textlink' satisfies Prefix;
+export const textLinkVars = createGlobalThemeContract(
+  {
+    strong: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+    normal: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+    weak: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+    none: {
+      fontWeight: '',
+      rest: {
+        fgColor: '',
+        textDecoration: '',
+      },
+      hover: {
+        fgColor: '',
+        textDecoration: '',
+      },
+    },
+  } satisfies Record<
+    LinkVariant,
+    {
+      fontWeight: string;
+      rest: { fgColor: string; textDecoration: string };
+      hover: { fgColor: string; textDecoration: string };
+    }
+  >,
+  createGlobalThemeMapFn(textLinkVarsMapFnPrefix),
+);
 
 const textLinkClassName = style([
   focusableClassName,

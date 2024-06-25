@@ -1,49 +1,51 @@
 import type { CSSVarFunction, MapLeafNodes } from '@vanilla-extract/css';
+import { badgeVars, badgeVarsMapFnPrefix } from './badge.css.js';
+import { buttonVariantMapFnPrefix, buttonVariantVars } from './button.css.js';
+import { calloutVars, calloutVarsMapFnPrefix } from './callout.css.js';
+import { formControlVars, formControlVarsMapFnPrefix } from './forms.css.js';
+import { textLinkVars, textLinkVarsMapFnPrefix } from './link.css.js';
+import { panelVars, panelVarsMapFnPrefix } from './panel.css.js';
 import {
+  purposeVariantVars,
+  purposeVariantVarsMapFnPrefix,
+} from './purpose.css.js';
+import {
+  buttonVariantTokens,
   defaultGlobalTokens,
   defaultPropsTokens,
   defaultTextLinkTokens,
   defaultTextTokens,
   formControlTokens,
   panelTokens,
+  purposeVariantTokens,
 } from './tokens.js';
+import { textVariantVars, textVarsMapFnPrefix } from './typography.css.js';
 import {
-  buttonVars,
-  buttonVarsMapFnPrefix,
-  calloutVars,
-  calloutVarsMapFnPrefix,
-  formControlVars,
-  formControlVarsMapFnPrefix,
   globalVars,
   globalVarsMapFnPrefix,
-  panelVars,
-  panelVarsMapFnPrefix,
   type Prefix,
   propsVars,
   propsVarsMapFnPrefix,
-  textLinkVars,
-  textLinkVarsMapFnPrefix,
-  textVariantVars,
-  textVarsMapFnPrefix,
 } from './vars.css.js';
 
 type TokenPrimitive = string | CSSVarFunction;
-type TokenValue = TokenPrimitive | TokenObject;
-type TokenObject = { [Key in string]: TokenValue };
+type TokenValues = TokenPrimitive | TokenObject;
+type TokenObject = { [Key in string]: TokenValues };
 
-type VarValue = CSSVarFunction | VarObject;
-type VarObject = { [Key in string]: VarValue };
+type VarValues = CSSVarFunction | VarObject;
+type VarObject = { [Key in string]: VarValues };
 
 export const vars = {
   [globalVarsMapFnPrefix]: globalVars,
   [panelVarsMapFnPrefix]: panelVars,
   [formControlVarsMapFnPrefix]: formControlVars,
   [propsVarsMapFnPrefix]: propsVars,
+  [purposeVariantVarsMapFnPrefix]: purposeVariantVars,
   [textVarsMapFnPrefix]: textVariantVars,
   [textLinkVarsMapFnPrefix]: textLinkVars,
-  [buttonVarsMapFnPrefix]: buttonVars,
   [calloutVarsMapFnPrefix]: calloutVars,
-  // [badgeVarsMapFnPrefix]: badgeVars,
+  [buttonVariantMapFnPrefix]: buttonVariantVars,
+  [badgeVarsMapFnPrefix]: badgeVars,
 } satisfies Record<Prefix, VarObject>;
 
 export const tokens = {
@@ -53,9 +55,12 @@ export const tokens = {
   [propsVarsMapFnPrefix]: defaultPropsTokens,
   [textVarsMapFnPrefix]: defaultTextTokens,
   [textLinkVarsMapFnPrefix]: defaultTextLinkTokens,
-  [buttonVarsMapFnPrefix]: {},
+  [purposeVariantVarsMapFnPrefix]: purposeVariantTokens,
   [calloutVarsMapFnPrefix]: {
     padding: '1rem',
   },
-  // [badgeVarsMapFnPrefix]: {} as TokenObject,
-} satisfies MapLeafNodes<typeof vars, TokenValue>;
+  [buttonVariantMapFnPrefix]: buttonVariantTokens,
+  [badgeVarsMapFnPrefix]: {
+    borderStyle: 'solid',
+  },
+} satisfies MapLeafNodes<typeof vars, TokenValues>;

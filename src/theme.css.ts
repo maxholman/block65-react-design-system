@@ -3,6 +3,7 @@ import { buttonVariantVars } from '../lib/button.css.js';
 import { purposeVariantVars } from '../lib/purpose.css.js';
 import { globalVars } from '../lib/vars.css.js';
 import * as primer from './primer.js';
+import { vars } from '#vars';
 
 const darkSelector =
   'html[data-color-scheme="dark"], html:not([data-color-scheme])';
@@ -276,7 +277,7 @@ createGlobalTheme(lightSelector, buttonVariantVars, {
 });
 
 // purpose dark mode
-createGlobalTheme(darkSelector, purposeVariantVars, {
+createGlobalTheme(darkSelector, vars.purpose, {
   critical: {
     bgColor: primer.red1,
     borderColor: primer.red4,

@@ -1,7 +1,7 @@
 import { precomputeValues } from '@capsizecss/core';
 import interFontMetrics from '@capsizecss/metrics/inter';
 import { createGlobalTheme, globalStyle } from '@vanilla-extract/css';
-import { textVariantVars } from '../lib/vars.css.js';
+import { vars } from '#vars';
 
 function interCapSize(capHeightPx: number) {
   return precomputeValues({
@@ -26,7 +26,7 @@ globalStyle(globalSelector, {
   fontVariationSettings: "'slnt' 0",
 });
 
-createGlobalTheme(globalSelector, textVariantVars.capSize, {
+createGlobalTheme(globalSelector, vars.text.capSize, {
   '00': interCapSize(9), // 12.375
   0: interCapSize(10), // 13.75
   1: interCapSize(12), // 16.5px
@@ -39,7 +39,7 @@ createGlobalTheme(globalSelector, textVariantVars.capSize, {
   small: interCapSize(10),
 });
 
-createGlobalTheme(globalSelector, textVariantVars.size, {
+createGlobalTheme(globalSelector, vars.text.size, {
   '00': fontSize(12),
   0: fontSize(14),
   1: fontSize(16),
@@ -52,13 +52,13 @@ createGlobalTheme(globalSelector, textVariantVars.size, {
   small: fontSize(14),
 });
 
-createGlobalTheme(globalSelector, textVariantVars.lineHeight, {
+createGlobalTheme(globalSelector, vars.text.lineHeight, {
   heading: '1.2',
   normal: 'initial',
   paragraph: '1.45',
 });
 
-createGlobalTheme(globalSelector, textVariantVars.fontWeight, {
+createGlobalTheme(globalSelector, vars.text.fontWeight, {
   light: '300',
   normal: '400',
   medium: '500',

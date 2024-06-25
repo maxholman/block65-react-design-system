@@ -1,5 +1,5 @@
 import { forwardRef, type ForwardedRef } from 'react';
-import { badgeVariantClassNames } from './badge.css.js';
+import { badgePurposeClassNames } from './badge.css.js';
 import { Box } from './box.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Inline, type FlexProps } from './layout.js';
@@ -22,7 +22,7 @@ export const Badge = forwardRef(
         component="span"
         padding="2"
         paddingInline="3"
-        className={[className, variant && badgeVariantClassNames[variant]]}
+        className={[className, variant && badgePurposeClassNames[variant]]}
         {...props}
       >
         {isStringLike(children) ? (
