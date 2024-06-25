@@ -8,8 +8,8 @@ import {
   focusWidthVar,
 } from './focusable.css.js';
 import { purposeVariantVars } from './purpose.css.js';
-import { baseVars, type Prefix, propsVars } from './vars.css.js';
 import { textVariantVars } from './typography.css.js';
+import { baseVars, type Prefix, propsVars } from './vars.css.js';
 
 /**
  * Form control vars
