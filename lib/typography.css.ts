@@ -40,6 +40,9 @@ const fontSizeShape = {
 export const textVarsMapFnPrefix = 'text' satisfies Prefix;
 export const textVariantVars = createGlobalThemeContract(
   {
+    fontFamily: {
+      monospace: '',
+    },
     lineHeight: {
       normal: '',
       paragraph: '',
@@ -89,8 +92,7 @@ export const strongClassName = style({
 });
 
 export const codeClassName = style({
-  fontFamily:
-    'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+  fontFamily: textVariantVars.fontFamily.monospace,
 });
 
 export const fontWeightVariantClassNames = styleVariants(

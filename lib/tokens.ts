@@ -142,6 +142,10 @@ export const defaultTextTokens = {
       capHeightTrim: '0.125rem',
     },
   },
+  fontFamily: {
+    monospace:
+      'Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+  },
   fontWeight: {
     light: '300',
     normal: '400',
