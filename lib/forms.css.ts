@@ -1,18 +1,32 @@
-import { style } from '@vanilla-extract/css';
+import { createGlobalThemeContract, style } from '@vanilla-extract/css';
 import { calc } from '@vanilla-extract/css-utils';
+import { createGlobalThemeMapFn } from './css-helpers.js';
 import {
+  focusableClassName,
   focusColorVar,
   focusVisibleClassName,
   focusWidthVar,
-  focusableClassName,
 } from './focusable.css.js';
 import { purposeVariantVars } from './purpose.css.js';
-import {
-  formControlVars,
-  globalVars,
-  propsVars,
-  textVariantVars,
-} from './vars.css.js';
+import { textVariantVars } from './typography.css.js';
+import { baseVars, type Prefix, propsVars } from './vars.css.js';
+
+/**
+ * Form control vars
+ */
+export const formControlVarsMapFnPrefix = 'formControl' satisfies Prefix;
+export const formControlVars = createGlobalThemeContract(
+  {
+    // border: {
+    //   radius: '',
+    //   width: '',
+    // },
+    outline: {
+      width: '',
+    },
+  },
+  createGlobalThemeMapFn(formControlVarsMapFnPrefix),
+);
 
 export const formInputPasswordIcon = style({
   aspectRatio: '1/1',
@@ -69,7 +83,7 @@ export const formInputFocusNotCheckRadioClassName = style([
   focusVisibleClassName,
   {
     outlineWidth: formControlVars.outline.width,
-    borderRadius: globalVars.border.radius,
+    borderRadius: baseVars.border.radius,
     borderColor: purposeVariantVars.default.muted.borderColor,
     selectors: {
       '&:focus': {
@@ -168,7 +182,7 @@ export const formInputCheckboxInput = style([
         // size and color of the check
         aspectRatio: '1/1',
         // height: '0.35em',
-        boxShadow: `inset 1em 1em ${globalVars.color.accent}`,
+        boxShadow: `inset 1em 1em ${baseVars.color.accent}`,
       },
       '&:checked': {
         // background/border of the check
@@ -189,7 +203,7 @@ export const formInputRadioInput = style([
         height: '0.5rem',
         aspectRatio: '1/1',
         borderRadius: '50%',
-        boxShadow: `inset 1em 1em ${globalVars.color.accent}`,
+        boxShadow: `inset 1em 1em ${baseVars.color.accent}`,
       },
     },
   },

@@ -6,7 +6,7 @@ import {
 import { calc } from '@vanilla-extract/css-utils';
 import { createGlobalThemeMapFn } from './css-helpers.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
-import { propsVars, globalVars } from './vars.css.js';
+import { propsVars, baseVars, type Prefix } from './vars.css.js';
 
 export type ButtonVariant =
   | 'default'
@@ -18,21 +18,22 @@ export type ButtonVariant =
 export type ButtonState = 'active' | 'disabled' | 'hover' | 'rest';
 
 const buttonStateVarsShape = {
+  rest: { bgColor: '', fgColor: '', borderColor: '' },
+  hover: { bgColor: '', fgColor: '', borderColor: '' },
   active: { bgColor: '', fgColor: '', borderColor: '' },
   disabled: { bgColor: '', fgColor: '', borderColor: '' },
-  hover: { bgColor: '', fgColor: '', borderColor: '' },
-  rest: { bgColor: '', fgColor: '', borderColor: '' },
 } satisfies Record<ButtonState, { bgColor: ''; fgColor: ''; borderColor: '' }>;
 
+export const buttonVariantMapFnPrefix = 'button' satisfies Prefix;
 export const buttonVariantVars = createGlobalThemeContract(
   {
-    default: buttonStateVarsShape,
-    danger: buttonStateVarsShape,
     primary: buttonStateVarsShape,
+    default: buttonStateVarsShape,
     invisible: buttonStateVarsShape,
+    danger: buttonStateVarsShape,
     inactive: buttonStateVarsShape,
   } satisfies Record<ButtonVariant, typeof buttonStateVarsShape>,
-  createGlobalThemeMapFn('button'),
+  createGlobalThemeMapFn(buttonVariantMapFnPrefix),
 );
 
 export const buttonVariantClassNames = styleVariants(
@@ -76,8 +77,8 @@ export const buttonClassName = style([
   {
     cursor: 'pointer',
     userSelect: 'none',
-    borderRadius: globalVars.border.radius,
-    borderWidth: globalVars.border.width,
+    borderRadius: baseVars.border.radius,
+    borderWidth: baseVars.border.width,
     selectors: {
       '&[disabled]': {
         pointerEvents: 'none',

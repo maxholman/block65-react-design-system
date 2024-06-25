@@ -20,6 +20,7 @@ const purposeVariantTypes = {
   // emphasis: purposeVariantVarsShape,
 };
 
+export const purposeVariantVarsMapFnPrefix = 'purpose';
 export const purposeVariantVars = createGlobalThemeContract(
   {
     info: purposeVariantTypes,
@@ -28,5 +29,5 @@ export const purposeVariantVars = createGlobalThemeContract(
     positive: purposeVariantTypes,
     attention: purposeVariantTypes,
   } satisfies Record<PurposeVariant, typeof purposeVariantTypes>,
-  createGlobalThemeMapFn('purpose'),
+  createGlobalThemeMapFn(purposeVariantVarsMapFnPrefix),
 );
