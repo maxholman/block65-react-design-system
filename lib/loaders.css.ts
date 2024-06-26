@@ -23,7 +23,7 @@ export const spinnerAnimationVariantClassNames = styleVariants({
 
 export const inlineSpinnerClass = style({
   display: 'inline-flex',
-  width: '1em',
+  width: '0.7em', // hack, this should be variable based on the font-size
 });
 
 export type SpinnerSize = '1' | '2' | '3' | '4' | '5';

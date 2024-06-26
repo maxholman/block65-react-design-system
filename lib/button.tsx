@@ -1,10 +1,9 @@
 import {
-  cloneElement,
   forwardRef,
-  isValidElement,
   type FC,
   type ForwardedRef,
   type ReactElement,
+  isValidElement,
 } from 'react';
 import { Box, type BoxProps } from './box.js';
 import type { ButtonState, ButtonVariant } from './button.css.js';
@@ -13,7 +12,7 @@ import {
   buttonClassName,
   buttonStateClassNames,
   buttonVariantClassNames,
-  iconClass,
+  iconClassName,
   inlineBleedClass,
   visiblyHiddenClass,
 } from './button.css.js';
@@ -22,7 +21,7 @@ import { useStringLikeDetector } from './hooks/use-string-like.js';
 import { Flex, type FlexProps } from './layout.js';
 import { Spinner } from './loaders.js';
 import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
-import { ExactText } from './typography.js';
+import { ExactText, type FontSize } from './typography.js';
 
 export { ButtonState, ButtonVariant };
 
@@ -73,11 +72,16 @@ export type ButtonIconProps<
 const IconBox: FC<{
   icon: ReactElement | FC;
   busy?: boolean | Falsy;
-}> = ({ icon, busy }) => (
-  <Box component="span" className={[iconClass, busy && visiblyHiddenClass]}>
+  capSize?: FontSize;
+}> = ({ icon, busy, ...props }) => (
+  <Box
+    {...props}
+    component="span"
+    className={[iconClassName, busy && visiblyHiddenClass]}
+  >
     {isValidElement<ReactElementDefaultPropsType>(icon)
-      ? cloneElement(icon, { className: iconClass })
-      : icon({ className: iconClass })}
+      ? icon
+      : icon({} /* { className: iconClassName } */)}
   </Box>
 );
 
@@ -104,14 +108,14 @@ function getSizeProps(size: ButtonSize | Falsy) {
   switch (size) {
     case 'small':
       return {
-        space: '1',
+        space: '2',
         fontSize: '0',
         paddingBlock: '4',
         paddingInline: '5',
       } satisfies BoxProps;
     case 'large':
       return {
-        space: '2',
+        space: '3',
         fontSize: '3',
         paddingBlock: '6',
         paddingInline: '7',
@@ -144,7 +148,7 @@ export const Button = forwardRef(
       flexGrow,
       state,
       size = 'medium',
-      variant = 'default',
+      variant,
       ...props
     }: ButtonProps<T>,
     ref: ForwardedRef<HTMLElement>,
@@ -163,6 +167,15 @@ export const Button = forwardRef(
       'aria-live': busy ? 'polite' : undefined,
     } as const;
 
+    const autoButtonTypeVariant =
+      'type' in props && props.type === 'submit' && !variant
+        ? 'primary'
+        : variant;
+
+    const resolvedVariant = autoButtonTypeVariant || 'default';
+
+    const hasStringChildren = isStringLike(children);
+
     return (
       <UnstyledButton
         ref={ref}
@@ -178,34 +191,37 @@ export const Button = forwardRef(
           inline && inlineBleedClass,
 
           // order is important here, as we want the state to override the variant
-          state && variant && buttonStateClassNames[variant][state],
+          state &&
+            resolvedVariant &&
+            buttonStateClassNames[resolvedVariant][state],
 
-          variant && buttonVariantClassNames[variant],
+          resolvedVariant && buttonVariantClassNames[resolvedVariant],
         ]}
       >
-        {iconStart && <IconBox icon={iconStart} busy={busy} />}
+        {iconStart && (
+          <IconBox capSize={fontSize} busy={busy} icon={iconStart} />
+        )}
 
-        {!busy &&
-          (isStringLike(children) ? (
-            <ExactText
-              component="span"
-              textAlign={textAlign}
-              capSize={fontSize}
-              {...busyAttributes}
-            >
-              {children}
-            </ExactText>
-          ) : (
-            children && (
-              <Box flexGrow component="span" {...busyAttributes}>
-                {children}
-              </Box>
-            )
-          ))}
+        {!busy && hasStringChildren && (
+          <ExactText
+            component="span"
+            textAlign={textAlign}
+            capSize={fontSize}
+            {...busyAttributes}
+          >
+            {children}
+          </ExactText>
+        )}
 
-        {busy && <Spinner />}
+        {!busy && children && !hasStringChildren && (
+          <Box flexGrow component="span" {...busyAttributes}>
+            {children}
+          </Box>
+        )}
 
-        {iconEnd && <IconBox icon={iconEnd} busy={busy} />}
+        {busy && <Spinner capSize={fontSize} />}
+
+        {iconEnd && <IconBox capSize={fontSize} busy={busy} icon={iconEnd} />}
       </UnstyledButton>
     );
   },

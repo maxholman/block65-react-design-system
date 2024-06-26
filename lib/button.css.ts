@@ -112,9 +112,10 @@ export const buttonClassName = style([
   },
 ]);
 
-export const iconClass = style({
+export const iconClassName = style({
   aspectRatio: '1/1',
-  lineHeight: 0,
+  display: 'inline-flex',
+  width: '0.7em', // hack, this should be variable based on the font-size
 });
 
 export const visiblyHiddenClass = style({

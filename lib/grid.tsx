@@ -8,15 +8,13 @@ import {
 import { Box, type BoxProps } from './box.js';
 import { matchViewportVariants } from './component-utils.js';
 import { gridClass } from './grid.css.js';
-import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
+import type { Falsy, ReactHTMLElementsHacked } from './types.js';
 
-export type GridProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
-  BoxProps<T>,
-  {
+export type GridProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
+  BoxProps<T> & {
     space?: OrResponsive<Space | Falsy>;
     cols?: OrResponsive<Columns>;
-  }
->;
+  };
 
 export const Grid = <T extends keyof ReactHTMLElementsHacked = 'div'>({
   className,

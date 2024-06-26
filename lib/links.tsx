@@ -3,7 +3,7 @@ import { Box, type BoxProps } from './box.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import { textLinkVariantClassNames } from './link.css.js';
 import type { LinkVariant } from './link.css.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
+import type { ReactHTMLElementsHacked } from './types.js';
 
 export type { LinkVariant };
 
@@ -13,7 +13,7 @@ export type TextLinkCommonProps = {
 };
 
 export type TextLinkProps<T extends keyof ReactHTMLElementsHacked = 'a'> =
-  Merge<BoxProps<T>, TextLinkCommonProps>;
+  BoxProps<T> & TextLinkCommonProps;
 
 /**
  * A `TextLink` is expect to be wrapped something like a `Paragraph` component
