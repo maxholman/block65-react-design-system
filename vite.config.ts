@@ -42,17 +42,6 @@ export default defineConfig((config) => {
               filename: 'build/visualizer.html',
             }),
         ],
-        output: {
-          manualChunks(id) {
-            if (id.includes('@floating-ui')) {
-              return 'floating-ui';
-            }
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-            return 'main';
-          },
-        },
       },
 
       sourcemap: true,
