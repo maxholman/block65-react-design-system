@@ -124,11 +124,23 @@ export const Strong: FC<BoxProps<'span'>> = (props) => (
   <Box component="span" fontWeight="bold" {...props} />
 );
 
-export const Code: FC<BoxProps<'code'>> = ({ className, ...props }) => (
-  <Box component="code" {...props} className={[className, codeClassName]} />
+export const Code: FC<ParagraphProps<'code'>> = ({
+  className,
+  secondary,
+  ...props
+}) => (
+  <Box
+    component="code"
+    {...props}
+    className={[className, secondary && secondaryClassName, codeClassName]}
+  />
 );
 
-export const Secondary: FC<BoxProps<'span'>> = ({ className, ...props }) => (
+export const Secondary: FC<ParagraphProps<'span'>> = ({
+  className,
+  secondary,
+  ...props
+}) => (
   <Box
     component="span"
     className={[className, secondaryClassName]}

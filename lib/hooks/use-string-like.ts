@@ -1,12 +1,12 @@
 import {
   Children,
   Fragment,
+  isValidElement,
   useCallback,
   type JSXElementConstructor,
   type ReactNode,
 } from 'react';
 import type { Primitive } from 'type-fest';
-import { isValidElementOfType } from '../utils.js';
 import { useDesignSystem } from './use-design-system.js';
 
 function nodeIsPrimitive(
@@ -26,23 +26,26 @@ function nodeIsStringLike(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   stringLikeComponents: JSXElementConstructor<any>[] = [],
 ): node is Exclude<ReactNode, Primitive> | string {
-  if (isValidElementOfType(node, Fragment)) {
-    if ('children' in node.props) {
-      return (
-        (node.props.children && nodeIsPrimitive(node.props.children)) ||
-        Children.toArray(node.props.children).every((child) =>
-          nodeIsStringLike(child, stringLikeComponents),
-        )
+  if (isValidElement(node)) {
+    // Fragments are string like if all their children are string like
+    if (node.type === Fragment) {
+      return Children.toArray(node.props.children).every((child) =>
+        nodeIsStringLike(child, stringLikeComponents),
       );
     }
 
-    // node is one of the string-like components
+    // element is at least one of the string-like components
     return stringLikeComponents.some((component) => node.type === component);
+  }
+
+  if (Array.isArray(node)) {
+    return node.every((child) => nodeIsStringLike(child, stringLikeComponents));
   }
 
   return nodeIsPrimitive(node);
 }
 
+/** @private - not intended for public API */
 export function useStringLikeDetector() {
   const { stringLikeComponents } = useDesignSystem();
 

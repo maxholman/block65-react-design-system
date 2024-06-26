@@ -25,14 +25,14 @@ export const DesignSystem = <
 >({
   className,
   integrationMode,
-  stringLikeComponents,
+  stringLikeComponents = [],
   component = 'div',
   ...props
 }: DesignSystemProps<T>): ReactElement | null => (
   <DesignSystemContext.Provider
     value={{
       className,
-      ...(stringLikeComponents && { stringLikeComponents }),
+      stringLikeComponents,
     }}
   >
     <Box

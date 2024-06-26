@@ -7,6 +7,7 @@ import { calc } from '@vanilla-extract/css-utils';
 import { createGlobalThemeMapFn } from './css-helpers.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 import { propsVars, baseVars, type Prefix } from './vars.css.js';
+import { textVariantVars } from './typography.css.js';
 
 export type ButtonVariant =
   | 'default'
@@ -112,9 +113,10 @@ export const buttonClassName = style([
   },
 ]);
 
-export const iconClass = style({
+export const iconClassName = style({
   aspectRatio: '1/1',
-  lineHeight: 0,
+  display: 'inline-flex',
+  width: '0.7em', // hack, this should be variable based on the font-size
 });
 
 export const visiblyHiddenClass = style({
