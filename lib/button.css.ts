@@ -7,7 +7,6 @@ import { calc } from '@vanilla-extract/css-utils';
 import { createGlobalThemeMapFn } from './css-helpers.js';
 import { typedObjectEntries, typedObjectFromEntries } from './utils.js';
 import { propsVars, baseVars, type Prefix } from './vars.css.js';
-import { textVariantVars } from './typography.css.js';
 
 export type ButtonVariant =
   | 'default'
