@@ -15,6 +15,7 @@ import {
   iconClassName,
   inlineBleedClass,
   visiblyHiddenClass,
+  busySpinnerClass,
 } from './button.css.js';
 import { differentOriginLinkProps } from './component-utils.js';
 import { useStringLikeDetector } from './hooks/use-string-like.js';
@@ -68,17 +69,11 @@ export type ButtonIconProps<
   }
 >;
 
-/** @private */
-const IconBox: FC<{
+const IconBox: FC<BoxProps<'span'> & {
   icon: ReactElement | FC;
-  busy?: boolean | Falsy;
   capSize?: FontSize;
-}> = ({ icon, busy, ...props }) => (
-  <Box
-    {...props}
-    component="span"
-    className={[iconClassName, busy && visiblyHiddenClass]}
-  >
+}> = ({ icon, className, ...props }) => (
+  <Box {...props} component="span" className={[className, iconClassName]}>
     {isValidElement<ReactElementDefaultPropsType>(icon)
       ? icon
       : icon({} /* { className: iconClassName } */)}
@@ -199,10 +194,10 @@ export const Button = forwardRef(
         ]}
       >
         {iconStart && (
-          <IconBox capSize={fontSize} busy={busy} icon={iconStart} />
+          <IconBox capSize={fontSize} icon={iconStart} {...busyAttributes} />
         )}
 
-        {!busy && hasStringChildren && (
+        {hasStringChildren && (
           <ExactText
             component="span"
             textAlign={textAlign}
@@ -213,15 +208,17 @@ export const Button = forwardRef(
           </ExactText>
         )}
 
-        {!busy && children && !hasStringChildren && (
+        {!hasStringChildren && children && (
           <Box flexGrow component="span" {...busyAttributes}>
             {children}
           </Box>
         )}
 
-        {busy && <Spinner capSize={fontSize} />}
+        {busy && <Spinner className={busySpinnerClass} capSize={fontSize} />}
 
-        {iconEnd && <IconBox capSize={fontSize} busy={busy} icon={iconEnd} />}
+        {iconEnd && (
+          <IconBox capSize={fontSize} icon={iconEnd} {...busyAttributes} />
+        )}
       </UnstyledButton>
     );
   },

@@ -121,14 +121,18 @@ export const iconClassName = style({
   width: '0.7em', // hack, this should be variable based on the font-size
 });
 
-export const visiblyHiddenClass = style({
-  visibility: 'hidden',
-});
-
 export const busyButtonClass = style({
   pointerEvents: 'none',
 });
 
+export const busySpinnerClass = style({
+  position: 'absolute',
+});
+
 export const inlineBleedClass = style({
   marginBlock: calc(propsVars.space[0]).negate().toString(),
+});
+
+export const visiblyHiddenClass = style({
+  visibility: 'hidden',
 });
