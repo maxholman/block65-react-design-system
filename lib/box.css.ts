@@ -259,19 +259,18 @@ export const textOverflowVariants = styleVariants(
   (value) => [textOverflowBase, value],
 );
 
-
 export type TextWrap = 'pretty' | 'balance' | 'nowrap';
 
 export const textWrapVariants = styleVariants({
   balance: {
-    textWrap: 'balance'
+    textWrap: 'balance',
   },
   pretty: {
-    textWrap: 'pretty'
+    textWrap: 'pretty',
   },
   nowrap: {
-      textWrap: 'nowrap'
-  }
+    textWrap: 'nowrap',
+  },
 } satisfies Record<TextWrap, StyleRule>);
 
 export type FlexDirection = 'row' | 'column';

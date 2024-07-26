@@ -23,7 +23,6 @@ export type FontWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
 
 export type LineHeight = 'normal' | 'paragraph' | 'heading';
 
-
 const capSizeShape = {
   fontSize: '',
   lineHeight: '',

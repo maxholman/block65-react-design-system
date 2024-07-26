@@ -98,25 +98,15 @@ export const ButtonsPage: FC = () => (
       <Block>
         {variants.map((variant) => (
           <Inline key={variant}>
-          <ButtonIcon
-            icon={<SunIcon />}
-            label="Sun"
-            variant={variant}
-          />
-          <ButtonIcon
-            icon={<SunIcon />}
-            label="Sun"
-            variant={variant}
-
-            busy
-          />
-          <ButtonIcon
-            icon={<SunIcon />}
-            label="Sun"
-            variant={variant}
-            disabled
-          />
-          <Divider/>
+            <ButtonIcon icon={<SunIcon />} label="Sun" variant={variant} />
+            <ButtonIcon icon={<SunIcon />} label="Sun" variant={variant} busy />
+            <ButtonIcon
+              icon={<SunIcon />}
+              label="Sun"
+              variant={variant}
+              disabled
+            />
+            <Divider />
           </Inline>
         ))}
       </Block>
@@ -136,7 +126,7 @@ export const ButtonsPage: FC = () => (
 
     <Panel>
       <Heading>Small buttons</Heading>
-      <Paragraph>OMG So cute!</Paragraph>
+      <Paragraph>So cute!</Paragraph>
       <Inline>
         {variants.map((variant) => (
           <Fragment key={variant}>
@@ -247,7 +237,7 @@ export const ButtonsPage: FC = () => (
 
       <Panel>
         <Heading>Buttonish things</Heading>
-        <Block space="0">
+        <Block>
           <Button
             fontSize="5"
             padding="10"

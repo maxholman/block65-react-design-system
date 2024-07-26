@@ -28,11 +28,7 @@ export const Badge = forwardRef(
         {...props}
       >
         {isStringLike(children) ? (
-          <Box
-            component="span"
-            textOverflow="ellipsis"
-            textAlign="center"
-          >
+          <Box component="span" textOverflow="ellipsis" textAlign="center">
             {children}
           </Box>
         ) : (

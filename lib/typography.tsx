@@ -25,7 +25,7 @@ export type ParagraphProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
   Merge<BoxProps<T>, CommonTextProps>;
 
 export type ExactTextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
-  Merge<BoxProps<T>, CommonTextProps> & {fontSize?: never};
+  Merge<BoxProps<T>, CommonTextProps> & { fontSize?: never };
 
 export type HeadingProps<T extends keyof ReactHTMLElementsHacked = 'p'> = Merge<
   BoxProps<T>,

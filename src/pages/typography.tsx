@@ -14,7 +14,7 @@ import {
 export const TypographyPage: FC = () => (
   <>
     <Block>
-      <Paragraph >
+      <Paragraph>
         Overflowing with verbosity and verbiage, the cascading deluge of textual
         expanse inundates the digital canvas. Words burst forth from their
         designated boundaries, defying containment within their allocated
@@ -260,10 +260,24 @@ export const TypographyPage: FC = () => (
     <Panel>
       <Heading>Wrapping</Heading>
       <Block>
-        <Paragraph textWrap="balance">balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance </Paragraph>
+        <Paragraph textWrap="balance">
+          balance balance balance balance balance balance balance balance
+          balance balance balance balance balance balance balance balance
+          balance balance balance balance balance balance balance balance
+          balance balance balance balance balance balance balance balance
+          balance balance{' '}
+        </Paragraph>
       </Block>
       <Block>
-        <Paragraph textWrap="pretty">pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty</Paragraph>
+        <Paragraph textWrap="pretty">
+          pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty
+          pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty
+          pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty
+          pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty
+          pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty
+          pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty
+          pretty pretty
+        </Paragraph>
       </Block>
     </Panel>
 

@@ -148,7 +148,12 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     const ref = useCombinedRefs(forwardedRef, ourRef);
 
     return (
-      <Block flexGrow={flexGrow} className={className} space={defaultFormInputSpace} hidden={hidden}>
+      <Block
+        flexGrow={flexGrow}
+        className={className}
+        space={defaultFormInputSpace}
+        hidden={hidden}
+      >
         {label && (
           <FormInputLabel
             htmlFor={!inputTypeProps.readOnly ? id : undefined}

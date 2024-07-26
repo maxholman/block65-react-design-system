@@ -40,7 +40,7 @@ import {
   flexWrapVariants,
   type Wrap,
   textWrapVariants,
-  TextWrap,
+  type TextWrap,
 } from './box.css.js';
 import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import { TooltipLazy } from './tooltip-lazy.js';

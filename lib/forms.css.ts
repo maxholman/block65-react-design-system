@@ -75,7 +75,7 @@ export const formInputInnerClassName = style([
   {
     selectors: {
       '&::placeholder': {
-        color: baseVars.color.muted.fgColor
+        color: baseVars.color.muted.fgColor,
       },
     },
   },
