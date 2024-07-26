@@ -79,6 +79,9 @@ export const buttonClassName = style([
     userSelect: 'none',
     borderRadius: baseVars.border.radius,
     borderWidth: baseVars.border.width,
+    transitionProperty: 'background-color, color, border-color',
+    transitionDuration: '0.08s',
+    transitionTimingFunction: 'ease-in-out',
     selectors: {
       '&[disabled]': {
         pointerEvents: 'none',
