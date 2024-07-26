@@ -14,7 +14,7 @@ import {
 export const TypographyPage: FC = () => (
   <>
     <Block>
-      <Paragraph textOverflow="ellipsis">
+      <Paragraph >
         Overflowing with verbosity and verbiage, the cascading deluge of textual
         expanse inundates the digital canvas. Words burst forth from their
         designated boundaries, defying containment within their allocated
@@ -254,6 +254,16 @@ export const TypographyPage: FC = () => (
         <Heading level="1" fontSize="1">
           Heading 1
         </Heading>
+      </Block>
+    </Panel>
+
+    <Panel>
+      <Heading>Wrapping</Heading>
+      <Block>
+        <Paragraph textWrap="balance">balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance balance </Paragraph>
+      </Block>
+      <Block>
+        <Paragraph textWrap="pretty">pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty pretty</Paragraph>
       </Block>
     </Panel>
 

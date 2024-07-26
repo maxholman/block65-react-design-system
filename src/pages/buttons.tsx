@@ -95,16 +95,31 @@ export const ButtonsPage: FC = () => (
 
     <Panel>
       <Heading>Button Icons</Heading>
-      <Inline>
+      <Block>
         {variants.map((variant) => (
+          <Inline key={variant}>
           <ButtonIcon
             icon={<SunIcon />}
             label="Sun"
             variant={variant}
-            key={variant}
           />
+          <ButtonIcon
+            icon={<SunIcon />}
+            label="Sun"
+            variant={variant}
+
+            busy
+          />
+          <ButtonIcon
+            icon={<SunIcon />}
+            label="Sun"
+            variant={variant}
+            disabled
+          />
+          <Divider/>
+          </Inline>
         ))}
-      </Inline>
+      </Block>
     </Panel>
 
     <Panel>

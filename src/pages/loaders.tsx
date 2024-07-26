@@ -54,6 +54,8 @@ export const LoadersPage: FC = () => (
       <Spinner size="1" />
     </Grid>
 
+    <Heading>Size</Heading>
+
     <Grid>
       <Panel alignItems="center">
         <Spinner size="1" />
