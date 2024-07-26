@@ -7,12 +7,11 @@ import {
   type FontSize,
   type FontWeight,
   type LineHeight,
-  type TextWrap,
 } from './typography.css.js';
 
 export type HeadingLevel = '1' | '2' | '3' | '4' | '5' | '6';
 
-export type { FontSize, FontWeight, LineHeight, TextWrap };
+export type { FontSize, FontWeight, LineHeight };
 
 export type CommonTextProps = {
   secondary?: true | Falsy;
@@ -26,7 +25,7 @@ export type ParagraphProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
   Merge<BoxProps<T>, CommonTextProps>;
 
 export type ExactTextProps<T extends keyof ReactHTMLElementsHacked = 'p'> =
-  Merge<BoxProps<T>, CommonTextProps>;
+  Merge<BoxProps<T>, CommonTextProps> & {fontSize?: never};
 
 export type HeadingProps<T extends keyof ReactHTMLElementsHacked = 'p'> = Merge<
   BoxProps<T>,

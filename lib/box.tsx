@@ -39,6 +39,8 @@ import {
   flexShrinkClass,
   flexWrapVariants,
   type Wrap,
+  textWrapVariants,
+  TextWrap,
 } from './box.css.js';
 import { isNotFalsy, matchViewportVariants } from './component-utils.js';
 import { TooltipLazy } from './tooltip-lazy.js';
@@ -57,7 +59,6 @@ import {
   type FontSize,
   type FontWeight,
   type LineHeight,
-  type TextWrap,
 } from './typography.css.js';
 
 export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
@@ -85,12 +86,12 @@ export type BoxProps<T extends keyof ReactHTMLElementsHacked = 'div'> = Merge<
 
     textAlign?: TextAlign | Falsy;
     textOverflow?: TextOverflow | Falsy;
+    textWrap?: TextWrap | Falsy;
 
     fontSize?: FontSize | Falsy;
     capSize?: FontSize | Falsy;
     fontWeight?: FontWeight | Falsy;
     lineHeight?: LineHeight | Falsy;
-    textWrap?: TextWrap | Falsy;
 
     overflow?: Overflow | Falsy;
 
@@ -256,6 +257,7 @@ export const Box = forwardRef(
               ),
 
             textAlign && textAlignVariants[textAlign],
+            textWrap && textWrapVariants[textWrap],
 
             isNotFalsy(rounded) && roundedVariants[rounded],
 
