@@ -14,13 +14,13 @@ import {
   PositiveIcon,
 } from './icons.js';
 import type { PurposeVariant } from './purpose.css.js';
-import type { Merge, ReactHTMLElementsHacked } from './types.js';
+import type { Falsy, Merge, ReactHTMLElementsHacked } from './types.js';
 import { ExactText } from './typography.js';
 import { isValidElementOfType } from './utils.js';
 
 export type { PurposeVariant as CalloutVariant };
 
-function variantIcon(variant: PurposeVariant): ReactNode {
+function variantIcon(variant: PurposeVariant | Falsy): ReactNode {
   const props = { className: iconClassName };
 
   switch (variant) {
@@ -41,7 +41,7 @@ export type CalloutCommonProps = {
   align?: never;
   children: ReactNode;
   icon?: ReactNode;
-  variant?: PurposeVariant;
+  variant?: PurposeVariant | Falsy;
 };
 
 export type CalloutProps<T extends keyof ReactHTMLElementsHacked = 'div'> =
@@ -70,7 +70,7 @@ export const Callout = ({
   return (
     <Box
       space={space}
-      className={[className, calloutStyleVariants[variant]]}
+      className={[className, variant && calloutStyleVariants[variant]]}
       role="alert"
       aria-live="polite"
       {...props}
