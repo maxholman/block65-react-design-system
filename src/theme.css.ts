@@ -48,9 +48,9 @@ createGlobalTheme(lightSelector, vars.base.color, {
 createGlobalTheme(darkSelector, vars.button, {
   danger: {
     active: {
-      bgColor: primer.red7,
-      borderColor: primer.red9,
-      fgColor: primer.gray2,
+      bgColor: primer.blue4,
+      borderColor: primer.red1,
+      fgColor: primer.green2,
     },
     disabled: {
       bgColor: primer.gray9,

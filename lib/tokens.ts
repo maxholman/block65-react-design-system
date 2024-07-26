@@ -358,12 +358,12 @@ export const buttonVariantTokens = {
   },
   danger: {
     rest: {
-      bgColor: openPropsTokens.red5,
-      borderColor: openPropsTokens.red6,
-      fgColor: openPropsTokens.gray9,
+      bgColor: openPropsTokens.gray8,
+      borderColor: openPropsTokens.red10,
+      fgColor: openPropsTokens.red7,
     },
     hover: {
-      bgColor: openPropsTokens.red4,
+      bgColor: openPropsTokens.red9,
       borderColor: openPropsTokens.red7,
       fgColor: openPropsTokens.gray1,
     },
@@ -373,9 +373,9 @@ export const buttonVariantTokens = {
       fgColor: openPropsTokens.gray1,
     },
     disabled: {
-      bgColor: openPropsTokens.gray6,
+      bgColor: openPropsTokens.gray8,
       borderColor: openPropsTokens.gray1,
-      fgColor: openPropsTokens.gray9,
+      fgColor: openPropsTokens.gray6,
     },
   },
   inactive: {
