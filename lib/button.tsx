@@ -69,10 +69,12 @@ export type ButtonIconProps<
   }
 >;
 
-const IconBox: FC<BoxProps<'span'> & {
-  icon: ReactElement | FC;
-  capSize?: FontSize;
-}> = ({ icon, className, ...props }) => (
+const IconBox: FC<
+  BoxProps<'span'> & {
+    icon: ReactElement | FC;
+    capSize?: FontSize;
+  }
+> = ({ icon, className, ...props }) => (
   <Box {...props} component="span" className={[className, iconClassName]}>
     {isValidElement<ReactElementDefaultPropsType>(icon)
       ? icon
