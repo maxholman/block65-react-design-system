@@ -133,6 +133,8 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       message,
       autoFocus,
       customValidity,
+      flexGrow,
+      hidden,
       ...props
     },
     forwardedRef,
@@ -146,7 +148,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     const ref = useCombinedRefs(forwardedRef, ourRef);
 
     return (
-      <Block className={className} space={defaultFormInputSpace}>
+      <Block flexGrow={flexGrow} className={className} space={defaultFormInputSpace} hidden={hidden}>
         {label && (
           <FormInputLabel
             htmlFor={!inputTypeProps.readOnly ? id : undefined}
@@ -169,6 +171,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
           {...inputTypeProps}
           autoFocus={definitelyAutoFocus}
           id={id}
+          flexGrow={flexGrow}
         />
         {message && <FormInputMessage message={message} />}
       </Block>
