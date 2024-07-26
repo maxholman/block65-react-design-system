@@ -22,7 +22,7 @@ export type SpinnerProps = Merge<
 >;
 
 export const Spinner: FC<SpinnerProps> = ({
-  size = '1',
+  size,
   className,
   inline = true,
   delay = false,
@@ -39,7 +39,7 @@ export const Spinner: FC<SpinnerProps> = ({
         ? spinnerAnimationVariantClassNames.delay
         : spinnerAnimationVariantClassNames.normal,
       inline && inlineSpinnerClass,
-      !inline && spinnerSizeVariantClassNames[size],
+      size && spinnerSizeVariantClassNames[size],
     ]}
     {...props}
   >
